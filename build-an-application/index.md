@@ -4,13 +4,15 @@ Welcome to Cloudflare Workers! This tutorial series will bring you from no exper
 
 Cloudflare Workers is a platform for building and deploying serverless applications to a global cloud network. If you’re interested in how the platform works, check out the [Reference]() section of the documentation!
 
+TODO: BROKEN LINK ^
+
 This quick start guide will get you up and running with Wrangler, our command-line tool for building, previewing, and deploying Cloudflare Workers. As you continue to build and deploy to Cloudflare Workers, you’ll make use of all of Wrangler’s features to manage your application, so we recommend going through this brief guide before moving into the full tutorial!
 
 ## Prerequisities
 
 All of the tutorials in the Workers documentation use [Wrangler][2], our open-source command-line tool for managing Cloudflare Workers projects. To begin, you’ll need to install Wrangler on your machine. We publish binaries for most platforms as part of our release process: to install Wrangler on your machine, follow the instructions on our [Install Wrangler][3] page.
 
-To confirm that Wrangler has successfully installed on your machine, try running `wrangler —help` on the command-line. You should see output like the below screenshot:
+To confirm that Wrangler has successfully installed on your machine, try running `wrangler --help` on the command-line. You should see output like the below screenshot:
 
 ![Verify Wrangler Installation](./images/verify-wrangler-install.png)
 
