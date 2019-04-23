@@ -117,4 +117,4 @@ This is just the beginning of what you can do with Cloudflare Workers. If you'd 
 
 [2]:	https://github.com/cloudflare/wrangler
 [3]:	TODO
-[4]:	./tutorials/building-a-slack-bot.md
+[4]:	./tutorials/build-a-slack-bot.md
