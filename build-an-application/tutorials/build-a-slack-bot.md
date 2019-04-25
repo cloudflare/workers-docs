@@ -333,7 +333,7 @@ export const constructGhIssueSlackMessage = (
   const user_link = `<${issue.user.html_url}|${issue.user.login}>`
   const date = new Date(Date.parse(issue.created_at)).toLocaleDateString()
 
-  const textLines = [
+  const text_lines = [
     `*${issue.title} - ${issue_link}*`,
     issue.body,
     `*${issue.state}* - Created by ${user_link} on ${date}`
@@ -343,7 +343,7 @@ export const constructGhIssueSlackMessage = (
 
 Slack messages accept a variant of Markdown, which supports bold text via asterisks (`*bolded text*`), and links in the format `<https://yoururl.com|Display Text>`. Given that format, we can construct `issue_link`, which takes the `html_url` property from the GitHub API `issue` data (in format `https://github.com/cloudflare/wrangler/issues/1`), and the `issue_string` sent from the Slack slash command, and combines them into a clickable link in the Slack message. `user_link` is similar, using `issue.user.html_url` (in the format `https://github.com/signalnerve`, a GitHub user) and the user's GitHub username (`issue.user.login`), to construct a clickable link to the GitHub user. Finally, we can parse  `issue.created_at`, an ISO 8601 string, convert it into an instance of a JavaScript `Date`, and turn it into a formatted string, in the format `MM/DD/YY`.
 
-With those variables in place, `textLines` is an array of each piece of text for our message. The first line is the *issue title* and the *issue link*, the second is the *issue body*, and the final line is the *issue state* (for instance, open or closed), the *user link*, and the *creation date*:
+With those variables in place, `text_lines` is an array of each piece of text for our message. The first line is the *issue title* and the *issue link*, the second is the *issue body*, and the final line is the *issue state* (for instance, open or closed), the *user link*, and the *creation date*:
 
 ```javascript
 export const constructGhIssueSlackMessage = (
@@ -354,7 +354,7 @@ export const constructGhIssueSlackMessage = (
   const user_link = `<${issue.user.html_url}|${issue.user.login}>`
   const date = new Date(Date.parse(issue.created_at)).toLocaleDateString()
 
-  const textLines = [
+  const text_lines = [
     `*${issue.title} - ${issue_link}*`,
     issue.body,
     `*${issue.state}* - Created by ${user_link} on ${date}`
@@ -373,7 +373,7 @@ export const constructGhIssueSlackMessage = (
   const user_link = `<${issue.user.html_url}|${issue.user.login}>`
   const date = new Date(Date.parse(issue.created_at)).toLocaleDateString()
 
-  const textLines = [
+  const text_lines = [
     `*${issue.title} - ${issue_link}*`,
     issue.body,
     `*${issue.state}* - Created by ${user_link} on ${date}`
@@ -384,7 +384,7 @@ export const constructGhIssueSlackMessage = (
       type: "section",
       text: {
         type: "mrkdwn",
-        text: textLines.join("\n")
+        text: text_lines.join("\n")
       },
       accessory: {
         type: "image",
@@ -472,28 +472,195 @@ export default async request => {
   I'm sorry; your browser doesn't support HTML5 video in WebM with VP8/VP9 or MP4 with H.264.
 </video>
 
-
-
 ### Creating the "webhook" route
 
-TODO
+Good news: we're now halfway through implementing the route handlers for our Workers application. Even better news: in implementing the next handler, `src/handlers/webhook.js`, we'll re-use a lot of the code that we've already written for the "lookup" route. 
 
-## Compiling
+At the beginning of this tutorial, we configured a GitHub webhook to track any events related to issues in our repo. When an issue is opened, for instance, the function corresponding to the path `/webhook` on our Workers application should take the data sent to it from GitHub, and post a new message in the configured Slack channel.
 
-- Compiling using Webpack (unsure how much this depends on Wrangler)
-- Building project
+In `src/handlers/webhook.js`, we'll define an async function that takes in a `request`, and make it the default export for this file:
+
+```javascript
+export default async request => {}
+```
+
+Much like with our `lookup` function handler, we'll need to parse the incoming payload inside of `request`, get the relevant issue data from it (see [the GitHub API documentation on `IssueEvent`](<https://developer.github.com/v3/activity/events/types/#issuesevent>) for the full payload schema), and send a formatted message to Slack to indicate what has changed. The final version will look something like this:
+
+![Example Webhook Message](../media/webhook_example.png)
+
+Comparing this message format to the format returned when a user uses the `/issue` *slash command*, you'll see that there's only one actual difference between the two: the addition of an "action" text on the first line, in the format `An issue was $action:`. This *action*, which is sent as part of the `IssueEvent` from GitHub, will be used as we construct a very familiar looking collection of *blocks* using Slack's Block Kit. 
+
+#### Parsing event data
+
+To start filling out our function, let's take in the `request` body, parse it into an object, and construct some helper variables: 
+
+```javascript
+import {constructGhIssueSlackMessage} from "../utils/slack"
+
+export default async request => {
+  const body = await request.text()
+  const {action, issue, repository} = JSON.parse(body)
+  const prefix_text = `An issue was ${action}:`
+  const issue_string = `${repository.owner.login}/${repository.name}#${
+    issue.number
+  }`
+}
+```
+
+An `IssueEvent`, the payload sent from GitHub as part of our webhook configuration, includes an `action` (what happened to the issue: e.g. it was *opened*, *closed*, *locked*, etc.), the `issue` itself, and the `repository`, among other things. We'll use `JSON.parse` to convert the payload body of the request from JSON into a plain JS object, and use ES6 *destructuring* to set `action`, `issue` and `repository` as variables we can use in our code. `prefix_text` is a simple string indicating *what happened* to the issue, and `issue_string` is the familiar string `owner/repo#issue_number` that we've seen before: while our `lookup` handler directly used the text sent from Slack to fill in `issue_string`, we'll construct it directly based on the data passed in the JSON payload.
+
+#### Constructing and sending a Slack message
+
+The messages our Slack bot sends back to our Slack channel from the `lookup` and `webhook` function handlers are incredibly similar: thanks to this, we can re-use our existing `constructGhIssueSlackMessage` to continue populating `src/handlers/webhook.js`. We'll import the function from `src/utils/slack.js`, and pass our issue data into it:
+
+```javascript
+import {constructGhIssueSlackMessage} from "../utils/slack"
+
+export default async request => {
+  const body = await request.text()
+  const {action, issue, repository} = JSON.parse(body)
+  const prefix_text = `An issue was ${action}:`
+  const issue_string = `${repository.owner.login}/${repository.name}#${
+    issue.number
+  }`
+  const blocks = constructGhIssueSlackMessage(
+    issue,
+    issue_string,
+    prefix_text
+  )
+}
+```
+
+Note that our usage of `constructGhIssueSlackMessage` in this handler adds one additional argument to the function, `prefix_text`. Let's update the corresponding function inside of `src/utils/slack.js`, adding `prefix_text` to the collection of `text_lines` in the message block, if it has been passed in to the function. We'll also add a simple utility function `compact`, which takes an array, and filters out any `null` or `undefined` values from it. This function will be used to remove `prefix_text` from `text_lines` if it hasn't actually been passed in to the function, such as when called from `src/handlers/lookup.js`. The full (and final) version of the `src/utils/slack.js` looks like this:
+
+```javascript
+const compact = array => array.filter(el => el)
+
+export const constructGhIssueSlackMessage = (
+  issue,
+  issue_string,
+  prefix_text
+) => {
+  const issue_link = `<${issue.html_url}|${issue_string}>`
+  const user_link = `<${issue.user.html_url}|${issue.user.login}>`
+  const date = new Date(Date.parse(issue.created_at)).toLocaleDateString()
+
+  const text_lines = [
+    prefix_text,
+    `*${issue.title} - ${issue_link}*`,
+    issue.body,
+    `*${issue.state}* - Created by ${user_link} on ${date}`
+  ]
+
+  return [
+    {
+      type: "section",
+      text: {
+        type: "mrkdwn",
+        text: compact(text_lines).join("\n")
+      },
+      accessory: {
+        type: "image",
+        image_url: issue.user.avatar_url,
+        alt_text: issue.user.login
+      }
+    }
+  ]
+}
+```
+
+Back in `src/handlers/webhook.js`, the `blocks` we get back from `constructGhIssueSlackMessage` become the body in a new `fetch` request, an HTTP POST request to a Slack webhook URL. Once that request completes, we return a simple response with status code 200, and the body text "OK":
+
+```
+import {slackWebhookUrl} from "../config"
+import {constructGhIssueSlackMessage} from "../utils/slack"
+
+export default async request => {
+  const body = await request.text()
+  const {action, issue, repository} = JSON.parse(body)
+  const prefix_text = `An issue was ${action}:`
+  const issue_string = `${repository.owner.login}/${repository.name}#${
+    issue.number
+  }`
+  const blocks = constructGhIssueSlackMessage(
+    issue,
+    issue_string,
+    prefix_text
+  )
+
+  const postToSlack = await fetch(slackWebhookUrl, {
+    body: JSON.stringify({blocks}),
+    method: "POST",
+    headers: {"Content-Type": "application/json"}
+  })
+
+  return new Response("OK")
+}
+```
+
+The additional import in the first line of `src/handlers/webhook.js` signifies the final new file that we need to create in our project: `src/config.js`. In this file, we'll fill in the Slack Webhook URL that we created all the way back in the [Incoming Webhook] section of this guide:
+
+```javascript
+export const slackWebhookUrl =
+  "https://hooks.slack.com/services/abc123";
+```
+
+**This webhook allows developers to post directly to your Slack channel, so it should be kept secret!** In particular, we should add `src/config.js` to our `.gitignore` file to ensure that the file doesn't get committed into your source control, and published to GitHub:
+
+```
+echo "src/config.js" >> .gitignore
+```
+
+(Note: if you're unable to run the above command, adding a new line with `src/config.js` to `.gitignore` in your favorite text editor will work as well).
+
+#### Handling errors
+
+Similarly to the `lookup` function handler, our `webhook` function handler should include some basic error handling. Unlike `lookup`, which sends responses directly back into Slack, if something goes wrong with our webhook, it may be useful to actually generate an erroneous response, and return it to GitHub. To do this, we'll wrap the majority of our `webhook` function handler in a try/catch block, and construct a new response with a status code of 500, and return it. The final version of `src/handlers/webhook.js` looks like this:
+
+```javascript
+import {slackWebhookUrl} from "../config"
+import {constructGhIssueSlackMessage} from "../utils/slack"
+
+export default async request => {
+  try {
+    const body = await request.text()
+    const {action, issue, repository} = JSON.parse(body)
+    const prefix_text = `An issue was ${action}:`
+    const issue_string = `${repository.owner.login}/${repository.name}#${
+      issue.number
+    }`
+    const blocks = constructGhIssueSlackMessage(
+      issue,
+      issue_string,
+      prefix_text
+    )
+
+    const postToSlack = await fetch(slackWebhookUrl, {
+      body: JSON.stringify({blocks}),
+      method: "POST",
+      headers: {"Content-Type": "application/json"}
+    })
+
+    return new Response("OK")
+  } catch (err) {
+    const errorText = "Unable to handle webhook"
+    return new Response(errorText, {status: 500})
+  }
+}
+```
 
 ## Preview
+
+And with that, we're finished writing the code for our Slack bot! Pat yourself on the back – it was a lot of code, but now we can move on to the final steps of this tutorial: previewing your Workers application, and actually deploying it!
 
 - Preview in cloudflareworkers.com using Testing tab
 
 ## Deploy
 
 - Deploy
-- Test inside of Slack channel (nice GIF or video here)
 
 ## Resources
 
-- View the source
+- [View the source]
 - Link to main tutorial page ("Try building a Serverless function next")
 - Link to template gallery ("See what else you can build in our Template Gallery")
