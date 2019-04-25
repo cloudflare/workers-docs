@@ -14,7 +14,7 @@ All of the tutorials in the Workers documentation use [Wrangler][2], our open-so
 
 To confirm that Wrangler has successfully installed on your machine, try running `wrangler --help` on the command-line. You should see output like the below screenshot:
 
-![Verify Wrangler Installation](./images/verify-wrangler-install.png)
+![Verify Wrangler Installation](./media/verify-wrangler-install.png)
 
 To publish Cloudflare Workers projects and serve them from our global edge network, you'll need to create a Cloudflare account (TODO: is this true for zoneless workers? different account?).
 
@@ -33,7 +33,7 @@ Once you've signed up (or if you already have an account), you'll need to find a
 2. On the "My Profile" page, scroll down to "API Keys", and find "Global API Key".
 3. Enter your password, and click "View" to see your Global API Key.
 
-![Viewing Cloudflare API keys](./images/api-keys.png)
+![Viewing Cloudflare API keys](./media/api-keys.png)
 
 **Treat your Global API Key like a password!** We'll configure Wrangler to use this key, but by design, Wrangler does not keep this API key in version control, or inside of your code.
 
@@ -51,7 +51,7 @@ Let's generate our first Wrangler project:
 wrangler generate my-worker https://github.com/cloudflare/worker-template
 ```
 
-![Generate a Project](./images/generate-project.png)
+![Generate a Project](./media/generate-project.png)
 
 TODO: "Generating a new *rustwasm*"
 
@@ -68,7 +68,7 @@ cd my-worker
 ls
 ```
 
-![Inside my-worker directory](./images/cd-ls-my-worker.png)
+![Inside my-worker directory](./media/cd-ls-my-worker.png)
 
 In the longer tutorial, we'll look more closely at `worker.js`: this is the actual code that you'll deploy to Workers. In the meantime, let's use two more Wrangler commands to build our project, and preview it:
 
@@ -81,7 +81,7 @@ Wrangler's `build` command will install the necessary dependencies for your proj
 
 The `preview` command will take your built Worker project and upload it to a unique URL at [cloudflareworkers.com](https://cloudflareworkers.com). This means that you can actually test your project with our Workers runtime, and optionally, you can share this URL so that other users can test your Worker!
 
-![Preview your Worker](./images/wrangler-preview.png)
+![Preview your Worker](./media/wrangler-preview.png)
 
 (TODO: JS preview currently doesn't work, should be updated when JS support lands in Wrangler)
 
@@ -103,11 +103,11 @@ With our project configured, it's time to publish our Worker! Wrangler has a bui
 wrangler publish
 ```
 
-![Wrangler Publish Command](./images/wrangler-publish.png)
+![Wrangler Publish Command](./media/wrangler-publish.png)
 
 Your Worker will be uploaded and deployed to the route you specified in your config file. To ensure that everything deployed correctly, go to the URL specified at the end of the publishing process – you should see your Worker running as expected!
 
-![Published Worker](./images/published.png)
+![Published Worker](./media/published.png)
 
 TODO I have multiscript, and this whole section assumes zone workers: will need to redo this with zoneless workers and probably rework the routing copy as we update Wrangler to support that.
 
