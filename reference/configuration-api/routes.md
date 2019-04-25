@@ -295,21 +295,3 @@ curl -X DELETE "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31
 ##### Errors
 
 TODO: enumerate possible error responses (especially http status codes) from this endpoint
-
-## Object Specifications
-
-### Routes
-
-Sample Object
-
-``` json
-{
-  "id": "9a7806061c88ada191ed06f989cc3dac",
-  "pattern": "example.net/*",
-  "script": "example-script"
-}
-```
-
-* `id`: an identifier tag; returned in body on Create
-* `pattern`: a string representation of the url pattern to be linked
-* `script` [optional]: Name of the script to apply when the route is matched. The route acts as a placeholder when this is blank/missing.

@@ -1,6 +1,16 @@
 ## Scripts
 
-### Upload or Update a Workers Script
+## Object Specifications
+
+### Script
+
+* `id`:
+* `etag`: Hashed script content; can be used in an If-None-Match header on update.
+* `script`: Raw script content, as a string
+* `size`: Size of script, in bytes (TODO: how is this determined?)
+* `modified_on`: ISO_8601 timestamp of when the script was last modified. (TODO: what counts as modification? is it as expected?)
+
+## Upload or Update a Workers Script
 
 `PUT accounts/:account_id/workers/scripts/:script_name`
 
@@ -61,7 +71,7 @@ A valid JavaScript blob
 
 TODO: enumerate possible error responses (especially http status codes) from this endpoint
 
-### List all Scripts for an account
+## List all Scripts for an account
 
 `GET accounts/:account_id/workers/scripts`
 
@@ -117,7 +127,7 @@ curl -X GET "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed0
 
 TODO: enumerate possible error responses (especially http status codes) from this endpoint
 
-### Download a Script
+## Download a Script
 
 `GET accounts/:account_id/workers/scripts/:script_name`
 
@@ -161,7 +171,7 @@ Raw script content, as a string
 
 TODO: enumerate possible error responses (especially http status codes) from this endpoint
 
-### Delete a Script
+## Delete a Script
 
 `DELETE accounts/:account_id/workers/scripts/:script_name`
 
@@ -202,16 +212,3 @@ TODO: Update based on the code (this _does_ return a response body).
 ##### Errors
 
 TODO: enumerate possible error responses (especially http status codes) from this endpoint
-
-## Object Specifications
-
-### Script
-
-* `id`:
-* `etag`: Hashed script content; can be used in an If-None-Match header on update.
-* `script`: Raw script content, as a string
-* `size`: Size of script, in bytes (TODO: how is this determined?)
-* `modified_on`: ISO_8601 timestamp of when the script was last modified. (TODO: what counts as modification? is it as expected?)
-
-### Bindings
-
