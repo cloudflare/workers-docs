@@ -75,7 +75,7 @@ wrangler build
 wrangler preview
 ```
 
-Wrangler's `build` command will install the necessary dependencies for your project, and compile it to make it ready for deployment. The `build` command will also notify you of any warnings in your project before deployment, such as missing fields, configuration errors, and more. `TODO: I hate saying "and more", this is very vague`
+Wrangler's `build` command will install the necessary dependencies for your project, and compile it to make it ready for deployment. The `build` command will also notify you of any warnings in your project before deployment.
 
 The `preview` command will take your built Worker project and upload it to a unique URL at [cloudflareworkers.com](https://cloudflareworkers.com). This means that you can actually test your project with our Workers runtime, and optionally, you can share this URL so that other users can test your Worker!
 
