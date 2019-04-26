@@ -53,11 +53,9 @@ wrangler generate my-worker https://github.com/cloudflare/worker-template
 
 ![Generate a Project](./media/generate-project.png)
 
-TODO: "Generating a new *rustwasm*"
+TODO: "Generating a new _rustwasm_": screenshot should be redone when JS support lands
 
-Notice that Wrangler also supports the inclusion of a URL in this command, such as `wrangler generate https://github.com/cloudflare/template`. For now, we'll use Wrangler's default template, but as you become more familiar with Wrangler, you may want to create your own templates, or use something from the [Template Gallery](/gallery).
-
-> 💡 Protip: If you're ever unsure what a Wrangler subcommand does, like `wrangler generate`, try adding `--help` to the end of the command: for instance, `wrangler generate --help`. This will show you the available *arguments*, *flags*, and usage instructions for that specific subcommand.
+> 💡 Protip: If you're ever unsure what a Wrangler subcommand does, like `wrangler generate`, try adding `--help` to the end of the command.
 
 ## Build and Preview your Project
 
@@ -91,9 +89,9 @@ Before we can deploy our Worker to production, we need to fill in a few fields i
 
 Earlier in the quick start guide, we logged into the Cloudflare Dashboard UI to get your **Account ID** and **Zone ID**. In `wrangler.toml`, fill in the corresponding `account_id` and `zone_id` with the values found in your dashboard. The **name** field in this config file should have a default value already filled in – feel free to change it, if you'd like.
 
-Last but not least, we need to set a **route** for your Worker: where your Worker will be hosted, and accessible by your users. The route field here is a *pattern*: if we chose the route `wasm-worker.signalnerve.com`, the Worker would _only_ run on that exact subdomain, at the *root* path. If we changed the route to `wasm-worker.signalnerve.com/*` (using the `*` or *wildcard* symbol), the Worker would then run on any path on that subdomain, for instance, `wasm-worker.signalnerve.com/test`, or even `wasm-worker.signalnerve.com/test/123`.
+Last but not least, we need to set a **route** for your Worker: where your Worker will be hosted, and accessible by your users. The route field here is a _pattern_: if we chose the route `wasm-worker.signalnerve.com`, the Worker would _only_ run on that exact subdomain, at the _root_ path. If we changed the route to `wasm-worker.signalnerve.com/*` (using the `*` or _wildcard_ symbol), the Worker would then run on any path on that subdomain, for instance, `wasm-worker.signalnerve.com/test`, or even `wasm-worker.signalnerve.com/test/123`.
 
-When thinking about routes, you should consider the URLs that you want your Worker to run on – for instance, if you have a full application, you probably want to choose something like `wasm-worker.signalnerve.com/*`, or if you just want to deploy a single function to an existing site, you should pick a more specific route, like `wasm-worker.signalnerve.com/function`. In our case, we'll stick with the *wildcard* route: `wasm-worker.signalnerve.com/*`.
+When thinking about routes, you should consider the URLs that you want your Worker to run on – for instance, if you have a full application, you probably want to choose something like `wasm-worker.signalnerve.com/*`, or if you just want to deploy a single function to an existing site, you should pick a more specific route, like `wasm-worker.signalnerve.com/function`. In our case, we'll stick with the _wildcard_ route: `wasm-worker.signalnerve.com/*`.
 
 ## Publish your Project
 
@@ -117,6 +115,6 @@ This is just the beginning of what you can do with Cloudflare Workers. If you'd 
 
 - [Building a Slack bot with Cloudflare Workers][4]
 
-[2]:	https://github.com/cloudflare/wrangler
-[3]:	TODO
-[4]:	./tutorials/build-a-slack-bot.md
+[2]: https://github.com/cloudflare/wrangler
+[3]: TODO
+[4]: ./tutorials/build-a-slack-bot.md
