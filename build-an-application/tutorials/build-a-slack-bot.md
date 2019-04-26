@@ -2,7 +2,11 @@
 
 In this tutorial, we'll build a [Slack] bot using [Cloudflare Workers]. Our bot will make use of GitHub webhooks to send messages to a Slack channel when issues are updated or created, and allow users to write a command to look up GitHub issues from inside Slack.
 
-[PREVIEW GIF HERE]
+<video loop muted="true">
+  <source src="../media/slash-commands.webm" type="video/webm">
+  <source src="../media/slash-commands.mp4" type="video/mp4">
+  Your browser doesn't support HTML5 video in WebM or MP4.
+</video>
 
 This tutorial makes use of [Wrangler], our command-line tool for generating, building, and publishing projects on the Cloudflare Workers platform. If you haven't used Wrangler, we recommend checking out the [quick-start guide](../), which will get you set up with Wrangler, and familiar with the basic commands.
 
@@ -12,7 +16,7 @@ One more thing before we start the tutorial: if you'd like to see the code, or h
 
 ## Prerequisites
 
-To fully deploy your Worker, and configure it with a Slack channel, you'll need a few things:
+To publish your Worker to Cloudflare, and configure it with a Slack channel, you'll need a few things:
 
 - A Cloudflare account, and access to your Cloudflare API keys
 - A Slack channel, and the ability to create and manage Slack applications
@@ -21,13 +25,11 @@ To fully deploy your Worker, and configure it with a Slack channel, you'll need 
 
 If you don't have those things quite yet, don't worry! We'll walk through each of them and make sure we're ready to go, before we start creating our application.
 
-
-
 ### Setting up your Cloudflare account
 
 To publish Cloudflare Workers projects and serve them from our global edge network, you'll need to create a Cloudflare account (TODO: is this true for zoneless workers? different account?).
 
-Once you've signed up (or if you already have an account), you'll need to find a few important keys in Cloudflare's Dashboard UI: your **Account ID**, Zone ID, and your **Global API key** – Wrangler will use these to manage uploading and publishing your Workers.
+Once you've signed up (or if you already have an account), you'll need to find a few important keys in Cloudflare's Dashboard UI: your **Account ID**, **Zone ID**, and your **Global API key** – Wrangler will use these to manage uploading and publishing your Workers.
 
 **To find your Account and Zone IDs, do the following:**
 
@@ -61,6 +63,8 @@ Slack applications have a ton of features, but we'll make use of two of them, *I
 *Incoming Webhooks* are URLs that you can use to send messages to your Slack channels. Our incoming webhook will be paired with GitHub's webhook support to send messages to a Slack channel whenever there is updates to issues in a given repository. We'll look at the code in more detail as we build our Worker, but for now, let's create the Slack webhook!
 
 On the sidebar, select *Incoming Webhooks*, and in the section "Webhook URLs for your Workspace", select "Add New Webhook to Workspace". On the following screen, select the channel that you want your webhook to send messages to: you can select a room, like #general or #code, or be DMed directly by our Slack bot when the webhook is called. Authorizing the new webhook URL should bring you back to the *Incoming Webhooks* page, where you'll be able to view your new webhook URL. We'll add this into our Workers code later: for now, we'll move onto adding the second component of our Slack bot, a *Slash Command*.
+
+![Slack Incoming Webhook](../media/slack-incoming-webhook.png)
 
 #### Slash Command
 
@@ -466,12 +470,6 @@ export default async request => {
 }
 ```
 
-<video loop muted="true">
-  <source src="../media/slash_commands.webm" type="video/webm">
-  <source src="../media/slash_commands.mp4" type="video/mp4">
-  I'm sorry; your browser doesn't support HTML5 video in WebM with VP8/VP9 or MP4 with H.264.
-</video>
-
 ### Creating the "webhook" route
 
 Good news: we're now halfway through implementing the route handlers for our Workers application. Even better news: in implementing the next handler, `src/handlers/webhook.js`, we'll re-use a lot of the code that we've already written for the "lookup" route. 
@@ -571,7 +569,7 @@ export const constructGhIssueSlackMessage = (
 
 Back in `src/handlers/webhook.js`, the `blocks` we get back from `constructGhIssueSlackMessage` become the body in a new `fetch` request, an HTTP POST request to a Slack webhook URL. Once that request completes, we return a simple response with status code 200, and the body text "OK":
 
-```
+```javascript
 import {slackWebhookUrl} from "../config"
 import {constructGhIssueSlackMessage} from "../utils/slack"
 
@@ -649,18 +647,33 @@ export default async request => {
 }
 ```
 
-## Preview
+## Publish
 
-And with that, we're finished writing the code for our Slack bot! Pat yourself on the back – it was a lot of code, but now we can move on to the final steps of this tutorial: previewing your Workers application, and actually deploying it!
+And with that, we're finished writing the code for our Slack bot! Pat yourself on the back – it was a lot of code, but now we can move on to the final steps of this tutorial: actually publishing your application!
 
-- Preview in cloudflareworkers.com using Testing tab
+Wrangler has built-in support for bundling, uploading, and releasing your Cloudflare Workers application. To do this, we'll first *build* our code, and then *publish* it:
 
-## Deploy
+```
+wrangler build
+wrangler publish
+```
 
-- Deploy
+TODO Wrangler screenshot
+
+Publishing your Workers application should now cause issue updates to start appearing in your Slack channel, as the GitHub webhook can now successfully reach your Workers webhook route:
+
+<video loop muted="true">
+  <source src="../media/create-new-issue.webm" type="video/webm">
+  <source src="../media/create-new-issue.mp4" type="video/mp4">
+  Your browser doesn't support HTML5 video in WebM or MP4.
+</video>
 
 ## Resources
 
-- [View the source]
-- Link to main tutorial page ("Try building a Serverless function next")
-- Link to template gallery ("See what else you can build in our Template Gallery")
+In this tutorial, we built and published a Cloudflare Workers application that can respond to GitHub webhook events, and allow GitHub API lookups within Slack. If you'd like to see the full source code for this application, visit the `cloudflare/slack-bot-on-workers` repo on GitHub. TODO LINK
+
+If you enjoyed this tutorial, we encourage you to explore our other tutorials for building on Cloudflare Workers:
+
+[Building and deploying a serverless function on Cloudflare Workers] TODO LINK
+
+If you want to get started building your own projects, check out the quick-start templates we've provided in our [Template Gallery]. TODO LINK
