@@ -1,7 +1,7 @@
 # Glossary
 
 ## Runtime
-The Workers Runtime is the V8 environment in which your code runs on Cloudflare's Edge Network. Each machine in the network runs its own instance of the runtime, and each runtime instance manages many V8 isolates, each of which contains a single app handling requests for that machine. Read more about [How Workers Work](TODO: link to reference overview).
+The Workers Runtime is the environment in which your code runs on Cloudflare's Edge Network. Each machine in the network runs its own instance of the runtime, and each runtime instance manages many isolated environments, each of which contains a single app handling requests for that machine. Read more about [How Workers Work](TODO: link to reference overview).
 
 ## Script
 A script is the bundle of the JavaScript code that makes up the logic of your app, as well as the Bindings that should ship with it.
