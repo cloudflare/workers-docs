@@ -106,7 +106,7 @@ Cloudflare's `worker-template` includes support for building and deploying JavaS
 All Cloudflare Workers applications start by listening for `fetch` events, which are fired when a client makes a request to a Workers route. When that request occurs, we can construct responses and return them to the user. This tutorial will walk you through understanding how the request/response pattern works, and how we can use it to build fully-featured applications.
 
 ```javascript
-addEventListener("fetch", event => {
+addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
 
@@ -115,7 +115,7 @@ addEventListener("fetch", event => {
  * @param {Request} request
  */
 async function handleRequest(request) {
-  return new Response("Hello worker!", {status: 200})
+  return new Response('Hello worker!', { status: 200 })
 }
 ```
 
@@ -139,21 +139,21 @@ Because routing inside of your Workers application is such a common task, we've 
 Inside of `index.js`, we'll import the router, and use it to update our `handleRequest` function:
 
 ```javascript
-import Router from "./router"
+import Router from './router'
 
-addEventListener("fetch", event => {
+addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
 
 async function handleRequest(request) {
   const r = new Router()
-  r.post("/lookup", lookup)
-  r.post("/webhook", webhook)
+  r.post('/lookup', lookup)
+  r.post('/webhook', webhook)
 
   let response = await r.route(request)
 
   if (!response) {
-    response = new Response("Not found", {status: 404})
+    response = new Response('Not found', { status: 404 })
   }
 
   return response
@@ -181,23 +181,23 @@ touch src/handlers/webhook.js
 With those files created (we'll fill them in soon), let's import them at the top of `index.js`. The final version of our code looks like this:
 
 ```javascript
-import lookup from "./src/handlers/lookup"
-import webhook from "./src/handlers/webhook"
-import Router from "./router"
+import lookup from './src/handlers/lookup'
+import webhook from './src/handlers/webhook'
+import Router from './router'
 
-addEventListener("fetch", event => {
+addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
 
 async function handleRequest(request) {
   const r = new Router()
-  r.post("/lookup", lookup)
-  r.post("/webhook", webhook)
+  r.post('/lookup', lookup)
+  r.post('/webhook', webhook)
 
   let response = await r.route(request)
 
   if (!response) {
-    response = new Response("Not found", {status: 404})
+    response = new Response('Not found', { status: 404 })
   }
 
   return response
@@ -245,12 +245,12 @@ To begin, let's parse the incoming data from a Slack message inside of our `look
 In `src/handlers/lookup.js`, we'll import `qs`, and use it to parse the `request` body, and get the `text` value from it:
 
 ```javascript
-import qs from "qs"
+import qs from 'qs'
 
 export default async request => {
   const body = await request.text()
   const params = qs.parse(body)
-  const text = params["text"].trim()
+  const text = params['text'].trim()
 }
 ```
 
@@ -267,15 +267,15 @@ export const parseGhIssueString = text => {
 `parseGhIssueString` takes in a `text` input, matches it against `ghIssueRegex`, and if a match is found, returns the `groups` object from that match, making use of the `owner`, `repo`, and `issue_number` capture groups defined in the regex. By exporting this function from `src/utils/github.js`, we can make use of it back in `src/handlers/lookup.js`:
 
 ```javascript
-import qs from "qs"
+import qs from 'qs'
 
-import {parseGhIssueString} from "../utils/github"
+import { parseGhIssueString } from '../utils/github'
 
 export default async request => {
   const body = await request.text()
   const params = qs.parse(body)
-  const text = params["text"].trim()
-  const {owner, repo, issue_number} = parseGhIssueString(text)
+  const text = params['text'].trim()
+  const { owner, repo, issue_number } = parseGhIssueString(text)
 }
 ```
 
@@ -286,23 +286,23 @@ With this data, we can actually make our first API lookup to GitHub. Again, we'l
 ```javascript
 export const fetchGithubIssue = (owner, repo, issue_number) => {
   const url = `https://api.github.com/repos/${owner}/${repo}/issues/${issue_number}`
-  const headers = {"User-Agent": "simple-worker-slack-bot"}
-  return fetch(url, {headers})
+  const headers = { 'User-Agent': 'simple-worker-slack-bot' }
+  return fetch(url, { headers })
 }
 ```
 
 Back in `src/handlers/lookup.js`, we can use `fetchGithubIssue` to make a request to GitHub's API, and parse the response:
 
 ```javascript
-import qs from "qs"
+import qs from 'qs'
 
-import {fetchGithubIssue, parseGhIssueString} from "../utils/github"
+import { fetchGithubIssue, parseGhIssueString } from '../utils/github'
 
 export default async request => {
   const body = await request.text()
   const params = qs.parse(body)
-  const text = params["text"].trim()
-  const {owner, repo, issue_number} = parseGhIssueString(text)
+  const text = params['text'].trim()
+  const { owner, repo, issue_number } = parseGhIssueString(text)
 
   const response = await fetchGithubIssue(owner, repo, issue_number)
   const issue = await response.json()
@@ -335,7 +335,7 @@ export const constructGhIssueSlackMessage = (issue, issue_string) => {
   const text_lines = [
     `*${issue.title} - ${issue_link}*`,
     issue.body,
-    `*${issue.state}* - Created by ${user_link} on ${date}`
+    `*${issue.state}* - Created by ${user_link} on ${date}`,
   ]
 }
 ```
@@ -359,7 +359,7 @@ export const constructGhIssueSlackMessage = (issue, issue_string) => {
   const text_lines = [
     `*${issue.title} - ${issue_link}*`,
     issue.body,
-    `*${issue.state}* - Created by ${user_link} on ${date}`
+    `*${issue.state}* - Created by ${user_link} on ${date}`,
   ]
 }
 ```
@@ -375,22 +375,22 @@ export const constructGhIssueSlackMessage = (issue, issue_string) => {
   const text_lines = [
     `*${issue.title} - ${issue_link}*`,
     issue.body,
-    `*${issue.state}* - Created by ${user_link} on ${date}`
+    `*${issue.state}* - Created by ${user_link} on ${date}`,
   ]
 
   return [
     {
-      type: "section",
+      type: 'section',
       text: {
-        type: "mrkdwn",
-        text: text_lines.join("\n")
+        type: 'mrkdwn',
+        text: text_lines.join('\n'),
       },
       accessory: {
-        type: "image",
+        type: 'image',
         image_url: issue.user.avatar_url,
-        alt_text: issue.user.login
-      }
-    }
+        alt_text: issue.user.login,
+      },
+    },
   ]
 }
 ```
@@ -400,16 +400,16 @@ export const constructGhIssueSlackMessage = (issue, issue_string) => {
 In `src/handlers/lookup.js`, we'll use `constructGhIssueSlackMessage` to construct `blocks`, and return them as a new response when the _slash command_ is called:
 
 ```javascript
-import qs from "qs"
+import qs from 'qs'
 
-import {fetchGithubIssue, parseGhIssueString} from "../utils/github"
-import {constructGhIssueSlackMessage} from "../utils/slack"
+import { fetchGithubIssue, parseGhIssueString } from '../utils/github'
+import { constructGhIssueSlackMessage } from '../utils/slack'
 
 export default async request => {
   const body = await request.text()
   const params = qs.parse(body)
-  const text = params["text"].trim()
-  const {owner, repo, issue_number} = parseGhIssueString(text)
+  const text = params['text'].trim()
+  const { owner, repo, issue_number } = parseGhIssueString(text)
 
   const response = await fetchGithubIssue(owner, repo, issue_number)
   const issue = await response.json()
@@ -419,9 +419,9 @@ export default async request => {
   return new Response(
     JSON.stringify({
       blocks,
-      response_type: "in_channel"
+      response_type: 'in_channel',
     }),
-    {headers: {"Content-type": "application/json"}}
+    { headers: { 'Content-type': 'application/json' } },
   )
 }
 ```
@@ -433,17 +433,17 @@ A brief note: one additional parameter passed into the response is `response_typ
 Our `lookup` function is almost complete, but there's a number of things that _could_ go wrong in the course of this function, such as parsing the body from Slack, getting the issue from GitHub, or constructing the Slack message itself. To handle this, we'll wrap the majority of this function in a try/catch block, and return simple error text to the user in Slack if something goes wrong. With that, the final version of `src/handlers/lookup.js` looks like this:
 
 ```javascript
-import qs from "qs"
+import qs from 'qs'
 
-import {fetchGithubIssue, parseGhIssueString} from "../utils/github"
-import {constructGhIssueSlackMessage} from "../utils/slack"
+import { fetchGithubIssue, parseGhIssueString } from '../utils/github'
+import { constructGhIssueSlackMessage } from '../utils/slack'
 
 export default async request => {
   try {
     const body = await request.text()
     const params = qs.parse(body)
-    const text = params["text"].trim()
-    const {owner, repo, issue_number} = parseGhIssueString(text)
+    const text = params['text'].trim()
+    const { owner, repo, issue_number } = parseGhIssueString(text)
 
     const response = await fetchGithubIssue(owner, repo, issue_number)
     const issue = await response.json()
@@ -453,9 +453,9 @@ export default async request => {
     return new Response(
       JSON.stringify({
         blocks,
-        response_type: "in_channel"
+        response_type: 'in_channel',
       }),
-      {headers: {"Content-type": "application/json"}}
+      { headers: { 'Content-type': 'application/json' } },
     )
   } catch (err) {
     const errorText =
@@ -488,15 +488,13 @@ Comparing this message format to the format returned when a user uses the `/issu
 To start filling out our function, let's take in the `request` body, parse it into an object, and construct some helper variables:
 
 ```javascript
-import {constructGhIssueSlackMessage} from "../utils/slack"
+import { constructGhIssueSlackMessage } from '../utils/slack'
 
 export default async request => {
   const body = await request.text()
-  const {action, issue, repository} = JSON.parse(body)
+  const { action, issue, repository } = JSON.parse(body)
   const prefix_text = `An issue was ${action}:`
-  const issue_string = `${repository.owner.login}/${repository.name}#${
-    issue.number
-  }`
+  const issue_string = `${repository.owner.login}/${repository.name}#${issue.number}`
 }
 ```
 
@@ -509,15 +507,13 @@ We'll use `JSON.parse` to convert the payload body of the request from JSON into
 The messages our Slack bot sends back to our Slack channel from the `lookup` and `webhook` function handlers are incredibly similar: thanks to this, we can re-use our existing `constructGhIssueSlackMessage` to continue populating `src/handlers/webhook.js`. We'll import the function from `src/utils/slack.js`, and pass our issue data into it:
 
 ```javascript
-import {constructGhIssueSlackMessage} from "../utils/slack"
+import { constructGhIssueSlackMessage } from '../utils/slack'
 
 export default async request => {
   const body = await request.text()
-  const {action, issue, repository} = JSON.parse(body)
+  const { action, issue, repository } = JSON.parse(body)
   const prefix_text = `An issue was ${action}:`
-  const issue_string = `${repository.owner.login}/${repository.name}#${
-    issue.number
-  }`
+  const issue_string = `${repository.owner.login}/${repository.name}#${issue.number}`
   const blocks = constructGhIssueSlackMessage(issue, issue_string, prefix_text)
 }
 ```
@@ -529,11 +525,7 @@ We'll also add a simple utility function, `compact`, which takes an array, and f
 ```javascript
 const compact = array => array.filter(el => el)
 
-export const constructGhIssueSlackMessage = (
-  issue,
-  issue_string,
-  prefix_text
-) => {
+export const constructGhIssueSlackMessage = (issue, issue_string, prefix_text) => {
   const issue_link = `<${issue.html_url}|${issue_string}>`
   const user_link = `<${issue.user.html_url}|${issue.user.login}>`
   const date = new Date(Date.parse(issue.created_at)).toLocaleDateString()
@@ -542,22 +534,22 @@ export const constructGhIssueSlackMessage = (
     prefix_text,
     `*${issue.title} - ${issue_link}*`,
     issue.body,
-    `*${issue.state}* - Created by ${user_link} on ${date}`
+    `*${issue.state}* - Created by ${user_link} on ${date}`,
   ]
 
   return [
     {
-      type: "section",
+      type: 'section',
       text: {
-        type: "mrkdwn",
-        text: compact(text_lines).join("\n")
+        type: 'mrkdwn',
+        text: compact(text_lines).join('\n'),
       },
       accessory: {
-        type: "image",
+        type: 'image',
         image_url: issue.user.avatar_url,
-        alt_text: issue.user.login
-      }
-    }
+        alt_text: issue.user.login,
+      },
+    },
   ]
 }
 ```
@@ -565,32 +557,30 @@ export const constructGhIssueSlackMessage = (
 Back in `src/handlers/webhook.js`, the `blocks` we get back from `constructGhIssueSlackMessage` become the body in a new `fetch` request, an HTTP POST request to a Slack webhook URL. Once that request completes, we return a simple response with status code 200, and the body text "OK":
 
 ```javascript
-import {slackWebhookUrl} from "../config"
-import {constructGhIssueSlackMessage} from "../utils/slack"
+import { slackWebhookUrl } from '../config'
+import { constructGhIssueSlackMessage } from '../utils/slack'
 
 export default async request => {
   const body = await request.text()
-  const {action, issue, repository} = JSON.parse(body)
+  const { action, issue, repository } = JSON.parse(body)
   const prefix_text = `An issue was ${action}:`
-  const issue_string = `${repository.owner.login}/${repository.name}#${
-    issue.number
-  }`
+  const issue_string = `${repository.owner.login}/${repository.name}#${issue.number}`
   const blocks = constructGhIssueSlackMessage(issue, issue_string, prefix_text)
 
   const postToSlack = await fetch(slackWebhookUrl, {
-    body: JSON.stringify({blocks}),
-    method: "POST",
-    headers: {"Content-Type": "application/json"}
+    body: JSON.stringify({ blocks }),
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
   })
 
-  return new Response("OK")
+  return new Response('OK')
 }
 ```
 
 The additional import in the first line of `src/handlers/webhook.js` signifies the final new file that we need to create in our project: `src/config.js`. In this file, we'll fill in the Slack Webhook URL that we created all the way back in the [Incoming Webhook] section of this guide:
 
 ```javascript
-export const slackWebhookUrl = "https://hooks.slack.com/services/abc123"
+export const slackWebhookUrl = 'https://hooks.slack.com/services/abc123'
 ```
 
 **This webhook allows developers to post directly to your Slack channel, so it should be kept secret!** In particular, we should add `src/config.js` to our `.gitignore` file to ensure that the file doesn't get committed into your source control, and published to GitHub:
@@ -606,33 +596,27 @@ echo "src/config.js" >> .gitignore
 Similarly to the `lookup` function handler, our `webhook` function handler should include some basic error handling. Unlike `lookup`, which sends responses directly back into Slack, if something goes wrong with our webhook, it may be useful to actually generate an erroneous response, and return it to GitHub. To do this, we'll wrap the majority of our `webhook` function handler in a try/catch block, and construct a new response with a status code of 500, and return it. The final version of `src/handlers/webhook.js` looks like this:
 
 ```javascript
-import {slackWebhookUrl} from "../config"
-import {constructGhIssueSlackMessage} from "../utils/slack"
+import { slackWebhookUrl } from '../config'
+import { constructGhIssueSlackMessage } from '../utils/slack'
 
 export default async request => {
   try {
     const body = await request.text()
-    const {action, issue, repository} = JSON.parse(body)
+    const { action, issue, repository } = JSON.parse(body)
     const prefix_text = `An issue was ${action}:`
-    const issue_string = `${repository.owner.login}/${repository.name}#${
-      issue.number
-    }`
-    const blocks = constructGhIssueSlackMessage(
-      issue,
-      issue_string,
-      prefix_text
-    )
+    const issue_string = `${repository.owner.login}/${repository.name}#${issue.number}`
+    const blocks = constructGhIssueSlackMessage(issue, issue_string, prefix_text)
 
     const postToSlack = await fetch(slackWebhookUrl, {
-      body: JSON.stringify({blocks}),
-      method: "POST",
-      headers: {"Content-Type": "application/json"}
+      body: JSON.stringify({ blocks }),
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
     })
 
-    return new Response("OK")
+    return new Response('OK')
   } catch (err) {
-    const errorText = "Unable to handle webhook"
-    return new Response(errorText, {status: 500})
+    const errorText = 'Unable to handle webhook'
+    return new Response(errorText, { status: 500 })
   }
 }
 ```
