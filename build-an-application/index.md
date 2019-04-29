@@ -16,7 +16,7 @@ To confirm that Wrangler has successfully installed on your machine, try running
 
 ![Verify Wrangler Installation](./media/verify-wrangler-install.png)
 
-To publish Cloudflare Workers projects and serve them from our global cloud network, you'll need to create a Cloudflare account (TODO: is this true for zoneless workers? different account?).
+To publish Cloudflare Workers projects and serve them from our global cloud network, you'll need to [create a Cloudflare account](https://support.cloudflare.com/hc/en-us/articles/201720164) (TODO: is this true for zoneless workers? different account?).
 
 Once you've signed up (or if you already have an account), you'll need to find a few important keys in Cloudflare's Dashboard UI: your **Account ID**, Zone ID, and your **Global API key** – Wrangler will use these to manage uploading and publishing your Workers.
 
@@ -35,17 +35,15 @@ Once you've signed up (or if you already have an account), you'll need to find a
 
 ![Viewing Cloudflare API keys](./media/api-keys.png)
 
-**Treat your Global API Key like a password!** We'll configure Wrangler to use this key, but by design, Wrangler does not keep this API key in version control, or inside of your code.
+**Treat your Global API Key like a password!** You'll configure Wrangler to use this key, but by design, Wrangler does not keep this API key in version control, or inside of your code.
 
-With these keys, we can use Wrangler to set up our default credentials for deploying to Cloudflare Workers, via the `config` subcommand:
+With these keys, you can use Wrangler to set up our default credentials for deploying to Cloudflare Workers, via the `config` subcommand:
 
 `wrangler config <email> <global_api_key>`
 
 ## Scaffold a Project
 
-We've tried to make it as easy as possible for new and returning users alike to get up and running with Workers, by including support for templates in Wrangler. Wrangler's `generate` subcommand allows you to create new projects based on existing templates. We maintain a great list of templates in our [Template Gallery](/gallery), designed to help you get started quickly with Workers based on what you need in your project. For now, we'll use one of our basic templates, which includes support for building and deploying JavaScript code.
-
-Let's generate our first Wrangler project:
+We've tried to make it as easy as possible for new and returning users alike to get up and running with Workers, by including support for templates in Wrangler. Wrangler's `generate` subcommand allows you to create new projects based on existing templates. We maintain a great list of templates in our [Template Gallery](/gallery), designed to help you get started quickly with Workers based on what you need in your project. For now, let's use one of our basic templates, which includes support for building and deploying JavaScript code, to generate our first Wrangler project:
 
 ```
 wrangler generate my-worker https://github.com/cloudflare/worker-template
@@ -59,7 +57,7 @@ TODO: "Generating a new _rustwasm_": screenshot should be redone when JS support
 
 ## Build and Preview your Project
 
-First, we'll navigate into the new project directory generated for us by Wrangler, and look at the list of files created:
+First, navigate into the new project directory generated for you by Wrangler, and look at the list of files created:
 
 ```
 cd my-worker
@@ -68,7 +66,7 @@ ls
 
 ![Inside my-worker directory](./media/cd-ls-my-worker.png)
 
-In the longer tutorial, we'll look more closely at `worker.js`: this is the actual code that you'll deploy to Workers. In the meantime, let's use two more Wrangler commands to build our project, and preview it:
+In the longer tutorial, let's look more closely at `worker.js`: this is the actual code that you'll deploy to Workers. In the meantime, let's use two more Wrangler commands to build your project, and preview it:
 
 ```
 wrangler build
@@ -85,17 +83,17 @@ The `preview` command will take your built Worker project and upload it to a uni
 
 ## Configure your Project
 
-Before we can deploy our Worker to production, we need to fill in a few fields inside of `wrangler.toml`. This file will contain the information Wrangler needs to connect to the Cloudflare Workers API, and deploy your code.
+Before you can deploy our Worker to production, you need to fill in a few fields inside of `wrangler.toml`. This file will contain the information Wrangler needs to connect to the Cloudflare Workers API, and deploy your code.
 
 Earlier in the quick start guide, we logged into the Cloudflare Dashboard UI to get your **Account ID** and **Zone ID**. In `wrangler.toml`, fill in the corresponding `account_id` and `zone_id` with the values found in your dashboard. The **name** field in this config file should have a default value already filled in – feel free to change it, if you'd like.
 
-Last but not least, we need to set a **route** for your Worker: where your Worker will be hosted, and accessible by your users. The route field here is a _pattern_: if we chose the route `wasm-worker.signalnerve.com`, the Worker would _only_ run on that exact subdomain, at the _root_ path. If we changed the route to `wasm-worker.signalnerve.com/*` (using the `*` or _wildcard_ symbol), the Worker would then run on any path on that subdomain, for instance, `wasm-worker.signalnerve.com/test`, or even `wasm-worker.signalnerve.com/test/123`.
+Last but not least, you need to set a **route** for your Worker: where your Worker will be hosted, and accessible by your users. The route field here is a _pattern_: if we chose the route `wasm-worker.signalnerve.com`, the Worker would _only_ run on that exact subdomain, at the _root_ path. If you changed the route to `wasm-worker.signalnerve.com/*` (using the `*` or _wildcard_ symbol), the Worker would then run on any path on that subdomain, for instance, `wasm-worker.signalnerve.com/test`, or even `wasm-worker.signalnerve.com/test/123`.
 
-When thinking about routes, you should consider the URLs that you want your Worker to run on – for instance, if you have a full application, you probably want to choose something like `wasm-worker.signalnerve.com/*`, or if you just want to deploy a single function to an existing site, you should pick a more specific route, like `wasm-worker.signalnerve.com/function`. In our case, we'll stick with the _wildcard_ route: `wasm-worker.signalnerve.com/*`.
+When thinking about routes, you should consider the URLs that you want your Worker to run on – for instance, if you have a full application, you probably want to choose something like `wasm-worker.signalnerve.com/*`, or if you just want to deploy a single function to an existing site, you should pick a more specific route, like `wasm-worker.signalnerve.com/function`. For this application, we'll use the _wildcard_ route: `wasm-worker.signalnerve.com/*`.
 
 ## Publish your Project
 
-With our project configured, it's time to publish our Worker! Wrangler has a built-in command for uploading your Worker script, generating the route that corresponds to your `wrangler.toml` file, and wiring them together. If that sounds complicated, don't worry – we've made it really easy:
+With your project configured, it's time to publish your application! Wrangler has a built-in command for uploading your script, generating the route that corresponds to your `wrangler.toml` file, and wiring them together. If that sounds complicated, don't worry – we've made it really easy:
 
 ```
 wrangler publish
