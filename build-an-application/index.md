@@ -1,6 +1,6 @@
 # Build an Application
 
-Welcome to Cloudflare Workers! This tutorial series will bring you from no experience with Workers, to writing and deploying a full application to Cloudflare's edge network.
+Welcome to Cloudflare Workers! This tutorial series will bring you from no experience with Workers, to writing and deploying a full application to Cloudflare.
 
 Cloudflare Workers is a platform for building and deploying serverless applications to a global cloud network. If you’re interested in how the platform works, check out the [Reference]() section of the documentation!
 
@@ -16,7 +16,7 @@ To confirm that Wrangler has successfully installed on your machine, try running
 
 ![Verify Wrangler Installation](./media/verify-wrangler-install.png)
 
-To publish Cloudflare Workers projects and serve them from our global edge network, you'll need to create a Cloudflare account (TODO: is this true for zoneless workers? different account?).
+To publish Cloudflare Workers projects and serve them from our global cloud network, you'll need to create a Cloudflare account (TODO: is this true for zoneless workers? different account?).
 
 Once you've signed up (or if you already have an account), you'll need to find a few important keys in Cloudflare's Dashboard UI: your **Account ID**, Zone ID, and your **Global API key** – Wrangler will use these to manage uploading and publishing your Workers.
 
@@ -43,7 +43,7 @@ With these keys, we can use Wrangler to set up our default credentials for deplo
 
 ## Scaffold a Project
 
-We've tried to make it as easy as possible for new and returning users alike to get up and running with Workers, by including support for templates in Wrangler. Wrangler's `generate` subcommand allows you to create new projects based on existing templates. We maintain a great list of templates in our [Template Gallery](/gallery), designed to help you get started quickly with Workers based on what you need in your project. For now, we'll use one of our basic templates, which includes support for building, deploying, and running JavaScript code on our edge servers.
+We've tried to make it as easy as possible for new and returning users alike to get up and running with Workers, by including support for templates in Wrangler. Wrangler's `generate` subcommand allows you to create new projects based on existing templates. We maintain a great list of templates in our [Template Gallery](/gallery), designed to help you get started quickly with Workers based on what you need in your project. For now, we'll use one of our basic templates, which includes support for building and deploying JavaScript code.
 
 Let's generate our first Wrangler project:
 
