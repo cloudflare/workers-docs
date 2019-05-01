@@ -8,35 +8,39 @@ be simple building blocks for building a Worker script.
 
 ### Router
 
-[`router.js`](https://gist.github.com/victoriabernard92/e87d23312d9b29b7fabb5e778810dfd4)
+[`router.js`](https://github.com/victoriabernard92/worker-template-router/blob/master/router.js)
 
 Decide which logic to execute based on the request's method and URL. Can be
 used for a REST API or any app needing routing logic.
 
-[Live demo](http://workers-tooling.cf/router/bar)
+[Demo /bar](http://workers-tooling.cf/router/bar) | [Demo /foo](http://workers-tooling.cf/router/foo) 
 
 ### Static
 
-[`static.js`](https://gist.github.com/victoriabernard92/4e73ed016998acace1db8c780104ba71)
+[`static.js`](https://github.com/victoriabernard92/worker-template-static/blob/master/static.js)
 
 Generate a fully functioning HTML page from cloud storage or from inputting
 raw HTML into your work. Also, send static JSON.
 
-[Live demo HTML](http://workers-tooling.cf/static/html)
-[Live demo JSON](http://workers-tooling.cf/static/json)
+[Demo HTML](http://workers-tooling.cf/static/html) |
+[Demo JSON](http://workers-tooling.cf/static/json)
 
 ### Sending and Recieving Data
 
-`data.js`
+[`post-data.js`](https://github.com/victoriabernard92/worker-template-fetch/blob/master/post-data.js)
 
-Examples of reading in a POST request body and writing back with a response body. TODO: add to the demo reading in a POST
+Examples of reading in a POST request body and writing back with a response body. 
 
-[Live demo HTML](http://workers-tooling.cf/fetch/html)
-[Live demo JSON](http://workers-tooling.cf/fetch/json)
+[Demo GET HTML](http://workers-tooling.cf/fetch/html) |
+[Demo GET/POST JSON](http://workers-tooling.cf/fetch/json)
 
 ### Redirects
 
-`redirects.js`
+[`redirects.js`](https://github.com/victoriabernard92/worker-template-redirect/blob/master/redirect.js)
 
-Deliever and handle redirects.
-[Live demo HTML](TODO: implement and fill in )
+Generate and handle redirects.
+
+[Demo Follow in Worker](https://workers-tooling.cf/redirect/follow) |
+[Demo Follow in Browser](https://workers-tooling.cf/redirect/not-follow) | 
+[Demo Generate](https://workers-tooling.cf/redirect/generate)
+
