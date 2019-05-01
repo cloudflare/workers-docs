@@ -223,7 +223,7 @@ If you're unfamiliar with the command-line, or want to test it in a user interfa
 
 ## Resources
 
-In this tutorial, you built and published a Cloudflare Workers serverless function for generating QR codes. If you'd like to see the full source code for this application, visit the `cloudflare/slack-bot-on-workers` repo on GitHub. TODO LINK
+In this tutorial, you built and published a Cloudflare Workers serverless function for generating QR codes. If you'd like to see the full source code for this application, visit the `cloudflare/qr-codes-on-workers` repo on GitHub. TODO LINK
 
 If you enjoyed this tutorial, we encourage you to explore our other tutorials for building on Cloudflare Workers:
 
