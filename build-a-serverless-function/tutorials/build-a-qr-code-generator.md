@@ -64,12 +64,131 @@ The QR code generator will be a function that runs at a single route and receive
 
 ### Handling requests
 
-- Take in input
+Currently, our Workers function receives requests, and returns a simple response with the text "Hello worker!". To handle data coming _in_ to our serverless function, check if the incoming request is a `POST`:
+
+```javascript
+async function handleRequest(request) {
+  let response
+  if (request.method === 'POST') {
+    response = new Response('Hello worker!', { status: 200 })
+  }
+  return response
+}
+
+addEventListener('fetch', event => {
+  event.respondWith(handleRequest(event.request))
+})
+```
+
+Currently, if an incoming request isn't a POST, `response` will be undefined. Since we only care about incoming `POST` requests, populate `response` with a new instance of `Response` with a [500 status code](<https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500>), if the incoming request isn't a `POST`:
+
+```javascript
+async function handleRequest(request) {
+  let response
+  if (request.method === 'POST') {
+    response = new Response('Hello worker!', { status: 200 })
+  } else {
+    response = new Response('Expected POST', { status: 500 })
+  }
+  return response
+}
+
+addEventListener('fetch', event => {
+  event.respondWith(handleRequest(event.request))
+})
+```
+
+With the basic flow of `handleRequest` established, it's time to think about how to handle incoming *valid* requests: if a `POST` request comes in, the function should generate a QR code. To start, move the "Hello worker!" response into a new function, `generate`, which will contain the bulk of our function's logic:
+
+```javascript
+const generate = async request => {
+  return new Response('Hello worker!', { status: 200 })
+}
+
+async function handleRequest(request) {
+  let response
+  if (request.method === 'POST') {
+    response = await generate(request)
+  } else {
+    response = new Response('Expected POST', { status: 500 })
+  }
+  return response
+}
+```
 
 ### Building a QR Code
 
-- Import qr-image
-- Return image
+All projects deployed to Cloudflare Workers support NPM packages, which makes it incredibly easy to rapidly build out _a lot_ of functionality in your serverless functions. The [`qr-image`](<https://github.com/alexeyten/qr-image>) package is a great way to take text and encode it into a QR code, with support for generating the codes in a number of file formats (such as PNG, the default, and SVG) and configuring other aspects of the code's image. In the command-line, install and save `qr-image` to your project's `package.json`:
+
+```
+npm install --save qr-image
+```
+
+In `index.js`, require the `qr-image` package as the variable `qr`. In the `generate` function, parse the incoming request as JSON, using `request.json`, and use the `text` to generate a QR code using `qr.imageSync`:
+
+```javascript
+const qr = require('qr-image')
+
+const generate = async request => {
+  const body = await request.json()
+  const text = body.text
+  const qr_png = qr.imageSync(text || 'https://workers.dev')
+}
+```
+
+By default, the QR code is generated as a PNG. Construct a new instance of `Response`, passing in the PNG data as the body, and a `Content-Type` header of `image/png`: this will allow browsers to properly parse the data coming back from your serverless function as an image:
+
+```javascript
+const qr = require('qr-image')
+
+const generate = async request => {
+  const { text } = await request.json()
+  const qr_png = qr.imageSync(text || 'https://workers.dev')
+  const headers = { 'Content-Type': 'image/png' }
+  return new Response(qr_png, { headers })
+}
+```
+
+With the `generate` function filled out, we can simply wait for the generation to finish in `handleRequest`, and return it to the client as `response`:
+
+```javascript
+async function handleRequest(request) {
+  let response
+  if (request.method === 'POST') {
+    response = await generate(request)
+  } else {
+    response = new Response('Expected POST', { status: 500 })
+  }
+  return response
+}
+```
+
+With that, your serverless function is complete! The full version of the code looks like this:
+
+```javascript
+const qr = require('qr-image')
+
+const generate = async request => {
+  const { text } = await request.json()
+  const headers = { 'Content-Type': 'image/png' }
+  const qr_png = qr.imageSync(text || 'https://workers.dev')
+  return new Response(qr_png, { headers })
+}
+
+async function handleRequest(request) {
+  let response
+  if (request.method === 'POST') {
+    response = await generate(request)
+  } else {
+    response = new Response('Expected POST', { status: 500 })
+  }
+  return response
+}
+
+addEventListener('fetch', event => {
+  event.respondWith(handleRequest(event.request))
+})
+```
 
 ## Publish
 
