@@ -619,7 +619,6 @@ Publishing your Workers application should now cause issue updates to start appe
   <source src="../media/create-new-issue.mp4" type="video/mp4">
   Your browser doesn't support HTML5 video in WebM or MP4.
 </video>
-
 ## Resources
 
 In this tutorial, you built and published a Cloudflare Workers application that can respond to GitHub webhook events, and allow GitHub API lookups within Slack. If you'd like to see the full source code for this application, visit the `cloudflare/slack-bot-on-workers` repo on GitHub. TODO LINK
