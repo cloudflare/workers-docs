@@ -58,13 +58,15 @@ async function handleRequest(request) {
 }
 ```
 
-In your default `index.js` file, we can see that request/response pattern in action. The `handleRequest` constructs a new `Response` with the body text "Hello worker", as well as an explicit status code of 200. When a `fetch` event comes into the worker, the script uses `event.respondWith` to return that new response back to the client. This means that your Cloudflare Worker script will serve new responses directly from Cloudflare's cloud network: instead of continuing to the origin, where a standard server would accept requests, and return responses, Cloudflare Workers allows you to respond quickly and efficiently by constructing responses directly on the edge.
+In your default `index.js` file, we can see that request/response pattern in action. The `handleRequest` constructs a new `Response` with the body text "Hello worker", as well as an explicit status code of 200. 
+
+When a `fetch` event comes into the worker, the script uses `event.respondWith` to return that new response back to the client. This means that your Cloudflare Worker script will serve new responses directly from Cloudflare's cloud network: instead of continuing to the origin, where a standard server would accept requests, and return responses, Cloudflare Workers allows you to respond quickly and efficiently by constructing responses directly on the edge.
 
 ## Build
 
-Any project you publish to Cloudflare Workers can make use of modern JS tooling like ES modules, NPM packages, and [async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) functions to put together your application. In addition, simple serverless functions aren't the only thing you can publish on Cloudflare Workers: you can [build full applications] using the same tooling and process as what we'll be building today.
+Any project you publish to Cloudflare Workers can make use of modern JS tooling like ES modules, NPM packages, and [async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) functions to put together your application. In addition, simple serverless functions aren't the only thing you can publish on Cloudflare Workers: you can [build full applications](/build-an-application) using the same tooling and process as what we'll be building today.
 
-The QR code generator will be a function that runs at a single route and receives requests. Given text sent inside of that request (such as URLs or strings of your choice), the function will render a QR code and serve the QR code as a PNG response.
+The QR code generator we'll build in this tutorial will be a serverless function that runs at a single route and receives requests. Given text sent inside of that request (such as URLs, or strings), the function will encode the text into a QR code, and serve the QR code as a PNG response.
 
 ### Handling requests
 
@@ -84,7 +86,7 @@ addEventListener('fetch', event => {
 })
 ```
 
-Currently, if an incoming request isn't a POST, `response` will be undefined. Since we only care about incoming `POST` requests, populate `response` with a new instance of `Response` with a [500 status code](<https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500>), if the incoming request isn't a `POST`:
+Currently, if an incoming request isn't a POST, `response` will be undefined. Since we only care about incoming `POST` requests, populate `response` with a new `Response` with a [500 status code](<https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500>), if the incoming request isn't a `POST`:
 
 ```javascript
 async function handleRequest(request) {
@@ -102,7 +104,7 @@ addEventListener('fetch', event => {
 })
 ```
 
-With the basic flow of `handleRequest` established, it's time to think about how to handle incoming *valid* requests: if a `POST` request comes in, the function should generate a QR code. To start, move the "Hello worker!" response into a new function, `generate`, which will contain the bulk of our function's logic:
+With the basic flow of `handleRequest` established, it's time to think about how to handle incoming *valid* requests: if a `POST` request comes in, the function should generate a QR code. To start, move the "Hello worker!" response into a new function, `generate`, which will ultimately contain the bulk of our function's logic:
 
 ```javascript
 const generate = async request => {
@@ -122,7 +124,7 @@ async function handleRequest(request) {
 
 ### Building a QR Code
 
-All projects deployed to Cloudflare Workers support NPM packages, which makes it incredibly easy to rapidly build out _a lot_ of functionality in your serverless functions. The [`qr-image`](<https://github.com/alexeyten/qr-image>) package is a great way to take text and encode it into a QR code, with support for generating the codes in a number of file formats (such as PNG, the default, and SVG) and configuring other aspects of the code's image. In the command-line, install and save `qr-image` to your project's `package.json`:
+All projects deployed to Cloudflare Workers support NPM packages, which makes it incredibly easy to rapidly build out _a lot_ of functionality in your serverless functions. The [`qr-image`](<https://github.com/alexeyten/qr-image>) package is a great way to take text, and encode it into a QR code, with support for generating the codes in a number of file formats (such as PNG, the default, and SVG), and configuring other aspects of the generated QR code. In the command-line, install and save `qr-image` to your project's `package.json`:
 
 ```
 npm install --save qr-image
@@ -140,7 +142,7 @@ const generate = async request => {
 }
 ```
 
-By default, the QR code is generated as a PNG. Construct a new instance of `Response`, passing in the PNG data as the body, and a `Content-Type` header of `image/png`: this will allow browsers to properly parse the data coming back from your serverless function as an image:
+By default, the QR code is generated as a PNG. Construct a new instance of `Response`, passing in the PNG data as the body, and a `Content-Type` header of `image/png`: this will allow browsers to properly parse the data coming back from your serverless function, as an image:
 
 ```javascript
 const qr = require('qr-image')
@@ -207,13 +209,13 @@ wrangler publish
 
 TODO Wrangler screenshot
 
-With your serverless function deployed, a simple cURL request is a great way to test the functionality of the function. By sending an HTTP `POST` with JSON-formatted data to our published Workers function, we can get QR code data back, and write to the file `qr.png`:
+With your serverless function deployed, a simple cURL request is a great way to test the functionality of the function. By sending an HTTP `POST` with JSON-formatted data to our published Workers function, we can get QR code data back, and write the data to a file, `qr.png`:
 
 ```
 curl -d '{"text":"https://workers.dev"}' -H "Content-Type: application/json" -X POST https://qr.signalnerve.com > qr.png
 ```
 
-If you're unfamiliar with the command-line, or want to test it in a user interface, we've built a [live demo](https://qr.signalnervecom) (TODO this should go somewhere else) to test the function (find the source [here](https://github.com/signalnerve/qr-generator-landing)):
+If you're unfamiliar with the command-line, or want to test it in a user interface, we've built a [live demo](https://qr.signalnervecom) (TODO this should go somewhere else) to test the function (find the source [here](https://github.com/signalnerve/qr-generator-landing) TODO right place for this?):
 
 <video loop muted="true">
   <source src="../media/demo.webm" type="video/webm">
@@ -223,10 +225,10 @@ If you're unfamiliar with the command-line, or want to test it in a user interfa
 
 ## Resources
 
-In this tutorial, you built and published a Cloudflare Workers serverless function for generating QR codes. If you'd like to see the full source code for this application, visit the `cloudflare/qr-codes-on-workers` repo on GitHub. TODO LINK
+In this tutorial, you built and published a serverless function to Cloudflare Workers for generating QR codes. If you'd like to see the full source code for this application, visit the `cloudflare/qr-codes-on-workers` repo on GitHub. TODO LINK
 
 If you enjoyed this tutorial, we encourage you to explore our other tutorials for building on Cloudflare Workers:
 
-[Build a Slack bot] TODO LINK
+- [Build a Slack bot](/build-an-application/tutorials/build-a-slack-bot)
 
-If you want to get started building your own projects, check out the quick-start templates we've provided in our [Template Gallery]. TODO LINK
+If you want to get started building your own projects, check out the quick-start templates we've provided in our [Template Gallery](/reference/templates).
