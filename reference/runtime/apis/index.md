@@ -52,7 +52,7 @@ The URL API supports urls conforming to http and https schemes.
 
 [Fetch](https://developer.mozilla.org/docs/Web/API/Fetch_API) is implemented as expected within a Service Worker, with the exception of some features inapplicable to the edge, such as CORS-related properties.
 
-* TODO: expand list of supported features
+[Go to reference page](TODO: link FetchAPI document)
 
 ## Streams API
 
