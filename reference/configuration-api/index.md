@@ -20,7 +20,7 @@ TODO: document the shape of an error object.
 
 #### Error Codes
 
-##### Worker Runtime
+##### Workers API
 
 | Code  | Message                                                      |
 | ----- | ------------------------------------------------------------ |
@@ -40,6 +40,6 @@ TODO: document the shape of an error object.
 | 10026 | Route pattern was unparseable                                |
 | 10027 | Script body was too large                                    |
 
-##### Cloudflare API
+##### Cloudflare API Gateway
 
 TODO: some errors can come back from the API gateway (specifically issues with account/zone). Link to documentation about these errors.
