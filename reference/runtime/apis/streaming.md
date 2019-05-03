@@ -114,5 +114,15 @@ _Note: A `WritableStream` is returned as the `writable` property inside of a `Tr
 
 - `abort(reason)`: If the writer is active, aborting it will behave similarly to `WritableStream`'s `abort` method. An optional `reason` string can be passed (intended to be human-readable) to indicate the reason for the cancellation. Returns a promise, which fulfills with `undefined`. Note: any data that has not yet been written will be lost.
 - `close`: Attempt to close the writer. Remaining writes will finish processing, before the writer is closed. Returns a promise that fulfills with undefined if the writer successfully closes and processes remaining writes, or rejected if any errors are encountered.
-- `releaseLock`: Releases the writer's lock on the stream. Once released, the writer will no longer be active.
+- `releaseLock`: Releases the writer's lock on the stream. Once released, the writer will no longer be active. This method can be called _before_ all pending `write(chunk)` calls have been resolved: this allows you to queue a write operation, release the lock, and begin piping into the writable stream from another source:
+
+```javascript
+let writer = writable.getWriter()
+// Write a preamble.
+writer.write(new TextEncoder().encode('foo bar'))
+// While that's still writing, pipe the rest of the body from somewhere else.
+writer.releaseLock()
+await someResponse.body.pipeTo(writable)
+```
+
 - `write(chunk)`: Writes a chunk of data to the writer. Returns a promise to indicate whether the operation has succeeded or failed.
