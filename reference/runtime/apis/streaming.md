@@ -62,7 +62,12 @@ _Note: A `ReadableStream` is returned as the `readable` property inside of a `Tr
 #### Methods
 
 - `pipeTo(destination)`: Pipe the readable stream to a given writable stream, `destination`. Returns a promise that is fulfilled when the write operation has succeeded, or rejected if the operation fails.
-- `getReader`: Get an instance of `ReadableStreamDefaultReader`, and locks the `ReadableStream` to that reader instance.
+
+- `getReader`: Get an instance of `ReadableStreamDefaultReader`, and locks the `ReadableStream` to that reader instance. The `getReader` method accepts an object argument indicating _options_, currently, we support one, `mode`, which can be set to `byob` to create a `ReadableStreamBYOBReader`:
+
+  ```javascript
+  let reader = readable.getReader({ mode: "byob" })
+  ```
 
 ### ReadableStreamDefaultReader
 
@@ -75,6 +80,14 @@ _Note: A `ReadableStream` is returned as the `readable` property inside of a `Tr
 - `read`: A promise that returns the next available chunk of data being passed through the reader queue.
 - `cancel(reason)`: Cancel the stream, passing an optional `reason` string (intended to be human-readable) to indicate the reason for the cancellation. Note: any data that has not yet been read will be lost.
 - `releaseLock`: Release the lock on the readable stream. A lock can't be released if the reader still has pending read operations: a `TypeError` will be thrown and the reader will remain locked.
+
+### ReadableStreamBYOBReader
+
+*Note: An instance of `ReadableStreamBYOBReader`, created by passing the mode `byob` to `getReader` on an instance of `ReadableStream`, is functionally identical to `ReadableStreamDefaultReader`, with the exception of the `read` method.*
+
+#### Methods
+
+- `read(buffer)`: Returns a promise with the next available chunk of data, read into a passed-in buffer.
 
 ### WritableStream
 
