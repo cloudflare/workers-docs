@@ -58,7 +58,7 @@ async function handleRequest(request) {
 }
 ```
 
-In your default `index.js` file, we can see that request/response pattern in action. The `handleRequest` constructs a new `Response` with the body text "Hello worker", as well as an explicit status code of 200. 
+In your default `index.js` file, we can see that request/response pattern in action. The `handleRequest` constructs a new `Response` with the body text "Hello worker", as well as an explicit status code of 200.
 
 When a `fetch` event comes into the worker, the script uses `event.respondWith` to return that new response back to the client. This means that your Cloudflare Worker script will serve new responses directly from Cloudflare's cloud network: instead of continuing to the origin, where a standard server would accept requests, and return responses, Cloudflare Workers allows you to respond quickly and efficiently by constructing responses directly on the edge.
 
@@ -74,11 +74,9 @@ Currently, our Workers function receives requests, and returns a simple response
 
 ```javascript
 async function handleRequest(request) {
-  let response
   if (request.method === 'POST') {
-    response = new Response('Hello worker!', { status: 200 })
+    return new Response('Hello worker!', { status: 200 })
   }
-  return response
 }
 
 addEventListener('fetch', event => {
@@ -86,7 +84,7 @@ addEventListener('fetch', event => {
 })
 ```
 
-Currently, if an incoming request isn't a POST, `response` will be undefined. Since we only care about incoming `POST` requests, populate `response` with a new `Response` with a [500 status code](<https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500>), if the incoming request isn't a `POST`:
+Currently, if an incoming request isn't a POST, `response` will be undefined. Since we only care about incoming `POST` requests, populate `response` with a new `Response` with a [500 status code](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500), if the incoming request isn't a `POST`:
 
 ```javascript
 async function handleRequest(request) {
@@ -104,7 +102,7 @@ addEventListener('fetch', event => {
 })
 ```
 
-With the basic flow of `handleRequest` established, it's time to think about how to handle incoming *valid* requests: if a `POST` request comes in, the function should generate a QR code. To start, move the "Hello worker!" response into a new function, `generate`, which will ultimately contain the bulk of our function's logic:
+With the basic flow of `handleRequest` established, it's time to think about how to handle incoming _valid_ requests: if a `POST` request comes in, the function should generate a QR code. To start, move the "Hello worker!" response into a new function, `generate`, which will ultimately contain the bulk of our function's logic:
 
 ```javascript
 const generate = async request => {
@@ -124,7 +122,7 @@ async function handleRequest(request) {
 
 ### Building a QR Code
 
-All projects deployed to Cloudflare Workers support NPM packages, which makes it incredibly easy to rapidly build out _a lot_ of functionality in your serverless functions. The [`qr-image`](<https://github.com/alexeyten/qr-image>) package is a great way to take text, and encode it into a QR code, with support for generating the codes in a number of file formats (such as PNG, the default, and SVG), and configuring other aspects of the generated QR code. In the command-line, install and save `qr-image` to your project's `package.json`:
+All projects deployed to Cloudflare Workers support NPM packages, which makes it incredibly easy to rapidly build out _a lot_ of functionality in your serverless functions. The [`qr-image`](https://github.com/alexeyten/qr-image) package is a great way to take text, and encode it into a QR code, with support for generating the codes in a number of file formats (such as PNG, the default, and SVG), and configuring other aspects of the generated QR code. In the command-line, install and save `qr-image` to your project's `package.json`:
 
 ```
 npm install --save qr-image
