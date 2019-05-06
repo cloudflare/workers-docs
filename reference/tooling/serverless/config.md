@@ -1,8 +1,8 @@
-### Core Concepts
+# Serverless.yml
 
 The `serverless.yml` file is what molds the Worker(s) of your project. Using the [Server Cloudflare Workers plugin](TODO link), a `serverless.yml` will look like: 
 
-```
+```yml
 # serverless.yml
 service:
     name: hello
@@ -54,19 +54,19 @@ functions: ..
 
 A Function is a Cloudflare Worker - a single script including its bindings, routes and other config. It's an independent unit of deployment, like a microservice. It's merely code, deployed on Cloudflare’s 155+ PoPs [points of presence](TODO: can we reference this PoPsnumber somewhere instead of hard coding it? ), that is most often written to perform a single job as a Worker.
 
- `serverless.yml`:
+ `serverless.yml`: (TODO: make this yml pretty)
 
 ```
   functions:
-    functionName:
-      worker: scriptName
-      script: filename
-      webpack: true
-      environment:
-        CLOUDFLARE_AUTH_KEY: <your-api-key>
-        CLOUDFLARE_AUTH_EMAIL: <your-email>
-      resources: ...
-      events: ...
+      functionName:
+          worker: scriptName
+          script: filename
+          webpack: true
+          environment:
+              CLOUDFLARE_AUTH_KEY: <your-api-key>
+              CLOUDFLARE_AUTH_EMAIL: <your-email>
+          resources: ...
+          events: ...
 ```
 
 `worker`: the name of which the script will be as in this case`scriptName`
@@ -87,13 +87,13 @@ The webpack option under functions allows you to easily use multiple scripts or 
 
 It can accept a boolean or a string. Possible behaviors:
 
-`boolean`: will automatically bundle the function if set to "true"
+`boolean`: will automatically bundle the function if set to "true" with the global webpack config
 
-`string`:  web pack config path for this function[TODO: clean] add a function level webpack configuration in addition to a global webpack configuration. This helps you to process bundling different for an individual function than the global webpack config explained earlier. To use this, set the webpack config path to the function level `webpack` variable. Setting function level `webpack` variable to `true` will force webpack to bundle the function script with a default web pack configuration. Setting `webpack` key to `false` will turn off webpack for the function. (i.e the function script will not be fetched from dist folder)
+`string`:  a function level webpack configuration in addition to a global webpack configuration. This helps you to process bundling different for an individual function than the global webpack config . To use this, set the webpack config path to the function level `webpack` variable. Setting function level `webpack` variable to `true` will force webpack to bundle the function script with a default web pack configuration. Setting `webpack` key to `false` will turn off webpack for the function. (i.e the function script will not be fetched from dist folder)
 
 Simply add `webpack: true | <config path>` to your config block.
 
-For example in your script you can now use `import`: 
+For example in your script you can now use `import`:
 
 ```
 addEventListener('fetch', event => {
@@ -119,7 +119,7 @@ If your handler script looks like the above, the includeMe script will be packed
       kv:
 ```
 
-[TODO]
+[TODO: fill in ]
 
 ##### Events
 
