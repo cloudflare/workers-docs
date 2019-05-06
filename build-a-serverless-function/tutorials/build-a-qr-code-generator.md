@@ -78,10 +78,6 @@ async function handleRequest(request) {
     return new Response('Hello worker!', { status: 200 })
   }
 }
-
-addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event.request))
-})
 ```
 
 Currently, if an incoming request isn't a POST, `response` will be undefined. Since we only care about incoming `POST` requests, populate `response` with a new `Response` with a [500 status code](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500), if the incoming request isn't a `POST`:
@@ -96,10 +92,6 @@ async function handleRequest(request) {
   }
   return response
 }
-
-addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event.request))
-})
 ```
 
 With the basic flow of `handleRequest` established, it's time to think about how to handle incoming _valid_ requests: if a `POST` request comes in, the function should generate a QR code. To start, move the "Hello worker!" response into a new function, `generate`, which will ultimately contain the bulk of our function's logic:
@@ -110,13 +102,10 @@ const generate = async request => {
 }
 
 async function handleRequest(request) {
-  let response
+  // ...
   if (request.method === 'POST') {
     response = await generate(request)
-  } else {
-    response = new Response('Expected POST', { status: 500 })
-  }
-  return response
+  // ...
 }
 ```
 
@@ -143,12 +132,8 @@ const generate = async request => {
 By default, the QR code is generated as a PNG. Construct a new instance of `Response`, passing in the PNG data as the body, and a `Content-Type` header of `image/png`: this will allow browsers to properly parse the data coming back from your serverless function, as an image:
 
 ```javascript
-const qr = require('qr-image')
-
 const generate = async request => {
-  const { text } = await request.json()
-  const qr_png = qr.imageSync(text || 'https://workers.dev')
-  const headers = { 'Content-Type': 'image/png' }
+  // ...
   return new Response(qr_png, { headers })
 }
 ```
@@ -157,13 +142,10 @@ With the `generate` function filled out, we can simply wait for the generation t
 
 ```javascript
 async function handleRequest(request) {
-  let response
+  // ...
   if (request.method === 'POST') {
     response = await generate(request)
-  } else {
-    response = new Response('Expected POST', { status: 500 })
-  }
-  return response
+  // ...
 }
 ```
 
