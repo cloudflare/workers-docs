@@ -24,28 +24,7 @@ To publish your Worker to Cloudflare, and configure it with a Slack channel, you
 
 If you don't have those things quite yet, don't worry. We'll walk through each of them and make sure we're ready to go, before you start creating your application.
 
-### Setting up your Cloudflare account
-
-To publish Cloudflare Workers projects and serve them from Cloudflare's global cloud network, you'll need to [create a Cloudflare account](https://support.cloudflare.com/hc/en-us/articles/201720164) (TODO: is this true for zoneless workers? different account?).
-
-Once you've signed up (or if you already have an account), you'll need to find a few important keys in Cloudflare's Dashboard UI: your **Account ID**, **Zone ID**, and your **Global API key** – Wrangler will use these to manage uploading and publishing your Workers.
-
-**To find your Account and Zone IDs, do the following:**
-
-1. Login to Cloudflare with the account you'd like to use for deploying Cloudflare Workers
-2. Select the "Home" button on the top navigation bar.
-3. Click on a site that you currently host with Cloudflare – this should bring you to the "Overview" tab on the Dashboard.
-4. Scroll down and look for the section in the sidebar titled "API": your Account ID and Zone ID will be displayed, as well as the option to "Click to copy" under each key.
-
-**To find your API key, do the following:**
-
-1. Click on the Profile icon at the top-right of the screen, and select "My Profile". Your account email should also be listed underneath the "My Profile" text.
-2. On the "My Profile" page, scroll down to "API Keys", and find "Global API Key".
-3. Enter your password, and click "View" to see your Global API Key.
-
-![Viewing Cloudflare API keys](/Users/kristian/src/workers/workers-docs/build-an-application/media/api-keys.png)
-
-**Treat your Global API Key like a password!** You'll configure Wrangler to use this key, but by design, Wrangler does not keep this API key in version control, or inside of your code.
+You'll need to get your Cloudflare API keys to deploy code to Cloudflare Workers: see ["How to find your Cloudflare API Keys"](/reference/how-to-find-your-cloudflare-api-keys) for a brief guide on how to find them.
 
 TODO: a user should know what their subdomain is for the Slack bot before continuing into the Slack config section. With zoneless/zoned workers, how can we help users understand what their bot URL is?
 
@@ -640,7 +619,6 @@ Publishing your Workers application should now cause issue updates to start appe
   <source src="../media/create-new-issue.mp4" type="video/mp4">
   Your browser doesn't support HTML5 video in WebM or MP4.
 </video>
-
 ## Resources
 
 In this tutorial, you built and published a Cloudflare Workers application that can respond to GitHub webhook events, and allow GitHub API lookups within Slack. If you'd like to see the full source code for this application, visit the `cloudflare/slack-bot-on-workers` repo on GitHub. TODO LINK
