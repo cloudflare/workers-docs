@@ -4,7 +4,7 @@
 
 By default Cloudflare provides cache space per domain for serving static assets from our Edge network. This reduces the time it takes visitors to navigate your site by reducing the distance the data has to travel. It also reduces the traffic load on your web server by returning the same response for identical requests.
 
-This is great for static assets like images, html, and css, but much of the traffic moving across the web is dynamic data that is requested via AJAX requests. By default, this kind of traffic is un-cacheable, and therefore misses out on the benefits of caching.
+This is great for static assets like images, html, and css, but much of the traffic moving across the web is dynamic data that is requested via AJAX requests. By default, this kind of traffic is not cached, and therefore misses out on the benefits of caching.
 
 The Cache API described by the [Service Worker](TODO) specification provides a way to customize your cache's behavior using JavaScript.
 
@@ -50,10 +50,10 @@ cache.put(request, response)
 
 Our implementation of the Cache API respects the following HTTP headers on the response passed to `put()`:
 
-* `Cache-Control`: Controls caching directives. See [Expiring cache objects](#expiring-cache-objects)
-* `Cache-Tag`: Allows the resource to be purged by tag(s) later.
+* `Cache-Control`: Controls caching directives. Consistent with [Cloudflare Cache-Control Directives](https://support.cloudflare.com/hc/en-us/articles/115003206852-Origin-Cache-Control#h_4250342181031546894839080). See also [Expiring cache objects](#expiring-cache-objects)
+* `Cache-Tag`: Allows the resource to be purged by tag(s) later. (Enterprise only)
 * `ETag`: Allows `cache.match()` to evaluate conditional requests with `If-None-Match`.
-* `Expires`: A string that specifies when the resource becomes invalid. See [Expiring cache objects](#expiring-cache-objects)
+* `Expires`: A string that specifies when the resource becomes invalid. See also [Expiring cache objects](#expiring-cache-objects)
 * `Last-Modified`: Allows `cache.match()` to evaluate conditional requests with `If-Modified-Since`.
 
 This differs from web browsers' Cache API in that they do not honor any headers on the request or response.
@@ -66,7 +66,7 @@ header.
 
 #### `match`
 
-Returns a promise for the response object keyed to that request.
+Returns a promise wrapping the response object keyed to that request.
 
 ##### Syntax
 
