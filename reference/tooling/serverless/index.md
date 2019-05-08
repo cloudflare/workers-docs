@@ -10,6 +10,8 @@ Get started using serverless with Cloudflare Workers in this [quick start guide 
 
 ### Additional Documentation
 
-[The Documentation on Serverless](https://serverless.com/framework/docs/providers/cloudflare/) 
+[Plugin Documentation on Serverless](https://serverless.com/framework/docs/providers/cloudflare/) 
+
+[CLI Documentation on Serverless](https://serverless.com/framework/docs/providers/cloudflare/cli-reference/) 
 
 [Plugin on Github](<https://github.com/cloudflare/serverless-cloudflare-workers>)
