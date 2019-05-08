@@ -44,7 +44,7 @@ Finally, to ensure that you can access the objects from your Worker, your Google
 
 Cloudflare's command-line tool for managing Worker projects, Wrangler, has great support for templates – pre-built collections of code that make it easy to get started writing Workers. We'll make use of the default JavaScript template to start building your project.
 
-In the command line, generate your Worker project, using Wrangler's [worker-template](https://github.com/cloudflare/worker-template), and pass the project name "qr-code-generator":
+In the command line, generate your Worker project, using Wrangler's [worker-template](https://github.com/cloudflare/worker-template), and pass the project name `qr-code-generator`:
 
 ```
 wrangler generate serve-cdn-assets https://github.com/cloudflare/worker-template
@@ -83,12 +83,11 @@ The Cloudflare Workers project built in this tutorial will be a serverless funct
 
 ### Handling requests
 
-Currently, the Workers function receives requests, and returns a simple response with the text "Hello worker!". Begin configuring the function by adding an additional check: requests coming in to the function should **only** be `GET` requests: if it receives other requests, like `POST`s or `DELETE`s, it should return an error response, with a status code of [405](https://httpstatuses.com/405):
+Currently, the Workers function receives requests, and returns a simple response with the text "Hello worker!". Begin configuring the function by adding an additional check – requests coming in to the function should **only** be `GET` requests. If it receives other requests, like `POST`s or `DELETE`s, it should return an error response, with a status code of [405](https://httpstatuses.com/405). Using `event.request.method`, the resulting code is below:
 
 ```javascript
 async function handleRequest(event) {
-  const request = event.request
-  if (request.method === 'GET') {
+  if (event.request.method === 'GET') {
     return new Response('Hello worker!', { status: 200 })
   } else {
     return new Response('Method not allowed', { status: 405 })
@@ -100,13 +99,11 @@ Given that the incoming request to the function *is* a `GET`, it should be clear
 
 ```javascript
 async function serveAsset(event) {
-  const request = event.request
   return new Response('Hello worker!', { status: 200 })
 }
 
 async function handleRequest(event) {
-  const request = event.request
-  if (request.method === 'GET') {
+  if (event.request.method === 'GET') {
     return serveAsset(event)
   } // ...
 }
@@ -114,27 +111,24 @@ async function handleRequest(event) {
 
 ### Routing to your assets
 
-Looking back at the original definition of this project, at the beginning of the "Build" section, the `serveAsset` function should parse the URL, find what asset is being requested, and serve it from the configured Cloud Storage bucket. To do this, the `request.url` field should be parsed using the `URL` library, and set to `url`. Given an instance of the `URL` class, `url`, there are a number of useful properties that can be used to query the incoming request. `serveAsset` should check the `pathname`, which contains the part of the URL _after_ the `host`: for instance, given the URL `https://assets.mysite.com/faces/1.jpg`, the pathname will be `/faces/1.jpg`:
+Looking back at the original definition of this project, at the beginning of the "Build" section, the `serveAsset` function should parse the URL, find what asset is being requested, and serve it from the configured Cloud Storage bucket. To do this, the `event.request.url` field should be parsed using the `URL` library, and set to `url`. Given an instance of the `URL` class, `url`, there are a number of useful properties that can be used to query the incoming request. `serveAsset` should check the `pathname`, which contains the part of the URL _after_ the `host`: for instance, given the URL `https://assets.mysite.com/faces/1.jpg`, the pathname will be `/faces/1.jpg`:
 
 ```javascript
 function serveAsset(event) {
-  const request = event.request
-  const url = new URL(request)
-  const path = url.pathname
+  const url = new URL(event.request.url)
+  console.log(url.pathname) // "/faces/1.jpg"
 }
 ```
 
-With that `path` available, the function can simply request the corresponding path from our Cloud Storage bucket. Given a bucket name of "my-bucket", construct a `bucketUrl`, append the asset `path` to the end of it, and `fetch` it to get your function's `response`:
+With that `path` available, the function can simply request the corresponding path from our Cloud Storage bucket. Given a constant `BUCKET_NAME` (we'll set it in this tutorial to "my-bucket"), set a `BUCKET_URL ` constant, append `url.pathname` to the end of it, and `fetch` it to get your function's `response`:
 
 ```javascript
-const bucketName = 'my-bucket'
-const bucketUrl = `http://storage.googleapis.com/${bucketName}`
+const BUCKET_NAME = 'my-bucket'
+const BUCKET_URL = `http://storage.googleapis.com/${bucketName}`
 
 function serveAsset(event) {
-  const request = event.request
-  const url = new URL(request.url)
-  const path = url.pathname
-  return fetch(`${bucketUrl}${path}`)
+  const url = new URL(event.request.url)
+  return fetch(`${bucketUrl}${url.pathname}`)
 }
 ```
 
@@ -142,63 +136,39 @@ function serveAsset(event) {
 
 At this point in the tutorial, deploying this script would give you a fully-functional project you could use to retrieve assets from your Cloud Storage bucket. Instead of wrapping up the tutorial here, let's continue to explore how configuring your CDN is really powerful with Workers, by making use of the [Cache API] LINK TODO.
 
-Cloudflare caches many resources by default: many common file types, like JPEG, PNG, and GIF (for the full list, see our Knowledge Base article: ["Which file extensions does Cloudflare cache for static content?"](https://support.cloudflare.com/hc/en-us/articles/200172516-What-file-extensions-does-CloudFlare-cache-for-static-content-)) For files that _aren't_ on that list, or in situations where you need more granular caching, the Cache API makes it simple for developers to build their own caching systems.
+To cache responses in a Worker, the Cache API provides `cache.match`, to check for the presence of a cached asset, and `cache.put`, to cache a `response` for a given `request`. Given those two functions, the general flow will look like this:
 
-In this tutorial, we'll assume the existence of the `/static/` folder in a Cloud Storage bucket: this folder represents a collection of files that should be aggressively cached. Because they rarely change, the `handleRequest` function can be updated to check for `/static/` in the `path`: 
+1. Check for the presence of a cached asset, and set it to `response`.
+2. If `response` doesn't exist, get the asset from cloud storage, set it to `response`, and cache it.
+3. Return `response` from the function, back to the `fetch` event handler.
 
-- If the `path` _does_ contain `/static/`, the code will check for an existing cached version of the asset, using the Cache API. If the asset isn't cached, the script should request the asset, cache it, and return it to the client.
-- If the `path` _doesn't_ contain `/static/`, the script should simply request the asset and pass it back to the client – this is how the script is currently set up.
+The `Cache-Control` header is a common way that HTML responses indicate _how_ they should be cached. The Workers implementation respects the `Cache-Control` header (as well as many others), in indicating how assets should be cached on Cloudflare's CDN. In building a custom asset serving solution, and enabling caching, you should set a custom `Cache-Control` header (in this example, we'll set it to `public`, and a `max-age` value of `14400 ` seconds, or four hours). When the asset is retrieved from cloud storage, the `serveAsset` function should construct a new instance of `Response`, copying much of the HTML response data from the cloud storage response, but overwriting the response headers. By doing this, you'll define your own custom caching information, and passing it to the Workers Cache API. 
 
-As indicated by the above logic, write an if/else statement to check for the presence of `/static/` inside of `path`, using `includes`. If the path _does_ contain `/static/`, set the variable `cache` to `caches.default`: the default cache implemented by the Workers runtime. With that `cache` in place, use the `match` function, passing in `request`, to see if an existing cached `response` exists. The `else` statement will contain the original code for `handleRequest` (`fetch(bucketUrl + path)`):
+When you add something to the cache, it's important to note that an HTML response is designed to only be processed once in your code, according to the Service Worker spec that Cloudflare Workers implements. To get around this, we'll clone the asset response, using `response.clone()`, and pass that cloned response to the Cache API, and return the original `response` back from the function. The final code looks like this:
 
 ```javascript
-// Note that this function has been updated to an _async_ function
 async function serveAsset(event) {
-  // ...
-  
-  let response
-  if (path.includes('/static/')) {
-    const cache = caches.default
-    response = cache.match(request)
-  } else {
-    // ...
-    response = await fetch(`${bucketUrl}${path}`)
+  const url = new URL(event.request.url)
+  const cache = caches.default
+  let response = await cache.match(event.request)
+
+  if (!response) {
+    response = await fetch(`${BUCKET_URL}${url.pathname}`)
+    const headers = { 'cache-control': 'public, max-age=14400' }
+    response = new Response(response.body, { ...response, headers })
+    event.waitUntil(cache.put(event.request, response.clone()))
   }
   return response
 }
 ```
 
-Of course, a cached response _may_ exist, but if it doesn't, we should request the asset, cache it, and then return it as the response. Use `cache.put`, passing in `request` and a _cloned_ version of `response`, to cache the `response` for future requests. Note the usage of `response.clone()`, to push a response into our cache, without processing the body or any other parts of the `response` – for more information on this requirement, check out the [Cache API documentation] TODO. With this rewrite, the final version of `serveAsset` looks like this:
-
-```javascript
-async function serveAsset(event) {
-  const request = event.request
-	const url = new URL(request.url)
-  const path = url.pathname
-  
-  let response
-  if (path.includes('/static/')) {
-    const cache = caches.default
-    response = await cache.match(request)
-    if (!response) {
-      response = await fetch(`${bucketUrl}${path}`)
-      event.waitUntil(cache.put(request, response.clone()))
-    }
-  } else {
-    response = await fetch(`${bucketUrl}${path}`)
-  }
-  return response
-}
-```
-
-Before building and publishing your Workers script, there's one more thing to be added. Currently, if an asset is requested that doesn't exist, or if your bucket policy doesn't include access to an asset publicly, `serveAsset` will pass back the corresponding error page directly to the client. Instead of doing this, the returned response should be checked in `handleRequest`: if the status code is higher than `299` (where 200-level status codes indicate "success"), we can return a truncated `response` with just the `status` and `statusText` from response:
+Before building and publishing your Workers script, there's one more thing to be added. Currently, if an asset is requested that doesn't exist, or if your bucket policy doesn't include public access to an asset, `serveAsset` will pass back the corresponding error page directly to the client. Instead of doing this, the returned response should be checked in `handleRequest`: if the status code is higher than `399` (where 200-level status codes indicate "success", and 399-level status codes indicate "redirection"), we can return a truncated `response` with just the `status` and `statusText` from response:
 
 ```javascript
 async function handleRequest(event) {
-  const request = event.request
-  if (request.method === 'GET') {
+  if (event.request.method === 'GET') {
     let response = await serveAsset(event)
-    if (response.status > 299) {
+    if (response.status > 399) {
       response = new Response(response.statusText, { status: response.status })
     }
     return response
@@ -215,37 +185,30 @@ addEventListener('fetch', event => {
   event.respondWith(handleRequest(event))
 })
 
-const bucketName = 'my-bucket'
-const bucketUrl = `http://storage.googleapis.com/${bucketName}`
+const BUCKET_NAME = 'hugo-workers'
+const BUCKET_URL = `http://storage.googleapis.com/${BUCKET_NAME}`
 
 async function serveAsset(event) {
-  const request = event.request
-	const url = new URL(request.url)
-  const path = url.pathname
-  
-  let response
-  if (path.includes('/static/')) {
-    const cache = caches.default
-    response = await cache.match(request)
-    if (!response) {
-      response = await fetch(`${bucketUrl}${path}`)
-      event.waitUntil(cache.put(request, response.clone()))
-    }
-  } else {
-    response = await fetch(`${bucketUrl}${path}`)
+  const url = new URL(event.request.url)
+  const cache = caches.default
+  let response = await cache.match(event.request)
+
+  if (!response) {
+    response = await fetch(`${BUCKET_URL}${url.pathname}`)
+    const headers = { 'cache-control': 'public, max-age=14400' }
+    response = new Response(response.body, { ...response, headers })
+    event.waitUntil(cache.put(event.request, response.clone()))
   }
   return response
 }
 
 async function handleRequest(event) {
-  const request = event.request
-  if (request.method === 'GET') {
-    const response = await serveAsset(event)
-    if (response.status > 299) {
-      return new Response(response.statusText, { status: response.status })
-    } else {
-      return response
+  if (event.request.method === 'GET') {
+    let response = await serveAsset(event)
+    if (response.status > 399) {
+      response = new Response(response.statusText, { status: response.status })
     }
+    return response
   } else {
     return new Response('Method not allowed', { status: 405 })
   }
