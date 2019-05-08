@@ -62,7 +62,7 @@ set CLOUDFLARE_AUTH_KEY=YOUR_API_KEY_HERE
 set CLOUDFLARE_AUTH_EMAIL=YOUR_CLOUDFLARE_EMAIL
 ```
 
-You’ll need to redefine your environmental variables each time you open a new terminal. Optionally, you can set the environment variables in your [`serverless.yml`](TODO link)
+You’ll need to redefine your environmental variables each time you open a new terminal.
 
 ## Write Code
 

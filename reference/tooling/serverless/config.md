@@ -6,9 +6,10 @@ The `serverless.yml` file is what molds the Worker(s) of your project. Using the
 # serverless.yml
 service:
     name: hello
+    webpack: true | PATH_TO_CONFIG
     config:
       accountId: CLOUDFLARE_ACCOUNT_ID 
-      zoneId: CLOUDFLARE_ZONE_ID 
+      zoneId: CLOUDFLARE_ZONE_ID* 
 
 provider:
   name: cloudflare
@@ -50,6 +51,24 @@ functions: ..
 
   To find your zoneId and accountId, please see [API documentation on resource IDs](https://api.cloudflare.com/#getting-started-resource-ids)
 
+#### Provider 
+
+A Provider tells the serverless frame what cloud provider you are using, in this case Cloudflare. 
+
+```
+provider:
+  name: cloudflare
+  stage: prod
+  environment:
+     SOME_KEY: some_info
+```
+
+`stage`: meant to be the stage of your project (`dev`, `prod`..). Will be used in the [`name`](TODO: link) of the scripts on deployed to Cloudflare. If unset defaults to `dev`.
+
+`environment`: variables that can be referenced in your throughout your worker scripts. These will get added to every function. If a [`function`](TODO: link) defines the same variable, the function defintion will overwrite the provider block definition.
+
+`name`: the name of the cloud provider, in this case `cloudflare`
+
 #### Functions
 
 A Function is a Cloudflare Worker - a single script including its bindings, routes and other config. It's an independent unit of deployment, like a microservice. It's merely code, deployed on Cloudflare’s 155+ PoPs [points of presence](TODO: can we reference this PoPsnumber somewhere instead of hard coding it? ), that is most often written to perform a single job as a Worker.
@@ -59,7 +78,7 @@ A Function is a Cloudflare Worker - a single script including its bindings, rout
 ```
   functions:
       functionName:
-          worker: scriptName
+          name: scriptName #TODO might be called name with is optional?
           script: filename
           webpack: true
           environment:
@@ -69,13 +88,13 @@ A Function is a Cloudflare Worker - a single script including its bindings, rout
           events: ...
 ```
 
-`worker`: the name of which the script will be as in this case`scriptName`
+`name`: the name of which the script will be as in this case `scriptName`
 
-`script`: the path to the script from the current directory 
+`script`: the path to the script from the current directory omitting the extension `.js` 
 
 `webpack`(*optional*): specifies what webpack operation to perform on this individual Worker script. See webpack
 
-`environment`(*optional*) : any environment variables set before deploy this will be passed as a binding as a secret [TODO: link to kv secrets ]to the scripts deployed. If `CLOUDFLARE_AUTH_KEY` and `CLOUDFLARE_AUTH_EMAIL` are omitted make sure to set them in your environment variables. **Please don't commit a file with your API key**. See more in Auth[TODO: link]
+`environment`(*optional*) : any environment variables set before deploy this will be passed as a binding as a secret [TODO: link to kv secrets ]to the scripts deployed. If `CLOUDFLARE_AUTH_KEY` and `CLOUDFLARE_AUTH_EMAIL` are omitted make sure to set them in your environment variables. **Please don't commit a file with your API key**. See more in Environment[TODO: link]
 
 `resources`(*optional*) : see Resources below
 
@@ -83,33 +102,25 @@ A Function is a Cloudflare Worker - a single script including its bindings, rout
 
 ##### Webpack
 
-The webpack option under functions allows you to easily use multiple scripts or libraries and not worry about a complicated build pipeline.
-
-It can accept a boolean or a string. Possible behaviors:
-
-`boolean`: will automatically bundle the function if set to "true" with the global webpack config
-
-`string`:  a function level webpack configuration in addition to a global webpack configuration. This helps you to process bundling different for an individual function than the global webpack config . To use this, set the webpack config path to the function level `webpack` variable. Setting function level `webpack` variable to `true` will force webpack to bundle the function script with a default web pack configuration. Setting `webpack` key to `false` will turn off webpack for the function. (i.e the function script will not be fetched from dist folder)
-
-Simply add `webpack: true | <config path>` to your config block.
+[Webpack](TODO: link) allows you to easily use multiple files or libraries and not worry about a complicated build pipeline.
 
 For example in your script you can now use `import`:
 
 ```
-addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event.request))
-});
-
 import hello from './includeMe';
-
-async function handleRequest(request) {
-  return new Response(hello.hello())
-}
+addEventListener('fetch', event => {
+  event.respondWith(hello(event.request))
+});
 ```
 
-If your handler script looks like the above, the includeMe script will be packed into the final script on deployment.
+If your handler script looks like the above, the includeMe script will be packed into the final script on deployment. Learn more about how webpack works in [this article](TODO: link).
 
-[View the Cloudflare Workers events section for more information on HTTP events](https://serverless.com/framework/docs/providers/cloudflare/events).
+To get this working in your worker project, simply add `webpack: true | <config path>` under the functions that you wish to bundle. Webpack will run on these functions, bundle the resulting file to `/dist`, and deploy the bundled file in `/dist`.
+
+It can accept a boolean or a string. Possible behaviors:
+
+- `boolean`: will automatically bundle the function if set to "true" with the default webpack config. If false or omitted no bundling will occur.
+- `string`:  a function level webpack configuration in addition to a global webpack configuration. This helps you to process bundling different for an individual function than the global webpack config .
 
 ##### Resources
 
@@ -119,7 +130,25 @@ If your handler script looks like the above, the includeMe script will be packed
       kv:
 ```
 
-[TODO: fill in ]
+[TODO: test this and fill in ]
+
+##### Environment
+
+While Cloudflare Workers doesn't exactly offer environment vairables, we can bind global variables to values, essentially giving the same capabilities. In your function configuration, add key value pairs in `environment`
+
+```yaml
+functions:
+  myFunction:
+    environment:
+      MYKEY: value_of_my_key
+      ANOTHER_KEY_OF_MINE: sweet_child_o_mine
+  myOtherFunc:
+  	name: ${env:ANOTHER_KEY_OF_MINE}
+```
+
+Then in your script, you can reference `MYKEY` to access the value. Within the `serverless.yml`, you can reference the variables as well `${env: key`.
+
+To add a variable to every function use `provider`.
 
 ##### Events
 
@@ -128,18 +157,15 @@ Anything that triggers a Cloudflare Worker to execute is regarded by the Framewo
 ```
     events:
     	- http:
-          url: example.com/hello/user
+          url: example.com/hello/user* #serverless invoke -f? fun1 
           method: GET
-          headers:
-            someKey: someValue
 ```
 
 Each event implements two behaviors:
 
- `serverless invoke <functionname>` will deploy your worker and run the HTTP request(s) specified by the event(s) against this deployed worker. This is useful for defining specific hooks into your application for testing.
+ `serverless deploy` will parse out all the `url`(s) from the events in a function and deploy routes all pointing to that specific script. The routes may contain wildcards `*`. You cannot have multiple routes that are identical. The routes must be paths for the the zone specified by `CLOUDFLARE_ZONE_ID`.
 
- `serverless deploy` will parse out all the `url`(s) from the events in a function and deploy routes all pointing to that specific script. The routes will not contain wildcards, but be the [TODO verify this] You cannot have multiple routes that are identical
+ `serverless invoke <functionname>` will deploy your worker and run the HTTP request(s) specified by the `url` and `method` against this deployed worker. This is useful for defining specific hooks into your application for testing. To truly test your worker, you can run [`cURL`](TODO: link to curl) against your domain since the Worker will be deployed.
 
-TODO: link to CLI section
+\* *`workers.dev` domains are not currently supported using Serverless, but you can track our progress on [this Github issue](TODO: open a link Github issue).*
 
-### 

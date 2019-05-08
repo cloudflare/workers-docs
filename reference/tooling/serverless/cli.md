@@ -1,6 +1,6 @@
 
 # Cloudflare Workers - Create
-Creates a new Serverless service in the current working directory based on the provided template.
+Creates a new Serverless service in the current working directory based on the provided template. [Read full documentation on the main serverless docs site](https://www.serverless.com/framework/docs/providers/cloudflare/cli-reference/deploy).
 
 **Create service in current working directory:**
 
@@ -64,17 +64,7 @@ serverless create --template-path path/to/my/template/folder --path path/to/my/s
 ```
 This will copy the `path/to/my/template/folder` folder into `path/to/my/service` and rename the service to `my-new-service`.
 
-<!--
-title: Serverless Framework Commands - Cloudflare Workers - Deploy
-menuText: deploy
-menuOrder: 2
-description: Deploy your service to the specified provider
-layout: Doc
--->
 
-<!-- DOCS-SITE-LINK:START automatically generated  -->
-### [Read this on the main serverless docs site](https://www.serverless.com/framework/docs/providers/cloudflare/cli-reference/deploy)
-<!-- DOCS-SITE-LINK:END -->
 
 
 # Cloudflare Workers - Deploy
@@ -181,18 +171,6 @@ This example will invoke your deployed function on the configured Cloudflare Wor
 serverless invoke --function functionName
 ```
 
-<!--
-title: Serverless Framework Commands - Cloudflare Workers - Remove
-menuText: remove
-menuOrder: 4
-description: Remove a deployed Service and all of its Cloudflare Worker Functions and Services.
-layout: Doc
--->
-
-<!-- DOCS-SITE-LINK:START automatically generated  -->
-### [Read this on the main serverless docs site](https://www.serverless.com/framework/docs/providers/cloudflare/cli-reference/remove)
-<!-- DOCS-SITE-LINK:END -->
-
 # Cloudflare Workers - Remove
 The `serverless remove` command will remove the deployed service, defined in your current working directory, from the provider.
 
@@ -207,4 +185,3 @@ It will remove the Cloudflare Worker functions from the Cloudflare.
 
 For other commands related to what's going on under the hood of the Serverless plugin see the [Cloudflare Serverless Docs](<https://serverless.com/framework/docs/providers/cloudflare/cli-reference/plugin-install/>)
 
-\* *`workers.dev` domains are not currently supported using Serverless, but you can track our progress on [this Github issue](TODO: open a link Github issue).*
