@@ -226,6 +226,14 @@ wrangler publish
 
 TODO Wrangler screenshot
 
+After deploying your project, open up your browser to test retrieving your assets! For instance, if your Workers project is deployed to the route `myassets.com`, going to the URL `myassets.com/faces/1.jpg` should show an uploaded asset:
+
+TODO SCREENSHOT
+
+In addition, you can inspect the request in your browser to confirm that it's being cached. Cloudflare's CDN will send a `cf-cache-status` header, with `HIT` or `MISS`, to indicate whether the content was a "cache hit" or not:
+
+TODO SCREENSHOT
+
 ## Resources
 
 In this tutorial, you built and published a serverless function to Cloudflare Workers for serving assets from cloud storage. If you'd like to see the full source code for this application, visit the `cloudflare/cdn-assets-on-workers` repo on GitHub. TODO LINK
