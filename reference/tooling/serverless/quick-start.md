@@ -24,15 +24,15 @@ $ npm install
 
 ### Config
 
-To deploy, you will need to set the `accountId` and  `zoneId` in your[`serverless.yml`](TODO link to ref docs) according to the *zone* you wish the Worker(s) to deploy to.
+To deploy, you will need either the environment variables set or manually input the `accountId` and  `zoneId` in your [`serverless.yml`](TODO link to ref docs) according to the *zone* you wish the Worker(s) to deploy to.
 
 ```yaml
 # serverless.yml
 service:
     name: hello
     config:
-      accountId: CLOUDFLARE_ACCOUNT_ID 
-      zoneId: CLOUDFLARE_ZONE_ID 
+      accountId: ${env:CLOUDFLARE_ACCOUNT_ID} 
+      zoneId: ${env:CLOUDFLARE_ZONE_ID} 
     functions:
       functionName:
         worker: scriptName

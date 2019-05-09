@@ -1,6 +1,6 @@
 # Serverless.yml
 
-The `serverless.yml` file is what molds the Worker(s) of your project. Using the [Server Cloudflare Workers plugin](TODO link), a `serverless.yml` will look like: 
+The `serverless.yml` file is what molds the Worker(s) of your project. Using the [Serverless Cloudflare Workers plugin](TODO link), a `serverless.yml` will look like: 
 
 ```yml
 # serverless.yml
@@ -8,8 +8,8 @@ service:
     name: hello
     webpack: true | PATH_TO_CONFIG
     config:
-      accountId: CLOUDFLARE_ACCOUNT_ID 
-      zoneId: CLOUDFLARE_ZONE_ID* 
+      accountId: ${env:CLOUDFLARE_ACCOUNT_ID}
+      zoneId: ${env:CLOUDFLARE_ZONE_ID} 
 
 provider:
   name: cloudflare
@@ -29,8 +29,8 @@ A **Service** is the Serverless Framework's unit of organization. You can think 
 service:
     name: hello
     config:
-      accountId: CLOUDFLARE_ACCOUNT_ID 
-      zoneId: CLOUDFLARE_ZONE_ID 
+      accountId: ${env:CLOUDFLARE_ACCOUNT_ID}
+      zoneId: ${env:CLOUDFLARE_ZONE_ID}
 
 provider:
   name: cloudflare
@@ -82,19 +82,18 @@ A Function is a Cloudflare Worker - a single script including its bindings, rout
           script: filename
           webpack: true
           environment:
-              CLOUDFLARE_AUTH_KEY: <your-api-key>
-              CLOUDFLARE_AUTH_EMAIL: <your-email>
+              some_key: <some_value>
           resources: ...
           events: ...
 ```
 
-`name`: the name of which the script will be as in this case `scriptName`
+`name`: the name of the script in this case would be `scriptName`
 
 `script`: the path to the script from the current directory omitting the extension `.js` 
 
 `webpack`(*optional*): specifies what webpack operation to perform on this individual Worker script. See webpack
 
-`environment`(*optional*) : any environment variables set before deploy this will be passed as a binding as a secret [TODO: link to kv secrets ]to the scripts deployed. If `CLOUDFLARE_AUTH_KEY` and `CLOUDFLARE_AUTH_EMAIL` are omitted make sure to set them in your environment variables. **Please don't commit a file with your API key**. See more in Environment[TODO: link]
+`environment`(*optional*) : any environment variables set as a global inside the script. See more in Environment[TODO: link]
 
 `resources`(*optional*) : see Resources below
 
@@ -134,7 +133,7 @@ It can accept a boolean or a string. Possible behaviors:
 
 ##### Environment
 
-While Cloudflare Workers doesn't exactly offer environment vairables, we can bind global variables to values, essentially giving the same capabilities. In your function configuration, add key value pairs in `environment`
+While Cloudflare Workers doesn't exactly offer environment variables, we can bind global variables to values, essentially giving the same capabilities. In your function configuration, add key value pairs in `environment`
 
 ```yaml
 functions:
