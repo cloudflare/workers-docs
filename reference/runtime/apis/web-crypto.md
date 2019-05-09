@@ -18,16 +18,18 @@ Implements the full API described [here](https://developer.mozilla.org/en-US/doc
 
 ### Supported Algorithms
 
-|                           | sign()<br />verify() | encrypt()<br />decrypt() | digest() | deriveBits()<br />deriveKey() | generateKey() | wrapKey()<br />unwrapKey() |
-| :------------------------ | :------------------- | :----------------------- | :------- | :---------------------------- | :------------ | :------------------------- |
-| RSASSA-PKCS1-v1_5         | ✓                    |                          |          |                               |               |                            |
-| ECDSA                     | ✓                    |                          |          |                               |               |                            |
-| HMAC <br />(w/ SHA*, MD5) | ✓                    |                          |          |                               | ✓             |                            |
-| AES-CBC                   |                      | ✓                        |          |                               |               | ✓                          |
-| AES-GCM                   |                      | ✓                        |          |                               | ✓             | ✓                          |
-| SHA-1                     |                      |                          | ✓        |                               |               |                            |
-| SHA-256                   |                      |                          | ✓        |                               |               |                            |
-| SHA-384                   |                      |                          | ✓        |                               |               |                            |
-| SHA-512                   |                      |                          | ✓        |                               |               |                            |
-| MD5                       |                      |                          | ✓        |                               |               |                            |
-| PBKDF2                    |                      |                          |          | ✓                             |               |                            |
+|                   | sign()<br>verify() | encrypt()<br>decrypt() | digest() | deriveBits()<br>deriveKey() | generateKey() | wrapKey()<br>unwrapKey() |
+| :---------------- | :----------------- | :--------------------- | :------- | :-------------------------- | :------------ | :----------------------- |
+| RSASSA-PKCS1-v1_5 | ✓                  |                        |          |                             |               |                          |
+| ECDSA             | ✓                  |                        |          |                             |               |                          |
+| HMAC              | ✓                  |                        |          |                             | ✓             |                          |
+| AES-CBC           |                    | ✓                      |          |                             |               | ✓                        |
+| AES-GCM           |                    | ✓                      |          |                             | ✓             | ✓                        |
+| SHA-1             |                    |                        | ✓        |                             |               |                          |
+| SHA-256           |                    |                        | ✓        |                             |               |                          |
+| SHA-384           |                    |                        | ✓        |                             |               |                          |
+| SHA-512           |                    |                        | ✓        |                             |               |                          |
+| MD5 [^ 1]         |                    |                        | ✓        |                             |               |                          |
+| PBKDF2            |                    |                        |          | ✓                           |               |                          |
+
+[^1]: MD5 is not part of the WebCrypto standard, but is supported in Cloudflare Workers for the purpose of interacting with legacy systems that require MD5. MD5 is considered weak and should not be relied upon for security.
