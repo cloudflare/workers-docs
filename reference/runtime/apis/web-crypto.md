@@ -4,15 +4,9 @@
 
 The Web Crypto API provides a set of low-level functions for common cryptographic tasks. The Workers Runtime implements the full surface of this API, but with some differences in the [supported algorithms](#supported-algorithms) compared to those implemented in most browsers. It is commonly used for [signing requests](TODO: link signed requests article)
 
-## Crypto
+### Functions
 
-### Properties
-
-[`Crypto.subtle`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/subtle) (Read only): Returns a [`SubtleCrypto`](#SubtleCrypto) object providing access to common cryptographic primitives, like hashing, signing, encryption or decryption.
-
-### Methods
-
-[`Crypto.getRandomValues()`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues): Fills the passed [`TypedArray`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) with cryptographically sound random values.
+[`crypto.getRandomValues()`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues): Fills the passed [`TypedArray`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray) with cryptographically sound random values.
 
 ## SubtleCrypto
 
