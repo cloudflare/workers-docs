@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Web Crypto API provides a set of low-level functions for common cryptographic tasks. The Workers Runtime implements the full surface of this API, but with some differences is the [supported algorithms](#supported-algorithms) compared to those implemented in most browsers. It is commonly used for [signing requests](TODO: link signed requests article)
+The Web Crypto API provides a set of low-level functions for common cryptographic tasks. The Workers Runtime implements the full surface of this API, but with some differences in the [supported algorithms](#supported-algorithms) compared to those implemented in most browsers. It is commonly used for [signing requests](TODO: link signed requests article)
 
 ## Crypto
 
