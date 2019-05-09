@@ -13,6 +13,10 @@ This example verifies the HMAC for any request URL whose pathname starts with `/
 For debugging convenience, this Worker returns 403 if the URL or HMAC is invalid, or if the URL has expired. You may wish to return 404 in an actual implementation.
 
 ``` javascript
+// We'll need some super-secret data to use as a symmetric key.
+const encoder = new TextEncoder()
+const SECRET_KEY_DATA = encoder.encode("my secret symmetric key")
+
 addEventListener('fetch', event => {
   event.respondWith(verifyAndFetch(event.request))
 })
@@ -31,9 +35,6 @@ async function verifyAndFetch(request) {
     return new Response("Missing query parameter", { status: 403 })
   }
 
-  // We'll need some super-secret data to use as a symmetric key.
-  const encoder = new TextEncoder()
-  const secretKeyData = encoder.encode("my secret symmetric key")
   const key = await crypto.subtle.importKey(
     "raw", secretKeyData,
     { name: "HMAC", hash: "SHA-256" },
