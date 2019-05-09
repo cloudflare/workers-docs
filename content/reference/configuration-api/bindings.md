@@ -60,4 +60,33 @@ curl -X GET "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a83
 
 ##### Errors
 
-TODO: enumerate possible error responses (especially http status codes) from this endpoint
+###### Missing Account/Zone Identifier
+
+```
+status: 404
+error: {
+	code: 10005,
+	message: "workers.api.error.not_found"
+}
+```
+
+###### Missing Script Name
+
+```
+status: 404
+error: {
+	code: 10005,
+	message: "workers.api.error.missing_script_name"
+}
+```
+
+###### Internal Error
+
+```
+status: 500
+error: {
+	code: 10013,
+	message: "workers.api.error.unknown"
+}
+```
+

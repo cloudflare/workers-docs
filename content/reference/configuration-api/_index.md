@@ -16,6 +16,8 @@ All requests to this API must
 
 ### Find your Auth Key - TODO
 
+TODO: link to Scripts, Routes, and Bindings pages
+
 ### Errors
 
 TODO: document the shape of an error object.
@@ -45,3 +47,4 @@ TODO: document the shape of an error object.
 ##### Cloudflare API Gateway
 
 TODO: some errors can come back from the API gateway (specifically issues with account/zone). Link to documentation about these errors.
+
