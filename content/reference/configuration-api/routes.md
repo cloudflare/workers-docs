@@ -75,7 +75,77 @@ curl -X POST "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8
 
 ##### Errors
 
-TODO: enumerate possible error responses (especially http status codes) from this endpoint
+###### Missing Account/Zone Identifier
+
+```
+status: 404
+error: {
+	code: 10005,
+	message: "workers.api.error.not_found"
+}
+```
+
+###### Failed to Parse Request Body
+
+```
+status: 400
+error: {
+	code: 10026,
+	message: "workers.api.error.parse_body"
+}
+```
+
+###### Invalid Route Pattern
+
+```
+status: 400
+error: {
+	code: 10022,
+	message: varies; see below
+}
+```
+
+Possible error messages include: (where `[pattern]` is the given route pattern)
+
+`Route pattern must include zone name: [pattern]`
+
+`Route pattern may only contain wildcards at the beginning of the hostname and the end of the path: [pattern]`
+
+`Route pattern should not have query parameters [pattern]`
+
+`Could not understand route pattern [pattern], please try a different pattern`
+
+See [Route Patterns](TODO).
+
+###### Missing Script
+
+```
+status: 400
+error: {
+	code: 10019,
+	message: "workers.api.error.invalid_route_script_missing"
+}
+```
+
+###### Duplicate Route
+
+```
+status: 409
+error: {
+	code: 10020,
+	message: "workers.api.error.duplicate_route"
+}
+```
+
+###### Internal Error
+
+```
+status: 500
+error: {
+	code: 10013,
+	message: "workers.api.error.unknown"
+}
+```
 
 ## List Routes
 
@@ -132,7 +202,25 @@ n/a
 
 ##### Errors
 
-TODO: enumerate possible error responses (especially http status codes) from this endpoint
+###### Missing Account/Zone Identifier
+
+```
+status: 404
+error: {
+	code: 10005,
+	message: "workers.api.error.not_found"
+}
+```
+
+###### Internal Error
+
+```
+status: 500
+error: {
+	code: 10013,
+	message: "workers.api.error.unknown"
+}
+```
 
 ## Get a route
 
@@ -188,7 +276,35 @@ n/a
 
 ##### Errors
 
-TODO: enumerate possible error responses (especially http status codes) from this endpoint
+###### Missing Account/Zone Identifier
+
+```
+status: 404
+error: {
+	code: 10005,
+	message: "workers.api.error.not_found"
+}
+```
+
+###### Route Not Found
+
+```
+status: 404
+error: {
+	code: 10005,
+	message: "workers.api.error.not_found"
+}
+```
+
+###### Internal Error
+
+```
+status: 500
+error: {
+	code: 10013,
+	message: "workers.api.error.unknown"
+}
+```
 
 ## Update
 
@@ -246,7 +362,77 @@ curl -X POST "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8
 
 ##### Errors
 
-TODO: enumerate possible error responses (especially http status codes) from this endpoint
+###### Missing Account/Zone Identifier
+
+```
+status: 404
+error: {
+	code: 10005,
+	message: "workers.api.error.not_found"
+}
+```
+
+###### Failed to Parse Request Body
+
+```
+status: 400
+error: {
+	code: 10026,
+	message: "workers.api.error.parse_body"
+}
+```
+
+###### Invalid Route Pattern
+
+```
+status: 400
+error: {
+	code: 10022,
+	message: varies; see below
+}
+```
+
+Possible error messages include: (where `[pattern]` is the given route pattern)
+
+`Route pattern must include zone name: [pattern]`
+
+`Route pattern may only contain wildcards at the beginning of the hostname and the end of the path: [pattern]`
+
+`Route pattern should not have query parameters [pattern]`
+
+`Could not understand route pattern [pattern], please try a different pattern`
+
+See [Route Patterns](TODO).
+
+###### Missing Script
+
+```
+status: 400
+error: {
+	code: 10019,
+	message: "workers.api.error.invalid_route_script_missing"
+}
+```
+
+###### Duplicate Route
+
+```
+status: 409
+error: {
+	code: 10020,
+	message: "workers.api.error.duplicate_route"
+}
+```
+
+###### Internal Error
+
+```
+status: 500
+error: {
+	code: 10013,
+	message: "workers.api.error.unknown"
+}
+```
 
 ## Delete
 
@@ -298,4 +484,33 @@ curl -X DELETE "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31
 
 ##### Errors
 
-TODO: enumerate possible error responses (especially http status codes) from this endpoint
+###### Missing Account/Zone Identifier
+
+```
+status: 404
+error: {
+	code: 10005,
+	message: "workers.api.error.not_found"
+}
+```
+
+###### Route Not Found
+
+```
+status: 404
+error: {
+	code: 10005,
+	message: "workers.api.error.not_found"
+}
+```
+
+###### Internal Error
+
+```
+status: 500
+error: {
+	code: 10013,
+	message: "workers.api.error.unknown"
+}
+```
+
