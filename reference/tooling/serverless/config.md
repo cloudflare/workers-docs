@@ -71,14 +71,14 @@ provider:
 
 #### Functions
 
-A Function is a Cloudflare Worker - a single script including its bindings, routes and other config. It's an independent unit of deployment, like a microservice. It's merely code, deployed on Cloudflare’s 155+ PoPs [points of presence](TODO: can we reference this PoPsnumber somewhere instead of hard coding it? ), that is most often written to perform a single job as a Worker.
+A Function is a Cloudflare Worker - a single script including its bindings, routes and other config. It's an independent unit of deployment, like a microservice. It's merely code, deployed on Cloudflare’s 155+ PoPs [points of presence](TODO: can we reference this PoPsnumber somewhere instead of hard coding it? ), that is most often written to perform a single job as a Worker script.
 
- `serverless.yml`: (TODO: make this yml pretty)
+ `serverless.yml`: 
 
-```
+```yml
   functions:
       functionName:
-          name: scriptName #TODO might be called name with is optional?
+          name: scriptName 
           script: filename
           webpack: true
           environment:
@@ -87,13 +87,13 @@ A Function is a Cloudflare Worker - a single script including its bindings, rout
           events: ...
 ```
 
-`name`: the name of the script in this case would be `scriptName`
+`name`: overwrite the default name generated (e.g. replaces [`hello-foo-bar`](TODO:link to name below)) for the Worker script name
 
 `script`: the path to the script from the current directory omitting the extension `.js` 
 
 `webpack`(*optional*): specifies what webpack operation to perform on this individual Worker script. See webpack
 
-`environment`(*optional*) : any environment variables set as a global inside the script. See more in Environment[TODO: link]
+`environment`(*optional*) : any environment variables set as a global inside the script. See more in [Environment](TODO: link)
 
 `resources`(*optional*) : see Resources below
 
@@ -119,17 +119,7 @@ To get this working in your worker project, simply add `webpack: true | <config 
 It can accept a boolean or a string. Possible behaviors:
 
 - `boolean`: will automatically bundle the function if set to "true" with the default webpack config. If false or omitted no bundling will occur.
-- `string`:  a function level webpack configuration in addition to a global webpack configuration. This helps you to process bundling different for an individual function than the global webpack config .
-
-##### Resources
-
-```
-    resources:
-      wasm:
-      kv:
-```
-
-[TODO: test this and fill in ]
+- `string`:  a function level webpack configuration in addition to a global webpack configuration. This helps you to process bundling different for an individual function than the global webpack config. Note the extension `.js` will be ignored. (e.g. `webpack.config`)
 
 ##### Environment
 

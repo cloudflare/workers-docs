@@ -44,7 +44,7 @@ Configure the [functions]() according to your specific routing and naming conven
 
 ###Environment Variables 
 
-You will  need to set your Global API key from Cloudflare as an environmental variable named `CLOUDFLARE_AUTH_KEY`, and your Cloudflare account email as an environmental variable named `CLOUDFLARE_AUTH_EMAIL`. You can get your Global API key from your [Cloudflare profile](https://dash.cloudflare.com/profile) page. Unlike `accountId` this will always be the API key that *you* are signed in on, not necassarily the account the owns the zone. For more information see [Where do I find my API key?](<https://support.cloudflare.com/hc/en-us/articles/200167836)
+You will  need to set your Global API key from Cloudflare as an environmental variable named `CLOUDFLARE_AUTH_KEY`, and your Cloudflare account email as an environmental variable named `CLOUDFLARE_AUTH_EMAIL`. See: [How to find your API keys](/reference/how-to-find-your-cloudflare-api-keys)
 
 Environmental variables are variables that live inside your terminal.
 
