@@ -11,7 +11,11 @@ A Worker script plus any [Asset Bindings](TODO) can be up to 1MB in size after c
 | Workers.dev | 50                |
 | Paid        | 1000              |
 
-app worker scripts do not count towards the limit
+App worker scripts do not count towards the limit
+
+## Script Size
+
+Workers enforces a 1MB limit for your code plus any resource bindings (such as Wasm bindings).
 
 ## Number of Requests
 

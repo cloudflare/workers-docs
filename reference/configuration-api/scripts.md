@@ -7,8 +7,8 @@
 * `id`:
 * `etag`: Hashed script content; can be used in an If-None-Match header on update.
 * `script`: Raw script content, as a string
-* `size`: Size of script, in bytes (TODO: how is this determined?)
-* `modified_on`: ISO_8601 timestamp of when the script was last modified. (TODO: what counts as modification? is it as expected?)
+* `size`: Size of script, in bytes. Must be below the [script size limit](#TODO: link to plans and limitations)
+* `modified_on`: ISO_8601 timestamp of when the script was last modified.
 
 ## Upload or Update a Workers Script
 
