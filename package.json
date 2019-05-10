@@ -1,0 +1,15 @@
+{
+  "name": "edge-worker-guide",
+  "version": "1.0.0",
+  "description": "Cloudflare Workers developer docs",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "./node_modules/hugo-cloudflare-docs/start",
+    "build": "./node_modules/hugo-cloudflare-docs/build"
+  },
+  "dependencies": {
+    "gulp": "^4.0.0",
+    "hugo-cloudflare-docs": "git+ssh://git@stash.cfops.it:7999/design/hugo-cloudflare-docs.git"
+  }
+}
