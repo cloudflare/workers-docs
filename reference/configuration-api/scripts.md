@@ -1,14 +1,24 @@
-## Scripts
+---
+title: Scripts
+---
 
 ## Object Specifications
 
 ### Script
 
-* `id`:
+* `id`: The name of the script. Must follow [script naming conventions](#script-naming-conventions).
 * `etag`: Hashed script content; can be used in an If-None-Match header on update.
 * `script`: Raw script content, as a string
 * `size`: Size of script, in bytes. Must be below the [script size limit](#TODO: link to plans and limitations)
 * `modified_on`: ISO_8601 timestamp of when the script was last modified.
+
+#### Script Naming Conventions
+
+Script names must:
+* start with a letter
+* end with a letter or digit
+* include only letters, digits, underscore, and hyphen
+* be 63 characters or less.
 
 ## Upload or Update a Workers Script
 
