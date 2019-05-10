@@ -1,0 +1,13 @@
+pinned_go: &pinned_go go=1.9.1-1
+
+jessie:
+  build:
+    builddeps:
+      - *pinned_go
+      - awscli
+      - git
+      - ssh
+      - nodejs=8.9.1-0
+    post-cache:
+      - npm install
+      - make deploy
