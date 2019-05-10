@@ -1,4 +1,6 @@
-# Scripts
+---
+title: Scripts
+---
 
 ## Object Specifications
 
