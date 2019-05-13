@@ -3,15 +3,24 @@ title: Scripts
 weight: 1
 ---
 
-## Object Specifications
+## Object Specification
 
 ### Script
 
-- `id`:
+- `id`: The name of the script. Must follow [script naming conventions](#script-naming-conventions).
 - `etag`: Hashed script content; can be used in an If-None-Match header on update.
 - `script`: Raw script content, as a string
-- `size`: Size of script, in bytes (TODO: how is this determined?)
-- `modified_on`: ISO_8601 timestamp of when the script was last modified. (TODO: what counts as modification? is it as expected?)
+- `size`: [Size of script](../../runtime/limits), in bytes.
+- `modified_on`: ISO_8601 timestamp of when the script was last modified.
+
+#### Script Naming Conventions
+
+Script names must:
+
+- start with a letter
+- end with a letter or digit
+- include only letters, digits, underscore, and hyphen
+- be 63 characters or less.
 
 ## Upload or Update a Workers Script
 
@@ -47,15 +56,15 @@ curl -X PUT "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed0
 
 ##### URL Parameters
 
-- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID]
-- `script_name`: the name you want to assign to your script. Must follow the Workers [script naming conventions](TODO).
+- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](../../how-to-find-your-cloudflare-api-keys))
+- `script_name`: the name you want to assign to your script. Must follow the Workers [script naming conventions](#script-naming-conventions).
 
-##### Headers
+##### Headers ([Find Your Auth Info](../../how-to-find-your-cloudflare-api-keys))
 
-- `X-Auth-Email` [Find your Auth Email]
-- `X-Auth-Key` [Find Your Auth Key]
+- `X-Auth-Email`
+- `X-Auth-Key`
 - `Content-Type` application/javascript
-- `If-None-Match` [Optional] a [Script Object](TODO) etag
+- `If-None-Match` [Optional] a [Script Object](#object-specification) etag
 
 ##### Payload (text blob)
 
@@ -66,8 +75,8 @@ A valid JavaScript blob
 ##### Body
 
 - `success`: Boolean
-- `result`: A [Script Object](TODO) of the resulting script. Empty if success is false
-- `errors`: An array of [Error Objects](TODO). Empty if success is true
+- `result`: A [Script Object](#object-specification) of the resulting script. Empty if success is false
+- `errors`: An array of [Error Objects](../#error-object). Empty if success is true
 - `messages`: An array of strings (unused)
 
 ##### Errors
@@ -82,7 +91,7 @@ error: {
 }
 ```
 
-###### Exceeded [Script Limit](TODO: link plans and limitations)
+###### Exceeded [Script Limit](../../runtime/limits)
 
 ```
 status: 403
@@ -182,16 +191,16 @@ curl -X GET "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed0
 
 ##### URL Parameters
 
-- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID]
+- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](../../how-to-find-your-cloudflare-api-keys))
 
 ##### Query Parameters
 
 * `include_subdomain_availability`:
 
-##### Headers
+##### Headers ([Find Your Auth Info](../../how-to-find-your-cloudflare-api-keys))
 
-- `X-Auth-Email` [Find your Auth Email]
-- `X-Auth-Key` [Find Your Auth Key]
+- `X-Auth-Email`
+- `X-Auth-Key`
 
 ##### Payload n/a
 
@@ -200,8 +209,8 @@ curl -X GET "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed0
 ##### Body
 
 - `success`: Boolean
-- `result`: An array of [Script Objects](TODO). Empty if success is false; does not include raw script text.
-- `errors`: An array of [Error Objects](TODO). Empty if success is true
+- `result`: An array of [Script Objects](#object-specification). Empty if success is false; does not include raw script text.
+- `errors`: An array of [Error Objects](../#error-object). Empty if success is true
 - `messages`: An array of strings (unused)
 
 ##### Errors
@@ -261,13 +270,13 @@ addEventListener('fetch', event => { event.respondWith(fetch(event.request) }))
 
 ##### URL Parameters
 
-- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID]
+- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](../../how-to-find-your-cloudflare-api-keys))
 - `script_name`: the name of the script to download
 
-##### Headers
+##### Headers ([Find Your Auth Info](../../how-to-find-your-cloudflare-api-keys))
 
-- `X-Auth-Email` [Find your Auth Email]
-- `X-Auth-Key` [Find Your Auth Key]
+- `X-Auth-Email`
+- `X-Auth-Key`
 - `Accept` application/javascript
 
 ##### Payload n/a
@@ -352,10 +361,10 @@ curl -X DELETE "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191
 - `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID]
 - `script_name`: the name of the script to be deleted.
 
-##### Headers
+##### Headers ([Find Your Auth Info](../../how-to-find-your-cloudflare-api-keys))
 
-- `X-Auth-Email` [Find your Auth Email]
-- `X-Auth-Key` [Find Your Auth Key]
+- `X-Auth-Email`
+- `X-Auth-Key`
 
 ##### Payload n/a
 
@@ -365,7 +374,7 @@ curl -X DELETE "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191
 
 - `success`: Boolean
 - `result`: An object containing the id (etag) of the deleted script
-- `errors`: An array of [Error Objects](TODO). Empty if success is true
+- `errors`: An array of [Error Objects](../#error-object). Empty if success is true
 - `messages`: An array of strings (unused)
 
 ##### Errors

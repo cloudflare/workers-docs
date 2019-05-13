@@ -3,7 +3,7 @@ title: Bindings
 weight: 2
 ---
 
-## Object Specifications
+## Object Specification
 
 - `name`: a javascript variable name for the binding
 - `type`: the class of resource the binding provides (currently wasm_module)
@@ -40,13 +40,13 @@ curl -X GET "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a83
 
 ##### URL Parameters
 
-- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID]
+- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](../../how-to-find-your-cloudflare-api-keys))
 - `script_name`: the name of the script to be deleted.
 
-##### Headers
+##### Headers ([Find Your Auth Info](../../how-to-find-your-cloudflare-api-keys))
 
-- `X-Auth-Email` [Find your Auth Email]
-- `X-Auth-Key` [Find Your Auth Key]
+- `X-Auth-Email`
+- `X-Auth-Key`
 
 ##### Payload n/a
 
@@ -55,8 +55,8 @@ curl -X GET "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a83
 ##### Body (JSON)
 
 - `success`: Boolean
-- `result`: An array of [Binding Objects](TODO). Empty if success is false
-- `errors`: An array of [Error Objects](TODO). Empty if success is true
+- `result`: An array of [Binding Objects](#object-specification). Empty if success is false
+- `errors`: An array of [Error Objects](../#error-object). Empty if success is true
 - `messages`: An array of strings (unused)
 
 ##### Errors
