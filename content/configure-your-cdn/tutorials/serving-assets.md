@@ -1,4 +1,6 @@
-# Serving Assets Using Cloudflare Workers
+---
+title: Serving Assets
+---
 
 In this tutorial, you'll build and publish a Cloudflare Workers function that serves assets from a storage platform (in this example, Google Cloud Storage) to your users. This approach, called "white-labelling", often takes the form of complex DNS configuration – thanks to Cloudflare Workers, and Cloudflare's CDN network, we can build a powerful (and fast) solution to this problem in just a few lines of code.
 
@@ -23,9 +25,9 @@ You'll need to get your Cloudflare API keys to deploy code to Cloudflare Workers
 
 TODO: Wrangler install
 
-In addition to your Cloudflare configuration, this tutorial assumes that you have a *public* bucket on Google Cloud Storage, which you'll use to serve assets through your Cloudflare Workers function. If you don't have a Google Cloud Storage bucket to use with this project, we recommend going through Google Cloud's "Cloud Storage Quickstart" guide, which can be found [here](https://cloud.google.com/storage/docs/quickstart-console).
+In addition to your Cloudflare configuration, this tutorial assumes that you have a _public_ bucket on Google Cloud Storage, which you'll use to serve assets through your Cloudflare Workers function. If you don't have a Google Cloud Storage bucket to use with this project, we recommend going through Google Cloud's "Cloud Storage Quickstart" guide, which can be found [here](https://cloud.google.com/storage/docs/quickstart-console).
 
-This tutorial makes use of sample images to illustrate serving data through your Cloudflare Workers function. If you have an existing set of images you'd like to use, you can upload those to your Google Cloud Storage bucket and use them – if you don't have an existing set of images, we've provided a sample set of profile pictures via [UIFaces.com](http://uifaces.com/), formatted in numeric order (`1.jpg`, `2.jpg`, … `199.jpg`). 
+This tutorial makes use of sample images to illustrate serving data through your Cloudflare Workers function. If you have an existing set of images you'd like to use, you can upload those to your Google Cloud Storage bucket and use them – if you don't have an existing set of images, we've provided a sample set of profile pictures via [UIFaces.com](http://uifaces.com/), formatted in numeric order (`1.jpg`, `2.jpg`, … `199.jpg`).
 
 To follow along with this tutorial, using the data set we've provided, download the sample image collection [here] TODO, and upload the zipped folder "faces" to root of your bucket. The directory structure should look like this:
 
@@ -79,7 +81,7 @@ When a `fetch` event comes into the worker, the script uses `event.respondWith` 
 
 Any project you publish to Cloudflare Workers can make use of modern JS tooling like ES modules, NPM packages, and [async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) functions to put together your application. In addition, simple serverless functions aren't the only thing you can publish on Cloudflare Workers: you can [build full applications](/build-an-application) using the same tooling and process as what we'll be building today.
 
-The Cloudflare Workers project built in this tutorial will be a serverless function that runs on a *wildcard* route and receives requests. When the serverless function receives an incoming request, it should parse the URL, find what asset is being requested, and serve it from the configured Cloud Storage bucket. Because the asset will go through your Workers function, and through Cloudflare's network, you can also make use of both Cloudflare's *default* caching behavior, as well as your own custom logic, to ensure that as much data can be cached at Cloudflare's globally distributed data centers – the result is an easy-to-understand and highly performant CDN configuration, with the ability to customize it to your application's specific needs.
+The Cloudflare Workers project built in this tutorial will be a serverless function that runs on a _wildcard_ route and receives requests. When the serverless function receives an incoming request, it should parse the URL, find what asset is being requested, and serve it from the configured Cloud Storage bucket. Because the asset will go through your Workers function, and through Cloudflare's network, you can also make use of both Cloudflare's _default_ caching behavior, as well as your own custom logic, to ensure that as much data can be cached at Cloudflare's globally distributed data centers – the result is an easy-to-understand and highly performant CDN configuration, with the ability to customize it to your application's specific needs.
 
 ### Handling requests
 
@@ -95,7 +97,7 @@ async function handleRequest(event) {
 }
 ```
 
-Given that the incoming request to the function *is* a `GET`, it should be clear that the bulk of our implementation will happen inside of that conditional, replacing the "Hello worker!" response. Create a separate function, `serveAsset`, which will house the majority of the implementation for the remainder of the tutorial:
+Given that the incoming request to the function _is_ a `GET`, it should be clear that the bulk of our implementation will happen inside of that conditional, replacing the "Hello worker!" response. Create a separate function, `serveAsset`, which will house the majority of the implementation for the remainder of the tutorial:
 
 ```javascript
 async function serveAsset(event) {
@@ -120,7 +122,7 @@ function serveAsset(event) {
 }
 ```
 
-With that `path` available, the function can simply request the corresponding path from our Cloud Storage bucket. Given a constant `BUCKET_NAME` (we'll set it in this tutorial to "my-bucket"), set a `BUCKET_URL ` constant, append `url.pathname` to the end of it, and `fetch` it to get your function's `response`:
+With that `path` available, the function can simply request the corresponding path from our Cloud Storage bucket. Given a constant `BUCKET_NAME` (we'll set it in this tutorial to "my-bucket"), set a `BUCKET_URL` constant, append `url.pathname` to the end of it, and `fetch` it to get your function's `response`:
 
 ```javascript
 const BUCKET_NAME = 'my-bucket'
@@ -142,7 +144,7 @@ To cache responses in a Worker, the Cache API provides `cache.match`, to check f
 2. If `response` doesn't exist, get the asset from cloud storage, set it to `response`, and cache it.
 3. Return `response` from the function, back to the `fetch` event handler.
 
-The `Cache-Control` header is a common way that HTML responses indicate _how_ they should be cached. The Workers implementation respects the `Cache-Control` header (as well as many others), in indicating how assets should be cached on Cloudflare's CDN. In building a custom asset serving solution, and enabling caching, you should set a custom `Cache-Control` header (in this example, we'll set it to `public`, and a `max-age` value of `14400 ` seconds, or four hours). When the asset is retrieved from cloud storage, the `serveAsset` function should construct a new instance of `Response`, copying much of the HTML response data from the cloud storage response, but overwriting the response headers. By doing this, you'll define your own custom caching information, and passing it to the Workers Cache API. 
+The `Cache-Control` header is a common way that HTML responses indicate _how_ they should be cached. The Workers implementation respects the `Cache-Control` header (as well as many others), in indicating how assets should be cached on Cloudflare's CDN. In building a custom asset serving solution, and enabling caching, you should set a custom `Cache-Control` header (in this example, we'll set it to `public`, and a `max-age` value of `14400` seconds, or four hours). When the asset is retrieved from cloud storage, the `serveAsset` function should construct a new instance of `Response`, copying much of the HTML response data from the cloud storage response, but overwriting the response headers. By doing this, you'll define your own custom caching information, and passing it to the Workers Cache API.
 
 When you add something to the cache, it's important to note that an HTML response is designed to only be processed once in your code, according to the Service Worker spec that Cloudflare Workers implements. To get around this, we'll clone the asset response, using `response.clone()`, and pass that cloned response to the Cache API, and return the original `response` back from the function. The final code looks like this:
 
@@ -244,4 +246,3 @@ If you enjoyed this tutorial, we encourage you to explore our other tutorials fo
 - [Build a QR Code Generator](/build-a-serverless-function/tutorials/build-a-qr-code-generator)
 
 If you want to get started building your own projects, check out the quick-start templates we've provided in our [Template Gallery](/reference/templates).
-
