@@ -1,4 +1,6 @@
-# Web Crypto API
+---
+title: Web Crypto API
+---
 
 ## Overview
 
