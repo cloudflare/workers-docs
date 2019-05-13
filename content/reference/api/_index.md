@@ -15,15 +15,25 @@ All requests to this API must
 
 - be sent over HTTPS
 - Send a JSON body (unless otherwise indicated)
-- contain valid identification headers:
-  _ `X-Auth-Email` - the email address attached to your profile in the Cloudflare dashboard.
-  _ `X-Auth-Key` - the Global API key attached to your profile in the Cloudflare dashboard.
-
-[Find your Cloudflare Auth info](../how-to-find-your-cloudflare-api-keys).
+- contain valid identification headers ([Find your Cloudflare Auth info](../how-to-find-your-cloudflare-api-keys)).
+  - `X-Auth-Email` - the email address attached to your Cloudflare profile.
+  - `X-Auth-Key` - the Global API key attached to your Cloudflare profile.
 
 ## API Responses
 
-TODO: All cloudflare api's respond with a JSON object that has the same shape; all errors also have the same shape. Document that shape.
+All Cloudflare APIs respond with a JSON object that has the following shape:
+
+### Response Object
+
+- `success`: A Boolean indicating whether an error occurred
+- `result`: A JSON object representing the result of the request
+- `errors`: An array of [Error Objects](../#error-object). Empty if success is true
+- `messages`: An array of strings (unused)
+
+### Error Object
+
+- `code`: A Number representing the error from the API
+- `message`: A human readable String providing additional information about the error.
 
 ## Cloudflare API Gateway
 
