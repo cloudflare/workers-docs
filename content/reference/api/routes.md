@@ -1,5 +1,6 @@
 ---
 title: Routes
+weight: 3
 ---
 
 TODO: summarize the route concept.
