@@ -198,7 +198,7 @@ n/a
 
 - `success`: Boolean
 - `result`: An array of [Route Objects](#object-specification) of all routes associated with the zone. Empty if success is false
-- `errors`: An array of [Error Objects](../#error-objec../#error-object). Empty if success is true
+- `errors`: An array of [Error Objects](../#error-object). Empty if success is true
 - `messages`: An array of strings (unused)
 
 ##### Errors
