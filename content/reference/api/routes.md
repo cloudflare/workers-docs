@@ -5,7 +5,7 @@ weight: 3
 
 TODO: summarize the route concept.
 
-## Object Specifications
+## Object Specification
 
 Sample Object
 
@@ -52,12 +52,12 @@ curl -X POST "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8
 
 ##### URL Parameters
 
-- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID]
+- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](../../how-to-find-your-cloudflare-api-keys))
 
-##### Headers
+##### Headers ([Find Your Auth Info](../../how-to-find-your-cloudflare-api-keys))
 
-- `X-Auth-Email` [Find your Auth Email]
-- `X-Auth-Key` [Find Your Auth Key]
+- `X-Auth-Email`
+- `X-Auth-Key`
 - `Content-type`: application/json
 
 ##### Payload
@@ -70,8 +70,8 @@ curl -X POST "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8
 ##### Body
 
 - `success`: Boolean
-- `result`: A [Route Object](TODO) of the resulting script. Only contains the route tag. Empty if success is false
-- `errors`: An array of [Error Objects](TODO). Empty if success is true
+- `result`: A [Route Object](#object-specification) of the resulting script. Only contains the route tag. Empty if success is false
+- `errors`: An array of [Error Objects](../#error-object). Empty if success is true
 - `messages`: An array of strings (unused)
 
 ##### Errors
@@ -181,12 +181,12 @@ curl -X GET "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a83
 
 ##### URL Parameters
 
-- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID]
+- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](../../how-to-find-your-cloudflare-api-keys))
 
-##### Headers
+##### Headers ([Find Your Auth Info](../../how-to-find-your-cloudflare-api-keys))
 
-- `X-Auth-Email` [Find your Auth Email]
-- `X-Auth-Key` [Find Your Auth Key]
+- `X-Auth-Email`
+- `X-Auth-Key`
 
 ##### Payload
 
@@ -197,8 +197,8 @@ n/a
 ##### Body
 
 - `success`: Boolean
-- `result`: An array of [Route Objects](TODO) of all routes associated with the zone. Empty if success is false
-- `errors`: An array of [Error Objects](TODO). Empty if success is true
+- `result`: An array of [Route Objects](#object-specification) of all routes associated with the zone. Empty if success is false
+- `errors`: An array of [Error Objects](../#error-objec../#error-object). Empty if success is true
 - `messages`: An array of strings (unused)
 
 ##### Errors
@@ -254,13 +254,13 @@ curl -X GET "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a83
 
 ##### URL Parameters
 
-- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID]
-- `route_id`: the id of the [Route Object](TODO) being requested.
+- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](../../how-to-find-your-cloudflare-api-keys))
+- `route_id`: the id of the [Route Object](#object-specification) being requested.
 
-##### Headers
+##### Headers ([Find Your Auth Info](../../how-to-find-your-cloudflare-api-keys))
 
-- `X-Auth-Email` [Find your Auth Email]
-- `X-Auth-Key` [Find Your Auth Key]
+- `X-Auth-Email`
+- `X-Auth-Key`
 
 ##### Payload
 
@@ -271,8 +271,8 @@ n/a
 ##### Body
 
 - `success`: Boolean
-- `result`: A [Route Object](TODO) of the requested script. Empty if success is false
-- `errors`: An array of [Error Objects](TODO). Empty if success is true
+- `result`: A [Route Object](#object-specification) of the requested script. Empty if success is false
+- `errors`: An array of [Error Objects](../#error-object). Empty if success is true
 - `messages`: An array of strings (unused)
 
 ##### Errors
@@ -338,13 +338,13 @@ curl -X POST "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8
 
 ##### URL Parameters
 
-- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID]
-- `route_id`: the id of the [Route Object](TODO) being updated.
+- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](../../how-to-find-your-cloudflare-api-keys))
+- `route_id`: the id of the [Route Object](#object-specification) being updated.
 
-##### Headers
+##### Headers [Find Your Auth Info](../../how-to-find-your-cloudflare-api-keys)
 
-- `X-Auth-Email` [Find your Auth Email]
-- `X-Auth-Key` [Find Your Auth Key]
+- `X-Auth-Email`
+- `X-Auth-Key`
 - `Content-type`: application/json
 
 ##### Payload
@@ -357,8 +357,8 @@ curl -X POST "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8
 ##### Body
 
 - `success`: Boolean
-- `result`: A [Route Object](TODO) of the updated script. Empty if success is false
-- `errors`: An array of [Error Objects](TODO). Empty if success is true
+- `result`: A [Route Object](#object-specification) of the updated script. Empty if success is false
+- `errors`: An array of [Error Objects](../#error-object). Empty if success is true
 - `messages`: An array of strings (unused)
 
 ##### Errors
@@ -464,13 +464,13 @@ curl -X DELETE "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31
 
 ##### URL Parameters
 
-- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID]
-- `route_id`: the id of the [Route Object](TODO) being updated.
+- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](../../how-to-find-your-cloudflare-api-keys))
+- `route_id`: the id of the [Route Object](#object-specification) being updated.
 
-##### Headers
+##### Headers [Find Your Auth Info](../../how-to-find-your-cloudflare-api-keys)
 
-- `X-Auth-Email` [Find your Auth Email]
-- `X-Auth-Key` [Find Your Auth Key]
+- `X-Auth-Email`
+- `X-Auth-Key`
 
 ##### Payload (n/a)
 
@@ -479,8 +479,8 @@ curl -X DELETE "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31
 ##### Body
 
 - `success`: Boolean
-- `result`: A [Route Object](TODO) of the removed script. Only contains the route tag. Empty if success is false
-- `errors`: An array of [Error Objects](TODO). Empty if success is true
+- `result`: A [Route Object](#object-specification) of the removed script. Only contains the route tag. Empty if success is false
+- `errors`: An array of [Error Objects](../#error-object). Empty if success is true
 - `messages`: An array of strings (unused)
 
 ##### Errors
