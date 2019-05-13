@@ -71,7 +71,81 @@ A valid JavaScript blob
 
 ##### Errors
 
-TODO: enumerate possible error responses (especially http status codes) from this endpoint
+###### Missing Account/Zone Identifier
+
+```
+status: 404
+error: {
+	code: 10005,
+	message: "workers.api.error.not_found"
+}
+```
+
+###### Exceeded [Script Limit](TODO: link plans and limitations)
+
+```
+status: 403
+error: {
+	code: 10037,
+	message: "workers.api.error.exceeded_allowed_number_of_scripts"
+}
+```
+
+###### Invalid Script
+
+```
+status: 400
+error: {
+	code: 10021,
+	message: varies; see below
+}
+```
+
+Possible error messages include:
+
+`script must be specified, but wasn't present`
+
+TODO: The validator has a large number of possible outputs
+
+###### Etag Unsupported (w/ If-None-Match header)
+
+```
+status: 400
+error: {
+	code: 10029,
+	message: "workers.api.error.etag_unsupported"
+}
+```
+
+###### Etag Precondition Failed
+
+```
+status: 412
+error: {
+	code: 10018,
+	message: "workers.api.error.etag_precondition_failed"
+}
+```
+
+###### Script Too Large
+
+```
+status: 400
+error: {
+	code: 10027,
+	message: "workers.api.error.script_too_large"
+}
+```
+
+###### Internal Error
+
+```
+status: 500
+error: {
+	code: 10013,
+	message: "workers.api.error.unknown"
+}
+```
 
 ## List all Scripts for an account
 
@@ -109,6 +183,10 @@ curl -X GET "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed0
 
 - `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID]
 
+##### Query Parameters
+
+* `include_subdomain_availability`:
+
 ##### Headers
 
 - `X-Auth-Email` [Find your Auth Email]
@@ -127,7 +205,37 @@ curl -X GET "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed0
 
 ##### Errors
 
-TODO: enumerate possible error responses (especially http status codes) from this endpoint
+###### Missing Account/Zone Identifier
+
+```
+status: 404
+error: {
+	code: 10005,
+	message: "workers.api.error.not_found"
+}
+```
+
+###### Malformed Parameter
+
+Occurs when query param (e.g. `include_subdomain_availability`) is not parsable as the correct type
+
+```
+status: 400
+error: {
+	code: 10006,
+	message: "workers.api.error.malformed_param"
+}
+```
+
+###### Internal Error
+
+```
+status: 500
+error: {
+	code: 10013,
+	message: "workers.api.error.unknown"
+}
+```
 
 ## Download a Script
 
@@ -171,7 +279,45 @@ Raw script content, as a string
 
 ##### Errors
 
-TODO: enumerate possible error responses (especially http status codes) from this endpoint
+###### Missing Account/Zone Identifier
+
+```
+status: 404
+error: {
+	code: 10005,
+	message: "workers.api.error.not_found"
+}
+```
+
+###### Missing Script Name
+
+```
+status: 404
+error: {
+	code: 10005,
+	message: "workers.api.error.missing_script_name"
+}
+```
+
+###### Script Not Found
+
+```
+status: 404
+error: {
+	code: 10007,
+	message: "workers.api.error.not_found"
+}
+```
+
+###### Internal Error
+
+```
+status: 500
+error: {
+	code: 10013,
+	message: "workers.api.error.unknown"
+}
+```
 
 ## Delete a Script
 
@@ -187,8 +333,15 @@ curl -X DELETE "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191
 
 ##### Sample Response:
 
-```
-addEventListener('fetch', event => { event.respondWith(fetch(event.request) }))
+```json
+{
+  "success": true,
+  "errors": [],
+  "messages": [],
+  "result": {
+    "id": "ea95132c15732412d22c1476fa83f27a",
+  }
+}
 ```
 
 #### Request
@@ -207,10 +360,51 @@ addEventListener('fetch', event => { event.respondWith(fetch(event.request) }))
 
 #### Response
 
-##### Body n/a
+##### Body
 
-TODO: Update based on the code (this _does_ return a response body).
+- `success`: Boolean
+- `result`: An object containing the id (etag) of the deleted script
+- `errors`: An array of [Error Objects](TODO). Empty if success is true
+- `messages`: An array of strings (unused)
 
 ##### Errors
 
-TODO: enumerate possible error responses (especially http status codes) from this endpoint
+###### Missing Account/Zone Identifier
+
+```
+status: 404
+error: {
+	code: 10005,
+	message: "workers.api.error.not_found"
+}
+```
+
+###### Missing Script Name
+
+```
+status: 404
+error: {
+	code: 10005,
+	message: "workers.api.error.missing_script_name"
+}
+```
+
+###### Script Not Found
+
+```
+status: 404
+error: {
+	code: 10007,
+	message: "workers.api.error.not_found"
+}
+```
+
+###### Internal Error
+
+```
+status: 500
+error: {
+	code: 10013,
+	message: "workers.api.error.unknown"
+}
+```
