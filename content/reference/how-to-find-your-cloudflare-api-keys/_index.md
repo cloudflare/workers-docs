@@ -1,4 +1,6 @@
-# How to find your Cloudflare API keys
+---
+title: Finding your Cloudflare API keys
+---
 
 To publish Cloudflare Workers projects and serve them from our global cloud network, you'll need to [create a Cloudflare account](https://support.cloudflare.com/hc/en-us/articles/201720164) (TODO: is this true for zoneless workers? different account?).
 
@@ -20,4 +22,3 @@ Once you've signed up (or if you already have an account), you'll need to find a
 ![Viewing Cloudflare API keys](./media/api-keys.png)
 
 **Treat your Global API Key like a password!** You'll configure Wrangler to use this key, but by design, Wrangler does not keep this API key in version control, or inside of your code.
-
