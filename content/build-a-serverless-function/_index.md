@@ -20,7 +20,7 @@ To confirm that Wrangler has successfully installed on your machine, try running
 
 ![Verify Wrangler Installation](./media/verify-wrangler-install.png)
 
-You'll need to get your Cloudflare API keys to deploy code to Cloudflare Workers: see ["How to find your Cloudflare API Keys"](/reference/how-to-find-your-cloudflare-api-keys) for a brief guide on how to find them. With these keys, you can use Wrangler to set up our default credentials for deploying to Cloudflare Workers, via the `config` subcommand:
+You'll need to get your Cloudflare API keys to deploy code to Cloudflare Workers: see ["Finding your Cloudflare API keys"](/reference/api-keys) for a brief guide on how to find them. With these keys, you can use Wrangler to set up our default credentials for deploying to Cloudflare Workers, via the `config` subcommand:
 
 `wrangler config <email> <global_api_key>`
 
