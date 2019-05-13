@@ -1,5 +1,6 @@
 ---
 title: Bindings
+weight: 2
 ---
 
 ## Object Specifications

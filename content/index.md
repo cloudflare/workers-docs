@@ -4,16 +4,16 @@ title: Cloudflare Workers Documentation
 
 ## Get Started
 
-- [Build an Application](./build-an-application/index.md)
-- [Build a Serverless Function](./build-an-application/index.md)
-- [Configure your CDN](./configure-your-cdn/index.md)
+- [Build an Application](./build-an-application)
+- [Build a Serverless Function](./build-an-application)
+- [Configure your CDN](./configure-your-cdn)
 
 ## Discover what you can build
 
-- [Templates](./reference/templates/index.md)
+- [Templates](./reference/templates)
 
 ## Reference
 
-- [Tooling](./reference/tooling/index.md)
-- [Runtime](./reference/runtime/index.md)
-- [API](./reference/api/index.md)
+- [Tooling](./reference/tooling)
+- [Runtime](./reference/runtime)
+- [API](./reference/api)
