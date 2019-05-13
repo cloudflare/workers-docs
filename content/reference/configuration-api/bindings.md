@@ -1,9 +1,11 @@
-## Bindings
+---
+title: Bindings
+---
 
 ## Object Specifications
 
-* `name`: a javascript variable name for the binding
-* `type`: the class of resource the binding provides (currently wasm_module)
+- `name`: a javascript variable name for the binding
+- `type`: the class of resource the binding provides (currently wasm_module)
 
 ## List Bindings
 
@@ -11,7 +13,7 @@
 
 ##### Sample Request:
 
-``` sh
+```sh
 curl -X GET "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8372d0c353/workers/script/bindings" \
      -H "X-Auth-Email: user@example.com" \
      -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41"
@@ -19,7 +21,7 @@ curl -X GET "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a83
 
 ##### Sample Response:
 
-``` json
+```json
 {
   "success": true,
   "errors": [],
@@ -27,7 +29,7 @@ curl -X GET "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a83
   "result": [
     {
       "name": "myBinding",
-      "type": "wasm_module",
+      "type": "wasm_module"
     }
   ]
 }
@@ -37,13 +39,13 @@ curl -X GET "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a83
 
 ##### URL Parameters
 
-* `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID]
-* `script_name`: the name of the script to be deleted.
+- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID]
+- `script_name`: the name of the script to be deleted.
 
 ##### Headers
 
-* `X-Auth-Email` [Find your Auth Email]
-* `X-Auth-Key` [Find Your Auth Key]
+- `X-Auth-Email` [Find your Auth Email]
+- `X-Auth-Key` [Find Your Auth Key]
 
 ##### Payload n/a
 
@@ -51,10 +53,10 @@ curl -X GET "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a83
 
 ##### Body (JSON)
 
-* `success`: Boolean
-* `result`: An array of [Binding Objects](TODO). Empty if success is false
-* `errors`: An array of [Error Objects](TODO). Empty if success is true
-* `messages`: An array of strings (unused)
+- `success`: Boolean
+- `result`: An array of [Binding Objects](TODO). Empty if success is false
+- `errors`: An array of [Error Objects](TODO). Empty if success is true
+- `messages`: An array of strings (unused)
 
 ##### Errors
 
