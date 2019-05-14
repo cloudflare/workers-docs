@@ -25,7 +25,7 @@ async function handleRequest(request) {
 }
 ```
 
-The above worker is just a passthrough, but within the event handler function, you can leverage all of the available APIs to manipulate the intercepted request: you can retrieve data from [Cache](TODO: Link Cache API), compute a custom response right from the edge, [route](TODO: link to router template) the request to the appropriate service, filter traffic, and [more](TODO: link tutorials and/or template gallery).
+The above worker is just a passthrough, but within the event handler function, you can leverage all of the available APIs to manipulate the intercepted request: you can retrieve data from [Cache](../cache), compute a custom response right from the edge, [route](TODO: link to router template) the request to the appropriate service, filter traffic, and [more](../../../templates).
 
 ## FetchEvent Object
 
@@ -33,7 +33,7 @@ The above worker is just a passthrough, but within the event handler function, y
 
 `type`: the type of event. Always `fetch`.
 
-`request`: a [Request Object](TODO: Link to Request Object in FetchAPI) representing the request that triggered the FetchEvent.
+`request`: a [Request Object](../fetch#request) representing the request that triggered the FetchEvent.
 
 ### Methods
 

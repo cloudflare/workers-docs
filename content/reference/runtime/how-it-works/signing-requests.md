@@ -1,8 +1,8 @@
 ---
-title: Signed Requests
+title: Signing Requests
 ---
 
-A common URL authentication method known as _request signing_ can be implemented in a Worker with the help of the [Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API).
+A common URL authentication method known as _request signing_ can be implemented in a Worker with the help of the [Web Crypto API](../../apis/web-crypto).
 
 In the example presented here, we'll authenticate the path of a URL, along with an accompanying expiration timestamp, using a Hash-based Message Authentication Code (HMAC) with a SHA-256 digest algorithm. For a user agent to successfully fetch an authenticated resource, they'll need to provide the correct path, expiration timestamp, and HMAC via query parameters --- if any of those three are tampered with, the request will fail.
 

@@ -3,8 +3,7 @@ title: Runtime
 alwaysopen: true
 ---
 
-## How it works
+## [Usage Guides](./how-it-works)
 
-## Service Worker API Reference
+## [Available APIs](./apis)
 
-## Cloudflare specific utilities

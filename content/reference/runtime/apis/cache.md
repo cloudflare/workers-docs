@@ -8,7 +8,7 @@ By default Cloudflare provides cache space per domain for serving static assets 
 
 This is great for static assets like images, html, and css, but much of the traffic moving across the web is dynamic data that is requested via AJAX requests. By default, this kind of traffic is not cached, and therefore misses out on the benefits of caching.
 
-The Cache API described by the [Service Worker](TODO) specification provides a way to customize your cache's behavior using JavaScript.
+The Cache API described by the [Service Worker](https://w3c.github.io/ServiceWorker/#cache) specification provides a way to customize your cache's behavior using JavaScript.
 
 ## The Cache Object
 
@@ -36,9 +36,9 @@ cache.put(request, response)
 
 ##### Parameters
 
-`request`: Either a string or a [`Request`](TODO: link fetch api request reference) object to serve as the key. If a string is passed, it will be interpreted as the URL for a new Request object.
+`request`: Either a string or a [`Request`](../fetch#request) object to serve as the key. If a string is passed, it will be interpreted as the URL for a new Request object.
 
-`response`: A [`Response`](TODO: link fetch api response reference) object to store under the given key.
+`response`: A [`Response`](../fetch#response) object to store under the given key.
 
 ##### Invalid Parameters
 
@@ -78,7 +78,7 @@ cache.match(request, options)
 
 ##### Parameters
 
-`request`: The string or [`Request`](TODO: link fetch api request reference) object used as the lookup key. If a string is passed, it will be interpreted as the URL for a new Request object.
+`request`: The string or [`Request`](../fetch#request) object used as the lookup key. If a string is passed, it will be interpreted as the URL for a new Request object.
 
 `options`: The options object may contain one possible property:
 
@@ -106,7 +106,7 @@ cache.delete(request, options)
 
 ##### Parameters
 
-`request`: The string or [`Request`](TODO: link fetch api request reference) object used as the lookup key. If a string is passed, it will be interpreted as the URL for a new Request object.
+`request`: The string or [`Request`](../fetch#request) object used as the lookup key. If a string is passed, it will be interpreted as the URL for a new Request object.
 
 `optons`: The options object may contain one possible property:
 
@@ -132,7 +132,7 @@ async function handle(event) {
 
 ## Interacting with the Cloudflare Cache
 
-Conceptually, every individual zone on Cloudflare has its own cache space. There are three ways to interact with these cache spaces: using a browser, using [`fetch()`](TODO: Link Fetch API Reference) from a Worker, and using the Cache API from a Worker.
+Conceptually, every individual zone on Cloudflare has its own cache space. There are three ways to interact with these cache spaces: using a browser, using [`fetch()`](../fetch) from a Worker, and using the Cache API from a Worker.
 
 ### From a Browser
 
@@ -144,9 +144,9 @@ The Cache API provided by the Workers runtime always uses your own zone's cache,
 
 #### Using `fetch`
 
-Calling [`fetch()`](TODO: Link FetchAPI reference) from your Workers script checks to see if the URL matches a different zone. If it does, it reads through that zone's cache. Otherwise, it reads through its own zone's cache, even if the URL is for a non-Cloudflare site.
+Calling [`fetch()`](../fetch) from your Workers script checks to see if the URL matches a different zone. If it does, it reads through that zone's cache. Otherwise, it reads through its own zone's cache, even if the URL is for a non-Cloudflare site.
 
-`fetch()` requests a URL and automatically applies caching rules based on your Cloudflare settings. It does not allow you to modify objects before they reach cache, or inspect if an object is in cache before making a request.
+[`fetch()`](../fetch) requests a URL and automatically applies caching rules based on your Cloudflare settings. It does not allow you to modify objects before they reach cache, or inspect if an object is in cache before making a request.
 
 #### Using `cache-default`
 
