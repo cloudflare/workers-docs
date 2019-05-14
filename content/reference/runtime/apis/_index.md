@@ -1,10 +1,11 @@
 ---
 title: Standard APIs
+alwaysopen: true
 ---
 
 The Workers Runtime provides the following standardized APIs for use by scripts running at the Edge.
 
-Methods highlighted in orange are only implemented in the scope of a [request context](TODO: link to request context).
+Methods highlighted in orange are only implemented in the scope of a [request context](../how-it-works/request-context).
 
 ## JavaScript Standards
 
