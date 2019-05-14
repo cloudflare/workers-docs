@@ -2,11 +2,11 @@
 title: Cloudflare Workers Documentation
 ---
 
-## Get Started
+## Tutorials
 
-- [Build an Application](./build-an-application)
-- [Build a Serverless Function](./build-an-application)
-- [Configure your CDN](./configure-your-cdn)
+- [Build An Application](./tutorials/build-an-application)
+- [Build A Serverless Function](./tutorials/build-a-serverless-function)
+- [Configure Your CDN](./tutorials/configure-your-cdn)
 
 ## Discover what you can build
 

@@ -1,12 +1,12 @@
 ---
-title: Configure Your CDN
+title: Quick Start
 alwaysopen: true
-weight: 3
+weight: 1
 ---
 
-Welcome to Cloudflare Workers! This tutorial series will bring you from no experience with Workers, to writing and deploying a function to Cloudflare Workers, to configure your CDN.
+Welcome to Cloudflare Workers! This tutorial series will bring you from no experience with Workers, to writing and deploying your first project!
 
-Cloudflare Workers is a platform for building and deploying serverless functions to a global cloud network. If you’re interested in how the platform works, check out the [Reference]() section of the documentation!
+Cloudflare Workers is a platform for building and deploying code to a global cloud network. If you’re interested in how the platform works, check out the [Reference]() section of the documentation!
 
 TODO: BROKEN LINK ^
 
@@ -72,8 +72,6 @@ Earlier in the quick start guide, we logged into the Cloudflare Dashboard UI to 
 
 Last but not least, you need to set a **route** for your Worker: where your Worker will be hosted, and accessible by your users. The route field here is a _pattern_: if we chose the route `wasm-worker.signalnerve.com`, the Worker would _only_ run on that exact subdomain, at the _root_ path. If you changed the route to `wasm-worker.signalnerve.com/*` (using the `*` or _wildcard_ symbol), the Worker would then run on any path on that subdomain, for instance, `wasm-worker.signalnerve.com/test`, or even `wasm-worker.signalnerve.com/test/123`.
 
-When thinking about routes, you should consider the URLs that you want your Worker to run on – for instance, if you're deploying a function to configure your CDN, you'll probably host it using a wildcard route, like: `wasm-worker.signalnerve.com/*`.
-
 ## Publish your Project
 
 With your project configured, it's time to publish it! Wrangler has a built-in command for uploading your script, generating the route that corresponds to your `wrangler.toml` file, and wiring them together. If that sounds complicated, don't worry – we've made it really easy:
@@ -92,10 +90,11 @@ TODO I have multiscript, and this whole section assumes zone workers: will need 
 
 ## Learn More
 
-This is just the beginning of what you can do with Cloudflare Workers. If you'd like to dive deeper into configuring your CDN with Workers, check out the full-length tutorial below!
+This is just the beginning of what you can do with Cloudflare Workers. If you'd like to dive deeper into building projects with Cloudflare Workers, check out the full-length tutorials below:
 
-- [Serving Assets Using Cloudflare Workers][4]
+- [Build An Application](./tutorials/build-an-application)
+- [Build A Serverless Function](./tutorials/build-a-serverless-function)
+- [Configure Your CDN](./tutorials/configure-your-cdn)
 
 [2]: https://github.com/cloudflare/wrangler
 [3]: TODO
-[4]: ./tutorials/TODO

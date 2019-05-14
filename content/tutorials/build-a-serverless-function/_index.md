@@ -1,12 +1,13 @@
 ---
-title: Build a QR Code Generator
+title: Build A Serverless Function
+weight: 3
 ---
 
 In this tutorial, you'll build and publish a serverless function that generates QR codes, using Cloudflare Workers.
 
 <video loop muted="true">
-  <source src="../media/demo.webm" type="video/webm">
-  <source src="../media/demo.mp4" type="video/mp4">
+  <source src="./media/demo.webm" type="video/webm">
+  <source src="./media/demo.mp4" type="video/mp4">
   Your browser doesn't support HTML5 video in WebM or MP4.
 </video>
 
@@ -200,8 +201,8 @@ curl -d '{"text":"https://workers.dev"}' -H "Content-Type: application/json" -X 
 If you're unfamiliar with the command-line, or want to test it in a user interface, we've built a [live demo](https://qr.signalnervecom) (TODO this should go somewhere else) to test the function (find the source [here](https://github.com/signalnerve/qr-generator-landing) TODO right place for this?):
 
 <video loop muted="true">
-  <source src="../media/demo.webm" type="video/webm">
-  <source src="../media/demo.mp4" type="video/mp4">
+  <source src="./media/demo.webm" type="video/webm">
+  <source src="./media/demo.mp4" type="video/mp4">
   Your browser doesn't support HTML5 video in WebM or MP4.
 </video>
 
