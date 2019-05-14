@@ -4,7 +4,7 @@ title: Fetch API
 
 ## Overview
 
-The [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) provides an interface for asyncronously fetching resources by providing a definition of a Request and a Response. You will frequently find yourself interacting with the request objects included as part of a [FetchEvent](TODO: link FetchEvent), making your own requests using the global `fetch` method, and constructing your own Responses. Be sure to check out our [article](TODO: Link modifying requests/responses) about best practices for modifying a request or response.
+The [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) provides an interface for asyncronously fetching resources by providing a definition of a Request and a Response. You will frequently find yourself interacting with the request objects included as part of a [FetchEvent](../fetch-event), making your own requests using the global `fetch` method, and constructing your own Responses. Be sure to check out our [article](TODO: Link modifying requests/responses) about best practices for modifying a request or response.
 
 ## Global
 
@@ -35,7 +35,7 @@ new Request(input [, init])
 `init` (optional): An options object () containing any custom settings to be applied to the request. The possible options are:
 
 - `method`: The request method, e.g. `GET`, `POST`
-- `headers`: A [Headers](#Headers) object
+- `headers`: A [Headers](#headers) object
 - `body`: Any body you want to add to the request: TODO: Enumerate possible types. A request using the `GET` or `HEAD` method cannot have a body.
 - `redirect`: The redirect mode to use: `follow`, `error`, or `manual`. TODO: what is the default?
 
@@ -43,13 +43,13 @@ new Request(input [, init])
 
 All properties of a Request object are read only; if you wish to [modify a request](TODO: link to modifying a request), you must create a new Request object, passing in the options you wish to modify into its [Constructor](#Constructor).
 
-`body`: A simple getter used to expose a [`ReadableStream`](TODO: link streams api doc) of the body contents.
+`body`: A simple getter used to expose a [`ReadableStream`](../streams) of the body contents.
 
 `bodyUsed`: A Boolean that declares whether the body has been used in a response yet.
 
 `cf`\*: An object containing data provided by Cloudflare; see `request.cf` below.
 
-`headers`: Contains the associated [Headers](#Headers) object for the request.
+`headers`: Contains the associated [Headers](#headers) object for the request.
 
 `method`: The request method, e.g. `GET`, `POST`, associated with the request
 
@@ -109,15 +109,15 @@ new Response(body, init)
 
 - `status`: The status code for the reponse, e.g., `200`.
 - `statusText`: The status message associated with the status code, e.g., `OK`.
-- `headers`: Any headers you want to add to your response, contained within a [`Headers`](#Headers) object or object literal of [`ByteString`](https://developer.mozilla.org/en-US/docs/Web/API/ByteString) key/value pairs.
+- `headers`: Any headers you want to add to your response, contained within a [`Headers`](#headers) object or object literal of [`ByteString`](https://developer.mozilla.org/en-US/docs/Web/API/ByteString) key/value pairs.
 
 ### Properties
 
-`body`: A simple getter used to expose a [`ReadableStream`](TODO: link streams api doc) of the body contents.
+`body`: A simple getter used to expose a [`ReadableStream`](../streams) of the body contents.
 
 `bodyUsed`: A Boolean that declares whether the body has been used in a response yet.
 
-`headers`: Contains the associated [Headers](#Headers) object for the request.
+`headers`: Contains the associated [Headers](#headers) object for the request.
 
 `ok`: Contains a boolean stating whether the response was successful (status in the range 200-299) or not.
 
@@ -133,16 +133,16 @@ new Response(body, init)
 
 ### Methods
 
-[`Response.clone()`](https://developer.mozilla.org/en-US/docs/Web/API/Response/clone): Creates a clone of a `Response` object.
+[`Response.clone()`](https://developer.mozilla.org/en-US/docs/Web/API/Response/clone): Creates a clone of a [`Response`](#response) object.
 
 [`Response.redirect()`](https://developer.mozilla.org/en-US/docs/Web/API/Response/redirect): Creates a new response with a different URL.
 
-`Response` implements [`Body`](https://developer.mozilla.org/en-US/docs/Web/API/Body), so it also has the following methods available to it:
+[`Response`](#response) implements [`Body`](https://developer.mozilla.org/en-US/docs/Web/API/Body), so it also has the following methods available to it:
 
-[`Body.arrayBuffer()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/arrayBuffer): Takes a `Response` stream and reads it to completion. It returns a promise that resolves with an [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/API/ArrayBuffer).
+[`Body.arrayBuffer()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/arrayBuffer): Takes a [`Response`](#response) stream and reads it to completion. It returns a promise that resolves with an [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/API/ArrayBuffer).
 
-[`Body.formData()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/formData): Takes a `Response` stream and reads it to completion. It returns a promise that resolves with a [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) object.
+[`Body.formData()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/formData): Takes a [`Response`](#response) stream and reads it to completion. It returns a promise that resolves with a [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) object.
 
-[`Body.json()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/json): Takes a `Response` stream and reads it to completion. It returns a promise that resolves with the result of parsing the body text as [`JSON`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON).
+[`Body.json()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/json): Takes a [`Response`](#response) stream and reads it to completion. It returns a promise that resolves with the result of parsing the body text as [`JSON`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON).
 
-[`Body.text()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/text): Takes a `Response` stream and reads it to completion. It returns a promise that resolves with a [`USVString`](https://developer.mozilla.org/en-US/docs/Web/API/USVString) (text).
+[`Body.text()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/text): Takes a [`Response`](#response) stream and reads it to completion. It returns a promise that resolves with a [`USVString`](https://developer.mozilla.org/en-US/docs/Web/API/USVString) (text).
