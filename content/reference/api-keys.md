@@ -18,7 +18,7 @@ Once you've signed up (or if you already have an account), you'll need to find a
 
 ![direct-api-keys](/reference/media/direct-api-keys.png)
 
-_Note: if you're deploying Cloudflare Workers scripts to a hosted zone or domain on your Cloudflare account, as opposed to a Workers.dev subdomain, you'll need to find your Zone ID in addition to your Account ID:_
+_Note: if you're deploying Cloudflare Workers scripts to a zone/domain registered on your Cloudflare account, as opposed to a Workers.dev subdomain, you'll need to find your Zone ID in addition to your Account ID:_
 
 1. Click on a site that you currently host with Cloudflare – this should bring you to the "Overview" tab on the Dashboard.
 
@@ -33,3 +33,5 @@ _Note: if you're deploying Cloudflare Workers scripts to a hosted zone or domain
 ![Viewing Cloudflare API keys](/reference/media/api-keys.png)
 
 **Treat your Global API Key like a password!** You'll configure Wrangler to use this key, but by design, Wrangler does not keep this API key in version control, or inside of your code.
+
+In addition, you'll also need your **Cloudflare Auth Email**. This is the email you used to sign up for Cloudflare.
