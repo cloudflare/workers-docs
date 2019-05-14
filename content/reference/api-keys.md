@@ -18,7 +18,7 @@ Once you've signed up (or if you already have an account), you'll need to find a
 
 ![direct-api-keys](/reference/media/direct-api-keys.png)
 
-_Note: if you're deploying Cloudflare Workers scripts to an existing hosted zone or domain on your Cloudflare account, instead of deploying to a Workers.dev subdomain, you'll need to find your Account ID **and** your Zone ID:_
+_Note: if you're deploying Cloudflare Workers scripts to a hosted zone or domain on your Cloudflare account, as opposed to a Workers.dev subdomain, you'll need to find your Zone ID in addition to your Account ID:_
 
 1. Click on a site that you currently host with Cloudflare – this should bring you to the "Overview" tab on the Dashboard.
 
