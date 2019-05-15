@@ -44,24 +44,22 @@ Although we call `response.body.pipeTo(writable)`, we do _not_ `await` it, so th
 
 This Worker doesn’t do anything particularly special — it is mostly equivalent to not having a Worker at all. However, it shows that your Worker can continue running a function (`response.body.pipeTo(writable)`) after a response has been returned to the client. The example above just pumps the subrequest response body to the final response body, but more complicated logic could be inserted, e.g. to add a prefix or a suffix to the body, or to process it in some way.
 
-## Reference
+## TransformStream
 
-### TransformStream
-
-#### Properties
+### Properties
 
 - `readable`: An instance of a `ReadableStream`.
 - `writable`: An instance of a `WritableStream`.
 
-### ReadableStream
+## ReadableStream
 
 _Note: A `ReadableStream` is returned as the `readable` property inside of a `TransformStream`. On the Workers platform, `ReadableStream` can't be created directly using the `ReadableStream` constructor._
 
-#### Properties
+### Properties
 
 - `locked`: A boolean indicating whether the readable stream is locked to a reader.
 
-#### Methods
+### Methods
 
 - `pipeTo(destination)`: Pipe the readable stream to a given writable stream, `destination`. Returns a promise that is fulfilled when the write operation has succeeded, or rejected if the operation fails.
 
@@ -71,48 +69,48 @@ _Note: A `ReadableStream` is returned as the `readable` property inside of a `Tr
   let reader = readable.getReader({ mode: 'byob' })
   ```
 
-### ReadableStreamDefaultReader
+## ReadableStreamDefaultReader
 
-#### Properties
+### Properties
 
 - `closed`: A promise that indicates whether the reader is closed, or not. The promise will be fulfilled when the reader stream is closed, and will reject if there is an error in the stream.
 
-#### Methods
+### Methods
 
 - `read`: A promise that returns the next available chunk of data being passed through the reader queue.
 - `cancel(reason)`: Cancel the stream, passing an optional `reason` string (intended to be human-readable) to indicate the reason for the cancellation. Note: any data that has not yet been read will be lost.
 - `releaseLock`: Release the lock on the readable stream. A lock can't be released if the reader still has pending read operations: a `TypeError` will be thrown and the reader will remain locked.
 
-### ReadableStreamBYOBReader
+## ReadableStreamBYOBReader
 
 _Note: An instance of `ReadableStreamBYOBReader`, created by passing the mode `byob` to `getReader` on an instance of `ReadableStream`, is functionally identical to `ReadableStreamDefaultReader`, with the exception of the `read` method._
 
-#### Methods
+### Methods
 
 - `read(buffer)`: Returns a promise with the next available chunk of data, read into a passed-in buffer.
 
-### WritableStream
+## WritableStream
 
 _Note: A `WritableStream` is returned as the `writable` property inside of a `TransformStream`. On the Workers platform, `WritableStream` can't be created directly using the `WritableStream` constructor._
 
-#### Properties
+### Properties
 
 - `locked`: A boolean indicating whether the writable stream is locked to a writer.
 
-#### Methods
+### Methods
 
 - `abort(reason)`: Abort the stream, passing an optional `reason` string (intended to be human-readable) to indicate the reason for the cancellation. Returns a promise, which fulfills with response `undefined`. Note: any data that has not yet been written will be lost.
 
 - `getWriter`: Get an instance of `WritableStreamDefaultWriter`, and locks the `WritableStream` to that writer instance.
 
-### WritableStreamDefaultWriter
+## WritableStreamDefaultWriter
 
-#### Properties
+### Properties
 
 - `desiredSize`: Returns the desired size needed to fill the stream's internal queue, as an integer. Will always return 1, 0 (if the stream is closed), or `null` (if errored).
 - `closed`: A promise that indicates whether the writer is closed, or not. The promise will be fulfilled when the writer stream is closed, and will reject if there is an error in the stream.
 
-#### Methods
+### Methods
 
 - `abort(reason)`: If the writer is active, aborting it will behave similarly to `WritableStream`'s `abort` method. An optional `reason` string can be passed (intended to be human-readable) to indicate the reason for the cancellation. Returns a promise, which fulfills with `undefined`. Note: any data that has not yet been written will be lost.
 - `close`: Attempt to close the writer. Remaining writes will finish processing, before the writer is closed. Returns a promise that fulfills with undefined if the writer successfully closes and processes remaining writes, or rejected if any errors are encountered.
