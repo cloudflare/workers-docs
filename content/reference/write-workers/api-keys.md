@@ -1,37 +1,35 @@
+﻿---
+title: Finding Your Cloudflare API Keys
 ---
-title: Finding your Cloudflare API keys
----
 
-To publish Cloudflare Workers projects and serve them from our global cloud network, you'll need to [create a Cloudflare account](https://support.cloudflare.com/hc/en-us/articles/201720164).
+To publish Cloudflare Workers projects and serve them from our global cloud network, [create a Cloudflare account](https://support.cloudflare.com/hc/en-us/articles/201720164) and register your domain/zone.
 
-Once you've signed up (or if you already have an account), you'll need to find a few important keys in Cloudflare's Dashboard UI: your **Account ID** and your **Global API key** – Wrangler will use these to manage uploading and publishing your Workers.
+On your Cloudflare _Overview_ Dashboard, you'll find your **Account ID** and **Zone ID**, and a link to view your **Global API Key**. [Wrangler](TODO:wrangler link) uses these credentials to manage uploading and publishing your Workers to your registered Cloudflare domain/zone.
 
-**To find your Account ID, do the following:**
+**Note:** You do not need your Zone ID for deploying Workers on the `Workers.dev` subdomain. 
 
-1. Login to Cloudflare with the account you'd like to use for deploying Cloudflare Workers
+**To find your Account ID, Zone ID, and Global API Key:**
 
-2. Select the "Home" button on the top navigation bar.
+1. Log in to your Cloudflare account and select the desired domain.
+2. Select the _Overview_ tab on the navigation bar.
+3. Scroll to the _API_ section and select **Click to copy** to copy your Account ID to the clipboard.
+	Paste this in a text file for later retrieval.
+4. (optional) Copy your **Zone ID** to the clipboard.
+	Paste this in the text file.
 
-3. On the right side of the screen, select the "Workers" navigation item.
+	**IMPORTANT: Treat your Global API Key like a password!** 
+	You'll configure Wrangler to use this key but it is not stored in version control or in your code.
 
-4. On the Cloudflare Workers screen, find the sidebar section titled "API" and copy your Account ID.
+5. Click **Get API Key** below _Account ID_ to jump to your _Profile_ page.
 
 ![direct-api-keys](/reference/media/direct-api-keys.png)
 
-_Note: if you're deploying Cloudflare Workers scripts to a zone/domain registered on your Cloudflare account, as opposed to a Workers.dev subdomain, you'll need to find your Zone ID in addition to your Account ID:_
-
-1. Click on a site that you currently host with Cloudflare – this should bring you to the "Overview" tab on the Dashboard.
-
-2. Scroll down and look for the section in the sidebar titled "API": your Account ID and Zone ID will be displayed, as well as the option to "Click to copy" under each key.
-
-**To find your API key, do the following:**
-
-1. Click on the Profile icon at the top-right of the screen, and select "My Profile". Your account email should also be listed underneath the "My Profile" text.
-2. On the "My Profile" page, scroll down to "API Keys", and find "Global API Key".
-3. Enter your password, and click "View" to see your Global API Key.
+6. Scroll to _API Keys_, and click **View** to copy your Global API Key to the clipboard.
 
 ![Viewing Cloudflare API keys](/reference/media/api-keys.png)
+	Paste this in your text file.
 
-**Treat your Global API Key like a password!** You'll configure Wrangler to use this key, but by design, Wrangler does not keep this API key in version control, or inside of your code.
-
-In addition, you'll also need your **Cloudflare Auth Email**. This is the email you used to sign up for Cloudflare.
+7. Close the _View_ window to return to your _Profile_ page.
+8. (optional) Scroll up to copy your Cloudflare registered email address to the clipboard, and paste them in your text file.
+9. **Save** your credentials text file in a secure location or securely delete it after configuring Wrangler.
+10. [Configure Wrangler](TODO: link to wrangler).
