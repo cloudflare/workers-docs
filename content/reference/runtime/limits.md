@@ -1,5 +1,5 @@
 ---
-title: Plans and Limitations
+title: Limitations
 ---
 
 ## Bundle Size
