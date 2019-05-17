@@ -1,8 +1,10 @@
 ---
 title: Template Gallery
+alwaysopen: true
+weight: 3
 ---
 
-TODO: make this pretty display of linking to these templates' wrangler generate command, tutorial, live demo
+TODO: implement a design that grants easy access to copy/paste wrangler generate command, tutorial, live demo
 TODO: replace links to gist with links to repos on Cloudflare's Github
 
 While most of the templates below are near useless alone, they are designed to

@@ -1,5 +1,7 @@
 ---
 title: Glossary
+alwaysopen: true
+weight: 1
 ---
 
 ## Runtime

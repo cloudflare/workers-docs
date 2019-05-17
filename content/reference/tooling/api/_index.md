@@ -1,6 +1,6 @@
 ---
-title: Configuration API
-alwaysopen: true
+title: Cloudflare API
+alwaysopen: false
 ---
 
 ## Endpoint References
