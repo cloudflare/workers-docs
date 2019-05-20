@@ -74,7 +74,7 @@ Workers allow you to run custom logic for incoming requests. Cloudflare provides
 
 * `country`: A two-letter country code in the request (the same value that in the `CF-IPCountry` header).
 
-* `colo`: The three-letter airport code of the colo the request hit.
+* `colo`: The three-letter airport code of the data center the request hit.
 
 ### Methods
 

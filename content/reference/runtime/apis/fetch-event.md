@@ -2,7 +2,7 @@
 
 ## Overview
 
-With a registered Worker script running in your Cloudflare Edge domain, HTTP requests send a `fetch` event within the [global scope](TODO: Link ServiceWorkerGlobalScope) of the registered Worker. Every worker listens for `fetch` events and passes incoming requests to the event handler. 
+With a registered Worker script running in your Cloudflare Edge domain, HTTP requests trigger a `fetch` event within the [global scope](TODO: Link ServiceWorkerGlobalScope) of the registered Worker. Every worker listens for `fetch` events and passes incoming requests to the event handler. 
 
 Use this request for example, to display deprecation warnings to responses or display banners explaining upcoming changes.
 
@@ -43,8 +43,8 @@ This worker script demonstrates a direct passthrough; however, the event handler
 ### Methods
 
 
-* `passThroughOnException`: Cause the script to ["fail open"](https://community.microfocus.com/t5/Security-Blog/Security-Fundamentals-Part-1-Fail-Open-vs-Fail-Closed/ba-p/283747) unhandled exceptions. Instead of returning a runtime error response, the runtime proxies the request to its destination. To prevent JavaScript errors from causing entire requests to fail on uncaught exceptions, `passThroughOnException` causes the worker to act as if the exception wasn’t there. This allows you to return your own Response object from your worker.
-* `respondWith`: Intercept the request and send a custom response, such as acknowledging the request and saying you'll be quick to reply. 
+* `passThroughOnException`: Cause the script to ["fail open"](https://community.microfocus.com/t5/Security-Blog/Security-Fundamentals-Part-1-Fail-Open-vs-Fail-Closed/ba-p/283747) unhandled exceptions. Instead of returning a runtime error response, the runtime proxies the request to its destination. To prevent JavaScript errors from causing entire requests to fail on uncaught exceptions, `passThroughOnException` causes the worker to act as if the exception wasnâ€™t there. This allows you to yield control to your origin server.
+* `respondWith`: Intercept the request and send a custom response
 	* If an event handler does not call `respondWith()`, the runtime delivers the event to the next registered event handler. 
 	* If no event handler calls `respondWith()`, the runtime proxies the request to its destination.
 * `waitUntil`: Extend the lifetime of the event. Use this method to notify the runtime to wait for tasks, such as streaming and caching, that run longer than the usual time it takes to send a response. This is good for handling logging and analytics to third-party services, where you don't want to block the `response`. 
