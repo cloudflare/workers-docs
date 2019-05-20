@@ -17,6 +17,8 @@ All of the [standard built-in objects](https://developer.mozilla.org/en-US/docs/
 
 ## Service Worker API
 
+Cloudflare Workers are modeled in part after the [Service Worker API](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) used in browsers, with a few key distinctions. (TODO: expand per https://github.com/cloudflare/cloudflare-docs/issues/44)
+
 [FetchEvent](./fetch-event)
 
 [Cache API](./cache)
@@ -31,13 +33,16 @@ The [Streams API](./streams) is useful for handling large chunks of data that ar
 
 ## Web Crypto API
 
-Cryptographically-secure random number generation
-Digest (SHA family, MD5)
-Sign and verify (HMAC (with SHA family, MD5), RSASSA-PKCS1-v1_5, ECDSA)
-Encrypt and decrypt (AES-GCM, AES-CBC)
-Key derivation (PBKDF2)
-Key generation (AES-GCM, HMAC)
-Raw key import/export for all of the above algorithms
+The [Web Crypto API](/reference/runtime/apis/web-crypto) provides common cryptographic functions for the following operations:
+
+- Cryptographically-secure random number generation
+- Digest (SHA family, MD5)
+- Sign and verify (HMAC (with SHA family, MD5), RSASSA-PKCS1-v1_5, ECDSA)
+- Encrypt and decrypt (AES-GCM, AES-CBC)
+- Key derivation (PBKDF2)
+- Key generation (AES-GCM, HMAC)
+- Raw key import/export for all of the above algorithms
+
 ## Web Global APIs
 
 The following methods are available per the [Worker Global Scope](https://developer.mozilla.org/en-US/docs/Web/API/WorkerGlobalScope):
