@@ -11,7 +11,7 @@ In this tutorial, you'll build a [Slack](https://slackhq.com) bot using [Cloudfl
   Your browser doesn't support HTML5 video in WebM or MP4.
 </video>
 
-This tutorial makes use of [Wrangler](https://github.com/cloudflare/wrangler), our command-line tool for generating, building, and publishing projects on the Cloudflare Workers platform. If you haven't used Wrangler, we recommend checking out the [quick-start guide](../), which will get you set up with Wrangler, and familiar with the basic commands.
+This tutorial makes use of [Wrangler](https://github.com/cloudflare/wrangler), our command-line tool for generating, building, and publishing projects on the Cloudflare Workers platform. If you haven't used Wrangler, we recommend checking out the [Quick Start Guide](/quickstart), which will get you set up with Wrangler, and familiar with the basic commands.
 
 This tutorial is recommended for people who are familiar with writing web applications. If you've ever built an application with tools like [Node](https://nodejs.org) and [Express](https://expressjs.com), this project will feel very familiar to you. That being said, if you're new to writing web apps, we think that Workers is a super easy way to focus on writing code, and actually shipping projects: maybe you've wanted to build something like a Slack bot in the past, but things like deployment and configuration have always seemed a little scary. In either case, welcome!
 
@@ -27,7 +27,7 @@ To publish your Worker to Cloudflare, and configure it with a Slack channel, you
 
 If you don't have those things quite yet, don't worry. We'll walk through each of them and make sure we're ready to go, before you start creating your application.
 
-You'll need to get your Cloudflare API keys to deploy code to Cloudflare Workers: see ["Finding your Cloudflare API keys"](/reference/api-keys) for a brief guide on how to find them.
+You'll need to get your Cloudflare API keys to deploy code to Cloudflare Workers: see ["Finding your Cloudflare API keys"](/reference/write-workers/api-keys) for a brief guide on how to find them.
 
 TODO: a user should know what their subdomain is for the Slack bot before continuing into the Slack config section. With zoneless/zoned workers, how can we help users understand what their bot URL is?
 
@@ -80,7 +80,7 @@ wrangler generate slack-bot https://github.com/cloudflare/worker-template
 cd slack-bot
 ```
 
-Wrangler templates are just Git repositories, so if you want to create your own templates, or use one from our [Template Gallery](/reference/templates), there's a ton of options to help you get started.
+Wrangler templates are just Git repositories, so if you want to create your own templates, or use one from our [Template Gallery](/templates), there's a ton of options to help you get started.
 
 Cloudflare's `worker-template` includes support for building and deploying JavaScript-based projects. Inside of your new `slack-bot` directory, `index.js` represents the entry-point to your Cloudflare Workers application.
 
@@ -608,9 +608,9 @@ And with that, you're finished writing the code for your Slack bot! Pat yourself
 
 Wrangler has built-in support for bundling, uploading, and releasing your Cloudflare Workers application. To do this, we'll first _build_ the code, and then _publish_ it:
 
-```
-wrangler build
-wrangler publish
+``` sh
+$ wrangler build
+$ wrangler publish
 ```
 
 TODO Wrangler screenshot
@@ -628,6 +628,7 @@ In this tutorial, you built and published a Cloudflare Workers application that 
 
 If you enjoyed this tutorial, we encourage you to explore our other tutorials for building on Cloudflare Workers:
 
-[Building and deploying a serverless function on Cloudflare Workers] TODO LINK
+- [Build A Serverless Function](./tutorials/build-a-serverless-function)
+- [Configure Your CDN](./tutorials/configure-your-cdn)
 
-If you want to get started building your own projects, check out the quick-start templates we've provided in our [Template Gallery]. TODO LINK
+If you want to get started building your own projects, check out the quick-start templates we've provided in our [Template Gallery](/templates).
