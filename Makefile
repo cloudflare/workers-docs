@@ -26,7 +26,7 @@ build: bin/hugo
 	$Q bin/hugo
 
 deploy: build
-	$Q aws s3 --endpoint-url https://s3.cfdata.org/ sync --acl public-read --delete public s3://$(NAME)$(URLPATH)
+	$Q gsutil -m rsync -d -r ./public "gs://docs-staging.workers-tooling.cf"
 
 # clean up generated files, to allow regeneration
 clean:
