@@ -3,8 +3,6 @@ title: "Routes"
 weight: 40
 ---
 
-# Routes
-
 For zones proxied on Cloudflare*, the routing table decides what (if any) script is matched based on the URL of that request. Requests are routed through a Worker script when their URL matches a route pattern assigned to that script Route patterns are created either from inside the Cloudflare Workers editor, or by using the Cloudflare API.
 
 Note: Prior implementations for non-Enterprise customers used the concept of filters. Read about how this was [deprecated](TODO:).

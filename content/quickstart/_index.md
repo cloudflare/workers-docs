@@ -6,9 +6,7 @@ weight: 1
 
 Welcome to Cloudflare Workers! This tutorial series will bring you from no experience with Workers, to writing and deploying your first project!
 
-Cloudflare Workers is a platform for building and deploying code to a global cloud network. If you’re interested in how the platform works, check out the [Reference]() section of the documentation!
-
-TODO: BROKEN LINK ^
+Cloudflare Workers is a platform for building and deploying code to a global cloud network. To learn how to write Workers scripts, see [Writing Workers](/reference/write-workers) section of the documentation. If you’re interested in how the platform works, check out the [Runtime](/reference/runtime) section.
 
 This quick start guide will get you up and running with Wrangler, our command-line tool for building, previewing, and deploying Cloudflare Workers. As you continue to build and deploy to Cloudflare Workers, you’ll make use of all of Wrangler’s features to manage your project, so we recommend going through this brief guide before moving into the full tutorial!
 
