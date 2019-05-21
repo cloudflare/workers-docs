@@ -4,7 +4,7 @@ title: Limitations
 
 ## Bundle Size
 
-A Worker script plus any [Asset Bindings](TODO) can be up to 1MB in size after compression.
+A Worker script plus any [Asset Bindings](/reference/tooling/api/bindings) can be up to 1MB in size after compression.
 
 ## Number of Scripts
 
