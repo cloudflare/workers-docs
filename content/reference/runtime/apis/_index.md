@@ -1,6 +1,6 @@
 ---
 title: Standard APIs
-alwaysopen: false
+alwaysopen: true
 ---
 
 The Workers Runtime provides the following standardized APIs for use by scripts running at the Edge.
