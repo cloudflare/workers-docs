@@ -4,7 +4,7 @@ title: Overview
 
 ## Tutorials
 
-- [Build An Application](./tutorials/build-an-application)
+- [Build An Application](/tutorials/build-an-application)
 - [Build A Serverless Function](./tutorials/build-a-serverless-function)
 - [Configure Your CDN](./tutorials/configure-your-cdn)
 
