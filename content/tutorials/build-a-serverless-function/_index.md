@@ -5,11 +5,7 @@ weight: 3
 
 In this tutorial, you'll build and publish a serverless function that generates QR codes, using Cloudflare Workers.
 
-<video loop muted="true">
-  <source src="./media/demo.webm" type="video/webm">
-  <source src="./media/demo.mp4" type="video/mp4">
-  Your browser doesn't support HTML5 video in WebM or MP4.
-</video>
+<img src="./media/demo.png" />
 
 This tutorial makes use of [Wrangler](https://github.com/cloudflare/wrangler), our command-line tool for generating, building, and publishing projects on the Cloudflare Workers platform. If you haven't used Wrangler, we recommend checking out the [quick-start guide](../), which will get you set up with Wrangler, and familiar with the basic commands.
 
@@ -152,6 +148,43 @@ async function handleRequest(request) {
 }
 ```
 
+### Testing In a UI
+
+The serverless function will work if a user sends a `POST` request to a route, but it would be great to _also_ be able to test it with a proper interface. At the moment, if any request is received by your function that _isn't_ a `POST`, a `500` response is returned. The new version of `handleRequest` should return a new `Response` with a static HTML body, instead of the `500` error:
+
+```javascript
+const landing = `
+<h1>QR Generator</h1>
+<p>Click the below button to generate a new QR code. This will make a request to your serverless function.</p>
+<input type="text" id="text" value="https://workers.dev"></input>
+<button onclick='generate()'>Generate QR Code</button>
+<p>Check the "Network" tab in your browser's developer tools to see the generated QR code.</p>
+<script>
+  function generate() {
+    fetch(window.location.pathname, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: document.querySelector("#text").value })
+    })
+  }
+</script>
+`
+
+async function handleRequest(request) {
+  let response
+  if (request.method === 'POST') {
+    response = await generate(request)
+  } else {
+    response = new Response(landing, { headers: { 'Content-Type': 'text/html' } })
+  }
+  return response
+}
+```
+
+The `landing` variable, which is a static HTML string, sets up an `input` tag and a corresponding `button`, which calls the `generate` function. This function will make an HTTP `POST` request back to your serverless function, allowing you to see the corresponding QR code image data inside of your browser's network inspector:
+
+<img src="./media/demo.png" />
+
 With that, your serverless function is complete! The full version of the code looks like this:
 
 ```javascript
@@ -164,12 +197,29 @@ const generate = async request => {
   return new Response(qr_png, { headers })
 }
 
+const landing = `
+<h1>QR Generator</h1>
+<p>Click the below button to generate a new QR code. This will make a request to your serverless function.</p>
+<input type="text" id="text" value="https://workers.dev"></input>
+<button onclick='generate()'>Generate QR Code</button>
+<p>Check the "Network" tab in your browser's developer tools to see the generated QR code.</p>
+<script>
+  function generate() {
+    fetch(window.location.pathname, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: document.querySelector("#text").value })
+    })
+  }
+</script>
+`
+
 async function handleRequest(request) {
   let response
   if (request.method === 'POST') {
     response = await generate(request)
   } else {
-    response = new Response('Expected POST', { status: 500 })
+    response = new Response(landing, { headers: { 'Content-Type': 'text/html' } })
   }
   return response
 }
@@ -191,20 +241,6 @@ wrangler publish
 ```
 
 TODO Wrangler screenshot
-
-With your serverless function deployed, a simple cURL request is a great way to test the functionality of the function. By sending an HTTP `POST` with JSON-formatted data to our published Workers function, we can get QR code data back, and write the data to a file, `qr.png`:
-
-```
-curl -d '{"text":"https://workers.dev"}' -H "Content-Type: application/json" -X POST https://qr.signalnerve.com > qr.png
-```
-
-If you're unfamiliar with the command-line, or want to test it in a user interface, we've built a [live demo](https://qr.signalnervecom) (TODO this should go somewhere else) to test the function (find the source [here](https://github.com/signalnerve/qr-generator-landing) TODO right place for this?):
-
-<video loop muted="true">
-  <source src="./media/demo.webm" type="video/webm">
-  <source src="./media/demo.mp4" type="video/mp4">
-  Your browser doesn't support HTML5 video in WebM or MP4.
-</video>
 
 ## Resources
 
