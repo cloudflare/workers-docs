@@ -4,7 +4,7 @@ title: Fetch API
 
 ## Overview
 
-The [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) provides an interface for asynchronous fetching of resources by providing a definition of a `Request` and a `Response`. You will frequently find yourself interacting with the request objects included as part of a [FetchEvent](../fetch-event), making your own requests using the global `fetch` method, and constructing your own responses. Check out our [article](TODO: Link modifying requests/responses) about best practices for modifying a request or response.
+The [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) provides an interface for asynchronous fetching of resources by providing a definition of a `Request` and a `Response`. You will frequently find yourself interacting with the request objects included as part of a [FetchEvent](/reference/runtime/apis/fetch-event), making your own requests using the global `fetch` method, and constructing your own responses. Check out our [article](TODO: Link modifying requests/responses) about best practices for modifying a request or response.
 
 ## Global
 
@@ -36,19 +36,19 @@ new Request(input [, init])
 
 	* `method`: The request method such as, `GET` and `POST`
 	* `headers`: A [Headers](#headers) object
-	* `body`: Any body text to add to the request: TODO: Enumerate possible types. 
+	* `body`: Any body text to add to the request: TODO: Enumerate possible types.
 	**Note:** Requests using the `GET` or `HEAD` methods cannot have a body.
-	* `redirect`: The redirect mode to use. Valid options (TODO: what is the default?):	
-		
+	* `redirect`: The redirect mode to use. Valid options (TODO: what is the default?):
+
 		* `follow`
 		* `error`
-		* `manual` 
+		* `manual`
 
 ### Properties
 
 All request object properties are read-only. To [modify a request](TODO: link to modifying a request), create a new `Request` object and pass the options to modify into its [Constructor](#Constructor).
 
-* `body`: A simple getter method that exposes a [`ReadableStream`](../streams) of the body contents.
+* `body`: A simple getter method that exposes a [`ReadableStream`](/reference/runtime/apis/streams) of the body contents.
 
 * `bodyUsed`: A Boolean value that declares if `body` has been used in a response.
 
@@ -56,12 +56,12 @@ All request object properties are read-only. To [modify a request](TODO: link to
 
 * `headers`: Contain the associated [Headers](#headers) object for the request.
 
-* `method`: The request method associated with the request such as, `GET`or `POST`. 
+* `method`: The request method associated with the request such as, `GET`or `POST`.
 
 * `redirect`: The redirect mode to use: Valid options (TODO: what is the default?):
 		* `follow`
 		* `error`
-		* `manual` 
+		* `manual`
 * `url`: Contains the URL of the request.
 
 #### The `cf` Object<a name="cfObject"></a>
@@ -114,7 +114,7 @@ new Response(body, init)
 
 ### Properties
 
-* `body`: A simple getter method that exposes a [`ReadableStream`](../streams) of the body contents.
+* `body`: A simple getter method that exposes a [`ReadableStream`](/reference/runtime/apis/streams) of the body contents.
 * `bodyUsed`: A Boolean that declares if the body has been used in a response.
 * `headers`: Contain the associated [Headers](#headers) object for the request.
 * `ok`: Contains a boolean stating if the response was successful (status in the range 200-299).
@@ -122,7 +122,7 @@ new Response(body, init)
 * `status`: Contains the status code of the response (such as, `200` for a success).
 * `statusText`: Contains the status message corresponding to the status code (such as, `OK` for `200`).
 * `url`: Contains the URL of the response. The value of the `url` property is the final URL obtained after any redirects.
-* `webSocket`: Present on successful WebSocket handshake responses. For example, if a client sends a WebSocket upgrade request to an origin and a worker intercepts the request and forwards it to the origin and the origin replies with a successful WebSocket upgrade response, the worker can observe the presence of `response.webSocket`. This establishes a WebSocket connection proxied through a worker. 
+* `webSocket`: Present on successful WebSocket handshake responses. For example, if a client sends a WebSocket upgrade request to an origin and a worker intercepts the request and forwards it to the origin and the origin replies with a successful WebSocket upgrade response, the worker can observe the presence of `response.webSocket`. This establishes a WebSocket connection proxied through a worker.
 	**Note:** You cannot intercept the data flowing over the WebSocket connection.
 
 ### Methods
