@@ -4,6 +4,6 @@ alwaysopen: true
 weight: 5
 ---
 
-## [Available APIs](./apis)
+## [Available APIs](/reference/runtime/apis)
 
-## [Limitations](./limits)
+## [Limitations](/reference/runtime/limits)
