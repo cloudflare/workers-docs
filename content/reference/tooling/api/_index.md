@@ -1,6 +1,6 @@
 ---
 title: Cloudflare API
-alwaysopen: false
+alwaysopen: true
 ---
 
 ## Endpoint References
