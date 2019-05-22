@@ -1,23 +1,21 @@
----
+﻿---
 title: Streaming
 ---
 
-## Overview
+Worker scripts don’t need to prepare an entire response body _before_ delivering it to `event.respondWith()`. You can use `TransformStream` to stream a response body _after_ sending the front matter (that is, HTTP status line and headers). This allows you to minimize:
 
-A Worker script doesn’t need to prepare its entire response body before delivering a Response to `event.respondWith()`. Using a TransformStream, it is possible to stream a response body _after_ sending the response’s front matter (i.e., HTTP status line and headers). This allows us to minimize:
+* The visitor’s time-to-first-byte.
+* The buffering done in the Worker script.
 
-- The visitor’s time-to-first-byte.
-- The amount of buffering that must be done in the Worker script.
+Minimizing buffering is especially important for processing or transforming response bodies larger than the Workers script memory limit. For these cases, streaming is the only implementation strategy.
 
-Minimizing buffering is especially important if you must process or transform response bodies that are larger than the Workers script's memory limit. In these cases, streaming is the only feasible implementation strategy.
+**Note:** By default, the Cloudflare Workers service streams. Only use these APIs for _modifying_ the response body while maintaining streaming behavior. If your Workers script only passes subrequest responses back to the client verbatim without reading their body text, then its body handling is already optimal and you don't have to use these APIs.
 
-**Note:** The Cloudflare Workers service already streams by default wherever possible. You only need to use these APIs if you wish to _modify_ the response body in some way, while maintaining streaming behavior. If your Workers script only passes subrequest responses back to the client verbatim, without reading their bodies, then its body handling is already optimal, and there is no need for the techniques described here.
+### Streaming Passthrough
 
-### Streaming Pass-Through
+The two primitives developers use to perform active streaming are `TransformStream` and the [`ReadableStream.pipeTo()`](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream/pipeTo) method.
 
-The two primitives developers can use to perform active streaming are TransformStream and the [ReadableStream.pipeTo()](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream/pipeTo) method.
-
-Here’s a minimal pass-through example to show their basic usage.
+**Example of basic minimal passthrough usage:**
 
 ```javascript
 addEventListener('fetch', event => {
@@ -40,9 +38,9 @@ async function fetchAndStream(request) {
 }
 ```
 
-Although we call `response.body.pipeTo(writable)`, we do _not_ `await` it, so that it does not block forward progress of the remainder of the `fetchAndStream()` function. It will continue to run asynchronously until the response has been completed or the client disconnects.
+Note that we call `response.body.pipeTo(writable)` but do _not_ `await` it. This is so it does not block the forward progress of the remainder of the `fetchAndStream()` function. It continues to run asynchronously until the response is complete or the client disconnects.
 
-This Worker doesn’t do anything particularly special — it is mostly equivalent to not having a Worker at all. However, it shows that your Worker can continue running a function (`response.body.pipeTo(writable)`) after a response has been returned to the client. The example above just pumps the subrequest response body to the final response body, but more complicated logic could be inserted, e.g. to add a prefix or a suffix to the body, or to process it in some way.
+This Worker shows that it can continue running a function (`response.body.pipeTo(writable)`) after a response is returned to the client. This example just pumps the subrequest response body to the final response body; however, you can use more complicated logic, such as adding a prefix or a suffix to the body or to process it somehow.
 
 ## Reference
 
@@ -50,22 +48,21 @@ This Worker doesn’t do anything particularly special — it is mostly equivale
 
 #### Properties
 
-- `readable`: An instance of a `ReadableStream`.
-- `writable`: An instance of a `WritableStream`.
+* `readable`: An instance of a `ReadableStream`.
+* `writable`: An instance of a `WritableStream`.
 
 ### ReadableStream
 
-_Note: A `ReadableStream` is returned as the `readable` property inside of a `TransformStream`. On the Workers platform, `ReadableStream` can't be created directly using the `ReadableStream` constructor._
+**Note:** A `ReadableStream` returns as the `readable` property inside `TransformStream`. On the Workers platform, `ReadableStream` cannot be created directly using the `ReadableStream` constructor.
 
 #### Properties
 
-- `locked`: A boolean indicating whether the readable stream is locked to a reader.
+* `locked`: A Boolean value that indicates if the readable stream is locked to a reader.
 
 #### Methods
 
-- `pipeTo(destination)`: Pipe the readable stream to a given writable stream, `destination`. Returns a promise that is fulfilled when the write operation has succeeded, or rejected if the operation fails.
-
-- `getReader`: Get an instance of `ReadableStreamDefaultReader`, and locks the `ReadableStream` to that reader instance. The `getReader` method accepts an object argument indicating _options_, currently, we support one, `mode`, which can be set to `byob` to create a `ReadableStreamBYOBReader`:
+* `pipeTo(destination)`: Pipes the readable stream to a given writable stream `destination` and returns a promise that is fulfilled when the `write` operation succeeds or rejects it if the operation fails.
+* `getReader`: Gets an instance of `ReadableStreamDefaultReader` and locks the `ReadableStream` to that reader instance. This method accepts an object argument indicating _options_. We only support one `mode`, which can be set to `byob` to create a `ReadableStreamBYOBReader`, as shown in this snippet:
 
   ```javascript
   let reader = readable.getReader({ mode: 'byob' })
@@ -75,48 +72,47 @@ _Note: A `ReadableStream` is returned as the `readable` property inside of a `Tr
 
 #### Properties
 
-- `closed`: A promise that indicates whether the reader is closed, or not. The promise will be fulfilled when the reader stream is closed, and will reject if there is an error in the stream.
+* `closed`: A promise indicating if the reader is closed. The promise is fulfilled when the reader stream closes, and is rejected if there is an error in the stream.
 
 #### Methods
 
-- `read`: A promise that returns the next available chunk of data being passed through the reader queue.
-- `cancel(reason)`: Cancel the stream, passing an optional `reason` string (intended to be human-readable) to indicate the reason for the cancellation. Note: any data that has not yet been read will be lost.
-- `releaseLock`: Release the lock on the readable stream. A lock can't be released if the reader still has pending read operations: a `TypeError` will be thrown and the reader will remain locked.
+* `read`: A promise that returns the next available chunk of data being passed through the reader queue.
+* `cancel(reason)`: Cancels the stream and passes an optional `reason` string (intended to be human-readable) to indicate the reason for cancellation. **Note:** Any data not yet read is lost.
+* `releaseLock`: Releases the lock on the readable stream. A lock can't be released if the reader has pending read operations. A `TypeError` is thrown and the reader remains locked.
 
 ### ReadableStreamBYOBReader
 
-_Note: An instance of `ReadableStreamBYOBReader`, created by passing the mode `byob` to `getReader` on an instance of `ReadableStream`, is functionally identical to `ReadableStreamDefaultReader`, with the exception of the `read` method._
+**Note:** An instance of `ReadableStreamBYOBReader` created by passing the `byob` mode to `getReader` on an instance of `ReadableStream`, is functionally identical to `ReadableStreamDefaultReader` with the exception of the `read` method.
 
 #### Methods
 
-- `read(buffer)`: Returns a promise with the next available chunk of data, read into a passed-in buffer.
+* `read(buffer)`: Returns a promise with the next available chunk of data read into a passed-in buffer.
 
 ### WritableStream
 
-_Note: A `WritableStream` is returned as the `writable` property inside of a `TransformStream`. On the Workers platform, `WritableStream` can't be created directly using the `WritableStream` constructor._
+**Note:** A `WritableStream` returns as the `writable` property inside `TransformStream`. On the Workers platform, `WritableStream` can't be directly created using the `WritableStream` constructor.
 
 #### Properties
 
-- `locked`: A boolean indicating whether the writable stream is locked to a writer.
+* `locked`: A Boolean value to indicate if the writable stream is locked to a writer.
 
 #### Methods
 
-- `abort(reason)`: Abort the stream, passing an optional `reason` string (intended to be human-readable) to indicate the reason for the cancellation. Returns a promise, which fulfills with response `undefined`. Note: any data that has not yet been written will be lost.
-
-- `getWriter`: Get an instance of `WritableStreamDefaultWriter`, and locks the `WritableStream` to that writer instance.
+* `abort(reason)`: Aborts the stream and passes an optional `reason` string (intended to be human-readable) to indicate the reason for cancellation. This method returns a promise that fulfills with a response `undefined`. **Note:** Any data yet written is lost.
+* `getWriter`: Gets an instance of `WritableStreamDefaultWriter` and locks the `WritableStream` to that writer instance.
 
 ### WritableStreamDefaultWriter
 
 #### Properties
 
-- `desiredSize`: Returns the desired size needed to fill the stream's internal queue, as an integer. Will always return 1, 0 (if the stream is closed), or `null` (if errored).
-- `closed`: A promise that indicates whether the writer is closed, or not. The promise will be fulfilled when the writer stream is closed, and will reject if there is an error in the stream.
+* `desiredSize`: Returns the size needed to fill the stream's internal queue, as an integer. Always returns 1, 0 (if the stream is closed), or `null` (if the stream has errors).
+* `closed`: A promise that indicates if the writer is closed. The promise is fulfilled when the writer stream is closed and rejected if there is an error in the stream.
 
 #### Methods
 
-- `abort(reason)`: If the writer is active, aborting it will behave similarly to `WritableStream`'s `abort` method. An optional `reason` string can be passed (intended to be human-readable) to indicate the reason for the cancellation. Returns a promise, which fulfills with `undefined`. Note: any data that has not yet been written will be lost.
-- `close`: Attempt to close the writer. Remaining writes will finish processing, before the writer is closed. Returns a promise that fulfills with undefined if the writer successfully closes and processes remaining writes, or rejected if any errors are encountered.
-- `releaseLock`: Releases the writer's lock on the stream. Once released, the writer will no longer be active. This method can be called _before_ all pending `write(chunk)` calls have been resolved: this allows you to queue a write operation, release the lock, and begin piping into the writable stream from another source:
+* `abort(reason)`: If the writer is active, aborting it is similar to the `abort` method used in `WritableStream`. An optional `reason` string can be passed (intended to be human-readable) to indicate the reason for cancellation. This method returns a promise that fulfills with `undefined`. **Note:** Any data not yet written is lost.
+* `close`: Attempts to close the writer. Remaining writes finish processing before the writer is closed. This method returns a promise fulfilled with `undefined` if the writer successfully closes and processes the remaining writes, or rejected on any error.
+* `releaseLock`: Releases the writer's lock on the stream. Once released, the writer is no longer active. You can call this method _before_ all pending `write(chunk)` calls are resolved. This allows you to queue a `write` operation, release the lock, and begin piping into the writable stream from another source, as shown in this example:
 
 ```javascript
 let writer = writable.getWriter()
@@ -127,4 +123,4 @@ writer.releaseLock()
 await someResponse.body.pipeTo(writable)
 ```
 
-- `write(chunk)`: Writes a chunk of data to the writer. Returns a promise to indicate whether the operation has succeeded or failed.
+* `write(chunk)`: Writes a chunk of data to the writer and returns a promise to indicate if the operation succeeded or failed.

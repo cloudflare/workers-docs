@@ -1,31 +1,33 @@
----
-title: Limitations
+﻿---
+title: Plans and Limitations
 ---
 
-## Bundle Size
+This section describes various limitations associated with your account.b
+
+This section describes various limitations associated with your account.b
 
 A Worker script plus any [Asset Bindings](/reference/tooling/api/bindings) can be up to 1MB in size after compression.
 
-## Number of Scripts
+## Number of Scripts Limits
 
-| Plan        | Number of Scripts |
-| ----------- | ----------------- |
-| Workers.dev | 50                |
-| Paid        | 1000              |
+This lists the number of Workers scripts you can run in your Cloudflare deployments.
 
-app worker scripts do not count towards the limit
+| Plan          | Number of Scripts |
+| ------------- | ----------------- |
+| `workers.dev` | 50                |
+| Subscribed    | 1000              |
 
-## Number of Requests
+**Note:** app Workers scripts do not count towards this limit.
 
-Your Worker automatically scales onto thousands of servers around the world; there is no general limit to the number of requests per second Workers can handle.
+## Number of Requests Limit
 
-Cloudflare does impose a number of abuse protection methods which are designed not to affect well-intentioned traffic. If you send many thousands of requests per second from a small number of client IP addresses, you can inadvertently trigger some of the protection methods. If you receive 1015 errors in response to traffic you believe should be allowed, please contact us to have the limits adjusted.
+Workers scripts automatically scale onto thousands of Cloudflare Edge servers around the world; there is no general limit to the number of requests per second Workers can handle.
 
-If you have an application which you expect to exceed these limits, feel free to contact us to have them raised.
+Cloudflare's abuse protection methods do not affect well-intentioned traffic. However, if you send many thousands of requests per second from a small number of client IP addresses, you can inadvertently trigger Cloudflare's abuse protection. If you expect to receive `1015` errors in response to traffic or expect your application to incur these errors, contact Cloudflare to increase your limit.
 
-## CPU/execution time
+## CPU/Execution Time Limit
 
-Most Worker requests consume less than a single millisecond. It’s rare for us to find a Worker script which is operating as intended and runs into the CPU time limit.
+Most Workers requests consume less than a millisecond. It’s rare to find a normally operating Workers script that exceeds the CPU time limit.
 
 | Plan       | CPU   |
 | ---------- | ----- |
@@ -34,34 +36,30 @@ Most Worker requests consume less than a single millisecond. It’s rare for us 
 | Business   | 50ms  |
 | Enterprise | 50ms+ |
 
-In general the 5ms offered to free plans is sufficient for all practical use-cases, including application hosting. If you have a usage which violates these limits, please reach out and we will be happy to discuss other options.
+The 5ms the Free plan allows is enough runtime for most use cases, including application hosting. If you expect to exceed these limits, Cloudflare is happy to discuss options.
 
-There is no hard limit on the amount of real time a Worker may use. As long as the client which sent a request remains connected, the Worker may continue processing, making subrequests, and setting timeouts on behalf of that request.
-
-When the client disconnects, all tasks associated with that client’s request are proactively canceled. If event.waitUntil() has been used, cancellation will be delayed until the promise passed to waitUntil() completes, or until an additional 30 seconds has elapsed, whichever happens first.
+There is no limit on the real runtime for a Workers script. As long as the client that sent the request remains connected, the Workers script can continue processing, making subrequests, and setting timeouts on behalf of that request. When the client disconnects, all tasks associated with that client request are canceled. You can use [`event.waitUntil()`](TODO: link to waitUntil) to delay cancellation for another 30 seconds or until the promise passed to `waitUntil() completes.
 
 ## Memory
 
-We run at most one Worker instance on each of the many servers we run at our edge locations around the world. Each instance can consume up to 128MB of memory. By using global variables you can persist data between requests on an individual node, but note that nodes are occasionally evicted from memory.
+Only one Workers instance runs on each of the many global Cloudflare Edge servers. Each Workers instance can consume up to 128MB of memory. Use [global variables](TODO: link) to persist data between requests on individual nodes; note however, that nodes are occasionally evicted from memory.
 
-If you are concerned about memory usage, the solution is often to stream your responses (potentially using the TransformStream API) rather than loading an entire response into memory.
+Use the [TransformStream API](TODO: link) to stream responses if you are concerned about memory usage. This avoids loading an entire response into memory.
 
 ## Subrequests
 
-### Can my Worker make subrequests to load other sites on the Internet?
+### Can a Workers script make subrequests to load other sites on the Internet?
 
-Yes, your Worker can use the Fetch API to make arbitrary requests to other Internet resources.
+Yes. Use the [Fetch API](../fetch) to make arbitrary requests to other Internet resources.
 
 ### How many subrequests can I make?
 
-We currently limit the number of subrequests a script can make to 50. This is a temporary limit which we plan to remove soon.
-
-Note that each subrequest in a redirect chain counts against this limit, so the number of subrequests a script makes may end up being greater than the number of fetch(request) calls that are in the script.
+The limit for subrequests a Workers script can make is 50 per request. Each subrequest in a redirect chain counts against this limit. This means that the number of subrequests a Workers script makes could be greater than the number of `fetch(request)` calls in the script.
 
 ### Can I make a subrequest after my Worker has responded to the user?
 
-Yes, you can use event.waitUntil() to register asynchronous tasks that may continue after the response has been returned.
+Yes, you can use [`event.waitUntil()`](TODO: link) to register asynchronous tasks that may continue after the response has been returned.
 
 ### How long can a subrequest take?
 
-There is no individual subrequest duration limit, but all subrequests must be initated in the first 15 seconds of your script’s execution.
+There is no individual subrequest runtime limit, but all subrequests must initate in the first 15 seconds of Worker script execution.

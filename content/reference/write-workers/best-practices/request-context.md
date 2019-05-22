@@ -40,4 +40,5 @@ Any attempt to use APIs such as `fetch()` or access `Request` context during scr
 const promise = fetch('https://example.com/') // ERROR
 ```
 
-This code snippet will throw during script startup, and no code after it would execute.
+This code snippet will throw during script startup, and the `"fetch"` event
+listener will never be registered.
