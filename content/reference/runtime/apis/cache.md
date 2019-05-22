@@ -2,117 +2,111 @@
 title: Cache API
 ---
 
-## Overview
+Cloudflare provides cache space per domain for serving static assets from our Edge network. This reduces visitors take to navigate your site by reducing the distance the data must travel. It also reduces the traffic load on your web server by returning the same response for identical requests. This is great for static assets like images, HTML, and CSS, but much of the traffic moving across the web is dynamic data requested using AJAX requests. Note that this traffic is not cached, and therefore misses out on the benefits of caching.
 
-By default Cloudflare provides cache space per domain for serving static assets from our Edge network. This reduces the time it takes visitors to navigate your site by reducing the distance the data has to travel. It also reduces the traffic load on your web server by returning the same response for identical requests.
+The Cache API described by the [Service Worker](https://w3c.github.io/ServiceWorker/#cache) specification is one way to customize your cache behavior using JavaScript.
 
-This is great for static assets like images, html, and css, but much of the traffic moving across the web is dynamic data that is requested via AJAX requests. By default, this kind of traffic is not cached, and therefore misses out on the benefits of caching.
+# The Cache Object
 
-The Cache API described by the [Service Worker](https://w3c.github.io/ServiceWorker/#cache) specification provides a way to customize your cache's behavior using JavaScript.
+The Cloudflare Workers runtime exposes a single global cache object: `caches.default`, which differs from the web browser Cache API as no default cache objects are exposed.
 
-## The Cache Object
-
-The Cloudflare Workers runtime exposes a single global Cache object, `caches.default`.
-
-This differs from web browsers' Cache API in that they do not expose any default cache object.
-
-#### Syntax
+## Syntax
 
 ```javascript
 let cache = caches.default
 ```
 
-### Methods
+## Methods
 
-#### `put`
+### `put`
 
-Adds a response keyed to the given request to the cache. Returns a promise which resolves to `undefined` once the cache has stored the response.
+Adds to the cache a response keyed to the given request. Returns a promise that resolves to `undefined` once the cache stores the response.
 
-##### Syntax
+#### Syntax
 
 ```javascript
 cache.put(request, response)
 ```
 
-##### Parameters
+#### Parameters
 
-`request`: Either a string or a [`Request`](/reference/runtime/apis/fetch#request) object to serve as the key. If a string is passed, it will be interpreted as the URL for a new Request object.
+* `request`: Either a string or a [`Request`](../fetch#request) object to serve as the key. If a string is passed, it is interpreted as the URL for a new Request object.
 
-`response`: A [`Response`](/reference/runtime/apis/fetch#response) object to store under the given key.
+* `response`: A [`Response`](../fetch#response) object to store under the given key.
 
-##### Invalid Parameters
+#### Invalid parameters
 
-`cache.put` will throw an error if:
+* `cache.put` throws an error if:
+	* the `request` passed is a method other than `GET`
+	* the `response` passed is a `status` of [`206 Partial Content`](https://httpstatuses.com/206)
+	* the `response` passed contains the header `Vary: *` (required by the Cache API specification)
 
-- the `request` passed has a method other than `GET`
-- the `response` passed has a `status` of [`206 Partial Content`](https://httpstatuses.com/206)
-- the `response` passed contains the header `Vary: *` (required by Cache API specification)
-
-##### Headers
+#### Headers
 
 Our implementation of the Cache API respects the following HTTP headers on the response passed to `put()`:
 
-- `Cache-Control`: Controls caching directives. Consistent with [Cloudflare Cache-Control Directives](https://support.cloudflare.com/hc/en-us/articles/115003206852-Origin-Cache-Control#h_4250342181031546894839080). See also [Expiring cache objects](#expiring-cache-objects)
-- `Cache-Tag`: Allows the resource to be purged by tag(s) later. (Enterprise only)
-- `ETag`: Allows `cache.match()` to evaluate conditional requests with `If-None-Match`.
-- `Expires`: A string that specifies when the resource becomes invalid. See also [Expiring cache objects](#expiring-cache-objects)
-- `Last-Modified`: Allows `cache.match()` to evaluate conditional requests with `If-Modified-Since`.
+* `Cache-Control`: Controls caching directives. This is consistent with [Cloudflare Cache-Control Directives](https://support.cloudflare.com/hc/en-us/articles/115003206852-Origin-Cache-Control#h_4250342181031546894839080). See also [Expiring cache objects](#expiring-cache-objects).
+* `Cache-Tag`: Allows resource purging by tag(s) later (Enterprise only).
+* `ETag`: Allows `cache.match()` to evaluate conditional requests with `If-None-Match`.
+* `Expires`: A string that specifies when the resource becomes invalid. See also [Expiring cache objects](#expiring-cache-objects).
+* `Last-Modified`: Allows `cache.match()` to evaluate conditional requests with `If-Modified-Since`.
 
-This differs from web browsers' Cache API in that they do not honor any headers on the request or response.
+This differs from the web browser Cache API as they do not honor any headers on the request or response.
 
-**Note:** Responses with `Set-Cookie` headers will never be cached, as this sometimes indicates that
-the response contains unique data. To store a response with a `Set-Cookie` header, either delete
-that header or set `Cache-Control: private=Set-Cookie` on the response before calling `cache.put()`.
-Using the `Cache-Control` method will allow the response to be stored, but without the `Set-Cookie`
-header.
+**Note:** Responses with `Set-Cookie` headers are never cached, because this sometimes indicates that the response contains unique data. To store a response with a `Set-Cookie` header, either delete that header or set `Cache-Control: private=Set-Cookie` on the response before calling `cache.put()`.
 
-#### `match`
+Use the `Cache-Control` method to store the response without the `Set-Cookie` header.
+
+### `match`
 
 Returns a promise wrapping the response object keyed to that request.
 
-##### Syntax
+#### Syntax
 
 ```javascript
 cache.match(request, options)
 ```
 
-##### Parameters
+#### Parameters
 
-`request`: The string or [`Request`](/reference/runtime/apis/fetch#request) object used as the lookup key. If a string is passed, it will be interpreted as the URL for a new Request object.
+* `request`: The string or [`Request`](../fetch#request) object used as the lookup key. Strings are interpreted as the URL for a new `Request` object.
 
-`options`: The options object may contain one possible property:
+* `options`: Can contain one possible property:
+	* `ignoreMethod` (Boolean): Consider the request method a GET regardless of its actual value.
 
-- `ignoreMethod` (bool): Consider the request method to be GET, regardless of its actual value.
+	Unlike the browser Cache API, Cloudflare Workers do not support the `ignoreSearch` or `ignoreVary` options on `match()`. You can accomplish this behavior by removing query strings or HTTP headers at `put()` time.
 
-Unlike the browser Cache API, Cloudflare Workers does not support the `ignoreSearch` or `ignoreVary` options on `match()` at this time. This behavior can be accomplished by removing query strings or HTTP headers at `put()` time.
+	Our implementation of the Cache API respects the following HTTP headers on the request passed to `match()`:
 
-Our implementation of the Cache API respects the following HTTP headers on the request passed to `match()`:
+	* `Range`: Results in a `206` response if a matching response is found. Your Cloudflare cache always respects range requests, even if an `Accept-Ranges` header is on the response.
+	* `If-Modified-Since`: Results in a `304` response if a matching response is found with a `Last-Modified` header with a value after the time specified in `If-Modified-Since`.
+	* `If-None-Match`: Results in a `304` response if a matching response is found with an `ETag` header with a value that matches a value in `If-None-Match`.
+	`cache.match()`: Never sends a subrequest to the origin. If no matching response is found in cache, the promise that `cache.match()` returns is fulfilled with `undefined`.
 
-- `Range`: Results in a 206 response if a matching response is found. Note that our cache always respects range requests, whether or not an `Accept-Ranges` header is on the response.
-- `If-Modified-Since`: Results in a 304 response if a matching response is found with a `Last-Modified` header whose value is after the time point listed in `If-Modified-Since`.
-- `If-None-Match`: Results in a 304 response if a matching response is found with an `ETag` header whose value matches one of the values in `If-None-Match`.
+### `delete`
 
-`cache.match()` never sends a subrequest to the origin. If no matching response is found in cache, the promise that `cache.match()` returns gets fulfilled with `undefined`.
+Deletes the `Response` object from the cache and returns a `Promise` for a Boolean response:
+* `true`: The response was cached but is now deleted
+* `false`: The response was not in the cache at the time of deletion.
 
-#### `delete`
-
-Deletes the `Response` object from the cache and returns a `Promise` for a boolean. `true` means the response was cached and has now been deleted; `false` means the response was not in the cache at the time of deletion.
-
-##### Syntax
+#### Syntax
 
 ```javascript
 cache.delete(request, options)
 ```
 
-##### Parameters
+#### Parameters
 
-`request`: The string or [`Request`](/reference/runtime/apis/fetch#request) object used as the lookup key. If a string is passed, it will be interpreted as the URL for a new Request object.
+* `request`: The lookup key as a string or [`Request`](../fetch#request) object. String are interpreted as the URL for a new `Request` object.
 
-`optons`: The options object may contain one possible property:
+* `optons`: Can contain one of these properties:
 
-- `ignoreMethod` (bool): Consider the request method to be GET, regardless of its actual value.
+	* `ignoreMethod` (Boolean): Consider the request method to `GET`, regardless of its actual value.
 
 ## Quick Start
+
+This example uses `addEventListener` to manage the response.
+
 
 ```javascript
 addEventListener('fetch', event => event.respondWith(handle(event)))
@@ -132,46 +126,54 @@ async function handle(event) {
 
 ## Interacting with the Cloudflare Cache
 
-Conceptually, every individual zone on Cloudflare has its own cache space. There are three ways to interact with these cache spaces: using a browser, using [`fetch()`](/reference/runtime/apis/fetch) from a Worker, and using the Cache API from a Worker.
+Conceptually, every individual zone on Cloudflare has its own cache space. There are three ways to interact with your cache:
+* In a browser
+* Use [`fetch()`](../fetch) from a Workers script
+* Use the Cache API from a Workers script.
 
-### From a Browser
+### In a Browser
 
-External requests from browsers check to see which zone a URL matches, and read through that zone's cache.
+External requests from browsers check the zone the URL matches, and reads through that cache.
 
-### From your Workers scripts
+### Fetch in a Workers script
 
-The Cache API provided by the Workers runtime always uses your own zone's cache, no matter what. You can never store a response in a different zone's cache. For these purposes, your workers.dev scripts are considered part of their own zone.
+The Cache API provided by the Workers runtime always uses the cach in your own zone, no matter what. You can never store a response in another zone's cache. This is why workers.dev scripts are considered part of their own zone.
 
 #### Using `fetch`
 
-Calling [`fetch()`](/reference/runtime/apis/fetch) from your Workers script checks to see if the URL matches a different zone. If it does, it reads through that zone's cache. Otherwise, it reads through its own zone's cache, even if the URL is for a non-Cloudflare site.
+Calling [`fetch()`](../fetch) from your Workers script checks to see if the URL matches a different zone. If it does, it reads through that zone's cache. Otherwise, it reads through its own zone's cache, even if the URL is for a non-Cloudflare site.
 
-[`fetch()`](/reference/runtime/apis/fetch) requests a URL and automatically applies caching rules based on your Cloudflare settings. It does not allow you to modify objects before they reach cache, or inspect if an object is in cache before making a request.
+[`fetch()`](/reference/runtime/apis/fetch) requests a URL and automatically applies caching rules based on your Cloudflare settings. `fetch` does not allow you to modify objects before they reach the cache or inspect if an object is in the cache before making a request.
 
 #### Using `cache-default`
 
-The Cache API's `caches.default` Cache object allows you to:
+The `caches.default` Cache API Cache object allows you to:
 
-- fetch a response for a URL if and only if it is cached using `Cache.match()`.
-- explicitly store a response in the cache using `Cache.put()`.
+* Fetch a response for a URL if (and only if) it is cached using `Cache.match()`.
+* Explicitly store a response in the cache using `Cache.put()`.
 
-If your Worker uses the Cache API to store a response for a URL ...
+If your Workers script uses the Cache API to store a response for a URL ...
 
-- ... on your own zone, and that URL [is cacheable/has a Cache Everything page rule](https://support.cloudflare.com/hc/en-us/articles/115000150272-How-do-I-use-Cache-Everything-with-Cloudflare-), then every Worker on every zone which `fetch()`es that URL and every browser request will see the response your Worker stored.
-- ... on a different Cloudflare zone, then the only way to retrieve that response is via your Worker's Cache API.
-- ... on a non-Cloudflare site, then your own zone's Worker will see the response your Worker stored if it `fetch()`es that URL, but no other Worker or browser will see that response.
+* ... on your own zone and that URL [is cacheable or has a _Cache Everything_ page rule](https://support.cloudflare.com/hc/en-us/articles/115000150272-How-do-I-use-Cache-Everything-with-Cloudflare-), then every Worker on every zone that `fetch()`es that URL and every browser request sees the response your Worker stored.
+* ... on a different Cloudflare zone, then the only way to retrieve that response is using a Workers Cache API.
+* ... on a non-Cloudflare site, then your own zone's Worker sees the response your Worker stored if it `fetch()`es that URL, but no other Worker or browser sees that response.
 
 ## Expiring cache objects
 
-You can specify any TTL for an object via the `Cache-Control` header, or an absolute expiration date via the `Expires` header. If it is not accessed frequently enough, it may be evicted from cache. There are no guarantees about how long an object stays in cache.
+You can specify any TTL for an object in the `Cache-Control` header or an absolute expiration date in the `Expires` header. If it is not accessed frequently enough, it may be evicted from cache.
 
-Setting the Cache-Control header on the response you put into the cache will modify the edge cache time. If you have Browser TTL set in the Cloudflare dashboard, it will override the client-facing TTL set by Cache-Control.
+**Note:** There are no guarantees for how long an object stays in the cache.
+
+Set the `Cache-Control` header on the response stored in cache modifies the edge-cache time.
+
+**Note:** The **Browser TTL** setting in your Cloudflare dashboard overrides the client-facing TTL set by `Cache-Control`.
 
 ## Examples
 
 ### Add Cache-Tag to response
 
-This script will add [cache tags](https://support.cloudflare.com/hc/en-us/articles/206596608-How-to-Purge-Cache-Using-Cache-Tags-Enterprise-only-) to the response corresponding to directories in the request. For example, the url `https://www.example.com/foo/bar/baz.jpg` will get the header:
+This script adds [cache tags](https://support.cloudflare.com/hc/en-us/articles/206596608-How-to-Purge-Cache-Using-Cache-Tags-Enterprise-only-) to the response corresponding to directories in the request. For example, the URL  `https://www.example.com/foo/bar/baz.jpg` gets the header:
+
 `Cache-Tag: www.example.com/foo/*,www.example.com/foo/bar/*`
 
 ```javascript
@@ -265,15 +267,15 @@ async function sha256(message) {
 
 ### Where are cache objects stored?
 
-Objects are stored in the local datacenter that handles the request. They are not replicated to any other datacenters.
+Cache objects are stored in the local datacenter handling the request and are not replicated to other datacenters.
 
 ### What are the usage limits on the cache API?
 
-- 50 total `put()`, `match()`, or `delete()` calls per request, using the same quota as fetch()
-- 500 MBs total `put()` per request
-- Each `put()` with a valid `Content-Length` header may be up to 50MB
-- A `put()` with `Transfer-Encoding: chunked` may be up to 500MB, but it will block subsequent `put()`s until the transfer is complete.
+- 50 total `put()`, `match()`, or `delete()` calls per-request, using the same quota as `fetch()`
+- 500 MBs total `put()` per-request
+- up to 50MB for each `put()` with a valid `Content-Length` header
+- up to 500MB for a `put()` with `Transfer-Encoding: chunked`. Note that this blocks subsequent `put()`s until the transfer completes.
 
 ### How do I check if a response is cached?
 
-If a response has filled the cache, you will see a response header `CF-Cache-Status: HIT`
+If a response fills the cache, the response header contains `CF-Cache-Status: HIT`.
