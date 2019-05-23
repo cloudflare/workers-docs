@@ -18,4 +18,4 @@ If a `fetch` event handler does not call `respondWith()`, the runtime delivers t
 
 ## `passThroughOnException()`
 
-This causes the script to "fail open" (meaning the exectution of code is not halted) on unhandled exceptions. Instead of returning a runtime error response, the runtime proxies the request to its destination. To prevent JavaScript errors from causing entire requests to fail on uncaught exceptions, `passThroughOnException()` causes the worker to act as if the exception wasn’t there. This allows you to yield control to your origin server.
+Causes the script to "fail open" (meaning the execution of code is not halted) on unhandled exceptions. Instead of returning a runtime error response, the runtime proxies the request to its destination. To prevent JavaScript errors from causing entire requests to fail on uncaught exceptions, `passThroughOnException()` causes the Worker to act as if the exception wasn’t there. This allows you to yield control to your origin server.
