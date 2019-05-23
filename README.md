@@ -20,7 +20,7 @@ All commands are packaged in `Makefile`. The available commands are:
 
 - `make build` - generate HTML files from MD and templates.
 - `make deploy` - deploy documents
-- `make serve` - generate HTML files continuously and serve at localhost:1313/workers/ to iterate content
+- `make serve` - generate HTML files continuously and serve at localhost:1313 to iterate content
 
 The most useful option on a normal basis is:
 
