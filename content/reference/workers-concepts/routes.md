@@ -17,7 +17,7 @@ Each script that runs must have a script name, so there is currently no way to r
 
 ## Cloudflare Sites
 
-For zones proxied on Cloudflare*, route pattens decide what (if any) script is matched based on the URL of that request. Requests are routed through a Worker script when their URL matches a route pattern assigned to that script. Route patterns are created either from inside the Cloudflare Workers editor, or by using the Cloudflare API.
+For zones proxied on Cloudflare*, route patterns decide what (if any) script is matched based on the URL of that request. Requests are routed through a Worker script when their URL matches a route pattern assigned to that script. Route patterns are created either from inside the Cloudflare Workers editor, or by using the Cloudflare API.
 
 Note: Prior implementations for non-Enterprise customers used the concept of filters.
 
