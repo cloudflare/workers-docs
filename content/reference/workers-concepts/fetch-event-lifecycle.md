@@ -2,7 +2,7 @@
 title: The `FetchEvent` Lifecycle
 ---
 
-When working with the `FetchEvent` inside the Workers runtime, it helps to have a good idea of its lifecycle.
+When working with the [`FetchEvent`](/reference/runtime/apis/fetch-event) inside the Workers runtime, it helps to have a good idea of its lifecycle.
 
 This lifecyle starts when a [Request Object](/reference/runtime/apis/fetch#Request) triggers the `FetchEvent`-- this happens when the fuction is called via [HTTP(S) routes](/reference/workers-concepts/routes), or when `respondWith()` or `waitUntil()` are called on the `Request` object within the Worker code. The life of a `RequestEvent` is determined by the method call that triggered it:
 
