@@ -4,7 +4,7 @@ title: The `fetch` Event Lifecycle
 
 When working with the [`fetch` event](/reference/runtime/apis/fetch-event) inside the Workers runtime, it helps to have a good idea of its lifecycle.
 
-This lifecyle starts the runtime recieves a request; it triggers a `fetch` event and passes a [Request Object](/reference/runtime/apis/fetch#Request) to registered `fetch` handlers-- this happens when the fuction is called via [HTTP(S) routes](/reference/workers-concepts/routes), or when `respondWith()` or `waitUntil()` are called on the `Request` object within the Worker code. The life of a `RequestEvent` is determined by the method calls used in its event handlers:
+The runtime lifecycle starts when it receives a request; it triggers a `fetch` event and passes a [Request Object](/reference/runtime/apis/fetch#Request) to registered `fetch` handlers - this happens when the function is called via [HTTP(S) routes](/reference/workers-concepts/routes), or when `respondWith()` or `waitUntil()` are called on the `Request` object within the Worker code. The life of a `RequestEvent` is determined by the method calls used in its event handlers:
 
 ## `respondWith()`
 
