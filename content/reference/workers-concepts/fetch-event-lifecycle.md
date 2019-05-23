@@ -8,9 +8,9 @@ This lifecyle starts the runtime recieves a request; it triggers a `fetch` event
 
 ## `respondWith()`
 
-This intercepts the request and allows to send a custom response. This is useful when you wish to modify the response before it is sent back to the requester.
+This intercepts the request and allows users to send a custom response. 
 
-If a `fetch` event handler does not call `respondWith()`, the runtime delivers the event to the next registered `fetch` event handler. If no event handler calls `respondWith()`, the runtime proxies the request to its destination.
+If a `fetch` event handler does not call `respondWith()`, the runtime delivers the event to the next registered `fetch` event handler. However, it is best practice to have at least one `fetch` event handler make a call to `respondWith()`, to ensure your Worker function sends a response to the requester.
 
 ## `waitUntil()`
 
