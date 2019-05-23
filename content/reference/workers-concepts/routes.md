@@ -9,7 +9,7 @@ The mechanics for if and what script should run on a request based on the URL.
 
 ## Workers.dev
 
-For workers.dev zones, routing tables do not apply and the scripts are managed by the name of the script. A request to your `script-name.domain.workers.dev` subdomain will run through the active script with corresponding name, `script-name`.
+For workers.dev zones, scripts are managed by the name of the script. A request to your `script-name.subdomain.workers.dev` subdomain will run through the active script with corresponding name, `script-name`.
 
 Each script that runs must have a script name, so there is currently no way to run a script on `domain.workers.dev`.
 
