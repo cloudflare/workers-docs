@@ -5,11 +5,21 @@ weight: 40
 
 # Routes
 
+The mechanics for if and what script should run on a request based on the URL. 
+
+## Workers.dev
+
+For workers.dev zones, routing tables do not apply and the scripts are managed by the name of the script. A request to your `script-name.domain.workers.dev` subdomain will run through the active script with corresponding name, `script-name`.
+
+Each script that runs must have a script name, so there is currently no way to run a script on `domain.workers.dev`.
+
+## Cloudflare Sites
+
 For zones proxied on Cloudflare*, the routing table decides what (if any) script is matched based on the URL of that request. Requests are routed through a Worker script when their URL matches a route pattern assigned to that script Route patterns are created either from inside the Cloudflare Workers editor, or by using the Cloudflare API.
 
-Note: Prior implementations for non-Enterprise customers used the concept of filters. Read about how this was [deprecated](TODO:).
+Note: Prior implementations for non-Enterprise customers used the concept of filters. Read about how this was [deprecated](TODO: link? or just delete? ).
 
-\* *For workers.dev zones, routing tables do not apply and the scripts are managed by the name of the script. See more on [workers.dev](TODO: workers.dev info).* 
+\* *A zone that you have registered with some registrar (not workers.dev) and setup Cloudflare to serve as [a reverse proxy](https://www.cloudflare.com/learning/cdn/glossary/reverse-proxy/).*
 
 ### Matching Behavior
 
