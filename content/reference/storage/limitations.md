@@ -3,11 +3,6 @@ title: 'Limitations'
 weight: 80
 ---
 
-{{% notice info %}}
-During the early access period, all users are limited to 1 GB of storage.
-More storage will be available for purchase when KV enters general availability.
-{{% /notice %}}
-
 Workers KV supports:
 
 - Up to 20 Namespaces per account
