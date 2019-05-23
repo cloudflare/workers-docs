@@ -4,6 +4,13 @@ alwaysopen: true
 weight: 5
 ---
 
-## [Available APIs](/reference/runtime/apis)
+### Runtime APIs
+- [Standard JavaScript APIs](/reference/runtime/apis)
+- [Cache](/reference/runtime/apis/cache)
+- [Encoding](/reference/runtime/apis/encoding)
+- [Fetch Event](/reference/runtime/apis/fetch-event)
+- [Fetch](/reference/runtime/apis/fetch)
+- [Streams](/reference/runtime/apis/streams)
+- [Web Crypto](/reference/runtime/apis/web-crypto)
 
-## [Limitations](/reference/runtime/limits)
+### [Limits](/reference/runtime/limits)
