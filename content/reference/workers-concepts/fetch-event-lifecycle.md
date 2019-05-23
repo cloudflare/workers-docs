@@ -10,7 +10,7 @@ This lifecyle starts the runtime recieves a request; it triggers a `fetch` event
 
 This intercepts the request and allows users to send a custom response. 
 
-If a `fetch` event handler does not call `respondWith()`, the runtime delivers the event to the next registered `fetch` event handler. However, it is best practice to have at least one `fetch` event handler make a call to `respondWith()`, to ensure your Worker function sends a response to the requester.
+If a `fetch` event handler does not call `respondWith()`, the runtime delivers the event to the next registered `fetch` event handler. If no event handler calls `respondWith()`, the runtime proxies the request to the origin. Note: If no origin is setup (always true for workers.dev sites), then you must have a `respondWith()` called for a valid response.
 
 ## `waitUntil()`
 
