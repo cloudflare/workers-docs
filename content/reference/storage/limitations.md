@@ -1,5 +1,5 @@
 ---
-title: "Limitations"
+title: 'Limitations'
 weight: 80
 ---
 
@@ -19,6 +19,4 @@ Workers KV supports:
 
 If your application requires higher limits, please [let us know](https://support.cloudflare.com).
 
-Workers KV read performance is determined by the amount of read-volume a given
-key receives. Maximum performance for a key is not reached unless that key is
-being read at least a couple times per minute in any given data center.
+Workers KV read performance is determined by the amount of read-volume a given key receives. Maximum performance for a key is not reached unless that key is being read at least a couple times per minute in any given data center.
