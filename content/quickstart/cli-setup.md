@@ -3,29 +3,29 @@ title: Installing the CLI
 weight: 2
 ---
 
-All of the tutorials in the Workers documentation use [Wrangler][2], Cloudflare's open-source command-line tool for managing Cloudflare Workers projects. To begin, you’ll need to [install Wrangler](TODO: link to install page) on your machine.
+All of the tutorials in the Workers documentation use [Wrangler][2], Cloudflare's open-source command-line tool for managing Cloudflare Workers projects. To begin, you’ll need to [install Wrangler](/reference/tooling/wrangler) on your machine.
 
-To confirm that Wrangler has successfully installed on your machine, run `wrangler --help` on the command-line. You should see output like the below screenshot:
+To confirm that Wrangler has successfully installed on your machine, run `wrangler --help` on the command-line:
 
-![Verify Wrangler Installation](/quickstart/media/verify-wrangler-install.png)
+![Verify Wrangler Installation](/quickstart/media/verify-wrangler-install.gif)
 
 ## Scaffold a Project
 
 We've tried to make it as easy as possible for new and returning users alike to get up and running with Workers by including support for templates in Wrangler. Wrangler's `generate` subcommand allows you to create new projects based on existing templates. We maintain a great list of templates in our [Template Gallery](/templates), designed to help you get started quickly with Workers based on what you need in your project. For now, let's use one of our basic templates, which includes support for building and deploying JavaScript code, to generate our first Wrangler project:
 
-``` sh
-$ wrangler generate my-worker https://github.com/cloudflare/worker-template
+```sh
+$ wrangler generate my-worker
 ```
 
-![Generate a Project](/quickstart/media/generate-project.png)
+![Generate a Project](/quickstart/media/generate-project.gif)
 
 > 💡 Protip: If you're ever unsure what a Wrangler subcommand does, like `wrangler generate`, try adding `--help` to the end of the command.
 
-TODO: "Generating a new _rustwasm_": screenshot should be redone when JS support lands
+Once the project has been generated, you can navigate into the newly generated project directory, and look at the list of files created:
 
-..and navigate into the newly generated project directory, and look at the list of files created:
+![Inside my-worker directory](/quickstart/media/cd-ls-my-worker.gif)
 
-``` sh
+```sh
 $ cd my-worker
 $ ls
 ```
@@ -41,7 +41,7 @@ You'll need the following values from [your Cloudflare account](/reference/write
 
 With these keys, you can use Wrangler to set up your default credentials for deploying to Cloudflare Workers, via the `config` subcommand:
 
-``` sh
+```sh
 $ wrangler config <email> <global_api_key>
 ```
 
@@ -53,11 +53,9 @@ Finally, if you are deploying your code to your own domain, you need to set a **
 
 ## Build and Preview your Project
 
-![Inside my-worker directory](/quickstart/media/cd-ls-my-worker.png)
-
 `worker.js` contains the actual code that you'll deploy to Workers. Let's use two more Wrangler commands to build your project, and preview it:
 
-``` sh
+```sh
 $ wrangler build
 $ wrangler preview
 ```
@@ -68,23 +66,19 @@ The `preview` command will take your built Worker project and upload it to a uni
 
 ![Preview your Worker](/quickstart/media/wrangler-preview.png)
 
-(TODO: JS preview currently doesn't work, should be updated when JS support lands in Wrangler)
-
 ## Publish your Project
 
 With your project configured, it's time to publish it! Wrangler has a built-in command for uploading your script, generating the route that corresponds to your `wrangler.toml` file, and wiring them together. If that sounds complicated, don't worry – we've made it really easy:
 
-``` sh
+```sh
 wrangler publish
 ```
 
-![Wrangler Publish Command](/quickstart/media/wrangler-publish.png)
+![Wrangler Publish Command](/quickstart/media/wrangler-publish.gif)
 
 Your Worker will be uploaded and deployed to the route you specified in your config file. To ensure that everything deployed correctly, go to the URL specified at the end of the publishing process – you should see your Worker running as expected!
 
 ![Published Worker](/quickstart/media/published.png)
-
-TODO I have multiscript, and this whole section assumes zone workers: will need to redo this with zoneless workers and probably rework the routing copy as we update Wrangler to support that.
 
 ## Learn More
 
