@@ -6,8 +6,8 @@ weight: 4
 
 ## Endpoint References
 
-* [Making Requests](./requests)
-* [Scripts](./scripts)
-* [Bindings](./bindings)
-* [Routes](./routes)
+* [Making Requests](/reference/tooling/api/requests)
+* [Scripts](/reference/tooling/api/scripts)
+* [Bindings](/reference/tooling/api/bindings)
+* [Routes](/reference/tooling/api/routes)
 

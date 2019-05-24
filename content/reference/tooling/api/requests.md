@@ -3,9 +3,7 @@ title: Making Requests
 weight: 1
 ---
 
-## Making Requests
-
-All requests to this API must
+All requests to the Cloudflare Workers REST API must
 
 - be sent over HTTPS
 - Send a JSON body (unless otherwise indicated)
