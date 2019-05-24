@@ -1,5 +1,5 @@
 ---
-title: Writing a Worker
+title: Write Code
 weight: 1
 ---
 
@@ -64,6 +64,6 @@ To discover what you can build or if you know vaguely, there are a variety of ex
 
 ## Advanced
 
-The [hello world worker script](/quickstart/write-workers#hello-world) demonstrates a direct way to get started. There are many more [available APIs](/reference/runtime/apis) to manipulate intercepted requests. For example, you can retrieve data from [Cache](/reference/runtime/apis/cache), compute a custom response right from the edge, route the request to the appropriate service, filter traffic, and more.
+The [hello world worker script](/quickstart/write-code#hello-world) demonstrates a direct way to get started. There are many more [available APIs](/reference/runtime/apis) to manipulate intercepted requests. For example, you can retrieve data from [Cache](/reference/runtime/apis/cache), compute a custom response right from the edge, route the request to the appropriate service, filter traffic, and more.
 
 For gotchas and concepts to keep in mind while writing scripts see: [Workers Concepts](/reference/workers-concepts).
