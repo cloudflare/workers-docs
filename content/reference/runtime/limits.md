@@ -1,5 +1,5 @@
 ﻿---
-title: Plans and Limitations
+title: Limits
 ---
 
 This section describes various limitations associated with your account.b

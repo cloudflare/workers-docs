@@ -1,5 +1,6 @@
 ---
-title: Cache API
+title: Cache
+weight: 4
 ---
 
 ## The Cache Object

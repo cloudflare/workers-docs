@@ -1,5 +1,6 @@
 ---
-title: Encoding API
+title: Encoding
+weight: 6
 ---
 
 ## TextEncoder
