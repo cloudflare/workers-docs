@@ -1,5 +1,6 @@
 ---
-title: FetchEvent
+title: Fetch Event
+weight: 3
 ---
 The event type for HTTP requests dispatched to a Worker (i.e the`Object` passed through as `'fetch'` in `addEventListener('fetch', event => {…})`).
 
