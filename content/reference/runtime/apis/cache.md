@@ -137,7 +137,7 @@ External requests from browsers check the zone the URL matches, and reads throug
 
 ### Fetch in a Workers script
 
-The Cache API provided by the Workers runtime always uses the cach in your own zone, no matter what. You can never store a response in another zone's cache. This is why workers.dev scripts are considered part of their own zone.
+The Cache API provided by the Workers runtime always uses the cache in your own zone, no matter what. You can never store a response in another zone's cache. This is why workers.dev scripts are considered part of their own zone.
 
 #### Using `fetch`
 
