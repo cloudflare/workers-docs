@@ -49,7 +49,7 @@ The `wrangler.toml` file contains the information Wrangler needs to connect to t
 
 In `wrangler.toml`, fill in the corresponding `account_id` and `zone_id` with the values found in your dashboard. The **name** field in this config file should have a default value already filled in – feel free to change it, if you'd like.
 
-Finally, if you are deploying your code to your own domain, you need to set a **route** for your app: where it will be hosted and accessible by your users. The route field here is a _pattern_: if we chose the route `wasm-worker.signalnerve.com`, the Worker would _only_ run on that exact subdomain, at the _root_ path. If you changed the route to `wasm-worker.signalnerve.com/*` (using the `*` or _wildcard_ symbol), the Worker would then run on any path on that subdomain, for instance, `wasm-worker.signalnerve.com/test`, or even `wasm-worker.signalnerve.com/test/123`. Learn more about routes [here](/reference/write-workers/routes)
+Finally, if you are deploying your code to your own domain, you need to set a **route** for your app: where it will be hosted and accessible by your users. The route field here is a _pattern_: if we chose the route `my-worker.signalnerve.com`, the Worker would _only_ run on that exact subdomain, at the _root_ path. If you changed the route to `my-worker.signalnerve.com/*` (using the `*` or _wildcard_ symbol), the Worker would then run on any path on that subdomain, for instance, `my-worker.signalnerve.com/test`, or even `my-worker.signalnerve.com/test/123`. Learn more about routes [here](/reference/write-workers/routes)
 
 ## Build and Preview your Project
 
