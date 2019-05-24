@@ -1,5 +1,6 @@
 ---
 title: Installing the CLI
+weight: 2
 ---
 
 All of the tutorials in the Workers documentation use [Wrangler][2], Cloudflare's open-source command-line tool for managing Cloudflare Workers projects. To begin, you’ll need to [install Wrangler](TODO: link to install page) on your machine.
