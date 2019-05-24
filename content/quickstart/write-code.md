@@ -13,8 +13,6 @@ HTTP requests to your Worker script trigger a [`FetchEvent`](/reference/runtime/
 
 2. A call to `respondWith` with the parameter of either a [`Response`](/reference/runtime/apis/fetch/#response) or `Promise<Response>` that determines the response. For advanced usage, you can also use [passThroughOnException](/reference/runtime/apis/fetch-event#methods) and [waitUntil](/reference/runtime/apis/fetch-event#methods). 
 
-   *Note: If you do not include this call and your script encounters an uncaught exception while processing a request, the response will result in a runtime error at the edge.*
-
 An uber simple hello-world example would look like:
 
 ```javascript

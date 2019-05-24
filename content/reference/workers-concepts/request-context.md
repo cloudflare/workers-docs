@@ -2,18 +2,20 @@
 title: The Request Context
 ---
 
-It is important to note that due to [how workers are executed](../), some APIs are only available inside a request context.
+## What is the `Request` context?
 
-## When is the `Request` context active?
+Request context is the context of the `"fetch"` event callback. It is important to note that due to [how workers are executed](/reference/workers-concepts/how-it-works), asynchronous tasks (e.g. `fetch `) can only be ran *inside* the request context.
 
-### During a [Fetch Event](../../apis/fetch-event) callback:
+During a [Fetch Event](/reference/runtime/apis/fetch-event/) callback:
 
 ```javascript
 addEventListener('fetch', event => {
-  // the request context is active here via the event parameter
+  // the request context is available here
   event.respondWith(/*...*/)
 })
 ```
+
+## When is the `Request` context active?
 
 ### When passing a promise to `FetchEvent.respondWith()`
 
@@ -23,11 +25,9 @@ If you pass a Response promise to `FetchEvent.respondWith()`, the request contex
 addEventListener('fetch', event => {
   event.respondWith(eventHandler(event))
 })
-
+// no request context here
 async function eventHandler(event){
-  // the request context is available in this function as it is passed in via the event parameter
-  // because we passed this to the .respondWith() above, the request context is available until
-  // this function has completed
+  // request context is available here
   return new Response('Hello, Workers!')
 }
 ```
@@ -38,6 +38,7 @@ Any attempt to use APIs such as `fetch()` or access `Request` context during scr
 
 ```javascript
 const promise = fetch('https://example.com/') // ERROR
+async function eventHandler(event){..}
 ```
 
 This code snippet will throw during script startup, and the `"fetch"` event
