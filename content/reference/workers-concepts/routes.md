@@ -3,9 +3,7 @@ title: "Routes"
 weight: 40
 ---
 
-# Routes
-
-The mechanics for if and what script should run on a request based on the URL. 
+The mechanics for if and what script should run on a request based on the URL.
 
 ## Workers.dev
 
@@ -17,9 +15,7 @@ Each script that runs must have a script name, so there is currently no way to r
 
 ## Cloudflare Sites
 
-For zones proxied on Cloudflare*, route patterns decide what (if any) script is matched based on the URL of that request. Requests are routed through a Worker script when their URL matches a route pattern assigned to that script. Route patterns are created either from inside the Cloudflare Workers editor, or by using the Cloudflare API.
-
-Note: Prior implementations for non-Enterprise customers used the concept of filters.
+For zones proxied on Cloudflare*, route patterns decide what (if any) script is matched based on the URL of that request. Requests are routed through a Workers script when their URL matches a route pattern assigned to that script. Route patterns are created either from inside the Cloudflare Workers editor, or by using the Cloudflare API.
 
 \* *A zone that you have registered with some registrar (not workers.dev) and setup Cloudflare to serve as [a reverse proxy](https://www.cloudflare.com/learning/cdn/glossary/reverse-proxy/).*
 
@@ -48,7 +44,7 @@ While they look similar to a [regex](https://en.wikipedia.org/wiki/Regular_expre
   only way to have a route pattern match URLs with query parameters is to
   terminate it with a wildcard, `*`.
 
-A route can be specified without being associated with a worker; this will act to negate any less specific patterns. For example, consider this pair of route patterns, one with a Worker script and one without:
+A route can be specified without being associated with a worker; this will act to negate any less specific patterns. For example, consider this pair of route patterns, one with a Workers script and one without:
 
 ```
 *example.com/images/cat.png -> <no script>
@@ -62,7 +58,7 @@ In this example, all requests destined for example.com and whose paths are prefi
 Here is the full set of rules governing route pattern validity:
 
 * **Route patterns must include your zone**
-  
+
     If your zone is `example.com`, then the simplest possible route pattern you
     can have is `example.com`, which would match `http://example.com/` and
     `https://example.com/`, and *nothing else*.
