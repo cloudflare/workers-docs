@@ -31,7 +31,7 @@ async function handle(event) {
 
 Conceptually, every individual zone on Cloudflare has its own cache space. There are three ways to interact with your cache:
 * In a browser
-* Use [`fetch()`](../fetch) from a Workers script
+* Use [`fetch()`](/reference/runtime/apis/fetch) from a Workers script
 * Use the Cache API from a Workers script.
 
 ### In a Browser
@@ -42,11 +42,11 @@ External requests from browsers check the zone the URL matches, and reads throug
 
 The Cache API provided by the Workers runtime always uses the cache in your own zone, no matter what. You can never store a response in another zone's cache. This is why workers.dev scripts are considered part of their own zone.
 
-#### Using `fetch`
+#### Using [`fetch`](/reference/runtime/apis/fetch)
 
-Calling [`fetch()`](../fetch) from your Workers script checks to see if the URL matches a different zone. If it does, it reads through that zone's cache. Otherwise, it reads through its own zone's cache, even if the URL is for a non-Cloudflare site.
+Calling `fetch` from your Workers script checks to see if the URL matches a different zone. If it does, it reads through that zone's cache. Otherwise, it reads through its own zone's cache, even if the URL is for a non-Cloudflare site.
 
-[`fetch()`](/reference/runtime/apis/fetch) requests a URL and automatically applies caching rules based on your Cloudflare settings. `fetch` does not allow you to modify objects before they reach the cache or inspect if an object is in the cache before making a request.
+`fetch` requests a URL and automatically applies caching rules based on your Cloudflare settings. `fetch` does not allow you to modify objects before they reach the cache or inspect if an object is in the cache before making a request.
 
 #### Using `cache-default`
 
