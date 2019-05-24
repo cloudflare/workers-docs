@@ -1,6 +1,6 @@
 ---
 title: Scripts
-weight: 1
+weight: 2
 ---
 
 ## Object Specification
