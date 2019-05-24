@@ -58,7 +58,7 @@ Now, you can toy with the templates' `get`, `post`, etc.. methods to setup route
 
 ## Templates
 
-To discover what you can build or if you know vaguely, there are a variety of examples at the [Template Gallery](/templates/).
+To discover what you can build, there are a variety of examples at the [Template Gallery](/templates/).
 
 ## Advanced
 
