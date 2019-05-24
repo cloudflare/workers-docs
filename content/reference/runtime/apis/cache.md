@@ -99,3 +99,7 @@ cache.delete(request, options)
 
 	* `ignoreMethod` (Boolean): Consider the request method to `GET`, regardless of its actual value.
 
+
+## More Information
+
+[Using the Cache API](/reference/workers-concepts/using-cache)

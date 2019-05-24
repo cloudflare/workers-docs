@@ -4,7 +4,7 @@ title: Using the Cache API
 
 Cloudflare provides cache space per domain for serving static assets from our Edge network. This reduces visitors take to navigate your site by reducing the distance the data must travel. It also reduces the traffic load on your web server by returning the same response for identical requests. This is great for static assets like images, HTML, and CSS, but much of the traffic moving across the web is dynamic data requested using AJAX requests. Note that this traffic is not cached, and therefore misses out on the benefits of caching.
 
-The Cache API described by the [Service Worker](https://w3c.github.io/ServiceWorker/#cache) specification is one way to customize your cache behavior using JavaScript.
+The [Cache API](/reference/runtime/apis/cache) described by the [Service Worker](https://w3c.github.io/ServiceWorker/#cache) specification is one way to customize your cache behavior using JavaScript.
 
 ## Quick Start
 
