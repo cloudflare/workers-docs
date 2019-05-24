@@ -5,7 +5,7 @@ weight: 2
 ---
 Don't want to go through *any* setup but still want to experiment with Workers? The Workers Playground is a simple, instant way to preview and test code directly in the browser against any site.
 
-### [Launch Playground](https://cloudflareworkers.com/)
+### [Launch Playground](https://www.cloudflareworkers.com/)
 
 ## Previewing a Script
 

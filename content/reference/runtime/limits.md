@@ -6,7 +6,7 @@ This section describes various limitations associated with your account.b
 
 This section describes various limitations associated with your account.b
 
-A Worker script plus any [Asset Bindings](/reference/tooling/api/bindings) can be up to 1MB in size after compression.
+A Workers script plus any [Asset Bindings](/reference/tooling/api/bindings) can be up to 1MB in size after compression.
 
 ## Number of Scripts Limits
 
@@ -56,10 +56,10 @@ Yes. Use the [Fetch API](../fetch) to make arbitrary requests to other Internet 
 
 The limit for subrequests a Workers script can make is 50 per request. Each subrequest in a redirect chain counts against this limit. This means that the number of subrequests a Workers script makes could be greater than the number of `fetch(request)` calls in the script.
 
-### Can I make a subrequest after my Worker has responded to the user?
+### Can I make a subrequest after my Workers has responded to the user?
 
 Yes, you can use [`event.waitUntil()`](TODO: link) to register asynchronous tasks that may continue after the response has been returned.
 
 ### How long can a subrequest take?
 
-There is no individual subrequest runtime limit, but all subrequests must initate in the first 15 seconds of Worker script execution.
+There is no individual subrequest runtime limit, but all subrequests must initate in the first 15 seconds of Workers script execution.
