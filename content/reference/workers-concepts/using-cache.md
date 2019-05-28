@@ -4,7 +4,7 @@ title: Using the Cache API
 
 Cloudflare provides cache space per domain for serving static assets from our Edge network. This reduces visitors take to navigate your site by reducing the distance the data must travel. It also reduces the traffic load on your web server by returning the same response for identical requests. This is great for static assets like images, HTML, and CSS, but much of the traffic moving across the web is dynamic data requested using AJAX requests. Note that this traffic is not cached, and therefore misses out on the benefits of caching.
 
-The [Cache API](/reference/runtime/apis/cache) described by the [Service Worker](https://w3c.github.io/ServiceWorker/#cache) specification is one way to customize your cache behavior using JavaScript.
+The [Cache API](/reference/runtime/apis/cache) provides a way to customize your cache behavior using JavaScript.
 
 ## Quick Start
 
@@ -57,9 +57,9 @@ The `caches.default` Cache API Cache object allows you to:
 
 If your Workers script uses the Cache API to store a response for a URL ...
 
-* ... on your own zone and that URL [is cacheable or has a _Cache Everything_ page rule](https://support.cloudflare.com/hc/en-us/articles/115000150272-How-do-I-use-Cache-Everything-with-Cloudflare-), then every Worker on every zone that `fetch()`es that URL and every browser request sees the response your Worker stored.
+* ... on your own zone and that URL [is cacheable or has a _Cache Everything_ page rule](https://support.cloudflare.com/hc/en-us/articles/115000150272), then every Workers on every zone that `fetch()`es that URL and every browser request sees the response your Workers stored.
 * ... on a different Cloudflare zone, then the only way to retrieve that response is using a Workers Cache API.
-* ... on a non-Cloudflare site, then your own zone's Worker sees the response your Worker stored if it `fetch()`es that URL, but no other Worker or browser sees that response.
+* ... on a non-Cloudflare site, then your own zone's Workers sees the response your Workers stored if it `fetch()`es that URL, but no other Workers or browser sees that response.
 
 ## Expiring cache objects
 
