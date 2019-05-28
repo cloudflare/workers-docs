@@ -1,0 +1,71 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+section.template-wrapper {
+  display: grid;
+  grid-template-columns: 100%;
+}
+
+@media (min-width: 47.2em) {
+  section.template-wrapper {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-gap: 10px;
+  }
+}
+
+ul.tutorial-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  width: 100%;
+  max-width: inherit;
+}
+
+li.tutorial-item {
+  display: block;
+  width: 33%;
+  margin: 0 16px;
+}
+
+#body li.tutorial-item img {
+  display: block;
+  margin: 8px 0 16px 0;
+}
+
+li.tutorial-item > a {
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 4px;
+}
+
+figure.template-card {
+  margin: 0;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 16px;
+}
+figure.template-card h2 {
+  margin: 0;
+  margin-bottom: 8px;
+  font-size: 22px;
+}
+figure.template-card div.links {
+  margin-top: 16px;
+}
+figure.template-card div.links a {
+  margin-right: 8px;
+}
+figure.template-card span {
+  font-size: 14px;
+}
+code.copy {
+  display: block;
+  white-space: nowrap;
+  overflow: auto;
+  padding: 16px;
+  margin: 8px 0;
+}
