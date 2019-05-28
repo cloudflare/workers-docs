@@ -5,17 +5,13 @@ weight: 2
 
 In this tutorial, you'll build a [Slack](https://slackhq.com) bot using [Cloudflare Workers](https://workers.cloudflare.com). Your bot will make use of GitHub webhooks to send messages to a Slack channel when issues are updated or created, and allow users to write a command to look up GitHub issues from inside Slack.
 
-<video loop muted="true">
-  <source src="./media/slash-commands.webm" type="video/webm">
-  <source src="./media/slash-commands.mp4" type="video/mp4">
-  Your browser doesn't support HTML5 video in WebM or MP4.
-</video>
+![Build a Slack Application](./media/issue-command.png)
 
 This tutorial makes use of [Wrangler](https://github.com/cloudflare/wrangler), our command-line tool for generating, building, and publishing projects on the Cloudflare Workers platform. If you haven't used Wrangler, we recommend checking out the [Quick Start Guide](/quickstart), which will get you set up with Wrangler, and familiar with the basic commands.
 
 This tutorial is recommended for people who are familiar with writing web applications. If you've ever built an application with tools like [Node](https://nodejs.org) and [Express](https://expressjs.com), this project will feel very familiar to you. That being said, if you're new to writing web apps, we think that Workers is a super easy way to focus on writing code, and actually shipping projects: maybe you've wanted to build something like a Slack bot in the past, but things like deployment and configuration have always seemed a little scary. In either case, welcome!
 
-One more thing before you start the tutorial: if you'd like to see the code, or how the bot works in an actual Slack channel, we've made the final version of the codebase [available on GitHub] TODO. From there, you can add your own Slack API keys, and deploy it to your own Slack channels for testing.
+One more thing before you start the tutorial: if you'd like to see the code, or how the bot works in an actual Slack channel, we've made the final version of the codebase [available on GitHub](https://github.com/signalnerve/workers-slack-bot). From there, you can add your own Slack API keys, and deploy it to your own Slack channels for testing.
 
 ## Prerequisites
 
@@ -28,8 +24,6 @@ To publish your Worker to Cloudflare, and configure it with a Slack channel, you
 If you don't have those things quite yet, don't worry. We'll walk through each of them and make sure we're ready to go, before you start creating your application.
 
 You'll need to get your Cloudflare API keys to deploy code to Cloudflare Workers: see ["Finding your Cloudflare API keys"](/reference/write-workers/api-keys) for a brief guide on how to find them.
-
-TODO: a user should know what their subdomain is for the Slack bot before continuing into the Slack config section. With zoneless/zoned workers, how can we help users understand what their bot URL is?
 
 ### Configure a Slack application
 
@@ -71,12 +65,12 @@ When your webhook is created, it will attempt to send a test payload to your app
 
 ## Generate
 
-Cloudflare's command-line tool for managing Worker projects, Wrangler, has great support for templates – pre-built collections of code that make it easy to get started writing Workers. We'll make use of the default JavaScript template to start building your project.
+Cloudflare's command-line tool for managing Worker projects, Wrangler, has great support for templates – pre-built collections of code that make it easy to get started writing Workers. In this tutorial, you'll use the [router template](https://github.com/cloudflare/worker-template-router) to generate a Workers project with a built-in router, so you can take incoming requests, and route them to the appropriate JavaScript code.
 
-In the command line, generate your Worker project, using Wrangler's [worker-template](https://github.com/cloudflare/worker-template), and pass the project name "slack-bot":
+In the command line, generate your Worker project, passing in a project name (e.g. "slack-bot"), and the [template](/templates) URL to base your project on:
 
 ```
-wrangler generate slack-bot https://github.com/cloudflare/worker-template
+wrangler generate slack-bot https://github.com/cloudflare/worker-template-router
 cd slack-bot
 ```
 
@@ -106,18 +100,14 @@ In your default `index.js` file, we can see that request/response pattern in act
 
 To build your Slack bot on Cloudflare Workers, you'll build up your application file-by-file, separating different parts of the application and using modern JS tooling like ES modules, NPM packages, and [async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) functions to put together your application.
 
-Let's begin by defining your application's routes. For larger Cloudflare Workers applications, the addition of a router library can make it incredibly easy to match incoming requests to different function handlers in your codebase.
-
-Your application has two routes/function handlers that you need to define:
+The router template includes a class, `Router`, that we've included to help developers with the common task of associating "routes" in your application (for instance, `/users`, or `/about`) with "functions". In this tutorial, there are two routes/function handlers that you need to define:
 
 1. The `lookup` function will take requests from Slack (sent when a user uses the `/issue` command), and look up the corresponding issue using the GitHub API. This function will be a `GET` request to `/lookup`.
 2. The `webhook` function will be called when updates occur from Slack (sent when a user uses the `/issue` command), and look up the corresponding issue using the GitHub API. This function will be a `GET` request to `/lookup`.
 
-Because routing inside of your Workers application is such a common task, we've published an easy-to-use router that you can drop into your code. This router will allow you to match specific paths to functions in your codebase. Find the router [here] TODO - NPM package?, and save it in your application as `router.js`.
-
 ### Handling requests
 
-Inside of `index.js`, you should import the router, and use it to update the `handleRequest` function:
+Inside of `index.js`, you should import the `Router` class, and use it to update the `handleRequest` function:
 
 ```javascript
 import Router from './router'
@@ -153,7 +143,7 @@ Finally, the function returns the `response`, whether it's a match from the rout
 
 This request/response pattern makes it really straightforward to understand _how_ requests are routed in your Workers application. You're _almost_ done with this file: to complete it, you need to actually define the corresponding function handlers for your routes. In this tutorial, you'll define those handlers in `src/handlers`:
 
-```
+```sh
 mkdir -p src/handlers
 touch src/handlers/lookup.js
 touch src/handlers/webhook.js
@@ -221,7 +211,9 @@ With Slack slash commands, you can respond to a slash command by returning struc
 
 To begin, let's parse the incoming data from a Slack message inside of the `lookup` handler. As previously mentioned, the Slack API sends an HTTP POST in URL Encoded format. To parse this, you need to add the first (and only) NPM package dependency to your project – a popular query string parser package called [`qs`](https://github.com/ljharb/qs):
 
-`npm install --save qs`
+```sh
+npm install --save qs
+```
 
 In `src/handlers/lookup.js`, import `qs`, and use it to parse the `request` body, and get the `text` value from it:
 
@@ -566,7 +558,7 @@ export const slackWebhookUrl = 'https://hooks.slack.com/services/abc123'
 
 **This webhook allows developers to post directly to your Slack channel, so it should be kept secret!** In particular, add `src/config.js` to your `.gitignore` file to ensure that the file doesn't get committed into your source control, and published to GitHub:
 
-```
+```sh
 echo "src/config.js" >> .gitignore
 ```
 
@@ -606,25 +598,17 @@ export default async request => {
 
 And with that, you're finished writing the code for your Slack bot! Pat yourself on the back – it was a lot of code, but now we can move on to the final steps of this tutorial: actually publishing your application.
 
-Wrangler has built-in support for bundling, uploading, and releasing your Cloudflare Workers application. To do this, we'll first _build_ the code, and then _publish_ it:
+Wrangler has built-in support for bundling, uploading, and releasing your Cloudflare Workers application. To do this, we'll run `wrangler publish`, which will _build_ and _publish_ your code:
 
-``` sh
-$ wrangler build
-$ wrangler publish
-```
-
-TODO Wrangler screenshot
+![Verify Wrangler Installation](/tutorials/build-an-application/media/publish.gif)
 
 Publishing your Workers application should now cause issue updates to start appearing in your Slack channel, as the GitHub webhook can now successfully reach your Workers webhook route:
 
-<video loop muted="true">
-  <source src="./media/create-new-issue.webm" type="video/webm">
-  <source src="./media/create-new-issue.mp4" type="video/mp4">
-  Your browser doesn't support HTML5 video in WebM or MP4.
-</video>
+![Create New Issue](/tutorials/build-an-application/media/create-new-issue.gif)
+
 ## Resources
 
-In this tutorial, you built and published a Cloudflare Workers application that can respond to GitHub webhook events, and allow GitHub API lookups within Slack. If you'd like to see the full source code for this application, visit the `cloudflare/slack-bot-on-workers` repo on GitHub. TODO LINK
+In this tutorial, you built and published a Cloudflare Workers application that can respond to GitHub webhook events, and allow GitHub API lookups within Slack. If you'd like to see the full source code for this application, you can find the repo [on GitHub](https://github.com/signalnerve/workers-slack-bot).
 
 If you enjoyed this tutorial, we encourage you to explore our other tutorials for building on Cloudflare Workers:
 
