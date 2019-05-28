@@ -1,0 +1,38 @@
+[package]
+name = "www"
+version = "0.1.0"
+authors = ["Steve Klabnik"]
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+js-sys = "0.3.20"
+pulldown-cmark = "0.5.0"
+serde_yaml = "0.8"
+wee_alloc = "0.4.1"
+
+[dependencies.handlebars]
+version = "1.1.0"
+default-features = false
+features = ["no_dir_source"]
+
+[dependencies.serde]
+version = "1.0.0"
+features = ["derive"]
+
+[dependencies.wasm-bindgen]
+version = "0.2.44"
+features = ["serde-serialize"]
+
+[dependencies.wasm-bindgen-futures]
+version = "0.3.21"
+features = ["futures_0_3"]
+
+[dev-dependencies]
+wasm-bindgen-test = "0.2"
+
+[profile.release]
+opt-level = "s"
+lto = true

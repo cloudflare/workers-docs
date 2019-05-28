@@ -1,0 +1,15 @@
+{
+    "body_part": "script",
+    "bindings": [
+        {
+            "name": "wasm",
+            "type": "wasm_module",
+            "part": "wasmprogram"
+        },
+        {
+            "type": "kv_namespace",
+            "name": "POSTS",
+            "namespace_id": "b46a6159e1594c9692d480e400e49b9a"
+        }
+    ]
+}
