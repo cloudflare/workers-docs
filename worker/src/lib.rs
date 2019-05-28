@@ -54,22 +54,13 @@ pub fn wasm_entry(path: String, data: Data) -> Promise {
     })
 }
 fn normalize_path(path: PathBuf) -> PathBuf {
-    let mut path = if path.to_str() == Some("") {
+    if path.to_str() == Some("") {
         PathBuf::from("index.html")
+    } else if path.to_str().unwrap().ends_with("/") {
+        path.join("index.html")
     } else {
         path
-    };
-
-    let ext = path
-        .extension()
-        .and_then(OsStr::to_str)
-        .unwrap_or("");
-
-    if ext == "html" {
-        path.set_extension("md");
     }
-
-    path
 }
 
 fn determine_content_type(path: &Path) -> Result<String, JsValue> {
