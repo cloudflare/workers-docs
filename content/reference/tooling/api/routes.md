@@ -3,8 +3,6 @@ title: Routes
 weight: 4
 ---
 
-TODO: summarize the route concept.
-
 ## Object Specification
 
 Sample Object

@@ -107,15 +107,9 @@ error: {
 status: 400
 error: {
 	code: 10021,
-	message: varies; see below
+	message: varies
 }
 ```
-
-Possible error messages include:
-
-`script must be specified, but wasn't present`
-
-TODO: The validator has a large number of possible outputs
 
 ###### Etag Unsupported (w/ If-None-Match header)
 
