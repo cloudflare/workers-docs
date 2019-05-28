@@ -8,7 +8,7 @@
         },
         {
             "type": "kv_namespace",
-            "name": "POSTS",
+            "name": "STATIC_CONTENT",
             "namespace_id": "b46a6159e1594c9692d480e400e49b9a"
         }
     ]

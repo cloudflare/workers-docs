@@ -14,7 +14,7 @@ async function handleRequest(request) {
       var pathname = parsedUrl.pathname;
 
       // chop off the start when passing the url to wasm
-      const response = await wasm_entry(parsedUrl.pathname.substring(1), POSTS)
+      const response = await wasm_entry(parsedUrl.pathname.substring(1), STATIC_CONTENT)
 
       let res = new Response(response.body, {status: response.status_code})
       res.headers.set("Content-type", response.content_type)
