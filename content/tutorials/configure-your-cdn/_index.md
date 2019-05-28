@@ -3,7 +3,7 @@ title: Configure Your CDN
 weight: 3
 ---
 
-In this tutorial, you'll build and publish a Cloudflare Workers function that serves assets from a storage platform (in this example, [Google Cloud Storage](https://cloud.google.com/storage/)) to your users. This approach, called "white-labelling", often takes the form of complex DNS configuration – thanks to Cloudflare Workers, and Cloudflare's CDN network, we can build a powerful (and fast) solution to this problem in just a few lines of code.
+In this tutorial, you'll build and publish a Cloudflare Workers function that serves assets from a storage platform (in this example, [Google Cloud Storage](https://cloud.google.com/storage/)) to your users. This approach, called "white-labelling", often takes the form of complex DNS configuration – thanks to Cloudflare Workers, and Cloudflare's CDN, we can build a powerful (and fast) solution to this problem in just a few lines of code.
 
 This tutorial makes use of [Wrangler](https://github.com/cloudflare/wrangler), our command-line tool for generating, building, and publishing projects on the Cloudflare Workers platform. If you haven't used Wrangler, we recommend checking out the [quick-start guide](/quickstart), which will get you set up with Wrangler, and familiar with the basic commands.
 
