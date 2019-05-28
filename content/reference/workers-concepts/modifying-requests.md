@@ -1,4 +1,6 @@
-# Rewriting Requests and Responses
+---
+title: Modifying Requests and Responses
+---
 
 One gotcha that Workers customers commonly encounter is with the ergonomics of the `Request` and `Response` constructors. Unlike in the browser, it is common that a Workers developer needs to change one or more parts of an intercepted Request before passing it into a `fetch` call, or to construct a new Response from the result of a `fetch` call before returning it. It is common for developers to attempt to manually declare each part of the new Request/Response, an approach that is prone to error. **The best practice is to always use the original request to construct the new request, thereby cloning all the attributes except those you intend to change.**
 
@@ -7,7 +9,7 @@ For example, one might want to change the redirect mode to "follow" (to resolve 
 ```javascript
 addEventListener("fetch", event => {
   let request = event.request
-      
+
   // Change the redirect mode.
   request = new Request(request, { redirect: "follow" })
 
@@ -99,7 +101,7 @@ The `request` object that comes as part of a [FetchEvent](/reference/runtime/api
 addEventListener("fetch", event => {
   let newRequest = new Request(event.request)
   newRequest.headers.add("X-Example", "foo")
-  
+
   // do something with your newRequest
 })
 ```
