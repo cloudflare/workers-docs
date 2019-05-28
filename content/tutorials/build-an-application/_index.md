@@ -65,14 +65,12 @@ When your webhook is created, it will attempt to send a test payload to your app
 
 ## Generate
 
-Cloudflare's command-line tool for managing Worker projects, Wrangler, has great support for templates – pre-built collections of code that make it easy to get started writing Workers. We'll make use of the default JavaScript template to start building your project.
+Cloudflare's command-line tool for managing Worker projects, Wrangler, has great support for templates – pre-built collections of code that make it easy to get started writing Workers. In this tutorial, you'll use the [router template](https://github.com/cloudflare/worker-template-router) to generate a Workers project with a built-in router, so you can take incoming requests, and route them to the appropriate JavaScript code.
 
-In the command line, generate your Worker project, using Wrangler's [worker-template](https://github.com/cloudflare/worker-template), and pass the project name "slack-bot":
-
-TODO GENERATION HERE SHOULD INCLUDE ROUTER TEMPLATE? WEBPACK CONFIG? HALP
+In the command line, generate your Worker project, passing in a project name (e.g. "slack-bot"), and the template URL to base your project on:
 
 ```
-wrangler generate slack-bot https://github.com/cloudflare/worker-template
+wrangler generate slack-bot https://github.com/cloudflare/worker-template-router
 cd slack-bot
 ```
 
@@ -102,18 +100,14 @@ In your default `index.js` file, we can see that request/response pattern in act
 
 To build your Slack bot on Cloudflare Workers, you'll build up your application file-by-file, separating different parts of the application and using modern JS tooling like ES modules, NPM packages, and [async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) functions to put together your application.
 
-Let's begin by defining your application's routes. For larger Cloudflare Workers applications, the addition of a router library can make it incredibly easy to match incoming requests to different function handlers in your codebase.
-
-Your application has two routes/function handlers that you need to define:
+The router template includes a class, `Router`, that we've included to help developers with the common task of associating "routes" in your application (for instance, `/users`, or `/about`) with "functions". In this tutorial, there are two routes/function handlers that you need to define:
 
 1. The `lookup` function will take requests from Slack (sent when a user uses the `/issue` command), and look up the corresponding issue using the GitHub API. This function will be a `GET` request to `/lookup`.
 2. The `webhook` function will be called when updates occur from Slack (sent when a user uses the `/issue` command), and look up the corresponding issue using the GitHub API. This function will be a `GET` request to `/lookup`.
 
-Because routing inside of your Workers application is such a common task, we've published an easy-to-use router that you can drop into your code. This router will allow you to match specific paths to functions in your codebase. Find the router [here] TODO - STILL IN PROGRESS. ROUTER MAY BE INCLUDED ALREADY., and save it in your application as `router.js`.
-
 ### Handling requests
 
-Inside of `index.js`, you should import the router, and use it to update the `handleRequest` function:
+Inside of `index.js`, you should import the `Router` class, and use it to update the `handleRequest` function:
 
 ```javascript
 import Router from './router'
