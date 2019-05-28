@@ -1,10 +1,10 @@
 ---
-title: The `fetch` Event Lifecycle
+title: The FetchEvent Lifecycle
 ---
 
 When working with the [`fetch` event](/reference/runtime/apis/fetch-event) inside the Workers runtime, it helps to have a good idea of its lifecycle.
 
-The runtime lifecycle starts when it receives a request; it triggers a `fetch` event and passes a [Request Object](/reference/runtime/apis/fetch#Request) to registered `fetch` handlers - this happens when the function is called via [HTTP(S) routes](/reference/workers-concepts/routes), or when `respondWith()` or `waitUntil()` are called on the `Request` object within the Worker code. The life of a `RequestEvent` is determined by the method calls used in its event handlers:
+The FetchEvent lifecycle starts when Cloudflare's edge network receives a request whose URL matches both a zone and a route for a Worker function; this causes the Workers runtime to trigger a `fetch` event and creates a [FetchEvent Object](/reference/runtime/apis/fetch-event) to pass to the first event handler in the Worker function registered for `'fetch'`. Then the event handler can use any of the following to control what happens next:
 
 ## `respondWith()`
 
