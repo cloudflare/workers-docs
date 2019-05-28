@@ -57,7 +57,7 @@ The `caches.default` Cache API Cache object allows you to:
 
 If your Workers script uses the Cache API to store a response for a URL ...
 
-* ... on your own zone and that URL [is cacheable or has a _Cache Everything_ page rule](https://support.cloudflare.com/hc/en-us/articles/115000150272-How-do-I-use-Cache-Everything-with-Cloudflare-), then every Workers on every zone that `fetch()`es that URL and every browser request sees the response your Workers stored.
+* ... on your own zone and that URL [is cacheable or has a _Cache Everything_ page rule](https://support.cloudflare.com/hc/en-us/articles/115000150272), then every Workers on every zone that `fetch()`es that URL and every browser request sees the response your Workers stored.
 * ... on a different Cloudflare zone, then the only way to retrieve that response is using a Workers Cache API.
 * ... on a non-Cloudflare site, then your own zone's Workers sees the response your Workers stored if it `fetch()`es that URL, but no other Workers or browser sees that response.
 
