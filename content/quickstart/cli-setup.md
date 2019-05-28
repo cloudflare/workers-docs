@@ -3,7 +3,7 @@ title: Installing the CLI
 weight: 2
 ---
 
-All of the tutorials in the Workers documentation use [Wrangler][2], Cloudflare's open-source command-line tool for managing Cloudflare Workers projects. To begin, you’ll need to [install Wrangler](/reference/tooling/wrangler) on your machine.
+All of the tutorials in the Workers documentation use [Wrangler][2], Cloudflare's open-source command-line tool for managing Cloudflare Workers projects. To begin, you’ll need to [install Wrangler](https://github.com/cloudflare/wrangler#-installation) on your machine.
 
 To confirm that Wrangler has successfully installed on your machine, run `wrangler --help` on the command-line:
 
@@ -95,4 +95,3 @@ This is just the beginning of what you can do with Cloudflare Workers. If you'd 
 - [Configure Your CDN](/tutorials/configure-your-cdn)
 
 [2]: https://github.com/cloudflare/wrangler
-[3]: TODO
