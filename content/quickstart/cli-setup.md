@@ -19,7 +19,10 @@ We've tried to make it as easy as possible for new and returning users alike to 
 
 Once the project has been generated, you can navigate into the newly generated project directory, and look at the list of files created:
 
-![Inside my-worker directory](/quickstart/media/cd-ls-my-worker.gif)
+```sh
+$ cd my-worker
+$ ls
+```
 
 ## Configure your Project
 
@@ -75,7 +78,9 @@ The `preview` command will take your built Worker project and upload it to a uni
 
 With your project configured, it's time to publish it! Wrangler has a built-in command for uploading your script, generating the route that corresponds to your `wrangler.toml` file, and wiring them together. If that sounds complicated, don't worry – we've made it really easy:
 
-![Wrangler Publish Command](/quickstart/media/wrangler-publish.gif)
+```sh
+$ wrangler publish
+```
 
 Your Worker will be uploaded and deployed to the route you specified in your config file. To ensure that everything deployed correctly, go to the URL specified at the end of the publishing process – you should see your Worker running as expected!
 
