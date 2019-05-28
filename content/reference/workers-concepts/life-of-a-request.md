@@ -4,13 +4,13 @@ Title: Life of a Request in the Workers Runtime
 
 # The Overview
 
-In order to discuss how a request to a Worker is handled, first we must discuss the differences between the Cloudflare Worker runtime and the `ServiceWorker` it is modeled after. 
+In order to discuss how a request to a Workers function is handled, first we must discuss the differences between the Cloudflare Workers runtime and the `ServiceWorker` it is modeled after. 
 
-## Differences between `ServiceWorker` and Cloudflare Worker functions
+## Differences between `ServiceWorker` and Cloudflare Workers functions
 
-`ServiceWorker` functions are a "pull" system, as in the `ServiceWorker` is pulled in from a remote server-- this gives a `ServiceWorker` a few steps that do not occur in a Cloudflare Worker: the main flow is download the code, install the code, and activate it. You can read more [on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)
+`ServiceWorker` functions are a "pull" system, as in the `ServiceWorker` is pulled in from a remote server-- this gives a `ServiceWorker` a few steps that do not occur in a Cloudflare Workers function: the main flow is download the code, install the code, and activate it. You can read more [on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)
 
-Cloudflare Workers do not require these steps because the Worker function is already available locally, so the event that starts off a Worker fuction is when a call is made to a URL that matches the zone and route of a Worker function-- this fires a `fetch` event on that Worker
+Cloudflare Workers do not require these steps because the Workers function is already available locally, so the event that starts off a Workers fuction is when a call is made to a URL that matches the zone and route of a Workers function-- this fires a `fetch` event on that Workers function.
 
 ## The `fetch` event in a Cloudflare Worker
 
@@ -18,7 +18,7 @@ When the Workers runtime triggers a `fetch` event, it also creates a [FetchEvent
 
 ## The Request Context
 
-At this point in time; the time in which the `fetch` event is being handled, we are in what is called the `Request` context. This context allows us to use functions such as `fetch()` inside our Worker.
+At this point in time; the time in which the `fetch` event is being handled, we are in what is called the `Request` context. This context allows us to use functions such as `fetch()` inside our Workers function.
 
 ```javascript
 addEventListener('fetch', event => {
@@ -29,7 +29,7 @@ addEventListener('fetch', event => {
 
 ### When is the `Request` context active?
 
-Beyond inside the initial `fetch` handler of your Worker function, the `Request` context is available:
+Beyond inside the initial `fetch` handler of your Workers function, the `Request` context is available:
 
 #### When passing a promise to `FetchEvent.respondWith()`
 
@@ -69,13 +69,11 @@ If a `fetch` event handler does not call `respondWith()`, the runtime delivers t
 
 ### `waitUntil()`
 
-Extends the lifetime of the event using a `Promise` passed into the function. Use this method to notify the runtime to wait for tasks, such as streaming and caching, that run longer than the usual time it takes to send a response. This is good for handling logging and analytics to third-party services, where you don't want to block the `response`. 
+Extends the lifetime of the event using a `Promise` passed into the function. Use this method to notify the runtime to wait for tasks, such as streaming and caching, that run longer than the usual time it takes to send a response. This is good for handling logging and analytics to third-party services, where you don't want to block the `response`.
 
-### `passThroughOnException()`	
+### `passThroughOnException()`
 
 Causes the script to "fail open" (meaning the execution of code is not halted) on unhandled exceptions. Instead of returning a runtime error response, the runtime proxies the request to its destination. To prevent JavaScript errors from causing entire requests to fail on uncaught exceptions, `passThroughOnException()` causes the Worker to act as if the exception wasn’t there. This allows you to yield control to your origin server.
-
-
 
 * How the Workers runtime treats requests differently from regular ServiceWorkers [in place]
 * How Workers measures time: CPU usage
