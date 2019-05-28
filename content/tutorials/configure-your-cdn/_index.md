@@ -35,13 +35,13 @@ your-bucket
    |- 199.jpg
 ```
 
-Finally, to ensure that you can access the objects from your Worker, your Google Cloud Storage bucket should be publicly accessible. To ensure this, follow the "Making groups of objects publicly readable" guide in the Google Cloud Storage docs, which can be found [here](https://cloud.google.com/storage/docs/access-control/making-data-public#buckets).
+Finally, to ensure that you can access the objects from your Workers function, your Google Cloud Storage bucket should be publicly accessible. To ensure this, follow the "Making groups of objects publicly readable" guide in the Google Cloud Storage docs, which can be found [here](https://cloud.google.com/storage/docs/access-control/making-data-public#buckets).
 
 ## Generate
 
 Cloudflare's command-line tool for managing Worker projects, Wrangler, has great support for templates – pre-built collections of code that make it easy to get started writing Workers. We'll make use of the default JavaScript template to start building your project.
 
-In the command line, generate your Worker project, and pass the project name `serve-cdn-assets`:
+In the command line, generate your Workers project, and pass the project name `serve-cdn-assets`:
 
 ```
 wrangler generate serve-cdn-assets
@@ -70,7 +70,7 @@ async function handleRequest(event) {
 
 In your default `index.js` file, we can see that request/response pattern in action. The `handleRequest` constructs a new `Response` with the body text "Hello worker", as well as an explicit status code of 200.
 
-When a `fetch` event comes into the worker, the script uses `event.respondWith` to return that new response back to the client. This means that your Cloudflare Worker script will serve new responses directly from Cloudflare's cloud network: instead of continuing to the origin, where a standard server would accept requests, and return responses, Cloudflare Workers allows you to respond quickly and efficiently by constructing responses directly on the edge.
+When a `fetch` event comes into the worker, the script uses `event.respondWith` to return that new response back to the client. This means that your Cloudflare Workers script will serve new responses directly from Cloudflare's cloud network: instead of continuing to the origin, where a standard server would accept requests, and return responses, Cloudflare Workers allows you to respond quickly and efficiently by constructing responses directly on the edge.
 
 ## Build
 
@@ -133,7 +133,7 @@ function serveAsset(event) {
 
 At this point in the tutorial, deploying this script would give you a fully-functional project you could use to retrieve assets from your Cloud Storage bucket. Instead of wrapping up the tutorial here, let's continue to explore how configuring your CDN is really powerful with Workers, by making use of the [Cache API](/reference/workers-concepts/using-cache)
 
-To cache responses in a Worker, the Cache API provides `cache.match`, to check for the presence of a cached asset, and `cache.put`, to cache a `response` for a given `request`. Given those two functions, the general flow will look like this:
+To cache responses in a Workers function, the Cache API provides `cache.match`, to check for the presence of a cached asset, and `cache.put`, to cache a `response` for a given `request`. Given those two functions, the general flow will look like this:
 
 1. Check for the presence of a cached asset, and set it to `response`.
 2. If `response` doesn't exist, get the asset from cloud storage, set it to `response`, and cache it.
