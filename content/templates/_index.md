@@ -8,6 +8,24 @@ TODO: implement a design that grants easy access to copy/paste wrangler generate
 
 These templates are simple building blocks for building a Workers script.
 
+## Hello World
+```
+wrangler generate myApp https://github.com/cloudflare/worker-template-worker-template
+```
+
+Simple Hello World in JS
+
+[Demo](https://cloudflareworkers.com/#6626eb50f7b53c2d42b79d1082b9bd37:https://tutorial.cloudflareworkers.com)
+
+## Hello World Rust
+```
+wrangler generate myApp https://github.com/cloudflare/rustwasm-worker-template
+```
+
+Simple Hello World in Rust
+
+[Demo](https://cloudflareworkers.com/#1992963c14c25bc8dc4c50f4cab740e5:https://tutorial.cloudflareworkers.com)
+
 ## Router
 ```
 wrangler generate myApp https://github.com/cloudflare/worker-template-router
