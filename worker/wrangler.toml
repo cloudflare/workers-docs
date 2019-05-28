@@ -1,6 +1,6 @@
-name = "website"
+name = "docs-site"
 type = "rust"
-route = "www.steveklabnik.com/*"
+route = "www.steveklabnik.com/docs/*"
 zone_id = "9359b254c46ff9f5c546203686794862"
 account_id = "f5518bfbf88c230551a64797c221c7da"
-kv-namespaces = ["POSTS"]
+kv-namespaces = ["STATIC_CONTENT"]

@@ -79,8 +79,24 @@ fn determine_content_type(path: &Path) -> Result<String, JsValue> {
         .unwrap_or("");
 
     let content_type = match ext {
-        "md" => "text/html",
+        "html" => "text/html",
         "css" => "text/css",
+        "ttf" => "application/font-sfnt",
+        "yml" => "text/yaml",
+        "eot" => "application/vnd.ms-fontobject",
+        "json" => "application/json",
+        "md" => "text/markdown",
+        "webm" => "video/webm",
+        "otf" => "application/font-sfnt",
+        "js" => "text/javascript",
+        "xml" => "text/xml",
+        "svg" => "image/svg+xml",
+        "scss" => "text/x-sass",
+        "woff" => "application/font-woff",
+        "woff2" => "font/woff2",
+        "png" => "image/png",
+        "jpg" => "image/jpeg",
+        "mp4" => "video/mp4",
         _ => "text/plain",
     };
 
