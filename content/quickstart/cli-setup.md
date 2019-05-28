@@ -13,10 +13,6 @@ To confirm that Wrangler has successfully installed on your machine, run `wrangl
 
 We've tried to make it as easy as possible for new and returning users alike to get up and running with Workers by including support for templates in Wrangler. Wrangler's `generate` subcommand allows you to create new projects based on existing templates. We maintain a great list of templates in our [Template Gallery](/templates), designed to help you get started quickly with Workers based on what you need in your project. For now, let's use one of our basic templates, which includes support for building and deploying JavaScript code, to generate our first Wrangler project:
 
-```sh
-$ wrangler generate my-worker
-```
-
 ![Generate a Project](/quickstart/media/generate-project.gif)
 
 > 💡 Protip: If you're ever unsure what a Wrangler subcommand does, like `wrangler generate`, try adding `--help` to the end of the command.
@@ -25,21 +21,15 @@ Once the project has been generated, you can navigate into the newly generated p
 
 ![Inside my-worker directory](/quickstart/media/cd-ls-my-worker.gif)
 
-```sh
-$ cd my-worker
-$ ls
-```
-
 ## Configure your Project
 
 You'll need a few values from your Cloudflare account to deploy code to Cloudflare Workers:
 
 - Global API key
-- Email addess associated with your Cloudflare account
+- Email address associated with your Cloudflare account
 - Account ID
-- Zone ID _(Note: you do not need your Zone ID for deploying Workers on a Workers.dev subdomain)_
 
-For a helpful guide to finding these keys, visit the ["Finding Your Cloudflare API Keys"](/reference/write-workers/api-keys) page in our documentation.
+For a helpful guide to finding these keys and configuring Wrangler to use them, visit the ["Finding Your Cloudflare API Keys"](/reference/write-workers/api-keys) page in our documentation.
 
 With these keys, you can use Wrangler to set up your default credentials for deploying to Cloudflare Workers, via the `config` subcommand:
 
@@ -49,7 +39,7 @@ $ wrangler config <email> <global_api_key>
 
 The `wrangler.toml` file contains the information Wrangler needs to connect to the Cloudflare Workers API, and deploy your code.
 
-In `wrangler.toml`, fill in the corresponding `account_id` and `zone_id` with the values found in your dashboard. The **name** field in this config file should have a default value already filled in – feel free to change it, if you'd like.
+In `wrangler.toml`, fill in the corresponding `account_id` with the values found in your dashboard. The **name** field in this config file, which will map to your Workers application's deploy name (e.g. `my-worker.mysubdomain.workers.dev`), should have a default value already filled in – feel free to change it, if you'd like.
 
 ```toml
 # wrangler.toml
@@ -60,14 +50,11 @@ name = "my-worker"
 # Your Cloudflare account ID
 account_id = "$yourAccountId"
 
-# The route pattern your Workers application will be served at
-route = "$yourRoute"
-
 # The kind of application you're deploying to Cloudflare
-type = "javascript"
+type = "webpack"
 ```
 
-Finally, if you are deploying your code to your own domain, you need to set a **route** for your app: where it will be hosted and accessible by your users. The route field here is a _pattern_: if we chose the route `my-worker.signalnerve.com`, the Worker would _only_ run on that exact subdomain, at the _root_ path. If you changed the route to `my-worker.signalnerve.com/*` (using the `*` or _wildcard_ symbol), the Worker would then run on any path on that subdomain, for instance, `my-worker.signalnerve.com/test`, or even `my-worker.signalnerve.com/test/123`. Learn more about routes [here](/reference/write-workers/routes).
+_This quickstart assumes that you'll be deploying Workers applications to your `workers.dev` subdomain_ - if you want to use Wrangler to deploy Workers applications to your own domain name, you'll need to configure your `wrangler.toml` slightly differently. For more information, see ["Deploying To Your Domain"](/quickstart/deploying-to-your-domain).
 
 ## Build and Preview your Project
 
@@ -87,10 +74,6 @@ The `preview` command will take your built Worker project and upload it to a uni
 ## Publish your Project
 
 With your project configured, it's time to publish it! Wrangler has a built-in command for uploading your script, generating the route that corresponds to your `wrangler.toml` file, and wiring them together. If that sounds complicated, don't worry – we've made it really easy:
-
-```sh
-wrangler publish
-```
 
 ![Wrangler Publish Command](/quickstart/media/wrangler-publish.gif)
 
