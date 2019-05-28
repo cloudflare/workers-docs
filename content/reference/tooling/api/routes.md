@@ -106,13 +106,10 @@ error: {
 
 Possible error messages include: (where `[pattern]` is the given route pattern)
 
-`Route pattern must include zone name: [pattern]`
-
-`Route pattern may only contain wildcards at the beginning of the hostname and the end of the path: [pattern]`
-
-`Route pattern should not have query parameters [pattern]`
-
-`Could not understand route pattern [pattern], please try a different pattern`
+* `Route pattern must include zone name: [pattern]`
+* `Route pattern may only contain wildcards at the beginning of the hostname and the end of the path: [pattern]`
+* `Route pattern should not have query parameters [pattern]`
+* `Could not understand route pattern [pattern], please try a different pattern`
 
 See [Route Patterns](/reference/workers-concepts/routes).
 
@@ -393,13 +390,10 @@ error: {
 
 Possible error messages include: (where `[pattern]` is the given route pattern)
 
-`Route pattern must include zone name: [pattern]`
-
-`Route pattern may only contain wildcards at the beginning of the hostname and the end of the path: [pattern]`
-
-`Route pattern should not have query parameters [pattern]`
-
-`Could not understand route pattern [pattern], please try a different pattern`
+* `Route pattern must include zone name: [pattern]`
+* `Route pattern may only contain wildcards at the beginning of the hostname and the end of the path: [pattern]`
+* `Route pattern should not have query parameters [pattern]`
+* `Could not understand route pattern [pattern], please try a different pattern`
 
 See [Route Patterns](/reference/workers-concepts/routes).
 
