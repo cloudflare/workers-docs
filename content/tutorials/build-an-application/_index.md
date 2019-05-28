@@ -67,7 +67,7 @@ When your webhook is created, it will attempt to send a test payload to your app
 
 Cloudflare's command-line tool for managing Worker projects, Wrangler, has great support for templates – pre-built collections of code that make it easy to get started writing Workers. In this tutorial, you'll use the [router template](https://github.com/cloudflare/worker-template-router) to generate a Workers project with a built-in router, so you can take incoming requests, and route them to the appropriate JavaScript code.
 
-In the command line, generate your Worker project, passing in a project name (e.g. "slack-bot"), and the template URL to base your project on:
+In the command line, generate your Worker project, passing in a project name (e.g. "slack-bot"), and the [template](/templates) URL to base your project on:
 
 ```
 wrangler generate slack-bot https://github.com/cloudflare/worker-template-router
