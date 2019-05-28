@@ -5,7 +5,7 @@ weight: 2
 
 ## Overview
 
-The [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) provides an interface for asyncronously fetching resources by providing a definition of a request and response. You will frequently find yourself interacting with request objects included as part of a [FetchEvent](../fetch-event), making your own requests using the global `fetch` method, and constructing your own responses.
+The [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) provides an interface for asyncronously fetching resources by providing a definition of a request and response. You will frequently find yourself interacting with request objects included as part of a [FetchEvent](/reference/runtime/apis/fetch-event), making your own requests using the global `fetch` method, and constructing your own responses.
 
 ## Global
 
@@ -31,27 +31,29 @@ new Request(input [, init])
 
 #### Constructor Parameters
 
-* `input`: Either a USVString that contains the URL or an existing `Request` object. Note that the `url` property is immutable, so when [modifying a request](TODO: link to 'modifying requests/responses') and changing the URL, you must pass the new URL in this parameter.
+* `input`: Either a USVString that contains the URL or an existing `Request` object. Note that the `url` property is immutable, so when [modifying a request](/reference/workers-concepts/modifying-requests) and changing the URL, you must pass the new URL in this parameter.
 
 * `init` (optional): An options object that contains custom settings to apply to the request. Valid options are:
 	* `method`: The request method, such as `GET` or `POST`
 	* `headers`: A [Headers](#headers) object
-	* `body`: Any text to add to the request: TODO: Enumerate possible types.
+	* `body`: Any text to add to the request
 	**Note:** Requests using the `GET` or `HEAD` methods cannot have a body.
-	* `redirect`: The redirect mode to use: `follow`, `error`, or `manual`. TODO: what is the default?
+	* `redirect`: The redirect mode to use: `follow`, `error`, or `manual`. Defaults to `manual`.
 
 		* `follow`
 		* `error`
 		* `manual`
 
-All properties of a `Request` object are read only. To [modify a request](TODO: link to modifying a request), you must create a new `Request` object and pass the options to modify to its [constructor](#Constructor).
+### Properties
 
-* `body`: A simple getter that exposes a [`ReadableStream`](../streams) of the contents.
+All properties of a `Request` object are read only. To [modify a request](/reference/workers-concepts/modifying-requests), you must create a new `Request` object and pass the options to modify to its [constructor](#Constructor).
+
+* `body`: A simple getter that exposes a [`ReadableStream`](/reference/runtime/apis/streams) of the contents.
 * `bodyUsed`: A Boolean that declares if the body has been used in a response.
 * `cf`: An object that contains data provided by Cloudflare (see `request.cf` below).
 * `headers`: Contain the associated [`Headers`](#headers) object for the request.
 * `method`: The request method, such as `GET` or `POST`, associated with the request.
-* `redirect`: The redirect mode to use: `follow`, `error`, or `manual`. TODO: what is the default?
+* `redirect`: The redirect mode to use: `follow`, `error`, or `manual`. Default to `manual`.
 * `url`: Contains the URL of the request.
 
 #### The `cf` Object

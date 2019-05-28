@@ -23,7 +23,7 @@ addEventListener("fetch", event => {
 })
 ```
 
-### Changing the Redirect Mode
+### Method 1: Overwrite Specific Properties
 
 The `redirect` property is just one of the many options available in the `RequestInit` passed to the `Request()` constructor. In this case, we can pass in the original request as the first argument to the constructor, and the partial RequestInit object containing the desired redirect mode. This acts as a merge, preserving all parts of the original request except the part we want to update.
 
@@ -32,6 +32,23 @@ The `redirect` property is just one of the many options available in the `Reques
 // with only the `redirect` property overwritten.
 request = new Request(request, { redirect: "follow" })
 ```
+
+This method is the most appropriate for most properties, especially with properties like `method` which are immutable for a constructed request.
+
+#### Modifying a Request
+
+ When modifying a [request](/reference/runtime/apis/fetch#request), use this method for the following property updates:
+
+* `method`
+* `body`
+* `redirect`
+
+#### Modifying a Response
+
+ When modifying a [response](/reference/runtime/apis/fetch#response), use this method for the following property updates:
+
+* `status`
+* `statusText`
 
 ### Changing the URL
 
@@ -57,7 +74,9 @@ url.hostname = "example.com"
 request = new Request(url, request)
 ```
 
-### Adding a Header
+This works due to the fact that, while a Request object happens to contain all of the attributes of the options object that is passed to the constructor, the options object does not include the URL. That can only be set using the first argument to the constructor.
+
+### Modifying Specific Headers
 
 Because the `RequestInit` object only merges at the top level, passing a `headers` object in this way will overwrite all existing headers, rather than merging them as you might want to do. To that end, you can either clone the headers and add to the resulting Headers object, then pass it in to `RequestInit`, or use the instance-level methods on the Headers class to make the modifications directly on the request.
 
@@ -71,3 +90,17 @@ let headers = event.request.headers
 headers.add("X-Example", "foo")
 request = new Request(request, { headers })
 ```
+
+#### Modifying a FetchEvent's request headers
+
+The `request` object that comes as part of a [FetchEvent](/reference/runtime/apis/fetch-event) is a little bit different from other request objects, in that it has immutable headers. Authors need to clone this request before modifying headers:
+
+```javascript
+addEventListener("fetch", event => {
+  let newRequest = new Request(event.request)
+  newRequest.headers.add("X-Example", "foo")
+  
+  // do something with your newRequest
+})
+```
+
