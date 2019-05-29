@@ -4,6 +4,9 @@ title: Cloudflare Workers Documentation
 
 <p>Cloudflare Workers provides a serverless execution environment that allows you to create entirely new applications or augment existing ones without configuring or maintaining infrastructure.</p>
 
+<h2>Quick Start</h2>
+<p>Begin building and publishing your code from the CLI. <a href="/quickstart" class="quick-start">Get Started</a></p>
+
 <h2>Tutorials</h2>
 <p>Discover what you can build with these step-by-step tutorials.</p>
 <ul class="tutorial-list">

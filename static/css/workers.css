@@ -2,6 +2,17 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
+a.quick-start {
+  display: block;
+  background-color: #E06D10;
+  color: white;
+  border-radius: 5px;
+  font-size: 14px;
+  float: right;
+  margin: -8px 0 0 16px;
+  padding: 10px 16px;
+}
+
 section.template-wrapper {
   display: grid;
   grid-template-columns: 100%;
