@@ -2,11 +2,9 @@
 title: Security
 ---
 
-## Spectre
-
 The Cloudflare Workers runtime is carefully designed to defend against side channel attacks. This design priority goes back to the very start of the Workers project, in early 2017, before Spectre had been discovered. We were concerned early on that when hosting a large number of tenants on shared infrastructure, side channels of various kinds would pose a threat.
 
-To this end, Workers is designed to make it impossible for code to measure its own execution time locally. For example, the value returned by Date.now() is locked in place while code is executing. No other timers are provided. Moreover, we provide no access to concurrency (e.g. multi-threading), as it could allow attackers to construct ad hoc timers. These are design choices that would not be possible to introduce retroactively into other platforms -- such as web browsers -- because they would be taking away APIs that existing applications depend on. They were possible in Workers only because we made these choices from the start.
+To this end, Workers is designed to make it impossible for code to measure its own execution time locally. For example, the value returned by Date.now() is locked in place while code is executing. No other timers are provided. Moreover, we provide no access to concurrency (e.g. multi-threading), as it could allow attackers to construct ad hoc timers. These design choices cannot be introduced retroactively into other platforms - such as web browsers - because they remove APIs that existing applications depend on. They were possible in Workers only because we made these choices from the start.
 
 While these early design decisions have proven effective, we are continuing to add defense-in-depth, including techniques to disrupt attacks by rescheduling workers, creating additional layers of isolation between suspicious workers and high-value workers, and more.
 
