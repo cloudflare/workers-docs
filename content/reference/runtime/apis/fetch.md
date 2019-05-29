@@ -7,6 +7,8 @@ weight: 2
 
 The [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) provides an interface for asyncronously fetching resources by providing a definition of a request and response. You will frequently find yourself interacting with request objects included as part of a [FetchEvent](/reference/runtime/apis/fetch-event), making your own requests using the global `fetch` method, and constructing your own responses.
 
+\**Note: The Fetch API is only available inside of [the Request Context](/reference/workers-concepts/request-context).*
+
 ## Global
 
 The `fetch` method is implemented on the ServiceWorkerGlobalScope and matches the documentation [provided by MDN](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch)
