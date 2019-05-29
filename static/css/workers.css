@@ -9,29 +9,43 @@ section.template-wrapper {
 
 @media (min-width: 47.2em) {
   section.template-wrapper {
-    display: grid;
     grid-template-columns: 50% 50%;
-    grid-gap: 10px;
+    grid-gap: 16px;
   }
 }
 
 ul.tutorial-list {
   list-style: none;
   padding: 0;
-  display: flex;
-  width: 100%;
+  display: grid;
+  grid-template-columns: 100%;
   max-width: inherit;
+}
+
+@media (min-width: 47.2em) {
+  ul.tutorial-list {
+    grid-template-columns: 33% 33% 33%;
+    grid-gap: 16px;
+  }
 }
 
 li.tutorial-item {
   display: block;
-  width: 33%;
-  margin: 0 16px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+@media (min-width: 47.2em) {
+  li.tutorial-item {
+    margin-bottom: 0;
+    text-align: left;
+  }
 }
 
 #body li.tutorial-item img {
   display: block;
   margin: 8px 0 16px 0;
+  max-height: 200px;
 }
 
 li.tutorial-item > a {
@@ -58,6 +72,7 @@ figure.template-card div.links {
 }
 figure.template-card div.links a {
   margin-right: 8px;
+  white-space: nowrap;
 }
 figure.template-card span {
   font-size: 14px;
