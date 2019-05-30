@@ -3,6 +3,8 @@ title: 'Configuring and Publishing'
 weight: 4
 ---
 
+> This article assumes that you'll be deploying Workers applications to your `workers.dev` subdomain - if you want to use Wrangler to deploy Workers applications to your own domain name, you'll need to configure your `wrangler.toml` slightly differently. For more information, see ["Deploying To Your Domain"](/quickstart/deploying-to-your-domain).
+
 You'll need a few values from your Cloudflare account to deploy code to Cloudflare Workers:
 
 - Global API key
@@ -33,8 +35,6 @@ account_id = "$yourAccountId"
 # The kind of application you're deploying to Cloudflare
 type = "webpack"
 ```
-
-_This quickstart assumes that you'll be deploying Workers applications to your `workers.dev` subdomain_ - if you want to use Wrangler to deploy Workers applications to your own domain name, you'll need to configure your `wrangler.toml` slightly differently. For more information, see ["Deploying To Your Domain"](/quickstart/deploying-to-your-domain).
 
 ## Build and Preview your Project
 
