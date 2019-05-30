@@ -1,5 +1,6 @@
 ---
-title: 'Deploying To Your Domain'
+title: 'Publishing To Your Domain'
+weight: 6
 ---
 
 If you are deploying your Workers application to a domain configured on your Cloudflare account, you'll need to configure your `wrangler.toml` with the following configuration details for your domain:
@@ -40,3 +41,11 @@ type = "webpack"
 ```
 
 A route will need to be selected for your app: where it will be hosted and accessible by your users. The route field here is a _pattern_: if we chose the route `my-worker.cloudflare.com`, the Worker would _only_ run on that exact subdomain, at the _root_ path. If you changed the route to `my-worker.cloudflare.com/*` (using the `*` or _wildcard_ symbol), the Worker would then run on any path on that subdomain, for instance, `my-worker.cloudflare.com/test`, or even `my-worker.cloudflare.com/test/123`. Learn more about routes [here](/reference/workers-concepts/routes/).
+
+## Publishing with Wrangler
+
+Wrangler's `publish` command supports deploying to your `workers.dev` domain _and_ a domain that you have hosted on Cloudflare. To deploy to your own domain, add the `--release` flag:
+
+```sh
+wrangler publish --release
+```
