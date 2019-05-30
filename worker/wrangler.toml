@@ -1,6 +1,6 @@
 name = "docs-site"
 type = "rust"
-route = "https://workers.cloudflare.com/doc"
+route = "https://workers.cloudflare.com/docs"
 zone_id = "29ed9c83c2c78d6967876c4053ec8154"
 account_id = "8995c0f49cdcf57eb54d2c1e52b7d2f3"
 kv-namespaces = ["STATIC_CONTENT"]
