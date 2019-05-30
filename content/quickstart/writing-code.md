@@ -1,19 +1,15 @@
 ---
-title: Write Code
+title: Writing Code
 weight: 3
 ---
 
-Here are the barebones to get any script up and running. Once you have an environment setup either with [the CLI](/quickstart/cli-setup) or [the Playground](/reference/tooling/playground), you are ready to start writing scripts.
+Once you have an environment set up either with [the CLI](/quickstart/cli-setup) or [the Playground](/reference/tooling/playground), you are ready to start writing scripts.
 
 ## Hello World
 
-HTTP requests to your Worker script trigger a [`FetchEvent`](/reference/runtime/apis/fetch/) - `'fetch'` - within the global scope of the registered Worker. To intercept and respond to any request using a Worker, one must set up:
+At its heart, a Workers app consists of two parts: an event listener that listens for [`FetchEvents`](/reference/runtime/apis/fetch-event), and an event handler that returns a [Response](/reference/runtime/apis/fetch#response) object which is passed to the event's `.respondWith()` method.
 
-1. An event listener for the fetch `addEventListener('fetch', event => {...})`. This tells the script to listen for any request coming to your Worker. `event.request` - type [`Request`](/reference/runtime/apis/fetch#request) - is the actual HTTP request being intercepted by the Worker script.
-
-2. A call to `respondWith` with the parameter of either a [`Response`](/reference/runtime/apis/fetch/#response) or `Promise<Response>` that determines the response. For advanced usage, you can also use [passThroughOnException](/reference/runtime/apis/fetch-event#methods) and [waitUntil](/reference/runtime/apis/fetch-event#methods).
-
-An uber simple hello-world example would look like:
+When a request is received on one of Cloudflare's edge servers for a URL matching a Workers script, it passes the request in to the Workers runtime, which in turn emits a 'fetch' event in the isolate where the script is running.
 
 ```javascript
 // 1. Register a FetchEvent listener that sends a custom
@@ -22,19 +18,36 @@ addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
 
-// 2. Fetch and return a given request object
+// 2. Return a custom request object
 async function handleRequest(request) {
-  new Response('hello world')
+  return new Response("hello world")
 }
 ```
+
+Let's break this down:
+
+### 1. An event listener for the `FetchEvent`:
+
+This tells the script to listen for any request coming to your Worker. `event.request` - which is of type [`Request`](/reference/runtime/apis/fetch#request) - is a representation of the HTTP request that triggered the FetchEvent..
+
+### 2. A call to `.respondWith()`
+
+The FetchEvent handler typically culminates in a call to the method `.respondWith()` with either a [`Response`](/reference/runtime/apis/fetch/#response) or `Promise<Response>` that determines the response.
+
+The FetchEvent object also provides two other methods, `.passThroughOnException()` and `.waitUntil()`, to handle unexpected exceptions and operations that may complete after a response is returned.
+
+##### Further Reading
+
+* [The FetchEvent Lifecycle](/reference/workers-concepts/fetch-event-lifecycle)
+* [FetchEvent API Reference](/reference/runtime/apis/fetch-event)
 
 ## Directing Requests
 
 Now that we have a very basic script running on all requests, how can we filter requests to reach certain handlers? There are a few options:
 
-##### Basic: manually filter the requests with booleans
+##### Option 1: manually filter requests
 
-Filter with simple `if` statements/other boolean statements, based on the `event.request` to generate the response.
+You can use standard JavaScript branching logic, such as `if/else` or `switch` statements, to conditionally return different responses or execute different handlers based on the request:
 
 ```javascript
 async function handleRequest(request) {
@@ -48,24 +61,25 @@ async function handleRequest(request) {
 
 For all avaliable methods of the Request object that you can filter by see: [Requests](/reference/runtime/apis/fetch#request).
 
-##### Template: use a template for routing on URL
+##### Option 2: use a template for routing on URL
 
-Use the following command to use your routing logic on the
+The Workers Router template provides a more familiar API for handling requests based on HTTP methods and paths. To initialize a project using this router with Wrangler, simply pass the git repository url to Wrangler's `generate` command:
 
-```javascript
+```sh
 wrangler generate myApp https://github.com/cloudflare/worker-template-router
 ```
 
-Now, you can toy with the templates' `get`, `post`, etc.. methods to setup routes. All the source code for the router logic is included in the template to fit the needs of your app.
+We'll use this approach in the [Slack Bot Tutorial](/tutorials/build-an-application).
 
-## Templates
+### Templates
 
-To discover what you can build, there are a variety of examples at the [Template Gallery](/templates/).
+There are a variety of examples in the [Template Gallery](/templates).
 
-## Advanced
+### Workers Concepts
 
-The [hello world worker script](/quickstart/writing-code#hello-world) demonstrates a direct way to get started. There are many more [available APIs](/reference/runtime/apis) to manipulate intercepted requests. For example, you can retrieve data from [Cache](/reference/runtime/apis/cache), compute a custom response right from the edge, route the request to the appropriate service, filter traffic, and more.
+The example outlined in this guide is just a starting point. There are many more [APIs](/reference/runtime/apis) available to manipulate intercepted requests. For example, you can retrieve data from [Cache](/reference/runtime/apis/cache), compute a custom response right from the edge, route the request to the appropriate service, filter traffic, and more.
 
-For gotchas and concepts to keep in mind while writing scripts see: [Workers Concepts](/reference/workers-concepts).
+For concepts, pitfalls and guidelines to keep in mind while writing scripts, check out our [Workers Concepts](/reference/workers-concepts) articles.
 
-Next, let's get ready to publish your application in ["Configuring and Publishing"](/quickstart/configuring-and-publishing).
+## Next Step: ["Configuring and Publishing"](/quickstart/configuring-and-publishing)
+
