@@ -19,4 +19,4 @@ The event type for HTTP requests dispatched to a Worker (i.e the`Object` passed 
   _ If no event handler calls `respondWith()`, the runtime proxies the request to its destination.
 - `waitUntil`: Extend the lifetime of the event. Use this method to notify the runtime to wait for tasks, such as streaming and caching, that run longer than the usual time it takes to send a response. This is good for handling logging and analytics to third-party services, where you don't want to block the `response`.
 
-To learn more about using the `FetchEvent`, see ["Writing Code"](/quickstart/writing-code).
+To learn more about using the `FetchEvent`, see [FetchEvent LifeCycle](/reference/workers-concepts/fetch-event-lifecycle).
