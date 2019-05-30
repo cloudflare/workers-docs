@@ -1,6 +1,6 @@
 ---
 title: Write Code
-weight: 1
+weight: 3
 ---
 
 Here are the barebones to get any script up and running. Once you have an environment setup either with [the CLI](/quickstart/cli-setup) or [the Playground](/reference/tooling/playground), you are ready to start writing scripts.
