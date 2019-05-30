@@ -5,8 +5,8 @@ weight: 1
 ---
 
 - [Installing the CLI](/quickstart/cli-setup)
-- [Generating a Project](/quickstart/generate-a-project)
-- [Writing Code](/quickstart/write-code)
-- [Configuring and Publishing](/quickstart/configure-and-publish)
+- [Generating a Project](/quickstart/generating-a-project)
+- [Writing Code](/quickstart/writing-code)
+- [Configuring and Publishing](/quickstart/configuring-and-publishing)
 - [Deploying To Your Domain](/quickstart/deploying-to-your-domain)
 - [Finding Your Cloudflare API Keys](/quickstart/api-keys)

@@ -3,7 +3,8 @@ title: Playground
 alwaysopen: true
 weight: 2
 ---
-Don't want to go through *any* setup but still want to experiment with Workers? The Workers Playground is a simple, instant way to preview and test code directly in the browser against any site.
+
+Don't want to go through _any_ setup but still want to experiment with Workers? The Workers Playground is a simple, instant way to preview and test code directly in the browser against any site.
 
 ### [Launch Playground](https://www.cloudflareworkers.com/)
 
@@ -23,7 +24,7 @@ async function handlerWithMyLogic(request) {
 }
 ```
 
-For more on writing the code that will run your Workers script see: [How to Write a Workers Script](/quickstart/write_scripts).
+For more on writing the code that will run your Workers script see: [How to Write a Workers Script](/quickstart/writing-code).
 
 ### Update
 
@@ -33,7 +34,7 @@ Now you can see a preview of that code running on the right as it would in a bro
 
 You can modify the script and click the preview button to view the effect on the request.
 
-To test a raw HTTP request - not in an HTML previewer e.g. testing a POST request - go to the test tab in the previewer.  To run the HTTP preview, we will need to click update preview and run test.
+To test a raw HTTP request - not in an HTML previewer e.g. testing a POST request - go to the test tab in the previewer. To run the HTTP preview, we will need to click update preview and run test.
 
 New edits will not yet be saved or deployed.
 
@@ -54,7 +55,6 @@ Outputs any calls to `console.log` that were called for the current preview run 
 #### Sources
 
 The sources that make up your Workers script. Note currently there can only be one. TODO: is this true?? may just want to remove
-
 
 ## Deploy
 
@@ -89,4 +89,3 @@ The key differences of the previewer versus a live Workers script are:
 - Subrequests ( i.e. fetches inside your Workers script) that call the same hostname as the original request will run in the previewer as an external request (i.e. goes back to the front line of Cloudflare), as those subrequests in production will go directly to the origin.
 - Not all [Standard APIs](/reference/runtime/standard_apis) are avalible in the previewer that are in production.
 - The output of `console.log` acts as a no-op in production.
-

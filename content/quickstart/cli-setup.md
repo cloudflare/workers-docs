@@ -9,4 +9,4 @@ To confirm that Wrangler has successfully installed on your machine, run `wrangl
 
 ![Verify Wrangler Installation](/quickstart/media/verify-wrangler-install.gif)
 
-Next, let's ["Generate a Project"](/quickstart/generate-a-project).
+Next, let's make our first application, in ["Generating a Project"](/quickstart/generating-a-project).

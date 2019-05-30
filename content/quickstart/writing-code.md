@@ -64,8 +64,8 @@ To discover what you can build, there are a variety of examples at the [Template
 
 ## Advanced
 
-The [hello world worker script](/quickstart/write-code#hello-world) demonstrates a direct way to get started. There are many more [available APIs](/reference/runtime/apis) to manipulate intercepted requests. For example, you can retrieve data from [Cache](/reference/runtime/apis/cache), compute a custom response right from the edge, route the request to the appropriate service, filter traffic, and more.
+The [hello world worker script](/quickstart/writing-code#hello-world) demonstrates a direct way to get started. There are many more [available APIs](/reference/runtime/apis) to manipulate intercepted requests. For example, you can retrieve data from [Cache](/reference/runtime/apis/cache), compute a custom response right from the edge, route the request to the appropriate service, filter traffic, and more.
 
 For gotchas and concepts to keep in mind while writing scripts see: [Workers Concepts](/reference/workers-concepts).
 
-Next, let's get ready to publish your application in ["Configure and Publish"](/quickstart/configure-and-publish).
+Next, let's get ready to publish your application in ["Configuring and Publishing"](/quickstart/configuring-and-publishing).
