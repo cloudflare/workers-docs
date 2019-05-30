@@ -64,14 +64,19 @@ wrangler generate myApp https://github.com/cloudflare/worker-template-fetch
 
 Send requests from your Workers application
 
-See more[/templates]
+[See more](/templates)
 
 ## Reference
+
 [Runtime APIs](/reference/runtime/apis)
+
 Global variables immediately available into your code
+
 [Concepts](/reference/workers-concepts)
-The need to know while writing Workers scripts. 
+
+The need to know while writing Workers scripts.
+
 [Tooling](/reference/tooling)
+
 Build and deploy with integrated tools
-[API](/reference/tooling/api)
-Deploy using the Cloudflare API
+
