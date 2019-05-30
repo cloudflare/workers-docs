@@ -9,4 +9,4 @@ To confirm that Wrangler has successfully installed on your machine, run `wrangl
 
 ![Verify Wrangler Installation](/quickstart/media/verify-wrangler-install.gif)
 
-Once you've installed Wrangler, it's time to start building your first Cloudflare Workers application, in the next part of our Quick Start guide, ["Generate a Project"](/quickstart/generate-a-project).
+Next, let's ["Generate a Project"](/quickstart/generate-a-project).

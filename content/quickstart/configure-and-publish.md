@@ -1,5 +1,5 @@
 ---
-title: 'Configure and Publish'
+title: 'Configuring and Publishing'
 weight: 4
 ---
 

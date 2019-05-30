@@ -1,9 +1,9 @@
 ---
-title: 'Generate a Project'
+title: 'Generating a Project'
 weight: 2
 ---
 
-We've tried to make it as easy as possible for new and returning users alike to get up and running with Workers by including support for templates in Wrangler. Wrangler's `generate` subcommand allows you to create new projects based on existing templates.
+We've tried to make it as easy as possible for new and returning users alike to get up and running with Workers by including support for templates in Wrangler. Wrangler's `generate` subcommand allows you to create new projects based on existing templates. Passing an additional argument to `generate` will set the "name" of the project, as well as the directory the project will be created in:
 
 ![Generate a Project](/quickstart/media/generate-project.gif)
 
@@ -17,5 +17,11 @@ $ ls
 ```
 
 By default, Wrangler generates projects using our [JavaScript template](https://github.com/cloudflare/worker-template), which enables building Workers projects with JavaScript. We also maintain a great list of templates in our [Template Gallery](/templates), designed to help you get started quickly with Workers based on what you need in your project.
+
+Using a custom template is easy: simply pass the GitHub URL of your template into `wrangler generate`:
+
+```sh
+$ wrangler generate my-router-app https://github.com/cloudflare/worker-template-router
+```
 
 Once you've generated a project, it's time to start writing code! Learn how to write projects with Workers in the next section of the Quick Start, ["Write Code"](/quickstart/write-code).

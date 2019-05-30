@@ -3,7 +3,7 @@ title: Finding Your Cloudflare API Keys
 weight: 5
 ---
 
-To publish Cloudflare Workers projects and serve them from our global cloud network, [create a Cloudflare account](https://support.cloudflare.com/hc/en-us/articles/201720164) and setup a registered domain **_or_** a Workers.dev subdomain on Cloudflare.
+To publish Cloudflare Workers projects and serve them from our global cloud network, [create a Cloudflare account](https://dash.cloudflare.com/sign-up/workers) and setup a registered domain **_or_** a Workers.dev subdomain on Cloudflare.
 
 [Wrangler](/reference/tooling/wrangler) and [other tools](/reference/tooling) use the following credentials to manage uploading and publishing your Worker scripts to your Cloudflare domain:
 
