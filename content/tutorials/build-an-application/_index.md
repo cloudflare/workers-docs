@@ -23,7 +23,7 @@ To publish your Worker to Cloudflare, and configure it with a Slack channel, you
 
 If you don't have those things quite yet, don't worry. We'll walk through each of them and make sure we're ready to go, before you start creating your application.
 
-You'll need to get your Cloudflare API keys to deploy code to Cloudflare Workers: see ["Finding your Cloudflare API keys"](/reference/write-workers/api-keys) for a brief guide on how to find them.
+You'll need to get your Cloudflare API keys to deploy code to Cloudflare Workers: see ["Finding your Cloudflare API keys"](/quickstart/api-keys) for a brief guide on how to find them.
 
 ### Configure a Slack application
 
@@ -144,9 +144,9 @@ Finally, the function returns the `response`, whether it's a match from the rout
 This request/response pattern makes it really straightforward to understand _how_ requests are routed in your Workers application. You're _almost_ done with this file: to complete it, you need to actually define the corresponding function handlers for your routes. In this tutorial, you'll define those handlers in `src/handlers`:
 
 ```sh
-mkdir -p src/handlers
-touch src/handlers/lookup.js
-touch src/handlers/webhook.js
+$ mkdir -p src/handlers
+$ touch src/handlers/lookup.js
+$ touch src/handlers/webhook.js
 ```
 
 With those files created (you'll fill them in soon), let's import them at the top of `index.js`. The final version of the code looks like this:
@@ -212,7 +212,7 @@ With Slack slash commands, you can respond to a slash command by returning struc
 To begin, let's parse the incoming data from a Slack message inside of the `lookup` handler. As previously mentioned, the Slack API sends an HTTP POST in URL Encoded format. To parse this, you need to add the first (and only) NPM package dependency to your project – a popular query string parser package called [`qs`](https://github.com/ljharb/qs):
 
 ```sh
-npm install --save qs
+$ npm install --save qs
 ```
 
 In `src/handlers/lookup.js`, import `qs`, and use it to parse the `request` body, and get the `text` value from it:
@@ -612,7 +612,7 @@ In this tutorial, you built and published a Cloudflare Workers application that 
 
 If you enjoyed this tutorial, we encourage you to explore our other tutorials for building on Cloudflare Workers:
 
-- [Build A Serverless Function](./tutorials/build-a-serverless-function)
-- [Configure Your CDN](./tutorials/configure-your-cdn)
+- [Build A Serverless Function](/tutorials/build-a-serverless-function)
+- [Configure Your CDN](/tutorials/configure-your-cdn)
 
 If you want to get started building your own projects, check out the quick-start templates we've provided in our [Template Gallery](/templates).
