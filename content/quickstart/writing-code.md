@@ -9,7 +9,7 @@ Here are the barebones to get any script up and running. Once you have an enviro
 
 HTTP requests to your Worker script trigger a [`FetchEvent`](/reference/runtime/apis/fetch/) - `'fetch'` - within the global scope of the registered Worker. To intercept and respond to any request using a Worker, one must set up:
 
-1. An event listener for the fetch `addEventListener('fetch', event => {...})`. This tells the script to listen for any request coming to your Worker. `event.request` - type [`Request`](/runtime/apis/fetch#request) - is the actual HTTP request being intercepted by the Worker script.
+1. An event listener for the fetch `addEventListener('fetch', event => {...})`. This tells the script to listen for any request coming to your Worker. `event.request` - type [`Request`](/reference/runtime/apis/fetch#request) - is the actual HTTP request being intercepted by the Worker script.
 
 2. A call to `respondWith` with the parameter of either a [`Response`](/reference/runtime/apis/fetch/#response) or `Promise<Response>` that determines the response. For advanced usage, you can also use [passThroughOnException](/reference/runtime/apis/fetch-event#methods) and [waitUntil](/reference/runtime/apis/fetch-event#methods).
 

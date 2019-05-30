@@ -9,7 +9,7 @@ You'll need a few values from your Cloudflare account to deploy code to Cloudfla
 - Email address associated with your Cloudflare account
 - Account ID
 
-For a helpful guide to finding these keys and configuring Wrangler to use them, visit the ["Finding Your Cloudflare API Keys"](/reference/write-workers/api-keys) page in our documentation.
+For a helpful guide to finding these keys and configuring Wrangler to use them, visit the ["Finding Your Cloudflare API Keys"](/quickstart/api-keys) page in our documentation.
 
 With these keys, you can use Wrangler to set up your default credentials for deploying to Cloudflare Workers, via the `config` subcommand:
 

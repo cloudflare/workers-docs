@@ -18,7 +18,7 @@ $ ls
 
 By default, Wrangler generates projects using our [JavaScript template](https://github.com/cloudflare/worker-template), which enables building Workers projects with JavaScript. We also maintain a great list of templates in our [Template Gallery](/templates), designed to help you get started quickly with Workers based on what you need in your project.
 
-Using a custom template is easy: simply pass the GitHub URL of your template into `wrangler generate`:
+Using a custom template is easy - simply pass the GitHub URL of your template into `wrangler generate`:
 
 ```sh
 $ wrangler generate my-router-app https://github.com/cloudflare/worker-template-router
