@@ -113,7 +113,7 @@ Cloudflare features you can set on outbound requests:
 A Workers script runs after Cloudflare security features, but before everything else. Therefore, a Workers script cannot affect the operation of security features (since they already finished), but it can affect other features, like Polish or ScrapeShield, or how Cloudflare caches the response.
 operation of security features (since they already finished), but it can affect other features, like Polish or ScrapeShield, or how Cloudflare caches the response.
 
-Setting cf is kind of like setting headers. You can add cf to a request object by making a copy. 
+Setting cf is kind of like setting headers when [modifying a request](/reference/workers-concepts/modifying-requests/). You can add cf to a request object by making a copy. 
 ```javascript
 // Disable ScrapeShield for this request.
 fetch(event.request, { cf: { scrapeShield: false } })
