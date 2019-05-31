@@ -19,7 +19,7 @@ To configure Wrangler to deploy to your Cloudflare Workers account, set up your 
 $ wrangler config <email> <global_api_key>
 ```
 
-To configure your project, complete the `wrangler.toml` file at the root of the generated project.. This file contains the information wrangler needs to connect to the Cloudflare Workers API, and publish your code.
+To configure your project, complete the `wrangler.toml` file at the root of the generated project. This file contains the information wrangler needs to connect to the Cloudflare Workers API, and publish your code.
 
 The **name** field in this config file, which will map to your application's deploy name (e.g. `my-worker.mysubdomain.workers.dev`), should have a default value already filled in – feel free to change it, if you'd like.
 

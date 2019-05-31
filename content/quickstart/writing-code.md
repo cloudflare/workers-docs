@@ -63,7 +63,7 @@ For all avaliable methods of the Request object that you can filter by see: [Req
 
 ##### Option 2: use a template for routing on URL
 
-The Workers Router template provides a more familiar API for handling requests based on HTTP methods and paths. To initialize a project using this router with Wrangler, simply pass the git repository url to Wrangler's `generate` command:
+The [Workers Router](https://github.com/cloudflare/worker-template-router) template provides an API similar to ExpressJS for handling requests based on HTTP methods and paths. To initialize a project using this router with Wrangler, simply pass the git repository URL to Wrangler's `generate` command:
 
 ```sh
 wrangler generate myApp https://github.com/cloudflare/worker-template-router
