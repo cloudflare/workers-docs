@@ -38,8 +38,7 @@ weight: 3
   </figure>
   <figure class="template-card">
     <h2>Router</h2>
-    <p>
-      Selects the logic based on the <code>request</code> method and URL. Use with REST APIs or apps
+    <p>Selects the logic based on the <code>request</code> method and URL. Use with REST APIs or apps
       that require routing logic.
     </p>
     <span>Paste this into your terminal:</span>
@@ -59,11 +58,9 @@ weight: 3
       >
     </div>
   </figure>
-
   <figure class="template-card">
     <h2>Static</h2>
-    <p>
-      Generates a fully functioning HTML page from cloud storage or from raw HTML in your work.
+    <p>Generates a fully functioning HTML page from cloud storage or from raw HTML in your work.
       Sends a static JSON.
     </p>
     <span>Paste this into your terminal:</span>
@@ -82,9 +79,7 @@ weight: 3
         >Demo JSON</a
       >
     </div>
-
   </figure>
-
   <figure class="template-card">
     <h2>Fetch</h2>
     <p>
@@ -122,7 +117,6 @@ weight: 3
       >
     </div>
   </figure>
-
   <figure class="template-card">
     <h2>Redirects</h2>
     <p>Examples of sending single and bulk redirects from a Worker script</p>
@@ -135,23 +129,20 @@ weight: 3
       <a class="demo" href="https://workers-tooling.cf/demos/redirect/generate">Demo Generate</a>
     </div>
   </figure>
-
   <figure class="template-card">
-    <h2><code>img-color-worker</code></h2>
+    <h2>img-color-worker</h2>
     <p>Examples of sending single and bulk redirects from a Worker script</p>
     <span>Paste this into your terminal:</span>
     <code class="copy">
       wrangler generate img-color https://github.com/xtuc/img-color-worker
     </code>
   </figure>
-
   <figure class="template-card">
-    <h2><code>binast-cf-worker</code></h2>
+    <h2>binast-cf-worker</h2>
     <p>Serve BinAST via a Cloudflare Worker</p>
     <span>Paste this into your terminal:</span>
     <code class="copy">
       wrangler generate binast-cf-worker https://github.com/xtuc/binast-cf-worker-template
     </code>
   </figure>
-
 </section>
