@@ -11,10 +11,8 @@ async function handleRequest(request) {
       var parsedUrl = new URL(request.url);
       var pathname = parsedUrl.pathname;
 
-      // chop off the start when passing the url to wasm, "/docs"
-      pathname = pathname.substring(5)
-
-      //const response = await wasm_entry(pathname, STATIC_CONTENT_LANDING)
+      // chop off the "/docs/"
+      pathname = pathname.substring(6)
 
       var path = normalize_path(pathname)
 
@@ -84,5 +82,4 @@ function determine_content_type(path) {
   } else {
     return "text/plain"
   }
-
 }
