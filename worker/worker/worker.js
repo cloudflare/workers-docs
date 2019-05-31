@@ -16,6 +16,9 @@ async function handleRequest(request) {
 
       var path = normalize_path(pathname)
 
+      var contentType = determine_content_type(path)
+
+      let body
       if (contentType.startsWith("text")) {
         body = await STATIC_CONTENT.get(path)
       } else {
