@@ -94,6 +94,8 @@ function determine_content_type(path) {
     return "image/jpeg"
   } else if (path.endsWith("mp4")) {
     return "video/mp4"
+  } else if (path.endsWith("gif")) {
+    return "image/gif"
   } else {
     return "text/plain"
   }
