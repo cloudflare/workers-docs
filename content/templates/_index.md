@@ -61,6 +61,12 @@ Examples of reading in a POST request body of type JSON and form-data and manipu
 [Demo GET HTML](http://workers-tooling.cf/demos/fetch/html) |
 [Demo GET/POST JSON](http://workers-tooling.cf/demos/fetch/json)
 
+## `img-color-worker`
+```
+wrangler generate img-color https://github.com/xtuc/img-color-worker
+```
+Retrieve the dominant color of a PNG or JPEG image.
+
 ## Redirects
 ```
 wrangler generate myApp https://github.com/cloudflare/worker-template-redirect
