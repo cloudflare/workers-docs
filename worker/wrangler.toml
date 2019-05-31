@@ -1,6 +1,6 @@
 name = "docs-site"
 type = "rust"
-route = "https://workers.cloudflare.com/docs"
-zone_id = "29ed9c83c2c78d6967876c4053ec8154"
-account_id = "8995c0f49cdcf57eb54d2c1e52b7d2f3"
+route = "www.steveklabnik.com/docs/*"
+zone_id = "9359b254c46ff9f5c546203686794862"
+account_id = "f5518bfbf88c230551a64797c221c7da"
 kv-namespaces = ["STATIC_CONTENT"]
