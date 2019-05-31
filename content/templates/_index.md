@@ -4,6 +4,15 @@ alwaysopen: true
 weight: 3
 ---
 
+
+## `binast-cf-worker`
+```
+wrangler generate binast-cf-worker https://github.com/xtuc/binast-cf-worker-template
+```
+
+Serve BinAST via a Cloudflare Worker.
+
+
 <p>These templates are simple building blocks for building a Workers script.</p>
 
 <section class="template-wrapper">
@@ -91,5 +100,23 @@ weight: 3
     <a class="demo" href="https://workers-tooling.cf/demos/redirect/generate">Demo Generate</a>
     <a class="source" href="https://github.com/victoriabernard92/worker-template-router/blob/master/router.js">Source code</a>
   </div>
+  </figure>
+
+  <figure class="template-card">
+  <h2><code>img-color-worker</code></h2>
+  <p>Examples of sending single and bulk redirects from a Worker script</p>
+  <span>Paste this into your terminal:</span>
+  <code class="copy">
+    wrangler generate img-color https://github.com/xtuc/img-color-worker
+  </code>
+  </figure>
+
+  <figure class="template-card">
+  <h2><code>binast-cf-worker</code></h2>
+  <p>Serve BinAST via a Cloudflare Worker</p>
+  <span>Paste this into your terminal:</span>
+  <code class="copy">
+    wrangler generate binast-cf-worker https://github.com/xtuc/binast-cf-worker-template
+  </code>
   </figure>
 </section>
