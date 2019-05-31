@@ -18,7 +18,7 @@ async function handleRequest(request) {
 
       var path = normalize_path(pathname)
 
-      var body = await STATIC_CONTENT_LANDING.get(path)
+      var body = await STATIC_CONTENT.get(path)
 
       var contentType = determine_content_type(path)
 
