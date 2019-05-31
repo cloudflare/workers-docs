@@ -61,12 +61,6 @@ Examples of reading in a POST request body of type JSON and form-data and manipu
 [Demo GET HTML](http://workers-tooling.cf/demos/fetch/html) |
 [Demo GET/POST JSON](http://workers-tooling.cf/demos/fetch/json)
 
-## `img-color-worker`
-```
-wrangler generate img-color https://github.com/xtuc/img-color-worker
-```
-Retrieve the dominant color of a PNG or JPEG image.
-
 ## Redirects
 ```
 wrangler generate myApp https://github.com/cloudflare/worker-template-redirect
@@ -77,5 +71,20 @@ Examples of sending single and bulk redirects from a Worker script
 [Demo Bulk](https://cloudflareworkers.com/#5ab384d18305ff16ee4fe261e63c5cbe:https://tutorial.cloudflareworkers.com/demos/redirect/bulk1) |
 [Demo Generate](https://cloudflareworkers.com/#5ab384d18305ff16ee4fe261e63c5cbe:https://tutorial.cloudflareworkers.com/demos/redirect/generate)
 
+## Community
 
+Community templates for Cloudflare's Worker.
 
+## `img-color-worker`
+```
+wrangler generate img-color https://github.com/xtuc/img-color-worker
+```
+
+Retrieve the dominant color of a PNG or JPEG image.
+
+## `binast-cf-worker`
+```
+wrangler generate binast-cf-worker https://github.com/xtuc/binast-cf-worker-template
+```
+
+Serve BinAST via a Cloudflare Worker.
