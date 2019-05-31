@@ -24,4 +24,5 @@ Using a custom template is easy - simply pass the GitHub URL of your template in
 $ wrangler generate my-router-app https://github.com/cloudflare/worker-template-router
 ```
 
-Once you've generated a project, it's time to start writing code! Learn how to write projects with Workers in the next section of the Quick Start, ["Writing Code"](/quickstart/writing-code).
+## Next Step: ["Writing Code"](/quickstart/writing-code)
+

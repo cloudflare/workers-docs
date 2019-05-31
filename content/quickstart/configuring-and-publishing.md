@@ -11,17 +11,19 @@ You'll need a few values from your Cloudflare account to deploy code to Cloudfla
 - Email address associated with your Cloudflare account
 - Account ID
 
-For a helpful guide to finding these keys and configuring Wrangler to use them, visit the ["Finding Your Cloudflare API Keys"](/quickstart/api-keys) page in our documentation.
+Follow [this guide](/quickstart/api-keys) to find these values for your account.
 
-With these keys, you can use Wrangler to set up your default credentials for deploying to Cloudflare Workers, via the `config` subcommand:
+To configure Wrangler to deploy to your Cloudflare Workers account, set up your default credentials via the `config` subcommand. You should only need to do this once:
 
 ```sh
 $ wrangler config <email> <global_api_key>
 ```
 
-The `wrangler.toml` file contains the information Wrangler needs to connect to the Cloudflare Workers API, and deploy your code.
+To configure your project, complete the `wrangler.toml` file at the root of the generated project. This file contains the information wrangler needs to connect to the Cloudflare Workers API, and publish your code.
 
-In `wrangler.toml`, fill in the corresponding `account_id` with the values found in your dashboard. The **name** field in this config file, which will map to your Workers application's deploy name (e.g. `my-worker.mysubdomain.workers.dev`), should have a default value already filled in – feel free to change it, if you'd like.
+The **name** field in this config file, which will map to your application's deploy name (e.g. `my-worker.mysubdomain.workers.dev`), should have a default value already filled in – feel free to change it, if you'd like.
+
+Fill in the `account_id` field with the value found in your dashboard.
 
 ```toml
 # wrangler.toml
