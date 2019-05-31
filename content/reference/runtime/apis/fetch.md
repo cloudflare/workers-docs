@@ -111,7 +111,6 @@ Cloudflare features you can set on outbound requests:
 <!-- * cache_api?  -->
 
 A Workers script runs after Cloudflare security features, but before everything else. Therefore, a Workers script cannot affect the operation of security features (since they already finished), but it can affect other features, like Polish or ScrapeShield, or how Cloudflare caches the response.
-operation of security features (since they already finished), but it can affect other features, like Polish or ScrapeShield, or how Cloudflare caches the response.
 
 Updating the `cf` object is similar to [modifying a request](/reference/workers-concepts/modifying-requests/). You can add the `cf` object to a `Request` by passing a custom headers object to [`fetch`](/reference/runtime/apis/fetch/). 
 ```javascript
