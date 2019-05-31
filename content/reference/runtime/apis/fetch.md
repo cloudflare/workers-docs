@@ -104,7 +104,7 @@ Cloudflare features you can set on outbound requests:
 * `minify`: (e.g. `false`)
 * `mirage`: (e.g. `false`)
 * `resolveOverride`: Redirects the request to an alternate origin server. You can use this, for example, to implement load balancing across several origins.(e.g.`us-east.example.com`)
-  * *Note - For security reasons, resolveOverride the hostname must be an orange-cloud host within your own zone. Otherwise, the setting is ignored. CNAME hosts are allowed, so to resolve to a host under a different domain first declare a CNAME record within your own zone’s DNS mapping to the external hostname, then set resolveOverride to point to that CNAME record.*
+  * *Note - For security reasons, the hostname set in `resolveOverride` must be proxied on the same Cloudflare zone of the incoming request. Otherwise, the setting is ignored. CNAME hosts are allowed, so to resolve to a host under a different domain or a DNS only domain first declare a CNAME record within your own zone’s DNS mapping to the external hostname, set proxy on Cloudflare, then set resolveOverride to point to that CNAME record.*
 
 
 
