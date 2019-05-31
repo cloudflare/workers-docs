@@ -79,12 +79,11 @@ Serve BinAST via a Cloudflare Worker.
   <p>Examples of reading in a POST request body of type JSON and form-data and manipulating request headers before it reaches the origin server.</p>
   <span>Paste this into your terminal:</span>
   <code class="copy">
-    wrangler generate myApp https://github.com/cloudflare/worker-template-request
+    wrangler generate myApp https://github.com/ashleygwilliams/worker-template-requests
   </code>
   <div class="links">
-    <a class="demo" href="http://workers-tooling.cf/demos/fetch/html">Demo GET HTML</a>
-    <a class="demo" href="http://workers-tooling.cf/demos/fetch/json">Demo GET/POST JSON</a>
-    <a class="source" href="https://github.com/victoriabernard92/worker-template-router/blob/master/router.js">Source code</a>
+    <a class="demo" href="https://cloudflareworkers.com/#64ac9c92b22a73a507155efb6dc856d0:https://tutorial.cloudflareworkers.com">Demo GET</a>
+    <a class="source" href="https://github.com/ashleygwilliams/worker-template-requests/blob/master/router.js">Source code</a>
   </div>
   </figure>
 
