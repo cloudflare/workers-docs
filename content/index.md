@@ -88,11 +88,6 @@ title: Cloudflare Workers Documentation
         href="https://cloudflareworkers.com/#6cbbd3ae7d4e928da3502cb9ce11227a:https://tutorial.cloudflareworkers.com/bar"
         >Demo</a
       >
-      <a
-        class="source"
-        href="https://github.com/victoriabernard92/worker-template-router/blob/master/router.js"
-        >Source code</a
-      >
     </div>
   </figure>
 </section>

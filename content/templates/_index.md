@@ -4,16 +4,7 @@ alwaysopen: true
 weight: 3
 ---
 
-## `binast-cf-worker`
-
-```
-wrangler generate binast-cf-worker https://github.com/xtuc/binast-cf-worker-template
-```
-
-Serve BinAST via a Cloudflare Worker.
-
 <p>These templates are simple building blocks for building a Workers script.</p>
-
 <section class="template-wrapper">
   <figure class="template-card">
     <h2>Hello World</h2>
@@ -38,7 +29,7 @@ Serve BinAST via a Cloudflare Worker.
       wrangler generate myApp https://github.com/cloudflare/rustwasm-worker-template
     </code>
     <div class="links">
-      <a
+                 <a
         class="demo"
         href="https://cloudflareworkers.com/#1992963c14c25bc8dc4c50f4cab740e5:https://tutorial.cloudflareworkers.com"
         >Demo</a
@@ -66,11 +57,6 @@ Serve BinAST via a Cloudflare Worker.
         href="https://cloudflareworkers.com/#6cbbd3ae7d4e928da3502cb9ce11227a:https://tutorial.cloudflareworkers.com/foo"
         >Demo /foo</a
       >
-      <a
-        class="source"
-        href="https://github.com/victoriabernard92/worker-template-router/blob/master/router.js"
-        >Source code</a
-      >
     </div>
   </figure>
 
@@ -95,12 +81,8 @@ Serve BinAST via a Cloudflare Worker.
         href="https://cloudflareworkers.com/#3160870d853b4df56a711621c7bd4ef3:https://tutorial.cloudflareworkers.com/static/json"
         >Demo JSON</a
       >
-      <a
-        class="source"
-        href="https://github.com/victoriabernard92/worker-template-router/blob/master/router.js"
-        >Source code</a
-      >
     </div>
+
   </figure>
 
   <figure class="template-card">
@@ -114,6 +96,13 @@ Serve BinAST via a Cloudflare Worker.
     <code class="copy">
       wrangler generate myApp https://github.com/cloudflare/worker-template-static
     </code>
+    <div class="links">
+          <a
+        class="demo"
+        href="https://cloudflareworkers.com/#3160870d853b4df56a711621c7bd4ef3:https://tutorial.cloudflareworkers.com/html"
+        >Demo GET</a
+      >
+    </div>
   </figure>
   <figure class="template-card">
     <h2>Incoming Request</h2>
@@ -131,11 +120,6 @@ Serve BinAST via a Cloudflare Worker.
         href="https://cloudflareworkers.com/#64ac9c92b22a73a507155efb6dc856d0:https://tutorial.cloudflareworkers.com"
         >Demo GET</a
       >
-      <a
-        class="source"
-        href="https://github.com/ashleygwilliams/worker-template-requests/blob/master/router.js"
-        >Source code</a
-      >
     </div>
   </figure>
 
@@ -149,11 +133,6 @@ Serve BinAST via a Cloudflare Worker.
     <div class="links">
       <a class="demo" href="https://workers-tooling.cf/demos/redirect/bulk1">Demo Bulk</a>
       <a class="demo" href="https://workers-tooling.cf/demos/redirect/generate">Demo Generate</a>
-      <a
-        class="source"
-        href="https://github.com/victoriabernard92/worker-template-router/blob/master/router.js"
-        >Source code</a
-      >
     </div>
   </figure>
 
@@ -174,4 +153,5 @@ Serve BinAST via a Cloudflare Worker.
       wrangler generate binast-cf-worker https://github.com/xtuc/binast-cf-worker-template
     </code>
   </figure>
+
 </section>
