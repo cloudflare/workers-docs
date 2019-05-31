@@ -5,7 +5,7 @@ weight: 3
 
 In this tutorial, you'll build and publish a serverless function that generates QR codes, using Cloudflare Workers.
 
-<img src="./media/demo.png" />
+![Demo](/tutorials/build-a-serverless-function/media/demo.png)
 
 This tutorial makes use of [Wrangler](https://github.com/cloudflare/wrangler), our command-line tool for generating, building, and publishing projects on the Cloudflare Workers platform. If you haven't used Wrangler, we recommend checking out the ["Installing the CLI"](/quickstart/cli-setup) part of our [Quick Start guide](/quickstart), which will get you set up with Wrangler, and familiar with the basic commands.
 
@@ -233,7 +233,7 @@ And with that, you're finished writing the code for the QR code serverless funct
 
 Wrangler has built-in support for bundling, uploading, and releasing your Cloudflare Workers application. To do this, we'll run `wrangler publish`, which will _build_ and _publish_ your code:
 
-<img src="./media/publish.gif" />
+![Publish](/tutorials/build-a-serverless-function/media/publish.gif)
 
 ## Resources
 

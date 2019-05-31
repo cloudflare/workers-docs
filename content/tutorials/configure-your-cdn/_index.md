@@ -223,7 +223,7 @@ $ wrangler publish
 
 After deploying your project, open up your browser to test retrieving your assets! For instance, if your Workers project is deployed to the route `myassets.com`, going to the URL `myassets.com/faces/1.jpg` should show an uploaded asset. In addition, you can inspect the request in your browser to confirm that it's being cached. Cloudflare's CDN will send a `cf-cache-status` header, with `HIT` or `MISS`, to indicate whether the content was a "cache hit" or not:
 
-![Result](./media/result.png)
+![Result](/tutorials/configure-your-cdn/media/result.png)
 
 ## Resources
 
