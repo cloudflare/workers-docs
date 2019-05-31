@@ -2,9 +2,7 @@
 title: Limits
 ---
 
-This section describes various limitations associated with your account.b
-
-This section describes various limitations associated with your account.b
+This section describes various limitations associated with your account.
 
 A Workers script plus any [Asset Bindings](/reference/tooling/api/bindings) can be up to 1MB in size after compression.
 
@@ -14,8 +12,8 @@ This lists the number of Workers scripts you can run in your Cloudflare deployme
 
 | Plan          | Number of Scripts |
 | ------------- | ----------------- |
-| `workers.dev` | 50                |
-| Subscribed    | 1000              |
+| `workers.dev` | 30                |
+| Subscribed    | 30                |
 
 **Note:** app Workers scripts do not count towards this limit.
 
@@ -31,12 +29,12 @@ Most Workers requests consume less than a millisecond. It’s rare to find a nor
 
 | Plan       | CPU   |
 | ---------- | ----- |
-| Free       | 5ms   |
+| Free       | 10ms  |
 | Pro        | 10ms  |
 | Business   | 50ms  |
 | Enterprise | 50ms+ |
 
-The 5ms the Free plan allows is enough runtime for most use cases, including application hosting. If you expect to exceed these limits, Cloudflare is happy to discuss options.
+The 10ms the Free plan allows is enough runtime for most use cases, including application hosting. If you expect to exceed these limits, Cloudflare is happy to discuss options.
 
 There is no limit on the real runtime for a Workers script. As long as the client that sent the request remains connected, the Workers script can continue processing, making subrequests, and setting timeouts on behalf of that request. When the client disconnects, all tasks associated with that client request are canceled. You can use [`event.waitUntil()`](TODO: link to waitUntil) to delay cancellation for another 30 seconds or until the promise passed to `waitUntil() completes.
 

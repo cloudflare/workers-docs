@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="{{ .Page.Language | default "en" }}" data-url="{{ .RelPermalink }}">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','cfDataLayer','GTM-PKQFGQB');</script>
+        <!-- End Google Tag Manager -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{ .Hugo.Generator }}
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+
+    <meta name="author" content="Cloudflare Inc">
+    <meta name="twitter:card" content="summary">
+
+    <meta property="og:url" content="{{ .RelPermalink }}">
+
+    {{ if .Description }}
+      {{ $.Scratch.Set "description" .Description }}
+    {{ else }}
+      {{ $.Scratch.Set "description" "Use Cloudflare’s APIs and edge network to build secure, ultra-fast applications." }}
+    {{ end }}
+
+    <meta name="description" content="{{ $.Scratch.Get "description" }}">
+    <meta name="og:description" content="{{ $.Scratch.Get "description" }}">
+    <meta name="twitter:description" content="{{ $.Scratch.Get "description" }}">
+
+    {{ partial "breadcrumb-schema.html" . }}
+
+    {{ if .IsHome }}
+      <meta content="Cloudflare, developer, documentation, docs" name="keywords">
+    {{ else if ne (len .Keywords) 0 }}
+      <meta content="{{ delimit .Keywords ", " }}" name="keywords">
+    {{ end }}
+
+    {{ if .IsHome }}
+      <meta property="og:title" content="{{ .Site.Title }}">
+      <meta property="twitter:title" content="{{ .Site.Title }}">
+      <title>{{ .Site.Title}}</title>
+    {{ else }}
+      <meta property="og:title" content="{{ .Title}} - {{ .Site.Title }}">
+      <meta property="twitter:title" content="{{ .Title}} - {{ .Site.Title }}">
+      <title>{{ .Title}} - {{ .Site.Title}}</title>
+    {{ end }}
+
+    <script type="text/javascript" src="https://cdn.bizible.com/scripts/bizible.js" async=""></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="{{ "css/font-awesome.min.css" | relURL }}" rel="stylesheet">
+    <link href="{{ "css/theme.css" | relURL }}" rel="stylesheet">
+
+    <link href="{{ "css/docsearch.min.css" | relURL }}" rel="stylesheet">
+    <script src="{{ "js/docsearch.min.js" | relURL }}"></script>
+
+    <link rel="icon" sizes="32x32" href="https://www.cloudflare.com/img/favicon/favicon-32x32.png">
+    <link rel="icon" sizes="16x16" href="https://www.cloudflare.com/img/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.cloudflare.com/img/favicon/apple-touch-icon.png">
+
+    <link href="{{ "css/workers.css" | relURL }}" rel="stylesheet">
+
+    {{ block "endOfHead" . }}
+    {{ end }}
+
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PKQFGQB"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    {{ block "body" . }}
+
+    {{ end }}
+
+    {{ block "endOfBody" . }}
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107218623-2"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-107218623-2');
+      </script>
+
+      <script type="text/javascript">
+        window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty","resetIdentity"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+        heap.load("3538148622");
+      </script>
+    {{ end }}
+  </body>
+</html>

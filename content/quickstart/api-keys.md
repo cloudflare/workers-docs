@@ -33,7 +33,7 @@ For workers.dev domains, you will just need the Account ID:
 
 ## Global API Key
 
-1. Click **Get API Key** below _Account ID_ to jump to your _Profile_ page.
+1. Click **Get API Key** below the _API_ section to jump to your _Profile_ page.
 
 2. Scroll to _API Keys_, and click **View** to copy your Global API Key **\***.
 

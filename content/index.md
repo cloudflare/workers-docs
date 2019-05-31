@@ -1,82 +1,91 @@
 ---
-title: Overview
+title: Cloudflare Workers Documentation
 ---
 
-Cloudflare Workers provides a serverless execution environment that allows you to create entirely new applications or augment existing ones without configuring or maintaining infrastructure.
+<p>Cloudflare Workers provides a serverless execution environment that allows you to create entirely new applications or augment existing ones without configuring or maintaining infrastructure.</p>
 
-## Discover What You Can Build with Tutorials
+<h2>Quick Start</h2>
+<p><a href="/quickstart" class="quick-start">Get Started</a> Begin building and publishing your code from the CLI.</p>
 
-- [Quick Start](/quickstart)
-Build and publish code from the CLI
+<h2>Tutorials</h2>
+<p>Discover what you can build with these step-by-step tutorials.</p>
+<ul class="tutorial-list">
+  <li class="tutorial-item">
+    <a href="/tutorials/build-an-application">
+      <img src="/media/chat-bot.svg" />
+    </a>
+    Build an Application
+    <a href="/tutorials/build-an-application">Create a Slack Bot for GitHub</a>
+  </li>
+  <li class="tutorial-item">
+    <a href="/tutorials/build-a-serverless-function">
+      <img src="/media/qr-generator.svg" />
+    </a>
+    Build a Serverless Function
+    <a href="/tutorials/build-a-serverless-function">Deploy a QR code reader</a>
+  </li>
+  <li class="tutorial-item">
+    <a href="/tutorials/configure-your-cdn">
+      <img src="/media/cache-website.svg" />
+    </a>
+    Configure Your CDN
+    <a href="/tutorials/configure-your-cdn">Serve and cache files from cloud storage</a>
+  </li>
+</ul>
 
-- [Build An Application](/tutorials/build-an-application)
-Create a Slack Bot for GitHub
+<h2>Templates</h2>
+<p>Ready-to-use code to get you started.</p>
+<section class="template-wrapper">
+  <figure class="template-card">
+  <h2>Hello World</h2>
+  <p>Simple Hello World in JS.</p>
+  <span>Paste this into your terminal:</span>
+  <code class="copy">
+    wrangler generate myApp https://github.com/cloudflare/worker-template
+  </code>
+  <div class="links">
+    <a class="demo" href="https://cloudflareworkers.com/#6626eb50f7b53c2d42b79d1082b9bd37:https://tutorial.cloudflareworkers.com">Demo</a>
+  </div>
+  </figure>
+  <figure class="template-card">
+  <h2>Hello World Rust</h2>
+  <p>Simple Hello World in Rust.</p>
+  <span>Paste this into your terminal:</span>
+  <code class="copy">
+    wrangler generate myApp https://github.com/cloudflare/rustwasm-worker-template
+  </code>
+  <div class="links">
+    <a class="demo" href="https://cloudflareworkers.com/#1992963c14c25bc8dc4c50f4cab740e5:https://tutorial.cloudflareworkers.com">Demo</a>
+  </div>
+  </figure>
+  <figure class="template-card">
+  <h2>Router</h2>
+  <p>Selects the logic based on the <code>request</code> method and URL. Use with REST APIs or apps that require routing logic.</p>
+  <span>Paste this into your terminal:</span>
+  <code class="copy">
+    wrangler generate myApp https://github.com/cloudflare/worker-template-router
+  </code>
+  <div class="links">
+    <a class="demo" href="https://cloudflareworkers.com/#6cbbd3ae7d4e928da3502cb9ce11227a:https://tutorial.cloudflareworkers.com/bar">Demo</a>
+    <a class="source" href="https://github.com/victoriabernard92/worker-template-router/blob/master/router.js">Source code</a>
+  </div>
+  </figure>  
+</section>
+<a href="/templates">View all templates</a>
 
-- [Build A Serverless Function](/tutorials/build-a-serverless-function)
-Deploy a QR code reader
 
-- [Configure Your CDN](./tutorials/configure-your-cdn)
-Serve and cache files from cloud storage
-
-
-## Getting Started through Templates
-
-#### Hello World
-```
-wrangler generate myApp https://github.com/cloudflare/worker-template
-```
-
-Simple Hello World in JS
-
-[Demo](https://cloudflareworkers.com/#6626eb50f7b53c2d42b79d1082b9bd37:https://tutorial.cloudflareworkers.com)
-
-#### Hello World Rust
-```
-wrangler generate myApp https://github.com/cloudflare/rustwasm-worker-template
-```
-
-Simple Hello World in Rust
-
-[Demo](https://cloudflareworkers.com/#1992963c14c25bc8dc4c50f4cab740e5:https://tutorial.cloudflareworkers.com)
-
-
-#### Router
-```
-wrangler generate myApp https://github.com/cloudflare/worker-template-router
-```
-Direct requests to the appropriate handler function
-
-[Demo](https://cloudflareworkers.com/#6cbbd3ae7d4e928da3502cb9ce11227a:https://tutorial.cloudflareworkers.com/bar)
-
-#### Static
-```
-wrangler generate myApp https://github.com/cloudflare/worker-template-static
-```
-
-Generate HTML and JSON
-
-[Demo](https://cloudflareworkers.com/#3160870d853b4df56a711621c7bd4ef3:https://tutorial.cloudflareworkers.com/static/html)
-
-#### Fetch
-```
-wrangler generate myApp https://github.com/cloudflare/worker-template-fetch
-```
-
-Send requests from your Workers application
-
-[See more](/templates)
-
-## Reference
-
-[Runtime APIs](/reference/runtime/apis)
-
-Global variables immediately available into your code
-
-[Concepts](/reference/workers-concepts)
-
-The need to know while writing Workers scripts.
-
-[Tooling](/reference/tooling)
-
-Build and deploy with integrated tools
-
+<h2>Reference</h2>
+<section class="reference-links">
+  <div>
+    <a href="/reference/runtime/apis">Runtime APIs</a>
+    <p>Global variables immediately available in your code</p>
+  </div>
+  <div>
+    <a href="/reference/workers-concepts">Concepts</a>
+    <p>The need to know while writing Workers scripts.</p>
+  </div>
+  <div>
+    <a href="/reference/tooling">Tooling</a>
+    <p>Build and deploy with integrated tools</p>
+  </div>
+</section>
