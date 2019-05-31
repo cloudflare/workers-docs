@@ -1,9 +1,7 @@
 ---
 title: Routes
-weight: 3
+weight: 4
 ---
-
-TODO: summarize the route concept.
 
 ## Object Specification
 
@@ -18,7 +16,7 @@ Sample Object
 ```
 
 - `id`: an identifier tag; returned in body on Create
-- `pattern`: string representation of a route. must follow the pattern: `/^[a-z0-9_][a-z0-9-_]*$/`
+- `pattern`: string representation of a route. must follow [route conventions](/reference/workers-concepts/routes)
 - `script` [optional]: Name of the script to apply when the route is matched. The route acts as a placeholder when this is blank/missing.
 
 ## Create Route
@@ -52,9 +50,9 @@ curl -X POST "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8
 
 ##### URL Parameters
 
-- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](../../how-to-find-your-cloudflare-api-keys))
+- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart/api-keys)
 
-##### Headers ([Find Your Auth Info](../../how-to-find-your-cloudflare-api-keys))
+##### Headers ([Find Your Auth Info](/quickstart/api-keys))
 
 - `X-Auth-Email`
 - `X-Auth-Key`
@@ -62,7 +60,7 @@ curl -X POST "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8
 
 ##### Payload
 
-- `pattern`: a string representation of the url pattern to be linked
+- `pattern`: string representation of a route. must follow [route conventions](/reference/workers-concepts/routes)
 - `script` [optional]: Name of the script to apply when the route is matched. The route acts as a placeholder when this is blank/missing.
 
 #### Response
@@ -71,7 +69,7 @@ curl -X POST "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8
 
 - `success`: Boolean
 - `result`: A [Route Object](#object-specification) of the resulting script. Only contains the route tag. Empty if success is false
-- `errors`: An array of [Error Objects](../#error-object). Empty if success is true
+- `errors`: An array of [Error Objects](/reference/tooling/api/#error-object). Empty if success is true
 - `messages`: An array of strings (unused)
 
 ##### Errors
@@ -108,15 +106,12 @@ error: {
 
 Possible error messages include: (where `[pattern]` is the given route pattern)
 
-`Route pattern must include zone name: [pattern]`
+* `Route pattern must include zone name: [pattern]`
+* `Route pattern may only contain wildcards at the beginning of the hostname and the end of the path: [pattern]`
+* `Route pattern should not have query parameters [pattern]`
+* `Could not understand route pattern [pattern], please try a different pattern`
 
-`Route pattern may only contain wildcards at the beginning of the hostname and the end of the path: [pattern]`
-
-`Route pattern should not have query parameters [pattern]`
-
-`Could not understand route pattern [pattern], please try a different pattern`
-
-See [Route Patterns](TODO).
+See [Route Patterns](/reference/workers-concepts/routes).
 
 ###### Missing Script
 
@@ -181,9 +176,9 @@ curl -X GET "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a83
 
 ##### URL Parameters
 
-- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](../../how-to-find-your-cloudflare-api-keys))
+- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart/api-keys)
 
-##### Headers ([Find Your Auth Info](../../how-to-find-your-cloudflare-api-keys))
+##### Headers ([Find Your Auth Info](/quickstart/api-keys))
 
 - `X-Auth-Email`
 - `X-Auth-Key`
@@ -198,7 +193,7 @@ n/a
 
 - `success`: Boolean
 - `result`: An array of [Route Objects](#object-specification) of all routes associated with the zone. Empty if success is false
-- `errors`: An array of [Error Objects](../#error-object). Empty if success is true
+- `errors`: An array of [Error Objects](/reference/tooling/api/request##error-object). Empty if success is true
 - `messages`: An array of strings (unused)
 
 ##### Errors
@@ -254,10 +249,10 @@ curl -X GET "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a83
 
 ##### URL Parameters
 
-- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](../../how-to-find-your-cloudflare-api-keys))
+- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart/api-keys)
 - `route_id`: the id of the [Route Object](#object-specification) being requested.
 
-##### Headers ([Find Your Auth Info](../../how-to-find-your-cloudflare-api-keys))
+##### Headers ([Find Your Auth Info](/quickstart/api-keys))
 
 - `X-Auth-Email`
 - `X-Auth-Key`
@@ -272,7 +267,7 @@ n/a
 
 - `success`: Boolean
 - `result`: A [Route Object](#object-specification) of the requested script. Empty if success is false
-- `errors`: An array of [Error Objects](../#error-object). Empty if success is true
+- `errors`: An array of [Error Objects](/reference/tooling/apis/requests#error-object). Empty if success is true
 - `messages`: An array of strings (unused)
 
 ##### Errors
@@ -338,10 +333,10 @@ curl -X POST "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8
 
 ##### URL Parameters
 
-- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](../../how-to-find-your-cloudflare-api-keys))
+- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart/api-keys)
 - `route_id`: the id of the [Route Object](#object-specification) being updated.
 
-##### Headers [Find Your Auth Info](../../how-to-find-your-cloudflare-api-keys)
+##### Headers ([Find Your Auth Info](/quickstart/api-keys))
 
 - `X-Auth-Email`
 - `X-Auth-Key`
@@ -349,7 +344,7 @@ curl -X POST "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8
 
 ##### Payload
 
-- `pattern`: a string representation of the url pattern to be linked
+- `pattern`: string representation of a route. must follow [route conventions](/reference/workers-concepts/routes)
 - `script` [optional]: Name of the script to apply when the route is matched. The route acts as a placeholder when this is blank/missing.
 
 #### Response
@@ -358,7 +353,7 @@ curl -X POST "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8
 
 - `success`: Boolean
 - `result`: A [Route Object](#object-specification) of the updated script. Empty if success is false
-- `errors`: An array of [Error Objects](../#error-object). Empty if success is true
+- `errors`: An array of [Error Objects](/reference/tooling/api/requests#error-object). Empty if success is true
 - `messages`: An array of strings (unused)
 
 ##### Errors
@@ -395,15 +390,12 @@ error: {
 
 Possible error messages include: (where `[pattern]` is the given route pattern)
 
-`Route pattern must include zone name: [pattern]`
+* `Route pattern must include zone name: [pattern]`
+* `Route pattern may only contain wildcards at the beginning of the hostname and the end of the path: [pattern]`
+* `Route pattern should not have query parameters [pattern]`
+* `Could not understand route pattern [pattern], please try a different pattern`
 
-`Route pattern may only contain wildcards at the beginning of the hostname and the end of the path: [pattern]`
-
-`Route pattern should not have query parameters [pattern]`
-
-`Could not understand route pattern [pattern], please try a different pattern`
-
-See [Route Patterns](TODO).
+See [Route Patterns](/reference/workers-concepts/routes).
 
 ###### Missing Script
 
@@ -464,10 +456,10 @@ curl -X DELETE "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31
 
 ##### URL Parameters
 
-- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](../../how-to-find-your-cloudflare-api-keys))
+- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart/api-keys)
 - `route_id`: the id of the [Route Object](#object-specification) being updated.
 
-##### Headers [Find Your Auth Info](../../how-to-find-your-cloudflare-api-keys)
+##### Headers ([Find Your Auth Info](/quickstart/api-keys))
 
 - `X-Auth-Email`
 - `X-Auth-Key`
@@ -480,7 +472,7 @@ curl -X DELETE "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31
 
 - `success`: Boolean
 - `result`: A [Route Object](#object-specification) of the removed script. Only contains the route tag. Empty if success is false
-- `errors`: An array of [Error Objects](../#error-object). Empty if success is true
+- `errors`: An array of [Error Objects](/reference/tooling/api/requests#error-object). Empty if success is true
 - `messages`: An array of strings (unused)
 
 ##### Errors

@@ -37,6 +37,28 @@ title: Cloudflare Workers Documentation
 <p>Ready-to-use code to get you started.</p>
 <section class="template-wrapper">
   <figure class="template-card">
+  <h2>Hello World</h2>
+  <p>Simple Hello World in JS.</p>
+  <span>Paste this into your terminal:</span>
+  <code class="copy">
+    wrangler generate myApp https://github.com/cloudflare/worker-template
+  </code>
+  <div class="links">
+    <a class="demo" href="https://cloudflareworkers.com/#6626eb50f7b53c2d42b79d1082b9bd37:https://tutorial.cloudflareworkers.com">Demo</a>
+  </div>
+  </figure>
+  <figure class="template-card">
+  <h2>Hello World Rust</h2>
+  <p>Simple Hello World in Rust.</p>
+  <span>Paste this into your terminal:</span>
+  <code class="copy">
+    wrangler generate myApp https://github.com/cloudflare/rustwasm-worker-template
+  </code>
+  <div class="links">
+    <a class="demo" href="https://cloudflareworkers.com/#1992963c14c25bc8dc4c50f4cab740e5:https://tutorial.cloudflareworkers.com">Demo</a>
+  </div>
+  </figure>
+  <figure class="template-card">
   <h2>Router</h2>
   <p>Selects the logic based on the <code>request</code> method and URL. Use with REST APIs or apps that require routing logic.</p>
   <span>Paste this into your terminal:</span>
@@ -44,45 +66,26 @@ title: Cloudflare Workers Documentation
     wrangler generate myApp https://github.com/cloudflare/worker-template-router
   </code>
   <div class="links">
-    <a class="demo" href="http://workers-tooling.cf/demos/router/bar">Demo /bar</a>
-    <a class="demo" href="http://workers-tooling.cf/demos/router/foo">Demo /foo</a>
+    <a class="demo" href="https://cloudflareworkers.com/#6cbbd3ae7d4e928da3502cb9ce11227a:https://tutorial.cloudflareworkers.com/bar">Demo</a>
     <a class="source" href="https://github.com/victoriabernard92/worker-template-router/blob/master/router.js">Source code</a>
   </div>
-  </figure>
-  <figure class="template-card">
-  <h2>Static</h2>
-  <p>Generates a fully functioning HTML page from cloud storage or from raw HTML in your work. Sends a static JSON.</p>
-  <span>Paste this into your terminal:</span>
-  <code class="copy">
-    wrangler generate myApp https://github.com/cloudflare/worker-template-static
-  </code>
-  <div class="links">
-    <a class="demo" href="http://workers-tooling.cf/demos/static/html">Demo HTML</a>
-    <a class="demo" href="http://workers-tooling.cf/demos/static/json">Demo JSON</a>
-    <a class="source" href="https://github.com/victoriabernard92/worker-template-router/blob/master/router.js">Source code</a>
-  </div>
-  </figure>
+  </figure>  
 </section>
-
 <a href="/templates">View all templates</a>
+
 
 <h2>Reference</h2>
 <section class="reference-links">
   <div>
-    <a href="/reference/runtime/apis">JS Environment</a>
+    <a href="/reference/runtime/apis">Runtime APIs</a>
     <p>Global variables immediately available in your code</p>
+  </div>
+  <div>
+    <a href="/reference/workers-concepts">Concepts</a>
+    <p>The need to know while writing Workers scripts.</p>
   </div>
   <div>
     <a href="/reference/tooling">Tooling</a>
     <p>Build and deploy with integrated tools</p>
   </div>
-  <div>
-    <a href="/reference/runtime">Runtime</a>
-    <p>Deep dive into how your code is running</p>
-  </div>
-  <div>
-    <a href="/reference/tooling/api">API</a>
-    <p>Deploy using the Cloudflare API</p>
-  </div>
 </section>
-

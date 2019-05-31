@@ -4,8 +4,8 @@ alwaysopen: true
 weight: 5
 ---
 
-### Runtime APIs
-- [Standard JavaScript APIs](/reference/runtime/apis)
+### APIs
+- [Web Standards](/reference/runtime/apis)
 - [Cache](/reference/runtime/apis/cache)
 - [Encoding](/reference/runtime/apis/encoding)
 - [Fetch Event](/reference/runtime/apis/fetch-event)

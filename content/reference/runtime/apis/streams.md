@@ -1,15 +1,18 @@
 ﻿---
-title: Streaming
+title: Streams
+weight: 5
 ---
 
-Worker scripts don’t need to prepare an entire response body _before_ delivering it to `event.respondWith()`. You can use `TransformStream` to stream a response body _after_ sending the front matter (that is, HTTP status line and headers). This allows you to minimize:
+Workers scripts don’t need to prepare an entire response body before delivering it to `event.respondWith()`. You can use `TransformStream` to stream a response body _after_ sending the front matter (that is, HTTP status line and headers). This allows you to minimize:
 
 * The visitor’s time-to-first-byte.
-* The buffering done in the Worker script.
+* The buffering done in the Workers script.
 
 Minimizing buffering is especially important for processing or transforming response bodies larger than the Workers script memory limit. For these cases, streaming is the only implementation strategy.
 
-**Note:** By default, the Cloudflare Workers service streams. Only use these APIs for _modifying_ the response body while maintaining streaming behavior. If your Workers script only passes subrequest responses back to the client verbatim without reading their body text, then its body handling is already optimal and you don't have to use these APIs.
+By default, the Cloudflare Workers service streams. Only use these APIs for _modifying_ the response body while maintaining streaming behavior. If your Workers script only passes subrequest responses back to the client verbatim without reading their body text, then its body handling is already optimal and you don't have to use these APIs.
+
+\**Note: The Streams API is only available inside of [the Request Context](/reference/workers-concepts/request-context).*
 
 ### Streaming Passthrough
 
@@ -40,7 +43,7 @@ async function fetchAndStream(request) {
 
 Note that we call `response.body.pipeTo(writable)` but do _not_ `await` it. This is so it does not block the forward progress of the remainder of the `fetchAndStream()` function. It continues to run asynchronously until the response is complete or the client disconnects.
 
-This Worker shows that it can continue running a function (`response.body.pipeTo(writable)`) after a response is returned to the client. This example just pumps the subrequest response body to the final response body; however, you can use more complicated logic, such as adding a prefix or a suffix to the body or to process it somehow.
+The runtime can continue running a function (`response.body.pipeTo(writable)`) after a response is returned to the client. This example just pumps the subrequest response body to the final response body; however, you can use more complicated logic, such as adding a prefix or a suffix to the body or to process it somehow.
 
 ## Reference
 

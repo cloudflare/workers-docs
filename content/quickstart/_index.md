@@ -4,6 +4,9 @@ alwaysopen: true
 weight: 1
 ---
 
-- [Set Up the CLI Tool](/quickstart/cli-setup)
-- [Finding Your Cloudflare Auth Configuration](/quickstart/api-keys)
-- [Writing Your First Workers Script](/quickstart/hello-world)
+- [Installing the CLI](/quickstart/cli-setup)
+- [Generating a Project](/quickstart/generating-a-project)
+- [Writing Code](/quickstart/writing-code)
+- [Configuring and Publishing](/quickstart/configuring-and-publishing)
+- [Deploying To Your Domain](/quickstart/deploying-to-your-domain)
+- [Finding Your Cloudflare API Keys](/quickstart/api-keys)

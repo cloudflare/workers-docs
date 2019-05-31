@@ -1,6 +1,6 @@
 ---
 title: Bindings
-weight: 2
+weight: 3
 ---
 
 ## Object Specification
@@ -40,10 +40,10 @@ curl -X GET "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a83
 
 ##### URL Parameters
 
-- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](../../how-to-find-your-cloudflare-api-keys))
+- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](/quickstart/api-keys)
 - `script_name`: the name of the script to be deleted.
 
-##### Headers ([Find Your Auth Info](../../how-to-find-your-cloudflare-api-keys))
+##### Headers ([Find Your Auth Info](/quickstart/api-keys))
 
 - `X-Auth-Email`
 - `X-Auth-Key`
@@ -56,7 +56,7 @@ curl -X GET "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a83
 
 - `success`: Boolean
 - `result`: An array of [Binding Objects](#object-specification). Empty if success is false
-- `errors`: An array of [Error Objects](../#error-object). Empty if success is true
+- `errors`: An array of [Error Objects](/reference/tooling/api/requests#error-object). Empty if success is true
 - `messages`: An array of strings (unused)
 
 ##### Errors
