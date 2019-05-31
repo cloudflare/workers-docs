@@ -36,7 +36,7 @@ Most Workers requests consume less than a millisecond. It’s rare to find a nor
 
 The 10ms the Free plan allows is enough runtime for most use cases, including application hosting. If you expect to exceed these limits, Cloudflare is happy to discuss options.
 
-There is no limit on the real runtime for a Workers script. As long as the client that sent the request remains connected, the Workers script can continue processing, making subrequests, and setting timeouts on behalf of that request. When the client disconnects, all tasks associated with that client request are canceled. You can use [`event.waitUntil()`](/reference/runtime/apis/fetch-event) to delay cancellation for another 30 seconds or until the promise passed to `waitUntil()` completes.
+There is no limit on the real runtime for a Workers script. As long as the client that sent the request remains connected, the Workers script can continue processing, making subrequests, and setting timeouts on behalf of that request. When the client disconnects, all tasks associated with that client request are canceled. You can use [`event.waitUntil()`](/reference/runtime/apis/fetch-event/) to delay cancellation for another 30 seconds or until the promise passed to `waitUntil()` completes.
 
 ## Memory
 
