@@ -54,7 +54,7 @@ Outputs any calls to `console.log` that were called for the current preview run 
 
 #### Sources
 
-The sources that make up your Workers script. Note currently there can only be one. TODO: is this true?? may just want to remove
+The sources that make up your Workers script. Note currently only WASM and the script are supported and not KV storage.
 
 ## Deploy
 
