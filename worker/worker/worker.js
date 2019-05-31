@@ -11,8 +11,8 @@ async function handleRequest(request) {
       var parsedUrl = new URL(request.url);
       var pathname = parsedUrl.pathname;
 
-      // chop off the start when passing the url to wasm, "/"
-      pathname = pathname.substring(1)
+      // chop off the start when passing the url to wasm, "/docs"
+      pathname = pathname.substring(5)
 
       //const response = await wasm_entry(pathname, STATIC_CONTENT_LANDING)
 
