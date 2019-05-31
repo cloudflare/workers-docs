@@ -60,12 +60,66 @@ All properties of a `Request` object are read only. To [modify a request](/refer
 
 #### The `cf` Object
 
-Workers allows you to run custom logic for any incoming request. In addition to the information available on the `Request` object, such as headers, Cloudflare provides attributes for the request using the `request.cf`object.
+In addition to the properties on the standard [`Request`](#request) object, you can use a the  `request.cf` object to control how Cloudflare features are applied as well as other custom information provided by Cloudflare. 
 
-* `tlsVersion`: The TLS version of the connection to Cloudflare.
-* `tlsCipher`: The cipher for the connection to Cloudflare.
-* `country`: The two-letter country code in the request. This is the same value as that provided in the `CF-IPCountry` header)
-* `colo`: The three-letter airport code of the data center that the request hit.
+Note: Currently, settings in the cf object cannot be tested in the playground.
+
+Special information from an incoming request to help with your app's logic:
+
+* `asn`: (e.g. `395747`)
+* `city`: (e.g. `"Austin"`)
+* `clientTrustScore`: (e.g. `94`)
+* `colo`: The three-letter airport code of the data center that the request hit. (e.g. `"DFW"`)
+* `continent`: (e.g. `"NA"`)
+* `country`: The two-letter country code in the request. This is the same value as that provided in the `CF-IPCountry` header. (e.g. `"US"`)
+* `httpProtocol`: (e.g. `"HTTP/2"`)
+* `latitude`: (e.g. `"30.27130"`)
+* `longitude`: (e.g. `"-97.74260"`)
+* `postalCode`: (e.g. `"78701"`)
+* `region`: (e.g. `"Texas"`)
+* `regionCode`: (e.g. `"TX"`)
+* `requestPriority`: (e.g. `"weight=256;exclusive=1"`)
+* `timezone`: (e.g. `"America/Chicago"`)
+* `tlsCipher`: The cipher for the connection to Cloudflare. (e.g. `"AEAD-AES128-GCM-SHA256"`)
+* `tlsClientAuth`: Object with the following properties
+  * `certIssuerDNLegacy`
+  * `certIssuerDN`
+  * `certIssuerDNRFC2253`
+  * `certSubjectDNLegacy`
+  * `certVerified`
+  * `certNotAfter`
+  * `certSubjectDN`
+  * `certFingerprintSHA1`
+  * `certNotBefore`
+  * `certSerial`
+  * `certPresented`
+  * `certSubjectDNRFC2253`
+* `tlsVersion`: The TLS version of the connection to Cloudflare ( e.g. `TLSv1.3`)
+
+Cloudflare features you can set on outbound requests: 
+
+* `cacheEverything`:(e.g. `false`)
+* `scrapeShield`:(e.g. `false`)
+* `apps`: (e.g. `false`)
+* `minify`: (e.g. `false`)
+* `mirage`: (e.g. `false`)
+* `resolveOverride`: Redirects the request to an alternate origin server. You can use this, for example, to implement load balancing across several origins.(e.g.`us-east.example.com`)
+  * *Note - For security reasons, the hostname set in `resolveOverride` must be proxied on the same Cloudflare zone of the incoming request. Otherwise, the setting is ignored. CNAME hosts are allowed, so to resolve to a host under a different domain or a DNS only domain first declare a CNAME record within your own zone’s DNS mapping to the external hostname, set proxy on Cloudflare, then set resolveOverride to point to that CNAME record.*
+
+
+
+<!-- * cache_api?  -->
+
+A Workers script runs after Cloudflare security features, but before everything else. Therefore, a Workers script cannot affect the operation of security features (since they already finished), but it can affect other features, like Polish or ScrapeShield, or how Cloudflare caches the response.
+
+Updating the `cf` object is similar to [modifying a request](/reference/workers-concepts/modifying-requests/). You can add the `cf` object to a `Request` by passing a custom headers object to [`fetch`](/reference/runtime/apis/fetch/). 
+```javascript
+// Disable ScrapeShield for this request.
+fetch(event.request, { cf: { scrapeShield: false } })
+```
+Note: Invalid or incorrectly-named settings in the cf object will be silently ignored. Be careful to test that you are getting the behavior you want. 
+}
+
 
 ### Methods
 
