@@ -60,8 +60,7 @@ weight: 3
   </figure>
   <figure class="template-card">
     <h2>Static</h2>
-    <p>Generates a fully functioning HTML page from cloud storage or from raw HTML in your work.
-      Sends a static JSON.
+    <p>Generates a fully functioning HTML page from raw HTML or sends raw JSON defined within your script.
     </p>
     <span>Paste this into your terminal:</span>
     <code class="copy">
@@ -84,26 +83,29 @@ weight: 3
     <h2>Fetch</h2>
     <p>
       Examples of making fetch requests from within your Worker script including generating JSON
-      post requests then reading in the resulting response body, aggregating multiple requests into
-      one response, and following/catching redirects.
+      post requests then reading in the resulting response body.
     </p>
     <span>Paste this into your terminal:</span>
     <code class="copy">
-      wrangler generate myApp https://github.com/cloudflare/worker-template-static
+      wrangler generate myApp https://github.com/cloudflare/worker-template-fetch
     </code>
     <div class="links">
-          <a
+      <a
         class="demo"
-        href="https://cloudflareworkers.com/#3160870d853b4df56a711621c7bd4ef3:https://tutorial.cloudflareworkers.com/html"
-        >Demo GET</a
+        href="https://cloudflareworkers.com/#c72284898b1767342dc5c7bc24925e16:https://tutorial.cloudflareworkers.com/json"
+        >Demo JSON</a
+      >
+      <a
+        class="demo"
+        href="https://cloudflareworkers.com/#c72284898b1767342dc5c7bc24925e16:https://tutorial.cloudflareworkers.com/html"
+        >Demo HTML</a
       >
     </div>
   </figure>
   <figure class="template-card">
     <h2>Incoming Request</h2>
     <p>
-      Examples of reading in a POST request body of type JSON and form-data and manipulating request
-      headers before it reaches the origin server.
+      Examples of reading in a POST request body of type JSON and form-data.
     </p>
     <span>Paste this into your terminal:</span>
     <code class="copy">
@@ -112,8 +114,8 @@ weight: 3
     <div class="links">
       <a
         class="demo"
-        href="https://cloudflareworkers.com/#64ac9c92b22a73a507155efb6dc856d0:https://tutorial.cloudflareworkers.com"
-        >Demo GET</a
+        href="https://cloudflareworkers.com/#6cf6a1d0d8e5a0bd3be434b754c183f0:https://tutorial.cloudflareworkers.com/form"
+        >Demo Form</a
       >
     </div>
   </figure>
@@ -125,8 +127,8 @@ weight: 3
       wrangler generate myApp https://github.com/cloudflare/worker-template-redirect
     </code>
     <div class="links">
-      <a class="demo" href="https://workers-tooling.cf/demos/redirect/bulk1">Demo Bulk</a>
-      <a class="demo" href="https://workers-tooling.cf/demos/redirect/generate">Demo Generate</a>
+      <a class="demo" href="https://cloudflareworkers.com/#5ab384d18305ff16ee4fe261e63c5cbe:https://tutorial.cloudflareworkers.com/redirect/bulk3">Demo Bulk</a>
+      <a class="demo" href="https://cloudflareworkers.com/#5ab384d18305ff16ee4fe261e63c5cbe:https://tutorial.cloudflareworkers.com/redirect/generate">Demo Generate</a>
     </div>
   </figure>
   <figure class="template-card">
