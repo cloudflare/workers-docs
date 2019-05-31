@@ -1,0 +1,120 @@
+<a id="sidebar-toggle"><span><b></b><b></b><b></b></span></a>
+<script>
+  document.querySelector('#sidebar-toggle').addEventListener('click', function(){
+    if (document.body.classList.contains('with-sidebar-open')) {
+      document.body.classList.remove('with-sidebar-open');
+    } else {
+      document.body.classList.add('with-sidebar-open');
+    }
+  });
+</script>
+
+<div id="sidebar-open-backdrop"></div>
+<nav id="sidebar">
+  <div class="search-container">
+    <input
+      class="search-input"
+      type="text"
+      id="docsearch-input"
+      placeholder="Search the docs..."
+    />
+  </div>
+
+  {{ $currentNode := . }}
+  <div class="highlightable">
+    <ul class="topics">
+        {{ if not .Site.Params.noHomeIcon }}
+          <li data-nav-id="{{"/" | relURL}}" class="docs-nav-item-header">
+            <a class="" href="{{"/" | relURL}}" title="Docs Home">
+              {{ range where .Site.Pages "File.BaseFileName" "_header" }}
+                {{ .Content }}
+              {{ end }}
+            </a>
+          </li>
+        {{ end }}
+
+        {{ if eq .Site.Params.ordersectionsby "title" }}
+          {{ range .Site.Home.Sections.ByTitle }}
+          {{ template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" false }}
+          {{ end }}
+        {{ else }}
+          {{ range .Site.Home.Sections.ByWeight }}
+          {{ template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" false }}
+          {{ end }}
+        {{ end }}
+    </ul>
+  </div>
+</nav>
+
+<!-- templates -->
+{{ define "section-tree-nav" }}
+{{ $currentNode := .currentnode }}
+ {{ with .sect }}
+  {{ if .IsSection }}
+    {{safeHTML .Params.head}}
+    <li data-nav-id="{{.URL}}" class="dd-item
+        {{ if .IsAncestor $currentNode }}parent{{ end }}
+        {{ if eq .UniqueID $currentNode.UniqueID}}active{{ end }}
+        {{ if .Params.alwaysopen}}parent{{ end }}
+        {{ if .Params.alwaysopen}}always-open{{ end }}
+        ">
+      <a href="{{ .RelPermalink}}">
+        <span>{{safeHTML .Params.Pre}}{{.Title}}{{safeHTML .Params.Post}}</span>
+
+        {{ $numberOfPages := (add (len .Pages) (len .Sections)) }}
+        {{ if ne $numberOfPages 0 }}
+
+          {{ if or (.IsAncestor $currentNode) (.Params.alwaysopen)  }}
+            <i class="triangle-up"></i>
+          {{ else }}
+            <i class="triangle-down"></i>
+          {{ end }}
+
+        {{ end }}
+      </a>
+      {{ if ne $numberOfPages 0 }}
+        <ul>
+          {{ .Scratch.Set "pages" .Pages }}
+          {{ if .Sections}}
+          {{ .Scratch.Set "pages" (.Pages | union .Sections) }}
+          {{ end }}
+          {{ $pages := (.Scratch.Get "pages") }}
+
+        {{ if eq .Site.Params.ordersectionsby "title" }}
+          {{ range $pages.ByTitle }}
+            {{ if and .Params.hidden (not $.showhidden) }}
+            {{ else }}
+            {{ template "section-tree-nav" dict "sect" . "currentnode" $currentNode }}
+            {{ end }}
+          {{ end }}
+        {{ else }}
+          {{ range $pages.ByWeight }}
+            {{ if and .Params.hidden (not $.showhidden) }}
+            {{ else }}
+            {{ template "section-tree-nav" dict "sect" . "currentnode" $currentNode }}
+            {{ end }}
+          {{ end }}
+        {{ end }}
+        </ul>
+      {{ end }}
+    </li>
+  {{ else }}
+    {{ if not .Params.Hidden }}
+      <li data-nav-id="{{.URL}}" class="dd-item
+     {{ if eq .UniqueID $currentNode.UniqueID}}active{{ end }}
+      ">
+        <a href="{{.RelPermalink}}">
+        <span>{{safeHTML .Params.Pre}}{{.Title}}{{safeHTML .Params.Post}}</span>
+        </a></li>
+     {{ end }}
+  {{ end }}
+ {{ end }}
+{{ end }}
+
+<script type="text/javascript">
+  docsearch({
+    apiKey: '4c1a7e1b6289032a8e8fd1dbbae112a3',
+    indexName: 'cloudflare',
+    inputSelector: '#docsearch-input'
+  });
+</script>
