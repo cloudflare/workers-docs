@@ -12,7 +12,7 @@ This example verifies the HMAC for any request URL with a pathname starting with
 
 For debugging, this code returns error code 403 if the URL or HMAC is invalid or if the URL is expired. You can choose to return a 404 page.
 
-**Example Workers script verifying the HMAC and returning a 403 error:**
+### Example Workers script verifying the HMAC and returning a 403 error:
 
 ```javascript
 // We'll need some super-secret data to use as a symmetric key.
@@ -103,7 +103,7 @@ Typically, signed requests are delivered to the user in some out-of-band way, su
 
 For request URLs beginning with `/generate/`, we replace `/generate/` with `/verify/`, sign the resulting path with its timestamp, and return the full, signed URL in the response body.
 
-**Example Workers script signed request:
+### Example Workers script signed request:
 
 ```javascript
 addEventListener('fetch', event => {
