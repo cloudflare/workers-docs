@@ -45,7 +45,6 @@ title: Cloudflare Workers Documentation
   <figure class="template-card">
     <h2>Hello World</h2>
     <p>Simple Hello World in JS.</p>
-    <span>Paste this into your terminal:</span>
     <code class="copy">
       wrangler generate myApp https://github.com/cloudflare/worker-template
     </code>
@@ -60,7 +59,6 @@ title: Cloudflare Workers Documentation
   <figure class="template-card">
     <h2>Hello World Rust</h2>
     <p>Simple Hello World in Rust.</p>
-    <span>Paste this into your terminal:</span>
     <code class="copy">
       wrangler generate myApp https://github.com/cloudflare/rustwasm-worker-template
     </code>
@@ -73,22 +71,44 @@ title: Cloudflare Workers Documentation
     </div>
   </figure>
   <figure class="template-card">
-    <h2>Router</h2>
-    <p>
-      Selects the logic based on the <code>request</code> method and URL. Use with REST APIs or apps
-      that require routing logic.
-    </p>
-    <span>Paste this into your terminal:</span>
-    <code class="copy">
-      wrangler generate myApp https://github.com/cloudflare/worker-template-router
-    </code>
-    <div class="links">
-      <a
-        class="demo"
-        href="https://cloudflareworkers.com/#6cbbd3ae7d4e928da3502cb9ce11227a:https://tutorial.cloudflareworkers.com/bar"
-        >Demo</a
-      >
-    </div>
+      <h2>Router</h2>
+      <p>Direct requests to the appropriate handler function.</p>
+      <code class="copy">
+        wrangler generate myApp https://github.com/cloudflare/worker-template-router
+      </code>
+      <div class="links">
+        <a
+          class="demo"
+          href="https://cloudflareworkers.com/#6cbbd3ae7d4e928da3502cb9ce11227a:https://tutorial.cloudflareworkers.com/bar"
+          >Demo /bar</a
+        >
+        <a
+          class="demo"
+          href="https://cloudflareworkers.com/#6cbbd3ae7d4e928da3502cb9ce11227a:https://tutorial.cloudflareworkers.com/foo"
+          >Demo /foo</a
+        >
+      </div>
+    </figure>
+    <figure class="template-card">
+      <h2>Fetch</h2>
+      <p>
+        Send requests from your Workers application.
+      </p>
+      <code class="copy">
+        wrangler generate myApp https://github.com/cloudflare/worker-template-fetch
+      </code>
+      <div class="links">
+        <a
+          class="demo"
+          href="https://cloudflareworkers.com/#c72284898b1767342dc5c7bc24925e16:https://tutorial.cloudflareworkers.com/json"
+          >Demo JSON</a
+        >
+        <a
+          class="demo"
+          href="https://cloudflareworkers.com/#c72284898b1767342dc5c7bc24925e16:https://tutorial.cloudflareworkers.com/html"
+          >Demo HTML</a
+        >
+      </div>
   </figure>
 </section>
 <a href="/templates">View all templates</a>
