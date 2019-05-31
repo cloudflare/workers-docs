@@ -5,7 +5,7 @@ weight: 1
 
 The Workers Runtime provides the following standardized APIs for use by scripts running at the Edge.
 
-Methods highlighted in orange are only implemented in the scope of a [request context](../how-it-works/request-context).
+Methods highlighted in orange are only implemented in the scope of a [request context](/reference/workers-concepts/request-context/).
 
 ## JavaScript Standards
 
@@ -39,7 +39,7 @@ The following methods are available per the [Worker Global Scope](https://develo
 
 #### Fetch global
 
-[`fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch) - Starts the process of fetching a resource from the network. See [FetchAPI](./fetch).
+[`fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch) - Starts the process of fetching a resource from the network. See [FetchAPI](/reference/runtime/apis/fetch/).
 \**Note: The Fetch API is only available inside of [the Request Context](/reference/workers-concepts/request-context).*
 
 ## Encoding API
