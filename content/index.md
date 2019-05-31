@@ -2,10 +2,16 @@
 title: Cloudflare Workers Documentation
 ---
 
-<p>Cloudflare Workers provides a serverless execution environment that allows you to create entirely new applications or augment existing ones without configuring or maintaining infrastructure.</p>
+<p>
+  Cloudflare Workers provides a serverless execution environment that allows you to create entirely
+  new applications or augment existing ones without configuring or maintaining infrastructure.
+</p>
 
 <h2>Quick Start</h2>
-<p><a href="/quickstart" class="quick-start">Get Started</a> Begin building and publishing your code from the CLI.</p>
+<p>
+  <a href="/quickstart" class="quick-start">Get Started</a> Begin building and publishing your code
+  from the CLI.
+</p>
 
 <h2>Tutorials</h2>
 <p>Discover what you can build with these step-by-step tutorials.</p>
@@ -37,42 +43,55 @@ title: Cloudflare Workers Documentation
 <p>Ready-to-use code to get you started.</p>
 <section class="template-wrapper">
   <figure class="template-card">
-  <h2>Hello World</h2>
-  <p>Simple Hello World in JS.</p>
-  <span>Paste this into your terminal:</span>
-  <code class="copy">
-    wrangler generate myApp https://github.com/cloudflare/worker-template
-  </code>
-  <div class="links">
-    <a class="demo" href="https://cloudflareworkers.com/#6626eb50f7b53c2d42b79d1082b9bd37:https://tutorial.cloudflareworkers.com">Demo</a>
-  </div>
+    <h2>Hello World</h2>
+    <p>Simple Hello World in JS.</p>
+    <span>Paste this into your terminal:</span>
+    <code class="copy">
+      wrangler generate myApp https://github.com/cloudflare/worker-template
+    </code>
+    <div class="links">
+      <a
+        class="demo"
+        href="https://cloudflareworkers.com/#6626eb50f7b53c2d42b79d1082b9bd37:https://tutorial.cloudflareworkers.com"
+        >Demo</a
+      >
+    </div>
   </figure>
   <figure class="template-card">
-  <h2>Hello World Rust</h2>
-  <p>Simple Hello World in Rust.</p>
-  <span>Paste this into your terminal:</span>
-  <code class="copy">
-    wrangler generate myApp https://github.com/cloudflare/rustwasm-worker-template
-  </code>
-  <div class="links">
-    <a class="demo" href="https://cloudflareworkers.com/#1992963c14c25bc8dc4c50f4cab740e5:https://tutorial.cloudflareworkers.com">Demo</a>
-  </div>
+    <h2>Hello World Rust</h2>
+    <p>Simple Hello World in Rust.</p>
+    <span>Paste this into your terminal:</span>
+    <code class="copy">
+      wrangler generate myApp https://github.com/cloudflare/rustwasm-worker-template
+    </code>
+    <div class="links">
+      <a
+        class="demo"
+        href="https://cloudflareworkers.com/#1992963c14c25bc8dc4c50f4cab740e5:https://tutorial.cloudflareworkers.com"
+        >Demo</a
+      >
+    </div>
   </figure>
   <figure class="template-card">
-  <h2>Router</h2>
-  <p>Selects the logic based on the <code>request</code> method and URL. Use with REST APIs or apps that require routing logic.</p>
-  <span>Paste this into your terminal:</span>
-  <code class="copy">
-    wrangler generate myApp https://github.com/cloudflare/worker-template-router
-  </code>
-  <div class="links">
-    <a class="demo" href="https://cloudflareworkers.com/#6cbbd3ae7d4e928da3502cb9ce11227a:https://tutorial.cloudflareworkers.com/bar">Demo</a>
-    <a class="source" href="https://github.com/victoriabernard92/worker-template-router/blob/master/router.js">Source code</a>
-  </div>
-  </figure>  
+    <h2>Router</h2>
+    <p>
+      Selects the logic based on the <code>request</code> method and URL. Use with REST APIs or apps
+      that require routing logic.
+    </p>
+    <span>Paste this into your terminal:</span>
+    <code class="copy">
+      wrangler generate myApp https://github.com/cloudflare/worker-template-router
+    </code>
+    <div class="links">
+      <a
+        class="demo"
+        href="https://cloudflareworkers.com/#6cbbd3ae7d4e928da3502cb9ce11227a:https://tutorial.cloudflareworkers.com/bar"
+        >Demo</a
+      >
+    </div>
+  </figure>
 </section>
 <a href="/templates">View all templates</a>
-
 
 <h2>Reference</h2>
 <section class="reference-links">
