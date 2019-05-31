@@ -87,5 +87,5 @@ While the preview tool is powerful in development, the tool must run as a mock p
 The key differences of the previewer versus a live Workers script are:
 
 - Subrequests ( i.e. fetches inside your Workers script) that call the same hostname as the original request will run in the previewer as an external request (i.e. goes back to the front line of Cloudflare), as those subrequests in production will go directly to the origin.
-- Not all [Standard APIs](/reference/runtime/standard_apis) are avalible in the previewer that are in production.
+- Not all [APIs](/reference/runtime/apis) are avalible in the previewer that are in production.
 - The output of `console.log` acts as a no-op in production.
