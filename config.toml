@@ -1,4 +1,4 @@
-baseURL = "https://docs-staging.workers-tooling.cf/"
+baseURL = "https://workers.cloudflare.com/docs/"
 languageCode = "en-us"
 title = "Cloudflare Workers Docs"
 theme = "hugo-cloudflare-docs"
