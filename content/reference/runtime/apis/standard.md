@@ -5,8 +5,6 @@ weight: 1
 
 The Workers Runtime provides the following standardized APIs for use by scripts running at the Edge.
 
-Methods highlighted in orange are only implemented in the scope of a [request context](/reference/workers-concepts/request-context/).
-
 ## JavaScript Standards
 
 All of the [standard built-in objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference) supported by the current Google Chrome stable release are supported, with a few notable exceptions:
