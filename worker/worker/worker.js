@@ -33,13 +33,28 @@ async function handleRequest(request) {
 }
 
 function normalize_path(path) {
+  // root page
   if(path == "") {
     return "index.html"
+  // directory page with a trailing /
   } else if(path.endsWith("/")) {
     return path + "index.html"
+  // is it a directory without the /
+  } else if(is_directory(path)) {
+    return path + "/index.html"
+  // normal path, no need to do anything!
   } else {
     return path
   }
+}
+
+function is_directory(path) {
+  const bits = path.split("/")
+  const last = bits.last()
+
+  // does the final component contain a dot? technically there may be edge cases
+  // here but this is fine for now!
+  return !last.includes(".")
 }
 
 function determine_content_type(path) {
