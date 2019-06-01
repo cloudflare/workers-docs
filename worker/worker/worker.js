@@ -16,6 +16,10 @@ async function handleRequest(request) {
 
       var path = normalize_path(pathname)
 
+      if(!path.endsWith("/") && is_directory(path)) {
+        return Response.redirect(request.url + "/", 301);
+      }
+
       var contentType = determine_content_type(path)
 
       let body
@@ -47,9 +51,6 @@ function normalize_path(path) {
   // directory page with a trailing /
   } else if(path.endsWith("/")) {
     return path + "index.html"
-  // is it a directory without the /
-  } else if(is_directory(path)) {
-    return path + "/index.html"
   // normal path, no need to do anything!
   } else {
     return path
