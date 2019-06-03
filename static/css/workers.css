@@ -102,5 +102,6 @@ figure.template-card span {
 }
 .copy .help:hover {
   opacity: 0.7;
+  cursor: pointer;
   color: #f4a15d;
 }
