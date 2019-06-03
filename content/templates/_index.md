@@ -147,7 +147,7 @@ weight: 3
   </figure>
   <figure class="template-card">
     <h2>img-color-worker</h2>
-    <p>Examples of sending single and bulk redirects from a Worker script</p>
+    <p>Retrieve the dominant color of a PNG or JPEG image</p>
     <span>Paste this into your terminal:</span>
     <div class="copy">
       <code class="highlight">
