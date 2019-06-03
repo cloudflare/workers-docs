@@ -45,9 +45,11 @@ title: Cloudflare Workers Documentation
   <figure class="template-card">
     <h2>Hello World</h2>
     <p>Simple Hello World in JS.</p>
-    <code class="copy">
-      wrangler generate myApp https://github.com/cloudflare/worker-template
-    </code>
+    <div class="copy">
+      <code class="highlight">
+        wrangler generate myApp https://github.com/cloudflare/worker-template
+      </code>
+    </div>
     <div class="links">
       <a
         class="demo"
@@ -59,9 +61,11 @@ title: Cloudflare Workers Documentation
   <figure class="template-card">
     <h2>Hello World Rust</h2>
     <p>Simple Hello World in Rust.</p>
-    <code class="copy">
-      wrangler generate myApp https://github.com/cloudflare/rustwasm-worker-template
-    </code>
+    <div class="copy">
+      <code class="highlight">
+        wrangler generate myApp https://github.com/cloudflare/rustwasm-worker-template
+      </code>
+    </div>
     <div class="links">
       <a
         class="demo"
@@ -73,9 +77,11 @@ title: Cloudflare Workers Documentation
   <figure class="template-card">
       <h2>Router</h2>
       <p>Direct requests to the appropriate handler function.</p>
-      <code class="copy">
-        wrangler generate myApp https://github.com/cloudflare/worker-template-router
-      </code>
+      <div class="copy">
+        <code class="highlight">
+          wrangler generate myApp https://github.com/cloudflare/worker-template-router
+        </code>
+      </div>
       <div class="links">
         <a
           class="demo"
@@ -94,9 +100,11 @@ title: Cloudflare Workers Documentation
       <p>
         Send requests from your Workers application.
       </p>
-      <code class="copy">
-        wrangler generate myApp https://github.com/cloudflare/worker-template-fetch
-      </code>
+      <div class="copy">
+        <code class="highlight">
+          wrangler generate myApp https://github.com/cloudflare/worker-template-fetch
+        </code>
+      </div>
       <div class="links">
         <a
           class="demo"

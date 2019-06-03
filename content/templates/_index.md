@@ -10,9 +10,11 @@ weight: 3
     <h2>Hello World</h2>
     <p>Simple Hello World in JS.</p>
     <span>Paste this into your terminal:</span>
-    <code class="copy">
-      wrangler generate myApp https://github.com/cloudflare/worker-template
-    </code>
+    <div class="copy">
+      <code class="highlight">
+        wrangler generate myApp https://github.com/cloudflare/worker-template
+      </code>
+    </div>
     <div class="links">
       <a
         class="demo"
@@ -25,9 +27,11 @@ weight: 3
     <h2>Hello World Rust</h2>
     <p>Simple Hello World in Rust.</p>
     <span>Paste this into your terminal:</span>
-    <code class="copy">
-      wrangler generate myApp https://github.com/cloudflare/rustwasm-worker-template
-    </code>
+    <div class="copy">
+      <code class="highlight">
+        wrangler generate myApp https://github.com/cloudflare/rustwasm-worker-template
+      </code>
+    </div>
     <div class="links">
                  <a
         class="demo"
@@ -42,9 +46,11 @@ weight: 3
       that require routing logic.
     </p>
     <span>Paste this into your terminal:</span>
-    <code class="copy">
-      wrangler generate myApp https://github.com/cloudflare/worker-template-router
-    </code>
+    <div class="copy">
+      <code class="highlight">
+        wrangler generate myApp https://github.com/cloudflare/worker-template-router
+      </code>
+    </div>
     <div class="links">
       <a
         class="demo"
@@ -63,9 +69,11 @@ weight: 3
     <p>Generates a fully functioning HTML page from raw HTML or sends raw JSON defined within your script.
     </p>
     <span>Paste this into your terminal:</span>
-    <code class="copy">
-      wrangler generate myApp https://github.com/cloudflare/worker-template-static
-    </code>
+    <div class="copy">
+      <code class="highlight">
+        wrangler generate myApp https://github.com/cloudflare/worker-template-static
+      </code>
+    </div>
     <div class="links">
       <a
         class="demo"
@@ -86,9 +94,11 @@ weight: 3
       post requests then reading in the resulting response body.
     </p>
     <span>Paste this into your terminal:</span>
-    <code class="copy">
-      wrangler generate myApp https://github.com/cloudflare/worker-template-fetch
-    </code>
+    <div class="copy">
+      <code class="highlight">
+        wrangler generate myApp https://github.com/cloudflare/worker-template-fetch
+      </code>
+    </div>
     <div class="links">
       <a
         class="demo"
@@ -108,9 +118,11 @@ weight: 3
       Examples of reading in a POST request body of type JSON and form-data.
     </p>
     <span>Paste this into your terminal:</span>
-    <code class="copy">
-      wrangler generate myApp https://github.com/ashleygwilliams/worker-template-requests
-    </code>
+    <div class="copy">
+      <code class="highlight">
+        wrangler generate myApp https://github.com/ashleygwilliams/worker-template-requests
+      </code>
+    </div>
     <div class="links">
       <a
         class="demo"
@@ -123,9 +135,11 @@ weight: 3
     <h2>Redirects</h2>
     <p>Examples of sending single and bulk redirects from a Worker script</p>
     <span>Paste this into your terminal:</span>
-    <code class="copy">
-      wrangler generate myApp https://github.com/cloudflare/worker-template-redirect
-    </code>
+    <div class="copy">
+      <code class="highlight">
+        wrangler generate myApp https://github.com/cloudflare/worker-template-redirect
+      </code>
+    </div>
     <div class="links">
       <a class="demo" href="https://cloudflareworkers.com/#5ab384d18305ff16ee4fe261e63c5cbe:https://tutorial.cloudflareworkers.com/redirect/bulk3">Demo Bulk</a>
       <a class="demo" href="https://cloudflareworkers.com/#5ab384d18305ff16ee4fe261e63c5cbe:https://tutorial.cloudflareworkers.com/redirect/generate">Demo Generate</a>
@@ -135,16 +149,20 @@ weight: 3
     <h2>img-color-worker</h2>
     <p>Examples of sending single and bulk redirects from a Worker script</p>
     <span>Paste this into your terminal:</span>
-    <code class="copy">
-      wrangler generate img-color https://github.com/xtuc/img-color-worker
-    </code>
+    <div class="copy">
+      <code class="highlight">
+        wrangler generate img-color https://github.com/xtuc/img-color-worker
+      </code>
+    </div>
   </figure>
   <figure class="template-card">
     <h2>binast-cf-worker</h2>
     <p>Serve BinAST via a Cloudflare Worker</p>
     <span>Paste this into your terminal:</span>
-    <code class="copy">
-      wrangler generate binast-cf-worker https://github.com/xtuc/binast-cf-worker-template
-    </code>
+    <div class="copy">
+      <code class="highlight">
+        wrangler generate binast-cf-worker https://github.com/xtuc/binast-cf-worker-template
+      </code>
+    </div>
   </figure>
 </section>
