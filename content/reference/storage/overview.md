@@ -37,6 +37,19 @@ Your data is organized into key-value pairs contained within a Namespace. To get
 
 ## Pricing
 
-Your \$5 Workers monthly base charge includes 1 GB of Worker KV storage and 10 million Worker KV reads per month.
+Your $5 Workers monthly base charge includes:
 
-Beyond that, you are billed $0.50 per GB-Month of additional storage and $0.50 per million additional reads.
+- 1 GB of Worker KV storage
+- 10 million Worker KV reads per month
+- 1 million Worker KV writes per month
+- 1 million Worker KV deletes per month
+- 1 million Worker KV list operations per month
+
+Additional KV operations are priced as follows:
+
+- $0.50 per GB of additional Worker KV storage per month
+- $0.50 per million additional Worker KV reads
+- $5.00 per million additional Worker KV writes
+- $5.00 per million additional Worker KV deletes
+- $5.00 per million additional Worker KV list operations
+
