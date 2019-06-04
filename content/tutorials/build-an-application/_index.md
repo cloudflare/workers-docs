@@ -612,6 +612,7 @@ In this tutorial, you built and published a Cloudflare Workers application that 
 
 If you enjoyed this tutorial, we encourage you to explore our other tutorials for building on Cloudflare Workers:
 
+- [Build a WebAssembly Worker](/tutorials/build-a-webassembly-worker)
 - [Build A Serverless Function](/tutorials/build-a-serverless-function)
 - [Configure Your CDN](/tutorials/configure-your-cdn)
 

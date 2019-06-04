@@ -241,6 +241,7 @@ In this tutorial, you built and published a serverless function to Cloudflare Wo
 
 If you enjoyed this tutorial, we encourage you to explore our other tutorials for building on Cloudflare Workers:
 
+- [Build a WebAssembly Worker](/tutorials/build-a-webassembly-worker)
 - [Build An Application](/tutorials/build-an-application)
 - [Configure Your CDN](/tutorials/configure-your-cdn)
 
