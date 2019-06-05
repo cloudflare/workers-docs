@@ -11,6 +11,15 @@
 
 <div id="sidebar-open-backdrop"></div>
 <nav id="sidebar">
+  <div class="search-container">
+    <input
+      class="search-input"
+      type="text"
+      id="docsearch-input"
+      placeholder="Search the docs..."
+    />
+  </div>
+
   {{ $currentNode := . }}
   <div class="highlightable">
     <ul class="topics">
@@ -101,3 +110,11 @@
   {{ end }}
  {{ end }}
 {{ end }}
+
+<script type="text/javascript">
+  docsearch({
+    apiKey: '4a3bbdb939606486b94f9ce867bfd4f5',
+    indexName: 'workers-cloudflare',
+    inputSelector: '#docsearch-input'
+  });
+</script>
