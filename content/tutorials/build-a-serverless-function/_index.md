@@ -1,5 +1,5 @@
 ---
-title: Build A Serverless Function
+title: Build a Serverless Function
 weight: 3
 ---
 
