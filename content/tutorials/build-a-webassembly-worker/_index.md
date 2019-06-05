@@ -16,8 +16,9 @@ In the command line, generate your Worker project by passing in a project name (
 
 ```sh
 wrangler generate rustwasm-markdown-parser https://github.com/cloudflare/rustwasm-worker-template/
-cd rustwasm-markdown-parser
 ```
+
+This creates a directory called `rustwasm-markdown-parser` which you can now `cd` into.
 
 Wrangler templates are just Git repositories, so if you want to create your own templates, or use one from our [Template Gallery](/templates), there's a ton of options to help you get started.
 
@@ -27,7 +28,7 @@ At the moment, it's not yet possible to run your Cloudflare Worker locally on yo
 preview - and you don't need to have a Cloudflare user account to use it! To run the preview, use the
 `preview` command:
 
-```
+```sh
 wrangler preview
 ```
 
@@ -35,18 +36,6 @@ Using the preview command will open a browser window with your Cloudflare Worker
 UI. Assuming everything went well, it should look like this:
 
 ![Cloudflare UI with working RustWasm Worker](./media/rustwasm0.png)
-
-You can also send and receive requests to your Worker from the command line by passing `get` or `post` as arguments:
-
-```bash
-$ wrangler preview get
-👷‍♀️ GET https://00000000000000000000000000000000.cloudflareworkers.com
-👷‍♀️ Your worker responded with: Hello, wasm-worker!
-
-$ wrangler preview post hello=hello
-👷‍♀️ POST https://00000000000000000000000000000000.cloudflareworkers.com
-👷‍♀️ Your worker responded with: Hello, wasm-worker!
-```
 
 ## Building
 
@@ -129,14 +118,14 @@ async function handleRequest(request) {
 Whenever we `preview` or `publish`, `wrangler` will build our project. But if you just want to `build` and not
 `preview` or `publish`, you can run the `build` command:
 
-```
+```sh
 wrangler build
 ```
 
 This will compile your Rust to WebAssembly. It'll show you any compiler errors you have so you can fix them!
 To preview this code in the Cloudflare UI, you can run:
 
-```
+```sh
 wrangler preview
 ```
 
@@ -146,7 +135,7 @@ If everything worked, you should see:
 
 ## Publish
 
-And with that, you're finished writing the code for the QR code serverless function, on Cloudflare Workers!
+And with that, you're finished writing a Rust-generated WASM Cloudflare Worker!
 
 Wrangler has built-in support for bundling, uploading, and releasing your Cloudflare Workers application. To do this, we'll run `wrangler publish`, which will _build_ and _publish_ your code:
 
