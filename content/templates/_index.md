@@ -154,6 +154,9 @@ weight: 3
         wrangler generate img-color https://github.com/xtuc/img-color-worker
       </code>
     </div>
+    <div class="links">
+      <a class="demo" href="https://workers-tooling.cf/demos/templates/img-color">Live Demo</a>
+    </div>
   </figure>
   <figure class="template-card">
     <h2>binast-cf-worker</h2>
@@ -161,8 +164,13 @@ weight: 3
     <span>Paste this into your terminal:</span>
     <div class="copy">
       <code class="highlight">
-        wrangler generate binast-cf-worker https://github.com/xtuc/binast-cf-worker-template
+        wrangler binast-cf-worker https://github.com/xtuc/binast-cf-worker-template
       </code>
+    </div>
+    <div class="links">
+      <a class="demo" href="https://cloudflareworkers.com/#11771fe649aa0e5952b0925ede022ac6:https://dash.cloudflare.com/static/nexp=6b17234/assets/logo.svg?1528279111">Demo</a>
     </div>
   </figure>
 </section>
+The gallery is actively growing. The [template creator](https://github.com/victoriabernard92/workers-template-creator) allows you to share templates. Host a public repo, and then run `wrangler generate https://github.com/<your-repo>`.
+For archived recipes see [the old docs](https://developers.cloudflare.com/workers/recipes/).
