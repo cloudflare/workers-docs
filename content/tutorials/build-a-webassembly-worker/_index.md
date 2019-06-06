@@ -139,6 +139,8 @@ And with that, you're finished writing a Rust-generated WASM Cloudflare Worker!
 
 Wrangler has built-in support for bundling, uploading, and releasing your Cloudflare Workers application. To do this, we'll run `wrangler publish`, which will _build_ and _publish_ your code:
 
+![Publish](./media/publish.gif)
+
 ## Resources
 
 In this tutorial, you built and published a Rust-generated WebAssembly Worker that parses Markdown. If you'd like to see the full source code for this application, you can find it [on GitHub](https://github.com/granjef3/rustwasm-markdown-parser).
