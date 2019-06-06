@@ -1,5 +1,5 @@
 ---
-title: Build An Application
+title: Build an Application
 weight: 2
 ---
 
@@ -69,7 +69,7 @@ Cloudflare's command-line tool for managing Worker projects, Wrangler, has great
 
 In the command line, generate your Worker project, passing in a project name (e.g. "slack-bot"), and the [template](/templates) URL to base your project on:
 
-```
+```sh
 wrangler generate slack-bot https://github.com/cloudflare/worker-template-router
 cd slack-bot
 ```
@@ -212,7 +212,7 @@ With Slack slash commands, you can respond to a slash command by returning struc
 To begin, let's parse the incoming data from a Slack message inside of the `lookup` handler. As previously mentioned, the Slack API sends an HTTP POST in URL Encoded format. To parse this, you need to add the first (and only) NPM package dependency to your project – a popular query string parser package called [`qs`](https://github.com/ljharb/qs):
 
 ```sh
-$ npm install --save qs
+npm install --save qs
 ```
 
 In `src/handlers/lookup.js`, import `qs`, and use it to parse the `request` body, and get the `text` value from it:
