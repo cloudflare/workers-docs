@@ -60,7 +60,7 @@ All properties of a `Request` object are read only. To [modify a request](/refer
 
 #### The `cf` Object
 
-In addition to the properties on the standard [`Request`](#request) object, you can use a the  `request.cf` object to control how Cloudflare features are applied as well as other custom information provided by Cloudflare. 
+In addition to the properties on the standard [`Request`](#request) object, you can use a `request.cf` object to control how Cloudflare features are applied as well as other custom information provided by Cloudflare. 
 
 Note: Currently, settings in the cf object cannot be tested in the playground.
 
