@@ -22,15 +22,7 @@ async function handleRequest(request) {
 
       var contentType = determine_content_type(path)
 
-      let body
-      if (contentType.startsWith("text")) {
-        body = await STATIC_CONTENT.get(path)
-      } else {
-        const gcsResp = await fetch(
-          `https://storage.googleapis.com/cloudflare-docs-assets/public/${path}`,
-        )
-        body = gcsResp.body
-      }
+      let body = await STATIC_CONTENT.get(path, "arrayBuffer")
 
       let res = new Response(body, {status: 200})
       res.headers.set("Content-type", contentType)
