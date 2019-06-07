@@ -1,10 +1,10 @@
 ---
-title: "Build a WebAssembly Worker"
+title: "Build a Rust+WASM Worker"
 weight: 3
 ---
 
-This tutorial will walk you through the steps of generating, building, previewing, configuring, and publishing
-a Rust-generated WebAssembly Cloudflare Worker that parses Markdown. Let's get started!
+This tutorial will walk you through the stepf of generating, building, previewing, configuring, and publishing
+a Rust-generated WebAssembly serverless function that parses Markdown for Cloudflare Workers. Let's get started!
 
 This tutorial makes use of [Wrangler](https://github.com/cloudflare/wrangler), our command-line tool for generating, building, and publishing projects on the Cloudflare Workers platform. If you haven't used Wrangler, we recommend checking out the ["Installing the CLI"](/quickstart/cli-setup) part of our [Quick Start guide](/quickstart), which will get you set up with Wrangler, and familiar with the basic commands.
 
@@ -143,7 +143,7 @@ Wrangler has built-in support for bundling, uploading, and releasing your Cloudf
 
 ## Resources
 
-In this tutorial, you built and published a Rust-generated WebAssembly Worker that parses Markdown. If you'd like to see the full source code for this application, you can find it [on GitHub](https://github.com/granjef3/rustwasm-markdown-parser).
+In this tutorial, you built and published a Rust-generated WebAssembly serverless function that parses Markdown. If you'd like to see the full source code for this application, you can find it [on GitHub](https://github.com/granjef3/rustwasm-markdown-parser).
 
 If you enjoyed this tutorial, we encourage you to explore our other tutorials for building on Cloudflare Workers:
 
