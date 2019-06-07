@@ -164,7 +164,7 @@ weight: 3
     <span>Paste this into your terminal:</span>
     <div class="copy">
       <code class="highlight">
-        wrangler binast-cf-worker https://github.com/xtuc/binast-cf-worker-template
+        wrangler generate binast-cf-worker https://github.com/xtuc/binast-cf-worker-template
       </code>
     </div>
     <div class="links">
