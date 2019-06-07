@@ -4,7 +4,7 @@ alwaysopen: true
 weight: 2
 ---
 
-- [Build An Application](/tutorials/build-an-application)
-- [Build A Serverless Function](/tutorials/build-a-serverless-function)
-- [Build a WebAssembly Worker](/tutorials/build-a-webassembly-worker)
+- [Build an Application](/tutorials/build-an-application)
+- [Build a Serverless Function](/tutorials/build-a-serverless-function)
+- [Build a Rust and WASM Function](/tutorials/build-a-rustwasm-function)
 - [Configure Your CDN](/tutorials/configure-your-cdn)

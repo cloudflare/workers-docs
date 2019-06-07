@@ -1,18 +1,18 @@
 ---
-title: "Build a Rust+WASM Worker"
+title: "Build a Rust and WASM Function"
 weight: 3
 ---
 
-This tutorial will walk you through the stepf of generating, building, previewing, configuring, and publishing
+This tutorial will walk you through the steps of generating, building, previewing, configuring, and publishing
 a Rust-generated WebAssembly serverless function that parses Markdown for Cloudflare Workers. Let's get started!
 
 This tutorial makes use of [Wrangler](https://github.com/cloudflare/wrangler), our command-line tool for generating, building, and publishing projects on the Cloudflare Workers platform. If you haven't used Wrangler, we recommend checking out the ["Installing the CLI"](/quickstart/cli-setup) part of our [Quick Start guide](/quickstart), which will get you set up with Wrangler, and familiar with the basic commands.
 
 ## Generate
 
-Cloudflare's command-line tool for managing Worker projects, Wrangler, has great support for templates – pre-built collections of code that make it easy to get started writing Workers. We'll make use of the [rustwasm-worker template](https://github.com/cloudflare/rustwasm-worker-template/) to start building your project.
+Cloudflare's command-line tool for managing Workers projects, Wrangler, has great support for templates – pre-built collections of code that make it easy to get started writing Workers. We'll make use of the [rustwasm-worker template](https://github.com/cloudflare/rustwasm-worker-template/) to start building your project.
 
-In the command line, generate your Worker project by passing in a project name (we'll use rustwasm-markdown-parser), and the template URL to base your project on.
+In the command line, generate your Workers project by passing in a project name (we'll use rustwasm-markdown-parser), and the template URL to base your project on.
 
 ```sh
 wrangler generate rustwasm-markdown-parser https://github.com/cloudflare/rustwasm-worker-template/
@@ -24,22 +24,20 @@ Wrangler templates are just Git repositories, so if you want to create your own 
 
 ## Workers Playground
 
-At the moment, it's not yet possible to run your Cloudflare Worker locally on your machine, but we do offer a hosted
-preview - and you don't need to have a Cloudflare user account to use it! To run the preview, use the
-`preview` command:
+You can test how your Workers function will look when it's deployed by using the preview service, which you can access with the `preview` command:
 
 ```sh
 wrangler preview
 ```
 
-Using the preview command will open a browser window with your Cloudflare Worker loaded in the Cloudflare preview
+Using the preview command will open a browser window with your Cloudflare Workers function loaded in the Cloudflare preview
 UI. Assuming everything went well, it should look like this:
 
 ![Cloudflare UI with working RustWasm Worker](./media/rustwasm0.png)
 
 ## Building
 
-Let's make our Worker more interesting. We'll pull in a dependency from the `crates.io` ecosystem called `pulldown-cmark`.
+Let's make our Workers function more interesting. We'll pull in a dependency from the `crates.io` ecosystem called `pulldown-cmark`.
 We'll add this to our `Cargo.toml`:
 
 ```toml
@@ -135,7 +133,7 @@ If everything worked, you should see:
 
 ## Publish
 
-And with that, you're finished writing a Rust-generated WASM Cloudflare Worker!
+And with that, you're finished writing a Cloudflare Workers function with Rust-generated WASM!
 
 Wrangler has built-in support for bundling, uploading, and releasing your Cloudflare Workers application. To do this, we'll run `wrangler publish`, which will _build_ and _publish_ your code:
 
