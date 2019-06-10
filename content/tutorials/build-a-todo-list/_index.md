@@ -77,7 +77,7 @@ To get started with KV, we need to set up a “namespace”. All of our cached d
 ```toml
 # wrangler.toml
 
-kv-namespaces: [TODOS]
+kv-namespaces: ["TODOS"]
 ```
 
 The defined namespace, `TODOS`, will now be available inside of your codebase. With that, it’s time to understand the KV API. A KV namespace has three primary methods you can use to interface with your cache: `get`, `put`, and `delete`. Pretty straightforward!
@@ -139,7 +139,7 @@ Given the presence of data in our code, which is the cached data object for our 
 
 In our Workers script, we’ll make a new variable, html, and use it to build up a static HTML template that we can serve to the client. In `handleRequest`, we can construct a new `Response` (with a `Content-Type` header of `text/html`), and serve it to the client:
 
-```html
+```javascript
 const html = `<!DOCTYPE html>
 <html>
   <head>
@@ -151,8 +151,12 @@ const html = `<!DOCTYPE html>
     <h1>Todos</h1>
   </body>
 </html>
-` async function handleRequest(request) { const response = new Response(html, { headers: {
-'Content-Type': 'text/html' } }) return response }
+` 
+
+async function handleRequest(request) { 
+  const response = new Response(html, { headers: { 'Content-Type': 'text/html' } }) 
+  return response 
+}
 ```
 
 We have a static HTML site being rendered, and now we can begin populating it with data! In the body, we’ll add a `ul` tag with an id of `todos`:
@@ -214,21 +218,11 @@ async function handleRequest(request) {
 
 ### Adding todos from the UI
 
-At this point, we’ve built a Cloudflare Worker that takes data from Cloudflare KV and renders a static page based on it. That static page reads the data, and generates a todo list based on that data. Of course, the piece we’re missing is creating todos, from inside the UI. We know that we can add todos using the KV API - we could simply update the cache by saying TODOS.put(newData)`, but how do we update it from inside the UI?
+At this point, we’ve built a Cloudflare Worker that takes data from Cloudflare KV and renders a static page based on it. That static page reads the data, and generates a todo list based on that data. Of course, the piece we’re missing is creating todos, from inside the UI. We know that we can add todos using the KV API - we could simply update the cache by saying `TODOS.put(newData)`, but how do we update it from inside the UI?
 
-It’s worth noting here that Cloudflare’s Workers documentation suggests that any writes to your KV namespace happen via their API - that is, at its simplest form, a cURL statement:
+To implement this, we'll add a second handler in our Workers script, designed to watch for `PUT` requests to `/`. When a body is received at that URL, the worker will send the new todo data to our KV store.
 
-```sh
-curl "<https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/storage/kv/namespaces/$NAMESPACE_ID/values/first-key>" \
- -X PUT \
- -H "X-Auth-Email: $CLOUDFLARE_EMAIL" \
-  -H "X-Auth-Key: $CLOUDFLARE_AUTH_KEY" \
- --data 'My first value!'
-```
-
-We’ll implement something similar by handling a second route in our worker, designed to watch for PUT requests to `/`. When a body is received at that URL, the worker will send the new todo data to our KV store.
-
-I’ll add this new functionality to my worker, and in `handleRequest`, if the request method is a PUT, it will take the request body and update the cache:
+Add this new functionality in `handleRequest`: if the request method is a PUT, it will take the request body and update the cache.
 
 ```js
 addEventListener('fetch', event => {
@@ -239,8 +233,6 @@ const setCache = data => TODOS.put('data', data)
 
 async function updateTodos(request) {
   const body = await request.text()
-  const ip = request.headers.get('CF-Connecting-IP')
-  const cacheKey = `data-${ip}`
   try {
     JSON.parse(body)
     await setCache(body)
@@ -260,11 +252,9 @@ async function handleRequest(request) {
 }
 ```
 
-The script is pretty straightforward - we check that the request is a PUT, and wrap the remainder of the code in a `try/catch` block. First, we parse the body of the request coming in, ensuring that it is JSON, before we update the cache with the new data, and return it to the user. If anything goes wrong, we simply return a 500. If the route is hit with an HTTP method other than PUT - that is, GET, DELETE, or anything else - we return a 404.
+The script is pretty straightforward - we check that the request is a `PUT`, and wrap the remainder of the code in a `try/catch` block. First, we parse the body of the request coming in, ensuring that it is JSON, before we update the cache with the new data, and return it to the user. If anything goes wrong, we simply return a 500. If the route is hit with an HTTP method other than `PUT` - that is, `POST`, `DELETE`, or anything else - we return a 404.
 
-With this script, we can now add some “dynamic” functionality to our HTML page to actually hit this route.
-
-First, we’ll create an input for our todo “name”, and a button for “submitting” the todo.
+With this script, we can now add some “dynamic” functionality to our HTML page to actually hit this route. First, we’ll create an input for our todo “name”, and a button for “submitting” the todo.
 
 ```html
 <div>
@@ -273,7 +263,7 @@ First, we’ll create an input for our todo “name”, and a button for “subm
 </div>
 ```
 
-Given that input and button, we can add a corresponding JavaScript function to watch for clicks on the button - once the button is clicked, the browser will PUT to `/` and submit the todo.
+Given that input and button, we can add a corresponding JavaScript function to watch for clicks on the button - once the button is clicked, the browser will `PUT` to `/` and submit the todo.
 
 ```js
 var createTodo = function() {
@@ -324,7 +314,7 @@ var createTodo = function() {
 document.querySelector('#create').addEventListener('click', createTodo)
 ```
 
-With the client-side code in place, deploying the new Worker should put all these pieces together. The result is an actual dynamic todo list!
+With the client-side code in place, deploying the new version of the function should put all these pieces together. The result is an actual dynamic todo list!
 
 ### Updating todos from the UI
 
@@ -561,4 +551,4 @@ addEventListener('fetch', event => {
 })
 ```
 
-You can find the source code for this project, as well as a README with deployment instructions, on GitHub.
+You can find the source code for this project, as well as a README with deployment instructions, [on GitHub](https://github.com/signalnerve/cloudflare-workers-todos).
