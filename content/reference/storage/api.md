@@ -166,7 +166,6 @@ The type is automatically inferred from value, and can be any of:
 - string
 - ReadableStream
 - ArrayBuffer
-- FormData
 
 If you want the keys you write to be automatically deleted at some time in the future, see the page on [expiring keys]({{<ref "expiring-keys.md" >}}).
 
