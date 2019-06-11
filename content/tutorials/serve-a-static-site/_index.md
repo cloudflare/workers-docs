@@ -1,0 +1,125 @@
+# Deploying static sites
+
+In this tutorial, we'll use [Wrangler](#) and [Cloudflare Workers](#) to deploy and serve a static site. With the rise of tools like [Gatsby](%20a) and architectures like [JAMStack](#), static sites are an incredible way to build highly-available and performant applications. Workers in particular is a great platform to deploy static sites: your application will be distributed to over 190+ locations around the world, and served directly from Cloudflare's powerful CDN at a server incredibly close to your users.
+
+This tutorial makes use of [Wrangler](#)(https://github.com/cloudflare/wrangler), our command-line tool for generating, building, and publishing projects on the Cloudflare Workers platform. If you haven't used Wrangler, we recommend checking out the ["Installing the CLI"](#)(/quickstart/cli-setup) part of our [Quick Start guide](#)(/quickstart), which will get you set up with Wrangler, and familiar with the basic commands.
+
+One more thing before you start the tutorial: if you just want to jump straight to the code, we've made the final version of the codebase [available on GitHub](#)(https://github.com/signalnerve/gatsby-workers-starter). You can take that code, customize it, and deploy it for use in your own projects. Happy coding!
+
+## Prerequisites
+
+To publish your project to Cloudflare Workers, you'll need a few things:
+
+- A Cloudflare account, and access to the API keys for that account
+- A Wrangler installation running locally on your machine, and access to the command-line
+
+If you don't have those things quite yet, don't worry. We'll walk through each of them and make sure we're ready to go, before you start creating your application.
+
+In addition, we'll be using [Gatsby](https://gatsbyjs.org) as our static site framework of choice in this tutorial. No experience with Gatsby is needed, and if you'd prefer to use a static site framework like [Hugo](#) or [Jekyll](#), the process will be incredibly similar.
+
+## Generate a project
+
+Cloudflare's command-line tool for managing Worker projects, Wrangler, has great support for templates – pre-built collections of code that make it easy to get started writing Workers. We'll make use of the [static site template](#) to start building your project.
+
+In the command line, generate your Workers project, and pass the project name `my-static-site`:
+
+```
+$ wrangler generate my-static-site STATIC_SITE_TEMPLATE_URL
+$ cd my-static-site
+```
+
+Wrangler templates are just Git repositories, so if you want to create your own templates, or use one from our [Template Gallery](#)(/templates), there's a ton of options to help you get started.
+
+Cloudflare's `static-site-template` includes predefined configuration for building and deploying static site projects. Inside of your new `my-static-site` directory, `index.js` represents the entry-point to your Cloudflare Workers application.
+
+For the majority of static sites, you shouldn't need to change the Workers script: by default, the script will look at an incoming request, and will serve a corresponding asset from [Workers KV](#) based on that route. For instance, if my static site is deployed at `mystaticsite.com`, requesting `mystaticsite.com/about.html` will look for a file in KV called `about.html`, and serve it back to the client. In addition, if the asset being returned from KV is cacheable, it will automatically be cached with Cloudflare's CDN, making subsequent requests even faster.
+
+Since the script is already configured for you, we can move on to generating a static site, and understanding how deployment and configuration works.
+
+## Create a static site
+
+In this tutorial, we'll use [Gatsby](#) to create a simple static site. As previously mentioned, no experience with Gatsby is needed, but you will need to install the NPM package to create a site:
+
+```sh
+npm install -g gatsby
+```
+
+With Gatsby installed, we can create a new site in our Workers project folder:
+
+```sh
+gatsby new .
+```
+
+Gatsby will generate a new project, placing it adjacent to your Workers application code.
+
+## Publish
+
+Before deploying the project, we need to configure the `main` directive in `package.json`, which tells Webpack how to build your Workers application code:
+
+```json
+{
+  "main": "worker/index.js"
+}
+```
+
+In order to upload your code to Workers KV, you'll need to create a KV namespace. This represents a private namespace where any assets related to your Workers project can be stored. Creating a namespace is straightforward using `wrangler` - in the below example, we'll create a new namespace called `STATIC_CONTENT`:
+
+```bash
+$ wrangler kv create STATIC_CONTENT
+```
+
+With a new namespace created, copy the new namespace ID, and use it to fill out the `kv-namespaces` section of your `wrangler.toml`, which serves as the config file for your Workers application:
+
+```toml
+# wrangler.toml
+
+[[kv-namespaces]]
+binding = "STATIC_CONTENT"
+id = "$namespaceId"
+bucket = "public"
+```
+
+By default, the Workers static site template will look for a `public` folder to upload and serve from Workers KV. Depending on your static site framework and configuration, you may choose to change this folder to fit your project's requirements.
+
+To make this script available for use, you'll need to build and publish it to Cloudflare using Wrangler. To do this, we'll build our Gatsby site, and publish it to Workers:
+
+```bash
+$ gatsby build
+$ wrangler publish
+```
+
+After deploying your project, open up your browser to see your static site in action!
+
+![Result](#)(/tutorials/deploy-a-static-site/media/demo.png)
+
+## How it works
+
+The Workers Site feature is designed to work with as little as configuration as possible: since the process for deploying static sites is fairly consistent, regardless of framework or language, you shouldn't need to spend a lot of time configuring your project or writing any additional code to serve your site on Workers.
+
+That being said, if you're interested in how Workers serves static sites, this section will lightly document how the underlying script works, and what it does each time a user makes a request to your site.
+
+Like all Workers scripts, the static site feature begins by listening for incoming `fetch` events to your application – these are incoming requests from a client, such as a browser or a phone:
+
+```js
+addEventListener('fetch', event => {
+  event.respondWith(handleRequest(event.request))
+})
+```
+
+When the script receives an incoming requests, it looks at the `pathname`, such as `/workers`, and looks up an associated file uploaded to Workers KV. If that file is found, a new `Response` is generated, with a matching [MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types) in the `Content-type` header of the response – for instance, if the path `/workers.jpg` is requested, a new response is returned with the header `Content-type: image/jpg`.
+
+In addition to simple retrieval from Workers KV, the static site template makes use of Cloudflare's powerful CDN to automatically cache data from your Workers KV namespace. When subsequent users request `/workers.jpg`, Cloudflare's CDN will transparently serve it, reducing the number of requests to your Workers application and Workers KV namespace (and saving you money – nice!).
+
+TODO this isn't actually true yet, need code or some sort of proof thing here
+
+## Resources
+
+In this tutorial, you built and published a static site to Workers. If you'd like to see the full source code for this application, visit the [repo on GitHub](#)(https://github.com/signalnerve/gatsby-on-workers).
+
+If you enjoyed this tutorial, we encourage you to explore our other tutorials for building on Cloudflare Workers:
+
+- [Build an Application](#)(/tutorials/build-an-application)
+- [Build a Serverless Function](#)(/tutorials/build-a-serverless-function)
+- [Build a Rust and WASM Function](#)(/tutorials/build-a-rustwasm-function)
+
+If you want to get started building your own projects, check out the quick-start templates we've provided in our [Template Gallery](#)(/templates).
