@@ -23,6 +23,8 @@ If you don't have those things quite yet, don't worry. We'll walk through each o
 
 You'll need to get your Cloudflare API keys to deploy code to Cloudflare Workers: see ["Finding your Cloudflare API keys"](/quickstart/api-keys) for a brief guide on how to find them.
 
+_Note: Workers KV is only available to users with a paid Workers plan._
+
 ## Generate
 
 Cloudflare's command-line tool for managing Worker projects, Wrangler, has great support for templates – pre-built collections of code that make it easy to get started writing Workers. In this tutorial, you'll use the default JavaScript template to generate a Workers project.
@@ -151,11 +153,11 @@ const html = `<!DOCTYPE html>
     <h1>Todos</h1>
   </body>
 </html>
-` 
+`
 
-async function handleRequest(request) { 
-  const response = new Response(html, { headers: { 'Content-Type': 'text/html' } }) 
-  return response 
+async function handleRequest(request) {
+  const response = new Response(html, { headers: { 'Content-Type': 'text/html' } })
+  return response
 }
 ```
 
