@@ -161,23 +161,23 @@ async function handleRequest(request) {
 }
 ```
 
-We have a static HTML site being rendered, and now we can begin populating it with data! In the body, we’ll add a `ul` tag with an id of `todos`:
+We have a static HTML site being rendered, and now we can begin populating it with data! In the body, we’ll add a `div` tag with an id of `todos`:
 
 ```html
 <body>
   <h1>Todos</h1>
-  <ul id="todos"></ul>
+  <div id="todos"></div>
 </body>
 ```
 
-Given that body, we can also add a script after the body that takes a `todos` array, loops through it, and for each todo in the array, creates a `li` element and appends it to the list of todos:
+Given that body, we can also add a script after the body that takes a `todos` array, loops through it, and for each todo in the array, creates a `div` element and appends it to the list of todos:
 
 ```html
 <script>
   window.todos = []
   var todoContainer = document.querySelector('#todos')
   window.todos.forEach(todo => {
-    var el = document.createElement('li')
+    var el = document.createElement('div')
     el.innerText = todo.name
     todoContainer.appendChild(el)
   })
@@ -288,7 +288,7 @@ var populateTodos = function() {
   var todoContainer = document.querySelector('#todos')
   todoContainer.innerHTML = null
   window.todos.forEach(todo => {
-    var el = document.createElement('li')
+    var el = document.createElement('div')
     el.innerText = todo.name
     todoContainer.appendChild(el)
   })
@@ -324,14 +324,7 @@ For the final piece of our (very) basic todo list, we need to be able to update 
 
 Luckily, a great deal of the infrastructure for this work is already in place. We can currently update the todo list data in our cache, as evidenced by our `createTodo` function. Performing updates on a todo, in fact, is much more of a client-side task than a Worker-side one!
 
-To start, let’s update the client-side code for generating a todo. Instead of a `ul`-based list, we’ll migrate the todo container and the todos themselves into using `divs`:
-
-```html
-<!-- <ul id="todos"></ul> becomes... -->
-<div id="todos"></div>
-```
-
-The `populateTodos` function can be updated to generate a `div` for each todo. In addition, we’ll move the name of the todo into a child element of that `div`:
+To start, the `populateTodos` function can be updated to generate a `div` for each todo. In addition, we’ll move the name of the todo into a child element of that `div`:
 
 ```js
 var populateTodos = function() {
