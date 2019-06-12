@@ -33,7 +33,7 @@ Workers KV isn't just for applications which need exceptional performance. It of
 
 Workers KV values can be written via our API or from a Worker, and read from a Worker in a single line of code.
 
-Your data is organized into key-value pairs contained within a Namespace. To get started, learn how to [write data](./writing-data).
+Your data is organized into key-value pairs contained within a Namespace. To get started, learn how to [write data]({{< ref "writing-data.md" >}}).
 
 ## Pricing
 
