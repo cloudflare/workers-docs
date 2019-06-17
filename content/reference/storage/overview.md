@@ -37,7 +37,7 @@ Your data is organized into key-value pairs contained within a Namespace. To get
 
 ## Pricing
 
-Your $5 Workers monthly base charge includes:
+Workers KV is bundled with your overall plan for Workers; it is not available with the Free plan, but is available as part of the Unlimited plan. Included with that plan is: 
 
 - 1 GB of Worker KV storage
 - 10 million Worker KV reads per month
@@ -45,11 +45,13 @@ Your $5 Workers monthly base charge includes:
 - 1 million Worker KV deletes per month
 - 1 million Worker KV list operations per month
 
-Additional KV operations are priced as follows:
+If you use more than that, you'll incur additional charges:
 
-- $0.50 per GB of additional Worker KV storage per month
 - $0.50 per million additional Worker KV reads
 - $5.00 per million additional Worker KV writes
 - $5.00 per million additional Worker KV deletes
 - $5.00 per million additional Worker KV list operations
 
+All charges are pro-rated; that is, if you have an extra 1,100,000 reads, you're charged $0.55.
+
+If you use more than a gigabyte of storage, you'll be charged approximately $0.50 per GB per month. We say "approximate" because the actual charge is per byte per hour, and different months have a different amount of hours, but the difference is extremely small.
