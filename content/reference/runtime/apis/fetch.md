@@ -78,7 +78,11 @@ Special information from an incoming request to help with your app's logic:
 * `postalCode`**: PostalCode of the incoming request.(e.g. `"78701"`)
 * `region`**: If known, the [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) name for the first level region associated with the IP address of the incoming request. If not known, this is an empty string. (e.g. `"Texas"`)
 * `regionCode`**: If known, the [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) code for the first level region associated with the IP address of the incoming request. 1 If not known, this is an empty string. (e.g. `"TX"`)
-* `requestPriority`**: Request Priority(e.g. `"weight=256;exclusive=1"`)
+* `requestPriority`**: The browser-requested prioritization information in the request object.(e.g. `“weight=192;exclusive=0;group=3;group-weight=127”`)
+  * `weight:` The browser-requested weight for the HTTP/2 prioritization.
+  * `exclusive:` The browser-requested HTTP/2 exclusive flag (1 for Chromium-based browsers, 0 for others).
+  * `group:` HTTP/2 stream ID for the request group (only non-zero for Firefox).
+  * `group-weight`: HTTP/2 weight for the request group (only non-zero for Firefox).
 * `timezone`**: Timezone of the incoming request.(e.g. `"America/Chicago"`)
 * `tlsCipher`: The cipher for the connection to Cloudflare. (e.g. `"AEAD-AES128-GCM-SHA256"`)
 * `tlsClientAuth`: Only set when using Cloudflare Access. Object with the following properties:
