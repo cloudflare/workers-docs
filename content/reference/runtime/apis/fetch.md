@@ -66,22 +66,26 @@ Note: Currently, settings in the cf object cannot be tested in the playground.
 
 Special information from an incoming request to help with your app's logic:
 
-* `asn`: (e.g. `395747`)
-* `city`: (e.g. `"Austin"`)
-* `clientTrustScore`: (e.g. `94`)
+* `asn`: ASN of the incoming request.(e.g. `395747`)
+* `city`**: City of the incoming request.(e.g. `"Austin"`)
+* `clientTrustScore`: ClientTrustScore of the incoming request.(e.g. `94`)
 * `colo`: The three-letter airport code of the data center that the request hit. (e.g. `"DFW"`)
-* `continent`: (e.g. `"NA"`)
-* `country`: The two-letter country code in the request. This is the same value as that provided in the `CF-IPCountry` header. (e.g. `"US"`)
-* `httpProtocol`: (e.g. `"HTTP/2"`)
-* `latitude`: (e.g. `"30.27130"`)
-* `longitude`: (e.g. `"-97.74260"`)
-* `postalCode`: (e.g. `"78701"`)
-* `region`: (e.g. `"Texas"`)
-* `regionCode`: (e.g. `"TX"`)
-* `requestPriority`: (e.g. `"weight=256;exclusive=1"`)
-* `timezone`: (e.g. `"America/Chicago"`)
+* `continent`**: Continent of the incoming request.(e.g. `"NA"`)
+* `country`: Country of the incoming request. The two-letter country code in the request. This is the same value as that provided in the `CF-IPCountry` header. (e.g. `"US"`)
+* `httpProtocol`**: HTTP Protocol (e.g. `"HTTP/2"`)
+* `latitude`**: Latitude of the incoming request.(e.g. `"30.27130"`)
+* `longitude`**: Longitude of the incoming request.(e.g. `"-97.74260"`)
+* `postalCode`**: PostalCode of the incoming request.(e.g. `"78701"`)
+* `region`**: If known, the [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) name for the first level region associated with the IP address of the incoming request. If not known, this is an empty string. (e.g. `"Texas"`)
+* `regionCode`**: If known, the [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) code for the first level region associated with the IP address of the incoming request. 1 If not known, this is an empty string. (e.g. `"TX"`)
+* `requestPriority`**: The browser-requested prioritization information in the request object.(e.g. `“weight=192;exclusive=0;group=3;group-weight=127”`)
+  * `weight:` The browser-requested weight for the HTTP/2 prioritization.
+  * `exclusive:` The browser-requested HTTP/2 exclusive flag (1 for Chromium-based browsers, 0 for others).
+  * `group:` HTTP/2 stream ID for the request group (only non-zero for Firefox).
+  * `group-weight`: HTTP/2 weight for the request group (only non-zero for Firefox).
+* `timezone`**: Timezone of the incoming request.(e.g. `"America/Chicago"`)
 * `tlsCipher`: The cipher for the connection to Cloudflare. (e.g. `"AEAD-AES128-GCM-SHA256"`)
-* `tlsClientAuth`: Object with the following properties
+* `tlsClientAuth`: Only set when using Cloudflare Access. Object with the following properties:
   * `certIssuerDNLegacy`
   * `certIssuerDN`
   * `certIssuerDNRFC2253`
@@ -103,10 +107,11 @@ Cloudflare features you can set on outbound requests:
 * `apps`: (e.g. `false`)
 * `minify`: (e.g. `false`)
 * `mirage`: (e.g. `false`)
-* `resolveOverride`: Redirects the request to an alternate origin server. You can use this, for example, to implement load balancing across several origins.(e.g.`us-east.example.com`)
+* `resolveOverride`***: Redirects the request to an alternate origin server. You can use this, for example, to implement load balancing across several origins.(e.g.`us-east.example.com`)
   * *Note - For security reasons, the hostname set in `resolveOverride` must be proxied on the same Cloudflare zone of the incoming request. Otherwise, the setting is ignored. CNAME hosts are allowed, so to resolve to a host under a different domain or a DNS only domain first declare a CNAME record within your own zone’s DNS mapping to the external hostname, set proxy on Cloudflare, then set resolveOverride to point to that CNAME record.*
 
-
+\*\* Only avalible for Business or Enterprise Plans.
+\*\*\* Only avalible for Enterprise Plans. 
 
 <!-- * cache_api?  -->
 
