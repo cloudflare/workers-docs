@@ -168,7 +168,7 @@ weight: 3
       </code>
     </div>
     <div class="links">
-      <a class="demo" href="https://cloudflareworkers.com/#11771fe649aa0e5952b0925ede022ac6:https://dash.cloudflare.com/static/nexp=6b17234/assets/logo.svg?1528279111">Demo</a>
+      <a class="demo" href="https://serve-binjs.that-test.site/">Live Demo</a>
     </div>
   </figure>
 </section>
