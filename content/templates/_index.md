@@ -164,5 +164,10 @@ weight: 3
         wrangler generate binast-cf-worker https://github.com/xtuc/binast-cf-worker-template
       </code>
     </div>
+    <div class="links">
+      <a class="demo" href="https://serve-binjs.that-test.site/">Live Demo</a>
+    </div>
   </figure>
 </section>
+The gallery is actively growing. The [template creator](https://github.com/victoriabernard92/workers-template-creator) allows you to share templates. Host a public repo, and then run `wrangler generate https://github.com/<your-repo>`.
+For archived recipes see [the old docs](https://developers.cloudflare.com/workers/recipes/).
