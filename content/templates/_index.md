@@ -154,9 +154,6 @@ weight: 3
         wrangler generate img-color https://github.com/xtuc/img-color-worker
       </code>
     </div>
-    <div class="links">
-      <a class="demo" href="https://workers-tooling.cf/demos/templates/img-color">Live Demo</a>
-    </div>
   </figure>
   <figure class="template-card">
     <h2>binast-cf-worker</h2>
