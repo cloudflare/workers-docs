@@ -68,7 +68,6 @@ Special information from an incoming request to help with your app's logic:
 
 * `asn`: ASN of the incoming request.(e.g. `395747`)
 * `city`**: City of the incoming request.(e.g. `"Austin"`)
-* `clientTrustScore`: ClientTrustScore of the incoming request.(e.g. `94`)
 * `colo`: The three-letter airport code of the data center that the request hit. (e.g. `"DFW"`)
 * `continent`**: Continent of the incoming request.(e.g. `"NA"`)
 * `country`: Country of the incoming request. The two-letter country code in the request. This is the same value as that provided in the `CF-IPCountry` header. (e.g. `"US"`)
