@@ -8,7 +8,7 @@ People like yourself being willing to share code with others that use our platfo
 
 Following these guidelines helps to keep our templates consistent and deliver the best developer experience for those using them. Cloudflare developer experience team maintains the template gallery. (..add more..?)
 
-There are several ways to contribute to the Cloudflare Workers platform. The template gallery is focussed on streamlining the contribution of templates. When a template makes it through the process it will be made public in [our template gallery](https://workers.cloudflare.com/docs/templates/). Since several developers - even beginners - will be using these templates, we must be scrupulous in the approval process. If you’re looking for a more relaxed way of sharing code, no worries! For other ways to contribute your Worker scripts see [our community]().
+There are several ways to contribute to the Cloudflare Workers platform. The template gallery is focussed on streamlining the contribution of templates. When a template makes it through the process it will be made public in [our template gallery](https://workers.cloudflare.com/docs/templates/). Since several developers - even beginners - will be using these templates, we must be scrupulous in the approval process. If you’re looking for a more relaxed way of sharing code, no worries! For other ways to contribute your Worker scripts see [our community](TODO).
 
 # How to make a Template
 
@@ -39,7 +39,7 @@ Examples:
 
 You'll want to make sure your name does not conflict with existing snippet names.
 
-#Snippets versus Boilerplates
+# Snippets versus Boilerplates
 
 Template is an umbral term for both snippets and boilerplate. Our gallery uses both. Before building a template distinguish it as a template or a boilerplate. We define them as:
 
@@ -81,58 +81,13 @@ Never commit your `worker/`, `wrangler.toml`, or any file in the `.gitignore`.
 
 ## Style
 
-For Javascript snippets and boilerplates, please make sure your code is ran through prettier with the following config:
-
-```javascript .prettierrc
-{
-  "singleQuote": true,
-  "semi": false,
-  "tabWidth": 2,
-  "trailingComma": "all",
-  "printWidth": 80
-}
-```
-
-For boilerplates this will be done automatically, but for snippets you can do this using the [template creator](https://github.com/victoriabernard92/workers-template-creator) or following a [tutorial on using prettier](https://medium.com/dailyjs/getting-started-with-prettier-writing-clean-concise-code-6838e0912175).
-
 ### JavaScript Styleguide
 
-All JavaScript must adhere to [JavaScript Standard Style](https://standardjs.com/).
+Required, see guide [here](./style/javascript)
 
-- Always deconstruct when possible `const { url } = request` over `const url = request.url`
+### Rust Styleguide
 
-- Prefer the object spread operator (`{...anotherObj}`) to `Object.assign()`
-
-- Inline `export`s with expressions whenever possible
-
-  ```
-  // Use this:
-  export default class ClassName {
-
-  }
-
-  // Instead of:
-  class ClassName {
-
-  }
-  export default ClassName
-  ```
-
-- Place requires in the following order:
-
-  - Built in Node Modules (such as `path`)
-  - Local Modules (using relative paths)
-
-- Use arrow functions `=>` over anonymous function expressions
-
-- Place class properties in the following order:
-
-  - Class methods and properties (methods starting with `static`)
-  - Instance methods and properties
-
-- [Avoid platform-dependent code](https://flight-manual.atom.io/hacking-atom/sections/cross-platform-compatibility/)
-
-* Comment all functions using JSDoc style (e.g. `/***/` ) and if not in Typescript include the param types
+Required if writing Rust, see guide [here](./style/rust)
 
 ### Boilerplate Format
 
