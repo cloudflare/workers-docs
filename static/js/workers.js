@@ -11,12 +11,22 @@ function addCopyButton(containerEl) {
   let copyBtn = document.createElement('div')
   copyBtn.className = 'help'
   copyBtn.textContent = 'Click to Copy'
-  let lastEl = containerEl.querySelector('.highlight')
-  containerEl.insertBefore(copyBtn, lastEl)
+
+  let lastEl = containerEl.querySelector('code')
+
+  /**
+   * Because the markdown creates pre, p elements we have to do something off for snippets
+   * TODO: get snipepts from JS files so we don't have to
+   * do this hacky stuff
+   */
+  if (containerEl.parentElement.classList.contains('snippet')) {
+    lastEl = lastEl.querySelector('pre')
+  }
+  containerEl.appendChild(copyBtn, lastEl)
 
   copyBtn.addEventListener('click', function(el) {
     const target = el.target
-    let highlight = el.target.parentElement.querySelector('.highlight')
+    let highlight = el.target.parentElement.querySelector('code')
     let text = selectText(highlight)
     document.execCommand('copy')
     text.removeAllRanges()

@@ -1,8 +1,15 @@
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
 }
-
+:root {
+  --template-figure-padding: 16px;
+  --template-snippet-background: #fdf8f4;
+  --template-snippet-font-color: #b98a64;
+  --template-snippet-border-color: #e9a468;
+  --template-boilerplate-color: #5f6264;
+}
 a.quick-start {
   display: block;
   background-color: #e06d10;
@@ -22,6 +29,7 @@ section.template-wrapper {
 @media (min-width: 47.2em) {
   section.template-wrapper {
     grid-template-columns: 50% 50%;
+    grid-template-rows: repeat(11, 20rem);
     grid-gap: 16px;
   }
 }
@@ -71,8 +79,11 @@ figure.template-card {
   margin: 0;
   padding: 16px;
   border: 1px solid #ccc;
+  border-top-width: 3px;
   border-radius: 5px;
-  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
 figure.template-card h2 {
   margin: 0;
@@ -84,20 +95,73 @@ figure.template-card div.links {
 }
 figure.template-card div.links a {
   margin-right: 8px;
+  flex: flex-end;
   white-space: nowrap;
 }
-figure.template-card span {
+.template-card .step {
+  padding-bottom: 0.5rem;
+  display: flex;
+}
+figure.template-card .step svg {
+  flex: 1;
+}
+figure.template-card .step span {
   font-size: 14px;
+  flex: 30;
 }
 .copy code {
   display: block;
-  white-space: nowrap;
   overflow: auto;
   padding: 16px;
   margin: 8px 0;
 }
+figure.template-card.snippet {
+  border-top-color: var(--template-snippet-border-color);
+}
+figure.template-card.boilerplate {
+  border-top-color: var(--template-boilerplate-color);
+}
+.boilerplate .copy a {
+  color: white;
+}
+.boilerplate .copy code {
+  white-space: nowrap;
+  background: var(--template-boilerplate-color);
+  color: white;
+}
+.snippet {
+  display: flex;
+  flex-direction: column;
+}
+.snippet .copy {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+.snippet .copy p {
+  /* markdown adds superfluos <p> tags.. meeh*/
+  display: none;
+}
+.snippet pre {
+  margin: 0 calc(var(--template-figure-padding) * -1);
+  flex: 1;
+  overflow: scroll;
+  border-left: 2px solid var(--template-snippet-border-color);
+  position: relative;
+  background: var(--template-snippet-background);
+}
+.snippet code {
+  position: absolute;
+  background: var(--template-snippet-background);
+  color: var(--template-snippet-font-color);
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
 .copy .help {
   color: #4d5257;
+  font-size: 0.7rem;
   text-align: right;
 }
 .copy .help:hover {
