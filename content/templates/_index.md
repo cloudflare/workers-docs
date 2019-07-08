@@ -243,7 +243,7 @@ addEventListener('fetch', event => {
     <div class="links">
       <a
         class="demo"
-        href="https://cloudflareworkers.com/#edce60b7d57c1e98fbe2d931aaaaf25f:https://tutorial.cloudflareworkers.com"
+        href="https://cloudflareworkers.com/#eaaa52283784c21aec989c64b9db32d3:https://example.com"
         >Demo JSON</a
       >
     </div>
@@ -357,4 +357,3 @@ addEventListener('fetch', event => {
 </section>
 The gallery is actively growing. The [template creator](https://github.com/victoriabernard92/workers-template-creator) allows you to share templates. Host a public repo, and then run `wrangler generate https://github.com/<your-repo>`.
 For archived recipes see [the old docs](https://developers.cloudflare.com/workers/recipes/).
-```
