@@ -20,6 +20,7 @@ weight: 3
       ```
       </div>
     </div>
+    <span>Requires installation of <a href="https://github.com/cloudflare/wrangler">Wrangler</a>.</span>
     <div class="links">
       <a
         class="demo"
@@ -42,6 +43,7 @@ weight: 3
       ```
       </div>
     </div>
+    <span>Requires installation of <a href="https://github.com/cloudflare/wrangler">Wrangler</a>.</span>
     <div class="links">
                  <a
         class="demo"
@@ -66,6 +68,7 @@ weight: 3
       ```
       </div>
     </div>
+    <span>Requires installation of <a href="https://github.com/cloudflare/wrangler">Wrangler</a>.</span>
     <div class="links">
       <a
         class="demo"
@@ -94,6 +97,7 @@ weight: 3
       ```
       </div>
     </div>
+    <span>Requires installation of <a href="https://github.com/cloudflare/wrangler">Wrangler</a>.</span>
     <div class="links">
       <a
         class="demo"
@@ -115,7 +119,7 @@ weight: 3
     <div class="copy-group">
       <div class="copy-step">
       <img id="img" type="image/svg+xml" src="media/file.svg"/>
-        <span>Use this in your Worker script:</span>
+        <span>Copy into a Worker script:</span>
       </div>
       <div class="copy">
     ```/**
@@ -188,7 +192,7 @@ addEventListener('fetch', event => {
     <div class="copy-group">
       <div class="copy-step">
       <img id="img" type="image/svg+xml" src="media/file.svg"/>
-        <span>Use this in your Worker script:</span>
+        <span>Copy into a Worker script:</span>
       </div>
       <div class="copy">
     ```/**
@@ -244,7 +248,7 @@ addEventListener('fetch', event => {
       <a
         class="demo"
         href="https://cloudflareworkers.com/#eaaa52283784c21aec989c64b9db32d3:https://example.com"
-        >Demo JSON</a
+        >Demo</a
       >
     </div>
   </figure>
@@ -265,6 +269,7 @@ addEventListener('fetch', event => {
       ```
       </div>
     </div>
+    <span>Requires installation of <a href="https://github.com/cloudflare/wrangler">Wrangler</a>.</span>
     <div class="links">
       <a
         class="demo"
@@ -294,6 +299,7 @@ addEventListener('fetch', event => {
       ```
       </div>
     </div>
+    <span>Requires installation of <a href="https://github.com/cloudflare/wrangler">Wrangler</a>.</span>
     <div class="links">
       <a
         class="demo"
@@ -316,6 +322,7 @@ addEventListener('fetch', event => {
       ```
       </div>
     </div>
+    <span>Requires installation of <a href="https://github.com/cloudflare/wrangler">Wrangler</a>.</span>
     <div class="links">
       <a class="demo" href="https://cloudflareworkers.com/#5ab384d18305ff16ee4fe261e63c5cbe:https://tutorial.cloudflareworkers.com/redirect/bulk3">Demo Bulk</a>
       <a class="demo" href="https://cloudflareworkers.com/#5ab384d18305ff16ee4fe261e63c5cbe:https://tutorial.cloudflareworkers.com/redirect/generate">Demo Generate</a>
@@ -335,9 +342,11 @@ addEventListener('fetch', event => {
       ```
       </div>
     </div>
+    <span>Requires installation of <a href="https://github.com/cloudflare/wrangler">Wrangler</a>.</span>
   </figure>
   <figure class="template-card boilerplate">
     <h2>binast-cf-worker</h2>
+    <span>Requires installation of <a href="https://github.com/cloudflare/wrangler">Wrangler</a>.</span>
     <p>Serve BinAST via a Cloudflare Worker</p>
     <div class="copy-group">
       <div class="copy-step">
@@ -350,6 +359,7 @@ addEventListener('fetch', event => {
       ```
       </div>
     </div>
+    <span>Requires installation of <a href="https://github.com/cloudflare/wrangler">Wrangler</a>.</span>
     <div class="links">
       <a class="demo" href="https://serve-binjs.that-test.site/">Live Demo</a>
     </div>

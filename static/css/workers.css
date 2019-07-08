@@ -24,12 +24,13 @@ a.quick-start {
 section.template-wrapper {
   display: grid;
   grid-template-columns: 100%;
+  margin-bottom: 1rem;
 }
 
 @media (min-width: 47.2em) {
   section.template-wrapper {
     grid-template-columns: 50% 50%;
-    grid-auto-rows: 20rem;
+    grid-auto-rows: 30rem;
     grid-gap: 16px;
   }
 }
@@ -104,6 +105,7 @@ figure.template-card div.links a {
 }
 .template-card .copy-step {
   padding-bottom: 0.5rem;
+  font-weight: bold;
   display: flex;
 }
 figure.template-card .copy-step img#img {
@@ -131,7 +133,6 @@ figure.template-card.boilerplate {
   color: white;
 }
 .boilerplate .copy code {
-  white-space: nowrap;
   background: var(--template-boilerplate-color);
   color: white;
 }
@@ -152,7 +153,7 @@ figure.template-card.boilerplate {
   height: 100%;
   left: 0;
   top: 0;
-  width: 100%;
+  width: calc(100% + var(--template-snippet-border-color));
 }
 .copy .help {
   color: #4d5257;
