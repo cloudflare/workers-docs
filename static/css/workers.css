@@ -102,8 +102,10 @@ figure.template-card div.links a {
   padding-bottom: 0.5rem;
   display: flex;
 }
-figure.template-card .step svg {
+figure.template-card .step img#img {
   flex: 1;
+  width: 1%;
+  margin: 0 3px 0 0;
 }
 figure.template-card .step span {
   font-size: 14px;
@@ -138,21 +140,13 @@ figure.template-card.boilerplate {
   display: flex;
   flex-direction: column;
 }
-.snippet .copy p {
-  /* markdown adds superfluos <p> tags.. meeh*/
-  display: none;
-}
-.snippet pre {
-  margin: 0 calc(var(--template-figure-padding) * -1);
-  flex: 1;
-  overflow: scroll;
-  border-left: 2px solid var(--template-snippet-border-color);
-  position: relative;
-  background: var(--template-snippet-background);
-}
+
 .snippet code {
-  position: absolute;
+  white-space: pre;
+  overflow: scroll;
   background: var(--template-snippet-background);
+  margin: 0 calc(var(--template-figure-padding) * -1);
+  border-left: 2px solid var(--template-snippet-border-color);
   color: var(--template-snippet-font-color);
   height: 100%;
   left: 0;
