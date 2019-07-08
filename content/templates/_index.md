@@ -9,14 +9,16 @@ weight: 3
   <figure class="template-card boilerplate">
     <h2>Hello World</h2>
     <p>Simple Hello World in JS.</p>
-    <div class="step">
-      <img src="media/terminal.svg" id="img"/>
-      <span>Paste this into your terminal:</span>
-    </div>
-    <div class="copy">
-    ```
-        wrangler generate myApp https://github.com/cloudflare/worker-template
-    ```
+    <div class="copy-group">
+      <div class="copy-step">
+        <img src="media/terminal.svg" id="img"/>
+        <span>Paste this into your terminal:</span>
+      </div>
+      <div class="copy">
+      ```
+          wrangler generate myApp https://github.com/cloudflare/worker-template
+      ```
+      </div>
     </div>
     <div class="links">
       <a
@@ -29,15 +31,16 @@ weight: 3
   <figure class="template-card boilerplate">
     <h2>Hello World Rust</h2>
     <p>Simple Hello World in Rust.</p>
-    <div class="step">
-      <img src="media/terminal.svg" id="img"/>
-      <span>Paste this into your terminal:</span>
-    </div>
-    <div class="copy">
+    <div class="copy-group">
+      <div class="copy-step">
+        <img src="media/terminal.svg" id="img"/>
+        <span>Paste this into your terminal:</span>
+      </div>
+      <div class="copy">
       ```
         wrangler generate myApp https://github.com/cloudflare/rustwasm-worker-template
       ```
-      </code>
+      </div>
     </div>
     <div class="links">
                  <a
@@ -52,15 +55,16 @@ weight: 3
     <p>Selects the logic based on the <code>request</code> method and URL. Use with REST APIs or apps
       that require routing logic.
     </p>
-    <div class="step">
-      <img src="media/terminal.svg" id="img"/>
-      <span>Paste this into your terminal:</span>
-    </div>
-    <div class="copy">
+    <div class="copy-group">
+      <div class="copy-step">
+        <img src="media/terminal.svg" id="img"/>
+        <span>Paste this into your terminal:</span>
+      </div>
+      <div class="copy">
       ```
         wrangler generate myApp https://github.com/cloudflare/worker-template-router
       ```
-      </code>
+      </div>
     </div>
     <div class="links">
       <a
@@ -79,15 +83,16 @@ weight: 3
     <h2>Static</h2>
     <p>Generates a fully functioning HTML page from raw HTML or sends raw JSON defined within your script.
     </p>
-    <div class="step">
-      <img src="media/terminal.svg" id="img"/>
-      <span>Paste this into your terminal:</span>
-    </div>
-    <div class="copy">
+    <div class="copy-group">
+      <div class="copy-step">
+        <img src="media/terminal.svg" id="img"/>
+        <span>Paste this into your terminal:</span>
+      </div>
+      <div class="copy">
       ```
         wrangler generate myApp https://github.com/cloudflare/worker-template-static
       ```
-      </code>
+      </div>
     </div>
     <div class="links">
       <a
@@ -107,17 +112,18 @@ weight: 3
     <p>
      POST request with JSON data and and reads in the response body.
     </p>
-    <div class="step">
-    <img id="img" type="image/svg+xml" src="media/file.svg"/>
-      <span>Use this in your Worker script:</span>
-    </div>
-    <div class="copy">
+    <div class="copy-group">
+      <div class="copy-step">
+      <img id="img" type="image/svg+xml" src="media/file.svg"/>
+        <span>Use this in your Worker script:</span>
+      </div>
+      <div class="copy">
     ```/**
-* Example someHost is set up to take in a JSON request
-* Replace url with the host you wish to send requests to
-* @param {string} url the URL to send the request to
-* @param {BodyInit} body the JSON data to send in the request
-*/
+ * Example someHost is set up to take in a JSON request
+ * Replace url with the host you wish to send requests to
+ * @param {string} url the URL to send the request to
+ * @param {BodyInit} body the JSON data to send in the request
+ */
 const someHost = 'https://workers-tooling.cf/demos'
 const url = someHost + '/requests/json'
 const body = {
@@ -125,7 +131,114 @@ const body = {
   errors: null,
   msg: 'I sent this to the fetch',
 }
+/**
+ * gatherResponse awaits and returns a response body as a string.
+ * Use await gatherResponse(..) in an async function to get the response body
+ * @param {Response} response
+ */
+async function gatherResponse(response) {
+  const { headers } = response
+  const contentType = headers.get('content-type')
+  if (contentType.includes('application/json')) {
+    return await response.json()
+  } else if (contentType.includes('application/text')) {
+    return await response.text()
+  } else if (contentType.includes('text/html')) {
+    return await response.text()
+  } else {
+    return await response.text()
+  }
+}
+/**
+ * handleRequest sends a POST request with JSON data and
+ * and reads in the response body.
+ * @param {Request} request the incoming request
+ */
+async function handleRequest(request) {
+  const init = {
+    body: JSON.stringify(body),
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json;charset=UTF-8',
+    },
+  }
+  const response = await fetch(url, init)
+  const results = await gatherResponse(response)
+  return new Response(results, init)
+}
+addEventListener('fetch', event => {
+  return event.respondWith(handleRequest(event.request))
+})
     ```
+    </div>
+    </div>
+    <div class="links">
+      <a
+        class="demo"
+        href="https://cloudflareworkers.com/#edce60b7d57c1e98fbe2d931aaaaf25f:https://tutorial.cloudflareworkers.com"
+        >Demo JSON</a
+      >
+    </div>
+  </figure>
+  <figure class="template-card snippet">
+    <h2>Aggregate Requests</h2>
+    <p>
+      Sends two GET request to two urls and aggregates the responses into one response.
+    </p>
+    <div class="copy-group">
+      <div class="copy-step">
+      <img id="img" type="image/svg+xml" src="media/file.svg"/>
+        <span>Use this in your Worker script:</span>
+      </div>
+      <div class="copy">
+    ```/**
+ * Example someHost is set up to return JSON responses
+ * Replace url1 and url2  with the hosts you wish to
+ * send requests to
+ * @param {string} url the URL to send the request to
+ */
+const someHost = 'https://workers-tooling.cf/demos'
+const url1 = someHost + '/requests/json'
+const url2 = someHost + '/requests/json'
+const type = 'application/json;charset=UTF-8'
+/**
+ * gatherResponse awaits and returns a response body as a string.
+ * Use await gatherResponse(..) in an async function to get the response body
+ * @param {Response} response
+ */
+async function gatherResponse(response) {
+  const { headers } = response
+  const contentType = headers.get('content-type')
+  if (contentType.includes('application/json')) {
+    return await response.json()
+  } else if (contentType.includes('application/text')) {
+    return await response.text()
+  } else if (contentType.includes('text/html')) {
+    return await response.text()
+  } else {
+    return await response.text()
+  }
+}
+/**
+ * handleRequest sends a GET request to two urls
+ * and aggregates the responses into one response
+ * @param {Request} request the incoming request
+ */
+async function handleRequest(request) {
+  const init = {
+    headers: {
+      'content-type': type,
+    },
+  }
+  const responses = await Promise.all([fetch(url1, init), fetch(url2, init)])
+  const results = await Promise.all([gatherResponse(responses[0]), gatherResponse(responses[1])])
+  return new Response(results, init)
+}
+addEventListener('fetch', event => {
+  return event.respondWith(handleRequest(event.request))
+})
+    ```
+      </div>
     </div>
     <div class="links">
       <a
@@ -141,15 +254,16 @@ const body = {
       Examples of making fetch requests from within your Worker script including generating JSON
       post requests then reading in the resulting response body.
     </p>
-    <div class="step">
-      <img id="img" type="image/svg+xml" src="media/terminal.svg"/>
-      <span>Paste this into your terminal:</span>
-    </div>
-    <div class="copy">
+    <div class="copy-group">
+      <div class="copy-step">
+        <img id="img" type="image/svg+xml" src="media/terminal.svg"/>
+        <span>Paste this into your terminal:</span>
+      </div>
+      <div class="copy">
       ```
         wrangler generate myApp https://github.com/cloudflare/worker-template-fetch
       ```
-      </code>
+      </div>
     </div>
     <div class="links">
       <a
@@ -169,15 +283,16 @@ const body = {
     <p>
       Examples of reading in a POST request body of type JSON and form-data.
     </p>
-    <div class="step">
-      <img src="media/terminal.svg" id="img"/>
-      <span>Paste this into your terminal:</span>
-    </div>
-    <div class="copy">
+    <div class="copy-group">
+      <div class="copy-step">
+        <img src="media/terminal.svg" id="img"/>
+        <span>Paste this into your terminal:</span>
+      </div>
+      <div class="copy">
       ```
         wrangler generate myApp https://github.com/ashleygwilliams/worker-template-requests
       ```
-      </code>
+      </div>
     </div>
     <div class="links">
       <a
@@ -190,15 +305,16 @@ const body = {
   <figure class="template-card boilerplate">
     <h2>Redirects</h2>
     <p>Examples of sending single and bulk redirects from a Worker script</p>
-    <div class="step">
-      <img src="media/terminal.svg" id="img"/>
-      <span>Paste this into your terminal:</span>
-    </div>
-    <div class="copy">
+    <div class="copy-group">
+      <div class="copy-step">
+        <img src="media/terminal.svg" id="img"/>
+        <span>Paste this into your terminal:</span>
+      </div>
+      <div class="copy">
       ```
         wrangler generate myApp https://github.com/cloudflare/worker-template-redirect
       ```
-      </code>
+      </div>
     </div>
     <div class="links">
       <a class="demo" href="https://cloudflareworkers.com/#5ab384d18305ff16ee4fe261e63c5cbe:https://tutorial.cloudflareworkers.com/redirect/bulk3">Demo Bulk</a>
@@ -208,29 +324,31 @@ const body = {
   <figure class="template-card boilerplate">
     <h2>img-color-worker</h2>
     <p>Retrieve the dominant color of a PNG or JPEG image</p>
-    <div class="step">
-      <img src="media/terminal.svg" id="img"/>
-      <span>Paste this into your terminal:</span>
-    </div>
-    <div class="copy">
+    <div class="copy-group">
+      <div class="copy-step">
+        <img src="media/terminal.svg" id="img"/>
+        <span>Paste this into your terminal:</span>
+      </div>
+      <div class="copy">
       ```
         wrangler generate img-color https://github.com/xtuc/img-color-worker
       ```
-      </code>
+      </div>
     </div>
   </figure>
   <figure class="template-card boilerplate">
     <h2>binast-cf-worker</h2>
     <p>Serve BinAST via a Cloudflare Worker</p>
-    <div class="step">
-      <img src="media/terminal.svg" id="img"/>
-      <span>Paste this into your terminal:</span>
-    </div>
-    <div class="copy">
+    <div class="copy-group">
+      <div class="copy-step">
+        <img src="media/terminal.svg" id="img"/>
+        <span>Paste this into your terminal:</span>
+      </div>
+      <div class="copy">
       ```
         wrangler generate binast-cf-worker https://github.com/xtuc/binast-cf-worker-template
       ```
-      </code>
+      </div>
     </div>
     <div class="links">
       <a class="demo" href="https://serve-binjs.that-test.site/">Live Demo</a>
