@@ -109,29 +109,14 @@ Test your snippet code with the [playground](TODO) and live on a domain. All sni
 
 The format of a snippet should be in the order:
 
-1. Hardcoded constants, the developer will likely change
-2. Helper functions
-3. `handleRequest`
-4. `addEventListener('fetch', event => {`
+1. `handleRequest`
+2. `addEventListener('fetch', event => {`
+3. Helper functions
+4. Hardcoded constants, the developer will likely change
 
 For example:
 
 ```javascript
-/**
- * Here are what developers are expected to fill in
- * Replace url with the host you wish to send requests to
- * @param {string} url
- */
-const url = 'https://example.com'
-
-/**
- * Here is what my helper does
- * @param {string} path
- */
-function helper(path) {
-  return url + '/' + path
-}
-
 /**
  * Return a simple Hello World response
  * @param {Request} request
@@ -140,10 +125,22 @@ async function handleRequest(request) {
   helper(request.url.path)
   return new Response('Hello worker!', { status: 200 })
 }
-
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
+/**
+ * Here is what my helper does
+ * @param {string} path
+ */
+function helper(path) {
+  return url + '/' + path
+}
+/**
+ * Here are what developers are expected to fill in
+ * Replace url with the host you wish to send requests to
+ * @param {string} url
+ */
+const url = 'https://example.com'
 ```
 
 For snippets, the meat of the logic should be in a function called `handleRequest`, which should always exist in either forms:
@@ -161,6 +158,8 @@ addEventListener('fetch', event => {
 })
 ```
 
+Omit all blank links in your snippet for formatting purposes (i.e. A regex find should have 0 results for `\n\n`.)
+
 # Submit
 
 This process is for internal only and will improve
@@ -174,4 +173,4 @@ This process is for internal only and will improve
 ## Snippets
 
 1. Include victoria (@victoriabernard92 on Github) to a PR review to your own repo, or share a gist (e.g. [some gist](https://gist.github.com/victoriabernard92/5d63a2abc92fb0e5774cfd6a7035ecda.js))
-2. Add the code to the [template gallery](https://github.com/cloudflare/cloudflare-docs/edit/master/content/templates/_index.md) following the format of another snippet like \_\_\_ (WIP).
+2. Add the code to the [template gallery](https://github.com/cloudflare/cloudflare-docs/edit/master/content/templates/_index.md) following the format of another snippet like Post JSON.
