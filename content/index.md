@@ -42,13 +42,19 @@ title: Cloudflare Workers Documentation
 <h2>Templates</h2>
 <p>Ready-to-use code to get you started.</p>
 <section class="template-wrapper">
-  <figure class="template-card">
+  <figure class="template-card boilerplate">
     <h2>Hello World</h2>
     <p>Simple Hello World in JS.</p>
-    <div class="copy">
-      <code class="highlight">
-        wrangler generate myApp https://github.com/cloudflare/worker-template
-      </code>
+    <div class="copy-group">
+      <div class="copy-step">
+        <img src="templates/media/terminal.svg" id="img"/>
+        <span>Paste this into your terminal:</span>
+      </div>
+      <div class="copy">
+      ```
+          wrangler generate myApp https://github.com/cloudflare/worker-template
+      ```
+      </div>
     </div>
     <div class="links">
       <a
@@ -58,13 +64,19 @@ title: Cloudflare Workers Documentation
       >
     </div>
   </figure>
-  <figure class="template-card">
+  <figure class="template-card boilerplate">
     <h2>Hello World Rust</h2>
     <p>Simple Hello World in Rust.</p>
-    <div class="copy">
-      <code class="highlight">
+    <div class="copy-group">
+      <div class="copy-step">
+        <img src="templates/media/terminal.svg" id="img"/>
+        <span>Paste this into your terminal:</span>
+      </div>
+      <div class="copy">
+    ```
         wrangler generate myApp https://github.com/cloudflare/rustwasm-worker-template
-      </code>
+    ```
+      </div>
     </div>
     <div class="links">
       <a
@@ -74,13 +86,19 @@ title: Cloudflare Workers Documentation
       >
     </div>
   </figure>
-  <figure class="template-card">
+  <figure class="template-card boilerplate">
       <h2>Router</h2>
       <p>Direct requests to the appropriate handler function.</p>
-      <div class="copy">
-        <code class="highlight">
-          wrangler generate myApp https://github.com/cloudflare/worker-template-router
-        </code>
+      <div class="copy-group">
+        <div class="copy-step">
+          <img src="templates/media/terminal.svg" id="img"/>
+          <span>Paste this into your terminal:</span>
+        </div>
+        <div class="copy">
+        ```
+            wrangler generate myApp https://github.com/cloudflare/worker-template-router
+        ```
+        </div>
       </div>
       <div class="links">
         <a
@@ -95,15 +113,21 @@ title: Cloudflare Workers Documentation
         >
       </div>
     </figure>
-    <figure class="template-card">
+    <figure class="template-card boilerplate">
       <h2>Fetch</h2>
       <p>
         Send requests from your Workers application.
       </p>
-      <div class="copy">
-        <code class="highlight">
+      <div class="copy-group">
+        <div class="copy-step">
+          <img src="templates/media/terminal.svg" id="img"/>
+          <span>Paste this into your terminal:</span>
+        </div>
+        <div class="copy">
+      ```
           wrangler generate myApp https://github.com/cloudflare/worker-template-fetch
-        </code>
+      ```
+        </div>
       </div>
       <div class="links">
         <a
@@ -120,7 +144,6 @@ title: Cloudflare Workers Documentation
   </figure>
 </section>
 <a href="/templates">View all templates</a>
-
 <h2>Reference</h2>
 <section class="reference-links">
   <div>

@@ -29,7 +29,7 @@ section.template-wrapper {
 @media (min-width: 47.2em) {
   section.template-wrapper {
     grid-template-columns: 50% 50%;
-    grid-template-rows: repeat(11, 20rem);
+    grid-auto-rows: 20rem;
     grid-gap: 16px;
   }
 }
