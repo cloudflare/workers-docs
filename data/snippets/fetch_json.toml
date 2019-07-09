@@ -1,15 +1,13 @@
-name = "Post JSON"
-description = "Sends a POST request with JSON data from the Workers script."
-code = '''async function handleRequest(request) {
+name = "Fetch JSON"
+description = "Sends a GET request and reads in JSON from the response."
+code = """async function handleRequest(request) {
   const init = {
-    body: JSON.stringify(body),
-    method: 'POST',
     headers: {
-      'content-type': 'application/json;charset=UTF-8',
+      'content-type': type,
     },
   }
-  const response = await fetch(url, init)
-  const results = await gatherResponse(response)
+  const responses = await Promise.all([fetch(url1, init), fetch(url2, init)])
+  const results = await Promise.all([gatherResponse(responses[0]), gatherResponse(responses[1])])
   return new Response(results, init)
 }
 addEventListener('fetch', event => {
@@ -34,17 +32,14 @@ async function gatherResponse(response) {
   }
 }
 /**
- * Example someHost is set up to take in a JSON request
- * Replace url with the host you wish to send requests to
+ * Example someHost is set up to return JSON responses
+ * Replace url1 and url2  with the hosts you wish to
+ * send requests to
  * @param {string} url the URL to send the request to
- * @param {BodyInit} body the JSON data to send in the request
  */
 const someHost = 'https://workers-tooling.cf/demos'
-const url = someHost + '/requests/json'
-const body = {
-  results: ['default data to send'],
-  errors: null,
-  msg: 'I sent this to the fetch',
-}
-'''
-demo_url = "https://cloudflareworkers.com/#edce60b7d57c1e98fbe2d931aaaaf25f:https://tutorial.cloudflareworkers.com"
+const url1 = someHost + '/requests/json'
+const url2 = someHost + '/requests/json'
+const type = 'application/json;charset=UTF-8'
+"""
+demo_url = "https://cloudflareworkers.com/#a45261f6682b048d9ed0e23a330d9cdb:https://example.com"

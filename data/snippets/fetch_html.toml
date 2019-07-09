@@ -1,11 +1,9 @@
-name = "Post JSON"
-description = "Sends a POST request with JSON data from the Workers script."
-code = '''async function handleRequest(request) {
+name = "Fetch HTML"
+description = "Sends a request to a remote server, reads HTML from the response, then serves that HTML."
+code = """async function handleRequest(request) {
   const init = {
-    body: JSON.stringify(body),
-    method: 'POST',
     headers: {
-      'content-type': 'application/json;charset=UTF-8',
+      'content-type': 'text/html;charset=UTF-8',
     },
   }
   const response = await fetch(url, init)
@@ -34,17 +32,10 @@ async function gatherResponse(response) {
   }
 }
 /**
- * Example someHost is set up to take in a JSON request
+ * Example someHost at url is set up to respond with HTML
  * Replace url with the host you wish to send requests to
- * @param {string} url the URL to send the request to
- * @param {BodyInit} body the JSON data to send in the request
- */
+ *  */
 const someHost = 'https://workers-tooling.cf/demos'
-const url = someHost + '/requests/json'
-const body = {
-  results: ['default data to send'],
-  errors: null,
-  msg: 'I sent this to the fetch',
-}
-'''
-demo_url = "https://cloudflareworkers.com/#edce60b7d57c1e98fbe2d931aaaaf25f:https://tutorial.cloudflareworkers.com"
+const url = someHost + '/static/html'
+"""
+demo_url = "https://cloudflareworkers.com/#14a82a672534b0dd25b385a5d3de744c:https://example.com"
