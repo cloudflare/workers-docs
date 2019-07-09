@@ -75,7 +75,7 @@ If you are just designing a snippet, you can skip the setup and move to writing 
 
 First clone the [template creator](https://github.com/victoriabernard92/workers-template-creator) and follow the instructions in the README to get your project started.
 
-Never commit your `worker/`, `wrangler.toml`, or any file in the `.gitignore`.
+Never commit the `worker` directory or `wrangler.toml`.
 
 # Writing Templates
 
