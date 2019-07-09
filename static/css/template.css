@@ -1,0 +1,116 @@
+:root {
+  --template-figure-padding: 16px;
+  --template-snippet-background: #fdf8f4;
+  --template-snippet-font-color: #b98a64;
+  --template-snippet-border-color: #e9a468;
+  --template-boilerplate-color: #5f6264;
+}
+section.template-wrapper {
+  display: grid;
+  grid-template-columns: 100%;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 47.2em) {
+  section.template-wrapper {
+    grid-template-columns: 50% 50%;
+    grid-auto-rows: max-content;
+    grid-gap: 16px;
+  }
+}
+@media (min-width: 47.2em) {
+  section.template-wrapper.snippet {
+    grid-auto-rows: 30rem;
+  }
+}
+
+figure.template-card {
+  margin: 0;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-top-width: 3px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+figure.template-card h2 {
+  margin: 0;
+  margin-bottom: 8px;
+  font-size: 22px;
+}
+figure.template-card div.links {
+  margin-top: 16px;
+}
+figure.template-card div.links a {
+  margin-right: 8px;
+  flex: flex-end;
+  white-space: nowrap;
+}
+
+.template-card .copy-group {
+  display: flex;
+  flex-direction: column;
+}
+.template-card .copy-step {
+  padding-bottom: 0.5rem;
+  font-weight: bold;
+  display: flex;
+}
+figure.template-card .copy-step img#img {
+  flex: 1;
+  width: 1%;
+  margin: 0 3px 0 0;
+}
+figure.template-card .copy-step span {
+  font-size: 14px;
+  flex: 30;
+}
+.copy code {
+  display: block;
+  overflow: auto;
+  padding: 16px;
+  margin: 8px 0;
+}
+figure.template-card.snippet {
+  border-top-color: var(--template-snippet-border-color);
+}
+figure.template-card.boilerplate {
+  border-top-color: var(--template-boilerplate-color);
+}
+.boilerplate .copy a {
+  color: white;
+}
+.boilerplate .copy code {
+  background: var(--template-boilerplate-color);
+  color: white;
+}
+
+.snippet .copy {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.snippet code {
+  white-space: pre;
+  overflow: scroll;
+  background: var(--template-snippet-background);
+  margin: 0 calc(var(--template-figure-padding) * -1);
+  border-left: 2px solid var(--template-snippet-border-color);
+  color: var(--template-snippet-font-color);
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: calc(100% + var(--template-snippet-border-color));
+}
+.copy .help {
+  color: #4d5257;
+  font-size: 0.7rem;
+  text-align: right;
+}
+.copy .help:hover {
+  opacity: 0.7;
+  cursor: pointer;
+  color: #f4a15d;
+}
