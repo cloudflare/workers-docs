@@ -5,7 +5,9 @@ weight: 3
 ---
 
 <p>These templates are simple building blocks for building a Workers script.</p>
-<section class="template-wrapper">
+<h2>Boilerplates</h2>
+<p>Serve as a sketlon when starting a project. <span>Requires installation of <a href="https://github.com/cloudflare/wrangler">Wrangler</a>.</span></p>
+<section class="template-wrapper boilerplate">
   <figure class="template-card boilerplate">
     <h2>Hello World</h2>
     <p>Simple Hello World in JS.</p>
@@ -20,7 +22,6 @@ weight: 3
       ```
       </div>
     </div>
-    <span>Requires installation of <a href="https://github.com/cloudflare/wrangler">Wrangler</a>.</span>
     <div class="links">
       <a
         class="demo"
@@ -43,7 +44,6 @@ weight: 3
       ```
       </div>
     </div>
-    <span>Requires installation of <a href="https://github.com/cloudflare/wrangler">Wrangler</a>.</span>
     <div class="links">
                  <a
         class="demo"
@@ -68,7 +68,6 @@ weight: 3
       ```
       </div>
     </div>
-    <span>Requires installation of <a href="https://github.com/cloudflare/wrangler">Wrangler</a>.</span>
     <div class="links">
       <a
         class="demo"
@@ -97,7 +96,6 @@ weight: 3
       ```
       </div>
     </div>
-    <span>Requires installation of <a href="https://github.com/cloudflare/wrangler">Wrangler</a>.</span>
     <div class="links">
       <a
         class="demo"
@@ -111,6 +109,10 @@ weight: 3
       >
     </div>
   </figure>
+  </section>
+  <h2>Snippets</h2>
+  <p>Copy pasteable code that can be used in a new or existing project.</p>
+  <section class="template-wrapper snippet">
   <figure class="template-card snippet">
     <h2>Post JSON</h2>
     <p>
@@ -322,10 +324,8 @@ async function gatherResponse(response) {
       ```
       </div>
     </div>
-    <span>Requires installation of <a href="https://github.com/cloudflare/wrangler">Wrangler</a>.</span>
     <div class="links">
       <a class="demo" href="https://cloudflareworkers.com/#5ab384d18305ff16ee4fe261e63c5cbe:https://tutorial.cloudflareworkers.com/redirect/bulk3">Demo Bulk</a>
-      <a class="demo" href="https://cloudflareworkers.com/#5ab384d18305ff16ee4fe261e63c5cbe:https://tutorial.cloudflareworkers.com/redirect/generate">Demo Generate</a>
     </div>
   </figure>
   <figure class="template-card boilerplate">
@@ -342,11 +342,9 @@ async function gatherResponse(response) {
       ```
       </div>
     </div>
-    <span>Requires installation of <a href="https://github.com/cloudflare/wrangler">Wrangler</a>.</span>
   </figure>
   <figure class="template-card boilerplate">
     <h2>binast-cf-worker</h2>
-    <span>Requires installation of <a href="https://github.com/cloudflare/wrangler">Wrangler</a>.</span>
     <p>Serve BinAST via a Cloudflare Worker</p>
     <div class="copy-group">
       <div class="copy-step">
@@ -359,7 +357,6 @@ async function gatherResponse(response) {
       ```
       </div>
     </div>
-    <span>Requires installation of <a href="https://github.com/cloudflare/wrangler">Wrangler</a>.</span>
     <div class="links">
       <a class="demo" href="https://serve-binjs.that-test.site/">Live Demo</a>
     </div>

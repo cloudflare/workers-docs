@@ -14,8 +14,13 @@ section.template-wrapper {
 @media (min-width: 47.2em) {
   section.template-wrapper {
     grid-template-columns: 50% 50%;
-    grid-auto-rows: 30rem;
+    grid-auto-rows: max-content;
     grid-gap: 16px;
+  }
+}
+@media (min-width: 47.2em) {
+  section.template-wrapper.snippet {
+    grid-auto-rows: 30rem;
   }
 }
 
