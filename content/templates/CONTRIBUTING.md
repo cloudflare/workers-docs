@@ -24,10 +24,6 @@ Examples of [good templates that we need help building](https://wiki.cfops.it/di
 
 Custom solutions that would could not clearly be reused make bad templates.
 
-Examples of bad templates:
-
-- Building out a full blown OAuth authentication server
-
 ### Name your Template
 
 Your template should have a programmatically name (I will refer to as `name`) and human readable description:
