@@ -21,7 +21,7 @@ For archived recipes, see [the old docs](https://developers.cloudflare.com/worke
 <p>Copy pasteable code that can be used in a new or existing project.</p>
 {{< snippets >}}
 
-  <section class="template-wrapper snippet">
+  <!-- <section class="template-wrapper snippet">
   <figure class="template-card snippet">
     <h2>Aggregate Requests</h2>
     <p>
@@ -481,4 +481,4 @@ For archived recipes see [the old docs](https://developers.cloudflare.com/worker
       <a class="demo" href="https://serve-binjs.that-test.site/">Live Demo</a>
     </div>
   </figure>
-</section>
+</section> -->
