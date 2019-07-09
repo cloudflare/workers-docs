@@ -8,3 +8,4 @@ PygmentsCodeFences = true
 PygmentsStyle = "monokai"
 canonifyURLs = true
 disableKinds = "taxonomyTerm"
+ignoreFiles = [ "style/*", "CONTRIBUTING.md" ]
