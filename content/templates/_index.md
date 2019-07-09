@@ -6,7 +6,7 @@ weight: 3
 
 <p>These templates are simple building blocks for developing Workers script(s).</p>
 <h2>Boilerplates</h2>
-<p>Skeltons that are useful when starting a project. <span>Requires installation of <a href="https://github.com/cloudflare/wrangler">Wrangler</a>.</span></p>
+<p>Skeletons that are useful when starting a project. <span>Requires installation of <a href="https://github.com/cloudflare/wrangler">Wrangler</a>.</span></p>
 <section class="template-wrapper boilerplate">
   <figure class="template-card boilerplate">
     <h2>Hello World</h2>
@@ -602,7 +602,7 @@ const someForm = `
     </div>
   </figure>
   </section>
-  <h2>More projects</h2>
+  <h2>Featured Projects</h2>
   <p>More boilerplate projects. <span>Requires installation of <a href="https://github.com/cloudflare/wrangler">Wrangler</a>.</span></p>
   <p>The gallery is actively growing. The [template creator](https://github.com/victoriabernard92/workers-template-creator) allows you to share templates. Host a public repo, and then run `wrangler generate https://github.com/<your-repo>`.
 For archived recipes see [the old docs](https://developers.cloudflare.com/workers/recipes/).</p>
