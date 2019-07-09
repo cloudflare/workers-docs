@@ -86,61 +86,88 @@ title: Cloudflare Workers Documentation
       >
     </div>
   </figure>
-  <figure class="template-card boilerplate">
-      <h2>Router</h2>
-      <p>Direct requests to the appropriate handler function.</p>
-      <div class="copy-group">
-        <div class="copy-step">
-          <img src="templates/media/terminal.svg" id="img"/>
-          <span>Paste this into your terminal:</span>
-        </div>
-        <div class="copy">
-        ```
-            wrangler generate myApp https://github.com/cloudflare/worker-template-router
-        ```
-        </div>
+  </section>
+  <section class="snippet template-wrapper">
+  <figure class="template-card snippet">
+    <h2>Bulk Redirects</h2>
+    <p>
+      Redirects requests to certain URLs based a mapped object to the request's URL.
+    </p>
+    <div class="copy-group">
+      <div class="copy-step">
+        <img id="img" type="image/svg+xml" src="templates/media/file.svg"/>
+        <span>Copy into a Worker script:</span>
+      </div>
+      <div class="copy">```async function handleRequest(request) {
+  let requestURL = new URL(request.url)
+  let path = requestURL.pathname.split('/redirect')[1]
+  let location = redirectMap.get(path)
+  if (location) {
+    return Response.redirect(location, 301)
+  }
+  // If in map, return the original request
+  return fetch(request)
+}
+addEventListener('fetch', async event => {
+  event.respondWith(handleRequest(event.request))
+})
+const externalHostname = 'workers-tooling.cf'
+const redirectMap = new Map([
+  ['/bulk1', 'https://' + externalHostname + '/redirect2'],
+  ['/bulk2', 'https://' + externalHostname + '/redirect3'],
+  ['/bulk3', 'https://' + externalHostname + '/redirect4'],
+  ['/bulk4', 'https://google.com'],
+])```
       </div>
       <div class="links">
-        <a
-          class="demo"
-          href="https://cloudflareworkers.com/#6cbbd3ae7d4e928da3502cb9ce11227a:https://tutorial.cloudflareworkers.com/bar"
-          >Demo /bar</a
-        >
-        <a
-          class="demo"
-          href="https://cloudflareworkers.com/#6cbbd3ae7d4e928da3502cb9ce11227a:https://tutorial.cloudflareworkers.com/foo"
-          >Demo /foo</a
-        >
+        <a class="demo" href="https://cloudflareworkers.com/#d17c3da192fd5c83ef7d28153ab32f3f:https://example.com/redirect/bulk1">Demo</a>
       </div>
-    </figure>
-    <figure class="template-card boilerplate">
-      <h2>Fetch</h2>
+    </div>
+  </figure>
+  <figure class="template-card snippet">
+      <h2>Send Raw HTML</h2>
       <p>
-        Send requests from your Workers application.
+      Delievers an HTML page from HTML directly in the Worker script.
       </p>
       <div class="copy-group">
         <div class="copy-step">
-          <img src="templates/media/terminal.svg" id="img"/>
-          <span>Paste this into your terminal:</span>
+          <img id="img" type="image/svg+xml" src="templates/media/file.svg"/>
+          <span>Copy into a Worker script:</span>
         </div>
         <div class="copy">
+      ```async function handleRequest(request) {
+  const init = {
+    headers: {
+      'content-type': 'text/html;charset=UTF-8',
+    },
+  }
+  return new Response(someHTML, init)
+}
+addEventListener('fetch', event => {
+  return event.respondWith(handleRequest(event.request))
+})
+const someHTML =  `<!DOCTYPE html>
+<html>
+  <body>
+  <h1>Hello World</h1>
+  <p>This is all generated using a Worker</p>
+  <iframe
+      width="560"
+      height="315"
+      src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+      frameborder="0"
+      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+  ></iframe>
+  </body>
+</html>
+`
       ```
-          wrangler generate myApp https://github.com/cloudflare/worker-template-fetch
-      ```
-        </div>
       </div>
       <div class="links">
-        <a
-          class="demo"
-          href="https://cloudflareworkers.com/#c72284898b1767342dc5c7bc24925e16:https://tutorial.cloudflareworkers.com/json"
-          >Demo JSON</a
-        >
-        <a
-          class="demo"
-          href="https://cloudflareworkers.com/#c72284898b1767342dc5c7bc24925e16:https://tutorial.cloudflareworkers.com/html"
-          >Demo HTML</a
-        >
+        <a class="demo" href="https://cloudflareworkers.com/#ba06ef26637ab98b1f38a18dc527dc69:https://example.com">Demo</a>
       </div>
+    </div>
   </figure>
 </section>
 <a href="/templates">View all templates</a>
