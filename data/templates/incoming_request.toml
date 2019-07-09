@@ -1,0 +1,4 @@
+name = "Incoming Request"
+description = "Examples of reading in a POST request body of type JSON and form-data."
+repository_url = "https://github.com/ashleygwilliams/worker-template-requests"
+demo_url = "https://cloudflareworkers.com/?&_ga=2.84559449.114759184.1562610942-1627288172.1557427693#6cf6a1d0d8e5a0bd3be434b754c183f0:https://tutorial.cloudflareworkers.com/form"

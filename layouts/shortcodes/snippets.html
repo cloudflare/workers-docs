@@ -1,0 +1,3 @@
+<section class="template-wrapper">
+  {{ range $snippet := .Site.Data.snippets }} {{partial "snippet" $snippet}} {{ end }}
+</section>

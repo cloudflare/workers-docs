@@ -1,0 +1,12 @@
+name = "redirects"
+description = "Examples of sending single and bulk redirects from a Worker script"
+repository_url = "https://github.com/cloudflare/worker-template-redirect"
+
+[demos.bulk]
+text = "Demo Bulk"
+url = "https://cloudflareworkers.com/?&_ga=2.75055570.114759184.1562610942-1627288172.1557427693#5ab384d18305ff16ee4fe261e63c5cbe:https://tutorial.cloudflareworkers.com/redirect/bulk3"
+
+[demos.generate]
+text = "Demo Generate"
+url = "https://cloudflareworkers.com/?&_ga=2.75055570.114759184.1562610942-1627288172.1557427693#5ab384d18305ff16ee4fe261e63c5cbe:https://tutorial.cloudflareworkers.com/redirect/generate"
+

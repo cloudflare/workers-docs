@@ -1,0 +1,3 @@
+name = "Post JSON"
+description = "Sends a POST request with JSON data from the Workers script.
+code = "uh"

@@ -1,0 +1,11 @@
+name = "Router"
+description = "Selects the logic based on the `request` method and URL. Use with REST APIs or apps that require routing logic."
+repository_url = "https://github.com/cloudflare/worker-template-router"
+
+[demos.bar]
+text = "Demo /bar"
+url = "https://cloudflareworkers.com/?&_ga=2.76687829.114759184.1562610942-1627288172.1557427693#6cbbd3ae7d4e928da3502cb9ce11227a:https://tutorial.cloudflareworkers.com/bar"
+
+[demos.foo]
+text = "Demo /foo"
+url = "https://cloudflareworkers.com/?&_ga=2.76687829.114759184.1562610942-1627288172.1557427693#6cbbd3ae7d4e928da3502cb9ce11227a:https://tutorial.cloudflareworkers.com/foo"
