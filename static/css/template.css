@@ -55,12 +55,15 @@ figure.template-card div.links a {
 }
 .template-card .copy-step {
   padding-bottom: 0.5rem;
+  flex: none;
+  align-items: center;
   font-weight: bold;
   display: flex;
 }
 figure.template-card .copy-step img#img {
   flex: 1;
-  margin: 0 3px 0 0;
+  width: 1.25rem;
+  margin: 0 0.3em 0 0;
 }
 figure.template-card .copy-step span {
   font-size: 14px;
@@ -72,6 +75,17 @@ figure.template-card .copy-step span {
   padding: 16px;
   margin: 8px 0;
 }
+.copy .help {
+  color: #4d5257;
+  font-size: 0.7rem;
+  text-align: right;
+}
+.copy .help:hover {
+  opacity: 0.7;
+  cursor: pointer;
+  color: #f4a15d;
+}
+
 figure.template-card.snippet {
   border-top-color: var(--template-snippet-border-color);
 }
@@ -99,14 +113,4 @@ figure.template-card.boilerplate {
   border-left: 2px solid var(--template-snippet-border-color);
   color: var(--template-snippet-font-color);
   width: calc(100% + var(--template-snippet-border-color));
-}
-.copy .help {
-  color: #4d5257;
-  font-size: 0.7rem;
-  text-align: right;
-}
-.copy .help:hover {
-  opacity: 0.7;
-  cursor: pointer;
-  color: #f4a15d;
 }
