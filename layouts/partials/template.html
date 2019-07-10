@@ -1,6 +1,6 @@
 <figure class="template-card boilerplate">
   <h2>{{.name}}</h2>
-  <p>{{.description}}</p>
+  <p>{{.description | markdownify}}</p>
   <div class="copy-group">
     <div class="copy-step">
       <img src="media/terminal.svg" id="img"/>
@@ -8,7 +8,7 @@
     </div>
     <div class="copy">
       <code>
-        wrangler generate myApp {{.repository_url}}
+        wrangler generate myApp <a href="{{.repository_url}}">{{.repository_url}}</a>
       </code>
     </div>
   </div>

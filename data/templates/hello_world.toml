@@ -1,4 +1,4 @@
 name = "Hello World"
 description = "Simple Hello World in JS"
 repository_url = "https://github.com/cloudflare/worker-template"
-demo_url = "https://cloudflareworkers.com/?&_ga=2.172097763.114759184.1562610942-1627288172.1557427693#6626eb50f7b53c2d42b79d1082b9bd37:https://tutorial.cloudflareworkers.com"
+demo_url = "https://cloudflareworkers.com/#6626eb50f7b53c2d42b79d1082b9bd37:https://tutorial.cloudflareworkers.com"
