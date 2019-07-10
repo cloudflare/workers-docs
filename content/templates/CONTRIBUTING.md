@@ -79,11 +79,11 @@ Never commit the `worker` directory or `wrangler.toml`.
 
 ### JavaScript Styleguide
 
-Required, see guide [here](./style/javascript)
+Required, see guide [here](./style/javascript.md)
 
 ### Rust Styleguide
 
-Required if writing Rust, see guide [here](./style/rust)
+Required if writing Rust, see guide [here](./style/rust.md)
 
 ### Boilerplate Format
 
