@@ -71,7 +71,7 @@ If you are just designing a snippet, you can skip the setup and move to writing 
 
 First clone the [template creator](https://github.com/victoriabernard92/workers-template-creator) and follow the instructions in the README to get your project started.
 
-Never commit the `worker` directory or `wrangler.toml`.
+Never commit the `worker` directory. Commit your `wrangler.toml` with the requirerd `type`, but don't commit the account tags.
 
 # Writing Templates
 
@@ -101,7 +101,7 @@ You do not need to strictly follow the snippet format for boilerplates, but it i
 
 ### Snippet Format
 
-Test your snippet code with the [playground](TODO) and live on a domain. All snippet code must work unminified in the playground and be tested live.
+Test your snippet code with the playground and live on a domain. All snippet code must work unminified in the playground and be tested live.
 
 The format of a snippet should be in the order:
 
@@ -113,10 +113,6 @@ The format of a snippet should be in the order:
 For example:
 
 ```javascript
-/**
- * Return a simple Hello World response
- * @param {Request} request
- */
 async function handleRequest(request) {
   helper(request.url.path)
   return new Response('Hello worker!', { status: 200 })
@@ -164,9 +160,10 @@ This process is for internal only and will improve
 
 1. Host a public repo, and then test your project by running `wrangler generate https://github.com/<your-repo>`.
 2. Have Victoria (@victoriabernard92 on Github) review your code via a PR into your own repo.
-3. Submit a PR to add the template to the [template gallery](https://github.com/cloudflare/cloudflare-docs/edit/master/content/templates/_index.md) after having it approved. Make sure to follow the same format as other boilerplates in the gallery and include all the same fields (e.g. wrangler genereate, demo.. )
+3. Add a `name.toml` file to the [template gallery featured projects](/data/featured/). Include all the information that is in exisiting snippets there i.e. `demo_url`, `description`, etc.. Submit a PR to the [Cloudflare Workers Docs](https://github.com/cloudflare/cloudflare-docs)
 
 ## Snippets
 
-1. Include victoria (@victoriabernard92 on Github) to a PR review to your own repo, or share a gist (e.g. [some gist](https://gist.github.com/victoriabernard92/5d63a2abc92fb0e5774cfd6a7035ecda.js))
-2. Add the code to the [template gallery](https://github.com/cloudflare/cloudflare-docs/edit/master/content/templates/_index.md) following the format of another snippet like Post JSON.
+1. If you think the snippet will need a lot of review, include victoria (@victoriabernard92 on Github) to a PR review to your own repo, or share a gist (e.g. [some gist](https://gist.github.com/victoriabernard92/5d63a2abc92fb0e5774cfd6a7035ecda.js))
+2. Add a `name.toml` file to the [template gallery snippets](/data/snippets/). Include all the information that is in exisiting snippets there i.e. `code`, `description`, etc..
+   For an example see [Modify Request URL](/data/snippets/modify_req_url.toml). Submit a PR to the [Cloudflare Workers Docs](https://github.com/cloudflare/cloudflare-docs)
