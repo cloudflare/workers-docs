@@ -13,7 +13,7 @@ weight: 3
     <p>Simple Hello World in JS.</p>
     <div class="copy-group">
       <div class="copy-step">
-        <img src="media/terminal.svg" id="img"/>
+        <img src="/media/terminal.svg" id="img"/>
         <span>Paste this into your terminal:</span>
       </div>
       <div class="copy">
@@ -35,7 +35,7 @@ weight: 3
     <p>Simple Hello World in Rust.</p>
     <div class="copy-group">
       <div class="copy-step">
-        <img src="media/terminal.svg" id="img"/>
+        <img src="/media/terminal.svg" id="img"/>
         <span>Paste this into your terminal:</span>
       </div>
       <div class="copy">
@@ -59,7 +59,7 @@ weight: 3
     </p>
     <div class="copy-group">
       <div class="copy-step">
-        <img src="media/terminal.svg" id="img"/>
+        <img src="/media/terminal.svg" id="img"/>
         <span>Paste this into your terminal:</span>
       </div>
       <div class="copy">
@@ -87,7 +87,7 @@ weight: 3
     </p>
     <div class="copy-group">
       <div class="copy-step">
-        <img src="media/terminal.svg" id="img"/>
+        <img src="/media/terminal.svg" id="img"/>
         <span>Paste this into your terminal:</span>
       </div>
       <div class="copy">
@@ -120,7 +120,7 @@ weight: 3
     </p>
     <div class="copy-group">
       <div class="copy-step">
-      <img id="img" type="image/svg+xml" src="media/file.svg"/>
+      <img id="img" type="image/svg+xml" src="/media/file.svg"/>
         <span>Copy into a Worker script:</span>
       </div>
       <div class="copy">
@@ -188,7 +188,7 @@ const body = {
     </p>
     <div class="copy-group">
       <div class="copy-step">
-      <img id="img" type="image/svg+xml" src="media/file.svg"/>
+      <img id="img" type="image/svg+xml" src="/media/file.svg"/>
         <span>Copy into a Worker script:</span>
       </div>
       <div class="copy">
@@ -251,7 +251,7 @@ const type = 'application/json;charset=UTF-8'
     </p>
     <div class="copy-group">
       <div class="copy-step">
-        <img id="img" type="image/svg+xml" src="media/file.svg"/>
+        <img id="img" type="image/svg+xml" src="/media/file.svg"/>
         <span>Copy into a Worker script:</span>
       </div>
       <div class="copy">
@@ -308,7 +308,7 @@ const url = someHost + '/static/json'
     </p>
     <div class="copy-group">
       <div class="copy-step">
-        <img id="img" type="image/svg+xml" src="media/file.svg"/>
+        <img id="img" type="image/svg+xml" src="/media/file.svg"/>
         <span>Copy into a Worker script:</span>
       </div>
       <div class="copy">```async function handleRequest(request) {
@@ -362,7 +362,7 @@ const url = someHost + '/static/html'
     </p>
     <div class="copy-group">
       <div class="copy-step">
-        <img id="img" type="image/svg+xml" src="media/file.svg"/>
+        <img id="img" type="image/svg+xml" src="/media/file.svg"/>
         <span>Copy into a Worker script:</span>
       </div>
       <div class="copy">
@@ -407,7 +407,7 @@ const someHTML =  `<!DOCTYPE html>
     </p>
     <div class="copy-group">
       <div class="copy-step">
-        <img id="img" type="image/svg+xml" src="media/file.svg"/>
+        <img id="img" type="image/svg+xml" src="/media/file.svg"/>
         <span>Copy into a Worker script:</span>
       </div>
       <div class="copy">
@@ -441,7 +441,7 @@ const someJSON = {
     </p>
     <div class="copy-group">
       <div class="copy-step">
-        <img id="img" type="image/svg+xml" src="media/file.svg"/>
+        <img id="img" type="image/svg+xml" src="/media/file.svg"/>
         <span>Copy into a Worker script:</span>
       </div>
       <div class="copy">```async function handleRequest(request) {
@@ -475,7 +475,7 @@ const redirectMap = new Map([
     <p>Redirect a request by sending a 301 or 302 HTTP response</p>
     <div class="copy-group">
       <div class="copy-step">
-        <img id="img" type="image/svg+xml" src="media/file.svg"/>
+        <img id="img" type="image/svg+xml" src="/media/file.svg"/>
         <span>Copy into a Worker script:</span>
       </div>
       <div class="copy">
@@ -504,7 +504,7 @@ const code = 301
     <p>Serve an HTML form, then read POSTs from that form data.</p>
     <div class="copy-group">
       <div class="copy-step">
-        <img id="img" type="image/svg+xml" src="media/file.svg"/>
+        <img id="img" type="image/svg+xml" src="/media/file.svg"/>
         <span>Copy into a Worker script:</span>
       </div>
       <div class="copy">
@@ -612,7 +612,7 @@ For archived recipes see [the old docs](https://developers.cloudflare.com/worker
     <p>Retrieve the dominant color of a PNG or JPEG image</p>
     <div class="copy-group">
       <div class="copy-step">
-        <img src="media/terminal.svg" id="img"/>
+        <img src="/media/terminal.svg" id="img"/>
         <span>Paste this into your terminal:</span>
       </div>
       <div class="copy">
@@ -627,7 +627,7 @@ For archived recipes see [the old docs](https://developers.cloudflare.com/worker
     <p>Serve BinAST via a Cloudflare Worker</p>
     <div class="copy-group">
       <div class="copy-step">
-        <img src="media/terminal.svg" id="img"/>
+        <img src="/media/terminal.svg" id="img"/>
         <span>Paste this into your terminal:</span>
       </div>
       <div class="copy">

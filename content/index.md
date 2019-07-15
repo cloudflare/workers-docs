@@ -47,7 +47,7 @@ title: Cloudflare Workers Documentation
     <p>Simple Hello World in JS.</p>
     <div class="copy-group">
       <div class="copy-step">
-        <img src="templates/media/terminal.svg" id="img"/>
+        <img src="/templates/media/terminal.svg" id="img"/>
         <span>Paste this into your terminal:</span>
       </div>
       <div class="copy">
@@ -69,7 +69,7 @@ title: Cloudflare Workers Documentation
     <p>Simple Hello World in Rust.</p>
     <div class="copy-group">
       <div class="copy-step">
-        <img src="templates/media/terminal.svg" id="img"/>
+        <img src="/templates/media/terminal.svg" id="img"/>
         <span>Paste this into your terminal:</span>
       </div>
       <div class="copy">
@@ -95,7 +95,7 @@ title: Cloudflare Workers Documentation
     </p>
     <div class="copy-group">
       <div class="copy-step">
-        <img id="img" type="image/svg+xml" src="templates/media/file.svg"/>
+        <img id="img" type="image/svg+xml" src="/templates/media/file.svg"/>
         <span>Copy into a Worker script:</span>
       </div>
       <div class="copy">```async function handleRequest(request) {
@@ -131,7 +131,7 @@ const redirectMap = new Map([
       </p>
       <div class="copy-group">
         <div class="copy-step">
-          <img id="img" type="image/svg+xml" src="templates/media/file.svg"/>
+          <img id="img" type="image/svg+xml" src="/templates/media/file.svg"/>
           <span>Copy into a Worker script:</span>
         </div>
         <div class="copy">
