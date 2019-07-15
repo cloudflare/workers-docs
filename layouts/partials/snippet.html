@@ -3,7 +3,7 @@
   <p>{{.description | markdownify}}</p>
   <div class="copy-group">
     <div class="copy-step">
-    <img id="img" type="image/svg+xml" src="media/file.svg"/>
+      <img id="img" type="image/svg+xml" src="/templates/media/file.svg" />
       <span>Copy into a Worker script:</span>
     </div>
     <div class="copy">
@@ -11,10 +11,10 @@
     </div>
   </div>
   <div class="links">
-    {{range .demos}}
+    {{ range.demos }}
     <a class="demo" href="{{.url}}">{{.text}}</a>
     {{else}}
     <a class="demo" href="{{.demo_url}}">Demo</a>
-    {{end}}
+    {{ end }}
   </div>
 </figure>
