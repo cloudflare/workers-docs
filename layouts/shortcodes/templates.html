@@ -1,3 +1,5 @@
 <section class="template-wrapper boilerplate">
-  {{ range $template := .Site.Data.templates }} {{partial "template" $template}} {{ end }}
+  {{ range $template := sort .Site.Data.templates "weight" "desc" }}
+  {{partial "template" $template}}
+  {{ end }}
 </section>
