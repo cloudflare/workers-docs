@@ -28,7 +28,7 @@ title: Cloudflare Workers Documentation
       <img src="/media/qr-generator.svg" />
     </a>
     Build a Serverless Function
-    <a href="/tutorials/build-a-serverless-function">Deploy a QR code reader</a>
+    <a href="/tutorials/build-a-serverless-function">Deploy a QR code generator</a>
   </li>
   <li class="tutorial-item">
     <a href="/tutorials/configure-your-cdn">
