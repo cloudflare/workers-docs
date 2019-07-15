@@ -4,7 +4,7 @@ This project contains the static website content for the [Cloudflare Workers doc
 
 ## Running Locally
 
-#Install
+# Install
 
 Ensure you have the the following installed:
 
