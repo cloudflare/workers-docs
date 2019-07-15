@@ -1,4 +1,4 @@
-# Cloudflare Workers Documents
+# Cloudflare Workers Documentation
 
 This project contains the static website content for the [Cloudflare Workers documentation](https://workers.cloudflare.com/docs/).
 
