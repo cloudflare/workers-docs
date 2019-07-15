@@ -3,12 +3,13 @@
   <p>{{.description | markdownify}}</p>
   <div class="copy-group">
     <div class="copy-step">
-      <img src="media/terminal.svg" id="img" />
+      <img src="/templates/media/terminal.svg" id="img" />
       <span>Paste this into your terminal:</span>
     </div>
     <div class="copy">
       <code>
-        wrangler generate my-app <a href="{{.repository_url}}">{{.repository_url}}</a>
+        wrangler generate my-app
+        <a href="{{.repository_url}}">{{.repository_url}}</a>
       </code>
     </div>
   </div>
