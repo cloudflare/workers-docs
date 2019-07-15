@@ -1,0 +1,3 @@
+name = "Img-Color-Worker"
+description = "Retrieve the dominant color of a PNG or JPEG image"
+repository_url = "https://github.com/xtuc/img-color-worker"

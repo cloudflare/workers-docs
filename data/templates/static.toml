@@ -1,0 +1,11 @@
+name = "Static"
+description = "Generates a fully functioning HTML page from raw HTML or sends raw JSON defined within your script."
+repository_url = "https://github.com/cloudflare/worker-template-static"
+
+[demos.html]
+text = "Demo HTML"
+url = "https://cloudflareworkers.com/#3160870d853b4df56a711621c7bd4ef3:https://tutorial.cloudflareworkers.com/static/html"
+
+[demos.json]
+text = "Demo JSON"
+url = "https://cloudflareworkers.com/#3160870d853b4df56a711621c7bd4ef3:https://tutorial.cloudflareworkers.com/static/json"

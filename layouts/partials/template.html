@@ -1,0 +1,22 @@
+<figure class="template-card boilerplate">
+  <h2>{{.name}}</h2>
+  <p>{{.description | markdownify}}</p>
+  <div class="copy-group">
+    <div class="copy-step">
+      <img src="media/terminal.svg" id="img" />
+      <span>Paste this into your terminal:</span>
+    </div>
+    <div class="copy">
+      <code>
+        wrangler generate my-app <a href="{{.repository_url}}">{{.repository_url}}</a>
+      </code>
+    </div>
+  </div>
+  <div class="links">
+    {{ range.demos }}
+    <a class="demo" href="{{.url}}">{{.text}}</a>
+    {{else}}
+    <a class="demo" href="{{.demo_url}}">Demo</a>
+    {{ end }}
+  </div>
+</figure>
