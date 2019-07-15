@@ -2,18 +2,16 @@
 
 This project contains the static website content for the [Cloudflare Workers documentation](https://workers.cloudflare.com/docs/).
 
-## Running Locally
-
-# Install
+## Install
 
 Ensure you have the the following installed:
 
 - [Hugo](https://github.com/gohugoio/hugo) version 0.32.2
 - [node](https://nodejs.org/en/download/) version 9
 
-Before building; in order to make sure this succeeds, make sure you are connected to the VPN and have added your private key to your `ssh-agent` using:	
+Before building; in order to make sure this succeeds, make sure you are connected to the VPN and have added your private key to your `ssh-agent` using:
 
- `ssh-add -K ~/.ssh/id_rsa` (yours might be named differently, just make sure you use a private key file (no .pub extension))
+`ssh-add -K ~/.ssh/id_rsa` (yours might be named differently, just make sure you use a private key file (no .pub extension))
 
 ## Usage
 
