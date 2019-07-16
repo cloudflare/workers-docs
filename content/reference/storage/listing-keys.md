@@ -68,7 +68,8 @@ The `.list` method returns a promise which resolves with an object that looks li
 
 The `keys` property will contain an array of objects describing each key. That object will have
 two keys of its own: a `name` of the key, and its expiration value. The name is a string, and the
-expiration value is a number.
+expiration value is a number. The expiration value will only be returned if the key has an expiration,
+and will be in the absolute value form, even if it was set in the TTL form.
 
 Additionally, if `list_complete` is `false`, there are more keys to fetch.
 See the next section for more details.
