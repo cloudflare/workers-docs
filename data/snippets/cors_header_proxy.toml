@@ -1,0 +1,26 @@
+name = "CORS Header Proxy"
+description = "Add necessary CORS headers to a third party API response"
+code = """async function handleRequest(request) {
+  const url = new URL(request.url)
+  const apiUrl = url.searchParams.get('apiurl')
+  //rewrite request to point to API url
+  request = new Request(apiUrl, request)
+  request.headers.set('Origin', new URL(apiUrl).origin)
+  let response = await fetch(request)
+  response = new Response(response.body, response)
+  //rewrite cors header
+  response.headers.set('Access-Control-Allow-Origin', url.origin)
+  //add Vary header so browser will cache response correctly
+  let vary = response.headers.get('Vary').split(',')
+  let vary_lower = vary.map(header => header.toLowerCase())
+  if (!vary_lower.includes('origin')) {
+    vary.push('Origin')
+  }
+  response.headers.set('Vary', vary.join(','))
+  return response
+}
+addEventListener('fetch', event => {
+  event.respondWith(handleRequest(event.request))
+})
+"""
+demo_url = "https://cloudflareworkers.com/#862b42c84deb694e37f302fdff41b31e:https://corsproxy.com/?apiurl=https://www.metaweather.com/api/location/2487956/"
