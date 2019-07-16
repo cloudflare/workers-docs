@@ -1,18 +1,18 @@
 name = "Modify Request Property"
-description = "Recommended practice for forming a request based off the incoming request. First, takes in the incoming request then modifies specific properties like POST `body`, `redirect`, and the Cloudflare specific property `cf` and runs the fetch."
+description = "Recommended practice for forming a [request](/reference/runtime/apis/fetch#request) based off the incoming request. First, takes in the incoming request then modifies specific properties like POST `body`, `redirect`, and the Cloudflare specific property `cf` and runs the fetch."
 code = """async function handleRequest(request) {
   /**
    * Best practice is to only assign new properties on the request
-   * object through either a method or the constructor
+   * object (i.e. RequestInit props) through either a method or the constructor
    */
-  let newProps = {
+  let newRequestInit = {
     // Change method
     method: 'POST',
     // Change body
     body: JSON.stringify({ bar: 'foo' }),
     // Change the redirect mode.
     redirect: 'follow',
-    //Change headers
+    //Change headers, note this method will erase existing headers
     headers: {
       'Content-Type': 'application/json',
     },
@@ -26,7 +26,8 @@ code = """async function handleRequest(request) {
   url.hostname = someHost
   // Best practice is to always use the original request to construct the new request
   // thereby cloning all the attributes, applying the URL also requires a constructor
-  const newRequest = new Request(url, new Request(request, newProps))
+  // since once a Request has been constructed, its URL is immutable.
+  const newRequest = new Request(url, new Request(request, newRequestInit))
   // Set headers using method
   newRequest.headers.set('X-Example', 'bar')
   newRequest.headers.set('Content-Type', 'application/json')
