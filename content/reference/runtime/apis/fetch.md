@@ -35,16 +35,15 @@ new Request(input [, init])
 
 - `input`: Either a USVString that contains the URL or an existing `Request` object. Note that the `url` property is immutable, so when [modifying a request](/reference/workers-concepts/modifying-requests) and changing the URL, you must pass the new URL in this parameter.
 
-- `init` (optional): An options object that contains custom settings to apply to the request. Valid options are:
-  _ `method`: The request method, such as `GET` or `POST`
-  _ `headers`: A [Headers](#headers) object
-  _ `body`: Any text to add to the request
-  **Note:** Requests using the `GET` or `HEAD` methods cannot have a body.
-  _ `redirect`: The redirect mode to use: `follow`, `error`, or `manual`. Defaults to `manual`.
+- `init` (optional): An options object that contains custom settings to apply to the request. Valid options:
 
-      		* `follow`
-      		* `error`
-      		* `manual`
+  - `method`: The request method, such as `GET` or `POST`
+  - `headers`: A [Headers](#headers) object
+  - `body`: Any text to add to the request. **Note:** Requests using the `GET` or `HEAD` methods cannot have a body.
+
+- `redirect`(optional): The mode respected when the request is fetched. **Note:** default for requests generated from the incoming `fetchEvent` from the event handler is `manual`. Default for newly constructed Requests (e.g. `new Request(url)` ) is `follow`. Valid options:
+  - `follow`: If a redirect reponse is returned to the fetch, another fetch will be fired based on the `Location` header in the response until a non-redirect code is returned. (i.e. `await fetch(..)` could never return a `301` redirect)
+  - `manual`: redirect responses will return from a fetch
 
 ### Properties
 
