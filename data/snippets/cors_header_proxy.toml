@@ -12,6 +12,7 @@ code = """async function handleRequest(request) {
   response.headers.set('Access-Control-Allow-Origin', url.origin)
   //add Vary header so browser will cache response correctly
   let vary = response.headers.get('Vary').split(',')
+  //handle headers with weird case
   let vary_lower = vary.map(header => header.toLowerCase())
   if (!vary_lower.includes('origin')) {
     vary.push('Origin')
@@ -20,7 +21,62 @@ code = """async function handleRequest(request) {
   return response
 }
 addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event.request))
+  const url = new URL(event.request.url)
+  console.log(url.pathname)
+  if (url.pathname.startsWith('/corsproxy')) {
+    event.respondWith(handleRequest(event.request))
+  } else {
+    event.respondWith(rawHtmlResponse(demoPage))
+  }
 })
+apiUrl = 'http://workers-tooling.cf/demos/demoapi'
+async function rawHtmlResponse(html) {
+  const init = {
+    headers: {
+      'content-type': 'text/html;charset=UTF-8',
+    },
+  }
+  return new Response(html, init)
+}
+const demoPage = `
+<!DOCTYPE html>
+<html>
+<body>
+  <div>
+    <h1>API Fetch without CORS Proxy</h1>
+    <code id='noproxy'>Waiting</code>
+  </div>
+  <div>
+    <h1>API Fetch with CORS Proxy</h1>
+    <code id='proxy'>Waiting</code>
+  </div>
+  <script>
+  noproxy = async () => {
+    let response = await fetch('${apiUrl}')
+    let body = await response.json()
+    return body
+  }
+  proxy = async () => {
+    let response = await fetch(window.location.origin + '/corsproxy/?apiurl=${apiUrl}')
+    let body = await response.json()
+    return body
+  }
+  noproxy().then(data => { 
+    console.log(data)
+    document.getElementById('noproxy').innerHTML = data
+  }).catch(e => {
+    console.log(e)
+    document.getElementById('noproxy').innerHTML = e
+  })
+  proxy().then(data => {
+    console.log(data)
+    document.getElementById('proxy').innerHTML = JSON.stringify(data)
+  }).catch(e => {
+    console.log(e)
+    document.getElementById('proxy').innerHTML = e
+  })
+  </script>
+</body>
+</html>`
 """
-demo_url = "https://cloudflareworkers.com/#862b42c84deb694e37f302fdff41b31e:https://corsproxy.com/?apiurl=https://www.metaweather.com/api/location/2487956/"
+demo_url = "https://cloudflareworkers.com/#09e7fafc988b3e3f646b6205f2522db0:http://example.com/"
