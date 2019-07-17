@@ -22,14 +22,13 @@ code = """async function handleRequest(request) {
 }
 addEventListener('fetch', event => {
   const url = new URL(event.request.url)
-  console.log(url.pathname)
   if (url.pathname.startsWith('/corsproxy')) {
     event.respondWith(handleRequest(event.request))
   } else {
     event.respondWith(rawHtmlResponse(demoPage))
   }
 })
-apiUrl = 'http://workers-tooling.cf/demos/demoapi'
+const apiUrl = 'http://workers-tooling.cf/demos/demoapi'
 async function rawHtmlResponse(html) {
   const init = {
     headers: {
@@ -62,21 +61,17 @@ const demoPage = `
     return body
   }
   noproxy().then(data => { 
-    console.log(data)
     document.getElementById('noproxy').innerHTML = data
   }).catch(e => {
-    console.log(e)
     document.getElementById('noproxy').innerHTML = e
   })
   proxy().then(data => {
-    console.log(data)
     document.getElementById('proxy').innerHTML = JSON.stringify(data)
   }).catch(e => {
-    console.log(e)
     document.getElementById('proxy').innerHTML = e
   })
   </script>
 </body>
 </html>`
 """
-demo_url = "https://cloudflareworkers.com/#09e7fafc988b3e3f646b6205f2522db0:http://example.com/"
+demo_url = "https://cloudflareworkers.com/#55431ed7e3b17e5f0a3a5b9c3089dcd4:http://example.com/"
