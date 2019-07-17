@@ -106,7 +106,7 @@ figure.template-card.boilerplate {
   flex-direction: column;
 }
 
-.snippet code {
+.snippet .copy code {
   white-space: pre;
   background: var(--template-snippet-background);
   margin: 0 calc(var(--template-figure-padding) * -1);
