@@ -38,7 +38,7 @@ If you have any questions that _aren't_ answered by this contribution guide, let
 
 #### **Do you want to contribute a template to the Template Gallery?**
 
-* Please read the Template Gallery [contribution guide](https://github.com/cloudflare/cloudflare-docs/blob/master/content/templates/CONTRIBUTING.md).
+* Please read the Template Gallery [contribution guide](content/templates/CONTRIBUTING.md).
 
 Thank you! :heart: :heart: :heart:
 
