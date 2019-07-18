@@ -67,4 +67,4 @@ const demoPage = `
 </body>
 </html>`
 """
-demo_url = "https://cloudflareworkers.com/#0eb5aa4cccadda38ecbcb288a7c21d20:https://tutorial.cloudflareworkers.com"
+demo_url = "https://cloudflareworkers.com/#d39ef9f4d75cc024a1a70f17d78cf61c:https://example.com/"
