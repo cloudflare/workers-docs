@@ -1,12 +1,12 @@
 ## Contributing to the Cloudflare Workers documentation
 
-The Cloudflare Workers documentation helps developers understand and build on the Workers platform. It provides:
-* a quick-start guide for using our command-line tool [Wrangler](https://github.com/cloudflare/wrangler)
-* tutorials on how to build applications with Workers
-* a reference section explaining how the Workers platform and the provided APIs function
-* a Template Gallery to discover what you can build with Workers
+People like yourself being willing to share code with others that use our platform is what makes a free serverless platform like Cloudflare Workers possible. So, thank you!
 
-At this time, we're accepting contributions to the [Template Gallery](https://workers.cloudflare.com/docs/templates/), as well as fixes to any small issues with other parts of the documentation. As you contribute to this repository, either in the form of creating issues, or submitting pull requests, this contribution guide is designed to help you understand the process, and make it easier for both the community and the Cloudflare team to work well together! **Note that we can't provide support for the Workers platform in this repository.** Please visit the Workers [support page](https://support.cloudflare.com/hc/en-us/sections/360000215372-Cloudflare-Workers) for assistance.
+Following these guidelines helps to keep our documentation consistent and deliver the best developer experience for those using them. The Cloudflare Developer Experience team maintains the template gallery.
+
+There are several ways to contribute to the Cloudflare Workers platform. The template gallery is focused on streamlining the contribution of templates. When a template makes it through the process it will be made public in [our template gallery](https://workers.cloudflare.com/docs/templates/). Since several developers - even beginners - will be using these templates, we must be scrupulous in the approval process. If you’re looking for a more relaxed way of sharing code, no worries! For other ways to contribute your Worker scripts see [our community](https://community.cloudflare.com/c/developers/workers).
+
+**Note that we can't provide support for the Workers platform in this repository.** Please visit the Workers [support page](https://support.cloudflare.com/hc/en-us/sections/360000215372-Cloudflare-Workers) for assistance.
 
 If you have any questions that _aren't_ answered by this contribution guide, let us know! This document, like everything else in this repository, is a work in progress, and we'd love to know how we can make it better.
 

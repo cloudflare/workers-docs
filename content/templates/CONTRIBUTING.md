@@ -2,16 +2,6 @@
 
 # Introduction
 
-TODO: for now this is a guide for just Cloudflare to internally contribute templates.
-
-People like yourself being willing to share code with others that use our platform is what makes a free serverless platform like Cloudflare Workers possible. So, thank you!
-
-Following these guidelines helps to keep our templates consistent and deliver the best developer experience for those using them. Cloudflare developer experience team maintains the template gallery. (..add more..?)
-
-There are several ways to contribute to the Cloudflare Workers platform. The template gallery is focussed on streamlining the contribution of templates. When a template makes it through the process it will be made public in [our template gallery](https://workers.cloudflare.com/docs/templates/). Since several developers - even beginners - will be using these templates, we must be scrupulous in the approval process. If you’re looking for a more relaxed way of sharing code, no worries! For other ways to contribute your Worker scripts see [our community](TODO).
-
-# How to make a Template
-
 To start making a template, first one must decide what to build. When deciding a template to build, we highly encourage Cloudflare internally to use [this list](https://wiki.cfops.it/display/EW/Templates+and+Template+Gallery).
 
 ### What makes a Good Template
