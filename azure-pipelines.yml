@@ -1,0 +1,12 @@
+jobs:
+  - job: deploy_docs
+    displayName: 'Deploy docs'
+    steps:
+      - template: ci/azure-install-rust.yml
+      - template: ci/azure-install-node.yml
+      - script: cargo install --git https://github.com/steveklabnik/wrangler --branch upload-static
+        displayName: 'Install Wrangler'
+      - script: npm install
+      - script: bin/hugo
+      - script: ls public
+      # - script: cd worker && wrangler upload-static-files STATIC_CONTENT ../public/

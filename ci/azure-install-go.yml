@@ -1,0 +1,4 @@
+steps:
+  - task: GoTool@0
+    inputs:
+      versionSpec: '>=12.0'
