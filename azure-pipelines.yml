@@ -7,6 +7,10 @@ jobs:
       - script: cargo install --git https://github.com/steveklabnik/wrangler --branch upload-static
         displayName: 'Install Wrangler'
       - script: npm install
+        displayName: 'Install NPM dependencies'
       - script: bin/hugo
-      - script: ls public
-      # - script: cd worker && wrangler upload-static-files STATIC_CONTENT ../public/
+        displayName: 'Build Hugo site'
+      - script: wrangler config $EMAIL $API_KEY
+        displayName: 'Configure Wrangler'
+      - script: cd worker && wrangler upload-static-files STATIC_CONTENT ../public/
+        displayName: 'Publish website'
