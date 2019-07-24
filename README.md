@@ -26,6 +26,6 @@ Releasing must be done through Ashley Williams or Kristian Freeman. Working to i
 
 ## Contributing
 
-This repo is overseen by the Workers Developer Experience team. Contributing guide in progress.
+This repo is overseen by the Workers Developer Experience team. Check out our contribution guide at [CONTRIBUTING.md](/CONTRIBUTING.md)!
 
 To contribute to templates see [Template Contributing Guide](content/templates/CONTRIBUTING.md).
