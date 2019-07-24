@@ -1,7 +1,7 @@
 baseURL = "https://workers.cloudflare.com/docs/"
 languageCode = "en-us"
 title = "Cloudflare Workers Docs"
-theme = "hugo-cloudflare-docs"
+theme = "@cloudflare/hugo-cloudflare-docs"
 themesDir = "node_modules"
 description = "Cloudflare Workers lets you write JavaScript on the Edge"
 PygmentsCodeFences = true

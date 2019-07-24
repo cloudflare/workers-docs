@@ -5,11 +5,11 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
-    "start": "./node_modules/hugo-cloudflare-docs/start",
-    "build": "./node_modules/hugo-cloudflare-docs/build"
+    "start": "./node_modules/@cloudflare/hugo-cloudflare-docs/start",
+    "build": "./node_modules/@cloudflare/hugo-cloudflare-docs/build"
   },
   "dependencies": {
     "gulp": "^4.0.0",
-    "hugo-cloudflare-docs": "git+ssh://git@stash.cfops.it:7999/design/hugo-cloudflare-docs.git"
+    "@cloudflare/hugo-cloudflare-docs": "1.0.2"
   }
 }
