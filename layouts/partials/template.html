@@ -19,5 +19,8 @@
     {{else}}
     <a class="demo" href="{{.demo_url}}">Demo</a>
     {{ end }}
+    {{ with.tutorial }}
+    <a class="demo" href="{{.}}">Tutorial</a>
+    {{ end }}
   </div>
 </figure>
