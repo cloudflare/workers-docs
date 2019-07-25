@@ -1,13 +1,17 @@
 ---
-title: Cache
+title: Cache API
 weight: 4
 ---
 
 ## The Cache Object
 
-The Cloudflare Workers runtime exposes a single global cache object: `caches.default`, which differs from the web browser Cache API as no default cache objects are exposed.
+The Cache API allows fine grained control of reading and writing from cache, and deciding exactly when to fetch data from your origin.
+
+For each individual zone, the Cloudflare Workers runtime exposes a single global cache object: `caches.default`. Though this cache object persists on all of Cloudflare's data centers, objects are not replicated to any other data centers. Note this individualized zone cache object differs from Cloudflare's Global CDN, for details see: [Using the Cache](/reference/concepts/using-cache). 
 
 ### Syntax
+
+This API is strongly influenced by the web browsers’ Cache API, but there are some important differences. For instance, Cloudflare Workers runtime exposes a single global cache object.
 
 ```javascript
 let cache = caches.default
@@ -15,7 +19,7 @@ let cache = caches.default
 
 ### In the Preview
 
-The Service Workers Cache API is currently unimplemented in the Cloudflare Workers Preview. Cache API operations which would function normally in production will not throw any errors, but will have no effect. Notably, Cache.match() will always return undefined, and Cache.delete() will always return false. When you deploy your script to production, its caching behavior will function as expected.
+The Service Workers Cache API is currently unimplemented in the Cloudflare Workers Preview. Cache API operations which would function normally in production will not throw any errors, but will have no effect. Notably, `cache.match()` will always return undefined, and `cache.delete()`will always return false. When you deploy your script to production, its caching behavior will function as expected.
 
 ### Methods
 
@@ -107,4 +111,4 @@ cache.delete(request, options)
 
 ## More Information
 
-[Using the Cache API](/reference/workers-concepts/using-cache)
+[Using Cache](/reference/workers-concepts/using-cache)
