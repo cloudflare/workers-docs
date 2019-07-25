@@ -1,4 +1,5 @@
 name = "Send Raw HTML"
+url = "/templates/snippets/send_raw_html"
 description = "Delivers an HTML page from HTML directly in the Worker script."
 code = """async function handleRequest(request) {
   const init = {

@@ -1,5 +1,11 @@
 <figure class="template-card snippet">
-  <h2>{{.name}}</h2>
+  <h2>
+    {{ if.url }}
+    <a class="demo" href="{{.url}}">{{.name}}</a>
+    {{else}}
+    {{.name}}
+    {{ end }}
+  </h2>
   <p>{{.description | markdownify}}</p>
   <div class="copy-group">
     <div class="copy-step">
