@@ -17,3 +17,4 @@ jobs:
           CLOUDFLARE_API_KEY: $(CLOUDFLARE_API_KEY)
       - script: cd worker && wrangler upload-static-files STATIC_CONTENT ../public/
         displayName: 'Publish website'
+        condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
