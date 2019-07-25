@@ -10,7 +10,10 @@ jobs:
         displayName: 'Install NPM dependencies'
       - script: bin/hugo
         displayName: 'Build Hugo site'
-      - script: wrangler config $EMAIL $API_KEY
+      - script: wrangler config $env:CLOUDFLARE_EMAIL $env:CLOUDFLARE_API_KEY
         displayName: 'Configure Wrangler'
+        env:
+          CLOUDFLARE_EMAIL: $(CLOUDFLARE_EMAIL)
+          CLOUDFLARE_API_KEY: $(CLOUDFLARE_API_KEY)
       - script: cd worker && wrangler upload-static-files STATIC_CONTENT ../public/
         displayName: 'Publish website'
