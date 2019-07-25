@@ -11,9 +11,9 @@ Conceptually, there are two ways to interact with Cloudflare's Cache using a Wor
 * Store responses on [Cloudflare's classic CDN](#cloudflare-s-cdn), which can be done through calling `fetch(..)`in a Workers script. Custom cache behavior via a Worker include:
   * Setting Cloudflare cache rules (i.e. operating on the `cf` object)
   * Setting custom cache headers (i.e. `Cache-control`). This can impact browser as well as Cloudflare Cache behavior. 
-* Store responses on a zone scoped namespace separate from Cloudflare's traditional cache using  the [Cache API](/reference/runtime/apis/cache) from a Workers script. One can control cache behavior of even assets not owned by your zone, but it's only available to your zone's Worker scripts.  
+* Store responses on a zone scoped namespace separate from Cloudflare's traditional cache using  the [Cache API](#cache-api-reference-runtime-apis-cache) from a Workers script. One can control cache behavior of even assets not 
 
-We won't discuss in this article, but other means to control Cloudflare's cache include: Page rules and Cloudflare cache settings. I highly recommend the article  [How to Control Cloudflare's cache](https://support.cloudflare.com/hc/en-us/articles/202775670) if you wish to avoid writing Javascript with still some granularity of control.
+We won't discuss in this article, but other means to control Cloudflare's cache include: Page rules and Cloudflare cache settings. I highly recommend the article [How to Control Cloudflare's cache](https://support.cloudflare.com/hc/en-us/articles/202775670) if you wish to avoid writing Javascript with still some granularity of control.
 
 ### [Cache API](/reference/runtime/apis/cache)
 
