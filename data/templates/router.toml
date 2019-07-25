@@ -1,7 +1,7 @@
 name = "Router"
 description = "Selects the logic based on the `request` method and URL. Use with REST APIs or apps that require routing logic."
 repository_url = "https://github.com/cloudflare/worker-template-router"
-tutorial = "/templates/router"
+url = "/templates/router"
 
 [demos.bar]
 text = "Demo /bar"
