@@ -19,7 +19,7 @@ let cache = caches.default
 
 ### In the Preview
 
-The Service Workers Cache API is currently unimplemented in the Cloudflare Workers Preview. Cache API operations which would function normally in production will not throw any errors, but will have no effect. Notably, `cache.match()` will always return undefined, and `cache.delete()`will always return false. When you deploy your script to production, its caching behavior will function as expected.
+The Service Workers Cache API is currently unimplemented in the Cloudflare Workers Preview. Cache API operations in the previewer will have no impact. To test, one must deploy the Worker on a zone. 
 
 ### Methods
 
