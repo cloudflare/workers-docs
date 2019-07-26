@@ -1,184 +1,138 @@
 ---
-title: Using the Cache API
+title: Using the Cache
 ---
 
-Cloudflare provides cache space per domain for serving static assets from our Edge network. This reduces visitors take to navigate your site by reducing the distance the data must travel. It also reduces the traffic load on your web server by returning the same response for identical requests. This is great for static assets like images, HTML, and CSS, but much of the traffic moving across the web is dynamic data requested using AJAX requests. Note that this traffic is not cached, and therefore misses out on the benefits of caching.
-
-The [Cache API](/reference/runtime/apis/cache) provides a way to customize your cache behavior using JavaScript.
-
-## Quick Start
-
-This example uses `addEventListener` to manage the response.
-
-
-```javascript
-addEventListener('fetch', event => event.respondWith(handle(event)))
-
-async function handle(event) {
-  let cache = caches.default
-  let response = await cache.match(event.request)
-
-  if (!response) {
-    response = doSuperComputationallyHeavyThing()
-    event.waitUntil(cache.put(event.request, response.clone()))
-  }
-
-  return response
-}
-```
+Workers provide a way to customize cache behavior using Cloudflare's classic CDN as well as a private cache space. To learn about the benefits of caching see our Learning Center's article on [What is Caching?](https://www.cloudflare.com/learning/cdn/what-is-caching/)
 
 ## Interacting with the Cloudflare Cache
 
-Conceptually, every individual zone on Cloudflare has its own cache space. There are three ways to interact with your cache:
-* In a browser
-* Use [`fetch()`](/reference/runtime/apis/fetch) from a Workers script
-* Use the Cache API from a Workers script.
+Conceptually, there are two ways to interact with Cloudflare's Cache using a Worker:
 
-### In a Browser
+* Store responses on [Cloudflare's classic CDN](#cloudflare-s-cdn), which can be done through calling `fetch(..)`in a Workers script. Custom cache behavior via a Worker include:
+  * Setting Cloudflare cache rules (i.e. operating on the `cf` object)
+  * Setting custom cache headers (i.e. `Cache-control`). This can impact browser as well as Cloudflare Cache behavior. 
+* Store responses on a zone scoped namespace separate from Cloudflare's traditional cache using  the [Cache API](#cache-api-reference-runtime-apis-cache) from a Workers script. One can control cache behavior of even assets not 
 
-External requests from browsers check the zone the URL matches, and reads through that cache.
+We won't discuss in this article, but other means to control Cloudflare's cache include: Page rules and Cloudflare cache settings. I highly recommend the article [How to Control Cloudflare's cache](https://support.cloudflare.com/hc/en-us/articles/202775670) if you wish to avoid writing Javascript with still some granularity of control.
 
-### Fetch in a Workers script
+### [Cache API](/reference/runtime/apis/cache)
 
-The Cache API provided by the Workers runtime always uses the cache in your own zone, no matter what. You can never store a response in another zone's cache. This is why workers.dev scripts are considered part of their own zone.
+The Cache API creates a private cache key namespace for each zone using Cloudflare's Global Network. Cache objects are stored in the local datacenter handling the request and are not replicated to other datacenters.
 
-#### Using [`fetch`](/reference/runtime/apis/fetch)
 
-Calling `fetch` from your Workers script checks to see if the URL matches a different zone. If it does, it reads through that zone's cache. Otherwise, it reads through its own zone's cache, even if the URL is for a non-Cloudflare site.
+**How is the Cache API different from `fetch()`?** `fetch()` requests a URL and automatically applies caching rules based on your Cloudflare settings. It does not allow you to modify objects before they reach cache, or inspect if an object is in cache before making a request.
 
-`fetch` requests a URL and automatically applies caching rules based on your Cloudflare settings. `fetch` does not allow you to modify objects before they reach the cache or inspect if an object is in the cache before making a request.
+The Cache API’s `caches.default` Cache object allows you to:
 
-#### Using `cache-default`
+- Fetch a response for a URL if (and only if) it is cached using `caches.default.match(..)`.
 
-The `caches.default` Cache API Cache object allows you to:
+- Explicitly store a response in the cache using `caches.default.put(..)` and explicitly delete  `caches.default.delete(..)`.
 
-* Fetch a response for a URL if (and only if) it is cached using `Cache.match()`.
-* Explicitly store a response in the cache using `Cache.put()`.
+**What are the usage limits on the cache API?**
 
-If your Workers script uses the Cache API to store a response for a URL ...
+  - 50 total `put()`, `match()`, or `delete()` calls per-request, using the same quota as `fetch()`
 
-* ... on your own zone and that URL [is cacheable or has a _Cache Everything_ page rule](https://support.cloudflare.com/hc/en-us/articles/115000150272), then every Workers on every zone that `fetch()`es that URL and every browser request sees the response your Workers stored.
-* ... on a different Cloudflare zone, then the only way to retrieve that response is using a Workers Cache API.
-* ... on a non-Cloudflare site, then your own zone's Workers sees the response your Workers stored if it `fetch()`es that URL, but no other Workers or browser sees that response.
+  - 500 MBs total `put()` per-request
 
-## Expiring cache objects
+  - up to 50MB for each `put()` with a valid `Content-Length` header
 
-You can specify any TTL for an object in the `Cache-Control` header or an absolute expiration date in the `Expires` header. If it is not accessed frequently enough, it may be evicted from cache.
+  - up to 500MB for a `put()` with `Transfer-Encoding: chunked`. Note that this blocks subsequent `put()`s until the transfer completes.
 
-**Note:** There are no guarantees for how long an object stays in the cache.
+    Using the Cache API will *not* set a `Cf-Cache-Status` header. 
 
-Set the `Cache-Control` header on the response stored in cache modifies the edge-cache time.
+### Cloudflare's CDN
 
-**Note:** The **Browser TTL** setting in your Cloudflare dashboard overrides the client-facing TTL set by `Cache-Control`.
+Cloudflare's traditional CDN will work by default on static assets even without Workers. The namespace used by the Cache API is stored separate from Cloudflare's CDN though both exist on Cloudflare's Global Network. 
 
-## Examples
+In the context of Workers a [`fetch`](/reference/runtime/apis/fetch) provided by the runtime communicates with the traditional Cloudflare cache. First, `fetch` checks to see if the URL matches a different zone. If it does, it reads through that zone's cache. Otherwise, it reads through its own zone's cache, even if the URL is for a non-Cloudflare site. Cache settings on `fetch` automatically apply caching rules based on your Cloudflare settings. `fetch` does not allow you to *modify or inspect objects* before they reach the cache, but does allow you to modify *how it will cache*.
 
-### Add Cache-Tag to response
+When a response fills the cache, the response header contains `CF-Cache-Status: HIT`. You can tell an object is attempting to cache if one sees the `CF-Cache-Status` at all.
 
-This script adds [cache tags](https://support.cloudflare.com/hc/en-us/articles/206596608-How-to-Purge-Cache-Using-Cache-Tags-Enterprise-only-) to the response corresponding to directories in the request. For example, the URL  `https://www.example.com/foo/bar/baz.jpg` gets the header:
+Phew.. that sounds like a lot but some examples should help make sense. Here are ways to customize Cloudflare CDN's cache behavior on a given request:
 
-`Cache-Tag: www.example.com/foo/*,www.example.com/foo/bar/*`
-
+#### Caching HTML (or other non-whitelisted file extensions):
 ```javascript
-addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event))
-})
-
-/**
- * Fetch a request and add a tag
- * @param {Request} request
- */
-async function handleRequest(event) {
-  let request = event.request
-  let cache = caches.default
-
-  let response = await cache.match(request)
-
-  if (!response) {
-    let requestUrl = new URL(event.request.url)
-    let tags = []
-    let dirs = requestUrl.pathname.split('/')
-
-    // Drop first and last element so that we only get necessary parts of the path
-    dirs = dirs.slice(1, -1)
-
-    // Cache tags are comma delimited, so we should encode commas
-    dirs = dirs.map(encodeURIComponent)
-
-    for (let i = 0; i < dirs.length; i++) {
-      tags[i] = requestUrl.hostname + '/' + dirs.slice(0, i + 1).join('/') + '/*'
-    }
-
-    response = await fetch(request)
-    response = new Response(response.body, response)
-    response.headers.append('Cache-Tag', tags.join(','))
-    event.waitUntil(cache.put(request, response.clone()))
-  }
-
-  return response
-}
+// Force Cloudflare to cache an asset
+fetch(event.request, { cf: { cacheEverything: true } })
 ```
 
-### Caching POST requests
+Setting the cache level to Cache Everything will override the default "cacheability" of the asset. For TTL, Cloudflare will still rely on headers set by the origin.
+
+#### Overriding TTL:
 
 ```javascript
-async function handleRequest(event) {
-  let request = event.request
-  let response
-
-  if (request.method == 'POST') {
-    let body = await request.clone().text()
-    let hash = await sha256(body)
-    let url = new URL(request.url)
-    url.pathname = "/posts" + url.pathname + hash
-
-    // Convert to a GET to be able to cache
-    let cacheKey = new Request(url, {headers: request.headers, method: 'GET'})
-
-    let cache = caches.default
-    //try to find the cache key in the cache
-    response = await cache.match(cacheKey)
-
-    // otherwise, fetch from origin
-    if (!response) {
-      // makes POST to the origin
-      response = await fetch(request.url, newRequest)
-      event.waitUntil(cache.put(cacheKey, response.clone()))
-    } else {
-    response = await fetch(request)
-  }
-  return response
-}
-
-async function sha256(message) {
-  // encode as UTF-8
-  const msgBuffer = new TextEncoder().encode(message)
-
-  // hash the message
-  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer)
-
-  // convert ArrayBuffer to Array
-  const hashArray = Array.from(new Uint8Array(hashBuffer))
-
-  // convert bytes to hex string
-  const hashHex = hashArray.map(b => ('00' + b.toString(16)).slice(-2)).join('')
-  return hashHex
-}
+// Force response to be cached for 300 seconds.
+fetch(event.request, { cf: { cacheTtl: 300 } })
 ```
 
-## FAQ
+This option forces Cloudflare to cache the response for this request, regardless of what headers are seen on the response. This is equivalent to setting two page rules: ["Edge Cache TTL"](https://support.cloudflare.com/hc/en-us/articles/200168376-What-does-edge-cache-expire-TTL-mean-) and ["Cache Level" (to "Cache Everything")](https://support.cloudflare.com/hc/en-us/articles/200172266-What-do-the-custom-caching-options-mean-in-Page-Rules-).
 
-### Where are cache objects stored?
 
-Cache objects are stored in the local datacenter handling the request and are not replicated to other datacenters.
+#### Override based on origin response code:
 
-### What are the usage limits on the cache API?
+*This feature is available to enterprise users only.*
 
-- 50 total `put()`, `match()`, or `delete()` calls per-request, using the same quota as `fetch()`
-- 500 MBs total `put()` per-request
-- up to 50MB for each `put()` with a valid `Content-Length` header
-- up to 500MB for a `put()` with `Transfer-Encoding: chunked`. Note that this blocks subsequent `put()`s until the transfer completes.
+```javascript
+// Force response to be cached for 86400 seconds for 200 status codes, 1 second for 404,
+// and do not cache 500 errors
+fetch(request, { cf: { cacheTtlByStatus: { "200-299": 86400, 404:1, "500-599": 0 } } })
+```
 
-### How do I check if a response is cached?
+This option is a version of the `cacheTtl` feature which chooses a TTL based on the response's status code. If the response to this request has a status code that matches, Cloudflare will cache for the instructed time, and override cache directives sent by the origin. 
 
-If a response fills the cache, the response header contains `CF-Cache-Status: HIT`.
+TTL values:
+
+ - Positive TTL values indicate in seconds how long Cloudflare should cache the asset for
+ - `0` TTL will cause assets to get cached, but expire immediately (revalidate from origin every time)
+ - `-1`, or any negative value will instruct Cloudflare not to cache at all
+
+#### Custom Cache Keys
+
+*This feature is available to enterprise users only.*
+
+A request's cache key is what determines if two requests are "the same" for caching purposes. If a request has the same cache key as some previous request, then we can serve the same cached response for both. For more about cache keys see [Using Custom Cache Keys](https://support.cloudflare.com/hc/en-us/articles/115004290387) support article.
+
+
+```javascript
+// Set cache key for this request to "some-string".
+fetch(event.request, { cf: { cacheKey: 'some-string' } })
+```
+
+Normally, Cloudflare computes the cache key for a request based on the request's URL. Sometimes, though, you'd like different URLs to be treated as if they were the same for caching purposes. For example, say your web site content is hosted from both Amazon S3 and Google Cloud Storage - you have the same content in both places, and you use a Worker to randomly balance between the two. However, you don't want to end up caching two copies of your content. You could utilize custom cache keys to cache based on the original request URL rather than the subrequest URL:
+
+```javascript
+addEventListener("fetch", event => {
+  let url = new URL(event.request.url);
+  if (Math.random() < 0.5) {
+    url.hostname = "example.s3.amazonaws.com";
+  } else {
+    url.hostname = "example.storage.googleapis.com";
+  }
+
+  let request = new Request(url, event.request);
+  event.respondWith(
+    fetch(request, {
+      cf: { cacheKey: event.request.url }
+    })
+  );
+});
+```
+Remember, Workers operating on behalf of different zones cannot affect each other’s cache. You can only override cache keys when making requests within your own zone (in the above example `event.request.url` was the key stored), or requests to hosts that are not on Cloudflare. When making a request to another Cloudflare zone (e.g. belonging to a different Cloudflare customer), that zone fully controls how its own content is cached within Cloudflare; you cannot override it.
+
+
+### Overriding Browser Cache (Cache-Control headers)
+
+Browsers determine what to cache through the response headers sent from Cloudflare.
+
+```javascript
+async function fetchAndApply(request) {
+  let response = await fetch(request);
+
+  // Make response headers mutable
+  response = new Response(response.body, response);
+
+  response.headers.set("Cache-Control", "max-age=1500");
+
+  return response;
+}
+```
