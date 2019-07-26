@@ -2,7 +2,7 @@
 title: Using the Cache
 ---
 
-Workers provide a way to customize cache behavior using Cloudflare's classic CDN as well as a private cache space. To learn about the benefits of caching see our learning center's article on [What is Caching?](https://www.cloudflare.com/learning/cdn/what-is-caching/)
+Workers provide a way to customize cache behavior using Cloudflare's classic CDN as well as a private cache space. To learn about the benefits of caching see our Learning Center's article on [What is Caching?](https://www.cloudflare.com/learning/cdn/what-is-caching/)
 
 ## Interacting with the Cloudflare Cache
 
@@ -44,7 +44,7 @@ The Cache API’s `caches.default` Cache object allows you to:
 
 Cloudflare's traditional CDN will work by default on static assets even without Workers. The namespace used by the Cache API is stored separate from Cloudflare's CDN though both exist on Cloudflare's Global Network. 
 
-In the context of Workers a [`fetch`](/reference/runtime/apis/fetch) provided by the runtime communicates with the traditional Cloudflare cache. First, fetch checks to see if the URL matches a different zone. If it does, it reads through that zone's cache. Otherwise, it reads through its own zone's cache, even if the URL is for a non-Cloudflare site. Cache settings on fetch automatically apply caching rules based on your Cloudflare settings. `fetch` does not allow you to *modify or inspect objects* before they reach the cache, but does allow you to modify *how it will cache*.
+In the context of Workers a [`fetch`](/reference/runtime/apis/fetch) provided by the runtime communicates with the traditional Cloudflare cache. First, `fetch` checks to see if the URL matches a different zone. If it does, it reads through that zone's cache. Otherwise, it reads through its own zone's cache, even if the URL is for a non-Cloudflare site. Cache settings on `fetch` automatically apply caching rules based on your Cloudflare settings. `fetch` does not allow you to *modify or inspect objects* before they reach the cache, but does allow you to modify *how it will cache*.
 
 When a response fills the cache, the response header contains `CF-Cache-Status: HIT`. You can tell an object is attempting to cache if one sees the `CF-Cache-Status` at all.
 
