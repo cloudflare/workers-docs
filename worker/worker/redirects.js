@@ -9,7 +9,6 @@ import { newDocsMap, newDocsOverview, newDocsBase } from './data/newDocs'
 export function handleRedirect(request) {
   let requestURL = new URL(request.url)
   let path = requestURL.pathname
-  // chop off the "/docs"
   path = path.replace('/docs', '')
   if (isOldDoc(path) && !hasDefinedRedirect(path))
     return Response.redirect(newDocsOverview, 301)

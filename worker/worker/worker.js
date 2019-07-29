@@ -15,7 +15,6 @@ async function handleRequest(request) {
     var pathname = parsedUrl.pathname
     if (handleRedirect(request)) return handleRedirect(request)
 
-    // chop off the "/docs/"
     pathname = pathname.replace('/docs/', '')
 
     var path = normalize_path(pathname)
