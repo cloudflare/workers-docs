@@ -1,5 +1,5 @@
 name = "Cache TTL"
-description = "Determine how/if Cloudflare and Browsers will cache a resource by setting TTL and cache settings"
+description = "Determine how/if Cloudflare's [Classic CDN](/reference/workers-concepts/using-cache.md#cloudflare-s-cdn) and Browsers will cache a resource by setting TTL and cache settings."
 code = """async function handleRequest(request) {
   let response = await fetch(request, {
     cf: {
