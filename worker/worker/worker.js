@@ -10,14 +10,13 @@ addEventListener('fetch', event => {
  * @param {Request} request
  */
 async function handleRequest(request) {
-  let redirect = await handleRedirects(request)
-
   try {
     var parsedUrl = new URL(request.url)
     var pathname = parsedUrl.pathname
+    if (handleRedirect(request)) return handleRedirect(request)
 
     // chop off the "/docs/"
-    pathname = pathname.substring(6)
+    pathname = pathname.replace('/docs/', '')
 
     var path = normalize_path(pathname)
 
