@@ -1,11 +1,17 @@
-name = "Cache TTL"
-description = "Determine how/if Cloudflare's [Classic CDN](/reference/workers-concepts/using-cache.md#cloudflare-s-cdn) and Browsers will cache a resource by setting TTL and cache settings."
+name = "Cache TTL and Custom Keys"
+description = "Determine how/if Cloudflare's [Classic CDN](/reference/workers-concepts/using-cache.md#cloudflare-s-cdn) and Browsers will cache a resource by setting TTLs, cache keys, and cache settings."
 code = """async function handleRequest(request) {
+  let url = new URL(request.url)
+  // Only use the path for the cache key, removing query strings
+  // and always storing HTTPS e.g. https://www.example.com/file-uri-here
+  let someCustomKey = `https://${url.hostname}${url.pathname}`
   let response = await fetch(request, {
     cf: {
-      // Tell Cloudflare to always cache this fetch regardless of content type
+      // Tell Cloudflare's Global CDN to always cache this fetch regardless of content type
       // for a max of 5 seconds before revalidating the resource
       cacheTtl: 5, // sets TTL to 5 and cacheEverything setting
+      //Enterprise only feature, see Cache API for other plans
+      cacheKey: someCustomKey,
     },
   })
   response = new Response(response.body, response)
