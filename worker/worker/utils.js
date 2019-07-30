@@ -1,4 +1,6 @@
 export function normalize_path(path) {
+  // strip first slash
+  path = path.replace(/^\/+/, '')
   // root page
   if (path == '') {
     return 'index.html'

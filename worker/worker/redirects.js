@@ -10,13 +10,13 @@ export function handleRedirect(request) {
   let requestURL = new URL(request.url)
   let path = requestURL.pathname
   path = path.replace('/docs', '')
-  if (isOldDoc(path) && !hasDefinedRedirect(path))
-    return Response.redirect(newDocsOverview, 301)
+  //strip last slash
+  path = path.replace(/\/$/, '')
   let location = newDocsMap.get(path) || oldDocsMap.get(path)
   if (location) {
     location = newDocsBase + location
     return Response.redirect(location, 301)
+  } else {
+    return Response.redirect(newDocsOverview, 301)
   }
-  // If a new doc that is not being redirected return false
-  return false
 }

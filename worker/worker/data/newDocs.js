@@ -5,7 +5,7 @@ export const newDocsMap = new Map([
   // e.g. /reference/workers-concepts/modifying-requests will now redirect to /templates/modifying-requests
   [
     '/reference/workers-concepts/modifying-requests',
-    '/templates/modifying-requests',
+    '/templates/snippets/modify_req_props',
   ],
   ['/test/path', '/from/new'],
 ])

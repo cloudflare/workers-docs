@@ -1,10 +1,10 @@
+// export fuisOldDoc = (docPath)=> oldDocsMap.has(docPath)
 export function isOldDoc(docPath) {
-  if (oldDocsMap.has(docPath)) return true
-  return false
+  return oldDocsMap.has(docPath)
 }
+
 export function hasDefinedRedirect(docPath) {
-  if (oldDocsMap.get(docPath) !== '') return true
-  return false
+  return oldDocsMap.get(docPath) !== ''
 }
 // if mapped to an empty string '', then old that old doc will map to the Overview of the Workers Docs
 // (e.g. https://workers.cloudflare.com/docs)
