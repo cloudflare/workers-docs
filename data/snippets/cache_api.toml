@@ -66,7 +66,7 @@ async function sha256(message) {
 }
 addEventListener('fetch', event => {
   let request = event.request
-  if (request.method.toLowerCase() === 'POST')
+  if (request.method.toUpperCase() === 'POST')
     return event.respondWith(handlePostRequest(event))
   return event.respondWith(handleRequest(event))
 })
