@@ -43,7 +43,7 @@ async function handlePostRequest(event) {
   //try to find the cache key in the cache
   let response = await cache.match(cacheKey)
   try {
-    // otherwise, fetch POST request from origin
+    // otherwise, fetch response to POST request from origin
     if (!response) {
       response = await fetch(request)
       event.waitUntil(cache.put(cacheKey, response))
