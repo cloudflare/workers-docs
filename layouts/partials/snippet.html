@@ -1,10 +1,6 @@
 <figure class="template-card snippet">
   <h2>
-    {{ if.url }}
-    <a class="demo" href="{{.url}}">{{.name}}</a>
-    {{else}}
     {{.name}}
-    {{ end }}
   </h2>
   <p>{{.description | markdownify}}</p>
   <div class="copy-group">
@@ -19,8 +15,10 @@
   <div class="links">
     {{ range.demos }}
     <a class="demo" href="{{.url}}">{{.text}}</a>
-    {{else}}
-    <a class="demo" href="{{.demo_url}}">Demo</a>
+    {{ end }}
+
+    {{ with.demo_url }}
+    <a class="demo" href="{{.}}">Demo</a>
     {{ end }}
   </div>
 </figure>
