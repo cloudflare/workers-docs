@@ -13,10 +13,14 @@ If you are deploying your Workers application to a domain configured on your Clo
 
 For a helpful guide to finding these keys and configuring Wrangler to use them, visit the ["Finding Your Cloudflare API Keys"](/quickstart/api-keys/) page in our documentation.
 
-With these keys, you can use Wrangler to set up your default credentials for deploying to Cloudflare Workers, via the `config` subcommand:
+To configure Wrangler to deploy to your Cloudflare Workers account, set up your default credentials via the `config` subcommand. You should only need to do this once. Running `wrangler config` will prompt you interactively for your email and API key:
 
 ```sh
-$ wrangler config <email> <global_api_key>
+$ wrangler config
+Enter email:
+foo@bar.com
+Enter api key:
+123456abcdef
 ```
 
 The remainder of your configuration details should be used to populate your project's `wrangler.toml` config. By default, your `wrangler.toml` looks like this:
