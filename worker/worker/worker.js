@@ -27,7 +27,6 @@ async function handleRequest(request) {
     let body = await STATIC_CONTENT.get(path, 'arrayBuffer')
     // strip  trailing slashes since newDocsMaps won't include
     pathname = pathname.replace(/\/$/, '')
-    console.log('pathname', pathname)
     if (!body || newDocsMap.has(pathname)) {
       return handleRedirect(request)
     }
