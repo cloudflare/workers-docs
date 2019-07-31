@@ -87,9 +87,8 @@ While the preview tool is powerful in development, the tool must run as a mock p
 The key differences of the previewer versus a live Workers script are:
 
 - Subrequests ( i.e. fetches inside your Workers script) that call the same hostname as the original request will run in the previewer as an external request (i.e. goes back to the front line of Cloudflare), as those subrequests in production will go directly to the origin.
-- Not all [APIs](/reference/runtime/apis) are avalible in the previewer that are in production.
 - The output of `console.log` acts as a no-op in production.
-- Cloudflare Edge dependent features like [Cache API](/reference/runtime/apis/cache) will *not* work in the previewer.
+- Not all [APIs](/reference/runtime/apis) are avalible in the previewer that are in production. Cloudflare Edge dependent features particularly (e.g. [Cache API](/reference/runtime/apis/cache)) will *not* work in the previewer.
 - If the tested zone has Cloudflare security features set that would block our preview service, such as block by country US, then one would receive an error message `Sorry, you've been blocked`. A few work arounds are: use the [fiddle service](https://cloudflareworkers.com) or whitelist [Google Cloud IPs](http://ueen.net/google_cloud_ip.txt)* to preview scripts. 
   
   
