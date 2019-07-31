@@ -74,12 +74,20 @@ For the remainder of this tutorial, we'll walk through each step in this process
 
 To begin, we should understand how to populate our todo list with actual data. To do this, we’ll make use of Cloudflare’s Workers KV - it’s a simple key-value store that you can access inside of your Worker script to read and write data.
 
-To get started with KV, we need to set up a “namespace”. All of our cached data will be stored inside that namespace, and given just a bit of configuration, we can access that namespace inside the script with a predefined variable. Namespaces can be added to your application by defining them inside your Wrangler configuration. In your `wrangler.toml`:
+To get started with KV, we need to set up a “namespace”. All of our cached data will be stored inside that namespace, and given just a bit of configuration, we can access that namespace inside the script with a predefined variable.
+
+To create a namespace, go to the [Cloudflare Dashboard](https://dash.cloudflare.com), navigate to the "Workers" section on the sidebar, and select "KV":
+
+![Workers](/tutorials/build-a-todo-list/media/workers-ui.png)
+
+Namespaces can be added to your application by defining them inside your Wrangler configuration. Copy your newly created namespace ID, and in your `wrangler.toml`, define a `kv-namespaces` key to set up your namespace:
 
 ```toml
 # wrangler.toml
 
-kv-namespaces: ["TODOS"]
+[[kv-namespaces]]
+binding = "TODOS"
+id = "abcdef123"
 ```
 
 The defined namespace, `TODOS`, will now be available inside of your codebase. With that, it’s time to understand the KV API. A KV namespace has three primary methods you can use to interface with your cache: `get`, `put`, and `delete`. Pretty straightforward!
