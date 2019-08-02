@@ -1,4 +1,2 @@
 {{$snippet := .Get 0}} {{$snippetData := index .Site.Data.snippets $snippet}}
-<div style="margin-bottom: 2em;">
-  {{partial "snippet" $snippetData}}
-</div>
+{{partial "snippet" $snippetData}}
