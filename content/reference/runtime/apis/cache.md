@@ -7,7 +7,7 @@ weight: 4
 
 The Cache API allows fine grained control of reading and writing from cache, and deciding exactly when to fetch data from your origin.
 
-For each individual zone, the Cloudflare Workers runtime exposes a single global cache object: `caches.default`. Though this cache object persists on all of Cloudflare's data centers, objects are not replicated to any other data centers. Note this individualized zone cache object differs from Cloudflare's Global CDN, for details see: [Using the Cache](/reference/concepts/using-cache). 
+For each individual zone, the Cloudflare Workers runtime exposes a single global cache object: `caches.default`. Though this cache object persists on all of Cloudflare's data centers, objects are not replicated to any other data centers. Note this individualized zone cache object differs from Cloudflare's Global CDN, for details see: [Using the Cache](/reference/workers-concepts/using-cache).
 
 ### Syntax
 
