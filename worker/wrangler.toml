@@ -3,4 +3,7 @@ type = "webpack"
 route = "https://workers.cloudflare.com/docs"
 zone_id = "29ed9c83c2c78d6967876c4053ec8154"
 account_id = "8995c0f49cdcf57eb54d2c1e52b7d2f3"
-kv-namespaces = ["STATIC_CONTENT"]
+
+[[kv-namespaces]]
+binding = "STATIC_CONTENT"
+id = "ba908a54c50e43a6b584875aeceb07d1"
