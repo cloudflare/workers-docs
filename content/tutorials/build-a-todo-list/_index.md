@@ -2,15 +2,15 @@
 title: 'Build A To-Do List With KV'
 ---
 
-In this tutorial, you’ll build a todo list application in HTML, CSS and JavaScript, with a twist: all the data should be stored inside of the newly-launched Workers KV. In addition, the application itself should be served directly from Cloudflare Workers.
+In this tutorial, you’ll build a todo list application in HTML, CSS and JavaScript, with a twist: the data for the application will be stored in [Workers KV](/docs/reference/storage/overview/).
 
 ![Preview](/tutorials/build-a-todo-list/media/finished.png)
 
-This tutorial makes use of [Wrangler](https://github.com/cloudflare/wrangler), our command-line tool for generating, building, and publishing projects on the Cloudflare Workers platform. If you haven't used Wrangler, we recommend checking out the [Quick Start Guide](/quickstart), which will get you set up with Wrangler, and familiar with the basic commands.
+To build this application, we'll use [Wrangler](https://github.com/cloudflare/wrangler), the command-line tool for generating, building, and publishing projects on the Cloudflare Workers platform. If you haven't used Wrangler, we recommend checking out the [Quick Start Guide](/quickstart), which will get you set up with Wrangler, and familiar with the basic commands.
 
-This tutorial is recommended for web developers who have some experience with HTML, CSS, and JavaScript. That being said, if you're new to writing web apps, we think that Workers is a super easy way to focus on writing code, and actually shipping projects. In particular, the addition of Workers KV makes this tutorial a great introduction to building full, data-driven applications.
+Before starting this project, you should have some experience with HTML, CSS, and JavaScript. If you're new to writing web apps, Workers is a great place to get started. Building with Workers is a super easy to focus on writing code, and actually shipping projects! In particular, the addition of Workers KV makes this tutorial a great introduction to building full, data-driven applications.
 
-One more thing before you start the tutorial: if you'd like to see the code, or how the application actually functions, we've made the final version of the codebase [available on GitHub](https://github.com/signalnerve/cloudflare-workers-todos), and published a [live demo](https://todos.signalnerve.workers.dev/).
+If you'd like to see the finished code for this project, find the project [on GitHub](https://github.com/signalnerve/cloudflare-workers-todos), and check out the [live demo](https://todos.signalnerve.workers.dev/) to see what you'll be building!
 
 ## Prerequisites
 
@@ -19,9 +19,7 @@ To publish your application to Cloudflare Workers, you'll need a few things:
 - A Cloudflare account, and access to the API keys for that account
 - A Wrangler installation running locally on your machine, and access to the command-line
 
-If you don't have those things quite yet, don't worry. We'll walk through each of them and make sure we're ready to go, before you start creating your application.
-
-You'll need to get your Cloudflare API keys to deploy code to Cloudflare Workers: see ["Finding your Cloudflare API keys"](/quickstart/api-keys) for a brief guide on how to find them.
+You'll also need to get your Cloudflare API keys to deploy code to Cloudflare Workers: see ["Finding your Cloudflare API keys"](/quickstart/api-keys) for a brief guide on how to find them.
 
 _Note: Workers KV is only available to users with a paid Workers plan._
 
