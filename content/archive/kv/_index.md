@@ -66,7 +66,7 @@ Workers KV values can be written via our API or from a Worker, and read from a
 Worker in a single line of code.
 
 Your data is organized into key-value pairs contained within a Namespace. To get
-started, learn how to [write data]({{< ref "kv/writing-data.md" >}}).
+started, learn how to [write data]({{< ref "archive/kv/writing-data.md" >}}).
 
 ## Pricing
 

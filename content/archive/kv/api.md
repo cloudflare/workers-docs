@@ -5,7 +5,7 @@ weight: 50
 
 The Cloudflare API is the best way to write data into Workers KV.
 
-Read about [writing data]({{< ref "writing-data.md" >}}) for an introduction
+Read about [writing data]({{< ref "./writing-data.md" >}}) for an introduction
 to our API.
 
 For full documentation of all Workers KV API methods, see the
@@ -176,7 +176,7 @@ The type is automatically inferred from value, and can be any of:
 - FormData
 
 If you want the keys you write to be automatically deleted at some time in the
-future, see the page on [expiring keys]({{<ref "expiring-keys.md" >}}).
+future, see the page on [expiring keys]({{<ref "./expiring-keys.md" >}}).
 
 #### Delete Value
 

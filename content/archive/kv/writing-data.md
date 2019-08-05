@@ -6,7 +6,7 @@ weight: 10
 KV is organized into Namespaces, each of which can
 store up to a billion key-value pairs. The keys and values are both
 allowed to be arbitrary byte sequences (with a few
-[exceptions]({{< ref "api.md" >}})), but we most commonly see values stored as
+[exceptions]({{< ref "./api.md" >}})), but we most commonly see values stored as
 strings or JSON blobs.
 
 Worker KV values are often written using our API, but can also be written
@@ -50,7 +50,7 @@ curl "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/storage/kv/names
 You can also write from [inside a Worker](/kv/api/#write-value).
 
 If you want the keys you write to be automatically deleted at some time in the
-future, see the page on [expiring keys]({{<ref "expiring-keys.md" >}}).
+future, see the page on [expiring keys]({{<ref "./expiring-keys.md" >}}).
 
 You've now written data to Workers KV! Learn about
-[reading data from a Worker]({{< ref "reading-data.md" >}}).
+[reading data from a Worker]({{< ref "./reading-data.md" >}}).

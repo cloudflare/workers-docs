@@ -53,7 +53,7 @@ you can persist data between requests on an individual node, but note that nodes
 evicted from memory.
 
 If you are concerned about memory usage, the solution is often to stream your responses
-(potentially using the [TransformStream API]({{< ref "recipes/streaming-responses.md" >}}))
+(potentially using the [TransformStream API]({{< ref "archive/recipes/streaming-responses.md" >}}))
 rather than loading an entire response into memory.
 
 ## Requests

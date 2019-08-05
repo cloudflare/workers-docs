@@ -65,7 +65,7 @@ elsewhere in your Worker code.
 ## Creating expiring keys using the API
 
 Assuming you have followed the instructions on the
-[Writing Data page]({{<ref "writing-data.md" >}}) to learn how to write keys
+[Writing Data page]({{<ref "./writing-data.md" >}}) to learn how to write keys
 that don't expire, only one modification is needed to the commands outlined
 there if you'd like the keys you create to have an expiration. You just have to
 specify either an `expiration` or an `expiration_ttl` as a query parameter,
