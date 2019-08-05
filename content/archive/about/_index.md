@@ -20,7 +20,7 @@ Most importantly, all of these actions happen inside Cloudflare’s lightning-fa
 hundreds of data centers around the world returning responses to your users faster than your origin ever could.
 You get all the speed and security of the world’s most peered CDN with all the power of JavaScript.
 
-![Network Map](/static/network-map.png)
+![Network Map](/archive/static/network-map.png)
 
 ## What Worker Code Looks Like
 

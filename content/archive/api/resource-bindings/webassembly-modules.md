@@ -103,7 +103,7 @@ API call:
 In the API call to upload the script, I attach:
 
  - metadata: to define the bindings I will be sending through.
- - the [WASM file](/api/resource-bindings/isqrt.wasm)
+ - the [WASM file](/archive/api/resource-bindings/isqrt.wasm)
  - the script itself
 
 Non-Enterprise API:

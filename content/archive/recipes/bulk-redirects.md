@@ -2,7 +2,7 @@
 title: "Bulk Redirects (301/302)"
 ---
 
-Handle a large amount of redirects in Workers instead of Page Rules. Although you can use a Map object in global memory, it's advised to use [Workers KV](/kv/) when you have a considerably large amount of redirects.
+Handle a large amount of redirects in Workers instead of Page Rules. Although you can use a Map object in global memory, it's advised to use [Workers KV](/archive/kv/) when you have a considerably large amount of redirects.
 
 ## Using Workers KV
 
@@ -45,7 +45,7 @@ addEventListener('fetch', event => {
 // The key is the incoming request URL
 // The value is where the user should be redirected
 const redirects = new Map([
-  ["https://example.com/redirect1", "https://en.wikipedia.org/wiki/HTTP_301"],  
+  ["https://example.com/redirect1", "https://en.wikipedia.org/wiki/HTTP_301"],
   ["https://example.com/redirect2", "https://google.com"]
 ])
 

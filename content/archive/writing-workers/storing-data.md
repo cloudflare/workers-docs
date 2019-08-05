@@ -14,7 +14,7 @@ There are several common strategies we have used successfully to store data:
 
 ### Use Workers KV
 
-[Workers KV](/kv/) is an eventually-consistent key-value store which runs on the same machines as
+[Workers KV](/archive/kv/) is an eventually-consistent key-value store which runs on the same machines as
 your Workers. It makes it possible to store large amounts of data which can be read by your
 Workers extremely quickly.
 

@@ -23,7 +23,7 @@ You will also need your Account ID. You can find that ID in the URL of any
 page you view within the Cloudflare Dashboard after selecting the account
 which manages your Worker:
 
-![Account ID Screenshot](/static/account-id-url.png)
+![Account ID Screenshot](/archive/static/account-id-url.png)
 
 Once you have an API key and Account ID, the first step is to create a Namespace:
 
@@ -47,7 +47,7 @@ curl "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/storage/kv/names
 --data 'My first value!'
 {{</highlight>}}
 
-You can also write from [inside a Worker](/kv/api/#write-value).
+You can also write from [inside a Worker](/archive/kv/api/#write-value).
 
 If you want the keys you write to be automatically deleted at some time in the
 future, see the page on [expiring keys]({{<ref "./expiring-keys.md" >}}).

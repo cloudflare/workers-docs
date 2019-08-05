@@ -2,7 +2,7 @@
 title: "Using NPM Modules"
 ---
 
-You can create a Worker locally, import NPM packages, bundle all the code with Webpack, and push it to the edge using the Workers [Configuration API](/api/).
+You can create a Worker locally, import NPM packages, bundle all the code with Webpack, and push it to the edge using the Workers [Configuration API](/archive/api/).
 
 NPM is a JavaScript package manager that comes with Node.js. To use it, make sure you have [Node.js](https://nodejs.org/en/download/) installed and open up your terminal. Create a new project in a directory by running `npm init`. The command will generate a package.json file, which tells NPM what packages are needed for your project. You can simultaneously download a package and add it to your package.json by running `npm install --save <PACKAGE-NAME>`. The package will install to a directory in the project called `node_modules`. Now, you can require that package inside of your Worker and run it.
 
@@ -40,4 +40,4 @@ The package.json has a section for adding scripts to run to manage the project. 
 }
 {{</ highlight >}}
 
-Now, running the command `npm run build` will output your bundled Worker at `./dist/main.js`. To upload your Worker, you can follow the steps in the [Configuration API](/api/) section of the docs.
+Now, running the command `npm run build` will output your bundled Worker at `./dist/main.js`. To upload your Worker, you can follow the steps in the [Configuration API](/archive/api/) section of the docs.

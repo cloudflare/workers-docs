@@ -15,7 +15,7 @@ VCL does not allow you to define custom responses in the code itself. You will h
 {{</highlight>}}
 
 ## With Workers:
-Workers allow you to fully customize the responses that are sent to the client. You may find more examples of how to create responses that never hit your origin [here](/recipes/return-403/). 
+Workers allow you to fully customize the responses that are sent to the client. You may find more examples of how to create responses that never hit your origin [here](/archive/recipes/return-403/).
 
 Example of returning a blocked response based on country (with the response itself in the Worker!):
 {{<highlight javascript>}}
@@ -37,7 +37,7 @@ First, we'll create a [URL object](https://developer.mozilla.org/en-US/docs/Web/
 let url = new URL(request.url)
 {{</highlight>}}
 
-Once the URL has been created, you can parse out hostnames, paths and query string. 
+Once the URL has been created, you can parse out hostnames, paths and query string.
 Blocking certain hosts:
 {{<highlight javascript>}}
 if (url.hostname == 'blocked.mywebsite.com')

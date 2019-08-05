@@ -13,11 +13,11 @@ Our [blog post](https://blog.cloudflare.com/a-ci/) goes over creating a CI/CD pi
 
 Travis CI requires a `.travis.yml` to be included in any repo that will use Travis. This file tells Travis how to run your build process. For those who are just looking for an example `.travis.yml` please see the below:
 
-```hcl 
+```hcl
 language: node_js
 node_js:
   - "node"
-  
+
 deploy:
   - provider: script
   script: sls deploy
@@ -43,11 +43,11 @@ To deploy with Travis, the first step is to sync Travis CI GitHub to pull in you
 
 Once GitHub has access to Travis CI you have the option to grant Travis access to individual repos in your 'Overview' screen as show below. When you toggle the grey button 'on' to green, Travis will start listening for Webhooks on that repo. You'll also be able to customize the build settings and add things like `ENV` variables.
 
-![Travis CI Step 1](/static/step_1_travis.png)
+![Travis CI Step 1](/archive/static/step_1_travis.png)
 
 Please see below for example `ENV` variable set up. In this case since we are deploying with Serverless, we set the `SLS_DEBUG` variable for more verbose error messaging.
 
-![Travis CI Step 2](/static/step_2_travis.png)
+![Travis CI Step 2](/archive/static/step_2_travis.png)
 
 When you want Travis to run a pipeline for you, you must include a `.travis.yml` file in the root of your repo. This is a configuration file that tells Travis what commands to run during your build process. A final repo layout (if you were running tests and deploying with Serverless) could look like:
 

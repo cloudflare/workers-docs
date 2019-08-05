@@ -60,7 +60,7 @@ wrangler preview
 Using the preview command will open a browser window with your Cloudflare Worker loaded in the Cloudflare preview
 UI. Assuming everything went well, it should look like this:
 
-![Cloudflare UI with working RustWasm Worker](/static/rustwasm0.png)
+![Cloudflare UI with working RustWasm Worker](/archive/static/rustwasm0.png)
 
 You can also send and receive requests to your Worker from the command line by passing `get` or `post` as arguments:
 
@@ -168,7 +168,7 @@ wrangler preview
 
 If everything worked, you should see:
 
-![Cloudflare UI with working RustWasm Worker](/static/rustwasm1.png)
+![Cloudflare UI with working RustWasm Worker](/archive/static/rustwasm1.png)
 
 ### Configuration
 
@@ -177,7 +177,7 @@ information. To do this, we'll use the `config` command, passing in a Cloudflare
 
 ```
 $ wrangler config <email> <apikey>
-    
+
 ✨ Successfully configured. You can find your configuration file at: /Users/ag_dubs/.wrangler/config/default.toml. ✨
 ```
 

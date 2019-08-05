@@ -14,11 +14,11 @@ This will be the email address you used to signup with Cloudflare. We will refer
 
 #### Account Authentication Key
 You can find your Account Authentication Key by visiting https://dash.cloudflare.com/profile. We will refer to this as `ACCOUNT_AUTH_KEY` in the examples below.
-![Account Authentication Key](/static/view-authentication-key.png)
+![Account Authentication Key](/archive/static/view-authentication-key.png)
 
 #### Zone ID
 You can find your Zone ID by visiting `https://www.cloudflare.com/a/overview/YOUR_DOMAIN`
-![Zone ID](/static/zone-id.png)
+![Zone ID](/archive/static/zone-id.png)
 
 ## Endpoints
 

@@ -42,7 +42,7 @@ TTLs of less than 60 seconds are not supported at this time.
 
 ## Creating expiring keys from a Worker
 
-As explained on the [KV API page](/kv/api/#write-value), you can write to a KV
+As explained on the [KV API page](/archive/kv/api/#write-value), you can write to a KV
 namespace that has been bound into a Worker at the variable `NAMESPACE` by
 calling:
 

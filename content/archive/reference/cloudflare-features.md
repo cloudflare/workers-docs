@@ -120,7 +120,7 @@ Notes:
 
 * Each zone has its own private cache key namespace. That means that two Workers operating within the same zone (even on different hostnames) may share cache using custom cache keys, but Workers operating on behalf of different zones cannot affect each other's cache.
 * You can only override cache keys when making requests within your own zone, or requests to hosts that are not on Cloudflare. When making a request to another Cloudflare zone (e.g. belonging to a different Cloudflare customer), that zone fully controls how its own content is cached within Cloudflare; you cannot override it.
-* URLs that are fetch()ed with a custom cache key *cannot be purged* using a URL purge. However you can use the Cache API and [set a Cache Tag on the response object](/reference/cache-api/) if you need to purge the URL. 
+* URLs that are fetch()ed with a custom cache key *cannot be purged* using a URL purge. However you can use the Cache API and [set a Cache Tag on the response object](/archive/reference/cache-api/) if you need to purge the URL.
 
 ## Override Cache TTL
 
@@ -143,7 +143,7 @@ Negative values for `cacheTtl` have no effect.
 fetch(request, { cf: { cacheTtlByStatus: { "200-299": 86400, 404: 1, "500-599": 0 } } })
 ```
 
-This option is a version of the `cacheTtl` feature which chooses a TTL based on the response's status code. If the response to this request has a status code that matches, Cloudflare will cache for the instructed time, and override cache instructives sent by the origin. 
+This option is a version of the `cacheTtl` feature which chooses a TTL based on the response's status code. If the response to this request has a status code that matches, Cloudflare will cache for the instructed time, and override cache instructives sent by the origin.
 
 This gives you control over how long assets will stay in the Cloudflare cache based on the response code. For example, you could cache successful fetches for longer, but continue to fetch assets from the origin in the event of failures. You may also use this feature to cache redirects.
 

@@ -6,17 +6,17 @@ VCL is often used to define the caching behavior for a CDN. VCL is a very explic
 
 ### With Workers:
 
-By default, Workers will follow the Cloudflare caching behavior. You can read more [here about how Cloudflare decides what to cache](https://support.cloudflare.com/hc/en-us/articles/202775670-How-Do-I-Tell-Cloudflare-What-to-Cache-). 
+By default, Workers will follow the Cloudflare caching behavior. You can read more [here about how Cloudflare decides what to cache](https://support.cloudflare.com/hc/en-us/articles/202775670-How-Do-I-Tell-Cloudflare-What-to-Cache-).
 
- - On request, Cloudflare will determine whether something is deemed cacheable. 
- - By default, Cloudflare will cache static content (based on a whitelist of file extensions). 
- - Cacheability can be overriden with certain Page Rules or settings. 
+ - On request, Cloudflare will determine whether something is deemed cacheable.
+ - By default, Cloudflare will cache static content (based on a whitelist of file extensions).
+ - Cacheability can be overriden with certain Page Rules or settings.
  - Only responses to GET and HEAD methods will get cached by default.
  - After Cloudflare has decided to cache something, its expiration time will be determined based on the Cache-Control header sent by the origin.
 - How long something is cached for can be overriden with Page Rules, or using the `cf` attribute in a request.
 - Each zone has its own private cache key namespace. That means that two Workers operating within the same zone (even on different hostnames) may share cache using custom cache keys, but Workers operating on behalf of different zones cannot affect each other's cache.
 - You can only override cache keys when making requests within your own zone, or requests to hosts that are not on Cloudflare. When making a request to another Cloudflare zone (e.g. belonging to a different Cloudflare customer), that zone fully controls how its own content is cached within Cloudflare; you cannot override it.
-- To check whether an asset is being cached on Cloudflare, you may inspect the `Cf-Cache-Status` header. Note that this header will not be available from the Preview UI, but will be present in requests hitting the Worker. 
+- To check whether an asset is being cached on Cloudflare, you may inspect the `Cf-Cache-Status` header. Note that this header will not be available from the Preview UI, but will be present in requests hitting the Worker.
 
 ### With VCL:
 
@@ -88,7 +88,7 @@ async function fetchAndApply(request) {
 fetch(request, { cf: { cacheTtlByStatus: { "200-299": 86400, 404:1, "500-599": 0 } } })
 ```
 
-This option is a version of the `cacheTtl` feature which chooses a TTL based on the response's status code. If the response to this request has a status code that matches, Cloudflare will cache for the instructed time, and override cache directives sent by the origin. 
+This option is a version of the `cacheTtl` feature which chooses a TTL based on the response's status code. If the response to this request has a status code that matches, Cloudflare will cache for the instructed time, and override cache directives sent by the origin.
 
 TTL values:
 
@@ -134,7 +134,7 @@ addEventListener("fetch", event => {
 
 Cache-Tags (known to VCL users as surrogate keys) allow a website owner to add tags to items cached at Cloudflare’s edge. The purpose is for a Cloudflare Enterprise customer to be able to purge cached content with the specified cache-tags.
 
-You can set Cache-Tags by adding the Cache-Tag response header, and using the [Cache API](/reference/cache-api/) to put the response (with the header) back in the cache. 
+You can set Cache-Tags by adding the Cache-Tag response header, and using the [Cache API](/archive/reference/cache-api/) to put the response (with the header) back in the cache.
 
 ```javascript
 addEventListener('fetch', event => {
@@ -155,13 +155,13 @@ async function handleRequest(event) {
     let requestUrl = new URL(event.request.url)
     let tags = []
     let dirs = requestUrl.pathname.split("/")
- 
+
     // Drop first and last element so that we only get necessary parts of the path
     dirs = dirs.slice(1, -1)
-    
+
     // Cache tags are comma delimited, so we should encode commas
     dirs = dirs.map(encodeURIComponent)
-     
+
     for (let i = 0; i < dirs.length; i++) {
       tags[i] = requestUrl.hostname + "/" + dirs.slice(0, i+1).join("/") + "/*"
     }

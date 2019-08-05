@@ -26,17 +26,17 @@ Begin by <a href="https://www.cloudflare.com/a/login">logging in</a> to your Clo
 ---
 
 Navigate to the 'Workers' tab:
-![Workers Tab](/static/navbar.png)
+![Workers Tab](/archive/static/navbar.png)
 
 ---
 
 Click the 'Launch Editor' button. It will open the Workers code editor:
-![Launch Workers](/static/launch-workers.png)
+![Launch Workers](/archive/static/launch-workers.png)
 
 ---
 
 You will see a default Worker script. This script, when deployed does a simple pass-through and does not change any behavior on your site:
-![Default Script](/static/default-script.png)
+![Default Script](/archive/static/default-script.png)
 
 Replace the pre-filled script with the following snippet of code and save it:
 
@@ -55,17 +55,17 @@ This script, instead of loading from your origin, returns a response directly fr
 ---
 
 To enable this Worker on your site, go to the 'Routes' pane:
-![Routes Tab](/static/routes-tab.png)
+![Routes Tab](/archive/static/routes-tab.png)
 
 ---
 
 If your domain is ‘example.com’, create a route that says example.com/helloWorld and hit ‘Save’. Replace ‘example.com’ in this example with your actual domain:
-![Create a Route](/static/example-route.png)
+![Create a Route](/archive/static/example-route.png)
 
 ---
 
 Visit your-site.com/helloWorld on your browser. You will see your Worker returning the response:
-![Visit Link](/static/hello-world.png)
+![Visit Link](/archive/static/hello-world.png)
 
 ---
 

@@ -9,7 +9,7 @@ The first step is to bind one of your Namespaces to your Worker. This will
 make that Namespace accessible from within the Worker at the
 variable name you specify:
 
-![Namespaces Screenshot](/static/resources-namespaces.png)
+![Namespaces Screenshot](/archive/static/resources-namespaces.png)
 
 Once it is bound, reading a value is a single method call:
 

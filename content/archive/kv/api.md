@@ -20,7 +20,7 @@ to be able to interact with this data.
 You can find your Account ID in the URL of any page within the Cloudflare Dashboard
 after selecting the appropriate account:
 
-![Account ID Screenshot](/static/account-id-url.png)
+![Account ID Screenshot](/archive/static/account-id-url.png)
 
 All requests must contain your
 [API Credentials](https://support.cloudflare.com/hc/en-us/articles/200167836-Where-do-I-find-my-Cloudflare-API-key-) as well.
