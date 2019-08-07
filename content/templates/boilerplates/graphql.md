@@ -82,7 +82,7 @@ query {
 
 In a GraphQL server, every query and resolver (which we'll talk about next) has an associated _type_: this allows GraphQL to know, for instance, that a Pokemon's `name` is a `String!`, or required string. For more information on GraphQL's type system, see the ["Schemas and Types"](https://graphql.org/learn/schema/) portion of the GraphQL docs.
 
-GraphQL types make it super easy to know _how_ your data will be formatted, but it can be a bit of a hassle to write. For our example data, the `Query` type includes a single query, `pokemon`, which takes an `id` parameter of type `ID!` (required ID, indicating a unique key), and returns a type `Pokemon`. These types are often defined as a GraphQL "string" called `typeDefs`:
+GraphQL types make it super easy to know _how_ your data will be formatted, but they can be a bit of a hassle to write. For our example data, the `Query` type includes a single query, `pokemon`, which takes an `id` parameter of type `ID!` (required ID, indicating a unique key), and returns a type `Pokemon`. These types are often defined as a GraphQL "string" called `typeDefs`:
 
 ```js
 const typeDefs = gql`
