@@ -1,0 +1,4 @@
+name = "Apollo GraphQL Server"
+description = "🔥Lightning-fast, globally distributed Apollo GraphQL server, deployed at the edge using Cloudflare Workers. [Read the tutorial to learn more!](/templates/boilerplates/graphql)"
+repository_url = "https://github.com/signalnerve/workers-graphql-server"
+demo_url = "https://workers-graphql.signalnerve.workers.dev/___graphql"
