@@ -1,5 +1,5 @@
 ---
-title: Workers GraphQL Server tutorial
+title: Getting Started with Workers GraphQL Server
 hidden: true
 ---
 
@@ -10,6 +10,7 @@ hidden: true
 If you haven’t used GraphQL before, the [“Learn”](https://graphql.org/learn/) section of the GraphQL docs is a great place to start. In this brief tutorial, we'll look at how to set up the basics of a GraphQL server with the `workers-graphql-server`, before deploying it and testing it using the Prisma [GraphQL Playground](https://github.com/prisma/graphql-playground), included in `workers-graphql-server`.
 
 ## Generating and configuring a project
+
 As with all [Wrangler](https://github.com/cloudflare/wrangler) templates, generating a new project using the `workers-graphql-server` template is as simple as using `wrangler generate`:
 
 ```sh
@@ -57,31 +58,31 @@ const handleRequest = request => {
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
-
 ```
 
-When looking at a Workers project, the entrypoint file can give you a good indication of *how* the project works. In this case, we have two *handler* files that we immediately import into this project: `apollo`, which indicates something related to Apollo GraphQL, and `playground`, which represents an instance of the Prisma GraphQL Playground.
+When looking at a Workers project, the entrypoint file can give you a good indication of _how_ the project works. In this case, we have two _handler_ files that we immediately import into this project: `apollo`, which indicates something related to Apollo GraphQL, and `playground`, which represents an instance of the Prisma GraphQL Playground.
 
-`graphQLOptions` is a simple JS object that allows you to configure different settings for your GraphQL server. `baseEndpoint` represents *where* your actual GraphQL endpoint is served: generally, a GraphQL server exposes a **single endpoint** where clients make all API requests. By default, this endpoint is the root route (`/`), but can be configured to be at any endpoint that you choose.
+`graphQLOptions` is a simple JS object that allows you to configure different settings for your GraphQL server. `baseEndpoint` represents _where_ your actual GraphQL endpoint is served: generally, a GraphQL server exposes a **single endpoint** where clients make all API requests. By default, this endpoint is the root route (`/`), but can be configured to be at any endpoint that you choose.
 
 Similarly, `playgroundEndpoint` exposes the Prisma GraphQL Playground at another endpoint. Unlike `baseEndpoint`, this field is optional: if removed, the playground can be disabled in your project. Check out a [demo of the playground](https://graphql-on-workers.signalnerve.com/___graphql) if you'd like to see what it looks like. By default, this endpoint is set to `___graphql`.
 
-Depending on *where* your application is deployed, you may choose to forward unmatched requests to your origin. If you're deploying to a domain you already have added to your Cloudflare account, you may want to *enable* `forwardUnmatchedRequestsToOrigin`, to render the rest of your site directly from the origin. If you're deploying to your Workers.dev subdomain, you can leave this configuration set to `false`, the default value.
+Depending on _where_ your application is deployed, you may choose to forward unmatched requests to your origin. If you're deploying to a domain you already have added to your Cloudflare account, you may want to _enable_ `forwardUnmatchedRequestsToOrigin`, to render the rest of your site directly from the origin. If you're deploying to your Workers.dev subdomain, you can leave this configuration set to `false`, the default value.
 
 ## Queries
-GraphQL *queries* allow you to retrieve data from your GraphQL server. By default, the `workers-graphql-server` includes a sample query, `pokemon`, which can be used to retrieve a Pokemon from the [PokeAPI](https://pokeapi.co/):
+
+GraphQL _queries_ allow you to retrieve data from your GraphQL server. By default, the `workers-graphql-server` includes a sample query, `pokemon`, which can be used to retrieve a Pokemon from the [PokeAPI](https://pokeapi.co/):
 
 ```graphql
 query {
   pokemon(id: 1) {
-  	name
+    name
   }
 }
 ```
 
-In a GraphQL server, every query and resolver (which we'll talk about next) has an associated *type*: this allows GraphQL to know, for instance, that a Pokemon's `name` is a `String!`, or required string. For more information on GraphQL's type system, see the ["Schemas and Types"](https://graphql.org/learn/schema/) portion of the GraphQL docs.
+In a GraphQL server, every query and resolver (which we'll talk about next) has an associated _type_: this allows GraphQL to know, for instance, that a Pokemon's `name` is a `String!`, or required string. For more information on GraphQL's type system, see the ["Schemas and Types"](https://graphql.org/learn/schema/) portion of the GraphQL docs.
 
-GraphQL types make it super easy to know *how* your data will be formatted, but it can be a bit of a hassle to write. For our example data, the `Query` type includes a single query, `pokemon`, which takes an `id` parameter of type `ID!` (required ID, indicating a unique key), and returns a type `Pokemon`. These types are often defined as a GraphQL "string" called `typeDefs`:
+GraphQL types make it super easy to know _how_ your data will be formatted, but it can be a bit of a hassle to write. For our example data, the `Query` type includes a single query, `pokemon`, which takes an `id` parameter of type `ID!` (required ID, indicating a unique key), and returns a type `Pokemon`. These types are often defined as a GraphQL "string" called `typeDefs`:
 
 ```js
 const typeDefs = gql`
@@ -99,25 +100,26 @@ const typeDefs = gql`
 ```
 
 ## Resolvers
-To allow GraphQL clients to make queries to the server, we need to configure some *resolvers*. Resolvers represent the glue code between GraphQL and JavaScript: for each configured query we've defined in the `Query` type, we'll create an associated function that actually makes an API call. For instance, given our `pokemon` query:
+
+To allow GraphQL clients to make queries to the server, we need to configure some _resolvers_. Resolvers represent the glue code between GraphQL and JavaScript: for each configured query we've defined in the `Query` type, we'll create an associated function that actually makes an API call. For instance, given our `pokemon` query:
 
 ```js
 const resolvers = {
   Query: {
     pokemon: async (_source, { id }, { dataSources }) => {
       return dataSources.pokemonAPI.getPokemon(id)
-    }
-  }
+    },
+  },
 }
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers
+  resolvers,
   // ...
 })
 ```
 
-Each function inside of `resolvers` has a number of arguments, allowing you to do conditional logic based on arguments, context, and more – for more information on how to configure resolvers, see Apollo's ["Resolver map"](https://www.apollographql.com/docs/graphql-tools/resolvers/) documentation. In our example, we refer to `id`, a field passed inside of the second function argument (often called `args`), which corresponds to the `id` parameter in our `pokemon` query. To actually retrieve the corresponding data from the PokeAPI, we use a *data source*, which tells Apollo *how* to make requests to an API server. The example `pokeapi.js` extends Apollo's `RESTDataSource` class, to show how to make `GET` requests to an API:
+Each function inside of `resolvers` has a number of arguments, allowing you to do conditional logic based on arguments, context, and more – for more information on how to configure resolvers, see Apollo's ["Resolver map"](https://www.apollographql.com/docs/graphql-tools/resolvers/) documentation. In our example, we refer to `id`, a field passed inside of the second function argument (often called `args`), which corresponds to the `id` parameter in our `pokemon` query. To actually retrieve the corresponding data from the PokeAPI, we use a _data source_, which tells Apollo _how_ to make requests to an API server. The example `pokeapi.js` extends Apollo's `RESTDataSource` class, to show how to make `GET` requests to an API:
 
 ```js
 const { RESTDataSource } = require('apollo-datasource-rest')
@@ -157,6 +159,6 @@ If you're interested in contributing or providing feedback to the `workers-graph
 
 If you'd like to learn more about GraphQL, Apollo, or Cloudflare Workers, we've included a collection of good tutorials to get you started:
 
-* [Learn GraphQL](https://graphql.org/learn/)
-* [Apollo GraphQL tutorial](https://www.apollographql.com/docs/tutorial/introduction/)
-* [Cloudflare Workers Quickstart](https://workers.cloudflare.com/docs/quickstart/)
+- [Learn GraphQL](https://graphql.org/learn/)
+- [Apollo GraphQL tutorial](https://www.apollographql.com/docs/tutorial/introduction/)
+- [Cloudflare Workers Quickstart](https://workers.cloudflare.com/docs/quickstart/)
