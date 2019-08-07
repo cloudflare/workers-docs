@@ -112,8 +112,6 @@ const demoPage = `
   }
   reqs.proxy = async () => {
     let response = await fetch(window.location.origin + '${proxyEndpoint}?apiurl=${apiurl}')
-    console.log(response)
-    console.log(await (response.clone()).json())
     return await response.json()
   }
   reqs.proxypreflight = async () => {
@@ -132,7 +130,6 @@ const demoPage = `
   (async () => {
     for (const [reqName, req] of Object.entries(reqs)) {
       try {
-        console.log("Requesting: " + reqName)
         let data = await req()
         document.getElementById(reqName).innerHTML = JSON.stringify(data)
       } catch (e) {
@@ -144,4 +141,4 @@ const demoPage = `
 </body>
 </html>`
 """
-demo_url = "https://cloudflareworkers.com/#03cb4011b91acdef9569a5a4056d2d52:https://example.com/"
+demo_url = "https://cloudflareworkers.com/#00ad8fc3ff55f6b740ed09470359dc0d:https://example.com/"
