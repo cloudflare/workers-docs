@@ -4,6 +4,7 @@ jobs:
     steps:
       - template: ci/azure-install-rust.yml
       - template: ci/azure-install-node.yml
+      - template: ci/azure-cache-rust-deps.yml
       - script: cargo install --git https://github.com/steveklabnik/wrangler --branch upload-static
         displayName: 'Install Wrangler'
       - script: npm install

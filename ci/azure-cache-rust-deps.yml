@@ -1,0 +1,8 @@
+steps:
+  - script: cd $(Agent.WorkFolder) && mkdir .cargo
+  - task: CacheBeta@0
+    displayName: 'Cache Cargo deps'
+    inputs:
+      key: "https://github.com/steveklabnik/wrangler#upload-static"
+      path: $(Agent.WorkFolder)/.cargo
+  - script: cargo build
