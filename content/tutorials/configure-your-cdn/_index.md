@@ -1,6 +1,5 @@
 ---
 title: Configure Your CDN
-weight: 6
 ---
 
 In this tutorial, you'll build and publish a Cloudflare Workers function that serves assets from a storage platform (in this example, [Google Cloud Storage](https://cloud.google.com/storage/)) to your users. This approach, called "white-labelling", often takes the form of complex DNS configuration – thanks to Cloudflare Workers, and Cloudflare's CDN, we can build a powerful (and fast) solution to this problem in just a few lines of code.
