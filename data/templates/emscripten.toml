@@ -1,5 +1,5 @@
 name = "Emscripten + Wasm Image Resizer"
 description = "Image Resizer in C compiled to Wasm with Emscripten"
 repository_url = "https://github.com/cloudflare/worker-emscripten-template"
-demo_url = "https://cloudflareworkers.com/#ddb7fa39e09cdf734180c5d083ddb390:https://placehold.co/1200x800.jpg?width=100"
+demo_url = "https://cloudflareworkers.com/#ddb7fa39e09cdf734180c5d083ddb390:http://placehold.jp/1200x800.png?width=100"
 weight = 3
