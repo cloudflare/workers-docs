@@ -1,6 +1,7 @@
 name = "Static"
 description = "Generates a fully functioning HTML page from raw HTML or sends raw JSON defined within your script."
 repository_url = "https://github.com/cloudflare/worker-template-static"
+weight = 96
 
 [demos.html]
 text = "Demo HTML"
