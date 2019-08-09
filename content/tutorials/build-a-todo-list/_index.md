@@ -1,5 +1,6 @@
 ---
 title: 'Build A To-Do List With KV'
+weight: 3
 ---
 
 In this tutorial, you’ll build a todo list application in HTML, CSS and JavaScript, with a twist: the data for the application will be stored in [Workers KV](/docs/reference/storage/overview/).

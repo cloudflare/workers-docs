@@ -1,6 +1,6 @@
 ---
 title: Build a Serverless Function
-weight: 3
+weight: 4
 ---
 
 In this tutorial, you'll build and publish a serverless function that generates QR codes, using Cloudflare Workers.
