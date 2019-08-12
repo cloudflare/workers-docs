@@ -1,4 +1,2 @@
 {{$template := .Get 0}} {{$templateData := index .Site.Data.templates $template}}
-<div style="margin-bottom: 2em;">
-  {{partial "template" $templateData}}
-</div>
+{{partial "template" $templateData}}
