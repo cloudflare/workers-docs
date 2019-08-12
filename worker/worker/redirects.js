@@ -16,6 +16,9 @@ export function handleRedirect(request) {
   if (location) {
     location = newDocsBase + location
     return Response.redirect(location, 301)
+  } else if (oldDocsMap.has(path)) {
+    location = newDocsBase + '/archive' + path
+    return Response.redirect(location, 301)
   } else {
     return Response.redirect(newDocsOverview, 301)
   }
