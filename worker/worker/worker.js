@@ -29,6 +29,7 @@ async function handleRequest(request) {
     // strip  trailing slashes since newDocsMaps won't include
     pathname = pathname.replace(/\/$/, '')
     if (!body || newDocsMap.has(pathname) || oldDocsMap.has(pathname)) {
+      console.log('Handling redirect')
       return handleRedirect(request)
     }
     let res = new Response(body, { status: 200 })
