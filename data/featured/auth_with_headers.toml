@@ -1,0 +1,3 @@
+name = "Auth-with-headers"
+description = "Allow or deny a request based on authentication headers"
+repository_url = "https://github.com/conzorkingkong/auth-with-headers"
