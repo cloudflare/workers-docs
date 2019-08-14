@@ -1,6 +1,6 @@
 name = "Country Code"
 description = "Redirect a response based on the country code of the visitor"
-code = "/**
+code = """/**
  * This helper returns a response based on the country code
  * @param {Request} request
  * @param {string} strategy
@@ -26,4 +26,5 @@ async function handleRequest(request) {
 
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
-})"
+})"""
+demo_url = "N/A"
