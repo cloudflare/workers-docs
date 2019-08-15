@@ -1,8 +1,8 @@
 {
-  "name": "edge-worker-guide",
+  "name": "cloudflare-workers-docs",
   "version": "1.0.0",
   "description": "Cloudflare Workers developer docs",
-  "license": "UNLICENSED",
+  "license": "Apache-2.0 OR MIT",
   "private": true,
   "scripts": {
     "start": "./node_modules/@cloudflare/hugo-cloudflare-docs/start",
