@@ -1,7 +1,14 @@
 name = "Country Code"
 description = "Redirect a response based on the country code of the visitor"
-code = """/**
- * This helper returns a response based on the country code
+code = """
+async function handleRequest(request) {
+  return redirect(request, 'subdomain')
+}
+addEventListener('fetch', event => {
+  event.respondWith(handleRequest(event.request))
+})
+/**
+ * This helper redirects a user based on the country code
  * @param {Request} request
  * @param {string} strategy
  */
@@ -15,16 +22,5 @@ function redirect(request, strategy) {
   }
   return Response.redirect(url, 302)
 }
-
-/**
- * Redirects a visitor to the website that correlates with their country code
- * @param {Request} request
- */
-async function handleRequest(request) {
-  return redirect(request, 'subdomain')
-}
-
-addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event.request))
-})"""
+"""
 demo_url = "N/A"
