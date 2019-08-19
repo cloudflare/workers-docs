@@ -24,7 +24,7 @@ async function handlerWithMyLogic(request) {
 }
 ```
 
-For more on writing the code that will run your Workers script see: [How to Write a Workers Script](/quickstart#writing-code).
+For more on writing the code that will run your Workers script see: [How to Write a Workers Script](/quickstart/writing-code).
 
 ### Update
 

@@ -10,14 +10,10 @@ export const newDocsMap = new Map([
   ['/quickstart/installing-the-cli', '/quickstart#installing-the-cli'],
   ['/quickstart/updating-the-cli', '/quickstart#updating-the-cli'],
   ['/quickstart/generating-a-project', '/quickstart#generating-a-project'],
-  ['/quickstart/writing-code', '/quickstart#writing-code'],
-  [
-    '/quickstart/configuring-and-publishing',
-    '/quickstart#configuring-and-publishing',
-  ],
+  ['/quickstart/configuring-and-publishing', '/quickstart#configure'],
   [
     '/quickstart/deploying-to-your-domain',
-    '/quickstart#publishing-to-your-domain',
+    '/quickstart#release-to-your-domain',
   ],
   ['/quickstart/api-keys', '/quickstart#finding-your-cloudflare-api-keys'],
 ])
