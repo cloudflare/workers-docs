@@ -50,9 +50,9 @@ curl -X POST "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8
 
 ##### URL Parameters
 
-- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart/api-keys)
+- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart#finding-your-cloudflare-api-keys)
 
-##### Headers ([Find Your Auth Info](/quickstart/api-keys))
+##### Headers ([Find Your Auth Info](/quickstart#finding-your-cloudflare-api-keys))
 
 - `X-Auth-Email`
 - `X-Auth-Key`
@@ -176,9 +176,9 @@ curl -X GET "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a83
 
 ##### URL Parameters
 
-- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart/api-keys)
+- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart#finding-your-cloudflare-api-keys)
 
-##### Headers ([Find Your Auth Info](/quickstart/api-keys))
+##### Headers ([Find Your Auth Info](/quickstart#finding-your-cloudflare-api-keys))
 
 - `X-Auth-Email`
 - `X-Auth-Key`
@@ -249,10 +249,10 @@ curl -X GET "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a83
 
 ##### URL Parameters
 
-- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart/api-keys)
+- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart#finding-your-cloudflare-api-keys)
 - `route_id`: the id of the [Route Object](#object-specification) being requested.
 
-##### Headers ([Find Your Auth Info](/quickstart/api-keys))
+##### Headers ([Find Your Auth Info](/quickstart#finding-your-cloudflare-api-keys))
 
 - `X-Auth-Email`
 - `X-Auth-Key`
@@ -333,10 +333,10 @@ curl -X POST "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8
 
 ##### URL Parameters
 
-- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart/api-keys)
+- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart#finding-your-cloudflare-api-keys)
 - `route_id`: the id of the [Route Object](#object-specification) being updated.
 
-##### Headers ([Find Your Auth Info](/quickstart/api-keys))
+##### Headers ([Find Your Auth Info](/quickstart#finding-your-cloudflare-api-keys))
 
 - `X-Auth-Email`
 - `X-Auth-Key`
@@ -456,10 +456,10 @@ curl -X DELETE "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31
 
 ##### URL Parameters
 
-- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart/api-keys)
+- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart#finding-your-cloudflare-api-keys)
 - `route_id`: the id of the [Route Object](#object-specification) being updated.
 
-##### Headers ([Find Your Auth Info](/quickstart/api-keys))
+##### Headers ([Find Your Auth Info](/quickstart#finding-your-cloudflare-api-keys))
 
 - `X-Auth-Email`
 - `X-Auth-Key`
