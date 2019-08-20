@@ -1,5 +1,6 @@
 ---
 title: 'Build a Rust and WASM Function'
+hidden: true
 ---
 
 This tutorial will walk you through the steps of generating, building, previewing, configuring, and publishing
