@@ -6,7 +6,7 @@ hidden: true
 
 In this tutorial, you’ll build a todo list application in HTML, CSS and JavaScript, with a twist: the data for the application will be stored in [Workers KV](/docs/reference/storage/overview/).
 
-![Preview](/tutorials/build-a-todo-list/media/finished.png)
+![Preview](/templates/media/build-a-todo-list/finished.png)
 
 To build this application, we'll use [Wrangler](https://github.com/cloudflare/wrangler), the command-line tool for generating, building, and publishing projects on the Cloudflare Workers platform. If you haven't used Wrangler, we recommend checking out the [Quick Start Guide](/quickstart), which will get you set up with Wrangler, and familiar with the basic commands.
 
@@ -78,7 +78,7 @@ To get started with KV, we need to set up a “namespace”. All of our cached d
 
 To create a namespace, go to the [Cloudflare Dashboard](https://dash.cloudflare.com), navigate to the "Workers" section on the sidebar, and select "KV":
 
-![Workers](/tutorials/build-a-todo-list/media/workers-ui.png)
+![Workers](/templates/media/build-a-todo-list/workers-ui.png)
 
 Namespaces can be added to your application by defining them inside your Wrangler configuration. Copy your newly created namespace ID, and in your `wrangler.toml`, define a `kv-namespaces` key to set up your namespace:
 

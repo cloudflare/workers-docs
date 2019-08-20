@@ -8,4 +8,9 @@ export const newDocsMap = new Map([
     '/templates/snippets/modify_req_props',
   ],
   ['/test/path', '/from/new'],
+  ['/tutorials/build-a-todo-list', '/templates/featured/build-a-todo-list'],
+  [
+    '/tutorials/build-a-rustwasm-function',
+    '/templates/featured/build-a-rustwasm-function',
+  ],
 ])

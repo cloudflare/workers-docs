@@ -33,7 +33,7 @@ wrangler preview
 Using the preview command will open a browser window with your Cloudflare Workers function loaded in the Cloudflare preview
 UI. Assuming everything went well, it should look like this:
 
-![Cloudflare UI with working RustWasm Worker](/tutorials/build-a-rustwasm-function/media/rustwasm0.png)
+![Cloudflare UI with working RustWasm Worker](/templates/media/build-a-rustwasm-function/rustwasm0.png)
 
 ## Building
 
@@ -129,7 +129,7 @@ wrangler preview
 
 If everything worked, you should see:
 
-![Cloudflare UI with working RustWasm Worker](/tutorials/build-a-rustwasm-function/media/rustwasm1.png)
+![Cloudflare UI with working RustWasm Worker](/templates/media/build-a-rustwasm-function/rustwasm1.png)
 
 ## Publish
 
@@ -137,7 +137,7 @@ And with that, you're finished writing a Cloudflare Workers function with Rust-g
 
 Wrangler has built-in support for bundling, uploading, and releasing your Cloudflare Workers application. To do this, we'll run `wrangler publish`, which will _build_ and _publish_ your code:
 
-![Publish](/tutorials/build-a-rustwasm-function/media/publish.gif)
+![Publish](/templates/media/build-a-rustwasm-function/publish.gif)
 
 ## Resources
 
