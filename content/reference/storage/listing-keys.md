@@ -72,7 +72,11 @@ expiration value is a number. The expiration value will only be returned if the 
 and will be in the absolute value form, even if it was set in the TTL form.
 
 Additionally, if `list_complete` is `false`, there are more keys to fetch.
-See the next section for more details.
+See the Pagination section below for more details.
+
+### Ordering
+
+Keys are always returned in lexicographically sorted order according to their UTF-8 bytes.
 
 ### Pagination
 

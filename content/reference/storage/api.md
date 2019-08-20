@@ -133,7 +133,7 @@ Remove a KV pair from the specified Namespace.
 
 `GET /storage/kv/namespaces/:namespace_id/keys`
 
-List the keys within a Namespace. This endpoint is paginated.
+List the keys within a Namespace in sorted order. This endpoint is paginated.
 
 ## Worker API
 
