@@ -84,7 +84,7 @@ You must test using [wrangler](https://github.com/cloudflare/wrangler) to genera
 ```
 wrangler generate myTempName ./
 cd myTempName
-wrangler preview
+wrangler preview --watch
 ```
 
 You do not need to strictly follow the snippet format for boilerplates, but it is recommended.
