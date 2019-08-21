@@ -157,7 +157,7 @@ Type can be any of:
 
 #### Write Value
 
-You can write and delete values from a Worker, but you should note that it is an eventually consistent data store. In practice, this means it is not uncommon for an edge location to continue returning an old value for a key that has recently been written in some other edge location. If, after considering that, it does make sense to write values from your Worker, the API is:
+You can write and delete values from a Worker, but you should note that it is an eventually consistent data store. In practice, this means it is not uncommon for an edge location to continue returning an old value for up to a minute after that key is written in some other edge location. If, after considering that, it makes sense to write values from your Worker, the API is:
 
 `NAMESPACE.put(key, value)`
 
