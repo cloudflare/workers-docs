@@ -1,0 +1,10 @@
+name = "doc-site"
+type = "webpack"
+private = false
+zone_id = "ef47aa23b6bf53a4d334b7e3f3579c56"
+account_id = "95e065d2e3f97a1e50bae58aea71df6d"
+route = "https://docs-staging.workers-tooling.cf/docs*"
+
+[[kv-namespaces]]
+binding = "STATIC_CONTENT"
+id = "356998b3cbb648a8b5984176c472f000"

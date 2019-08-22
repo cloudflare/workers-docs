@@ -1,8 +1,0 @@
-name = "docs-site"
-type = "webpack"
-route = "https://stagingdocs.missv.info/*"
-zone_id = "cebec3004b54e63e1e63ac76fa486650"
-account_id = "323b0253f67c95c7bf534629f3d2fc04"
-[[kv-namespaces]]
-binding = "STATIC_CONTENT"
-id = "63ab5438e79d4678bb16262d4b7f5f79"
