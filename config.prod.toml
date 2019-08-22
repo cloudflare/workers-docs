@@ -9,3 +9,4 @@ PygmentsStyle = "monokai"
 canonifyURLs = true
 disableKinds = "taxonomyTerm"
 ignoreFiles = [ "style/*", "CONTRIBUTING.md" ]
+// Kristian can we remove this file? 
