@@ -26,13 +26,12 @@ Wrangler templates are just Git repositories, so if you want to create your own 
 You can test how your Workers function will look when it's deployed by using the preview service, which you can access with the `preview` command:
 
 ```sh
-wrangler preview
+wrangler preview --watch
 ```
 
-Using the preview command will open a browser window with your Cloudflare Workers function loaded in the Cloudflare preview
-UI. Assuming everything went well, it should look like this:
+Using the `preview` command will open a browser tab with your Cloudflare Workers function loaded in the Cloudflare preview UI.
 
-![Cloudflare UI with working RustWasm Worker](/tutorials/build-a-rustwasm-function/media/rustwasm0.png)
+The `--watch` flag for `preview` tells Wrangler to watch your Worker project for changes and update the preview tab live with the latest URL. Let's leave Wrangler running in `--watch` mode for now as we continue the tutorial.
 
 ## Building
 
@@ -112,23 +111,7 @@ async function handleRequest(request) {
 }
 ```
 
-Whenever we `preview` or `publish`, `wrangler` will build our project. But if you just want to `build` and not
-`preview` or `publish`, you can run the `build` command:
-
-```sh
-wrangler build
-```
-
-This will compile your Rust to WebAssembly. It'll show you any compiler errors you have so you can fix them!
-To preview this code in the Cloudflare UI, you can run:
-
-```sh
-wrangler preview
-```
-
-If everything worked, you should see:
-
-![Cloudflare UI with working RustWasm Worker](/tutorials/build-a-rustwasm-function/media/rustwasm1.png)
+If `wrangler preview --watch` is running, you'll see the output of your Rust program in your browser a few seconds after you save in your editor. Wrangler watches your project for changes then compiles your Rust to WebAssembly and outputs compiler errors.
 
 ## Publish
 

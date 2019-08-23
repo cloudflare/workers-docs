@@ -144,20 +144,27 @@ The example outlined in this guide is just a starting point. There are many more
 
 For concepts, pitfalls and guidelines to keep in mind while writing scripts, check out our [Workers Concepts](/reference/workers-concepts) articles.
 
-# Build and Preview Your Project
+# Preview Your Project
 
-`worker.js` contains the actual code that you'll deploy to Workers. Let's use two more Wrangler commands to build your project, and preview it:
+`worker.js` contains the actual code that you'll deploy to Workers. Let's use Wrangler to preview it:
 
 ```sh
-$ wrangler build
-$ wrangler preview
+$ wrangler preview --watch
 ```
-
-Wrangler's `build` command will install the necessary dependencies for your project, and compile it to make it ready for deployment. The `build` command will also notify you of any build warnings before deployment.
 
 The `preview` command will take your built Worker project and upload it to a unique URL at [cloudflareworkers.com](https://cloudflareworkers.com). This means that you can actually test your project with our Workers runtime, and optionally, you can share this URL so that other users can test your Worker!
 
+The `--watch` flag for `preview` tells Wrangler to watch your Worker project for changes and update the preview tab live with the latest URL.
+
 ![Preview your Worker](/quickstart/media/wrangler-preview.png)
+
+# Build Your Project
+
+Wrangler's `build` command will install the necessary dependencies for your project, and compile it to make it ready for deployment. The `build` command will also notify you of any build warnings before deployment. `preview` and `publish` will both run `build` for you, but we expose it separately as it is useful for checking for errors.
+
+```sh
+$ wrangler build
+```
 
 # Configure
 
