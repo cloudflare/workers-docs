@@ -111,7 +111,7 @@ async function handleRequest(request) {
 }
 ```
 
-If `wrangler preview --watch` is running, you'll see the output of your Rust program in your browser a few seconds after you save in your editor. Wrangler watches your project for changes, compiles your Rust to WebAssembly, and will show you any compiler errors you have so you can focus on development!
+If `wrangler preview --watch` is running, you'll see the output of your Rust program in your browser a few seconds after you save in your editor. Wrangler watches your project for changes then compiles your Rust to WebAssembly and outputs compiler errors.
 
 ## Publish
 
