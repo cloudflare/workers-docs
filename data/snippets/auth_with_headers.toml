@@ -1,6 +1,7 @@
 name = "Auth with headers"
 description = "Allow or deny a request based on authentication headers"
-code = """async function handleRequest(request) {
+code = """
+async function handleRequest(request) {
   return handleAuth(request)
 }
 addEventListener('fetch', event => {
