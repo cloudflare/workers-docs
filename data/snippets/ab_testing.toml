@@ -1,0 +1,45 @@
+name = "A/B Testing"
+description = ""
+code = '''
+async function handleRequest(request) {
+  return abTest(request)
+}
+/**
+ * Puts visitors in a group and serves them designated responses
+ * @param {Request} request
+ */
+function abTest(request) {
+  /**
+   * The responses you want to send per group. Responses cannot be created in the global scope
+   * @param {Request} testResponse
+   * @param {Request} controlResponse
+   */
+  const testResponse = new Response('Test group')
+  const controlResponse = new Response('Control group')
+  let group
+  let isNew = false
+  let response
+  const cookie = request.headers.get('cookie')
+  if (cookie && cookie.includes('group=control')) {
+    group = 'control'
+  } else if (cookie && cookie.includes('group=test')) {
+    group = 'test'
+  } else {
+    group = Math.random() < 0.5 ? 'test' : 'control'
+    isNew = true
+  }
+  if (group === 'test') {
+    response = testResponse
+  } else if (group === 'control') {
+    response = controlResponse
+  }
+  if (isNew) {
+    response.headers.append('Set-Cookie', `group=${group}; path=/`)
+  }
+  return response
+}
+addEventListener('fetch', event => {
+  event.respondWith(handleRequest(event.request))
+})
+'''
+demo_url = "N/A"
