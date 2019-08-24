@@ -8,7 +8,7 @@ addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
 /**
- * This helper redirects a user based on the country code
+ * Returns a redirect determined by the country code
  * @param {Request} request
  * @param {string} strategy
  */
