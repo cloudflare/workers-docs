@@ -13,15 +13,13 @@ addEventListener('fetch', event => {
  */
 function handleAuth(request) {
   let psk = request.headers.get(presharedAuthHeaderKey)
-
   if (psk === presharedAuthHeaderValue) {
     // Correct preshared header key supplied. Fetching request
     return fetch(request)
   } else {
     // Incorrect preshared header key supplied. Rejecting request
     return new Response('Sorry, you have supplied an invalid key.', {
-      status: 403,
-      statusText: 'Forbidden',
+      status: 403
     })
   }
 }
