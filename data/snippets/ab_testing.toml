@@ -1,6 +1,7 @@
 name = "A/B Testing"
 description = ""
 code = '''
+// This code doesn't work in the previewer due to it assigning a new cookie every request
 async function handleRequest(request) {
   return abTest(request)
 }
