@@ -1,0 +1,20 @@
+name = "Get TLS Version"
+description = "Gets the version of TLS being used by the visitor to connect to the worker and returns the value in a header"
+code = """
+// The CF object on the request does not exist in the previewer, only in production
+async function addTLSHeader(request) {
+  try {
+    let tlsVersion = request.cf.tlsVersion
+    const response = await fetch(request)
+    let newHeaders = new Headers(response.headers)
+    newHeaders.append('X-TLS-Version', tlsVersion)
+    return new Response(response.body, {status: response.status, headers: newHeaders})
+  }
+  catch(err) {
+    let response = await fetch(request)
+    return response
+  }
+}
+addEventListener('fetch', event => {
+  event.respondWith(addTLSHeader(event.request))
+})"""
