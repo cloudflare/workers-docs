@@ -1,15 +1,8 @@
 name = "A/B Testing"
 description = ""
 code = '''
-// This code doesn't work in the previewer due to it assigning a new cookie every request
+// This code doesn't work in the previewer because the previewer assigning a new cookie every request
 async function handleRequest(request) {
-  return abTest(request)
-}
-/**
- * Puts visitors in a group and serves them designated responses
- * @param {Request} request
- */
-function abTest(request) {
   /**
    * The responses you want to send per group. Responses cannot be created in the global scope
    * @param {Request} testResponse
