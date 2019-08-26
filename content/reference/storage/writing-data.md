@@ -42,3 +42,7 @@ You can also write from [inside a Worker](../api/#write-value).
 If you want the keys you write to be automatically deleted at some time in the future, see the page on [expiring keys]({{<ref "expiring-keys.md" >}}).
 
 You've now written data to Workers KV! Learn about [reading data from a Worker]({{< ref "reading-data.md" >}}).
+
+### Writing Data in Bulk
+
+You can also write and delete data in bulk, for more information see the [API documentation]({{< ref "api.md" >}}).
