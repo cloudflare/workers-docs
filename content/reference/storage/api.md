@@ -100,17 +100,7 @@ Change the user-facing name of a Namespace. Must be unique within your account.
 
 Your data is stored as Key-Value pairs. Each key can be up to 512 bytes. Values can, by default, be up to 2 MB.
 
-Keys can be composed of any printable character, but given their use in URLs we recommend avoiding the question mark ('?') and hash ('#') literals.
-
-#### Write Key-Value
-
-`PUT /storage/kv/namespaces/:namespace_id/values/:key`
-
-Store a KV pair. Existing values will be overwritten.
-
-##### Request Body
-
-The exact byte-for-byte data you intend to store as the value.
+Keys can be composed of any printable character, but given their use in URLs we recommend avoiding the question mark (`?`) and hash (`#`) literals.
 
 #### Read Value
 
@@ -123,11 +113,89 @@ high-performance applications.
 
 The exact byte-for-byte data which was stored as the value.
 
+#### Write Key-Value
+
+`PUT /storage/kv/namespaces/:namespace_id/values/:key`
+
+Store a KV pair. Existing values will be overwritten.
+
+##### Request Body
+
+The exact byte-for-byte data you intend to store as the value.
+
+#### Bulk Write Key-Values
+
+`PUT /storage/kv/namespaces/:namespace_id/bulk`
+
+Store multiple KV pairs. Existing values will be overwritten.
+
+##### Request Body
+
+The bulk write request body must be a JSON array containing one object per KV pair. A `key` and `value` are required for each KV pair.
+
+You can optionally expire keys by adding an `expiration` (seconds since the UNIX epoch) or `expiration_ttl` (relative seconds from now) key per KV pair.
+
+If you need to write binary data, you'll have to base64 encode the value so that it is valid JSON and set the `base64` key to true so
+that the value is decoded before being stored. Reads of the value will return the raw (base64 decoded) bytes.
+
+{{<highlight JSON>}}
+[
+  {
+    "key": "my-key",
+    "value": "my-value"
+  },
+  {
+    "key": "my-other-key",
+    "value": "aGVsbG8gd29ybGQ=",
+    "base64": true
+  }
+]
+{{</highlight>}}
+
+###### Example Request
+
+{{<highlight bash>}}
+curl "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/storage/kv/namespaces/$NAMESPACE_ID/bulk" \
+  -X PUT \
+  -H "X-Auth-Email: $CLOUDFLARE_EMAIL" \
+  -H "X-Auth-Key: $CLOUDFLARE_AUTH_KEY" \
+  -H "Content-Type: application/json" \
+  --data '[{"key": "my-key", "value": "my-value"}, {"key": "my-other-key", "value": "aGVsbG8gd29ybGQ=", "base64": true}]'
+{{</highlight>}}
+
 #### Delete Key-Value
 
 `DELETE /storage/kv/namespaces/:namespace_id/values/:key`
 
 Remove a KV pair from the specified Namespace.
+
+#### Bulk Delete Key-Values
+
+`DELETE /storage/kv/namespaces/:namespace_id/bulk`
+
+Remove multiple KV pairs.
+
+##### Request Body
+
+The bulk delete request body must be a JSON array of keys to delete.
+
+{{<highlight JSON>}}
+[
+  "my-key",
+  "my-other-key"
+]
+{{</highlight>}}
+
+###### Example Request
+
+{{<highlight bash>}}
+curl "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/storage/kv/namespaces/$NAMESPACE_ID/bulk" \
+  -X DELETE \
+  -H "X-Auth-Email: $CLOUDFLARE_EMAIL" \
+  -H "X-Auth-Key: $CLOUDFLARE_AUTH_KEY" \
+  -H "Content-Type: application/json" \
+  --data '["my-key", "my-other-key"]'
+{{</highlight>}}
 
 #### List Keys
 
