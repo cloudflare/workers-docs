@@ -1,0 +1,3 @@
+name = "cloud_storage"
+description = "Serve private AWS bucket files from a Workers script."
+repository_url = "https://github.com/conzorkingkong/cloud-storage"
