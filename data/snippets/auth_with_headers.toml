@@ -2,16 +2,6 @@ name = "Auth with headers"
 description = "Allow or deny a request based on authentication headers"
 code = """
 async function handleRequest(request) {
-  return handleAuth(request)
-}
-addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event.request))
-})
-/**
- * Processes your request if auth headers are right
- * @param {Request} request
- */
-function handleAuth(request) {
   let psk = request.headers.get(presharedAuthHeaderKey)
   if (psk === presharedAuthHeaderValue) {
     // Correct preshared header key supplied. Fetching request
@@ -23,6 +13,9 @@ function handleAuth(request) {
     })
   }
 }
+addEventListener('fetch', event => {
+  event.respondWith(handleRequest(event.request))
+})
 /**
  * Replace these values with your preshared auth header key and value
  * @param {string} presharedAuthHeaderKey
@@ -30,4 +23,4 @@ function handleAuth(request) {
  */
 const presharedAuthHeaderKey = 'X-Custom-PSK'
 const presharedAuthHeaderValue = 'mypresharedkey'"""
-demo_url = "https://cloudflareworkers.com/#a0492bd3302463e0fa98ff58d1dfed20:https://tutorial.cloudflareworkers.com/"
+demo_url = "https://cloudflareworkers.com/#6d603c1b80718d6799258e703f35a032:https://tutorial.cloudflareworkers.com/"
