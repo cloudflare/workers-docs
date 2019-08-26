@@ -1,7 +1,6 @@
 name = "Country Code"
 description = "Redirect a response based on the country code of the visitor"
 code = """
-// This snippet isn't supported in the previewer
 async function handleRequest(request) {
   return redirect(request, 'subdomain')
 }
@@ -13,6 +12,7 @@ addEventListener('fetch', event => {
  * @param {Request} request
  */
 function redirect(request) {
+  The `cf-ipcountry` header is not supported in the previewer
   const country = request.headers.get('cf-ipcountry')
   const url = countryMap[country]
   return Response.redirect(url)
