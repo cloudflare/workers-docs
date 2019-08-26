@@ -1,0 +1,29 @@
+name = "Country Code"
+description = "Redirect a response based on the country code of the visitor"
+code = """
+async function handleRequest(request) {
+  return redirect(request, 'subdomain')
+}
+addEventListener('fetch', event => {
+  event.respondWith(handleRequest(event.request))
+})
+/**
+ * Returns a redirect determined by the country code
+ * @param {Request} request
+ */
+function redirect(request) {
+  The `cf-ipcountry` header is not supported in the previewer
+  const country = request.headers.get('cf-ipcountry')
+  const url = countryMap[country]
+  return Response.redirect(url)
+}
+/**
+ * A map of the url's to redirect to
+ * @param {Object} countryMap
+*/
+const countryMap = {
+  "US" : "https://example.com/us",
+  "EU": "https://eu.example.com/"
+}
+"""
+demo_url = "N/A"
