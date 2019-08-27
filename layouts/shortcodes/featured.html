@@ -1,3 +1,2 @@
-<section class="template-wrapper boilerplate">
-  {{ range $template := .Site.Data.featured }} {{partial "template" $template}} {{ end }}
-</section>
+{{$template := .Get 0}} {{$templateData := index .Site.Data.featured $template}}
+{{partial "template" $templateData}}
