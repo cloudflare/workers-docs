@@ -1,5 +1,5 @@
 name = "Auth with headers"
-description = "Allow or deny a request based on authentication headers"
+description = "Allow or deny a request based on a known pre-shared key in a header."
 code = """
 async function handleRequest(request) {
   let psk = request.headers.get(presharedAuthHeaderKey)
