@@ -1,7 +1,8 @@
 name = "A/B Testing"
-description = ""
+description = "A/B test responses from the edge"
 code = '''
-// This code doesn't work in the previewer because the previewer assigning a new cookie every request
+// This worker doesn't work as intended in the previewer because the previewer assigns a new cookie every request
+// Assigned groups will stay the same in production
 async function handleRequest(request) {
   /**
    * The responses you want to send per group. Responses cannot be created in the global scope
@@ -10,7 +11,7 @@ async function handleRequest(request) {
    */
   const testResponse = new Response('Test group')
   const controlResponse = new Response('Control group')
-  let group
+  let group = Math.random() < 0.5 ? 'test' : 'control'
   let isNew = false
   let response
   const cookie = request.headers.get('cookie')
@@ -19,7 +20,6 @@ async function handleRequest(request) {
   } else if (cookie && cookie.includes('group=test')) {
     group = 'test'
   } else {
-    group = Math.random() < 0.5 ? 'test' : 'control'
     isNew = true
   }
   if (group === 'test') {
@@ -36,4 +36,3 @@ addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
 '''
-demo_url = "N/A"
