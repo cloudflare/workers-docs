@@ -1,9 +1,11 @@
 name = "docs-site"
 type = "webpack"
-route = "https://workers.cloudflare.com/docs"
-zone_id = "29ed9c83c2c78d6967876c4053ec8154"
-account_id = "8995c0f49cdcf57eb54d2c1e52b7d2f3"
+route = "https://developers.cloudflare.com/workers*"
+zone_id = "351cf9fc660523187714fa772ad5ca49"
+account_id = "b54f07a6c269ecca2fa60f1ae4920c99"
 
 [[kv-namespaces]]
-binding = "STATIC_CONTENT"
-id = "ba908a54c50e43a6b584875aeceb07d1"
+binding = "WORKERS_DOCS_STATIC_CONTENT"
+id = "4a847c5ce0fd4f97aa67b7c9683e6a8a"
+
+# kv-namespaces = ["WORKERS_DOCS_STATIC_CONTENT"]

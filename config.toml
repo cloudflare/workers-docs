@@ -1,4 +1,4 @@
-baseURL = "https://workers.cloudflare.com/docs/"
+baseURL = "https://developers.cloudflare.com/workers/"
 languageCode = "en-us"
 title = "Cloudflare Workers Docs"
 theme = "@cloudflare/hugo-cloudflare-docs"
