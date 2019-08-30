@@ -3,8 +3,10 @@ type = "webpack"
 private = false
 zone_id = "ef47aa23b6bf53a4d334b7e3f3579c56"
 account_id = "95e065d2e3f97a1e50bae58aea71df6d"
-route = "https://docs-staging.workers-tooling.cf/docs*"
+route = "https://docs-staging.workers-tooling.cf/workers*"
 
 [[kv-namespaces]]
 binding = "WORKERS_DOCS_STATIC_CONTENT"
 id = "d0e23b5f570b449498cf08c73edb1a99"
+
+# kv-namespaces = ["WORKERS_DOCS_STATIC_CONTENT"]
