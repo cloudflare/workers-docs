@@ -14,7 +14,7 @@ async function handleRequest(request) {
   try {
     var parsedUrl = new URL(request.url)
     var pathname = parsedUrl.pathname
-    pathname = pathname.replace('/docs', '')
+    pathname = pathname.replace('/workers', '')
 
     var path = normalize_path(pathname)
 
@@ -24,7 +24,7 @@ async function handleRequest(request) {
 
     var contentType = determine_content_type(path)
 
-    let body = await STATIC_CONTENT.get(path, 'arrayBuffer')
+    let body = await WORKERS_DOCS_STATIC_CONTENT.get(path, 'arrayBuffer')
     // strip  trailing slashes since newDocsMaps won't include
     pathname = pathname.replace(/\/$/, '')
     if (!body || newDocsMap.has(pathname)) {
