@@ -8,9 +8,12 @@ export function hasDefinedRedirect(docPath) {
 }
 // if mapped to an empty string '', then old that old doc will map to the Overview of the Workers Docs
 // (e.g. https://workers.cloudflare.com/docs)
+
+// Redirect a page in the old docs to a new article that has replaced it
+// e.g. ['/recipes', '/templates'], -> redirects requests to /recipes to /templates
 export const oldDocsMap = new Map([
   ['/test-redirect', '/templates'],
-  ['/about', ''],
+  ['/about', '/'],
   ['/about/how-workers-work', ''],
   ['/api', ''],
   ['/api/config-api-for-enterprise', ''],
