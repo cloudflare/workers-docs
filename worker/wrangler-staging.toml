@@ -6,5 +6,5 @@ account_id = "95e065d2e3f97a1e50bae58aea71df6d"
 route = "https://docs-staging.workers-tooling.cf/docs*"
 
 [[kv-namespaces]]
-binding = "STATIC_CONTENT"
-id = "356998b3cbb648a8b5984176c472f000"
+binding = "WORKERS_DOCS_STATIC_CONTENT"
+id = "d0e23b5f570b449498cf08c73edb1a99"

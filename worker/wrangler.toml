@@ -1,6 +1,6 @@
 name = "docs-site"
 type = "webpack"
-route = "https://developers.cloudflare.com/workers"
+route = "https://developers.cloudflare.com/workers*"
 zone_id = "351cf9fc660523187714fa772ad5ca49"
 account_id = "b54f07a6c269ecca2fa60f1ae4920c99"
 
