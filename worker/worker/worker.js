@@ -1,6 +1,7 @@
 import { is_directory, determine_content_type, normalize_path } from './utils'
 import { handleRedirect } from './redirects'
 import { newDocsMap } from './data/newDocs'
+import { oldDocsMap } from './data/oldDocs'
 
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
@@ -27,7 +28,8 @@ async function handleRequest(request) {
     let body = await STATIC_CONTENT.get(path, 'arrayBuffer')
     // strip  trailing slashes since newDocsMaps won't include
     pathname = pathname.replace(/\/$/, '')
-    if (!body || newDocsMap.has(pathname)) {
+    if (!body || newDocsMap.has(pathname) || oldDocsMap.has(pathname)) {
+      console.log('Handling redirect')
       return handleRedirect(request)
     }
     let res = new Response(body, { status: 200 })
