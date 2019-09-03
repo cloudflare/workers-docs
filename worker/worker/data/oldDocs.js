@@ -13,8 +13,7 @@ export function hasDefinedRedirect(docPath) {
 // e.g. ['/recipes', '/templates'], -> redirects requests to /recipes to /templates
 export const oldDocsMap = new Map([
   ['/test-redirect', '/templates'],
-  ['/about', '/'],
-  ['/about/how-workers-work', ''],
+  ['/about/how-workers-work', '/about/how-it-works'],
   ['/api', ''],
   ['/api/config-api-for-enterprise', ''],
   ['/api/resource-bindings', ''],
