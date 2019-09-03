@@ -130,7 +130,7 @@ function serveAsset(event) {
 
 ### Custom caching
 
-At this point in the tutorial, deploying this script would give you a fully-functional project you could use to retrieve assets from your Cloud Storage bucket. Instead of wrapping up the tutorial here, let's continue to explore how configuring your CDN is really powerful with Workers, by making use of the [Cache API](/reference/workers-concepts/using-cache).
+At this point in the tutorial, deploying this script would give you a fully-functional project you could use to retrieve assets from your Cloud Storage bucket. Instead of wrapping up the tutorial here, let's continue to explore how configuring your CDN is really powerful with Workers, by making use of the [Cache API](/about/using-cache).
 
 To cache responses in a Workers function, the Cache API provides `cache.match`, to check for the presence of a cached asset, and `cache.put`, to cache a `response` for a given `request`. Given those two functions, the general flow will look like this:
 

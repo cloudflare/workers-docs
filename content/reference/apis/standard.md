@@ -33,12 +33,11 @@ The following methods are available per the [Worker Global Scope](https://develo
 
 [`clearTimeout()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/clearTimeout) - Cancels the delayed execution set using [`setTimeout()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout).
 
-\**Note: Timers are only available inside of [the Request Context](/reference/workers-concepts/request-context).*
+\*_Note: Timers are only available inside of [the Request Context](/about/caveats/request-context)._
 
 #### Fetch global
 
-[`fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch) - Starts the process of fetching a resource from the network. See [FetchAPI](/reference/apis/fetch/).
-\**Note: The Fetch API is only available inside of [the Request Context](/reference/workers-concepts/request-context).*
+[`fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch) - Starts the process of fetching a resource from the network. See [FetchAPI](/reference/apis/fetch/). \*_Note: The Fetch API is only available inside of [the Request Context](/about/caveats/request-context)._
 
 ## Encoding API
 
@@ -51,4 +50,3 @@ Both TextEncoder and TextDecoder support UTF-8 encoding/decoding.
 The URL API supports urls conforming to http and https schemes.
 
 [Go to the docs](https://developer.mozilla.org/en-US/docs/Web/API/URL)
-

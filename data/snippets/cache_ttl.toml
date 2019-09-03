@@ -1,5 +1,5 @@
 name = "Cache TTL and Custom Keys"
-description = "Determine how/if Cloudflare's [Classic CDN](/reference/workers-concepts/using-cache.md#cloudflare-s-cdn) and Browsers will cache a resource by setting TTLs, cache keys, and cache settings."
+description = "Determine how/if Cloudflare's [Classic CDN](/about/using-cache.md#cloudflare-s-cdn) and Browsers will cache a resource by setting TTLs, cache keys, and cache settings."
 code = """async function handleRequest(request) {
   let url = new URL(request.url)
   // Only use the path for the cache key, removing query strings

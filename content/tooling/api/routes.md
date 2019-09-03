@@ -16,7 +16,7 @@ Sample Object
 ```
 
 - `id`: an identifier tag; returned in body on Create
-- `pattern`: string representation of a route. must follow [route conventions](/reference/workers-concepts/routes)
+- `pattern`: string representation of a route. must follow [route conventions](/about/routes)
 - `script` [optional]: Name of the script to apply when the route is matched. The route acts as a placeholder when this is blank/missing.
 
 ## Create Route
@@ -60,7 +60,7 @@ curl -X POST "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8
 
 ##### Payload
 
-- `pattern`: string representation of a route. must follow [route conventions](/reference/workers-concepts/routes)
+- `pattern`: string representation of a route. must follow [route conventions](/about/routes)
 - `script` [optional]: Name of the script to apply when the route is matched. The route acts as a placeholder when this is blank/missing.
 
 #### Response
@@ -111,7 +111,7 @@ Possible error messages include: (where `[pattern]` is the given route pattern)
 - `Route pattern should not have query parameters [pattern]`
 - `Could not understand route pattern [pattern], please try a different pattern`
 
-See [Route Patterns](/reference/workers-concepts/routes).
+See [Route Patterns](/about/routes).
 
 ###### Missing Script
 
@@ -344,7 +344,7 @@ curl -X POST "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8
 
 ##### Payload
 
-- `pattern`: string representation of a route. must follow [route conventions](/reference/workers-concepts/routes)
+- `pattern`: string representation of a route. must follow [route conventions](/about/routes)
 - `script` [optional]: Name of the script to apply when the route is matched. The route acts as a placeholder when this is blank/missing.
 
 #### Response
@@ -395,7 +395,7 @@ Possible error messages include: (where `[pattern]` is the given route pattern)
 - `Route pattern should not have query parameters [pattern]`
 - `Could not understand route pattern [pattern], please try a different pattern`
 
-See [Route Patterns](/reference/workers-concepts/routes).
+See [Route Patterns](/about/routes).
 
 ###### Missing Script
 

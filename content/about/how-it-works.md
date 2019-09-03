@@ -32,7 +32,7 @@ A given isolate has its own scope, but isolates are not necessarily long-lived. 
 
 Because of this, it is generally advised that you not store mutable state in your global scope unless you have accounted for this contingency.
 
-If you're interested in how we handle security with the Workers runtime, you can [read more about how Isolates relate to Security and Spectre Threat Mitigation](/reference/workers-concepts/security).
+If you're interested in how we handle security with the Workers runtime, you can [read more about how Isolates relate to Security and Spectre Threat Mitigation](/about/security).
 
 ## Compute per Request
 
@@ -60,7 +60,7 @@ When a request to your workers.dev subdomain or to your Cloudflare-managed domai
 
 - [More about FetchEvents](/reference/apis/fetch-event)
 
-- [More about the Request Context](/reference/workers-concepts/request-context)
+- [More about the Request Context](/about/caveats/request-context)
 
 - [More about Runtime Limitations](/about/limits)
 

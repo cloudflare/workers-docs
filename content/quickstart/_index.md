@@ -71,7 +71,7 @@ Once you have an environment set up, you are ready to start writing scripts.
 
 ## Hello World
 
-At its heart, a Workers app consists of two parts: an event listener that listens for [`FetchEvents`](/reference/apis/fetch-event), and an event handler that returns a [Response](/reference/apis/fetch#response) object which is passed to the event's `.respondWith()` method.
+At its heart, a Workers app consists of two parts: an event listener that listens for [`FetchEvents`](/reference/apis/fetch-event), and an event handler that returns a [Response](/reference/apis/response) object which is passed to the event's `.respondWith()` method.
 
 When a request is received on one of Cloudflare's edge servers for a URL matching a Workers script, it passes the request in to the Workers runtime, which in turn emits a 'fetch' event in the isolate where the script is running.
 
@@ -92,7 +92,7 @@ Let's break this down:
 
 ### 1. An event listener for the `FetchEvent`:
 
-Tells the script to listen for any request coming to your Worker. `event.request` - of type [`Request`](/reference/apis/fetch#request) - is a representation of the HTTP request that triggered the FetchEvent.
+Tells the script to listen for any request coming to your Worker. `event.request` - of type [`Request`](/reference/apis/request) - is a representation of the HTTP request that triggered the FetchEvent.
 
 ### 2. A call to `.respondWith()`
 
@@ -102,7 +102,7 @@ The FetchEvent object also provides two other methods - `.passThroughOnException
 
 ##### Further Reading
 
-- [The FetchEvent Lifecycle](/reference/workers-concepts/fetch-event-lifecycle)
+- [The FetchEvent Lifecycle](/about/caveats/fetch-event-lifecycle)
 - [FetchEvent API Reference](/reference/apis/fetch-event)
 
 ## Directing Requests
@@ -123,7 +123,7 @@ async function handleRequest(request) {
   }
 ```
 
-For all avaliable methods of the Request object that you can filter by see: [Requests](/reference/apis/fetch#request).
+For all avaliable methods of the Request object that you can filter by see: [Requests](/reference/apis/request).
 
 ##### Option 2: use a template for routing on URL
 
@@ -272,7 +272,7 @@ route = "$yourRoute"
 type = "webpack"
 ```
 
-A route will need to be selected for your app: where it will be live. The route field here is a _pattern_, for more see [Routes](/reference/workers-concepts/routes/).
+A route will need to be selected for your app: where it will be live. The route field here is a _pattern_, for more see [Routes](/about/routes/).
 
 **Publishing with Wrangler**
 
