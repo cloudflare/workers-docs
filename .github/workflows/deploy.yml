@@ -1,0 +1,53 @@
+name: Deploy site
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Navigate to repo
+      run: cd $GITHUB_WORKSPACE
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Install deps
+      run: npm install
+    - name: Install Hugo
+      run: sudo apt-get install hugo
+    - name: Build docs
+      run: hugo
+    - name: Install Wrangler (standard)
+      run: npm install -g @cloudflare/wrangler
+    - name: Install Wrangler (static)
+      run: cargo install --git https://github.com/steveklabnik/wrangler --branch upload-static
+    - name: Install Workers script deps
+      run: cd worker && npm install
+    - name: Configure Wrangler (static)
+      run: ~/.cargo/bin/wrangler config $CF_EMAIL $CF_API_KEY
+      env:
+        CF_API_KEY: ${{ secrets.CF_API_KEY }}
+        CF_EMAIL: ${{ secrets.CF_EMAIL }}
+    - name: Upload assets
+      run: |
+        cd worker
+        cp wrangler.toml wrangler-publish.toml
+        rm wrangler.toml
+        mv wrangler-upload-kv-assets.toml wrangler.toml
+        ~/.cargo/bin/wrangler upload-static-files WORKERS_DOCS_STATIC_CONTENT ../public/
+    - name: Publish script
+      run: |
+        cd worker
+        rm wrangler.toml
+        mv wrangler-publish.toml wrangler.toml
+        wrangler publish
+      env:
+        CF_API_KEY: ${{ secrets.CF_API_KEY }}
+        CF_EMAIL: ${{ secrets.CF_EMAIL }}
