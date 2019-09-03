@@ -1,0 +1,5 @@
+<section class="template-wrapper featured">
+  {{ range $template := sort .Site.Data.featured "weight" "desc" }}
+  {{partial "template" $template}}
+  {{ end }}
+</section>
