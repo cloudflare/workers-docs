@@ -35,6 +35,8 @@ jobs:
       env:
         CF_API_KEY: ${{ secrets.CF_API_KEY }}
         CF_EMAIL: ${{ secrets.CF_EMAIL }}
+    - name: Wrangler auth check
+      run: ~/.cargo/bin/wrangler whoami
     - name: Upload assets
       run: |
         cd worker
