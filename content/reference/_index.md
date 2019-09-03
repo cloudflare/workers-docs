@@ -4,31 +4,17 @@ alwaysopen: true
 weight: 5
 ---
 
-### Workers Concepts
-
-- [How It Works](/reference/workers-concepts/how-it-works)
-- [Routes](/reference/workers-concepts/routes)
-- [Signing Requests](/reference/workers-concepts/signing-requests)
-- [The Request Context](/reference/workers-concepts/request-context)
-
-### Tooling
-
-- [Wrangler](http://workers.cloudflare.com/cli/install)
-- [Playground](/reference/tooling/playground)
-- [Serverless Framework](/reference/tooling/serverless)
-- [REST API](/reference/tooling/api)
-
 ### Runtime APIs
 
-* [Web Standards](/reference/runtime/apis/standard)
-* [Fetch](/reference/runtime/apis/fetch)
-* [FetchEvent](/reference/runtime/apis/fetch-event)
-* [Cache](/reference/runtime/apis/cache)
-* [Streams](/reference/runtime/apis/streams)
-* [Encoding](/reference/runtime/apis/encoding)
-* [Web Crypto](/reference/runtime/apis/web-crypto)
+- [Web Standards](/reference/apis/standard)
+- [Fetch](/reference/apis/fetch)
+- [FetchEvent](/reference/apis/fetch-event)
+- [Cache](/reference/apis/cache)
+- [Streams](/reference/apis/streams)
+- [Encoding](/reference/apis/encoding)
+- [Web Crypto](/reference/apis/web-crypto)
 
-### [Limits](/reference/runtime/limits)
+### [Limits](/about/limits)
 
 ### Workers KV
 

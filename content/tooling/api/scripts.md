@@ -10,7 +10,7 @@ weight: 2
 - `id`: The name of the script. Must follow [script naming conventions](#script-naming-conventions).
 - `etag`: Hashed script content; can be used in an If-None-Match header on update.
 - `script`: Raw script content, as a string
-- `size`: [Size of script](/reference/runtime/limits), in bytes.
+- `size`: [Size of script](/about/limits), in bytes.
 - `modified_on`: ISO_8601 timestamp of when the script was last modified.
 
 #### Script Naming Conventions
@@ -76,7 +76,7 @@ A valid JavaScript blob
 
 - `success`: Boolean
 - `result`: A [Script Object](#object-specification) of the resulting script. Empty if success is false
-- `errors`: An array of [Error Objects](/reference/tooling/api/requests#error-object). Empty if success is true
+- `errors`: An array of [Error Objects](/tooling/api/requests#error-object). Empty if success is true
 - `messages`: An array of strings (unused)
 
 ##### Errors
@@ -91,7 +91,7 @@ error: {
 }
 ```
 
-###### Exceeded [Script Limit](/reference/runtime/limits)
+###### Exceeded [Script Limit](/about/limits)
 
 ```
 status: 403
@@ -189,7 +189,7 @@ curl -X GET "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed0
 
 ##### Query Parameters
 
-* `include_subdomain_availability`:
+- `include_subdomain_availability`:
 
 ##### Headers ([Find Your Auth Info](/quickstart#finding-your-cloudflare-api-keys))
 
@@ -204,7 +204,7 @@ curl -X GET "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed0
 
 - `success`: Boolean
 - `result`: An array of [Script Objects](#object-specification). Empty if success is false; does not include raw script text.
-- `errors`: An array of [Error Objects](/reference/tooling/api/requests#error-object). Empty if success is true
+- `errors`: An array of [Error Objects](/tooling/api/requests#error-object). Empty if success is true
 - `messages`: An array of strings (unused)
 
 ##### Errors
@@ -343,7 +343,7 @@ curl -X DELETE "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191
   "errors": [],
   "messages": [],
   "result": {
-    "id": "ea95132c15732412d22c1476fa83f27a",
+    "id": "ea95132c15732412d22c1476fa83f27a"
   }
 }
 ```
@@ -368,7 +368,7 @@ curl -X DELETE "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191
 
 - `success`: Boolean
 - `result`: An object containing the id (etag) of the deleted script
-- `errors`: An array of [Error Objects](/reference/tooling/api/requests#error-object). Empty if success is true
+- `errors`: An array of [Error Objects](/tooling/api/requests#error-object). Empty if success is true
 - `messages`: An array of strings (unused)
 
 ##### Errors

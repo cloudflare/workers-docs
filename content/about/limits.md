@@ -1,5 +1,6 @@
 ﻿---
 title: Limits
+weight: 4
 ---
 
 ## Plans
@@ -8,7 +9,7 @@ Workers plans are separate from any Cloudflare plan (Free, Professional, Busines
 
 ## Script Size
 
-A Workers script plus any [Asset Bindings](/reference/tooling/api/bindings) can be up to 1MB in size after compression.
+A Workers script plus any [Asset Bindings](/tooling/api/bindings) can be up to 1MB in size after compression.
 
 ## Number of Scripts
 
@@ -26,26 +27,26 @@ Accounts using the Workers free tier are limited to a maximum of 100,000 request
 
 ## CPU/Execution Time Limit
 
-| Plan                      | CPU   |
-| ------------------------- | ----- |
-| Free                      | 10ms  |
-| Unlimited (Paid)          | 50ms  |
+| Plan             | CPU  |
+| ---------------- | ---- |
+| Free             | 10ms |
+| Unlimited (Paid) | 50ms |
 
 Most Workers requests consume less than a millisecond. It’s rare to find a normally operating Workers script that exceeds the CPU time limit. The 10ms the Free plan allows is enough runtime for most use cases, including application hosting.
 
-There is no limit on the real runtime for a Workers script. As long as the client that sent the request remains connected, the Workers script can continue processing, making subrequests, and setting timeouts on behalf of that request. When the client disconnects, all tasks associated with that client request are canceled. You can use [`event.waitUntil()`](/reference/runtime/apis/fetch-event/) to delay cancellation for another 30 seconds or until the promise passed to `waitUntil()` completes.
+There is no limit on the real runtime for a Workers script. As long as the client that sent the request remains connected, the Workers script can continue processing, making subrequests, and setting timeouts on behalf of that request. When the client disconnects, all tasks associated with that client request are canceled. You can use [`event.waitUntil()`](/reference/apis/fetch-event/) to delay cancellation for another 30 seconds or until the promise passed to `waitUntil()` completes.
 
 ## Memory
 
-Only one Workers instance runs on each of the many global Cloudflare edge servers. Each Workers instance can consume up to 128MB of memory. Use [global variables](/reference/runtime/apis/standard/) to persist data between requests on individual nodes; note however, that nodes are occasionally evicted from memory.
+Only one Workers instance runs on each of the many global Cloudflare edge servers. Each Workers instance can consume up to 128MB of memory. Use [global variables](/reference/apis/standard/) to persist data between requests on individual nodes; note however, that nodes are occasionally evicted from memory.
 
-Use the [TransformStream API](/reference/runtime/apis/streams/) to stream responses if you are concerned about memory usage. This avoids loading an entire response into memory.
+Use the [TransformStream API](/reference/apis/streams/) to stream responses if you are concerned about memory usage. This avoids loading an entire response into memory.
 
 ## Subrequests
 
 ### Can a Workers script make subrequests to load other sites on the Internet?
 
-Yes. Use the [Fetch API](/reference/runtime/apis/fetch/) to make arbitrary requests to other Internet resources.
+Yes. Use the [Fetch API](/reference/apis/fetch/) to make arbitrary requests to other Internet resources.
 
 ### How many subrequests can I make?
 
@@ -53,7 +54,7 @@ The limit for subrequests a Workers script can make is 50 per request. Each subr
 
 ### Can I make a subrequest after my Workers has responded to the user?
 
-Yes, you can use [`event.waitUntil()`](/reference/runtime/apis/fetch-event) to register asynchronous tasks that may continue after the response has been returned.
+Yes, you can use [`event.waitUntil()`](/reference/apis/fetch-event) to register asynchronous tasks that may continue after the response has been returned.
 
 ### How long can a subrequest take?
 

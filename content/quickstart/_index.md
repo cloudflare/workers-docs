@@ -11,8 +11,8 @@ weight: 1
 - [Build and Preview Your Project](#build-and-preview-your-project)
 - [Configure](#configure)
   - [Finding Your Cloudflare API Keys](#finding-your-cloudflare-api-keys)
-      - [Account ID and Zone ID](#account-id-and-zone-id)
-      - [Global API Key](#global-api-key)
+    - [Account ID and Zone ID](#account-id-and-zone-id)
+    - [Global API Key](#global-api-key)
   - [Setup](#setup)
 - [Publish Your Project](#publish-your-project)
 - [Release To Your Domain](#release-to-your-domain)
@@ -57,12 +57,13 @@ $ ls
 
 With no template argument, Wrangler generates projects using our [JavaScript template](https://github.com/cloudflare/worker-template).
 
-> 💡 Protip:  We  maintain a diverse list of templates in our [Template Gallery](/templates). Using a custom template is easy - simply pass the GitHub URL of your template into `wrangler generate`:
+> 💡 Protip: We maintain a diverse list of templates in our [Template Gallery](/templates). Using a custom template is easy - simply pass the GitHub URL of your template into `wrangler generate`:
+
 ```sh
 $ wrangler generate my-router-app https://github.com/cloudflare/worker-template-router
 ```
 
-If you don't wish to start with a template, you can use `wrangler init` in an existing project. 
+If you don't wish to start with a template, you can use `wrangler init` in an existing project.
 
 # Writing Code
 
@@ -70,7 +71,7 @@ Once you have an environment set up, you are ready to start writing scripts.
 
 ## Hello World
 
-At its heart, a Workers app consists of two parts: an event listener that listens for [`FetchEvents`](/reference/runtime/apis/fetch-event), and an event handler that returns a [Response](/reference/runtime/apis/fetch#response) object which is passed to the event's `.respondWith()` method.
+At its heart, a Workers app consists of two parts: an event listener that listens for [`FetchEvents`](/reference/apis/fetch-event), and an event handler that returns a [Response](/reference/apis/response) object which is passed to the event's `.respondWith()` method.
 
 When a request is received on one of Cloudflare's edge servers for a URL matching a Workers script, it passes the request in to the Workers runtime, which in turn emits a 'fetch' event in the isolate where the script is running.
 
@@ -83,7 +84,7 @@ addEventListener('fetch', event => {
 
 // 2. Return a custom request object
 async function handleRequest(request) {
-  return new Response("hello world")
+  return new Response('hello world')
 }
 ```
 
@@ -91,18 +92,18 @@ Let's break this down:
 
 ### 1. An event listener for the `FetchEvent`:
 
-Tells the script to listen for any request coming to your Worker. `event.request` - of type [`Request`](/reference/runtime/apis/fetch#request) - is a representation of the HTTP request that triggered the FetchEvent.
+Tells the script to listen for any request coming to your Worker. `event.request` - of type [`Request`](/reference/apis/request) - is a representation of the HTTP request that triggered the FetchEvent.
 
 ### 2. A call to `.respondWith()`
 
-The FetchEvent handler typically culminates in a call to the method `.respondWith()` with either a [`Response`](/reference/runtime/apis/fetch/#response) or `Promise<Response>` that determines the response.
+The FetchEvent handler typically culminates in a call to the method `.respondWith()` with either a [`Response`](/reference/apis/fetch/#response) or `Promise<Response>` that determines the response.
 
-The FetchEvent object also provides two other methods -  `.passThroughOnException()` and `.waitUntil()`-   to handle unexpected exceptions and operations that may complete after a response is returned.
+The FetchEvent object also provides two other methods - `.passThroughOnException()` and `.waitUntil()`- to handle unexpected exceptions and operations that may complete after a response is returned.
 
 ##### Further Reading
 
-* [The FetchEvent Lifecycle](/reference/workers-concepts/fetch-event-lifecycle)
-* [FetchEvent API Reference](/reference/runtime/apis/fetch-event)
+- [The FetchEvent Lifecycle](/about/tips/fetch-event-lifecycle)
+- [FetchEvent API Reference](/reference/apis/fetch-event)
 
 ## Directing Requests
 
@@ -122,7 +123,7 @@ async function handleRequest(request) {
   }
 ```
 
-For all avaliable methods of the Request object that you can filter by see: [Requests](/reference/runtime/apis/fetch#request).
+For all avaliable methods of the Request object that you can filter by see: [Requests](/reference/apis/request).
 
 ##### Option 2: use a template for routing on URL
 
@@ -140,7 +141,7 @@ There are a variety of examples in the [Template Gallery](/templates) for more c
 
 ### Workers Concepts
 
-The example outlined in this guide is just a starting point. There are many more [APIs](/reference/runtime/apis) available to manipulate intercepted requests. For example, you can retrieve data from [Cache](/reference/runtime/apis/cache), compute a custom response right from the edge, route the request to the appropriate service, filter traffic, and more.
+The example outlined in this guide is just a starting point. There are many more [APIs](/reference/runtime/apis) available to manipulate intercepted requests. For example, you can retrieve data from [Cache](/reference/apis/cache), compute a custom response right from the edge, route the request to the appropriate service, filter traffic, and more.
 
 For concepts, pitfalls and guidelines to keep in mind while writing scripts, check out our [Workers Concepts](/reference/workers-concepts) articles.
 
@@ -172,7 +173,7 @@ To publish Cloudflare Workers projects and serve them from our global cloud netw
 
 ## Finding Your Cloudflare API Keys
 
-[Wrangler](/reference/tooling/wrangler) and [other tools](/reference/tooling) use the following credentials to manage uploading and publishing your Worker scripts to your Cloudflare domain:
+[Wrangler](/tooling/wrangler) and [other tools](/tooling) use the following credentials to manage uploading and publishing your Worker scripts to your Cloudflare domain:
 
 - Account ID
 - Zone ID _(Note You do not need your Zone ID for deploying Workers on a `Workers.dev` subdomain)_
@@ -238,20 +239,19 @@ type = "webpack"
 
 # Publish Your Project
 
-With your project configured, it's time to publish it! 
+With your project configured, it's time to publish it!
 
 ```sh
 $ wrangler publish
 ```
 
-Your Worker will be uploaded and deployed to the `workers.dev` subdomain you have setup. You can also [publish to your own domain](#release-to-your-domain) below. 
+Your Worker will be uploaded and deployed to the `workers.dev` subdomain you have setup. You can also [publish to your own domain](#release-to-your-domain) below.
 
 ![Published Worker](/quickstart/media/published.png)
 
-
 # Release To Your Domain
 
-To release the script live on a domain you own (i.e. not a `workers.dev` subdomain), you'll configure two additional lines in your `wrangler.toml`:  `zone_id` and `route` .  By default, a `wrangler.toml` looks like:
+To release the script live on a domain you own (i.e. not a `workers.dev` subdomain), you'll configure two additional lines in your `wrangler.toml`: `zone_id` and `route` . By default, a `wrangler.toml` looks like:
 
 ```toml
 # wrangler.toml
@@ -272,7 +272,7 @@ route = "$yourRoute"
 type = "webpack"
 ```
 
-A route will need to be selected for your app: where it will be live. The route field here is a _pattern_, for more see [Routes](/reference/workers-concepts/routes/).
+A route will need to be selected for your app: where it will be live. The route field here is a _pattern_, for more see [Routes](/about/routes/).
 
 **Publishing with Wrangler**
 
@@ -281,6 +281,7 @@ To deploy to your own domain configured above, add the `--release` flag:
 ```sh
 wrangler publish --release
 ```
+
 ## Learn More
 
 This is just the beginning of what you can do with Cloudflare Workers. If you'd like to dive deeper into building projects with Cloudflare Workers, check out the full-length tutorials below:

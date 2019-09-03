@@ -56,7 +56,7 @@ curl -X GET "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a83
 
 - `success`: Boolean
 - `result`: An array of [Binding Objects](#object-specification). Empty if success is false
-- `errors`: An array of [Error Objects](/reference/tooling/api/requests#error-object). Empty if success is true
+- `errors`: An array of [Error Objects](/tooling/api/requests#error-object). Empty if success is true
 - `messages`: An array of strings (unused)
 
 ##### Errors
@@ -90,4 +90,3 @@ error: {
 	message: "workers.api.error.unknown"
 }
 ```
-
