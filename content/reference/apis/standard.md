@@ -33,11 +33,11 @@ The following methods are available per the [Worker Global Scope](https://develo
 
 [`clearTimeout()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/clearTimeout) - Cancels the delayed execution set using [`setTimeout()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout).
 
-\*_Note: Timers are only available inside of [the Request Context](/about/caveats/request-context)._
+\*_Note: Timers are only available inside of [the Request Context](/about/tips/request-context)._
 
 #### Fetch global
 
-[`fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch) - Starts the process of fetching a resource from the network. See [FetchAPI](/reference/apis/fetch/). \*_Note: The Fetch API is only available inside of [the Request Context](/about/caveats/request-context)._
+[`fetch()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch) - Starts the process of fetching a resource from the network. See [FetchAPI](/reference/apis/fetch/). \*_Note: The Fetch API is only available inside of [the Request Context](/about/tips/request-context)._
 
 ## Encoding API
 

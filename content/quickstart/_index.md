@@ -102,7 +102,7 @@ The FetchEvent object also provides two other methods - `.passThroughOnException
 
 ##### Further Reading
 
-- [The FetchEvent Lifecycle](/about/caveats/fetch-event-lifecycle)
+- [The FetchEvent Lifecycle](/about/tips/fetch-event-lifecycle)
 - [FetchEvent API Reference](/reference/apis/fetch-event)
 
 ## Directing Requests

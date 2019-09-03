@@ -17,9 +17,9 @@ export const newDocsMap = new Map([
   ['/reference/workers-concepts/routes', '/about/routes'],
   ['/reference/workers-concepts/security', '/about/security'],
   ['/reference/workers-concepts/using-cache', '/about/using-cache'],
-  ['/reference/workers-concepts/request-context', '/about/caveats/request-context'],
-  ['/reference/workers-concepts/fetch-event-lifecycle ', '/about/caveats/fetch-event-lifecycle '],
-  ['/reference/workers-concepts/signing-requests', '/about/caveats/signing-requests'],
+  ['/reference/workers-concepts/request-context', '/about/tips/request-context'],
+  ['/reference/workers-concepts/fetch-event-lifecycle ', '/about/tips/fetch-event-lifecycle '],
+  ['/reference/workers-concepts/signing-requests', '/about/tips/signing-requests'],
 
   ['/reference/tooling/', '/tooling/'],
   ['/reference/tooling/playground', '/tooling/playground'],

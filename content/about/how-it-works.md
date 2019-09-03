@@ -60,7 +60,7 @@ When a request to your workers.dev subdomain or to your Cloudflare-managed domai
 
 - [More about FetchEvents](/reference/apis/fetch-event)
 
-- [More about the Request Context](/about/caveats/request-context)
+- [More about the Request Context](/about/tips/request-context)
 
 - [More about Runtime Limitations](/about/limits)
 

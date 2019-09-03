@@ -10,8 +10,8 @@ weight: 4
 - [Using the Cache API](/about/using-cache)
 - [Limits](/about/limits)
 
-### Caveats
+### Tips
 
-- [Signing Requests](/about/caveats/signing-requests)
-- [The Request Context](/about/caveats/request-context)
-- [The FetchEvent Life Cycle](/about/caveats/fetch-event-lifecycle)
+- [Signing Requests](/about/tips/signing-requests)
+- [The Request Context](/about/tips/request-context)
+- [The FetchEvent Life Cycle](/about/tips/fetch-event-lifecycle)
