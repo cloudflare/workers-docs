@@ -1,9 +1,6 @@
 name: Deploy site
 
 on:
-  pull_request:
-    branches:
-      - master
   push:
     branches:
       - master
@@ -49,7 +46,7 @@ jobs:
         cd worker
         rm wrangler.toml
         mv wrangler-publish.toml wrangler.toml
-        wrangler publish
+        wrangler publish --release
       env:
         CF_API_KEY: ${{ secrets.CF_API_KEY }}
         CF_EMAIL: ${{ secrets.CF_EMAIL }}
