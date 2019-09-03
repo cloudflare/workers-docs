@@ -50,6 +50,7 @@ title: Cloudflare Workers Documentation
   {{< snippet "send_raw_html" >}}
 </section>
 <a href="/templates">View all templates</a>
+
 <h2>Reference</h2>
 <section class="reference-links">
   <div>
@@ -65,3 +66,7 @@ title: Cloudflare Workers Documentation
     <p>Build and deploy with integrated tools</p>
   </div>
 </section>
+
+<div style="padding-top: 24px">
+  <p><a href="/licenses">Licenses</a></p>
+</div>
