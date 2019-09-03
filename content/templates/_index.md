@@ -20,4 +20,4 @@ weight: 3
 <p>The gallery is actively growing. The [template creator](https://github.com/victoriabernard92/workers-template-creator) allows you to share templates. Host a public repo, and then run `wrangler generate https://github.com/<your-repo>`.
 For archived recipes see [the old docs](https://developers.cloudflare.com/workers/recipes/).</p>
 
-{{< featureds >}}
+{{< featured_boilerplates >}}
