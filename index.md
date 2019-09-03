@@ -12,6 +12,6 @@
 
 ## Reference
 
-- [Tooling](/reference/tooling/index.md)
+- [Tooling](/tooling/index.md)
 - [Runtime](/reference/runtime/index.md)
 - [API](/reference/api/index.md)

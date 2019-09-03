@@ -1,5 +1,5 @@
 name = "Modify Request Property"
-description = "Recommended practice for forming a [request](/reference/runtime/apis/fetch#request) based off the incoming request. First, takes in the incoming request then modifies specific properties like POST `body`, `redirect`, and the Cloudflare specific property `cf` and runs the fetch."
+description = "Recommended practice for forming a [request](/reference/apis/fetch#request) based off the incoming request. First, takes in the incoming request then modifies specific properties like POST `body`, `redirect`, and the Cloudflare specific property `cf` and runs the fetch."
 url = "/templates/snippets/modify_req_props"
 code = """async function handleRequest(request) {
   /**

@@ -1,5 +1,6 @@
 ---
 title: Security
+weight: 2
 ---
 
 The Cloudflare Workers runtime is carefully designed to defend against side channel attacks. This design priority goes back to the very start of the Workers project, in early 2017, before Spectre had been discovered. We were concerned early on that when hosting a large number of tenants on shared infrastructure, side channels of various kinds would pose a threat.
@@ -11,4 +12,3 @@ While these early design decisions have proven effective, we are continuing to a
 Our approach is very different from the approach taken by most of the industry. It is resistant to the entire range of Spectre-style attacks, without requring special attention paid to each one and without needing to block speculation in general. However, because our approach is different, we know it requires careful study. We are currently working with researchers at Graz University of Technology (TU Graz) to study what we've done. These researchers include some of the people who originally discovered Spectre. We will publish the results of this research as they becomes available.
 
 For more details, please refer to [this talk](https://www.infoq.com/presentations/cloudflare-v8) by Kenton Varda, architect of Cloudflare Workers. Spectre is covered near the end.
-

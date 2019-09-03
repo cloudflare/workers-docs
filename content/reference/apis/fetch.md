@@ -5,7 +5,7 @@ weight: 2
 
 ## Overview
 
-The [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) provides an interface for asyncronously fetching resources by providing a definition of a request and response. You will frequently find yourself interacting with request objects included as part of a [FetchEvent](/reference/runtime/apis/fetch-event), making your own requests using the global `fetch` method, and constructing your own responses.
+The [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) provides an interface for asyncronously fetching resources by providing a definition of a request and response. You will frequently find yourself interacting with request objects included as part of a [FetchEvent](/reference/apis/fetch-event), making your own requests using the global `fetch` method, and constructing your own responses.
 
 \**Note: The Fetch API is only available inside of [the Request Context](/reference/workers-concepts/request-context).*
 
@@ -48,7 +48,7 @@ new Request(input [, init])
 
 All properties of an incoming `Request` object (i.e. `event.request`) are read only. To [modify a request](/reference/workers-concepts/modifying-requests), you must create a new `Request` object and pass the options to modify to its [constructor](#Constructor).
 
-* `body`: A simple getter that exposes a [`ReadableStream`](/reference/runtime/apis/streams) of the contents.
+* `body`: A simple getter that exposes a [`ReadableStream`](/reference/apis/streams) of the contents.
 * `bodyUsed`: A Boolean that declares if the body has been used in a response.
 * `cf`: An object that contains data provided by Cloudflare (see `request.cf` below).
 * `headers`: Contain the associated [`Headers`](#headers) object for the request.
@@ -111,7 +111,7 @@ Cloudflare features all plans can set on outbound requests:
 
 A Workers script runs after Cloudflare security features, but before everything else. Therefore, a Workers script cannot affect the operation of security features (since they already finished), but it can affect other features, like Polish or ScrapeShield, or how Cloudflare caches the response.
 
-Updating the `cf` object is similar to [modifying a request](/reference/workers-concepts/modifying-requests/). You can add the `cf` object to a `Request` by passing a custom object to [`fetch`](/reference/runtime/apis/fetch/). 
+Updating the `cf` object is similar to [modifying a request](/reference/workers-concepts/modifying-requests/). You can add the `cf` object to a `Request` by passing a custom object to [`fetch`](/reference/apis/fetch/). 
 ```javascript
 // Disable ScrapeShield for this request.
 fetch(event.request, { cf: { scrapeShield: false } })
@@ -153,7 +153,7 @@ new Response(body, init)
 
 ### Properties
 
-* `body`: A simple getter used to expose a [`ReadableStream`](/reference/runtime/apis/streams) of the body contents.
+* `body`: A simple getter used to expose a [`ReadableStream`](/reference/apis/streams) of the body contents.
 * `bodyUsed`: A Boolean value that declares if the body was used in a response.
 * `headers`: Contains the associated [Headers](#headers) object for the request.
 * `ok`: Contains a Boolean value to indicate if the response was successful (status in the range 200-299).

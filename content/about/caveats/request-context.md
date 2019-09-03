@@ -6,7 +6,7 @@ title: The Request Context
 
 Request context is the context of the `"fetch"` event callback. It is important to note that due to how workers are executed, asynchronous tasks (e.g. `fetch `) can only be run *inside* the request context.
 
-During a [Fetch Event](/reference/runtime/apis/fetch-event/) callback:
+During a [Fetch Event](/reference/apis/fetch-event/) callback:
 
 ```javascript
 addEventListener('fetch', event => {

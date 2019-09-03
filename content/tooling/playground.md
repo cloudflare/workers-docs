@@ -42,7 +42,7 @@ New edits will not yet be saved or deployed.
 
 For debugging Workers script, check out the developer tools at the bottom of the preview panel. The developer tools for Workers previewer works similar to the developer tools in Chrome or Firefox.
 
-![console](/reference/tooling/media/console.png)
+![console](/tooling/media/console.png)
 
 #### Network tab
 
@@ -67,10 +67,10 @@ To preview a script, begin by [logging in](https://www.cloudflare.com/a/login) t
 After selecting an account and/or zone to deploy the Worker script to, navigate to the approriate Workers section.
 
 - For workers.dev:
-  ![Navigate workers.dev](/reference/tooling/media/navigate-workers-dev.png)
+  ![Navigate workers.dev](/tooling/media/navigate-workers-dev.png)
 
   For a zone on Cloudflare:
-  ![Navigate zone](/reference/tooling/media/navigate-zone.png)
+  ![Navigate zone](/tooling/media/navigate-zone.png)
 
 You will see options to edit existing Workers scripts or create new scripts.
 
@@ -88,8 +88,7 @@ The key differences of the previewer versus a live Workers script are:
 
 - Subrequests ( i.e. fetches inside your Workers script) that call the same hostname as the original request will run in the previewer as an external request (i.e. goes back to the front line of Cloudflare), as those subrequests in production will go directly to the origin.
 - The output of `console.log` acts as a no-op in production.
-- Not all [APIs](/reference/runtime/apis) are available in the previewer that are in production. Cloudflare Edge dependent features particularly (e.g. [Cache API](/reference/runtime/apis/cache)) will *not* work in the previewer.
-- If the tested zone has Cloudflare security features set that would block our preview service, such as "Block by country", then one would receive an error message `Sorry, you've been blocked`. To work around this, use the [fiddle service](https://cloudflareworkers.com), or whitelist [Google Cloud IPs](http://ueen.net/google_cloud_ip.txt)* to preview scripts. 
-  
-  
+- Not all [APIs](/reference/runtime/apis) are available in the previewer that are in production. Cloudflare Edge dependent features particularly (e.g. [Cache API](/reference/apis/cache)) will _not_ work in the previewer.
+- If the tested zone has Cloudflare security features set that would block our preview service, such as "Block by country", then one would receive an error message `Sorry, you've been blocked`. To work around this, use the [fiddle service](https://cloudflareworkers.com), or whitelist [Google Cloud IPs](http://ueen.net/google_cloud_ip.txt)\* to preview scripts.
+
 \* Note whitelisting Google IPs may allow other Cloudflare users with same IPs to make requests to your site and bypass security measures.

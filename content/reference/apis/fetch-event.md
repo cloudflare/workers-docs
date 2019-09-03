@@ -9,7 +9,7 @@ The event type for HTTP requests dispatched to a Worker (i.e the`Object` passed 
 
 - `type`: The type of event. Always = `fetch`.
 
-- `request`: A [Request Object](/reference/runtime/apis/fetch#Request) that represents the request triggering `FetchEvent`.
+- `request`: A [Request Object](/reference/apis/fetch#Request) that represents the request triggering `FetchEvent`.
 
 ### Methods
 

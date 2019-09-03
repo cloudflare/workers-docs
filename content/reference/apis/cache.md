@@ -35,9 +35,9 @@ cache.put(request, response)
 
 ##### Parameters
 
-* `request`: Either a string or a [`Request`](/reference/runtime/apis/fetch#request) object to serve as the key. If a string is passed, it is interpreted as the URL for a new Request object.
+* `request`: Either a string or a [`Request`](/reference/apis/fetch#request) object to serve as the key. If a string is passed, it is interpreted as the URL for a new Request object.
 
-* `response`: A [`Response`](/reference/runtime/apis/fetch#response) object to store under the given key.
+* `response`: A [`Response`](/reference/apis/fetch#response) object to store under the given key.
 
 ##### Invalid parameters
 
@@ -74,7 +74,7 @@ cache.match(request, options)
 
 ##### Parameters
 
-* `request`: The string or [`Request`](/reference/runtime/apis/fetch#request) object used as the lookup key. Strings are interpreted as the URL for a new `Request` object.
+* `request`: The string or [`Request`](/reference/apis/fetch#request) object used as the lookup key. Strings are interpreted as the URL for a new `Request` object.
 
 * `options`: Can contain one possible property:
 	* `ignoreMethod` (Boolean): Consider the request method a GET regardless of its actual value.
@@ -102,7 +102,7 @@ cache.delete(request, options)
 
 ##### Parameters
 
-* `request`: The lookup key as a string or [`Request`](/reference/runtime/apis/fetch#request) object. String are interpreted as the URL for a new `Request` object.
+* `request`: The lookup key as a string or [`Request`](/reference/apis/fetch#request) object. String are interpreted as the URL for a new `Request` object.
 
 * `optons`: Can contain one of these properties:
 

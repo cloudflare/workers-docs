@@ -61,7 +61,7 @@ title: Cloudflare Workers Documentation
     <p>The need to know while writing Workers scripts.</p>
   </div>
   <div>
-    <a href="/reference/tooling">Tooling</a>
+    <a href="/tooling">Tooling</a>
     <p>Build and deploy with integrated tools</p>
   </div>
 </section>
