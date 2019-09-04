@@ -52,3 +52,4 @@ For archived recipes, see <a href="https://developers.cloudflare.com/workers/rec
   const featured_boilerplates = JSON.parse(document.querySelector("#featured_boilerplates").innerText)
 </script>
 <script src="/js/templates.js"></script>
+
