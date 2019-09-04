@@ -1,3 +1,9 @@
 <section class="template-wrapper snippet">
-  {{ range $snippet := .Site.Data.snippet }} {{partial "snippet" $snippet}} {{ end }}
+  {{ range $snippet := .Site.Data.snippet }}
+  {{partial "snippet" $snippet}}
+  {{ end }}
 </section>
+
+<script type="application/json" id="snippets">
+  {{.Site.Data.snippet}}
+</script>

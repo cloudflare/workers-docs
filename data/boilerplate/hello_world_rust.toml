@@ -1,3 +1,4 @@
+id = "hello_world_rust"
 name = "Hello World Rust"
 description = "Simple Hello World in Rust"
 repository_url = "https://github.com/cloudflare/rustwasm-worker-template"

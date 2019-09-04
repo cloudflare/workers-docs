@@ -1,3 +1,4 @@
 name = "Speedtest"
 description = "Measure download / upload connection speed from the client side, using the Performance Timing API"
+id = "speedtest_worker"
 repository_url = "https://github.com/cloudflare/worker-speedtest-template"

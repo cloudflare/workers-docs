@@ -1,3 +1,4 @@
+id = "hello_world"
 name = "Hello World"
 description = "Simple Hello World in JS"
 repository_url = "https://github.com/cloudflare/worker-template"

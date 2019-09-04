@@ -1,3 +1,4 @@
+id = "cache_api"
 name = "Cache API"
 description = "Cache using Cloudflare's [Cache API](/reference/apis/cache/). This example can cache POST requests as well as change what hostname to store a response in cache. Note the previewer is not avalible for using Cache API."
 code = """async function handleRequest(event) {

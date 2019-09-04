@@ -1,3 +1,4 @@
+id = "send_raw_json"
 name = "Send Raw JSON"
 description = "Renders a response of type `application/json` to the client"
 code = """async function handleRequest(request) {

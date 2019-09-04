@@ -1,3 +1,4 @@
+id = "redirect"
 name = "Redirect"
 description = "Redirect a request by sending a 301 or 302 HTTP response"
 code = """async function handleRequest(request) {

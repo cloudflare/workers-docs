@@ -1,3 +1,4 @@
+id = "bulk_redirects"
 name = "Bulk Redirects"
 description = "Redirects requests to certain URLs based a mapped object to the request's URL."
 code = """async function handleRequest(request) {

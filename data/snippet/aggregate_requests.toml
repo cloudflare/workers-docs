@@ -1,3 +1,4 @@
+id = "aggregate_requests"
 name = "Aggregate Requests"
 description = "Sends two GET request to two urls and aggregates the responses into one response."
 code = '''async function handleRequest(request) {
