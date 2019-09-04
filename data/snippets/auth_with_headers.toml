@@ -1,26 +1,26 @@
 name = "Auth with headers"
-description = "Allow or deny a request based on a known pre-shared key in a header."
+description = "Allow or deny a request based on a known pre-shared key in a header. Note while this simple implementation is helpful, it is not meant to replace more secure scripts such as signed requests using the [WebCrypto API](/reference/runtime/apis/web-crypto)."
 code = """
 async function handleRequest(request) {
-  let psk = request.headers.get(presharedAuthHeaderKey)
-  if (psk === presharedAuthHeaderValue) {
+  let psk = request.headers.get(PRESHARED_AUTH_HEADER_KEY)
+  if (psk === PRESHARED_AUTH_HEADER_VALUE) {
     // Correct preshared header key supplied. Fetching request
+    // from origin
     return fetch(request)
-  } else {
-    // Incorrect preshared header key supplied. Rejecting request
-    return new Response('Sorry, you have supplied an invalid key.', {
-      status: 403
-    })
   }
+  // Incorrect key rejecting request
+  return new Response('Sorry, you have supplied an invalid key.', {
+    status: 403,
+  })
 }
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
 /**
- * Replace these values with your preshared auth header key and value
- * @param {string} presharedAuthHeaderKey
- * @param {string} presharedAuthHeaderValue
+ * @param {string} PRESHARED_AUTH_HEADER_KEY custom header to check for key
+ * @param {string} PRESHARED_AUTH_HEADER_VALUE hard coded key value
  */
-const presharedAuthHeaderKey = 'X-Custom-PSK'
-const presharedAuthHeaderValue = 'mypresharedkey'"""
-demo_url = "https://cloudflareworkers.com/#6d603c1b80718d6799258e703f35a032:https://tutorial.cloudflareworkers.com/"
+const PRESHARED_AUTH_HEADER_KEY = 'X-Custom-PSK'
+const PRESHARED_AUTH_HEADER_VALUE = 'mypresharedkey'
+"""
+demo_url = "https://cloudflareworkers.com/#7373b8c3c9c46c03c81562f00f663f81:https://tutorial.cloudflareworkers.com"
