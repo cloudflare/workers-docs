@@ -50,3 +50,4 @@ const someHost = 'example.com'
 const someUrl = 'https://foo.example.com/api.js'
 """
 demo_url = "https://cloudflareworkers.com/#27b91145f66b6cfce1b3190ed7ba0bc5:https://example.com"
+tags = ['Middleware']

@@ -53,18 +53,18 @@ figure.template-card h2 {
   font-size: x-small;
 }
 .template-card .tag-group > button.Enterprise {
-  color: #6373b6;
-  background: #f1f3f8;
+  color: #bf223c;
+  background: #fcf0f2;
 }
 .template-card .tag-group > button.Originless {
   color: #398557;
   background: #eff8f3;
 }
-.template-card .tag-group > button.Origin-Required {
-  color: #bf223c;
-  background: #fcf0f2;
+.template-card .tag-group > button.Middleware {
+  color: #6373b6;
+  background: #f1f3f8;
 }
-.template-card .tag-group > button.Rust {
+.template-card .tag-group > button.WASM {
   color: #bf223c;
   background: #fcf0f2;
 }
@@ -76,7 +76,6 @@ figure.template-card div.links a {
   flex: flex-end;
   white-space: nowrap;
 }
-
 .template-card .copy-group {
   min-height: 0;
   display: flex;

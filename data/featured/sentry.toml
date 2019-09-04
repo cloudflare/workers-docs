@@ -1,3 +1,4 @@
-name = "sentry"
-description = "Log exceptions and errors in your Workers application to Sentry.io, an error tracking tool"
+name = "Sentry"
+description = "Log exceptions and errors in your Workers application to Sentry.io -  an error tracking tool"
 repository_url = "https://github.com/bustle/cf-sentry"
+tags = ['Middleware']

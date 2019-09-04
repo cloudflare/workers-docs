@@ -2,3 +2,5 @@ name = "Binast-Cf-Worker"
 description = "Serve BinAST via a Cloudflare Worker"
 repository_url = "https://github.com/xtuc/binast-cf-worker-template"
 demo_url = "https://serve-binjs.that-test.site/"
+
+tags = ['Middleware']

@@ -39,3 +39,4 @@ const someHost = 'https://workers-tooling.cf/demos'
 const url = someHost + '/static/html'
 """
 demo_url = "https://cloudflareworkers.com/#14a82a672534b0dd25b385a5d3de744c:https://example.com"
+tags = ['Middleware']

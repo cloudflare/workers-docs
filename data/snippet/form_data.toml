@@ -87,3 +87,4 @@ const someForm = `
 </html>
 """
 demo_url = "https://cloudflareworkers.com/#a6a285e4e2bfbebea0be31b9eeaca3e6:https://example.com/form"
+tags = ['Originless']

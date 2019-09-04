@@ -48,3 +48,4 @@ const body = {
 }
 '''
 demo_url = "https://cloudflareworkers.com/#edce60b7d57c1e98fbe2d931aaaaf25f:https://tutorial.cloudflareworkers.com"
+tags = ['Middleware']
