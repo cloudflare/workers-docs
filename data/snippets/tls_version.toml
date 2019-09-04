@@ -1,5 +1,5 @@
 name = "Get TLS Version"
-description = "Gets the version of TLS being used by the visitor to connect to the worker and returns the value in a header"
+description = "Inspects the incoming request's TLS version, then returns the value in a response header"
 code = """
 // The CF object on the request does not exist in the previewer, only in production
 async function addTLSHeader(request) {
