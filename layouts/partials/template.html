@@ -1,4 +1,9 @@
 <figure class="template-card boilerplate">
+  <div class="tag-group">
+    {{ range.tags }}
+    <button class="{{.}}">{{.}}</button>
+    {{ end }}
+  </div>
   <h2>
     {{.name}}
   </h2>
