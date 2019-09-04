@@ -1,20 +1,24 @@
 name = "Get TLS Version"
 description = "Inspects the incoming request's TLS version, then returns the value in a response header"
 code = """
-// The CF object on the request does not exist in the previewer, only in production
-async function addTLSHeader(request) {
+async function handleRequest(request) {
   try {
     let tlsVersion = request.cf.tlsVersion
     const response = await fetch(request)
     let newHeaders = new Headers(response.headers)
     newHeaders.append('X-TLS-Version', tlsVersion)
-    return new Response(response.body, {status: response.status, headers: newHeaders})
-  }
-  catch(err) {
-    let response = await fetch(request)
-    return response
+    return new Response(response, {
+      headers: newHeaders,
+    })
+  } catch (err) {
+    console.error(
+      'request.cf does not exist in the previewer, only in production',
+    )
+    console.error(err)
+    return fetch(request)
   }
 }
 addEventListener('fetch', event => {
-  event.respondWith(addTLSHeader(event.request))
-})"""
+  event.respondWith(handleRequest(event.request))
+})
+"""
