@@ -1,38 +1,28 @@
 name = "A/B Testing"
-description = "A/B test responses from the edge"
+description = "Set up an A/B test by controlling what response is served based on cookies"
 code = '''
-// This worker doesn't work as intended in the previewer because the previewer assigns a new cookie every request
-// Assigned groups will stay the same in production
 async function handleRequest(request) {
-  /**
-   * The responses you want to send per group. Responses cannot be created in the global scope
-   * @param {Request} testResponse
-   * @param {Request} controlResponse
-   */
-  const testResponse = new Response('Test group')
-  const controlResponse = new Response('Control group')
-  let group = Math.random() < 0.5 ? 'test' : 'control'
-  let isNew = false
-  let response
+  const NAME = 'experiment-0'
+  // Responses below are place holders, you could set up
+  // a custom path for each test (e.g. /control/somepath )
+  const TEST_RESPONSE = new Response('Test group') // fetch('/test/sompath', request)
+  const CONTROL_RESPONSE = new Response('Control group') // fetch('/control/sompath', request)
+  // Determine which group this requester is in.
   const cookie = request.headers.get('cookie')
-  if (cookie && cookie.includes('group=control')) {
-    group = 'control'
-  } else if (cookie && cookie.includes('group=test')) {
-    group = 'test'
+  if (cookie && cookie.includes(`${NAME}=control`)) {
+    return CONTROL_RESPONSE
+  } else if (cookie && cookie.includes(`${NAME}=test`)) {
+    return TEST_RESPONSE
   } else {
-    isNew = true
+    // if no cookie then this is a new client, decide a group and set the cookie
+    let group = Math.random() < 0.5 ? 'test' : 'control' // 50/50 split
+    let response = group === 'control' ? CONTROL_RESPONSE : TEST_RESPONSE
+    response.headers.append('Set-Cookie', `${NAME}=${group}; path=/`)
+    return response
   }
-  if (group === 'test') {
-    response = testResponse
-  } else if (group === 'control') {
-    response = controlResponse
-  }
-  if (isNew) {
-    response.headers.append('Set-Cookie', `group=${group}; path=/`)
-  }
-  return response
 }
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
 '''
+demo_url = "https://cloudflareworkers.com/#12a2962014e1324e3a416a5a76e1f81f:https://tutorial.cloudflareworkers.com"
