@@ -50,7 +50,7 @@ figure.template-card h2 {
   font-family: 'Open Sans';
   line-height: 16px;
   padding: 2px 10px 2px 10px;
-  font-size: x-small;
+  font-size: small;
 }
 .template-card .tag-group > button.Enterprise {
   color: #bf223c;
