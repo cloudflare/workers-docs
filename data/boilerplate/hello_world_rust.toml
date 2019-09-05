@@ -3,3 +3,4 @@ description = "Simple Hello World in Rust"
 repository_url = "https://github.com/cloudflare/rustwasm-worker-template"
 demo_url = "https://cloudflareworkers.com/#1992963c14c25bc8dc4c50f4cab740e5:https://tutorial.cloudflareworkers.com"
 weight = 98
+tags = ['Originless', 'Wasm']

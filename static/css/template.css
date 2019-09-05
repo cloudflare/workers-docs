@@ -25,19 +25,48 @@ section.template-wrapper {
 }
 
 figure.template-card {
-  margin: 0;
-  padding: 16px;
   border: 1px solid #ccc;
   border-top-width: 3px;
   border-radius: 5px;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px #eaebeb;
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
+  margin: 0;
+  padding: 0 16px 16px 16px;
 }
 figure.template-card h2 {
   margin: 0;
   margin-bottom: 8px;
   font-size: 22px;
+}
+.template-card .tag-group {
+  margin: 0.5em 0 0.5em 0;
+}
+
+.template-card .tag-group > button {
+  border-radius: 100px;
+  font-family: 'Open Sans';
+  line-height: 16px;
+  padding: 2px 10px 2px 10px;
+  font-size: small;
+}
+.template-card .tag-group > button.Enterprise {
+  color: #bf223c;
+  background: #fcf0f2;
+}
+.template-card .tag-group > button.Originless {
+  color: #398557;
+  background: #eff8f3;
+}
+.template-card .tag-group > button.Middleware {
+  color: #6373b6;
+  background: #f1f3f8;
+}
+.template-card .tag-group > button.Wasm {
+  color: #bf223c;
+  background: #fcf0f2;
 }
 figure.template-card div.links {
   margin-top: 16px;
@@ -47,7 +76,6 @@ figure.template-card div.links a {
   flex: flex-end;
   white-space: nowrap;
 }
-
 .template-card .copy-group {
   min-height: 0;
   display: flex;
@@ -114,3 +142,4 @@ figure.template-card.boilerplate {
   color: var(--template-snippet-font-color);
   width: calc(100% + var(--template-snippet-border-color));
 }
+

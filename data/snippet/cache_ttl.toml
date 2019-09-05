@@ -25,3 +25,4 @@ addEventListener('fetch', event => {
 })
 """
 demo_url = "https://cloudflareworkers.com/#8dd3e29985701b05e43b4dd74c387b74:https://example.com/"
+tags = ['Middleware', 'Enterprise']

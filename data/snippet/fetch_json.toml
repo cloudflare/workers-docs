@@ -43,3 +43,4 @@ const url2 = someHost + '/requests/json'
 const type = 'application/json;charset=UTF-8'
 """
 demo_url = "https://cloudflareworkers.com/#a45261f6682b048d9ed0e23a330d9cdb:https://example.com"
+tags = ['Middleware']

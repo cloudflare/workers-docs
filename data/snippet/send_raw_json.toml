@@ -18,3 +18,4 @@ const someJSON = {
 }
 """
 demo_url = "https://cloudflareworkers.com/#83bc6debecf1dd443d3fabfbde0d2b3a:https://example.com"
+tags = ['Originless']

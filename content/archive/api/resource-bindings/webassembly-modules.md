@@ -3,7 +3,7 @@ title: "Binding WebAssembly modules"
 alwaysopen: false
 ---
 
-This page details how to bind a WebAssembly (WASM) Module to a script.
+This page details how to bind a WebAssembly (Wasm) Module to a script.
 
 In [Resource Bindings API](..) we describe how to use the upload script endpoint to upload a script with resource bindings.
 
@@ -24,7 +24,7 @@ where `metadata.json` contains
 {{</highlight>}}
 and `script.js` contains our script.
 
-Let's say we would like to provide our script with a WASM Module. First, you will need to submit the metadata for its binding.
+Let's say we would like to provide our script with a Wasm Module. First, you will need to submit the metadata for its binding.
 
 For example, here we’ll be storing the following metadata in metadata.json
 
@@ -74,7 +74,7 @@ In my Worker, I instantiate the WebAssembly module instance I will be using.
 let instance = new WebAssembly.Instance(isqrt, {})
 {{</highlight>}}
 
-To utilize the function defined by the WASM module, I then use `instance.exports` (which from my module includes the  `_Z7Q_rsqrtf` function:
+To utilize the function defined by the Wasm module, I then use `instance.exports` (which from my module includes the  `_Z7Q_rsqrtf` function:
 
 {{<highlight javascript>}}
 let squareroot = instance.exports._Z7Q_rsqrtf(number)
@@ -103,7 +103,7 @@ API call:
 In the API call to upload the script, I attach:
 
  - metadata: to define the bindings I will be sending through.
- - the [WASM file](/archive/api/resource-bindings/isqrt.wasm)
+ - the [Wasm file](/archive/api/resource-bindings/isqrt.wasm)
  - the script itself
 
 Non-Enterprise API:

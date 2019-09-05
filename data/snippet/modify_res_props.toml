@@ -37,3 +37,4 @@ const headerNameSrc = 'foo'//'Orig-Header'
 const headerNameDst = 'Last-Modified'
 """
 demo_url = "https://cloudflareworkers.com/#daf0e96ae0ff4ce3f103c14bf6d968df:http://workers-tooling.cf/demos/static/json"
+tags = ['Middleware']

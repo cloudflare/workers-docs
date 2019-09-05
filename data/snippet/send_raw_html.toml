@@ -30,3 +30,4 @@ const someHTML =  `<!DOCTYPE html>
 `
 """
 demo_url = "https://cloudflareworkers.com/#ba06ef26637ab98b1f38a18dc527dc69:https://example.com"
+tags = ['Originless']

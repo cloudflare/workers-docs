@@ -68,3 +68,4 @@ async function sha256(message) {
 }
 const someOtherHostname = 'my.herokuapp.com'
 """
+tags = ['Middleware']

@@ -1,3 +1,5 @@
 name = "Cloud Storage"
 description = "Serve private AWS bucket files from a Workers script."
 repository_url = "https://github.com/conzorkingkong/cloud-storage"
+
+tags = ['Middleware']

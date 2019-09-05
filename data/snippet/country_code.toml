@@ -26,4 +26,4 @@ const countryMap = {
   "EU": "https://eu.example.com/"
 }
 """
-demo_url = "N/A"
+tags = ['Originless']
