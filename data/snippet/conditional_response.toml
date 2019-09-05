@@ -19,16 +19,16 @@ async function handleRequest(request) {
   // On User Agent
   let userAgent = request.headers.get('User-Agent') || ''
   if (userAgent.includes('bot')) {
-    return new Response('BOT User Agent response', { status: 403 })
+    return new Response('Block User Agent containing bot', { status: 403 })
   }
   // On Client's IP address
   let clientIP = request.headers.get('CF-Connecting-IP')
-  if (clientIP === '2606:4700:ff02:8250:5c23:f51b:a5ff:67b1') {
-    return new Response('Response for IP')
+  if (clientIP === '1.2.3.4) {
+    return new Response('Block the IP 1.2.3.4, { status: 403 })
   }
   // On ASN
   if ((request.cf || {}).asn == 64512) {
-    return new Response('ASN response')
+    return new Response('Block the ASN 64512 response')
   }
   // On Device Type
   //  Requires Enterprise "CF-Device-Type Header" zone setting or
