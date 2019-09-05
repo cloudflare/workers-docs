@@ -232,6 +232,6 @@ If you enjoyed this tutorial, we encourage you to explore our other tutorials fo
 
 - [Build an Application](/tutorials/build-an-application)
 - [Build a Serverless Function](/tutorials/build-a-serverless-function)
-- [Build a Rust and WASM Function](/tutorials/build-a-rustwasm-function)
+- [Build a Rust and Wasm Function](/tutorials/build-a-rustwasm-function)
 
 If you want to get started building your own projects, check out the quick-start templates we've provided in our [Template Gallery](/templates).

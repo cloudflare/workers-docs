@@ -613,7 +613,7 @@ In this tutorial, you built and published a Cloudflare Workers application that 
 If you enjoyed this tutorial, we encourage you to explore our other tutorials for building on Cloudflare Workers:
 
 - [Build a Serverless Function](/tutorials/build-a-serverless-function)
-- [Build a Rust and WASM Function](/tutorials/build-a-rustwasm-function)
+- [Build a Rust and Wasm Function](/tutorials/build-a-rustwasm-function)
 - [Configure Your CDN](/tutorials/configure-your-cdn)
 
 

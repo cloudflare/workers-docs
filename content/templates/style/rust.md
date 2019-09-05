@@ -1,6 +1,6 @@
 #Rust Style Guide
 
-If you are using WASM and write in Rust, your template should adhere to rustfmt and clippy.
+If you are using Wasm and write in Rust, your template should adhere to rustfmt and clippy.
 
 ## Configuring rustfmt
 

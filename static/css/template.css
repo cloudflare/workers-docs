@@ -64,7 +64,7 @@ figure.template-card h2 {
   color: #6373b6;
   background: #f1f3f8;
 }
-.template-card .tag-group > button.WASM {
+.template-card .tag-group > button.Wasm {
   color: #bf223c;
   background: #fcf0f2;
 }
@@ -142,3 +142,4 @@ figure.template-card.boilerplate {
   color: var(--template-snippet-font-color);
   width: calc(100% + var(--template-snippet-border-color));
 }
+

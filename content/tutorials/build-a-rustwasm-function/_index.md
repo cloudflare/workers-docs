@@ -1,5 +1,5 @@
 ---
-title: 'Build a Rust and WASM Function'
+title: 'Build a Rust and Wasm Function'
 ---
 
 This tutorial will walk you through the steps of generating, building, previewing, configuring, and publishing
@@ -115,7 +115,7 @@ If `wrangler preview --watch` is running, you'll see the output of your Rust pro
 
 ## Publish
 
-And with that, you're finished writing a Cloudflare Workers function with Rust-generated WASM!
+And with that, you're finished writing a Cloudflare Workers function with Rust-generated Wasm!
 
 Wrangler has built-in support for bundling, uploading, and releasing your Cloudflare Workers application. To do this, we'll run `wrangler publish`, which will _build_ and _publish_ your code:
 
