@@ -35,4 +35,6 @@ export const newDocsMap = new Map([
   ['/reference/runtime/apis/standard', '/reference/apis/standard'],
   ['/reference/runtime/apis/streams', '/reference/apis/streams'],
   ['/reference/runtime/apis/web-crypto', '/reference/apis/web-crypto'],
+
+  ['/reference/storage/overview/writing-data', '/reference/storage/writing-data'],
 ])

@@ -19,7 +19,6 @@ async function handleRequest(request) {
     // ensure any requests to /dir/index.html redirect
     // to /dir/ immediately
     if (pathname.endsWith('index.html')) {
-      console.log('index ', pathname)
       const url = request.url.replace(/\/*index.html\/*/i, '/')
       return Response.redirect(url, 301)
     }
@@ -29,7 +28,6 @@ async function handleRequest(request) {
     // ensure all directories are redirected with a trailing
     // slash
     if (!path.endsWith('/') && is_directory(path)) {
-      console.log('path', path)
       return Response.redirect(request.url + '/', 301)
     }
 
