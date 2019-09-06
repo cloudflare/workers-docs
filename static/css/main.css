@@ -13,3 +13,42 @@ a.quick-start {
   margin: -8px 0 0 16px;
   padding: 10px 16px;
 }
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  background-color: #555;
+  bottom: 125%;
+  border-radius: 6px;
+  color: #fff;
+  left: 50%;
+  min-width: 142px;
+  margin-left: -71px;
+  padding: 5px 5px;
+  position: absolute;
+  opacity: 0;
+  text-align: center;
+  transition: opacity 0.3s;
+  visibility: hidden;
+  white-space: normal;
+  z-index: 9999999999;
+}
+
+/* Bottom carrot of the tooltip */
+.tooltip .tooltiptext::after {
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+  content: '';
+  left: 50%;
+  margin-left: -5px;
+  position: absolute;
+  top: 100%;
+}
+
+.tooltip:hover .tooltiptext {
+  opacity: 1;
+  visibility: visible;
+}

@@ -68,6 +68,21 @@ figure.template-card h2 {
   color: #bf223c;
   background: #fcf0f2;
 }
+.tooltip.Originless .tooltiptext:before {
+  content: 'Does not require a backend server';
+}
+.tooltip.Wasm .tooltiptext:before {
+  content: 'Uses WebAssembly';
+}
+.tooltip.Middleware .tooltiptext:before {
+  content: 'Modifies behavior of a backend server';
+}
+.tooltip.Enterprise .tooltiptext:before {
+  content: 'Some content restricted to Enterprise plans';
+}
+.tooltip.Business .tooltiptext:before {
+  content: 'Some content restricted Business plans or above';
+}
 figure.template-card div.links {
   margin-top: 16px;
 }
@@ -142,4 +157,3 @@ figure.template-card.boilerplate {
   color: var(--template-snippet-font-color);
   width: calc(100% + var(--template-snippet-border-color));
 }
-

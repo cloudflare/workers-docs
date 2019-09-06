@@ -1,7 +1,7 @@
 <figure class="template-card boilerplate">
   <div class="tag-group">
     {{ range.tags }}
-    <button class="{{.}}">{{.}}</button>
+    <button class="tooltip {{.}}"><span class="tooltiptext"></span>{{.}}</button>
     {{ end }}
   </div>
   <h2>
