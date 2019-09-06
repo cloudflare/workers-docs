@@ -2,6 +2,7 @@ name = "Conditional Response"
 description = "Return a response based on the incoming request's URL, HTTP method, User Agent, IP address, ASN or device type (e.g. mobile)"
 code = """const BLOCKED_HOSTNAMES = ['nope.mywebsite.com', 'bye.website.com']
 async function handleRequest(request) {
+  // Return a new Response based on..
   // On URL's hostname
   let url = new URL(request.url)
   if (BLOCKED_HOSTNAMES.includes(url.hostname)) {
@@ -23,8 +24,8 @@ async function handleRequest(request) {
   }
   // On Client's IP address
   let clientIP = request.headers.get('CF-Connecting-IP')
-  if (clientIP === '1.2.3.4) {
-    return new Response('Block the IP 1.2.3.4, { status: 403 })
+  if (clientIP === '1.2.3.4') {
+    return new Response('Block the IP 1.2.3.4', { status: 403 })
   }
   // On ASN
   if ((request.cf || {}).asn == 64512) {
@@ -46,4 +47,5 @@ addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
 """
-demo_url="https://cloudflareworkers.com/#c5c6e6156a4cb662cc19468f1f9f95bf:https://nope.mywebsite.com/"
+demo_url="https://cloudflareworkers.com/#cec6695f67232bc76e3f396fcb2d5cc7:https://nope.mywebsite.com/"
+tags=['Enterprise']
