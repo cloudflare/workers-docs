@@ -1,3 +1,8 @@
+/**
+ * gets the path to look up in KV
+ * e.g. /dir/ -> dir/index.html
+ * @param {*} path
+ */
 export function normalize_path(path) {
   // strip first slash
   path = path.replace(/^\/+/, '')
@@ -12,7 +17,6 @@ export function normalize_path(path) {
     return path
   }
 }
-
 export function is_directory(path) {
   const bits = path.split('/')
   const last = bits[bits.length - 1]
