@@ -73,7 +73,7 @@ export const oldDocsMap = new Map([
   ['/writing-workers', ''],
   ['/writing-workers/blog-posts', ''],
   ['/writing-workers/debugging-tips', '/about/tips/debugging'],
-  ['/writing-workers/handling-errors', ''],
+  ['/writing-workers/handling-errors', '/about/tips/debugging#4-go-to-origin-on-error'],
   ['/writing-workers/resource-limits', '/about/limits'],
   ['/writing-workers/storing-data', ''],
   ['/writing-workers/using-npm-modules', ''],
