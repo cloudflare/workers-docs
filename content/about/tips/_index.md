@@ -7,3 +7,5 @@ weight: 5
 - [Signing Requests](/about/tips/signing-requests)
 - [The Request Context](/about/tips/request-context)
 - [The FetchEvent Life Cycle](/about/tips/fetch-event-lifecycle)
+- [Debugging](/about/tips/debugging)
+- [Logging Headers](/about/tips/headers)

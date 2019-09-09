@@ -34,6 +34,7 @@ function postLog(data) {
   })
 }
 """
+tags= [ 'Middleware']
 demo_url = "https://cloudflareworkers.com/#fa999227c88fad33bc917235c48c11f6:https://bla.cloudflareworkers.com/"
 tutorial = "/about/tips/debugging"
 

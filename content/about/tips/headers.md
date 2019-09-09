@@ -1,3 +1,8 @@
+---
+title: 'Logging Headers'
+weight: 10
+---
+
 ## Console-logging Headers
 
 **TL;DR:** Use a Map if you just need to log a Headers object to the console:

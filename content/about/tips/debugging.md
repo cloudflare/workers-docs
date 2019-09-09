@@ -1,6 +1,6 @@
 ---
 title: 'Debugging Tips'
-weight: 20
+weight: 1
 ---
 
 - [Debug tips](#debug-tips)
