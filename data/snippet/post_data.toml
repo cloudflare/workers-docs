@@ -1,5 +1,5 @@
-name = "Form Data"
-description = "Serve an HTML form, then read POSTs from that form data."
+name = "Read POST Data"
+description = "Serves an HTML form, then reads POSTs from that form data. Can also be used to read JSON or other POST data from an incoming request."
 code = """async function handlePostRequest(request) {
   let reqBody = await readRequestBody(request)
   let retBody = `The request body sent in was ${reqBody}`
