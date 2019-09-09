@@ -2,7 +2,9 @@
 title: 'Transforming Apps with HTMLRewriter'
 ---
 
-The `HTMLRewriter` class built into the Cloudflare Workers runtime allows for parsing and rewriting of HTML at the edge, giving developers the ability to efficiently and transparently customize their Workers applications. In this tutorial, we'll build an _internalization_ engine (referred to as `i18n`) for your application, automatically translating the content of your site depending on where your visitors are in the world.
+The `HTMLRewriter` class built into the Cloudflare Workers runtime allows for parsing and rewriting of HTML at the edge, giving developers the ability to efficiently and transparently customize their Workers applications. In this tutorial, we'll build an _internationalization_ engine (commonly referred to as `i18n`) for your application, automatically translating the content of your site depending on where your visitors are in the world.
+
+[![Demo Image](/tutorials/transforming-apps-using-htmlrewriter/i18n.jpg)](https://i18n-example.signalnerve.com)
 
 This tutorial makes use of [Wrangler](https://github.com/cloudflare/wrangler), our command-line tool for generating, building, and publishing projects on the Cloudflare Workers platform. If you haven't used Wrangler, we recommend checking out the ["Installing the CLI"](/quickstart/cli-setup) part of our [Quick Start guide](/quickstart), which will get you set up with Wrangler, and familiar with the basic commands.
 
@@ -21,7 +23,7 @@ This tutorial is designed to be built using a prior application – I'll use `i
 
 ## Generate a project
 
-Cloudflare's command-line tool for managing Worker projects, Wrangler, has great support for templates – pre-built collections of code that make it easy to get started writing Workers. We'll make use of the [static site template] to start building your project.
+Cloudflare's command-line tool for managing Worker projects, Wrangler, has great support for templates – pre-built collections of code that make it easy to get started writing Workers. We'll make use of the [default template](https://github.com/cloudflare/worker-template) to start building your project.
 
 In the command line, generate your Workers project, and pass the project name `i18n-example`:
 
@@ -61,9 +63,9 @@ The `HTMLRewriter` class provided in the Workers runtime allows developers to pa
 
 In our example (find the source HERE TODO TODO, we have a basic single-page website. There are a number of clear pieces of text: an `h1` element, with the text "Example Site", and a number of `p` elements with different text:
 
-(img)
+![Demo Code](/tutorials/transforming-apps-using-htmlrewriter/code-example.png)
 
-What is unique about this page is the addition of [data attributes](https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes) in the HTML – custom attributes defined on a number of elements on this page. The `data-i18n-key` on the `h1` tag on this page, as well as many of the `p` tags, indicates that there is a corresponding internalization key, which should be used to look up a translation for this text:
+What is unique about this page is the addition of [data attributes](https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes) in the HTML – custom attributes defined on a number of elements on this page. The `data-i18n-key` on the `h1` tag on this page, as well as many of the `p` tags, indicates that there is a corresponding internationalization key, which should be used to look up a translation for this text:
 
 ```html
 <!-- source clipped from i18n-example site -->
@@ -117,8 +119,8 @@ In "How it works", I showed the usage of `data-i18n-key`, a custom data attribut
 
 ```js
 class ElementHandler {
-  element(token) {
-    const i18nKey = token.getAttribute('data-i18n-key')
+  element(element) {
+    const i18nKey = element.getAttribute('data-i18n-key')
   }
 }
 ```
@@ -131,8 +133,8 @@ const strings = {
 }
 
 class ElementHandler {
-  element(token) {
-    const i18nKey = token.getAttribute('data-i18n-key')
+  element(element) {
+    const i18nKey = element.getAttribute('data-i18n-key')
     const string = strings[i18nKey]
   }
 }
@@ -146,11 +148,11 @@ const strings = {
 }
 
 class ElementHandler {
-  element(token) {
-    const i18nKey = token.getAttribute('data-i18n-key')
+  element(element) {
+    const i18nKey = element.getAttribute('data-i18n-key')
     const string = strings[i18nKey]
     if (string) {
-      token.setInnerContent(string)
+      element.setInnerContent(string)
     }
   }
 }
@@ -160,7 +162,7 @@ To check that everything looks like you'd expect, it could be a good time to use
 
 We can expand on this simple translation functionality to provide country-specific translations, based on the incoming request's header: because every Workers application is served from Cloudflare's edge network, every Workers request will contain a `CF-IPCounty` header, representing the [ISO 3166] country code of the user. By taking this header and passing it into our `ElementHandler`, we can retrieve a translated string in our user's home language, provided that it's defined in `strings`.
 
-To implement this, we'll update the `strings` object, adding a second layer of key-value pairs, and allowing strings to be looked up in the format `strings[country][key]`. In addition, we'll pass the `country` into our `ElementHandler`, so that it can be used during the parsing process. Finally, we'll grab the `CF-IPCountry` header from an incoming request, in `handleRequest`, tying the example together. Our final code for the project, with an included sample translation for Germany (using Google Translate) looks like this:
+To implement this, we'll update the `strings` object, adding a second layer of key-value pairs, and allowing strings to be looked up in the format `strings[country][key]`. In addition, we'll pass a `countryStrings` object into our `ElementHandler`, so that it can be used during the parsing process. Finally, we'll grab the `CF-IPCountry` header from an incoming request, in `handleRequest`, tying the example together. Our final code for the project, with an included sample translation for Germany (using Google Translate) looks like this:
 
 ```js
 addEventListener('fetch', event => {
@@ -181,16 +183,16 @@ const strings = {
 }
 
 class ElementHandler {
-  constructor(country) {
-    this.country = country
+  constructor(countryStrings) {
+    this.countryStrings = countryStrings
   }
 
-  element(token) {
-    const i18nKey = token.getAttribute('data-i18n-key')
+  element(element) {
+    const i18nKey = element.getAttribute('data-i18n-key')
     if (i18nKey) {
-      const translation = strings[this.country] && strings[this.country][i18nKey]
+      const translation = this.countryStrings && this.countryStrings[i18nKey]
       if (translation) {
-        token.setInnerContent(translation)
+        element.setInnerContent(translation)
       }
     }
   }
@@ -199,13 +201,16 @@ class ElementHandler {
 async function handleRequest(request) {
   const response = await fetch(request)
   country = request.headers.get('CF-IPCountry')
-  return new HTMLRewriter().on('*', new ElementHandler(country)).transform(response)
+  const countryStrings = strings[country]
+  return new HTMLRewriter().on('*', new ElementHandler(countryStrings)).transform(response)
 }
 ```
 
 ## Publish
 
-Our simple i18n tool built on Cloudflare Workers is complete, and it's time to deploy it to your domain! This tutorial assumes that you already have a domain hosted on Cloudflare – check out ["Getting Started with Cloudflare"](https://support.cloudflare.com/hc/en-us/articles/360027989951-Getting-Started-with-Cloudflare) for instructions, if you need to add a domain. Note that the example website, pictured below, is open-source, if you don't have an existing site you'd like to test with:  TODO DEMO SCREENSHOT
+Our simple i18n tool built on Cloudflare Workers is complete, and it's time to deploy it to your domain! This tutorial assumes that you already have a domain hosted on Cloudflare – check out ["Getting Started with Cloudflare"](https://support.cloudflare.com/hc/en-us/articles/360027989951-Getting-Started-with-Cloudflare) for instructions, if you need to add a domain. Note that the example website, pictured below, is open-source, if you don't have an existing site you'd like to test with:
+
+[![Demo Image](/tutorials/transforming-apps-using-htmlrewriter/i18n.jpg)](https://i18n-example.signalnerve.com)
 
 With a configured zone, add your Cloudflare account and zone IDs to your project's `wrangler.toml`. If you need help finding your account and zone ID, check out the ["Configure" section](https://developers.cloudflare.com/workers/quickstart/#account-id-and-zone-id) of our Quick Start! In addition to `account_id` and `zone_id`, you need to define a `route`, which tells Workers where you'd like your application to run on your site. For instance, if my website is at `i18n-example.signalnerve.com`, I'll choose `i18n-example.signalnerve.com/*`, indicating that I'd like the Workers application to run over top of my _entire_ application, matching every possible route:
 
