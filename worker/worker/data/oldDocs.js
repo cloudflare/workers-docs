@@ -72,7 +72,7 @@ export const oldDocsMap = new Map([
   ['/webassembly/tutorial', ''],
   ['/writing-workers', ''],
   ['/writing-workers/blog-posts', ''],
-  ['/writing-workers/debugging-tips', ''],
+  ['/writing-workers/debugging-tips', '/about/tips/debugging'],
   ['/writing-workers/handling-errors', ''],
   ['/writing-workers/resource-limits', '/about/limits'],
   ['/writing-workers/storing-data', ''],
