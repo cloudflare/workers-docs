@@ -91,7 +91,7 @@ figure.template-card div.links {
   display: flex;
 }
 figure.template-card div.links a {
-  margin-right: 12px;
+  margin-right: 18px;
   flex: flex-end;
   display: flex;
   align-items: center;
