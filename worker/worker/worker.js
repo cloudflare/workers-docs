@@ -16,9 +16,17 @@ async function handleRequest(request) {
     var parsedUrl = new URL(request.url)
     var pathname = parsedUrl.pathname
     pathname = pathname.replace('/workers', '')
+    // ensure any requests to /dir/index.html redirect
+    // to /dir/ immediately
+    if (pathname.endsWith('index.html')) {
+      const url = request.url.replace(/\/*index.html\/*/i, '/')
+      return Response.redirect(url, 301)
+    }
 
     var path = normalize_path(pathname)
 
+    // ensure all directories are redirected with a trailing
+    // slash
     if (!path.endsWith('/') && is_directory(path)) {
       return Response.redirect(request.url + '/', 301)
     }
