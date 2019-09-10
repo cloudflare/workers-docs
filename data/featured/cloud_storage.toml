@@ -1,5 +1,6 @@
 name = "Cloud Storage"
-description = "Serve private AWS bucket files from a Workers script."
+description = "Serve private AWS bucket files from a Worker script"
 repository_url = "https://github.com/conzorkingkong/cloud-storage"
 
 tags = ['Middleware']
+tutorial="featured_boilerplates/graphql"
