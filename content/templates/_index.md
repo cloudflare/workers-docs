@@ -9,7 +9,7 @@ weight: 3
 <div style="display: flex">
   <div style="flex: 2; margin-right: 16px;">
     <label style="font-weight: normal; color: #666;">Search templates</label>
-    <input id="search" placeholder="🔎 Search by template name, category, or other details" style="padding: 10px; width: 100%"></input>
+    <input id="search" placeholder="🔎 Search by template name or other details" style="padding: 10px; width: 100%"></input>
   </div>
   <div style="flex: 1; margin-right: 16px;">
     <label style="font-weight: normal; color: #666;">Type</label>
@@ -22,21 +22,28 @@ weight: 3
   </div>
 </div>
 
-<h2 style="padding-bottom: 20px">Boilerplates</h2>
-{{< boilerplates >}}
+<div id="empty" style="display: none; margin-top: 20px;">
+<p>No results were found for your search. Try adjusting your search or <a href="#" id="start_over">start over</a>.</p>
+</div>
 
-<h2 style="padding-bottom: 20px">Snippets</h2>
-{{< snippets >}}
+<div id="results">
+  <h2 style="padding-bottom: 20px">Boilerplates</h2>
+  {{< boilerplates >}}
 
-<h2 style="padding-bottom: 20px">Featured Projects</h2>
-{{< featured_boilerplates >}}
+  <h2 style="padding-bottom: 20px">Snippets</h2>
+  {{< snippets >}}
+
+  <h2 style="padding-bottom: 20px">Featured Projects</h2>
+  {{< featured_boilerplates >}}
 
 The gallery is actively growing. The [template creator](https://github.com/victoriabernard92/workers-template-creator) allows you to share templates. Host a public repo, and then run `wrangler generate https://github.com/<your-repo>`.
 
 For archived recipes, see [the old docs](https://developers.cloudflare.com/workers/recipes/).
 
+</div>
+
 <script src="https://unpkg.com/lunr/lunr.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.core.min.js" integrity="sha256-yEkk5ZYVs/fZgvxWU+sCb8bHTk9jScxIaZQD+CZ4vcg=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js" integrity="sha256-VeNaFBVDhoX3H+gJ37DpT/nTuZTdjYro9yBruHjVmoQ=" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 <script>

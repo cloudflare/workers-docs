@@ -25,17 +25,28 @@ window.idx = idx
 
 const search = query => {
   if (query) {
-    const opts = idx.search(query).map(result => result.ref)
+    const opts = idx.search(`${query}*`).map(result => result.ref)
     results = corpus.filter(item => opts.includes(item.id))
   } else {
     results = corpus
   }
-  processSearch()
+  if (results.length) {
+    processSearch()
+  } else {
+    processEmpty()
+  }
 }
 
 let results = corpus
 
 const processSearch = () => {
+  const resultsContainer = document.querySelector('#results')
+  resultsContainer.style.display = 'block'
+
+  const empty = document.querySelector('#empty')
+  empty.style.display = 'none'
+  empty.style.marginBottom = null
+
   const templates = document.querySelectorAll('.template-card')
   templates.forEach(
     elem =>
@@ -43,8 +54,19 @@ const processSearch = () => {
   )
 }
 
-document.querySelector('#search').addEventListener('input', evt => {
-  const value = evt.target.value
+const processEmpty = () => {
+  const resultsContainer = document.querySelector('#results')
+  resultsContainer.style.display = 'none'
+
+  const empty = document.querySelector('#empty')
+  empty.style.display = 'block'
+  // hack to fix rendering of select
+  empty.style.marginBottom = '999px'
+}
+
+const handleNewSearchValue = _.throttle(value => {
+  document.querySelector('#search').value = value
+
   search(value)
 
   const params = new URLSearchParams(location.search)
@@ -55,6 +77,11 @@ document.querySelector('#search').addEventListener('input', evt => {
     params.delete('q')
     window.history.replaceState({}, '', location.pathname)
   }
+}, 500)
+
+document.querySelector('#search').addEventListener('input', evt => {
+  const value = evt.target.value
+  handleNewSearchValue(value)
 })
 
 const searchFilters = evt => {
@@ -73,6 +100,9 @@ typeElem.addEventListener('change', searchFilters)
 const url = new URL(window.location)
 const initialSearch = url.searchParams.get('q')
 if (initialSearch) {
-  document.querySelector('#search').value = initialSearch
-  search(initialSearch)
+  handleNewSearchValue(initialSearch)
 }
+
+const startOver = document.querySelector('#start_over').addEventListener('click', evt => {
+  handleNewSearchValue('')
+})
