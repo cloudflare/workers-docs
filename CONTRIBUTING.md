@@ -35,7 +35,7 @@ If you have any questions that _aren't_ answered by this contribution guide, let
 
 * Please read the Template Gallery [contribution guide](content/templates/CONTRIBUTING.md).
 
-#### **Do you want to fix or replace information that is archived?**
+#### **Do you want to migrate archived documentation to the new docs?**
 
  Any page containing `/archive` in the path is considered archived.
 
