@@ -48,16 +48,22 @@ document.querySelector('#search').addEventListener('input', evt => {
   search(value)
 })
 
-const categoriesElem = document.querySelector('#categories')
-const categories = new Choices(categoriesElem)
-categoriesElem.addEventListener('change', evt => {
+const searchFilters = evt => {
   const value = evt.detail.value
   search(value === 'All' ? null : value)
-})
+}
+
+const categoriesElem = document.querySelector('#categories')
+const categories = new Choices(categoriesElem)
+categoriesElem.addEventListener('change', searchFilters)
 
 const typeElem = document.querySelector('#type')
 const type = new Choices(typeElem)
-typeElem.addEventListener('change', evt => {
-  const value = evt.detail.value
-  search(value === 'All' ? null : value)
-})
+typeElem.addEventListener('change', searchFilters)
+
+const url = new URL(window.location)
+const initialSearch = url.searchParams.get('q')
+if (initialSearch) {
+  document.querySelector('#search').value = initialSearch
+  search(initialSearch)
+}
