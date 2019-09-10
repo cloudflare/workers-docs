@@ -62,9 +62,9 @@ const searchFilters = evt => {
   search(value === 'All' ? null : value)
 }
 
-const categoriesElem = document.querySelector('#categories')
-const categories = new Choices(categoriesElem)
-categoriesElem.addEventListener('change', searchFilters)
+// const categoriesElem = document.querySelector('#categories')
+// const categories = new Choices(categoriesElem)
+// categoriesElem.addEventListener('change', searchFilters)
 
 const typeElem = document.querySelector('#type')
 const type = new Choices(typeElem)

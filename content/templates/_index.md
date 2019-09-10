@@ -9,7 +9,7 @@ weight: 3
 <div style="display: flex">
   <div style="flex: 2; margin-right: 16px;">
     <label style="font-weight: normal; color: #666;">Search templates</label>
-    <input id="search" style="padding: 10px; width: 100%"></input>
+    <input id="search" placeholder="🔎 Search by template name, category, or other details" style="padding: 10px; width: 100%"></input>
   </div>
   <div style="flex: 1; margin-right: 16px;">
     <label style="font-weight: normal; color: #666;">Type</label>
@@ -17,32 +17,19 @@ weight: 3
       <option>All</option>
       <option>Boilerplates</option>
       <option>Snippets</option>
-      <option>Featured</option>
-    </select>
-  </div>
-  <div style="flex: 1; margin-right: 16px;">
-    <label style="font-weight: normal; color: #666;">Categories</label>
-    <select id="categories" style="width: 100%">
-      <option>All</option>
-      <option>Originless</option>
-      <option>Middleware</option>
-      <option>Enterprise</option>
-      <option>Paid</option>
-      <option>Free</option>
+      <option value="featured_boilerplates">Featured</option>
     </select>
   </div>
 </div>
 
-<h2>Boilerplates</h2>
+<h2 style="padding-bottom: 20px">Boilerplates</h2>
 {{< boilerplates >}}
 
-<h2>Snippets</h2>
+<h2 style="padding-bottom: 20px">Snippets</h2>
 {{< snippets >}}
 
-<h2>Featured Projects</h2>
+<h2 style="padding-bottom: 20px">Featured Projects</h2>
 {{< featured_boilerplates >}}
-
-<div id="templates"></div>
 
 The gallery is actively growing. The [template creator](https://github.com/victoriabernard92/workers-template-creator) allows you to share templates. Host a public repo, and then run `wrangler generate https://github.com/<your-repo>`.
 
