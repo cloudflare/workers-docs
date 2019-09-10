@@ -14,6 +14,7 @@ const idx = lunr(function() {
   this.field('name')
   this.field('description')
   this.field('type')
+  this.field('tags')
 
   corpus.forEach(function(doc) {
     this.add(doc)
@@ -22,7 +23,15 @@ const idx = lunr(function() {
 
 window.idx = idx
 
-const search = query => idx.search(query).map(result => result.ref)
+const search = query => {
+  if (query) {
+    const opts = idx.search(query).map(result => result.ref)
+    results = corpus.filter(item => opts.includes(item.id))
+  } else {
+    results = corpus
+  }
+  processSearch()
+}
 
 let results = corpus
 
@@ -36,7 +45,19 @@ const processSearch = () => {
 
 document.querySelector('#search').addEventListener('input', evt => {
   const value = evt.target.value
-  const query = search(value)
-  results = corpus.filter(item => query.includes(item.id))
-  processSearch()
+  search(value)
+})
+
+const categoriesElem = document.querySelector('#categories')
+const categories = new Choices(categoriesElem)
+categoriesElem.addEventListener('change', evt => {
+  const value = evt.detail.value
+  search(value === 'All' ? null : value)
+})
+
+const typeElem = document.querySelector('#type')
+const type = new Choices(typeElem)
+typeElem.addEventListener('change', evt => {
+  const value = evt.detail.value
+  search(value === 'All' ? null : value)
 })
