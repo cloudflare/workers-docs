@@ -24,7 +24,7 @@ When a Worker running in production has an error that prevents it from returning
 
 # Debug tips
 
-Ideally, you write and test your Worker in the [playground](/tooling/playgroung) using `wrangler preview` or directly. The playground includes a JavaScript console where you can see debugging info like `console.log()`s and uncaught exceptions. Hopefully, you can get your script working entirely in the playground before pushing.
+Ideally, you write and test your Worker in the [playground](/tooling/playground) using `wrangler preview` or directly. The playground includes a JavaScript console where you can see debugging info like `console.log()`s and uncaught exceptions. Hopefully, you can get your script working entirely in the playground before pushing.
 
 However, due to technical limitations, the playground doesn't always exactly produce what will happen in production. If you run into problems not seen in the playground, `console.log()` does not log anywhere and uncaught exceptions produce a generic error page (error code 1101). We therefore recommend deploying your script to a test or "staging" site before making it live on your real site. You can set up a staging environment with a free [workers.dev](/about/routes/#workers-dev) subdomain.
 
