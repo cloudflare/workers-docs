@@ -65,11 +65,8 @@ const processEmpty = () => {
 }
 
 const handleNewSearchValue = _.throttle(value => {
-  document.querySelector('#search').value = value
-
-  search(value)
-
   const params = new URLSearchParams(location.search)
+
   if (value.length) {
     params.set('q', value)
     window.history.replaceState({}, '', `${location.pathname}?${params}`)
@@ -77,6 +74,14 @@ const handleNewSearchValue = _.throttle(value => {
     params.delete('q')
     window.history.replaceState({}, '', location.pathname)
   }
+
+  document.querySelector('#search').value = value
+
+  if (value.length && value.length < 3) {
+    return
+  }
+
+  search(value)
 }, 500)
 
 document.querySelector('#search').addEventListener('input', evt => {
