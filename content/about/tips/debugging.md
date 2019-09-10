@@ -87,7 +87,7 @@ function postLog(data) {
 ### 4. Go to Origin on Error
 
 Often, if your Worker isn’t doing security-critical activities, it makes sense for it to act as if it’s not
-installed at all if it errors. This allows you to install logging, tracking, or other minor Workers without
+installed at all, if it errors. This allows you to install logging, tracking, or other minor Workers without
 fearing they may break your underlying site. This behavior can be toggled on by calling `event.passThroughOnException()`:
 
 ```javascript
