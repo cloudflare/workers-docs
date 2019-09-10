@@ -46,6 +46,15 @@ const processSearch = () => {
 document.querySelector('#search').addEventListener('input', evt => {
   const value = evt.target.value
   search(value)
+
+  const params = new URLSearchParams(location.search)
+  if (value.length) {
+    params.set('q', value)
+    window.history.replaceState({}, '', `${location.pathname}?${params}`)
+  } else {
+    params.delete('q')
+    window.history.replaceState({}, '', location.pathname)
+  }
 })
 
 const searchFilters = evt => {
