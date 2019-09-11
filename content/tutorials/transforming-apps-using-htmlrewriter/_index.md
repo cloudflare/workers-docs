@@ -83,7 +83,7 @@ What is unique about this page is the addition of [data attributes](https://deve
 
 Using `HTMLRewriter`, we'll take this page and parse the HTML. When we find a `data-i18n-key`, we'll look up an internal `strings` object, using `data-i18n-key` to find a matching key, and retrieve the string translation. With `HTMLRewriter`, it's super easy to _query_ elements, for instance, to find a data attribute, but as the name suggests, we can also _rewrite_ elements: taking a translated string and directly inserting it into the HTML.
 
-Finally, it's shockingly easy to introduce one more cool feature into this project: based on the `CF-IPCountry` header, which is passed into every request by Cloudflare's network, we can set the translation language per-request, allowing users from around the world to see a locally-relevant and translated page. Neat!
+Finally, it's shockingly easy to introduce one more cool feature into this project: based on the `Accept-Language` header, which exists on incoming requests, we can set the translation language per-request, allowing users from around the world to see a locally-relevant and translated page. Neat!
 
 ## Using the HTML Rewriter
 
@@ -160,17 +160,27 @@ class ElementHandler {
 
 To check that everything looks like you'd expect, it could be a good time to use the preview functionality built into Wrangler. Call `wrangler preview --watch` to open up a live preview of your project, refreshed after every code change that you make.
 
-We can expand on this simple translation functionality to provide country-specific translations, based on the incoming request's header: because every Workers application is served from Cloudflare's edge network, every Workers request will contain a `CF-IPCounty` header, representing the [ISO 3166] country code of the user. By taking this header and passing it into our `ElementHandler`, we can retrieve a translated string in our user's home language, provided that it's defined in `strings`.
+We can expand on this simple translation functionality to provide country-specific translations, based on the incoming request's `Accept-Language` header. By taking this header, parsing it, and passing the parsed language into our `ElementHandler`, we can retrieve a translated string in our user's home language, provided that it's defined in `strings`.
 
-To implement this, we'll update the `strings` object, adding a second layer of key-value pairs, and allowing strings to be looked up in the format `strings[country][key]`. In addition, we'll pass a `countryStrings` object into our `ElementHandler`, so that it can be used during the parsing process. Finally, we'll grab the `CF-IPCountry` header from an incoming request, in `handleRequest`, tying the example together. Our final code for the project, with an included sample translation for Germany (using Google Translate) looks like this:
+To implement this, we'll update the `strings` object, adding a second layer of key-value pairs, and allowing strings to be looked up in the format `strings[country][key]`. In addition, we'll pass a `countryStrings` object into our `ElementHandler`, so that it can be used during the parsing process. Finally, we'll grab the `Accept-Language` header from an incoming request, parse it, and pass the parsed language to `ElementHandler`.
+
+To parse the `Accept-Language` header, we'll install the [`accept-language-parser`](https://www.npmjs.com/package/accept-language-parser) NPM package:
+
+```sh
+npm i accept-language-parser
+```
+
+Once imported into our code, we can use it to parse the most relevant language for a client based on `Accept-Language` header, and pass it to `ElementHandler`. Our final code for the project, with an included sample translation for Germany (using Google Translate) looks like this:
 
 ```js
+import parser from 'accept-language-parser'
+
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
 
 const strings = {
-  DE: {
+  de: {
     title: 'Beispielseite',
     headline: 'Beispielseite',
     subtitle:
@@ -199,10 +209,15 @@ class ElementHandler {
 }
 
 async function handleRequest(request) {
+  const languageHeader = request.headers.get('Accept-Language')
+  const language = parser.pick(['de'], languageHeader)
+  const countryStrings = strings[language]
+
   const response = await fetch(request)
-  country = request.headers.get('CF-IPCountry')
-  const countryStrings = strings[country]
-  return new HTMLRewriter().on('*', new ElementHandler(countryStrings)).transform(response)
+
+  return new HTMLRewriter()
+    .on('*', new ElementHandler(countryStrings))
+    .transform(response)
 }
 ```
 
