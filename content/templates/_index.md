@@ -36,9 +36,9 @@ weight: 3
   <h2 style="padding-bottom: 20px">Featured Projects</h2>
   {{< featured_boilerplates >}}
 
-The gallery is actively growing. The [template creator](https://github.com/victoriabernard92/workers-template-creator) allows you to share templates. Host a public repo, and then run `wrangler generate https://github.com/<your-repo>`.
+The gallery is actively growing. The <a href="https://github.com/victoriabernard92/workers-template-creator">template creator</a> allows you to share templates. Host a public repo, and then run <code>wrangler generate https://github.com/<your-repo></code>.
 
-For archived recipes, see [the old docs](https://developers.cloudflare.com/workers/recipes/).
+For archived recipes, see <a href="https://developers.cloudflare.com/workers/recipes/">the old docs</a>.
 
 </div>
 
