@@ -23,7 +23,7 @@ weight: 3
 </div>
 
 <div id="empty" style="display: none; margin-top: 20px;">
-<p>No results were found for your search. Try adjusting your search or <a href="#" id="start_over">start over</a>.</p>
+<p>No results were found for your search. Try adjusting your search.</p>
 </div>
 
 <div id="results">

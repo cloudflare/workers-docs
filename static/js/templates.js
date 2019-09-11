@@ -1,3 +1,4 @@
+// Process templates JSON into lunr-supported JS objects
 const constructCorpus = () => {
   const toLunr = (item, type) => ({ type, ...item })
   return [
@@ -6,9 +7,10 @@ const constructCorpus = () => {
     ...Object.values(snippets).map(item => toLunr(item, 'snippets')),
   ]
 }
-
 const corpus = constructCorpus()
+let results = corpus
 
+// Construct the search index using lunr
 const idx = lunr(function() {
   this.ref('id')
   this.field('name')
@@ -23,6 +25,7 @@ const idx = lunr(function() {
 
 window.idx = idx
 
+// Search based on a query, updating `results`
 const search = query => {
   if (query) {
     const opts = idx.search(`${query}*`).map(result => result.ref)
@@ -37,8 +40,7 @@ const search = query => {
   }
 }
 
-let results = corpus
-
+// Update the UI with search results
 const processSearch = () => {
   const resultsContainer = document.querySelector('#results')
   resultsContainer.style.display = 'block'
@@ -54,6 +56,7 @@ const processSearch = () => {
   )
 }
 
+// Update the UI when there aren't any results
 const processEmpty = () => {
   const resultsContainer = document.querySelector('#results')
   resultsContainer.style.display = 'none'
@@ -64,6 +67,7 @@ const processEmpty = () => {
   empty.style.marginBottom = '999px'
 }
 
+// Event handler based on changes to the #search input
 const handleNewSearchValue = _.throttle(value => {
   const params = new URLSearchParams(location.search)
 
@@ -89,25 +93,21 @@ document.querySelector('#search').addEventListener('input', evt => {
   handleNewSearchValue(value)
 })
 
+// Event handler when the #type select changes
 const searchFilters = evt => {
   const value = evt.detail.value
   search(value === 'All' ? null : value)
 }
 
-// const categoriesElem = document.querySelector('#categories')
-// const categories = new Choices(categoriesElem)
-// categoriesElem.addEventListener('change', searchFilters)
-
+// Set up select element using Choices library
 const typeElem = document.querySelector('#type')
 const type = new Choices(typeElem)
 typeElem.addEventListener('change', searchFilters)
 
+// Handle ?q query param and set default search with it,
+// if it exists
 const url = new URL(window.location)
 const initialSearch = url.searchParams.get('q')
 if (initialSearch) {
   handleNewSearchValue(initialSearch)
 }
-
-const startOver = document.querySelector('#start_over').addEventListener('click', evt => {
-  handleNewSearchValue('')
-})
