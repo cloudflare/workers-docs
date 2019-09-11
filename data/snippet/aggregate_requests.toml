@@ -44,3 +44,4 @@ const type = 'application/json;charset=UTF-8'
 '''
 demo_url = "https://cloudflareworkers.com/#eaaa52283784c21aec989c64b9db32d3:https://example.com"
 tags = ['Middleware']
+share = "snippets/aggregate_requests"

@@ -26,3 +26,4 @@ addEventListener('fetch', event => {
 })
 '''
 demo_url = "https://cloudflareworkers.com/#12a2962014e1324e3a416a5a76e1f81f:https://tutorial.cloudflareworkers.com"
+share = "snippets/ab_testing"

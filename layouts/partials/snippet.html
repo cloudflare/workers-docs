@@ -25,6 +25,12 @@
       <span>Tutorial</span>
     </a>
     {{ end }}
+    {{ with.share }}
+    <a class="tutorial" href="{{.}}">
+      <img src="/templates/media/tutorial.svg" id="tutorial" />
+      <span>Page</span>
+    </a>
+    {{ end }}
     {{ range.demos }}
     <a class="demo" href="{{.url}}">{{.text}}</a>
     {{ end }}
