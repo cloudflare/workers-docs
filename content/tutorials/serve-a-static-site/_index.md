@@ -1,10 +1,12 @@
-# Deploying static sites
+# Serving front-end applications with Workers
 
-In this tutorial, we'll use [Wrangler](#) and [Cloudflare Workers](#) to deploy and serve a static site. With the rise of tools like [Gatsby](%20a) and architectures like [JAMStack](#), static sites are an incredible way to build highly-available and performant applications. Workers in particular is a great platform to deploy static sites: your application will be distributed to over 190+ locations around the world, and served directly from Cloudflare's powerful CDN at a server incredibly close to your users.
+todo: this title suxxx
+
+In this tutorial, we'll use [Wrangler](#) and [Cloudflare Workers](#) to deploy and serve a static site. With the rise of architectures like [JAMStack](#), static sites are an incredible way to combine highly-available static assets with performant backend code, especially when deployed with serverless. Workers in particular is a great platform to deploy static sites: your application will be distributed to over 190+ locations around the world, and served directly from Cloudflare's powerful CDN at a server incredibly close to your users.
 
 This tutorial makes use of [Wrangler](#)(https://github.com/cloudflare/wrangler), our command-line tool for generating, building, and publishing projects on the Cloudflare Workers platform. If you haven't used Wrangler, we recommend checking out the ["Installing the CLI"](#)(/quickstart/cli-setup) part of our [Quick Start guide](#)(/quickstart), which will get you set up with Wrangler, and familiar with the basic commands.
 
-One more thing before you start the tutorial: if you just want to jump straight to the code, we've made the final version of the codebase [available on GitHub](#)(https://github.com/signalnerve/gatsby-workers-starter). You can take that code, customize it, and deploy it for use in your own projects. Happy coding!
+One more thing before you start the tutorial: if you just want to jump straight to the code, we've made the final version of the codebase [available on GitHub](#)(https://github.com/signalnerve/react-workers-template). You can take that code, customize it, and deploy it for use in your own projects. Happy coding!
 
 ## Prerequisites
 
@@ -15,7 +17,7 @@ To publish your project to Cloudflare Workers, you'll need a few things:
 
 If you don't have those things quite yet, don't worry. We'll walk through each of them and make sure we're ready to go, before you start creating your application.
 
-In addition, we'll be using [Gatsby](https://gatsbyjs.org) as our static site framework of choice in this tutorial. No experience with Gatsby is needed, and if you'd prefer to use a static site framework like [Hugo](#) or [Jekyll](#), the process will be incredibly similar.
+In addition, we'll be using [create-react-app](https://github.com/facebook/create-react-app) to create the example project for this tutorial. No experience with React is needed, and you can easily take what you learn in this tutorial and apply it to other frameworks, such as Vue or Angular, and even static site frameworks like Gatsby, Hugo, and more.
 
 ## Generate a project
 
@@ -38,19 +40,13 @@ Since the script is already configured for you, we can move on to generating a s
 
 ## Create a static site
 
-In this tutorial, we'll use [Gatsby](#) to create a simple static site. As previously mentioned, no experience with Gatsby is needed, but you will need to install the NPM package to create a site:
+In this tutorial, we'll use [React](#) to create a simple static application. As previously mentioned, no experience with React, and we can create a new project directly by using `npx`:
 
 ```sh
-npm install -g gatsby
+npx create-react-app .
 ```
 
-With Gatsby installed, we can create a new site in our Workers project folder:
-
-```sh
-gatsby new .
-```
-
-Gatsby will generate a new project, placing it adjacent to your Workers application code.
+`create-react-app` will create a new project, and include all the relevant dependencies needed to build the project.
 
 ## Publish
 
@@ -81,10 +77,10 @@ bucket = "public"
 
 By default, the Workers static site template will look for a `public` folder to upload and serve from Workers KV. Depending on your static site framework and configuration, you may choose to change this folder to fit your project's requirements.
 
-To make this script available for use, you'll need to build and publish it to Cloudflare using Wrangler. To do this, we'll build our Gatsby site, and publish it to Workers:
+To make this script available for use, you'll need to build and publish it to Cloudflare using Wrangler. To do this, we'll build our React application, and publish it to Workers:
 
 ```bash
-$ gatsby build
+$ npm run build
 $ wrangler publish
 ```
 
