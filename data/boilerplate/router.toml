@@ -4,6 +4,8 @@ repository_url = "https://github.com/cloudflare/worker-template-router"
 url = "/templates/boilerplates/router"
 weight = 97
 
+tutorial = "boilerplates/router"
+
 [demos.bar]
 text = "Demo /bar"
 url = "https://cloudflareworkers.com/#6cbbd3ae7d4e928da3502cb9ce11227a:https://tutorial.cloudflareworkers.com/bar"
@@ -12,4 +14,3 @@ url = "https://cloudflareworkers.com/#6cbbd3ae7d4e928da3502cb9ce11227a:https://t
 text = "Demo /foo"
 url = "https://cloudflareworkers.com/#6cbbd3ae7d4e928da3502cb9ce11227a:https://tutorial.cloudflareworkers.com/foo"
 
-tutorial = "boilerplates/router"

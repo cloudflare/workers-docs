@@ -3,3 +3,5 @@ description = "🔥Lightning-fast, globally distributed Apollo GraphQL server, d
 repository_url = "https://github.com/signalnerve/workers-graphql-server"
 demo_url = "https://workers-graphql.signalnerve.workers.dev/___graphql"
 weight = 2
+
+tutorial="featured_boilerplates/graphql"
