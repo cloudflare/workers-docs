@@ -5,4 +5,4 @@ demo_url = "https://cloudflareworkers.com/#1992963c14c25bc8dc4c50f4cab740e5:http
 weight = 98
 tags = ['Originless', 'Wasm']
 
-tutorial = "/tutorials/build-a-rustwasm-function"
+tutorial = "/templates/boilerplates/rustwasm"
