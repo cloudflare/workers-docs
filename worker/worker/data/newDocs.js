@@ -37,4 +37,6 @@ export const newDocsMap = new Map([
   ['/reference/runtime/apis/web-crypto', '/reference/apis/web-crypto'],
 
   ['/reference/storage/overview/writing-data', '/reference/storage/writing-data'],
+
+  ['/tutorials/build-a-rustwasm-function', '/templates/boilerplates/rustwasm'],
 ])
