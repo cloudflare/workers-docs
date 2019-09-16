@@ -36,7 +36,7 @@ Wrangler templates are just Git repositories, so if you want to create your own 
 
 The default Workers template includes support for building and deploying JavaScript-based projects. Inside of your new `i18n-example` directory, `index.js` represents the entry-point to your Cloudflare Workers application.
 
-All Cloudflare Workers applications start by listening for `fetch` events, which are fired when a client makes a request to a Workers route:
+All Worker scripts start by listening for `fetch` events, which are fired when a client makes a request to a Workers route:
 
 ```js
 // index.js
@@ -55,13 +55,13 @@ async function handleRequest(request) {
 
 In your default `index.js` file, we can see that request/response pattern in action. The `handleRequest` constructs a new `Response` with the body text "Hello worker", as well as an explicit status code of 200. When a `fetch` event comes into the worker, the script uses `event.respondWith` to return that new response back to the client.
 
-In our project, we'll use the `fetch` function to make requests to our origin – the site that we want to serve back to the user – and pass it through the `HTMLRewriter` class to make transformations to the HTML before the user receives it.
+In this project, you'll use the [`fetch`](/reference/apis/fetch/) function to make requests to your origin – the site that serves the content you wish to internationalize. Then that response will pass through the `HTMLRewriter` class to make transformations to the HTML before the user receives it.
 
 ## How it works
 
 The `HTMLRewriter` class provided in the Workers runtime allows developers to parse HTML and write simple JavaScript to query and transform every element of the page.
 
-In our example (find the source HERE TODO TODO, we have a basic single-page website. There are a number of clear pieces of text: an `h1` element, with the text "Example Site", and a number of `p` elements with different text:
+In our example (find the source HERE TODO TODO, we have a basic single-page website. Clear pieces of text are an `h1` element with the text "Example Site" and a number of `p` elements with different text:
 
 ![Demo Code](/tutorials/transforming-apps-using-htmlrewriter/code-example.png)
 
@@ -125,7 +125,7 @@ class ElementHandler {
 }
 ```
 
-With `i18nKey` defined, we can use it to lookup a corresponding translated string. Let's set up `strings`, an object with key-value pairs corresponding to the `data-i18n-key` value – for now, I'll define a single example string, `headline`, with a (possibly badly translated) German `string`, "Beispielseite" ("Example Site"), and retrieve it in the `element` function:
+With `i18nKey` defined, we can use it to lookup a corresponding translated string. Let's set up `strings`, an object with key-value pairs corresponding to the `data-i18n-key` value – for now, we'll define a single example string, `headline`, with a (possibly badly translated) German `string`, "Beispielseite" ("Example Site"), and retrieve it in the `element` function:
 
 ```js
 const strings = {
