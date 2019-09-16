@@ -4,11 +4,11 @@ title: 'Transforming Apps with HTMLRewriter'
 
 The `HTMLRewriter` class built into the Cloudflare Workers runtime allows for parsing and rewriting of HTML at the edge, giving developers the ability to efficiently and transparently customize their Workers applications. In this tutorial, we'll build an _internationalization_ engine (commonly referred to as `i18n`) for your application, automatically translating the content of your site depending on where your visitors are in the world.
 
-[![Demo Image](/tutorials/transforming-apps-using-htmlrewriter/i18n.jpg)](https://i18n-example.signalnerve.com)
+[![Demo Image](/tutorials/transforming-apps-using-htmlrewriter/i18n.jpg)](https://i18n-example.workers-tooling.cf)
 
 This tutorial makes use of [Wrangler](https://github.com/cloudflare/wrangler), our command-line tool for generating, building, and publishing projects on the Cloudflare Workers platform. If you haven't used Wrangler, we recommend checking out the ["Installing the CLI"](/quickstart/cli-setup) part of our [Quick Start guide](/quickstart), which will get you set up with Wrangler, and familiar with the basic commands.
 
-One more thing before you start the tutorial: if you just want to jump straight to the code, we've made the final version of the codebase [available on GitHub](https://github.com/signalnerve/edge-i18n). You can take that code, customize it, and deploy it for use in your own projects. Happy coding!
+One more thing before you start the tutorial: if you just want to jump straight to the code, we've made the final version of the codebase [available on GitHub](https://github.com/signalnerve/i18n-example-workers). You can take that code, customize it, and deploy it for use in your own projects. Happy coding!
 
 ## Prerequisites
 
@@ -19,7 +19,7 @@ To publish your project to Cloudflare Workers, you'll need a few things:
 
 If you don't have those things quite yet, don't worry. We'll walk through each of them and make sure we're ready to go, before you start creating your application.
 
-This tutorial is designed to be built using a prior application – I'll use `i18n-example.signalnerve.com` – we'll overlay an i18n layer over top of that site, by deploying a Workers application in front of that site. If you'd like to deploy your own version of the site, you can find the source here **TODO**. Instructions on how to deploy this application can be found in the project's README.
+This tutorial is designed to be built using a prior application – I'll use `i18n-example.workers-tooling.cf` – we'll overlay an i18n layer over top of that site, by deploying a Workers application in front of that site. If you'd like to deploy your own version of the site, you can find the source [on GitHub](https://github.com/signalnerve/i18n-example-workers-site). Instructions on how to deploy this application can be found in the project's README.
 
 ## Generate a project
 
@@ -31,8 +31,6 @@ In the command line, generate your Workers project, and pass the project name `i
 $ wrangler generate i18n-example
 $ cd i18n-example
 ```
-
-Wrangler templates are just Git repositories, so if you want to create your own templates, or use one from our [Template Gallery](/templates), there's a ton of options to help you get started.
 
 The default Workers template includes support for building and deploying JavaScript-based projects. Inside of your new `i18n-example` directory, `index.js` represents the entry-point to your Cloudflare Workers application.
 
@@ -55,13 +53,13 @@ async function handleRequest(request) {
 
 In your default `index.js` file, we can see that request/response pattern in action. The `handleRequest` constructs a new `Response` with the body text "Hello worker", as well as an explicit status code of 200. When a `fetch` event comes into the worker, the script uses `event.respondWith` to return that new response back to the client.
 
-In this project, you'll use the [`fetch`](/reference/apis/fetch/) function to make requests to your origin – the site that serves the content you wish to internationalize. Then that response will pass through the `HTMLRewriter` class to make transformations to the HTML before the user receives it.
+In this project, you'll use the [`fetch`](/reference/apis/fetch/) function to make requests to your origin – the site that serves the content you wish to internationalize. That response will pass through the `HTMLRewriter` class, to make transformations to the HTML before the user receives it.
 
 ## How it works
 
 The `HTMLRewriter` class provided in the Workers runtime allows developers to parse HTML and write simple JavaScript to query and transform every element of the page.
 
-In our example (find the source HERE TODO TODO, we have a basic single-page website. Clear pieces of text are an `h1` element with the text "Example Site" and a number of `p` elements with different text:
+Our example website is a basic single-page HTML project. Clear pieces of text are an `h1` element with the text "Example Site" and a number of `p` elements with different text:
 
 ![Demo Code](/tutorials/transforming-apps-using-htmlrewriter/code-example.png)
 
@@ -89,18 +87,7 @@ Finally, it's shockingly easy to introduce one more cool feature into this proje
 
 To start, let's look back into `index.js`: our Workers application in this tutorial will live entirely in this file, so it's important to be familiar with it.
 
-As mentioned in the "Generate a project" section, the default template used by Wrangler will return a new `Response`, allowing you to serve custom responses directly from Cloudflare's edge servers. In `index.js`, we should change that behavior, instead using `fetch` to continue the original request, and assigning it to `response`:
-
-```js
-// index.js
-
-async function handleRequest(request) {
-  const response = await fetch(request)
-  return response
-}
-```
-
-With `response` available, we can construct a new instance of `HTMLRewriter`, and use it to parse the response. When instantiating `HTMLRewriter`, we can also attach handlers using the `on` function: in our case, we'll use the `*` selector (see the documentation for more advanced usage) to parse all elements with a single class, `ElementHandler` . With the created instance of `HTMLRewriter`, the `transform` function takes a `response`, and can be returned to the client:
+Our Workers script contains a `response`, which represents the response from our origin server. That response should be parsed, and ultimately transformed, with a new instance of `HTMLRewriter`. When instantiating `HTMLRewriter`, we can also attach handlers using the `on` function: in our case, we'll use the `*` selector (see the documentation for more advanced usage) to parse all elements with a single class, `ElementHandler` . With the created instance of `HTMLRewriter`, the `transform` function takes a `response`, and can be returned to the client:
 
 ```js
 // index.js
@@ -200,7 +187,7 @@ class ElementHandler {
   element(element) {
     const i18nKey = element.getAttribute('data-i18n-key')
     if (i18nKey) {
-      const translation = this.countryStrings && this.countryStrings[i18nKey]
+      const translation = this.countryStrings[i18nKey]
       if (translation) {
         element.setInnerContent(translation)
       }
@@ -211,13 +198,11 @@ class ElementHandler {
 async function handleRequest(request) {
   const languageHeader = request.headers.get('Accept-Language')
   const language = parser.pick(['de'], languageHeader)
-  const countryStrings = strings[language]
+  const countryStrings = strings[language] || {}
 
   const response = await fetch(request)
 
-  return new HTMLRewriter()
-    .on('*', new ElementHandler(countryStrings))
-    .transform(response)
+  return new HTMLRewriter().on('*', new ElementHandler(countryStrings)).transform(response)
 }
 ```
 
@@ -225,9 +210,9 @@ async function handleRequest(request) {
 
 Our simple i18n tool built on Cloudflare Workers is complete, and it's time to deploy it to your domain! This tutorial assumes that you already have a domain hosted on Cloudflare – check out ["Getting Started with Cloudflare"](https://support.cloudflare.com/hc/en-us/articles/360027989951-Getting-Started-with-Cloudflare) for instructions, if you need to add a domain. Note that the example website, pictured below, is open-source, if you don't have an existing site you'd like to test with:
 
-[![Demo Image](/tutorials/transforming-apps-using-htmlrewriter/i18n.jpg)](https://i18n-example.signalnerve.com)
+[![Demo Image](/tutorials/transforming-apps-using-htmlrewriter/i18n.jpg)](https://i18n-example.workers-tooling.cf)
 
-With a configured zone, add your Cloudflare account and zone IDs to your project's `wrangler.toml`. If you need help finding your account and zone ID, check out the ["Configure" section](https://developers.cloudflare.com/workers/quickstart/#account-id-and-zone-id) of our Quick Start! In addition to `account_id` and `zone_id`, you need to define a `route`, which tells Workers where you'd like your application to run on your site. For instance, if my website is at `i18n-example.signalnerve.com`, I'll choose `i18n-example.signalnerve.com/*`, indicating that I'd like the Workers application to run over top of my _entire_ application, matching every possible route:
+With a configured zone, add your Cloudflare account and zone IDs to your project's `wrangler.toml`. If you need help finding your account and zone ID, check out the ["Configure" section](https://developers.cloudflare.com/workers/quickstart/#account-id-and-zone-id) of our Quick Start! In addition to `account_id` and `zone_id`, you need to define a `route`, which tells Workers where you'd like your application to run on your site. For instance, if my website is at `i18n-example.workers-tooling.cf`, I'll choose `i18n-example.workers-tooling.cf/*`, indicating that I'd like the Workers application to run over top of my _entire_ application, matching every possible route:
 
 ```toml
 # wrangler.toml
@@ -236,7 +221,7 @@ With a configured zone, add your Cloudflare account and zone IDs to your project
 name = "i18n-example"
 account_id = "accountid123"
 zone_id = "zoneid123"
-route = "https://i18n-example.signalnerve.com/*"
+route = "https://i18n-example.workers-tooling.cf/*"
 # ...
 ```
 
@@ -248,6 +233,6 @@ $ wrangler publish --release
 
 ## Resources
 
-In this tutorial, you built and published an i18n tool using `HTMLRewriter`. If you'd like to see the full source code for this application, visit the [repo on GitHub](https://github.com/signalnerve/edge-i18n).
+In this tutorial, you built and published an i18n tool using `HTMLRewriter`. If you'd like to see the full source code for this application, visit the [repo on GitHub](https://github.com/signalnerve/i18n-example-workers).
 
 If you want to get started building your own projects, check out the quick-start templates we've provided in our [Template Gallery](/templates).
