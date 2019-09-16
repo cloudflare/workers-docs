@@ -20,7 +20,7 @@ new HTMLRewriter.on('*', new ElementHandler()).onDocument(new DocumentHandler())
 | ------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
 | `*`                            | any element                                                                                                           |
 | `E`                            | any element of type E                                                                                                 |
-| `E:not(s1, s2)`                | an E element that does not match either compound selector s1 or s2                                                    |
+| `E:not(s)`                     | an E element that does not match either compound selector s                                                           |
 | `E.warning`                    | an E element belonging to the class warning                                                                           |
 | `E#myid`                       | an E element with ID equal to myid.                                                                                   |
 | `E[foo]`                       | an E element with a foo attribute                                                                                     |
@@ -41,7 +41,7 @@ There are two handler types that can be used with `HTMLRewriter`: _element handl
 
 ### Element Handlers
 
-An element handler responds to any incoming element, when called by the `.on` function of an `HTMLRewriter` instance. The element handler should respond to `element`, `comments`, and `text`. The below example will process `div` elements with an `ElementHandler` class:
+An element handler responds to any incoming element, when attached using the `.on` function of an `HTMLRewriter` instance. The element handler should respond to `element`, `comments`, and `text`. The below example will process `div` elements with an `ElementHandler` class:
 
 ```js
 class ElementHandler {
@@ -84,9 +84,9 @@ The `element` argument, used in element and document handlers, is a representati
 
 #### Properties
 
-- `tagName`: a string representing the name of the tag, such as `"h1"` or `"div"`. This property can be assigned to different values, to modify an element's tag.
+- `tagName`: a string representing the name of the tag, such as `"h1"` or `"div"`. This property can be assigned different values, to modify an element's tag.
 - `attributes`: an iterator that returns a `[name, value]` pair of the tag's attributes. This property is read-only.
-- `removed`: a boolean indicating whether the element has been removed or replaced by one of the previous handlers. (QUESTION: replaced?)
+- `removed`: a boolean indicating whether the element has been removed or replaced by one of the previous handlers.
 
 #### Methods
 
@@ -100,26 +100,40 @@ The `element` argument, used in element and document handlers, is a representati
 - `append(content: Content, contentOptions?: ContentOptions): Element`: Inserts content right before the end tag of the element.
 - `replace(content: Content, contentOptions?: ContentOptions): Element`: Removes the element and inserts content in place of it.
 - `remove(): Element`: Removes the element with all its content.
-- `removeAndKeepContent(): Element`: Remove the start tag and end tag of the element, but keeps its inner content intact.
+- `removeAndKeepContent(): Element`: Removes the start tag and end tag of the element, but keeps its inner content intact.
 - `setInnerContent(content: Content, contentOptions?: ContentOptions): Element`: Replaces content of the element.
 
 #### Types
 
 For the methods and properties specified above, there are a few "types" that arguments should conform to:
 
-- `Content`: `String | Response | ReadableStream`. Content inserted in the output stream can be represented either by a string, a `Response` object, or an UTF-8 byte stream.
+- `Content`: `String`. Content inserted in the output stream should be a string.
 - `ContentOptions`: `{ html: Boolean }`. Controls the way the HTMLRewriter treats inserted content. If the `html` boolean is set to true, content is treated as raw HTML. If the `html` boolean is set to false, or not provided, content will be treated as text, and proper HTML escaping will be applied to it.
 
 ### Text chunks
 
 Since we perform zero-copy streaming parsing, text chunks are not the same thing as text nodes in the lexical tree. A lexical tree text node can be represented by multiple chunks, as they arrive over the wire from the origin.
 
-Consider the following markup: `<div>Hey. How are you?</div>`. It's possible that the Workers script won't receive the entire text node from the origin at once; instead, the `text` element handler will be invoked for each received part of the text node. When the last chunk arrives, the text's `lastInTextNode` property will be set to true. Developers should make sure to concatenate these chunks together.
+Consider the following markup: `<div>Hey. How are you?</div>`. It's possible that the Workers script won't receive the entire text node from the origin at once; instead, the `text` element handler will be invoked for each received part of the text node. For example, the handler might be invoked with "Hey. How ", then "are you?". When the last chunk arrives, the text's `lastInTextNode` property will be set to true. Developers should make sure to concatenate these chunks together.
 
 #### Properties
 
 - `text: String`: Read-only, text content of the chunk. Could be empty if the chunk is the last chunk of the text node.
 - `lastInTextNode: Boolean`: Read-only, specifies whether the chunk is the last chunk of the text node.
+
+### Comments
+
+```js
+class DocumentHandler {
+  comments(element) {
+    // An incoming comment element, such as <!-- My comment -->
+  }
+}
+```
+
+#### Properties
+
+- `text: String`: Read-only, text content of the chunk. Could be empty if the chunk is the last chunk of the text node.
 
 ## Building with `HTMLRewriter`
 
@@ -161,7 +175,7 @@ async function handleRequest(req) {
 
 ### Inserting HTML
 
-It's common to use the Workers runtime to insert arbitrary into an HTML page, before serving it to the user. Previously, developers would get the HTML body of a response, and use text replacement (e.g. `text.replace()`) to insert HTML. The `HTMLRewriter` class allows a more declarative and safer approach to this problem. Take, for instance, appending a collection of `script` tags to the end of an HTML `body`:
+It's common to use the Workers runtime to insert arbitrary HTML into a webpage, before serving it to the user. Previously, developers would get the HTML body of a response, and use text replacement (e.g. `text.replace()`) to insert HTML. The `HTMLRewriter` class allows a more declarative and safer approach to this problem. Take, for instance, appending a collection of `script` tags to the end of an HTML `body`:
 
 ```js
 const scripts = [
