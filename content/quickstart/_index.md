@@ -264,11 +264,17 @@ type = "webpack"
 workers_dev = true
 ```
 
+Now, run:
+
+```console
+wrangler publish
+```
+
 ## Publish To Your Domain
 
 To publish your application on a domain you own (i.e. not a `workers.dev` subdomain), you can add a `route` key to your `wrangler.toml`.
 
-Wrangler's ["environments"](https://github.com/cloudflare/wrangler/blob/master/docs/environments.md) feature allows us to specify multiple different deploy targets for our application. Let's add a `production` environment, passing in a `route` and `zone_id` to deploy to a specific domain:
+Wrangler's ["environments"](https://github.com/cloudflare/wrangler/blob/master/docs/content/environments.md) feature allows us to specify multiple different deploy targets for our application. Let's add a `production` environment, passing in a `route` and `zone_id` to deploy to a specific domain:
 
 ```toml
 # wrangler.toml
@@ -285,7 +291,7 @@ zone_id = "$yourZoneId"
 route = "example.com/*"
 ```
 
-The `route` key here is a _pattern_, for more information on this feature, see [Routes](/about/routes/). With a new environment configured, we can deploy to the domain configured above, by passing the `--env` flag to `wrangler publish`:
+The `route` key here is a [_route pattern_](/about/routes/). Now, we can deploy to the production environment configured above by passing the `--env` flag to `wrangler publish`:
 
 ```console
 wrangler publish --env prod # Publish to example.com
