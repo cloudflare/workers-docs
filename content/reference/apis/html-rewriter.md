@@ -4,7 +4,7 @@ title: HTMLRewriter
 
 ## Overview
 
-The `HTMLRewriter` class allows developers to build comprehensive and expressive HTML parsers inside of Cloudflare Workers application. It can be thought of as a jQuery-like experience directly inside of your Workers application, allowing developers to build deeply functional applications, leaning on a powerful JavaScript API to parse and transform HTML.
+The `HTMLRewriter` class allows developers to build comprehensive and expressive HTML parsers inside of a Cloudflare Workers application. It can be thought of as a jQuery-like experience directly inside of your Workers application, allowing developers to build deeply functional applications, leaning on a powerful JavaScript API to parse and transform HTML.
 
 ## HTMLRewriter
 
@@ -35,6 +35,13 @@ new HTMLRewriter.on('*', new ElementHandler()).onDocument(new DocumentHandler())
 | `E F`                          | an F element descendant of an E element                                                                               |
 | `E > F`                        | an F element child of an E element                                                                                    |
 
+## Global Types
+
+Throughout the HTMLRewriter API, there are a few consistent types that many properties and methods use:
+
+- `Content`: `String`. Content inserted in the output stream should be a string.
+- `ContentOptions`: `{ html: Boolean }`. Controls the way the HTMLRewriter treats inserted content. If the `html` boolean is set to true, content is treated as raw HTML. If the `html` boolean is set to false, or not provided, content will be treated as text, and proper HTML escaping will be applied to it.
+
 ## Handlers
 
 There are two handler types that can be used with `HTMLRewriter`: _element handlers_, and _document handlers_.
@@ -50,11 +57,11 @@ class ElementHandler {
     console.log(`Incoming element: ${element.tagName}`)
   }
 
-  comments(element) {
+  comments(comment) {
     // An incoming comment
   }
 
-  text(element) {
+  text(text) {
     // An incoming piece of text
   }
 }
@@ -68,25 +75,34 @@ async function handleRequest(req) {
 
 ### Document Handlers
 
-A document handler represents the incoming HTML document. As of now, a document handler can have a single function, `doctype`:
+A document handler represents the incoming HTML document. A number of functions can be defined on a document handler to query and manipulate a document's `doctype`, `comments`, and `text`. Unlike an element handler, a document handler's `doctype`, `comments` and `text` functions are called for content _outside_ of the top-level HTML tag:
 
 ```js
 class DocumentHandler {
-  doctype(element) {
+  doctype(doctype) {
     // An incoming doctype, such as <!DOCTYPE html>
+  }
+
+  comments(comment) {
+    // An incoming comment
+  }
+
+  text(text) {
+    // An incoming piece of text
   }
 }
 ```
 
 ### Element
 
-The `element` argument, used in element and document handlers, is a representation of a DOM element. A number of methods exist on an element to query and manipulate it:
+The `element` argument, used only in element handlers, is a representation of a DOM element. A number of methods exist on an element to query and manipulate it:
 
 #### Properties
 
 - `tagName`: a string representing the name of the tag, such as `"h1"` or `"div"`. This property can be assigned different values, to modify an element's tag.
 - `attributes`: an iterator that returns a `[name, value]` pair of the tag's attributes. This property is read-only.
 - `removed`: a boolean indicating whether the element has been removed or replaced by one of the previous handlers.
+- `namespaceURI`: a string representing the [namespace URI](https://infra.spec.whatwg.org/#namespaces) of an element.
 
 #### Methods
 
@@ -99,16 +115,9 @@ The `element` argument, used in element and document handlers, is a representati
 - `prepend(content: Content, contentOptions?: ContentOptions): Element`: Inserts content right after the start tag of the element.
 - `append(content: Content, contentOptions?: ContentOptions): Element`: Inserts content right before the end tag of the element.
 - `replace(content: Content, contentOptions?: ContentOptions): Element`: Removes the element and inserts content in place of it.
+- `setInnerContent(content: Content, contentOptions?: ContentOptions): Element`: Replaces content of the element.
 - `remove(): Element`: Removes the element with all its content.
 - `removeAndKeepContent(): Element`: Removes the start tag and end tag of the element, but keeps its inner content intact.
-- `setInnerContent(content: Content, contentOptions?: ContentOptions): Element`: Replaces content of the element.
-
-#### Types
-
-For the methods and properties specified above, there are a few "types" that arguments should conform to:
-
-- `Content`: `String`. Content inserted in the output stream should be a string.
-- `ContentOptions`: `{ html: Boolean }`. Controls the way the HTMLRewriter treats inserted content. If the `html` boolean is set to true, content is treated as raw HTML. If the `html` boolean is set to false, or not provided, content will be treated as text, and proper HTML escaping will be applied to it.
 
 ### Text chunks
 
@@ -118,14 +127,24 @@ Consider the following markup: `<div>Hey. How are you?</div>`. It's possible tha
 
 #### Properties
 
+- `removed`: a boolean indicating whether the element has been removed or replaced by one of the previous handlers.
 - `text: String`: Read-only, text content of the chunk. Could be empty if the chunk is the last chunk of the text node.
 - `lastInTextNode: Boolean`: Read-only, specifies whether the chunk is the last chunk of the text node.
 
+#### Methods
+
+- `before(content: Content, contentOptions?: ContentOptions): Element`: Inserts content before the element.
+- `after(content: Content, contentOptions?: ContentOptions): Element`: Inserts content right after the element.
+- `replace(content: Content, contentOptions?: ContentOptions): Element`: Removes the element and inserts content in place of it.
+- `remove(): Element`: Removes the element with all its content.
+
 ### Comments
 
+The `comments` function on an element handler allows developers to query and manipulate HTML comment tags.
+
 ```js
-class DocumentHandler {
-  comments(element) {
+class ElementHandler {
+  comments(comment) {
     // An incoming comment element, such as <!-- My comment -->
   }
 }
@@ -133,7 +152,34 @@ class DocumentHandler {
 
 #### Properties
 
+- `removed`: a boolean indicating whether the element has been removed or replaced by one of the previous handlers.
 - `text: String`: Read-only, text content of the chunk. Could be empty if the chunk is the last chunk of the text node.
+
+#### Methods
+
+- `before(content: Content, contentOptions?: ContentOptions): Element`: Inserts content before the element.
+- `after(content: Content, contentOptions?: ContentOptions): Element`: Inserts content right after the element.
+- `replace(content: Content, contentOptions?: ContentOptions): Element`: Removes the element and inserts content in place of it.
+- `remove(): Element`: Removes the element with all its content.
+
+### Doctype
+
+The `doctype` function on a document handler allows developers to query a document's [doctype](https://developer.mozilla.org/en-US/docs/Glossary/Doctype).
+
+```js
+class DocumentHandler {
+  doctype(doctype) {
+    // An incoming doctype element, such as
+    // <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+  }
+}
+```
+
+#### Properties
+
+- `name: String | null`: String representing the name of the element. With a doctype element, this is always "html".
+- `publicId: String | null`: The first quoted string in the doctype element, after the PUBLIC atom. This value is only set on HTML4 doctypes.
+- `systemId: String | null`: The second quoted string in the doctype element, after the PUBLIC atom. This value is only set on HTML4 doctypes.
 
 ## Building with `HTMLRewriter`
 
@@ -141,35 +187,31 @@ The `HTMLRewriter` class can be used to transform incoming HTML responses in a v
 
 ### Transforming Mixed Responses
 
-By looking for incoming `a` and `img` tags, an `HTMLRewriter` instance can rewrite any HTTP requests into secure HTTPS requests:
+By looking for incoming `a` and `img` tags, an `HTMLRewriter` instance can rewrite any HTTP requests into secure HTTPS requests. Note that Cloudflare's [Automatic HTTPS Rewrite](https://support.cloudflare.com/hc/en-us/articles/227227647-Understanding-Automatic-HTTPS-rewrites) feature can do this for your applications automatically – this brief code example is intended for reference only:
 
 ```js
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
 
-class ElementHandler {
+class AttributeRewriter {
+  constructor(attributeName) {
+    this.attributeName = attributeName
+  }
+
   element(element) {
-    switch (element.tagName) {
-      case 'a':
-        const href = element.getAttribute('href')
-        element.setAttribute('href', href.replace(/^http:/, 'https:'))
-      case 'img':
-        const src = element.getAttribute('src')
-        element.setAttribute('src', src.replace(/^http:/, 'https:'))
-      default:
-        console.log(`Unknown tag received: ${element.tagName}`)
-    }
+    const attribute = element.getAttribute(this.attributeName)
+    element.setAttribute(this.attributeName, attribute.replace(/^http:/, 'https:'))
   }
 }
 
+const rewriter = new HTMLRewriter()
+  .on('a', new AttributeRewriter('href'))
+  .on('img', new AttributeRewriter('src'))
+
 async function handleRequest(req) {
   const res = await fetch(req)
-
-  return new HTMLRewriter()
-    .on('a', new ElementHandler())
-    .on('img', new ElementHandler())
-    .transform(res)
+  return rewriter.transform(res)
 }
 ```
 
@@ -182,11 +224,11 @@ const scripts = [
   "<script src='https://myservice.com/1.js'></script>",
   "<script src='https://myservice.com/2.js'></script>",
   "<script src='https://myservice.com/3.js'></script>",
-]
+].join('\n')
 
 class BodyAppender {
   element(element) {
-    element.append(scripts.join('\n'))
+    element.append(scripts)
   }
 }
 
@@ -194,9 +236,10 @@ addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
 
+const rewriter = new HTMLRewriter().on('body', new BodyAppender())
+
 async function handleRequest(req) {
   const res = await fetch(req)
-
-  return new HTMLRewriter().on('body', new BodyAppender()).transform(res)
+  return rewriter.transform(res)
 }
 ```
