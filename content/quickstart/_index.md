@@ -15,8 +15,9 @@ weight: 1
     - [Global API Key](#global-api-key)
   - [Setup](#setup)
 - [Publish Your Project](#publish-your-project)
-- [Release To Your Domain](#release-to-your-domain)
-  - [Learn More](#learn-more)
+  - [Publish To workers.dev](#publish-to-workers-dev)
+  - [Publish To Your Domain](#publish-to-your-domain)
+- [Learn More](#learn-more)
 
 # Installing the CLI
 
@@ -235,6 +236,9 @@ account_id = "$yourAccountId"
 
 # The kind of application you're deploying to Cloudflare
 type = "webpack"
+
+# Publish to workers.dev by default
+workers_dev = true
 ```
 
 # Publish Your Project
@@ -245,44 +249,58 @@ With your project configured, it's time to publish it!
 $ wrangler publish
 ```
 
-Your Worker will be uploaded and deployed to the `workers.dev` subdomain you have setup. You can also [publish to your own domain](#release-to-your-domain) below.
-
 ![Published Worker](/quickstart/media/published.png)
 
-# Release To Your Domain
+## Publish To workers.dev
 
-To release the script live on a domain you own (i.e. not a `workers.dev` subdomain), you'll configure two additional lines in your `wrangler.toml`: `zone_id` and `route` . By default, a `wrangler.toml` looks like:
+With the `workers_dev` key in `wrangler.toml` set to `true`, Wrangler will publish your project to your `workers.dev` subdomain.
 
 ```toml
 # wrangler.toml
 
-# The name of your Workers application
 name = "my-worker"
-
-# Your Cloudflare account ID
 account_id = "$yourAccountId"
-
-# Your Cloudflare zone ID
-zone_id = "$yourZoneId"
-
-# The route pattern your Workers application will be served at
-route = "$yourRoute"
-
-# The kind of application you're deploying to Cloudflare
 type = "webpack"
+workers_dev = true
 ```
 
-A route will need to be selected for your app: where it will be live. The route field here is a _pattern_, for more see [Routes](/about/routes/).
+Now, run:
 
-**Publishing with Wrangler**
-
-To deploy to your own domain configured above, add the `--release` flag:
-
-```sh
-wrangler publish --release
+```console
+wrangler publish
 ```
 
-## Learn More
+## Publish To Your Domain
+
+To publish your application on a domain you own (i.e. not a `workers.dev` subdomain), you can add a `route` key to your `wrangler.toml`.
+
+Wrangler's ["environments"](https://github.com/cloudflare/wrangler/blob/master/docs/content/environments.md) feature allows us to specify multiple different deploy targets for our application. Let's add a `production` environment, passing in a `route` and `zone_id` to deploy to a specific domain:
+
+```toml
+# wrangler.toml
+
+name = "my-worker"
+account_id = "$yourAccountId"
+type = "webpack"
+workers_dev = true
+
+[env.production]
+# The ID of your domain you're deploying to
+zone_id = "$yourZoneId"
+# The route pattern your Workers application will be served at
+route = "example.com/*"
+```
+
+The `route` key here is a [_route pattern_](/about/routes/). Now, we can deploy to the production environment configured above by passing the `--env` flag to `wrangler publish`:
+
+```console
+wrangler publish --env prod # Publish to example.com
+wrangler publish            # Publish to workers.dev
+```
+
+For more information on environments, check out the [Wrangler documentation](https://github.com/cloudflare/wrangler/blob/master/docs/content/environments.md).
+
+# Learn More
 
 This is just the beginning of what you can do with Cloudflare Workers. If you'd like to dive deeper into building projects with Cloudflare Workers, check out the full-length tutorials below:
 
