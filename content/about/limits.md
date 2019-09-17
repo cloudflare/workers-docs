@@ -58,4 +58,18 @@ Yes, you can use [`event.waitUntil()`](/reference/apis/fetch-event) to register 
 
 ### How long can a subrequest take?
 
-There is no individual subrequest runtime limit, but all subrequests must initate in the first 15 seconds of Workers script execution.
+There is no hard limit on the amount of real time a Worker may use. As long as the client which sent a request remains connected, the Worker may continue processing, making subrequests, and setting timeouts on behalf of that request.
+
+When the client disconnects, all tasks associated with that client’s request are proactively canceled. If the Worker passed a promise to [`event.waitUntil()`](/reference/apis/fetch-event), cancellation will be delayed until the promise has completed or until an additional 30 seconds have elapsed, whichever happens first.
+
+## Simultaneous Open Connections
+
+While handling a request, each Worker script is allowed to have up to six connections open simultaneously. The connections opened by the following API calls all count toward this limit:
+
+- the `fetch()` method of the [Fetch API](/reference/apis/fetch/)
+- `get()`, `put()`, `list()`, and `delete()` methods of [Workers KV Namespace objects](/reference/storage/api/#worker-api)
+- `put()`, `match()`, and `delete()` methods of [Cache objects](/reference/apis/cache/)
+
+Once a Worker has six connections open, it can still attempt to open additional connections. However, these attempts are put in a pending queue - the connections won't be actually be initiated until one of the currently open connections has closed. Since earlier connections can delay later ones, if a Worker tries to make many simultaneous subrequests, its later subrequests may appear to take longer to start.
+
+If the system detects that a Worker is deadlocked on open connections - for instance, if the Worker has pending connection attempts but has no in-progress reads or writes on the connections that it already has open - then the least-recently-used open connection will be canceled to unblock the Worker. If the Worker later attempts to use a canceled connection, an exception will be thrown. These exceptions should rarely occur in practice, though, since it's uncommon for a Worker to open a connection that it doesn't have an immediate use for.
