@@ -3,4 +3,4 @@ description = "Serve private AWS bucket files from a Worker script"
 repository_url = "https://github.com/conzorkingkong/cloud-storage"
 
 tags = ['Middleware']
-tutorial="featured_boilerplates/cloud_storage"
+share="/templates/featured_boilerplates/cloud_storage"

@@ -49,3 +49,4 @@ addEventListener('fetch', event => {
 """
 demo_url="https://cloudflareworkers.com/#cec6695f67232bc76e3f396fcb2d5cc7:https://nope.mywebsite.com/"
 tags=['Enterprise']
+share = "/templates/snippets/conditional_response"
