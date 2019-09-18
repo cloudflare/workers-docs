@@ -1,10 +1,10 @@
 ---
-title: 'Transforming Apps with HTMLRewriter'
+title: 'Localize a Website'
 ---
 
-The `HTMLRewriter` class built into the Cloudflare Workers runtime allows for parsing and rewriting of HTML at the edge, giving developers the ability to efficiently and transparently customize their Workers applications. In this tutorial, we'll build an _internationalization_ engine (commonly referred to as `i18n`) for your application, automatically translating the content of your site depending on where your visitors are in the world.
+The `HTMLRewriter` class built into the Cloudflare Workers runtime allows for parsing and rewriting of HTML at the edge, giving developers the ability to efficiently and transparently customize their Workers applications. In this tutorial, we'll build an example internationalization and localization engine (commonly referred to as 'i18n' and 'l10n') for your application, automatically translating the content of your website or application depending on where your visitors are in the world.
 
-[![Demo Image](/tutorials/transforming-apps-using-htmlrewriter/i18n.jpg)](https://i18n-example.workers-tooling.cf)
+[![Demo Image](/tutorials/localize-a-website/i18n.jpg)](https://i18n-example.workers-tooling.cf)
 
 This tutorial makes use of [Wrangler](https://github.com/cloudflare/wrangler), our command-line tool for generating, building, and publishing projects on the Cloudflare Workers platform. If you haven't used Wrangler, we recommend checking out the ["Installing the CLI"](/quickstart/cli-setup) part of our [Quick Start guide](/quickstart), which will get you set up with Wrangler, and familiar with the basic commands.
 
@@ -61,7 +61,7 @@ The `HTMLRewriter` class provided in the Workers runtime allows developers to pa
 
 Our example website is a basic single-page HTML project. Clear pieces of text are an `h1` element with the text "Example Site" and a number of `p` elements with different text:
 
-![Demo Code](/tutorials/transforming-apps-using-htmlrewriter/code-example.png)
+![Demo Code](/tutorials/localize-a-website/code-example.png)
 
 What is unique about this page is the addition of [data attributes](https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes) in the HTML – custom attributes defined on a number of elements on this page. The `data-i18n-key` on the `h1` tag on this page, as well as many of the `p` tags, indicates that there is a corresponding internationalization key, which should be used to look up a translation for this text:
 
@@ -210,7 +210,7 @@ async function handleRequest(request) {
 
 Our simple i18n tool built on Cloudflare Workers is complete, and it's time to deploy it to your domain! This tutorial assumes that you already have a domain hosted on Cloudflare – check out ["Getting Started with Cloudflare"](https://support.cloudflare.com/hc/en-us/articles/360027989951-Getting-Started-with-Cloudflare) for instructions, if you need to add a domain. Note that the example website, pictured below, is open-source, if you don't have an existing site you'd like to test with:
 
-[![Demo Image](/tutorials/transforming-apps-using-htmlrewriter/i18n.jpg)](https://i18n-example.workers-tooling.cf)
+[![Demo Image](/tutorials/localize-a-website/i18n.jpg)](https://i18n-example.workers-tooling.cf)
 
 With a configured zone, add your Cloudflare account and zone IDs to your project's `wrangler.toml`. If you need help finding your account and zone ID, check out the ["Configure" section](https://developers.cloudflare.com/workers/quickstart/#account-id-and-zone-id) of our Quick Start! In addition to `account_id` and `zone_id`, you need to define a `route`, which tells Workers where you'd like your application to run on your site. For instance, if my website is at `i18n-example.workers-tooling.cf`, I'll choose `i18n-example.workers-tooling.cf/*`, indicating that I'd like the Workers application to run over top of my _entire_ application, matching every possible route:
 
