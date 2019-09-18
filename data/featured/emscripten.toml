@@ -1,3 +1,4 @@
+id = "emscripten"
 name = "Emscripten + Wasm Image Resizer"
 description = "Image Resizer in C compiled to Wasm with Emscripten"
 repository_url = "https://github.com/cloudflare/worker-emscripten-template"

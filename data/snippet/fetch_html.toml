@@ -1,3 +1,4 @@
+id = "fetch_html"
 name = "Fetch HTML"
 description = "Sends a request to a remote server, reads HTML from the response, then serves that HTML."
 code = """async function handleRequest(request) {

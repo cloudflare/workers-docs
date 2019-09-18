@@ -1,3 +1,4 @@
+id = "modify_res_props"
 name = "Modify Response"
 description = "Recommended practice for mutating a fetched [response](/reference/apis/response). First, fetches a request then modifies specific properties which are immutable: `status`, `statusText`, `headers` and `body`."
 code = """async function handleRequest(request) {

@@ -1,5 +1,11 @@
 <section class="template-wrapper featured">
   {{ range $template := sort .Site.Data.featured "weight" "desc" }}
-  {{partial "template" $template}}
+  <div class="template_result" id="{{ $template.id }}">
+    {{partial "template" $template}}
+  </div>
   {{ end }}
 </section>
+
+<script type="application/json" id="featured_boilerplates">
+  {{.Site.Data.featured}}
+</script>

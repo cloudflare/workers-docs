@@ -1,3 +1,4 @@
+id = "graphql_server"
 name = "Apollo GraphQL Server"
 description = "🔥Lightning-fast, globally distributed Apollo GraphQL server, deployed at the edge using Cloudflare Workers."
 repository_url = "https://github.com/signalnerve/workers-graphql-server"
