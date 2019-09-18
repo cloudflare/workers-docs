@@ -181,6 +181,31 @@ class DocumentHandler {
 - `publicId: String | null`: The first quoted string in the doctype element, after the PUBLIC atom. This value is only set on HTML4 doctypes.
 - `systemId: String | null`: The second quoted string in the doctype element, after the PUBLIC atom. This value is only set on HTML4 doctypes.
 
+## Understanding handler errors
+
+If a handler throws an exception, parsing is immediately halted, the transformed response body is errored with the thrown exception, and the untransformed response body is canceled (closed). If the transformed response body was already partially streamed back to the client, the client will see a truncated response.
+
+```js
+async function handle(request) {
+  let oldResponse = await fetch(request)
+  let newResponse = new HTMLRewriter()
+    .on('*', {
+      element(element) {
+        throw new Error('A really bad error.')
+      },
+    })
+    .transform(oldResponse)
+
+  // At this point, an expression like `await newResponse.text()`
+  // will throw `new Error("A really bad error.")`.
+  // Thereafter, any use of `newResponse.body` will throw the same error,
+  // and `oldResponse.body` will be closed.
+
+  // Alternatively, this will produce a truncated response to the client:
+  return newResponse
+}
+```
+
 ## Building with `HTMLRewriter`
 
 The `HTMLRewriter` class can be used to transform incoming HTML responses in a variety of ways. Below are a few examples of things that can be built with the `HTMLRewriter` in Cloudflare Workers:
@@ -201,7 +226,9 @@ class AttributeRewriter {
 
   element(element) {
     const attribute = element.getAttribute(this.attributeName)
-    element.setAttribute(this.attributeName, attribute.replace(/^http:/, 'https:'))
+    if (attribute) {
+      element.setAttribute(this.attributeName, attribute.replace(/^http:/, 'https:'))
+    }
   }
 }
 
