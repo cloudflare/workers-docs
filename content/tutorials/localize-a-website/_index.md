@@ -6,20 +6,16 @@ The [`HTMLRewriter`](/reference/apis/html-rewriter) class built into the Cloudfl
 
 [![Demo Image](/tutorials/localize-a-website/i18n.jpg)](https://i18n-example.workers-tooling.cf)
 
-This tutorial makes use of [Wrangler](https://github.com/cloudflare/wrangler), our command-line tool for generating, building, and publishing projects on the Cloudflare Workers platform. If you haven't used Wrangler, we recommend checking out the ["Installing the CLI"](/quickstart/cli-setup) part of our [Quick Start guide](/quickstart), which will get you set up with Wrangler, and familiar with the basic commands.
-
-One more thing before you start the tutorial: if you just want to jump straight to the code, we've made the final version of the codebase [available on GitHub](https://github.com/signalnerve/i18n-example-workers). You can take that code, customize it, and deploy it for use in your own projects. Happy coding!
-
 ## Prerequisites
 
 To publish your project to Cloudflare Workers, you'll need a few things:
 
 - A Cloudflare account, and access to the API keys for that account
-- A Wrangler installation running locally on your machine, and access to the command-line
+- A Wrangler installation running locally on your machine, and access to the command-line. If you haven't used Wrangler, we recommend checking out the ["Installing the CLI"](/quickstart/#installing-the-cli) part of our [Quick Start guide](/quickstart), which will get you set up with Wrangler, and familiar with the basic commands.
 
-If you don't have those things quite yet, don't worry. We'll walk through each of them and make sure we're ready to go, before you start creating your application.
+This tutorial is designed to be built using a prior application – I'll use `i18n-example.workers-tooling.cf` – we'll overlay an i18n layer over top of that site, by deploying a Workers application in front of that site.
 
-This tutorial is designed to be built using a prior application – I'll use `i18n-example.workers-tooling.cf` – we'll overlay an i18n layer over top of that site, by deploying a Workers application in front of that site. If you'd like to deploy your own version of the site, you can find the source [on GitHub](https://github.com/signalnerve/i18n-example-workers-site). Instructions on how to deploy this application can be found in the project's README.
+If you'd like to deploy your own version of the site or jump straight to the code, you can find the source [on GitHub](https://github.com/signalnerve/i18n-example-workers-site). Instructions on how to deploy this application can be found in the project's README.
 
 ## Generate a project
 
