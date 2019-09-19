@@ -2,7 +2,7 @@
 title: 'Localize a Website'
 ---
 
-The `HTMLRewriter` class built into the Cloudflare Workers runtime allows for parsing and rewriting of HTML at the edge, giving developers the ability to efficiently and transparently customize their Workers applications. In this tutorial, we'll build an example internationalization and localization engine (commonly referred to as 'i18n' and 'l10n') for your application, automatically translating the content of your website or application depending on where your visitors are in the world.
+The [`HTMLRewriter`](/reference/apis/html-rewriter) class built into the Cloudflare Workers runtime allows for parsing and rewriting of HTML at the edge, giving developers the ability to efficiently and transparently customize their Workers applications. In this tutorial, we'll build an example internationalization and localization engine (commonly referred to as "i18n" and "l10n") for your application, automatically translating the content of your website or application depending on where your visitors are in the world.
 
 [![Demo Image](/tutorials/localize-a-website/i18n.jpg)](https://i18n-example.workers-tooling.cf)
 
@@ -221,14 +221,15 @@ With a configured zone, add your Cloudflare account and zone IDs to your project
 name = "i18n-example"
 account_id = "accountid123"
 zone_id = "zoneid123"
+workers_dev = false
 route = "https://i18n-example.workers-tooling.cf/*"
 # ...
 ```
 
-Congrats, it's time to publish your application! Using `wrangler`, we can publish to Cloudflare's entire network almost instantly, using the `publish` command, passing in `--release` to deploy it to our configured zone:
+Congrats, it's time to publish your application! Using `wrangler`, we can publish to Cloudflare's entire network almost instantly, using the `publish` command:
 
 ```sh
-$ wrangler publish --release
+$ wrangler publish
 ```
 
 ## Resources
