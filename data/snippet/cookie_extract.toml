@@ -2,22 +2,21 @@ id = "extract_cookies"
 name = "Extract Cookie Value"
 description = "Extracts the value of a Cookie, given the Cookie header and name."
 code = """
-const reqCookieName = await get_cookie(request.headers.get('Cookie'), 'cookieName');
-  
 async function get_cookie(cookies, name) {
+  let result = null
   if (cookies) {
-    let nameEQ = name
     let cookieArray = cookies.split(';')
-    let result
     cookieArray.forEach((cookie) => {
-      cookieName = cookieArray[i].split('=')[0]
-      if (cookieName.indexOf(nameEQ) == 0) {
+      cookieName = cookie.split('=')[0].trim()
+      if (cookieName == name) {
         result = cookie.split('=')[1]
       }
     })
   }
-  return result || null
+  return result
 }
+
+const reqCookieName = await get_cookie(request.headers.get('Cookie'), 'cookieName');
 """
 demo_url = ""
 tags = ['Middleware']
