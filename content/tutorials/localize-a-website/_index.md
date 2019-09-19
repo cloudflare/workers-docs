@@ -2,7 +2,7 @@
 title: 'Localize a Website'
 ---
 
-The `HTMLRewriter` class built into the Cloudflare Workers runtime allows for parsing and rewriting of HTML at the edge, giving developers the ability to efficiently and transparently customize their Workers applications. In this tutorial, we'll build an example internationalization and localization engine (commonly referred to as 'i18n' and 'l10n') for your application, automatically translating the content of your website or application depending on where your visitors are in the world.
+The [`HTMLRewriter`](/reference/apis/html-rewriter) class built into the Cloudflare Workers runtime allows for parsing and rewriting of HTML at the edge, giving developers the ability to efficiently and transparently customize their Workers applications. In this tutorial, we'll build an example internationalization and localization engine (commonly referred to as "i18n" and "l10n") for your application, automatically translating the content of your website or application depending on where your visitors are in the world.
 
 [![Demo Image](/tutorials/localize-a-website/i18n.jpg)](https://i18n-example.workers-tooling.cf)
 
@@ -37,11 +37,6 @@ All Worker scripts start by listening for `fetch` events, which are fired when a
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
-
-/**
- * Fetch and log a request
- * @param {Request} request
- */
 async function handleRequest(request) {
   return new Response('Hello worker!', { status: 200 })
 }
@@ -63,7 +58,6 @@ What is unique about this page is the addition of [data attributes](https://deve
 
 ```html
 <!-- source clipped from i18n-example site -->
-
 <div class="inner">
   <h1 data-i18n-key="headline">Example Site</h1>
   <p data-i18n-key="subtitle">
@@ -217,14 +211,15 @@ With a configured zone, add your Cloudflare account and zone IDs to your project
 name = "i18n-example"
 account_id = "accountid123"
 zone_id = "zoneid123"
+workers_dev = false
 route = "https://i18n-example.workers-tooling.cf/*"
 # ...
 ```
 
-Congrats, it's time to publish your application! Using `wrangler`, we can publish to Cloudflare's entire network almost instantly, using the `publish` command, passing in `--release` to deploy it to our configured zone:
+Congrats, it's time to publish your application! Using `wrangler`, we can publish to Cloudflare's entire network almost instantly, using the `publish` command:
 
 ```sh
-$ wrangler publish --release
+$ wrangler publish
 ```
 
 ## Resources
