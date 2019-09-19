@@ -1,0 +1,49 @@
+id = "signed_request"
+name = "Signed Request/Response"
+description = "Check signatures of requestst and sign responses with a private key"
+code = """
+const crypto = require('crypto')
+
+const secret = 'SECRET_KEY'
+
+addEventListener('fetch', event => {
+  event.respondWith(handleRequest(event.request))
+})
+
+async function createHexSignature(requestBody) {
+  let hmac = crypto.createHmac('sha256', secret)
+  hmac.update(requestBody)
+  return hmac.digest('hex')
+}
+
+async function checkSignature(request) {
+  // hash request with secret key
+  let expectedSignature = await createHexSignature(await request.text())
+  let actualSignature = await request.headers.get('signature')
+
+  // check that hash matches signature
+  return expectedSignature == actualSignature
+}
+
+async function signResponse(responseBody, response) {
+  // create signature
+  const signature = await createHexSignature(responseBody)
+  response.headers.set('signature', signature)
+  //add header with signature
+  return response
+}
+
+/**
+ * Fetch and log a request
+ * @param {Request} request
+ */
+async function handleRequest(request) {
+  let signed = await checkSignature(request)
+  if (signed) {
+    let responseBody = 'Hello worker!'
+    return await signResponse(responseBody, new Response(responseBody, { status: 200 }))
+  } else {
+    return new Response('Request not signed', {status: 400})
+  }
+}
+"""
