@@ -44,9 +44,17 @@ The `init --sites` command will create a configuration file, as well as a zero-c
 
 ## Configure and Publish
 
-To prepare your application for deployment, open up the newly-created `wrangler.toml` file, which represents the configuration for your Workers application. Using the ["Configure" section of the Quick Start](https://developers.cloudflare.com/workers/quickstart/#configure) as a guide, populate `wrangler.toml` with your account ID, which will allow you to deploy your React application to your Cloudflare account. The `site` key, which is automatically filled in for you, indicates the "build" folder that Sites will deploy to Workers.
+To prepare your application for deployment, open up the newly-created `wrangler.toml` file, which represents the configuration for your Workers application. Using the ["Configure" section of the Quick Start](https://developers.cloudflare.com/workers/quickstart/#configure) as a guide, populate `wrangler.toml` with your account ID, which will allow you to deploy your React application to your Cloudflare account.
 
-Similar to many front-end frameworks and static site generators, `create-react-app` will build your application to `public`, so the default configuration for sites, where the `bucket` key is set to `public`, should work by default. If you're working with a custom build configuration or a different front-end framework besides `create-react-app`, you may want to change this folder location to indicate to Wrangler where your built-out application lives.
+The `bucket` key in your `wrangler.toml` indicates the "build" folder that Sites will deploy to Workers. While many front-end application and static site generators use the folder `public`, `create-react-app` uses the folder `build`. Let's change the `bucket` key in `wrangler.toml` to `build`:
+
+```toml
+# ... previous wrangler config
+
+[site]
+bucket = './build'
+entry-point = 'workers-site'
+```
 
 With a configured `wrangler.toml` file, it's time to build your project, and publish it to Workers. Run `npm run build` to tell `create-react-app` to build your site, and `wrangler publish` to deploy it to Workers:
 
@@ -75,7 +83,7 @@ addEventListener('fetch', event => {
 
 When the script receives an incoming requests, it looks at the `pathname`, such as `/workers`, and looks up an associated file uploaded to Workers KV. If that file is found, a new `Response` is generated, with a matching [MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types) in the `Content-type` header of the response – for instance, if the path `/workers.jpg` is requested, a new response is returned with the header `Content-type: image/jpg`.
 
-In addition to simple retrieval from Workers KV, the static site template makes use of Cloudflare's powerful CDN to automatically cache data from your Workers KV namespace. When subsequent users request `/workers.jpg`, Cloudflare's CDN will transparently serve it, reducing the number of requests to your Workers application and Workers KV namespace (and saving you money – nice!).
+In addition to simple retrieval from Workers KV, the static site template makes use of Cloudflare's powerful CDN to automatically cache data from your Workers KV namespace. When subsequent users request `/index.html`, Cloudflare's CDN will transparently serve a cached version, reducing the number of requests to your Workers application and Workers KV namespace (and saving you money – nice!).
 
 ## Resources
 
