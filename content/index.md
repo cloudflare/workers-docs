@@ -31,11 +31,11 @@ title: Cloudflare Workers Documentation
     <a href="/tutorials/build-a-serverless-function">Deploy a QR code generator</a>
   </li>
   <li class="tutorial-item">
-    <a href="/tutorials/configure-your-cdn">
+    <a href="/tutorials/deploy-a-static-site">
       <img src="/media/cache-website.svg" />
     </a>
-    Configure Your CDN
-    <a href="/tutorials/configure-your-cdn">Serve and cache files from cloud storage</a>
+    Deploy a Static Site
+    <a href="/tutorials/deploy-a-static-site">Get Started with create-react-app</a>
   </li>
 </ul>
 
