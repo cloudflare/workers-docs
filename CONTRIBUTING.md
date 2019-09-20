@@ -17,7 +17,7 @@ If you have any questions that _aren't_ answered by this contribution guide, let
 
 #### **Did you find a typo in the docs, or an issue with a code sample?**
 
-* **Ensure that the issue was not already reported** by searching on GitHub under [Issues](https://github.com/cloudflare/workers-dovs/issues).
+* **Ensure that the issue was not already reported** by searching on GitHub under [Issues](https://github.com/cloudflare/workers-docs/issues).
 
 * If you're unable to find an open issue addressing the problem, [open a new one](https://github.com/cloudflare/workers-docs/issues/new). Be sure to include a **title and clear description**, as much relevant information as possible.
 
