@@ -64,7 +64,7 @@ $ wrangler publish
 
 After deploying your project, open up your browser to see your static site in action!
 
-![Result](/tutorials/deploy-a-static-site/media/demo.png)
+![Result](/tutorials/deploy-a-react-app/media/demo.png)
 
 ## How it works
 
