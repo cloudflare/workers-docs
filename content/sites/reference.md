@@ -4,6 +4,30 @@ alwaysopen: true
 weight: 5
 ---
 
+Worker Sites require  [Wrangler](https://github.com/cloudflare/wrangler) and the Workers Unlimited plan.
+
+### Commands
+
+`wrangler generate proj --site` :  Creates a project with a Worker serving a generic HTML file and favicon with the directory structure:
+
+```
+├── public #files to serve
+|  ├── favicon.ico
+|  └── index.html 
+├── workers-site
+|  ├── index.js # Worker script that serves the assets 
+|  ├── package-lock.json
+|  └── package.json # node modules used by Worker script
+└── wrangler.toml
+```
+
+​	Auto-fills wrangler.toml with  `entry-point`  with the default, `workers-site` and `bucket` with `public`.
+
+`wrangler init —site`: Creates a `wrangler.toml` and `workers-site` folder. You'll need to add a value for `bucket` based on the local path of folder you'd like to be serve.
+
+
+### wrangler.toml
+
 There are a few specific configuration settings for Workers Sites in your `wrangler.toml`:
 
 | Key           | Value                                                                              | Example                          |
@@ -11,11 +35,30 @@ There are a few specific configuration settings for Workers Sites in your `wrang
 | `bucket`      | The directory containing your static assets, path relative to your `wrangler.toml` | `bucket = "./dist"`              |
 | `entry-point` | The location of your Worker script, default is `workers-site`                      | `entry-point = "./workers-site"` |
 
-If you follow the `wrangler generate --site` or `wrangler init --site` instructions, `entry-point` will be auto-filled for you with the default, `workers-site`, which a directory containing the Worker, `workers-site/index.js` that serves your assets.
-
-If you used `wrangler generate --site` you should be all set!
-If you use `wrangler init --site` you'll need to add a value for `bucket` based on the static site generator you use.
-
-If you are adding static assets to a pre-existing Worker, you'll need to configure both `bucket` and `entry-point`. See above for more details!
-
 Note if using [environments](./environments) make sure to place `site` at the top level config.
+
+Example of a `wrangler.toml`:
+
+```
+account_id = "95e..."
+name = "docs-site-blah"
+type = "webpack"
+workers_dev = false
+
+[site]
+bucket = "./public"
+entry-point = "workers-site"
+
+[env.production]
+name = "docs-site"
+route = "https://ex.com/docs*"
+zone_id = "351c.."
+account_id = "b54f07a.."
+
+[env.staging]
+zone_id = "ef47a..."
+account_id = "95e5d..."
+name = "docs-site-staging"
+route = "https://staging.ex.com/docs*"
+```
+

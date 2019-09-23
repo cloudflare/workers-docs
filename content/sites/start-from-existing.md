@@ -25,7 +25,7 @@ This command creates a few things: - `wrangler.toml` - `worker-site`
 
 ```toml
 [site]
-bucket = "" # <-- Add your build directory name here!
+bucket = "./public" # <-- Add your build directory name here!
 entry-point = "workers-site"
 ```
 
