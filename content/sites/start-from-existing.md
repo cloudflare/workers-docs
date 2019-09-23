@@ -1,4 +1,8 @@
-### Deploy a pre-existing static site project
+---
+title: Start from an Existing Site
+alwaysopen: true
+weight: 3
+---
 
 To deploy a pre-existing static site project, you'll need to start with a pre-generated site. Workers Sites works well with all static site generators! For a quickstart, check out the following projects:
 

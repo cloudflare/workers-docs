@@ -1,4 +1,8 @@
-### Add static assets to a pre-existing worker project
+---
+title: Start from an Existing Worker
+alwaysopen: true
+weight: 4
+---
 
 If you have a pre-existing Worker project, you can use Workers Sites to add static asset serving to the Worker. To do so, follow these instructions:
 
