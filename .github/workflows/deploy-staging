@@ -1,0 +1,39 @@
+name: Deploy staging
+
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Navigate to repo
+      run: cd $GITHUB_WORKSPACE
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Install deps
+      run: npm install
+    - name: Install Hugo
+      run: sudo apt-get install hugo
+    - name: Copy config for hugo
+      run: cp config-staging.toml config.toml
+    - name: Build docs
+      run: hugo
+    - name: Install Wrangler
+      run: cargo install --git https://github.com/cloudflare/wrangler --tag v1.4.0-rc.2
+    - name: Configure Wrangler
+      run: ~/.cargo/bin/wrangler config $CF_EMAIL $CF_API_KEY
+      env:
+        CF_API_KEY: ${{ secrets.CF_API_KEY }}
+        CF_EMAIL: ${{ secrets.CF_EMAIL }}
+    - name: Wrangler auth check
+      run: ~/.cargo/bin/wrangler whoami
+    - name: Upload assets
+      run: ~/.cargo/bin/wrangler publish -e staging
+      env:
+        CF_API_KEY: ${{ secrets.CF_API_KEY }}
+        CF_EMAIL: ${{ secrets.CF_EMAIL }}
