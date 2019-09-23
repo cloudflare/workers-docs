@@ -3,4 +3,4 @@ description = "Get started with Workers Sites to easily deploy static assets to 
 id = "sites"
 repository_url = "--site"
 tags = ['Originless']
-tutorial = "/templates/boilerplates/sites"
+tutorial = "/sites/start-from-scratch"
