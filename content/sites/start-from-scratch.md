@@ -7,7 +7,7 @@ weight: 2
 To start from scratch to create a Workers Site, follow these steps:
 
 1.  Ensure you have Wrangler and Node.js installed. [For more info, click here.]
-2.  In your terminal run `wrangler generate --site <project-name>`, replacing `<project-name>` with the name of your project. For example, I'll create a project called mySite by running this command:
+2.  In your terminal run `wrangler generate --site <project-name>`, replacing `<project-name>` with the name of your project. For example, I'll create a project called my-site by running this command:
 
     ```
     wrangler generate --site my-site
