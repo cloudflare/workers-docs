@@ -1,4 +1,8 @@
-## Site Configuration Reference
+---
+title: Wrangler Reference
+alwaysopen: true
+weight: 5
+---
 
 There are a few specific configuration settings for Workers Sites in your `wrangler.toml`:
 

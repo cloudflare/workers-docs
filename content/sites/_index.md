@@ -1,4 +1,8 @@
-# Sites
+---
+title: Workers Sites
+alwaysopen: true
+weight: 1
+---
 
 Worker Sites is a feature of Wrangler that allows you to easily deploy static assets to the Cloudflare edge.
 

@@ -1,4 +1,8 @@
-### Create a new project from scratch
+---
+title: Start from Scratch
+alwaysopen: true
+weight: 2
+---
 
 To start from scratch to create a Workers Site, follow these steps:
 
