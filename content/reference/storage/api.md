@@ -22,7 +22,7 @@ All requests must contain your
 
 ### Namespaces
 
-A Namespace is a container for key-value pairs in your account. By default you can create up to twenty Namespaces within your account, and each Namespace can contain up to one billion key-value pairs.
+A Namespace is a container for key-value pairs in your account. By default you can create up to one hundred Namespaces within your account, and each Namespace can contain up to one billion key-value pairs.
 
 #### Create a Namespace
 

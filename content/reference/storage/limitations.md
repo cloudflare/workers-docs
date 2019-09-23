@@ -5,7 +5,7 @@ weight: 80
 
 Workers KV supports:
 
-- Up to 20 Namespaces per account
+- Up to 100 Namespaces per account
 - Unlimited keys per Namespace (billions supported)
 - Keys of up to 512 bytes
 - Values of up to 2 MB
