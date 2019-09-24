@@ -1,22 +1,3 @@
-/**
- * gets the path to look up in KV
- * e.g. /dir/ -> dir/index.html
- * @param {*} path
- */
-export function normalize_path(path) {
-  // strip first slash
-  path = path.replace(/^\/+/, '')
-  // root page
-  if (path == '') {
-    return 'index.html'
-    // directory page with a trailing /
-  } else if (path.endsWith('/')) {
-    return path + 'index.html'
-    // normal path, no need to do anything!
-  } else {
-    return path
-  }
-}
 export function is_directory(path) {
   const bits = path.split('/')
   const last = bits[bits.length - 1]

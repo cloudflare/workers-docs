@@ -1,21 +1,36 @@
-import { is_directory, determine_content_type, normalize_path } from './utils'
+import { is_directory, determine_content_type } from './utils'
 import { handleRedirect } from './redirects'
 import { newDocsMap } from './data/newDocs'
 import { oldDocsMap } from './data/oldDocs'
-
+import { getAssetFromKV } from '@cloudflare/kv-asset-handler'
 addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event.request))
+  event.respondWith(handleRequest(event))
 })
-
 /**
- * Fetch and log a request
- * @param {Request} request
+ * gets the path to look up in KV (the ./public dir)
+ * e.g. /dir/ -> dir/index.html
+ * @param {*} pathname
  */
-async function handleRequest(request) {
+const keyModifier = pathname => {
+  pathname = pathname.replace('/workers', '')
+  // strip first slash(es)
+  pathname = pathname.replace(/^\/+/, '')
+  // root page
+  if (pathname == '') {
+    return 'index.html'
+    // directory page with a trailing /
+  } else if (pathname.endsWith('/')) {
+    pathname + 'index.html'
+    // normal pathname, no need to do anything!
+  }
+  return pathname
+}
+
+async function handleRequest(event) {
   try {
+    const request = event.request
     var parsedUrl = new URL(request.url)
     var pathname = parsedUrl.pathname
-    pathname = pathname.replace('/workers', '')
     // ensure any requests to /dir/index.html redirect
     // to /dir/ immediately
     if (pathname.endsWith('index.html')) {
@@ -23,7 +38,9 @@ async function handleRequest(request) {
       return Response.redirect(url, 301)
     }
 
-    var path = normalize_path(pathname)
+    var path = keyModifier(pathname)
+    console.log('pathname', pathname)
+    console.log('pat', path)
 
     // ensure all directories are redirected with a trailing
     // slash
@@ -31,18 +48,15 @@ async function handleRequest(request) {
       return Response.redirect(request.url + '/', 301)
     }
 
-    var contentType = determine_content_type(path)
-
-    let body = await WORKERS_DOCS_STATIC_CONTENT.get(path, 'arrayBuffer')
+    let body = getAssetFromKV(event, keyModifier)
     // strip  trailing slashes since newDocsMaps won't include
     pathname = pathname.replace(/\/$/, '')
     if (!body || newDocsMap.has(pathname) || oldDocsMap.has(pathname)) {
       console.log('Handling redirect')
       return handleRedirect(request)
     }
-    let res = new Response(body, { status: 200 })
-    res.headers.set('Content-type', contentType)
-    return res
+
+    return body
   } catch (err) {
     console.log(err)
     let res = new Response(err.body, { status: err.status })
