@@ -2,9 +2,24 @@
 title: HTMLRewriter
 ---
 
+- [HTMLRewriter](#htmlrewriter)
+- [Selectors](#selectors)
+- [Global Types](#global-types)
+- [Handlers](#handlers)
+  - [Element Handlers](#element-handlers)
+  - [Document Handlers](#document-handlers)
+  - [Element](#element)
+  - [Text chunks](#text-chunks)
+  - [Comments](#comments)
+  - [Doctype](#doctype)
+- [Understanding handler errors](#understanding-handler-errors)
+- [Building with `HTMLRewriter`](#building-with--htmlrewriter-)
+  - [Transforming Mixed Responses](#transforming-mixed-responses)
+  - [Inserting HTML](#inserting-html)
+
 ## Overview
 
-The `HTMLRewriter` class allows developers to build comprehensive and expressive HTML parsers inside of a Cloudflare Workers application. It can be thought of as a jQuery-like experience directly inside of your Workers application, allowing developers to build deeply functional applications, leaning on a powerful JavaScript API to parse and transform HTML.
+The `HTMLRewriter` class allows developers to build comprehensive and expressive HTML parsers inside of a Cloudflare Workers application. It can be thought of as a jQuery-like experience directly inside of your Workers application. Leaning on a powerful JavaScript API to parse and transform HTML, `HTMLRewriter` allows developers to build deeply functional applications.
 
 ## HTMLRewriter
 
@@ -40,11 +55,11 @@ new HTMLRewriter.on('*', new ElementHandler()).onDocument(new DocumentHandler())
 Throughout the HTMLRewriter API, there are a few consistent types that many properties and methods use:
 
 - `Content`: `String`. Content inserted in the output stream should be a string.
-- `ContentOptions`: `{ html: Boolean }`. Controls the way the HTMLRewriter treats inserted content. If the `html` boolean is set to true, content is treated as raw HTML. If the `html` boolean is set to false, or not provided, content will be treated as text, and proper HTML escaping will be applied to it.
+- `ContentOptions`: `{ html: Boolean }`. Controls the way the HTMLRewriter treats inserted content. If the `html` boolean is set to true, content is treated as raw HTML. If the `html` boolean is set to false or not provided, content will be treated as text and proper HTML escaping will be applied to it.
 
 ## Handlers
 
-There are two handler types that can be used with `HTMLRewriter`: _element handlers_, and _document handlers_.
+There are two handler types that can be used with `HTMLRewriter`: _element handlers_ and _document handlers_.
 
 ### Element Handlers
 
@@ -99,10 +114,10 @@ The `element` argument, used only in element handlers, is a representation of a 
 
 #### Properties
 
-- `tagName`: a string representing the name of the tag, such as `"h1"` or `"div"`. This property can be assigned different values, to modify an element's tag.
-- `attributes`: an iterator that returns a `[name, value]` pair of the tag's attributes. This property is read-only.
-- `removed`: a boolean indicating whether the element has been removed or replaced by one of the previous handlers.
-- `namespaceURI`: a string representing the [namespace URI](https://infra.spec.whatwg.org/#namespaces) of an element.
+- `tagName`: `String` representing the name of the tag, such as `"h1"` or `"div"`. This property can be assigned different values, to modify an element's tag.
+- `attributes`: `Iterator` returns a `[name, value]` pair of the tag's attributes. This property is read-only.
+- `removed`: `Boolean` indicating whether the element has been removed or replaced by one of the previous handlers.
+- `namespaceURI`: `String` representing the [namespace URI](https://infra.spec.whatwg.org/#namespaces) of an element.
 
 #### Methods
 
@@ -123,13 +138,13 @@ The `element` argument, used only in element handlers, is a representation of a 
 
 Since we perform zero-copy streaming parsing, text chunks are not the same thing as text nodes in the lexical tree. A lexical tree text node can be represented by multiple chunks, as they arrive over the wire from the origin.
 
-Consider the following markup: `<div>Hey. How are you?</div>`. It's possible that the Workers script won't receive the entire text node from the origin at once; instead, the `text` element handler will be invoked for each received part of the text node. For example, the handler might be invoked with "Hey. How ", then "are you?". When the last chunk arrives, the text's `lastInTextNode` property will be set to true. Developers should make sure to concatenate these chunks together.
+Consider the following markup: `<div>Hey. How are you?</div>`. It's possible that the Workers script won't receive the entire text node from the origin at once; instead, the `text` element handler will be invoked for each received part of the text node. For example, the handler might be invoked with "Hey. How ", then "are you?". When the last chunk arrives, the text's `lastInTextNode` property will be set to `true`. Developers should make sure to concatenate these chunks together.
 
 #### Properties
 
-- `removed`: a boolean indicating whether the element has been removed or replaced by one of the previous handlers.
+- `removed`:`Boolean` indicating whether the element has been removed or replaced by one of the previous handlers.
 - `text: String`: Read-only, text content of the chunk. Could be empty if the chunk is the last chunk of the text node.
-- `lastInTextNode: Boolean`: Read-only, specifies whether the chunk is the last chunk of the text node.
+- `lastInTextNode`: `Boolean`: Read-only, specifies whether the chunk is the last chunk of the text node.
 
 #### Methods
 
@@ -152,7 +167,7 @@ class ElementHandler {
 
 #### Properties
 
-- `removed`: a boolean indicating whether the element has been removed or replaced by one of the previous handlers.
+- `removed`: `Boolean` indicating whether the element has been removed or replaced by one of the previous handlers.
 - `text: String`: Read-only, text content of the chunk. Could be empty if the chunk is the last chunk of the text node.
 
 #### Methods
@@ -227,7 +242,10 @@ class AttributeRewriter {
   element(element) {
     const attribute = element.getAttribute(this.attributeName)
     if (attribute) {
-      element.setAttribute(this.attributeName, attribute.replace(/^http:/, 'https:'))
+      element.setAttribute(
+        this.attributeName,
+        attribute.replace(/^http:/, 'https:'),
+      )
     }
   }
 }
