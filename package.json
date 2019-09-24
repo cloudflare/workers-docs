@@ -9,8 +9,7 @@
     "build": "hugo && wrangler build",
     "start-hugo": "hugo -D server",
     "start-worker": "hugo && wrangler preview --watch -e staging",
-    "publish-staging": "npm run build && wrangler publish -e staging",
-    "publish-production": "npm run build && wrangler publish -e production"
+    "publish": "npm run build && wrangler publish -e"
   },
   "dependencies": {
     "gulp": "^4.0.0",

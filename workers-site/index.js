@@ -17,11 +17,10 @@ const keyModifier = pathname => {
   pathname = pathname.replace(/^\/+/, '')
   // root page
   if (pathname == '') {
-    return 'index.html'
+    pathname += 'index.html'
     // directory page with a trailing /
   } else if (pathname.endsWith('/')) {
-    pathname + 'index.html'
-    // normal pathname, no need to do anything!
+    pathname += 'index.html'
   }
   return pathname
 }
@@ -39,8 +38,6 @@ async function handleRequest(event) {
     }
 
     var path = keyModifier(pathname)
-    console.log('pathname', pathname)
-    console.log('pat', path)
 
     // ensure all directories are redirected with a trailing
     // slash
@@ -48,7 +45,7 @@ async function handleRequest(event) {
       return Response.redirect(request.url + '/', 301)
     }
 
-    let body = getAssetFromKV(event, keyModifier)
+    let body = getAssetFromKV(event, { keyModifier })
     // strip  trailing slashes since newDocsMaps won't include
     pathname = pathname.replace(/\/$/, '')
     if (!body || newDocsMap.has(pathname) || oldDocsMap.has(pathname)) {
