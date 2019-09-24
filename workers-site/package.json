@@ -7,6 +7,6 @@
   "author": "Ashley Lewis <ashleymichal@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@cloudflare/kv-asset-handler": "0.0.2"
+    "@cloudflare/kv-asset-handler": "cloudflare/kv-asset-handler#f597cc6b242d5d35e3ce5de18ad10ce726ff960e"
   }
 }
