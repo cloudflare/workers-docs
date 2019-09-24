@@ -1,9 +1,9 @@
-name: Deploy production site
+name: Deploy staging site
 
 on:
   push:
     branches:
-      - master
+      - staging
 
 jobs:
   build:
@@ -20,7 +20,7 @@ jobs:
     - name: Install Hugo
       run: sudo apt-get install hugo
     - name: Copy config for hugo
-      run: cp config-production.toml config.toml
+      run: cp config-staging.toml config.toml
     - name: Build docs
       run: hugo
     - name: Install Wrangler
@@ -31,7 +31,7 @@ jobs:
         CF_API_KEY: ${{ secrets.CF_API_KEY }}
         CF_EMAIL: ${{ secrets.CF_EMAIL }}
     - name: Upload assets
-      run: ~/.cargo/bin/wrangler publish -e production
+      run: ~/.cargo/bin/wrangler publish -e staging
       env:
         CF_API_KEY: ${{ secrets.CF_API_KEY }}
         CF_EMAIL: ${{ secrets.CF_EMAIL }}

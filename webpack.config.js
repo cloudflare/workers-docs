@@ -1,12 +1,12 @@
 module.exports = {
-  entry: './worker/worker.js',
+  entry: './workers-site/index.js',
   mode: 'development',
   output: {
     pathinfo: false,
   },
   devtool: 'none',
   optimization: {
-    // We no not want to minimize our code.
+    // We do not want to minimize our code.
     minimize: false,
     removeEmptyChunks: false,
     removeAvailableModules: false,

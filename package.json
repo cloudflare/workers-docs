@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "Cloudflare Workers developer docs",
   "license": "Apache-2.0 OR MIT",
+  "main": "workers-site/index.js",
   "private": true,
   "scripts": {
-    "start": "./node_modules/@cloudflare/hugo-cloudflare-docs/start",
-    "build": "./node_modules/@cloudflare/hugo-cloudflare-docs/build"
+    "build": "hugo && wrangler build",
+    "start-hugo": "hugo -D server",
+    "start-worker": "hugo && wrangler preview --watch -e staging",
+    "publish": "npm run build && wrangler publish -e"
   },
   "dependencies": {
     "gulp": "^4.0.0",

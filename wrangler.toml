@@ -1,0 +1,23 @@
+account_id = "95e065d2e3f97a1e50bae58aea71df6d"
+name = "docs-site-blah"
+type = "webpack"
+workers_dev = false
+
+[site]
+bucket = "./public"
+entry-point = "workers-site"
+
+# Production
+[env.production]
+name = "docs-site"
+route = "https://developers.cloudflare.com/workers*"
+zone_id = "351cf9fc660523187714fa772ad5ca49"
+account_id = "b54f07a6c269ecca2fa60f1ae4920c99"
+
+# Staging
+[env.staging]
+zone_id = "ef47aa23b6bf53a4d334b7e3f3579c56"
+account_id = "95e065d2e3f97a1e50bae58aea71df6d"
+name = "docs-site-staging"
+route = "https://sites.workers-tooling.cf/workers*"
+
