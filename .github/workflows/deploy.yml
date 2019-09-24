@@ -24,14 +24,14 @@ jobs:
     - name: Build docs
       run: hugo
     - name: Install Wrangler
-      run: cargo install --git https://github.com/cloudflare/wrangler --tag v1.4.0-rc.4
+      run: npm i @cloudflare/wrangler@1.4.0-rc.4 -g
     - name: Wrangler auth check
-      run: ~/.cargo/bin/wrangler whoami
+      run: wrangler whoami
       env:
         CF_API_KEY: ${{ secrets.CF_API_KEY }}
         CF_EMAIL: ${{ secrets.CF_EMAIL }}
     - name: Upload assets
-      run: ~/.cargo/bin/wrangler publish -e production
+      run: wrangler publish -e production
       env:
         CF_API_KEY: ${{ secrets.CF_API_KEY }}
         CF_EMAIL: ${{ secrets.CF_EMAIL }}
