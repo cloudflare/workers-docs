@@ -39,4 +39,8 @@ export const newDocsMap = new Map([
   ['/reference/storage/overview/writing-data', '/reference/storage/writing-data'],
 
   ['/tutorials/build-a-rustwasm-function', '/templates/boilerplates/rustwasm'],
+
+  // This is a remnant of some buggy workers.cloudflare.com code,
+  // we should explicitly handle this and send them to the right place
+  ['/workers/docs', '/workers'],
 ])
