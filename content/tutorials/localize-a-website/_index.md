@@ -13,49 +13,30 @@ To publish your project to Cloudflare Workers, you'll need a few things:
 - A Cloudflare account, and access to the API keys for that account
 - A Wrangler installation running locally on your machine, and access to the command-line. If you haven't used Wrangler, we recommend checking out the ["Installing the CLI"](/quickstart/#installing-the-cli) part of our [Quick Start guide](/quickstart), which will get you set up with Wrangler, and familiar with the basic commands.
 
-This tutorial is designed to be built using a prior application – I'll use `i18n-example.workers-tooling.cf` – we'll overlay an i18n layer over top of that site, by deploying a Workers application in front of that site.
+This tutorial is designed to use an existing website. To simplify this process, we'll use a free HTML5 template from [HTML5 UP](https://html5up.net/). With this website as the base, we'll use the `HTMLRewriter` functionality in the Workers platform to overlay an i18n layer, automatically translating the site based on the user's language.
 
-If you'd like to deploy your own version of the site or jump straight to the code, you can find the source [on GitHub](https://github.com/signalnerve/i18n-example-workers-site). Instructions on how to deploy this application can be found in the project's README.
+If you'd like to deploy your own version of the site, you can find the source [on GitHub](https://github.com/signalnerve/i18n-example-workers-site). Instructions on how to deploy this application can be found in the project's README.
 
 ## Generate a project
 
-Cloudflare's command-line tool for managing Worker projects, Wrangler, has great support for templates – pre-built collections of code that make it easy to get started writing Workers. We'll make use of the [default template](https://github.com/cloudflare/worker-template) to start building your project.
-
-In the command line, generate your Workers project, and pass the project name `i18n-example`:
+To generate a new project, we'll use `wrangler generate --site` to create a new application, calling it `i18n-example`:
 
 ```sh
-$ wrangler generate i18n-example
+$ wrangler generate i18n-example --site
 $ cd i18n-example
 ```
 
-The default Workers template includes support for building and deploying JavaScript-based projects. Inside of your new `i18n-example` directory, `index.js` represents the entry-point to your Cloudflare Workers application.
+The `--site` flag indicates to Wrangler that we want to build a [Workers Sites](/sites) project - this means that there will be both a "site" component, the static HTML that we want to serve to the user, and a Workers script, inside of which we can customize the HTML response using `HTMLRewriter`.
 
-All Worker scripts start by listening for `fetch` events, which are fired when a client makes a request to a Workers route:
+The newly generated `i18n-example` project will contain two folders: `public`, which is our static HTML, and `workers-site`, which contains the logic for our Workers script. Inside of `public`, we should replace the default generated HTML code with the HTML5 UP template seen in the demo screenshot: you can download a [release](https://github.com/signalnerve/i18n-example-workers/archive/v1.0.zip) (ZIP link) of the code for this project and copy the `public` folder to your own project to get started.
 
-```js
-// index.js
-addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event.request))
-})
-
-/**
- * Fetch and log a request
- * @param {Request} request
- */
-async function handleRequest(request) {
-  return new Response('Hello worker!', { status: 200 })
-}
-```
-
-In your default `index.js` file, we can see that request/response pattern in action. The `handleRequest` constructs a new `Response` with the body text "Hello worker", as well as an explicit status code of 200. When a `fetch` event comes into the worker, the script uses `event.respondWith` to return that new response back to the client.
-
-In this project, you'll use the [`fetch`](/reference/apis/fetch/) function to make requests to your origin – the site that serves the content you wish to internationalize. That response will pass through the `HTMLRewriter` class, to make transformations to the HTML before the user receives it.
+With the static HTML for this project updated, we can focus on the Workers script inside of the `workers-site` folder, at `index.js`.
 
 ## How it works
 
 The `HTMLRewriter` class provided in the Workers runtime allows developers to parse HTML and write simple JavaScript to query and transform every element of the page.
 
-Our example website is a basic single-page HTML project. Clear pieces of text are an `h1` element with the text "Example Site" and a number of `p` elements with different text:
+Our example website is a basic single-page HTML project, with some text elements: an `h1` element with the text "Example Site", and a number of `p` elements with different text:
 
 ![Demo Code](/tutorials/localize-a-website/code-example.png)
 
@@ -81,15 +62,17 @@ Finally, it's shockingly easy to introduce one more cool feature into this proje
 
 ## Using the HTML Rewriter
 
-To start, let's look back into `index.js`: our Workers application in this tutorial will live entirely in this file, so it's important to be familiar with it.
+To start, let's look at `workers-site/index.js`: our Workers application in this tutorial will live entirely in this file, so it's important to be familiar with it.
 
-Our Workers script contains a `response`, which represents the response from our origin server. That response should be parsed, and ultimately transformed, with a new instance of `HTMLRewriter`. When instantiating `HTMLRewriter`, we can also attach handlers using the `on` function: in our case, we'll use the `*` selector (see the documentation for more advanced usage) to parse all elements with a single class, `ElementHandler` . With the created instance of `HTMLRewriter`, the `transform` function takes a `response`, and can be returned to the client:
+Inside of this file, the default code for running a [Workers Site](/sites) has been provided. For now, we can ignore much of what goes on in this script (though if you'd like to learn more, check out [the docs](/sites)) - the crucial part of the generated code lives in the `handleRequest` function, where the script retrieves a website asset from Workers KV, and returns it to the user.
+
+To implement translations on the site, we'll take the HTML response retrieved from KV, and pass it into a new instance of `HTMLRewriter`. When instantiating `HTMLRewriter`, we can also attach handlers using the `on` function: in our case, we'll use the `*` selector (see the [documentation](/reference/apis/html-rewriter) for more advanced usage) to parse all elements with a single class, `ElementHandler`. With the created instance of `HTMLRewriter`, the `transform` function takes a `response`, and can be returned to the client:
 
 ```js
 // index.js
-
-async function handleRequest(request) {
-  const response = await fetch(request)
+async function handleRequest(event) {
+  // ...
+  const response = await getAssetFromKV(event)
   return new HTMLRewriter().on('*', new ElementHandler()).transform(response)
 }
 ```
@@ -98,7 +81,7 @@ async function handleRequest(request) {
 
 Our `ElementHandler` will receive every element parsed by the `HTMLRewriter` instance, and thanks to the expressive API, it's really easy to query each incoming element for information.
 
-In "How it works", I showed the usage of `data-i18n-key`, a custom data attribute that could be used to find a corresponding translated string for the website's user interface. In `ElementHandler`, we can define an `element` function, which will be called as each element is parsed. Inside of it, we can query for the custom data attribute using `getAttribute`:
+In "How it works", we talked about `data-i18n-key`, a custom data attribute that could be used to find a corresponding translated string for the website's user interface. In `ElementHandler`, we can define an `element` function, which will be called as each element is parsed. Inside of it, we can query for the custom data attribute using `getAttribute`:
 
 ```js
 class ElementHandler {
@@ -150,16 +133,19 @@ To implement this, we'll update the `strings` object, adding a second layer of k
 To parse the `Accept-Language` header, we'll install the [`accept-language-parser`](https://www.npmjs.com/package/accept-language-parser) NPM package:
 
 ```sh
-npm i accept-language-parser
+$ npm i accept-language-parser
 ```
 
 Once imported into our code, we can use it to parse the most relevant language for a client based on `Accept-Language` header, and pass it to `ElementHandler`. Our final code for the project, with an included sample translation for Germany (using Google Translate) looks like this:
 
 ```js
+import { getAssetFromKV, defaultKeyModifier } from '@cloudflare/kv-asset-handler'
 import parser from 'accept-language-parser'
 
+const DEBUG = false
+
 addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event.request))
+  event.respondWith(handleEvent(event))
 })
 
 const strings = {
@@ -191,24 +177,43 @@ class ElementHandler {
   }
 }
 
-async function handleRequest(request) {
-  const languageHeader = request.headers.get('Accept-Language')
-  const language = parser.pick(['de'], languageHeader)
-  const countryStrings = strings[language] || {}
+async function handleEvent(event) {
+  const url = new URL(event.request.url)
+  try {
+    let options = {}
+    if (DEBUG) {
+      options = {
+        cacheControl: {
+          bypassCache: true,
+        },
+      }
+    }
+    const languageHeader = event.request.headers.get('Accept-Language')
+    const language = parser.pick(['de'], languageHeader)
+    const countryStrings = strings[language] || {}
 
-  const response = await fetch(request)
+    const response = await getAssetFromKV(event, options)
 
-  return new HTMLRewriter().on('*', new ElementHandler(countryStrings)).transform(response)
+    return new HTMLRewriter().on('*', new ElementHandler(countryStrings)).transform(response)
+  } catch (e) {
+    if (DEBUG) {
+      return new Response(e.message || e.toString(), {
+        status: 404,
+      })
+    } else {
+      return new Response(`"${defaultKeyModifier(url.pathname)}" not found`, {
+        status: 404,
+      })
+    }
+  }
 }
 ```
 
 ## Publish
 
-Our simple i18n tool built on Cloudflare Workers is complete, and it's time to deploy it to your domain! This tutorial assumes that you already have a domain hosted on Cloudflare – check out ["Getting Started with Cloudflare"](https://support.cloudflare.com/hc/en-us/articles/360027989951-Getting-Started-with-Cloudflare) for instructions, if you need to add a domain. Note that the example website, pictured below, is open-source, if you don't have an existing site you'd like to test with:
+Our simple i18n tool built on Cloudflare Workers is complete, and it's time to deploy it to your domain!
 
-[![Demo Image](/tutorials/localize-a-website/i18n.jpg)](https://i18n-example.workers-tooling.cf)
-
-With a configured zone, add your Cloudflare account and zone IDs to your project's `wrangler.toml`. If you need help finding your account and zone ID, check out the ["Configure" section](https://developers.cloudflare.com/workers/quickstart/#account-id-and-zone-id) of our Quick Start! In addition to `account_id` and `zone_id`, you need to define a `route`, which tells Workers where you'd like your application to run on your site. For instance, if my website is at `i18n-example.workers-tooling.cf`, I'll choose `i18n-example.workers-tooling.cf/*`, indicating that I'd like the Workers application to run over top of my _entire_ application, matching every possible route:
+It's super easy (and quick) to deploy sites to your Workers.dev subdomain, but the `wrangler.toml` configuration file in your project needs a little bit of setup before you can deploy your project. First, you'll need to add your Cloudflare account ID - if you need help finding your account ID, check out the ["Configure" section](https://developers.cloudflare.com/workers/quickstart/#account-id-and-zone-id) of our Quick Start! With your account ID set, the top part of your project's `wrangler.toml` should look like:
 
 ```toml
 # wrangler.toml
@@ -216,17 +221,32 @@ With a configured zone, add your Cloudflare account and zone IDs to your project
 # ...
 name = "i18n-example"
 account_id = "accountid123"
-zone_id = "zoneid123"
-workers_dev = false
-route = "https://i18n-example.workers-tooling.cf/*"
+workers_dot_dev = true
 # ...
 ```
 
-Congrats, it's time to publish your application! Using `wrangler`, we can publish to Cloudflare's entire network almost instantly, using the `publish` command:
+The `[site]` section at the bottom of `wrangler.toml` tells Wrangler how to deploy your Workers Site. The `bucket` key tells Wrangler where to find your static assets: by default, the Sites template will use the `public` folder, where we placed our HTML code at the beginning of this tutorial. The `entry-point` key indicates where your Workers script is located, and like `bucket`, the default of `workers-site` should already be correctly configured for your application.
+
+The final version of your project's `wrangler.toml` should look like:
+
+```toml
+name = "i18n-example"
+type = "webpack"
+account_id = "accountidi123"
+workers_dot_dev = true
+
+[site]
+bucket = "./public"
+entry-point = "workers-site"
+```
+
+With that, it's time to publish your application! Using `wrangler`, we can publish to Cloudflare's entire network almost instantly, using the `publish` command:
 
 ```sh
 $ wrangler publish
 ```
+
+[![Demo Image](/tutorials/localize-a-website/i18n.jpg)](https://i18n-example.workers-tooling.cf)
 
 ## Resources
 

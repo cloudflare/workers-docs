@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 // Process templates JSON into lunr-supported JS objects
-=======
->>>>>>> Begin working on search/filter for templates
 const constructCorpus = () => {
   const toLunr = (item, type) => ({ type, ...item })
   return [
@@ -10,25 +7,16 @@ const constructCorpus = () => {
     ...Object.values(snippets).map(item => toLunr(item, 'snippets')),
   ]
 }
-<<<<<<< HEAD
 const corpus = constructCorpus()
 let results = corpus
 
 // Construct the search index using lunr
-=======
-
-const corpus = constructCorpus()
-
->>>>>>> Begin working on search/filter for templates
 const idx = lunr(function() {
   this.ref('id')
   this.field('name')
   this.field('description')
   this.field('type')
-<<<<<<< HEAD
   this.field('tags')
-=======
->>>>>>> Begin working on search/filter for templates
 
   corpus.forEach(function(doc) {
     this.add(doc)
@@ -37,7 +25,6 @@ const idx = lunr(function() {
 
 window.idx = idx
 
-<<<<<<< HEAD
 // Search based on a query, updating `results`
 const search = query => {
   if (query) {
@@ -62,13 +49,6 @@ const processSearch = () => {
   empty.style.display = 'none'
   empty.style.marginBottom = null
 
-=======
-const search = query => idx.search(query).map(result => result.ref)
-
-let results = corpus
-
-const processSearch = () => {
->>>>>>> Begin working on search/filter for templates
   const templates = document.querySelectorAll('.template-card')
   templates.forEach(
     elem =>
@@ -76,7 +56,6 @@ const processSearch = () => {
   )
 }
 
-<<<<<<< HEAD
 // Update the UI when there aren't any results
 const processEmpty = () => {
   const resultsContainer = document.querySelector('#results')
@@ -132,11 +111,3 @@ const initialSearch = url.searchParams.get('q')
 if (initialSearch) {
   handleNewSearchValue(initialSearch)
 }
-=======
-document.querySelector('#search').addEventListener('input', evt => {
-  const value = evt.target.value
-  const query = search(value)
-  results = corpus.filter(item => query.includes(item.id))
-  processSearch()
-})
->>>>>>> Begin working on search/filter for templates
