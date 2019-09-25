@@ -35,14 +35,14 @@ npx create-react-app my-static-site
 
 ## Generate a project
 
-In the command line, navigate to your newly-created React project, and use `wrangler init --sites` to generate a Workers Sites configuration for your project:
+In the command line, navigate to your newly-created React project, and use `wrangler init --site` to generate a Workers Sites configuration for your project:
 
 ```
 $ cd my-static-site
-$ wrangler init --sites
+$ wrangler init --site
 ```
 
-The `init --sites` command will create a configuration file, as well as a zero-config Workers application, for deploying your React application. For the majority of static sites, you shouldn't need to change the Workers script: by default, the script will look at an incoming request, and will serve a corresponding asset from [Workers KV](https://www.cloudflare.com/products/workers-kv/) based on that route. For instance, if my static site is deployed at `mystaticsite.com`, requesting `mystaticsite.com/about.html` will look for a file in KV called `about.html`, and serve it back to the client. In addition, if the asset being returned from KV is cacheable, it will automatically be cached with Cloudflare's CDN, making subsequent requests even faster.
+The `init --site` command will create a configuration file, as well as a zero-config Workers application, for deploying your React application. For the majority of static sites, you shouldn't need to change the Workers script: by default, the script will look at an incoming request, and will serve a corresponding asset from [Workers KV](https://www.cloudflare.com/products/workers-kv/) based on that route. For instance, if my static site is deployed at `mystaticsite.com`, requesting `mystaticsite.com/about.html` will look for a file in KV called `about.html`, and serve it back to the client. In addition, if the asset being returned from KV is cacheable, it will automatically be cached with Cloudflare's CDN, making subsequent requests even faster.
 
 ## Configure and Publish
 
