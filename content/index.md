@@ -35,7 +35,7 @@ title: Cloudflare Workers Documentation
       <img src="/media/cache-website.svg" />
     </a>
     Deploy a Static Site
-    <a href="/tutorials/deploy-a-static-site">Get Started with create-react-app</a>
+    <a href="/tutorials/deploy-a-react-app">Get Started with create-react-app</a>
   </li>
 </ul>
 
