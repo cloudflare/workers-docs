@@ -4,6 +4,10 @@ title: 'Deploy a React App'
 
 In this tutorial, we'll use [Wrangler](https://github.com/cloudflare/wrangler) and [Cloudflare Workers](https://workers.cloudflare.com) to deploy and serve a static site. With the rise of architectures like [JAMStack](https://jamstack.org/), static sites have become an incredible way to combine highly-available static assets with performant backend code, especially when deployed with serverless. Workers in particular is a great platform to deploy static sites: your application will be distributed to over 190+ locations around the world, and served directly from Cloudflare's powerful CDN at a server incredibly close to your users.
 
+<stream src="9943b400b59802b77f83a8a57f39d682" controls></stream>
+
+<script data-cfasync="false" defer type="text/javascript" src="https://embed.videodelivery.net/embed/r4xu.fla9.latest.js?video=9943b400b59802b77f83a8a57f39d682"></script>
+
 This tutorial makes use of [Wrangler](https://github.com/cloudflare/wrangler), our command-line tool for generating, building, and publishing projects on the Cloudflare Workers platform. If you haven't used Wrangler, we recommend checking out the ["Installing the CLI"](/quickstart/cli-setup) part of our [Quick Start guide](/quickstart), which will get you set up with Wrangler, and familiar with the basic commands.
 
 One more thing before you start the tutorial: if you just want to jump straight to the code, we've made the final version of the codebase [available on GitHub](https://github.com/signalnerve/react-workers-template). You can take that code, customize it, and deploy it for use in your own projects. Happy coding!
@@ -28,7 +32,6 @@ npx create-react-app my-static-site
 ```
 
 `create-react-app` will create a new project, and include all the relevant dependencies needed to build the project.
-
 
 ## Generate a project
 
