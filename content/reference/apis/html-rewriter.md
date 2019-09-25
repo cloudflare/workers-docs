@@ -2,6 +2,7 @@
 title: HTMLRewriter
 ---
 
+- [Overview](#overview)
 - [HTMLRewriter](#htmlrewriter)
 - [Selectors](#selectors)
 - [Global Types](#global-types)
@@ -13,9 +14,6 @@ title: HTMLRewriter
   - [Comments](#comments)
   - [Doctype](#doctype)
 - [Understanding handler errors](#understanding-handler-errors)
-- [Building with `HTMLRewriter`](#building-with--htmlrewriter-)
-  - [Transforming Mixed Responses](#transforming-mixed-responses)
-  - [Inserting HTML](#inserting-html)
 
 ## Overview
 
@@ -35,7 +33,7 @@ new HTMLRewriter.on('*', new ElementHandler()).onDocument(new DocumentHandler())
 | ------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
 | `*`                            | any element                                                                                                           |
 | `E`                            | any element of type E                                                                                                 |
-| `E:not(s)`                     | an E element that does not match either compound selector s                                                           |
+| `E:not(s)`                     | an E element that does not match either compound selector s                                                           |
 | `E.warning`                    | an E element belonging to the class warning                                                                           |
 | `E#myid`                       | an E element with ID equal to myid.                                                                                   |
 | `E[foo]`                       | an E element with a foo attribute                                                                                     |
@@ -218,73 +216,5 @@ async function handle(request) {
 
   // Alternatively, this will produce a truncated response to the client:
   return newResponse
-}
-```
-
-## Building with `HTMLRewriter`
-
-The `HTMLRewriter` class can be used to transform incoming HTML responses in a variety of ways. Below are a few examples of things that can be built with the `HTMLRewriter` in Cloudflare Workers:
-
-### Transforming Mixed Responses
-
-By looking for incoming `a` and `img` tags, an `HTMLRewriter` instance can rewrite any HTTP requests into secure HTTPS requests. Note that Cloudflare's [Automatic HTTPS Rewrite](https://support.cloudflare.com/hc/en-us/articles/227227647-Understanding-Automatic-HTTPS-rewrites) feature can do this for your applications automatically – this brief code example is intended for reference only:
-
-```js
-addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event.request))
-})
-
-class AttributeRewriter {
-  constructor(attributeName) {
-    this.attributeName = attributeName
-  }
-
-  element(element) {
-    const attribute = element.getAttribute(this.attributeName)
-    if (attribute) {
-      element.setAttribute(
-        this.attributeName,
-        attribute.replace(/^http:/, 'https:'),
-      )
-    }
-  }
-}
-
-const rewriter = new HTMLRewriter()
-  .on('a', new AttributeRewriter('href'))
-  .on('img', new AttributeRewriter('src'))
-
-async function handleRequest(req) {
-  const res = await fetch(req)
-  return rewriter.transform(res)
-}
-```
-
-### Inserting HTML
-
-It's common to use the Workers runtime to insert arbitrary HTML into a webpage, before serving it to the user. Previously, developers would get the HTML body of a response, and use text replacement (e.g. `text.replace()`) to insert HTML. The `HTMLRewriter` class allows a more declarative and safer approach to this problem. Take, for instance, appending a collection of `script` tags to the end of an HTML `body`:
-
-```js
-const scripts = [
-  "<script src='https://myservice.com/1.js'></script>",
-  "<script src='https://myservice.com/2.js'></script>",
-  "<script src='https://myservice.com/3.js'></script>",
-].join('\n')
-
-class BodyAppender {
-  element(element) {
-    element.append(scripts)
-  }
-}
-
-addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event.request))
-})
-
-const rewriter = new HTMLRewriter().on('body', new BodyAppender())
-
-async function handleRequest(req) {
-  const res = await fetch(req)
-  return rewriter.transform(res)
 }
 ```
