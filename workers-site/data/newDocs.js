@@ -21,13 +21,13 @@ export const newDocsMap = new Map([
   ['/reference/workers-concepts/fetch-event-lifecycle ', '/about/tips/fetch-event-lifecycle '],
   ['/reference/workers-concepts/signing-requests', '/about/tips/signing-requests'],
 
-  ['/reference/tooling/', '/tooling/'],
+  ['/reference/tooling', '/tooling/'],
   ['/reference/tooling/playground', '/tooling/playground'],
   ['/reference/tooling/api', '/tooling/api'],
   ['/reference/tooling/wrangler', '/tooling/wrangler'],
   ['/reference/tooling/serverless', '/tooling/serverless'],
 
-  ['/reference/runtime/apis/', '/reference/apis/'],
+  ['/reference/runtime/apis', '/reference/apis/'],
   ['/reference/runtime/apis/cache', '/reference/apis/cache'],
   ['/reference/runtime/apis/encoding', '/reference/apis/encoding'],
   ['/reference/runtime/apis/fetch-event', '/reference/apis/fetch-event'],

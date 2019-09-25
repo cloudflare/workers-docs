@@ -44,8 +44,12 @@ async function handleRequest(event) {
     if (!path.endsWith('/') && is_directory(path)) {
       return Response.redirect(request.url + '/', 301)
     }
-
-    let body = getAssetFromKV(event, { keyModifier })
+    let body = null
+    try {
+      body = await getAssetFromKV(event, { keyModifier })
+    } catch (e) {
+      console.log(e, 'not found in KV')
+    }
     // strip  trailing slashes since newDocsMaps won't include
     pathname = pathname.replace(/\/$/, '')
     if (!body || newDocsMap.has(pathname) || oldDocsMap.has(pathname)) {
@@ -56,7 +60,7 @@ async function handleRequest(event) {
     return body
   } catch (err) {
     console.log(err)
-    let res = new Response(err.body, { status: err.status })
+    let res = new Response(err.body || err.message, { status: 500 })
     res.headers.set('Content-type', 'text/html')
     return res
   }
