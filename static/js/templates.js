@@ -28,7 +28,8 @@ window.idx = idx
 // Search based on a query, updating `results`
 const search = query => {
   if (query) {
-    const opts = idx.search(`${query}*`).map(result => result.ref)
+    const searches = _.uniqBy([...idx.search(query), ...idx.search(query + '*')], 'ref')
+    const opts = searches.map(result => result.ref)
     results = corpus.filter(item => opts.includes(item.id))
   } else {
     results = corpus
