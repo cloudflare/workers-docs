@@ -46,7 +46,7 @@ async function handleRequest(event) {
     }
     let body = null
     try {
-      body = getAssetFromKV(event, { keyModifier })
+      body = await getAssetFromKV(event, { keyModifier })
     } catch (e) {
       console.log(e, 'not found in KV')
     }
