@@ -4,7 +4,7 @@ alwaysopen: true
 weight: 5
 ---
 
-Worker Sites require  [Wrangler](https://github.com/cloudflare/wrangler) and the Workers Unlimited plan.
+Worker Sites require [Wrangler](https://github.com/cloudflare/wrangler) and the Workers Unlimited plan.
 
 ### Commands
 
