@@ -9,7 +9,7 @@ In this tutorial, we'll use [Wrangler](https://github.com/cloudflare/wrangler) a
 
 <script data-cfasync="false" defer type="text/javascript" src="https://embed.videodelivery.net/embed/r4xu.fla9.latest.js?video=9943b400b59802b77f83a8a57f39d682"></script>
 
-This tutorial makes use of [Wrangler](https://github.com/cloudflare/wrangler), our command-line tool for generating, building, and publishing projects on the Cloudflare Workers platform. If you haven't used Wrangler, we recommend checking out the ["Installing the CLI"](/quickstart/#installing-the-cli) part of our [Quick Start guide](/quickstart), which will get you set up with Wrangler, and familiar with the basic commands.
+This tutorial makes use of [Wrangler](https://github.com/cloudflare/wrangler), our command-line tool for generating, building, and publishing projects on the Cloudflare Workers platform. If you haven't used Wrangler, we recommend checking out the ["Installing the CLI"](/quickstart/#installing-the-cli) part of our [Quick Start guide](/quickstart), which will get you set up with Wrangler, and familiarize you with the basic commands.
 
 One more thing before you start the tutorial: if you just want to jump straight to the code, we've made the final version of the codebase [available on GitHub](https://github.com/signalnerve/react-workers-template). You can take that code, customize it, and deploy it for use in your own projects. Happy coding!
 
@@ -18,11 +18,13 @@ One more thing before you start the tutorial: if you just want to jump straight 
 To publish your project to Cloudflare Workers, you'll need a few things:
 
 - A Cloudflare account, and access to the API keys for that account
-- A Wrangler installation running locally on your machine, and access to the command-line
+- A subscription to the Workers Unlimited plan
+- A Wrangler installation running locally on your machine
+- Access to the command-line
 
-If you don't have those things quite yet, don't worry. We'll walk through each of them and make sure we're ready to go, before you start creating your application.
+If you don't have those things quite yet, don't worry. We'll walk through each of them and make sure we're ready to go before you start creating your application.
 
-In addition, we'll be using [create-react-app](https://github.com/facebook/create-react-app) to create the example project for this tutorial. No experience with React is needed, and you can easily take what you learn in this tutorial and apply it to other frameworks, such as Vue or Angular, and even static site frameworks like Gatsby, Hugo, and more.
+In addition, we'll be using [create-react-app](https://github.com/facebook/create-react-app) to create the example project for this tutorial. No experience with React is needed, and you can easily take what you learn in this tutorial and apply it to other frameworks, such as [Vue](https://vuejs.org/) or [Angular](https://angular.io), and even static site frameworks like [Gatsby](https://gatsbyjs.org), [Hugo](https://gohugo.io), and more.
 
 ## Create a static site
 
@@ -43,7 +45,7 @@ $ cd my-static-site
 $ wrangler init --site
 ```
 
-The `init --site` command will create a configuration file, as well as a zero-config Workers application, for deploying your React application. For the majority of static sites, you shouldn't need to change the Workers script: by default, the script will look at an incoming request, and will serve a corresponding asset from [Workers KV](https://www.cloudflare.com/products/workers-kv/) based on that route. For instance, if my static site is deployed at `mystaticsite.com`, requesting `mystaticsite.com/about.html` will look for a file in KV called `about.html`, and serve it back to the client. In addition, if the asset being returned from KV is cacheable, it will automatically be cached with Cloudflare's CDN, making subsequent requests even faster.
+The `init --site` command will provide the scaffolding necessary to deploy your React application. For the majority of static sites, you shouldn't need to change the Workers script: by default, the script will look at an incoming request, and will serve a corresponding asset from [Workers KV](https://www.cloudflare.com/products/workers-kv/) based on that route. For instance, if my static site is deployed at `mystaticsite.com`, requesting `mystaticsite.com/about.html` will look for a file in KV called `about.html`, and serve it back to the client. In addition, if the asset being returned from KV is cacheable, it will automatically be cached with Cloudflare's CDN, making subsequent requests even faster.
 
 ## Configure and Publish
 
@@ -84,9 +86,9 @@ addEventListener('fetch', event => {
 })
 ```
 
-When the script receives an incoming requests, it looks at the `pathname`, such as `/workers`, and looks up an associated file uploaded to Workers KV. If that file is found, a new `Response` is generated, with a matching [MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types) in the `Content-type` header of the response – for instance, if the path `/workers.jpg` is requested, a new response is returned with the header `Content-type: image/jpg`.
+When the script receives an incoming [`Request`](https://developer.mozilla.org/en-US/docs/Web/API/Request), it looks at the `pathname`, such as `/workers`, and looks up an associated file uploaded to Workers KV. If that file is found, a new [`Response`](https://developer.mozilla.org/en-US/docs/Web/API/Response) is generated, with a matching [MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types) in the `Content-Type` header of the response – for instance, if the path `/workers.jpg` is requested, a new response is returned with the header `Content-type: image/jpg`.
 
-In addition to simple retrieval from Workers KV, the static site template makes use of Cloudflare's powerful CDN to automatically cache data from your Workers KV namespace. When subsequent users request `/index.html`, Cloudflare's CDN will transparently serve a cached version, reducing the number of requests to your Workers application and Workers KV namespace (and saving you money – nice!).
+After fetching assets from [Workers KV](https://developers.cloudflare.com/workers/reference/storage), the static site template will cache them in Cloudflare's powerful CDN. When subsequent users request `/index.html`, Cloudflare's CDN will transparently serve a cached version, reducing the number of requests to your Workers application and Workers KV namespace (and saving you money – nice!).
 
 ## Resources
 
