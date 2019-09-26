@@ -9,7 +9,7 @@ import { newDocsMap, newDocsOverview, newDocsBase } from './newDocs'
 export function handleRedirect(request) {
   let requestURL = new URL(request.url)
   let path = requestURL.pathname
-  path = path.replace('/workers', '')
+  path = path.replace(/^\/workers/, '')
   //strip last slash
   path = path.replace(/\/$/, '')
   console.log(`Looking for ${path}`)
