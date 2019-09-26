@@ -1,5 +1,5 @@
-import { oldDocsMap, isOldDoc, hasDefinedRedirect } from './data/oldDocs'
-import { newDocsMap, newDocsOverview, newDocsBase } from './data/newDocs'
+import { oldDocsMap, isOldDoc, hasDefinedRedirect } from './oldDocs'
+import { newDocsMap, newDocsOverview, newDocsBase } from './newDocs'
 /**
  * sets up routes and redirects them to a location based
  *  on a maps from oldDocs and newDocs

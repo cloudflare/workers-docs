@@ -1,7 +1,7 @@
 import { is_directory, determine_content_type } from './utils'
-import { handleRedirect } from './redirects'
-import { newDocsMap } from './data/newDocs'
-import { oldDocsMap } from './data/oldDocs'
+import { handleRedirect } from './redirects/index'
+import { newDocsMap } from './redirects/newDocs'
+import { oldDocsMap } from './redirects/oldDocs'
 import { getAssetFromKV } from '@cloudflare/kv-asset-handler'
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event))
