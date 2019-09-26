@@ -3,7 +3,7 @@ title: 'Deploy a React App'
 new: true
 ---
 
-In this tutorial, we'll use [Wrangler](https://github.com/cloudflare/wrangler) and [Cloudflare Workers](https://workers.cloudflare.com) to deploy and serve a static site. With the rise of architectures like [JAMStack](https://jamstack.org/), static sites have become an incredible way to combine highly-available static assets with performant backend code, especially when deployed with serverless. Workers in particular is a great platform to deploy static sites: your application will be distributed to over 190+ locations around the world, and served directly from Cloudflare's powerful CDN at a server incredibly close to your users.
+In this tutorial, we'll use [Wrangler](https://github.com/cloudflare/wrangler) and [Cloudflare Workers](https://workers.cloudflare.com) to deploy and serve a static site. With the rise of architectures like [JAMStack](https://jamstack.org/), static sites have become a simple, streamlined way to combine highly-available static assets with performant backend code, especially when deployed with serverless. Workers in particular is a great platform to deploy static sites: your application will be distributed to over 190+ locations around the world, and served directly from Cloudflare's powerful CDN at a server incredibly close to your users.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/6YC3MgVwCGA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -17,7 +17,7 @@ To publish your project to Cloudflare Workers, you'll need a few things:
 
 - A Cloudflare account, and access to the API keys for that account
 - A subscription to the Workers Unlimited plan
-- A Wrangler installation running locally on your machine
+- Wrangler 1.4.0 or above, running locally on your machine (see the [Quick Start](https://developers.cloudflare.com/workers/quickstart/#installing-the-cli) for instructions on installing and updating Wrangler)
 - Access to the command-line
 
 If you don't have those things quite yet, don't worry. We'll walk through each of them and make sure we're ready to go before you start creating your application.
@@ -29,7 +29,7 @@ In addition, we'll be using [create-react-app](https://github.com/facebook/creat
 In this tutorial, we'll use [`create-react-app`](https://github.com/facebook/react) to create a simple static application. As previously mentioned, no experience with React is necessary, and we can create a new project directly by using `npx`:
 
 ```sh
-npx create-react-app my-static-site
+$ npx create-react-app my-static-site
 ```
 
 `create-react-app` will create a new project, and include all the relevant dependencies needed to build the project.
@@ -38,7 +38,7 @@ npx create-react-app my-static-site
 
 In the command line, navigate to your newly-created React project, and use `wrangler init --site` to generate a Workers Sites configuration for your project:
 
-```
+```sh
 $ cd my-static-site
 $ wrangler init --site
 ```
