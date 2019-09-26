@@ -4,6 +4,8 @@ alwaysopen: true
 weight: 3
 ---
 
+Worker Sites require [Wrangler](https://github.com/cloudflare/wrangler) and the Workers Unlimited plan.
+
 To deploy a pre-existing static site project, you'll need to start with a pre-generated site. Workers Sites works well with all static site generators! For a quick-start, check out the following projects:
 
 - [Hugo](https://gohugo.io/getting-started/quick-start/)
@@ -32,7 +34,7 @@ The default directories for the most popular static site generators are listed b
   - Jekyll: `_site`
   - Eleventy: `_site`
 
-3.  Add your `account_id` your `wrangler.toml`. You can find your `account_id` on the right sidebar of the Workers or Overview Dashboard. Note: You may need to scroll down! For more details on finding your `account_id` click [here](https://developers.cloudflare.com/workers/quickstart/#account-id-and-zone-id).
+3.  Add your `account_id` your `wrangler.toml`. You can find your `account_id` on the right sidebar of the Workers or Overview Dashboard. Note: You may need to scroll down! For more details on finding your `account_id` click [here](/quickstart/#account-id-and-zone-id).
 
 4.  You can preview your site by running:
 
@@ -43,16 +45,16 @@ The default directories for the most popular static site generators are listed b
 5.  Decide where you'd like to publish your site to: [ a workers.dev subdomain](/quickstart#publish-to-workers-dev) or your [personal domain](/quickstart#publish-to-your-domain) registered with Cloudflare.
     Then, update your `wrangler.toml`:
 
-	- [**Personal Domain**](/quickstart#publish-to-your-domain): Add your `zone_id` and a `route`.
+	- **Personal Domain**: Add your `zone_id` and a `route`.
 
     ```
     zone_id = "42ef.."
     route = "example.com/*"
     ```
 
-  - [**workers.dev**](/quickstart#publish-to-workers-dev): Set `workers_dev` to true. This is the default.
+  - **workers.dev**: Set `workers_dev` to true. This is the default.
 
-    You can learn more about configuring your project [here](https://developers.cloudflare.com/workers/quickstart/#configure).
+    You can learn more about configuring your project [here](/quickstart/#configure).
   
 6. Run:
    ```
