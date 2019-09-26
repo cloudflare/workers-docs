@@ -8,12 +8,18 @@
   "scripts": {
     "build": "hugo && wrangler build",
     "start-hugo": "hugo -D server",
-    "start-worker": "hugo && wrangler preview --watch -e staging",
+    "test": "ava workers-site/test/index.js --verbose",
+    "start": "hugo && wrangler preview --watch -e staging",
     "publish": "npm run build && wrangler publish -e"
   },
   "dependencies": {
     "gulp": "^4.0.0",
     "@cloudflare/hugo-cloudflare-docs": "1.0.2"
+  },
+  "ava": {
+    "require": [
+      "esm"
+    ]
   },
   "devDependencies": {
     "ava": "^2.4.0"

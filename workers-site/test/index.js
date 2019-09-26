@@ -49,7 +49,7 @@ test('if URL does not exists, then redirect to root', async t => {
   t.is(res.status, 301)
   t.is(res.headers.get("location"), `${origin}/workers`)
 })
-test.only('if archvive does  exist, then show that archive root', async t => {
+test('if archvive does  exist, then show that archive root', async t => {
   mockGlobal()
   const event = getEvent(
     new Request(`${origin}/workers/archive/recipes/pre-shared-keys/`),
