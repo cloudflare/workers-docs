@@ -62,6 +62,10 @@
        <a href="{{ .RelPermalink}}">
          <span>{{safeHTML .Params.Pre}}{{.Title}}{{safeHTML .Params.Post}}</span>
 
+         {{ if .Params.new }}
+           <span class="new-badge">NEW</span>
+         {{ end }}
+
          {{ $numberOfPages := (add (len .Pages) (len .Sections)) }}
          {{ if ne $numberOfPages 0 }}
 
@@ -106,6 +110,10 @@
        ">
          <a href="{{.RelPermalink}}">
          <span>{{safeHTML .Params.Pre}}{{.Title}}{{safeHTML .Params.Post}}</span>
+         {{ if .Params.new }}
+           <span class="new-badge">NEW</span>
+         {{ end }}
+
          </a></li>
       {{ end }}
    {{ end }}

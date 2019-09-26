@@ -52,3 +52,13 @@ a.quick-start {
   opacity: 1;
   visibility: visible;
 }
+
+.new-badge {
+  background: #ebf8ff;
+  border-radius: 12px;
+  color: #3182ce;
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 3px;
+  padding: 3px 9px !important;
+}
