@@ -1,5 +1,5 @@
-import { oldDocsMap, isOldDoc, hasDefinedRedirect } from './data/oldDocs'
-import { newDocsMap, newDocsOverview, newDocsBase } from './data/newDocs'
+import { oldDocsMap, isOldDoc, hasDefinedRedirect } from './oldDocs'
+import { newDocsMap, newDocsOverview, newDocsBase } from './newDocs'
 /**
  * sets up routes and redirects them to a location based
  *  on a maps from oldDocs and newDocs
@@ -9,7 +9,7 @@ import { newDocsMap, newDocsOverview, newDocsBase } from './data/newDocs'
 export function handleRedirect(request) {
   let requestURL = new URL(request.url)
   let path = requestURL.pathname
-  path = path.replace('/workers', '')
+  path = path.replace(/^\/workers/, '')
   //strip last slash
   path = path.replace(/\/$/, '')
   console.log(`Looking for ${path}`)
