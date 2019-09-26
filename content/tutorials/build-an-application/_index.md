@@ -86,7 +86,7 @@ addEventListener('fetch', event => {
 })
 
 /**
- * Fetch and log a request
+ * Return a request
  * @param {Request} request
  */
 async function handleRequest(request) {
