@@ -1,4 +1,3 @@
-import { is_directory } from './utils'
 import { handleRedirect } from '../redirects/index'
 import { newDocsMap } from '../redirects/newDocs'
 import { oldDocsMap } from '../redirects/oldDocs'
@@ -7,10 +6,17 @@ import { getAssetFromKV, mapRequestToAsset} from '@cloudflare/kv-asset-handler'
 const myMapRequestToAsset = request => {
   request = mapRequestToAsset(request)
   let url = new URL(request.url)
-  url.pathname = url.pathname.replace('/workers', '/')
+  url.pathname = url.pathname.replace(/^\/workers/, '/')
   return new Request(url, request)
 }
+function is_directory(path) {
+  const bits = path.split('/')
+  const last = bits[bits.length - 1]
 
+  // does the final component contain a dot? technically there may be edge cases
+  // here but this is fine for now!
+  return !last.includes('.')
+}
 export async function handleRequest(event) {
   try {
     const request = event.request

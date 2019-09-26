@@ -16,12 +16,8 @@ export const mockResponseRedirect = (url, code) =>
 
 export const mockKV = () => {
   const store = {
-    'key1.123HASHBROWN.txt': 'val1',
-    'key1.123HASHBROWN.png': 'val1',
-    'index.123HASHBROWN.html': 'index.html',
-    'cache.123HASHBROWN.html': 'cache me if you can',
-    'nohash.txt': 'no hash but still got some result',
-    'sub/blah.123HASHBROWN.png': 'picturedis',
+    'templates/index.123HASHBROWN.html': 'templates/index.html',
+    'archive/recipes/pre-shared-keys/index.123HASHBROWN.html': 'archive/recipes/pre-shared-keys/index.html',
   }
   return {
     get: path => store[path] || null,
@@ -30,11 +26,8 @@ export const mockKV = () => {
 
 export const mockManifest = () => {
   return JSON.stringify({
-    'key1.txt': `key1.${HASH}.txt`,
-    'key1.png': `key1.${HASH}.png`,
-    'cache.html': `cache.${HASH}.html`,
-    'index.html': `index.${HASH}.html`,
-    'sub/blah.png': `sub/blah.${HASH}.png`,
+    'templates/index.html': `templates/index.${HASH}.html`,
+    'archive/recipes/pre-shared-keys/index.html': `archive/recipes/pre-shared-keys/index.${HASH}.html`,
   })
 }
 let cacheStore = {}

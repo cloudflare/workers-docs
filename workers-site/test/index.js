@@ -31,3 +31,31 @@ test('canonical directory redirect', async t => {
   t.is(res.status, 301)
   t.is(res.headers.get("location"), `${origin}/workers/templates/`)
 })
+test('if URL exists, then serve it', async t => {
+  mockGlobal()
+  const event = getEvent(
+    new Request(`${origin}/workers/templates/`),
+  )
+  const res = await handleRequest(event)
+  t.is(res.status, 200)
+  t.true(!!await res.text())
+})
+test('if URL does not exists, then redirect to root', async t => {
+  mockGlobal()
+  const event = getEvent(
+    new Request(`${origin}/workers/blah/`),
+  )
+  const res = await handleRequest(event)
+  t.is(res.status, 301)
+  t.is(res.headers.get("location"), `${origin}/workers`)
+})
+test.only('if archvive does  exist, then show that archive root', async t => {
+  mockGlobal()
+  const event = getEvent(
+    new Request(`${origin}/workers/archive/recipes/pre-shared-keys/`),
+  )
+  const res = await handleRequest(event)
+  // console.log('res.headers.get("location"', res.headers.get("location")
+  t.is(res.status, 200)
+  t.true(!!await res.text())
+})
