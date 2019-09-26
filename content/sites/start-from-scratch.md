@@ -13,7 +13,7 @@ To start from scratch to create a Workers Site, follow these steps:
    wrangler generate --site my-site
    ```
    This command creates the following:
-   - `public`: The static assets for your project. By default it contains an `index.html` and a `favicon.ic0`.
+   - `public`: The static assets for your project. By default it contains an `index.html` and a `favicon.ico`.
    - `workers-site`: The JavaScript for serving your assets. You don't need to edit this- but if you want to see how it works or add more functionality to your Worker, you can edit `workers-site/index.js`.
    - `wrangler.toml`: Your configuration file. You'll configure your account and project information here.
 
