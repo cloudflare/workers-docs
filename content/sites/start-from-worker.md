@@ -4,17 +4,16 @@ alwaysopen: true
 weight: 4
 ---
 
-If you have a pre-existing Worker project, you can use Workers Sites to add static asset serving to the Worker. To do so, follow these instructions:
+If you have a pre-existing Worker project, you can use Workers Sites to serve static assets to the Worker. To do so, follow these instructions:
 
-1. Create a directory in the root of your project and add configuration to your `wrangler.toml` to point to it. Also add the path to your Worker script (probably `index.js`).
+1. Create a directory in the root of your project (e.g. `workers-site`) and add configuration to your `wrangler.toml` to point to it. Also add the path to your Worker script (probably `index.js`).
 
 ```toml
 # Wrangler.toml
-
+account_id = "612bef.."
 [site]
-bucket = "<your dirname here>" # <-- Add the name of the dir that contains your static assets
-entry-point = "."
-
+bucket = "./my-dir" # <--! Add the name of the dir that contains your static assets
+entry-point = "./workers-site" # JavaScript folder that is serving your assets 
 ```
 
 2. Add the `@cloudflare/kv-asset-handler` package to your project:
@@ -25,12 +24,12 @@ npm i @cloudflare/kv-asset-handler
 
 3. Import the package's code into your Worker script, and use it in the handler you'd like to respond with static assets:
 
-```
+```javascript
 import { getAssetFromKV } from "@cloudflare/kv-asset-handler";
 
 addEventListener("fetch", event => {
   event.respondWith(handleEvent(event));
-});
+})
 
 async function handleEvent(event) {
   try {
@@ -40,9 +39,14 @@ async function handleEvent(event) {
     return new Response(`"${pathname}" not found`, {
       status: 404,
       statusText: "not found"
-    });
+    })
   }
 }
 ```
+For more information on the configurable options of `getAssetFromKV` see [the template's source](https://github.com/cloudflare/worker-sites-template/blob/master/workers-site/index.js).
 
 4. You should now be all set you can run `preview` or `publish` as you would normally with your Worker project!
+
+   ```
+   wrangler publish
+   ```

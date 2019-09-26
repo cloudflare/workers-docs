@@ -13,8 +13,8 @@ To start from scratch to create a Workers Site, follow these steps:
    wrangler generate --site my-site
    ```
    This command creates the following:
-   - `public`: The static assets for your project. By default it contains an `index.html` and a `favicon.icc`.
-   - `worker-site`: The JavaScript for serving your assets. You don't need to edit this- but if you want to see how it works or add more functionality to your Worker, you can edit `worker-site/index.js`.
+   - `public`: The static assets for your project. By default it contains an `index.html` and a `favicon.ic0`.
+   - `workers-site`: The JavaScript for serving your assets. You don't need to edit this- but if you want to see how it works or add more functionality to your Worker, you can edit `workers-site/index.js`.
    - `wrangler.toml`: Your configuration file. You'll configure your account and project information here.
 
 3. Add your `account_id` your `wrangler.toml`. You can find your `account_id` on the right sidebar of the Workers or Overview Dashboard. Note: You may need to scroll down! For more details on finding your `account_id` click [here](https://developers.cloudflare.com/workers/quickstart/#account-id-and-zone-id).
@@ -28,12 +28,15 @@ To start from scratch to create a Workers Site, follow these steps:
 5. Decide where you'd like to publish your site to: [ a workers.dev subdomain](/quickstart#publish-to-workers-dev) or your [personal domain](/quickstart#publish-to-your-domain) registered with Cloudflare.
    Then, update your `wrangler.toml`:
  - [**Personal Domain**](/quickstart#publish-to-your-domain): Add your `zone_id` and a `route`.
-   ```
-   zone_id = "<zone_id>"
-   route = "exmaple.com/*"
-   ```
- - [**workers.dev**](/quickstart#publish-to-workers-dev): Ensure that `workers_dev` is set to true. This is the default, so you should be all set.
-   You can learn more about configuring your project [here](https://developers.cloudflare.com/workers/quickstart/#configure.
+
+     ```
+     zone_id = "42ef.."
+     route = "example.com/*"
+     ```
+     
+ - [**workers.dev**](/quickstart#publish-to-workers-dev): Set `workers_dev`  to true. This is the default. 
+
+     You can learn more about configuring your project [here](https://developers.cloudflare.com/workers/quickstart/#configure).
 
 6. Run:
    ```
