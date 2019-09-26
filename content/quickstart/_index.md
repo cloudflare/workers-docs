@@ -270,6 +270,8 @@ Now, run:
 wrangler publish
 ```
 
+_Note: If you are pushing a new workers.dev Worker project you may initially see 523 errors. Do not fear! The DNS is propagating and can take a few seconds. It should work after a minute or so._
+
 ## Publish To Your Domain
 
 To publish your application on a domain you own (i.e. not a `workers.dev` subdomain), you can add a `route` key to your `wrangler.toml`.
