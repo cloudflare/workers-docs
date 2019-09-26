@@ -1,18 +1,33 @@
 import test from 'ava'
-import { getAssetFromKV, mapRequestToAsset } from '@cloudflare/kv-asset-handler'
-const makeServiceWorkerEnv = require('service-worker-mock')
-Object.assign(global, makeServiceWorkerEnv())
-export const getEvent = request => {
-  const waitUntil = callback => {
-    callback
-  }
-  return {
-    request,
-    waitUntil,
-  }
-}
-test('getAssetFromKV with no trailing slash on a subdirectory', async t => {
-  const event = getEvent(new Request('https://blah.com/sub/blah.png'))
-  t.pass()
+import { handleRequest } from '../src/main'
+import { mockGlobal, getEvent } from '../src/mocks'
 
+const origin = "https://developers.cloudflare.com"
+
+test('test new redirect maps to updated URL', async t => {
+  mockGlobal()
+  const event = getEvent(
+    new Request(`${origin}/reference/workers-concepts/security/`),
+  )
+  const res = await handleRequest(event)
+  t.is(res.status, 301)
+  t.is(res.headers.get("location"), `${origin}/workers/about/security`)
+})
+test('test old redirect maps to new URL', async t => {
+  mockGlobal()
+  const event = getEvent(
+    new Request(`${origin}/workers/recipes/`),
+  )
+  const res = await handleRequest(event)
+  t.is(res.status, 301)
+  t.is(res.headers.get("location"), `${origin}/workers/templates`)
+})
+test('canonical directory redirect', async t => {
+  mockGlobal()
+  const event = getEvent(
+    new Request(`${origin}/workers/templates`),
+  )
+  const res = await handleRequest(event)
+  t.is(res.status, 301)
+  t.is(res.headers.get("location"), `${origin}/workers/templates/`)
 })

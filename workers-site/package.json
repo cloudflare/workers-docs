@@ -1,15 +1,34 @@
 {
-  "private": true,
-  "name": "worker",
-  "version": "1.0.0",
-  "description": "A template for kick starting a Cloudflare Workers project",
+  "name": "@cloudflare/kv-asset-handler",
+  "version": "0.0.5",
+  "description": "Routes requests to KV assets",
   "main": "index.js",
-  "license": "MIT",
   "scripts": {
-    "test": "ava test/*.js --verbose"
+    "build": "webpack",
+    "format": "prettier --write '**/*.js'",
+    "test": "ava test/index.js --verbose",
+    "test:watch": "npm run test -w"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloudflare/workers-site-npm-pkg.git"
+  },
+  "keywords": [
+    "kv",
+    "cloudflare",
+    "cloudflare",
+    "workers",
+    "wrangler",
+    "assets"
+  ],
+  "author": "Avery Harnish",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cloudflare/kv-asset-handler/issues"
+  },
+  "homepage": "https://github.com/cloudflare/kv-asset-handler#readme",
   "dependencies": {
-    "@cloudflare/kv-asset-handler": "0.0.4"
+    "mime": "^2.4.4"
   },
   "ava": {
     "require": [
@@ -18,8 +37,8 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^1.0.1",
-    "ava": "^2.4.0",
-    "prettier": "^1.18.2",
-    "service-worker-mock": "^2.0.3"
+    "ava": "^1.4.1",
+    "service-worker-mock": "^2.0.3",
+    "prettier": "^1.18.2"
   }
 }

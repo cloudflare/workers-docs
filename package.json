@@ -14,5 +14,8 @@
   "dependencies": {
     "gulp": "^4.0.0",
     "@cloudflare/hugo-cloudflare-docs": "1.0.2"
+  },
+  "devDependencies": {
+    "ava": "^2.4.0"
   }
 }
