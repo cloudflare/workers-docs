@@ -1,8 +1,9 @@
 ---
 title: 'Localize a Website'
+new: true
 ---
 
-The [`HTMLRewriter`](/reference/apis/html-rewriter) class built into the Cloudflare Workers runtime allows for parsing and rewriting of HTML at the edge, giving developers the ability to efficiently and transparently customize their Workers applications. 
+The [`HTMLRewriter`](/reference/apis/html-rewriter) class built into the Cloudflare Workers runtime allows for parsing and rewriting of HTML at the edge, giving developers the ability to efficiently and transparently customize their Workers applications.
 
 In this tutorial, we'll build an example internationalization and localization engine (commonly referred to as "i18n" and "l10n") for your application, server the content of your site, and automatically translate the content based your visitors' location in the world.
 
@@ -31,6 +32,7 @@ $ cd i18n-example
 The `--site` flag indicates to Wrangler that we want to build a [Workers Sites](/sites) project - this means that there will be both a "site" component, the static HTML that we want to serve to the user, and a Workers script. Inside the Workers script we can customize the HTML response using `HTMLRewriter`.
 
 The newly generated `i18n-example` project will contain two folders: `public`, which is our static HTML, and `workers-site`:
+
 ```
   ├── public # static html
   |  └── index.html
@@ -77,7 +79,7 @@ Finally, it's shockingly easy to introduce one more cool feature into this proje
 
 To start, let's look at `workers-site/index.js`: our Workers application in this tutorial will live entirely in this file, so it's important to be familiar with it.
 
-Inside of this file, the default code for running a [Workers Site](/sites) has been provided. The crucial part of the generated code lives in the `handleEvent` function.  The`getAssetFromKV` function retrieves a website asset  uploaded from your local `./public` foldler, runs some magic to make it live on Workers KV, and returns it to the user. For now, we can ignore much of `getAssetFromKV` (though if you'd like to learn more, check out [the docs](/sites/start-from-worker) .
+Inside of this file, the default code for running a [Workers Site](/sites) has been provided. The crucial part of the generated code lives in the `handleEvent` function. The`getAssetFromKV` function retrieves a website asset uploaded from your local `./public` foldler, runs some magic to make it live on Workers KV, and returns it to the user. For now, we can ignore much of `getAssetFromKV` (though if you'd like to learn more, check out [the docs](/sites/start-from-worker) .
 
 To implement translations on the site, we'll take the HTML response retrieved from KV and pass it into a new instance of `HTMLRewriter`. When instantiating `HTMLRewriter`, we can also attach handlers using the `on` function: in our case, we'll use the `*` selector (see the [documentation](/reference/apis/html-rewriter) for more advanced usage) to parse all elements with a single class, `ElementHandler`. With the created instance of `HTMLRewriter`, the `transform` function takes a `response` and can be returned to the client:
 

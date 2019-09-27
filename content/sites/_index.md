@@ -2,6 +2,7 @@
 title: Workers Sites
 alwaysopen: true
 weight: 1
+new: true
 ---
 
 Workers Sites enables developers to deploy static applications directly to Workers. Workers Sites is perfect for deploying applications built with frontend frameworks like [React](https://reactjs.org) and [Vue](https://vuejs.org/), as well as static site generators like [Hugo](https://gohugo.io/) and [Gatsby](https://www.gatsbyjs.org/).
