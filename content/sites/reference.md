@@ -23,7 +23,7 @@ Worker Sites require the latest version of [Wrangler](https://github.com/cloudfl
 
   Auto-fills `wrangler.toml` with `entry-point` (defaults to `workers-site`) and `bucket` (defaults to `public`).
 
-- **`wrangler init --site`**: Creates a `wrangler.toml` and `workers-site` folder. You'll need to add a value for `bucket` based on the local path of folder you'd like to be serve.
+- **`wrangler init proj --site`**: Creates a `wrangler.toml` and `workers-site` folder. You'll need to add a value for `bucket` based on the local path of folder you'd like to be serve.
 
 ### wrangler.toml
 
