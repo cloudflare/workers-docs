@@ -31,7 +31,7 @@ title: Cloudflare Workers Documentation
     <a href="/tutorials/build-a-serverless-function">Deploy a QR code generator</a>
   </li>
   <li class="tutorial-item">
-    <a href="/tutorials/deploy-a-static-site">
+    <a href="/tutorials/deploy-a-react-app">
       <img src="/media/cache-website.svg" />
     </a>
     Deploy a Static Site
