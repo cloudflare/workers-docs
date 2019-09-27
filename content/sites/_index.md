@@ -6,6 +6,8 @@ weight: 1
 
 Worker Sites is a feature of Wrangler that allows you to easily deploy static assets to the Cloudflare edge.
 
+_Note: Worker Sites require [Wrangler](https://github.com/cloudflare/wrangler) and the Workers Unlimited plan._
+
 To use this feature, you'll take one of three routes:
 
 - [Create a new project from scratch](./start-from-scratch): Start from a blank slate and deploy an HTML based site to the Workers Platform.
