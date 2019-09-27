@@ -8,22 +8,21 @@ Worker Sites require the latest version of [Wrangler](https://github.com/cloudfl
 
 ### Commands
 
-`wrangler generate proj --site` :  Creates a project with a Worker serving a generic HTML file and favicon with the directory structure:
+* **`wrangler generate proj --site`** :  Creates a project with a Worker serving a generic HTML file and favicon with the directory structure:
 
-```
-├── public #files to serve
-|  ├── favicon.ico
-|  └── index.html 
-├── workers-site
-|  ├── index.js # Worker script that serves the assets 
-|  ├── package-lock.json
-|  └── package.json # node modules used by Worker script
-└── wrangler.toml
-```
+    ```
+    ├── public #files to serve
+    |  ├── favicon.ico
+    |  └── index.html 
+    ├── workers-site
+    |  ├── index.js # Worker script that serves the assets 
+    |  ├── package-lock.json
+    |  └── package.json # node modules used by Worker script
+    └── wrangler.toml
+    ```
+    Auto-fills wrangler.toml with  `entry-point`  with the default, `workers-site` and `bucket` with `public`.
 
-​	Auto-fills wrangler.toml with  `entry-point`  with the default, `workers-site` and `bucket` with `public`.
-
-`wrangler init —site`: Creates a `wrangler.toml` and `workers-site` folder. You'll need to add a value for `bucket` based on the local path of folder you'd like to be serve.
+* **`wrangler init —site`**: Creates a `wrangler.toml` and `workers-site` folder. You'll need to add a value for `bucket` based on the local path of folder you'd like to be serve.
 
 
 ### wrangler.toml
