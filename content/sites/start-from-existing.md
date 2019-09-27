@@ -18,7 +18,7 @@ Once you have a site generated, follow these steps:
 1. Run this Wrangler command in the root of your project's directory:
 
     ```
-    $ wrangler init --site
+    $ wrangler init --site my-static-site
     ```
     This command creates a few things: `wrangler.toml` and a`workers-site` directory.
 2. Add your site's build directory to the `wrangler.toml`:
