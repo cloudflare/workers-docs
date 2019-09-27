@@ -4,7 +4,9 @@ People like yourself being willing to share code with others that use our platfo
 
 Following these guidelines helps to keep our documentation consistent and deliver the best developer experience for those using them. The Cloudflare Developer Experience team maintains the template gallery.
 
-There are several ways to contribute to the Cloudflare Workers platform. The template gallery is focused on streamlining the contribution of templates. When a template makes it through the process it will be made public in [our template gallery](https://workers.cloudflare.com/docs/templates/). Since several developers - even beginners - will be using these templates, we must be scrupulous in the approval process. If you’re looking for a more relaxed way of sharing code, no worries! For other ways to contribute your Worker scripts see [our community](https://community.cloudflare.com/c/developers/workers).
+There are several ways to contribute to the Cloudflare Workers platform. At this time we are looking for **modest changes** such a typos fixes and other corrections. Large new content contributions are discouraged.
+
+The template gallery is focused on streamlining the contribution of templates. When a template makes it through the process it will be made public in [our template gallery](https://workers.cloudflare.com/docs/templates/). Since several developers - even beginners - will be using these templates, we must be scrupulous in the approval process. If you’re looking for a more relaxed way of sharing code, no worries! For other ways to contribute your Worker scripts see [our community](https://community.cloudflare.com/c/developers/workers).
 
 **Note that we can't provide support for the Workers platform in this repository.** Please visit the Workers [support page](https://support.cloudflare.com/hc/en-us/sections/360000215372-Cloudflare-Workers) for assistance.
 
@@ -30,6 +32,7 @@ If you have any questions that _aren't_ answered by this contribution guide, let
 #### **Do you want to submit a new tutorial?**
 
 * We currently aren't accepting new full-length tutorials in the docs. If you've written a tutorial about building something with Workers and want to share it on your own blog or elsewhere, great! We'd be happy to help you share it (email [devrel AT cloudflare DOT com](mailto:devrel@cloudflare.com)), but due to the large amount of review and process around tutorials in this repository, we're unable to add new community tutorials at this time.
+* For tutorials that have been approved note that while tutorials can stay in the gallery indefinitely, they will be rotated for the main tutorial section as new tutorials emerge. 
 
 #### **Do you want to contribute a template to the Template Gallery?**
 
