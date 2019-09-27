@@ -4,7 +4,9 @@ alwaysopen: true
 weight: 4
 ---
 
-Worker Sites require [Wrangler](https://github.com/cloudflare/wrangler) and the Workers Unlimited plan.
+Worker Sites require [Wrangler](https://github.com/cloudflare/wrangler) - make sure to be on the [latest version](/quickstart/#updating-the-cli) - and the Workers [Unlimited plan](https://workers.cloudflare.com/sites#plans).
+
+Make sure to be on the latest version.
 
 If you have a pre-existing Worker project, you can use Workers Sites to serve static assets to the Worker. To do so, follow these instructions:
 
