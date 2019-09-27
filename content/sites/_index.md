@@ -4,12 +4,20 @@ alwaysopen: true
 weight: 1
 ---
 
-Worker Sites is a feature of Wrangler that allows you to easily deploy static assets to the Cloudflare edge.
+Workers Sites enables developers to deploy static applications directly to Workers. Workers Sites is perfect for deploying applications built with frontend frameworks like [React](https://reactjs.org) and [Vue](https://vuejs.org/), as well as static site generators like [Hugo](https://gohugo.io/) and [Gatsby](https://www.gatsbyjs.org/).
 
-_Note: Worker Sites require [Wrangler](https://github.com/cloudflare/wrangler) and the Workers Unlimited plan._
+To use Workers Sites, you'll take one of three routes:
 
-To use this feature, you'll take one of three routes:
+- [Create a new project from scratch](/sites/start-from-scratch)
 
-- [Create a new project from scratch](./start-from-scratch): Start from a blank slate and deploy an HTML based site to the Workers Platform.
-- [Deploy a pre-existing static site project](./start-from-existing): Already have a static site project? Using a pre-existing site generated from popular generators like Hugo, Jekyll, or Gatsby and deploy to the Workers Platform.
-- [Add static assets to a pre-existing worker project](./start-from-worker): Start with a pre-existing project on the Workers Platform and add static asset serving to it.
+If you're ready to start a brand new project, starting from scratch with Workers Sites will set up the infrastructure to deploy a simple HTML website to Workers.
+
+- [Deploy a pre-existing static site project](/sites/start-from-existing)
+
+If you have an existing project or static assets that you want to deploy with Workers, this quick start guide will help you add Wrangler and configure Workers Sites for your project.
+
+- [Add static assets to a pre-existing worker project](/sites/start-from-worker)
+
+If you already have an application deployed to Workers, this guide will show you how to use Workers Sites in your existing codebase, allowing you to deploy your entire application as a single Workers project.
+
+_Note: Worker Sites require the latest version of [Wrangler](https://github.com/cloudflare/wrangler) and the Workers [Unlimited plan](https://workers.cloudflare.com/sites#plans)._
