@@ -2,15 +2,9 @@
 
 # Introduction
 
-To start making a template, first one must decide what to build. When deciding a template to build, we highly encourage Cloudflare internally to use [this list](https://wiki.cfops.it/display/EW/Templates+and+Template+Gallery).
-
 ### What makes a Good Template
 
-The goal of any template is to be reusable amongst several projects, developers and entities; therefore, any template must be able to be used in a generic form. That does not mean that one can't use things like hardcoded constants, it just means those constants must be obvious and the logic must be generic.
-
-Examples of [good templates that we need help building](https://wiki.cfops.it/display/EW/Templates+and+Template+Gallery). (TODO: remove this link for external and replace with a different list?):
-
-- How to send a redirect
+The goal of any template is to be reusable amongst several projects, developers and entities; therefore, any template must be able to be used in a generic form. That does not mean that you can't use things like hardcoded constants, it just means those constants must be obvious and the logic must be generic.
 
 Custom solutions that would could not clearly be reused make bad templates.
 
@@ -61,7 +55,7 @@ If you are just designing a snippet, you can skip the setup and move to writing 
 
 First clone the [template creator](https://github.com/victoriabernard92/workers-template-creator) and follow the instructions in the README to get your project started.
 
-Never commit the `worker` directory. Commit your `wrangler.toml` with the requirerd `type`, but don't commit the account tags.
+Never commit the `worker` directory. Commit your `wrangler.toml`and `workers-site` directory (if applicable) with the required `type`, but don't commit the account tags.
 
 # Writing Templates
 
@@ -119,10 +113,10 @@ function helper(path) {
 }
 /**
  * Here are what developers are expected to fill in
- * Replace url with the host you wish to send requests to
- * @param {string} url
+ * Replace URL with the host you wish to send requests to
+ * @param {string} URL
  */
-const url = 'https://example.com'
+const URL = 'https://example.com'
 ```
 
 For snippets, the meat of the logic should be in a function called `handleRequest`, which should always exist in either forms:
@@ -142,18 +136,49 @@ addEventListener('fetch', event => {
 
 Omit all blank links in your snippet for formatting purposes (i.e. A regex find should have 0 results for `\n\n`.)
 
-# Submit
+# `name.toml`
 
-This process is for internal only and will improve
+Once you've written the template you'd like to share, its time to configure your name.toml.  Templates have the following options:
+```
+# name.toml
+# required fields
+id = "name"
+name = "Title of your template"
+description = "Concise 1-2 sentences that explains what your template does"
+# optional
+tutorial="featured_boilerplates/name" #path to in depth tutorial of your code
+share="featured_boilerplates/name" #path to  page to share the code
+tags = ["Originless", "Enterprise"] # first letter must be caps
+```
+
+## Boilerplate
+Specific boilerplate fields: 
+```
+repository_url = "https://github.com/<you>/<name>"
+demo_url = "" # a live demo of your code (can be an array)
+```
+## Snippet
+
+Fields specific to snippets: 
+```
+demo_url = "" # a shared link generated from cloudflareworkers.com (can be an array)
+code = '''
+async function handleRequest(request) {
+...
+​```
+```
+
+# Summit
 
 ## Boilerplate
 
-1. Host a public repo, and then test your project by running `wrangler generate https://github.com/<your-repo>`.
-2. Have Victoria (@victoriabernard92 on Github) review your code via a PR into your own repo.
+1. Host a public repo, and then test your project by running `wrangler generate https://github.com/<you>/<name>`.
+2. Label the PR with the tag `template_gallery`  to have your code reviewed.
 3. Add a `name.toml` file to the [template gallery featured projects](/data/featured/). Include all the information that is in exisiting snippets there i.e. `demo_url`, `description`, etc.. Submit a PR to the [Cloudflare Workers Docs](https://github.com/cloudflare/cloudflare-docs)
 
 ## Snippets
 
-1. If you think the snippet will need a lot of review, include victoria (@victoriabernard92 on Github) to a PR review to your own repo, or share a gist (e.g. [some gist](https://gist.github.com/victoriabernard92/5d63a2abc92fb0e5774cfd6a7035ecda.js))
+1. If you think the snippet will need a lot of review, include victoria (@victoriabernard92 on Github) to a PR review to your own repo, or share a gist.
 2. Add a `name.toml` file to the [template gallery snippets](/data/snippets/). Include all the information that is in exisiting snippets there i.e. `code`, `description`, etc..
    For an example see [Modify Request URL](/data/snippets/modify_req_url.toml). Submit a PR to the [Cloudflare Workers Docs](https://github.com/cloudflare/cloudflare-docs)
+
