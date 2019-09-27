@@ -31,7 +31,7 @@ There are a few specific configuration settings for Workers Sites in your `wrang
 
 | Key           | Value                                                                              | Example                          |
 | ------------- | ---------------------------------------------------------------------------------- | -------------------------------- |
-| `bucket`      | The directory containing your static assets, path relative to your `wrangler.toml` | `bucket = "./dist"`              |
+| `bucket`      | The directory containing your static assets, path relative to your `wrangler.toml` | `bucket = "./public"`              |
 | `entry-point` | The location of your Worker script, default is `workers-site`                      | `entry-point = "./workers-site"` |
 
 _Note: if your project uses [environments](https://github.com/cloudflare/wrangler/blob/master/docs/content/environments.md), make sure to place `site` at the top level config._
