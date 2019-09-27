@@ -5,7 +5,7 @@ workers_dev = false
 
 [site]
 bucket = "./public"
-entry-point = "workers-site"
+entry-point = "./workers-site"
 
 # Production
 [env.production]

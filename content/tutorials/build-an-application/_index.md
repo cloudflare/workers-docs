@@ -86,7 +86,7 @@ addEventListener('fetch', event => {
 })
 
 /**
- * Fetch and log a request
+ * Handle a request
  * @param {Request} request
  */
 async function handleRequest(request) {
@@ -498,7 +498,11 @@ Add a simple utility function, `compact`, which takes an array, and filters out 
 ```javascript
 const compact = array => array.filter(el => el)
 
-export const constructGhIssueSlackMessage = (issue, issue_string, prefix_text) => {
+export const constructGhIssueSlackMessage = (
+  issue,
+  issue_string,
+  prefix_text,
+) => {
   const issue_link = `<${issue.html_url}|${issue_string}>`
   const user_link = `<${issue.user.html_url}|${issue.user.login}>`
   const date = new Date(Date.parse(issue.created_at)).toLocaleDateString()
@@ -578,7 +582,11 @@ export default async request => {
     const { action, issue, repository } = JSON.parse(body)
     const prefix_text = `An issue was ${action}:`
     const issue_string = `${repository.owner.login}/${repository.name}#${issue.number}`
-    const blocks = constructGhIssueSlackMessage(issue, issue_string, prefix_text)
+    const blocks = constructGhIssueSlackMessage(
+      issue,
+      issue_string,
+      prefix_text,
+    )
 
     const postToSlack = await fetch(slackWebhookUrl, {
       body: JSON.stringify({ blocks }),
