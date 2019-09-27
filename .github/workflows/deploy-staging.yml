@@ -24,7 +24,7 @@ jobs:
     - name: Build docs
       run: hugo
     - name: Install Wrangler
-      run: npm i @cloudflare/wrangler@1.4.0-rc.6 -g
+      run: npm i @cloudflare/wrangler@1.4.0-rc.7 -g
     - name: Wrangler auth check
       run: wrangler whoami
       env:
