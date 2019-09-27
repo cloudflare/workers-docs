@@ -6,7 +6,7 @@ weight: 2
 
 To start from scratch to create a Workers Site, follow these steps:
 
-1. Ensure you have Wrangler and Node.js installed. For more info, [click here.](TODO)
+1. Ensure you have [Wrangler](https://github.com/cloudflare/wrangler) and Node.js installed. Worker Sites require the Workers Unlimited plan.
 
 2. In your terminal run `wrangler generate --site <project-name>`, replacing `<project-name>` with the name of your project. For example, I'll create a project called my-site by running this command:
    ```
@@ -27,16 +27,16 @@ To start from scratch to create a Workers Site, follow these steps:
 
 5. Decide where you'd like to publish your site to: [ a workers.dev subdomain](/quickstart#publish-to-workers-dev) or your [personal domain](/quickstart#publish-to-your-domain) registered with Cloudflare.
    Then, update your `wrangler.toml`:
- - [**Personal Domain**](/quickstart#publish-to-your-domain): Add your `zone_id` and a `route`.
+ - **Personal Domain**: Add your `zone_id` and a `route`.
 
      ```
      zone_id = "42ef.."
      route = "example.com/*"
      ```
      
- - [**workers.dev**](/quickstart#publish-to-workers-dev): Set `workers_dev`  to true. This is the default. 
+ - **workers.dev**: Set `workers_dev`  to true. This is the default. 
 
-     You can learn more about configuring your project [here](https://developers.cloudflare.com/workers/quickstart/#configure).
+     You can learn more about configuring your project [here](/quickstart/#configure).
 
 6. Run:
    ```

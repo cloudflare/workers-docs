@@ -4,7 +4,7 @@ alwaysopen: true
 weight: 5
 ---
 
-Worker Sites require  [Wrangler](https://github.com/cloudflare/wrangler) and the Workers Unlimited plan.
+Worker Sites require [Wrangler](https://github.com/cloudflare/wrangler) and the Workers Unlimited plan.
 
 ### Commands
 
@@ -35,7 +35,7 @@ There are a few specific configuration settings for Workers Sites in your `wrang
 | `bucket`      | The directory containing your static assets, path relative to your `wrangler.toml` | `bucket = "./dist"`              |
 | `entry-point` | The location of your Worker script, default is `workers-site`                      | `entry-point = "./workers-site"` |
 
-Note if using [environments](./environments) make sure to place `site` at the top level config.
+Note if using [environments](https://github.com/cloudflare/wrangler/blob/master/docs/content/environments.md) make sure to place `site` at the top level config.
 
 Example of a `wrangler.toml`:
 
@@ -62,3 +62,6 @@ name = "docs-site-staging"
 route = "https://staging.ex.com/docs*"
 ```
 
+### Storage Limits
+
+For very exceptionally large pages, Workers Sites might not work for you. There is a 2MB limit per page. 
