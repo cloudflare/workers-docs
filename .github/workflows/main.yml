@@ -21,7 +21,7 @@ jobs:
     - name: Install Hugo
       run: sudo apt-get install hugo
     - name: Install Wrangler
-      run: npm i @cloudflare/wrangler@1.4.0-rc.5 -g
+      run: npm i @cloudflare/wrangler@1.4.0-rc.6 -g
     - name: Install Workers script deps
       run: npm install
     - name: Build docs
