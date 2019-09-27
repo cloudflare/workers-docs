@@ -4,7 +4,7 @@ People like yourself being willing to share code with others that use our platfo
 
 Following these guidelines helps to keep our documentation consistent and deliver the best developer experience for those using them. The Cloudflare Developer Experience team maintains the template gallery.
 
-There are several ways to contribute to the Cloudflare Workers platform. At this time we are looking for **modest changes** such a typos fixes and other corrections. Large new content contributions are discouraged.
+There are several ways to contribute to the Cloudflare Workers platform. At this time we are looking for **modest changes** such as typos fixes and other corrections. Large new content contributions are discouraged.
 
 The template gallery is focused on streamlining the contribution of templates. When a template makes it through the process it will be made public in [our template gallery](https://workers.cloudflare.com/docs/templates/). Since several developers - even beginners - will be using these templates, we must be scrupulous in the approval process. If you’re looking for a more relaxed way of sharing code, no worries! For other ways to contribute your Worker scripts see [our community](https://community.cloudflare.com/c/developers/workers).
 

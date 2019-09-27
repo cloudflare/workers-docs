@@ -55,7 +55,7 @@ If you are just designing a snippet, you can skip the setup and move to writing 
 
 First clone the [template creator](https://github.com/victoriabernard92/workers-template-creator) and follow the instructions in the README to get your project started.
 
-Never commit the `worker` directory. Commit your `wrangler.toml`and `workers-site` directory (if applicable) with the requirerd `type`, but don't commit the account tags.
+Never commit the `worker` directory. Commit your `wrangler.toml`and `workers-site` directory (if applicable) with the required `type`, but don't commit the account tags.
 
 # Writing Templates
 
