@@ -1,5 +1,5 @@
 ---
-title: HTMLRewriter
+title: HTMLRewriter (BETA)
 new: true
 ---
 
