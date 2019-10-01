@@ -1,5 +1,5 @@
 ---
-title: 'Debugging Tips'
+title: "Debugging Tips"
 weight: 1
 ---
 
@@ -19,6 +19,7 @@ When a Worker running in production has an error that prevents it from returning
 | 1101       | Worker threw a JavaScript exception.                                            |
 | 1102       | Worker exceeded CPU time limit. See: [Resource Limits]({{< relref "limits" >}}) |
 | 1015       | Your client IP is being rate limited.                                           |
+| 1027       | Worker exceeded free tier daily request limit                                   |
 
 <br>Other 11xx errors generally indicate a problem with the Workers runtime itself - please check our [status page](https://www.cloudflarestatus.com/) if you see one.
 
