@@ -31,7 +31,7 @@ If you have any questions that _aren't_ answered by this contribution guide, let
 
 #### **Do you want to submit a new tutorial?**
 
-* We currently aren't accepting new full-length tutorials in the docs. If you've written a tutorial about building something with Workers and want to share it on your own blog or elsewhere, great! We'd be happy to help you share it (email [devrel AT cloudflare DOT com](mailto:devrel@cloudflare.com)), but due to the large amount of review and process around tutorials in this repository, we're unable to add new community tutorials at this time.
+* We currently aren't accepting new full-length tutorials in the docs. If you've written a tutorial about building something with Workers and want to share it on your own blog or elsewhere, great! We'd be happy to help you share it (email [wrangler AT cloudflare DOT com](mailto:wrangler@cloudflare.com)), but due to the large amount of review and process around tutorials in this repository, we're unable to add new community tutorials at this time.
 * For tutorials that have been approved note that while tutorials can stay in the gallery indefinitely, they will be rotated for the main tutorial section as new tutorials emerge. 
 
 #### **Do you want to contribute a template to the Template Gallery?**
