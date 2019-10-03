@@ -1,6 +1,6 @@
 ---
 title: 'Signed Request/Response'
-hidden: false
+hidden: true
 ---
 
 {{< snippet "signed_request" >}}
