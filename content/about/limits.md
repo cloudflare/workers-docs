@@ -41,7 +41,7 @@ Users visiting a burst rate limited site will receive a Cloudflare 1015 error pa
 
 ### Daily Request Limit
 
-Free tier daily requests counts reset at midnight UTC. A Worker that fails as a result of daily request limit errors can be configured by setting its corresponding [route](https://developers.cloudflare.com/workers/about/routes/) in two modes: _Fail open_ and _Fail closed_.
+Free tier daily requests counts reset at midnight UTC. A Worker that fails as a result of daily request limit errors can be configured by setting its corresponding [route](/about/routes/) in two modes: _Fail open_ and _Fail closed_.
 
 #### Fail Open
 
