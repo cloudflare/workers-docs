@@ -81,14 +81,14 @@ To start, let's look at `workers-site/index.js`: our Workers application in this
 
 Inside of this file, the default code for running a [Workers Site](/sites) has been provided. The crucial part of the generated code lives in the `handleEvent` function. The`getAssetFromKV` function retrieves a website asset uploaded from your local `./public` foldler, runs some magic to make it live on Workers KV, and returns it to the user. For now, we can ignore much of `getAssetFromKV` (though if you'd like to learn more, check out [the docs](/sites/start-from-worker) .
 
-To implement translations on the site, we'll take the HTML response retrieved from KV and pass it into a new instance of `HTMLRewriter`. When instantiating `HTMLRewriter`, we can also attach handlers using the `on` function: in our case, we'll use the `*` selector (see the [documentation](/reference/apis/html-rewriter) for more advanced usage) to parse all elements with a single class, `ElementHandler`. With the created instance of `HTMLRewriter`, the `transform` function takes a `response` and can be returned to the client:
+To implement translations on the site, we'll take the HTML response retrieved from KV and pass it into a new instance of `HTMLRewriter`. When instantiating `HTMLRewriter`, we can also attach handlers using the `on` function: in our case, we'll use the `[data-i18n-key]` selector (see the [documentation](/reference/apis/html-rewriter) for more advanced usage) to parse all elements that require translation with a single class, `ElementHandler`. With the created instance of `HTMLRewriter`, the `transform` function takes a `response` and can be returned to the client:
 
 ```js
 // index.js
 async function handleEvent(event) {
   // ...
   const response = await getAssetFromKV(event)
-  return new HTMLRewriter().on('*', new ElementHandler()).transform(response)
+  return new HTMLRewriter().on('[data-i18n-key]', new ElementHandler()).transform(response)
 }
 ```
 
@@ -209,7 +209,7 @@ async function handleEvent(event) {
 
     const response = await getAssetFromKV(event, options)
 
-    return new HTMLRewriter().on('*', new ElementHandler(countryStrings)).transform(response)
+    return new HTMLRewriter().on('[data-i18n-key]', new ElementHandler(countryStrings)).transform(response)
   } catch (e) {
     if (DEBUG) {
       return new Response(e.message || e.toString(), {
