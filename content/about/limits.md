@@ -12,6 +12,7 @@ Workers plans are separate from any Cloudflare plan (Free, Professional, Busines
 | Free             | 10ms      | 100,000             | 1000 requests per 10 min |
 | Unlimited (Paid) | 50ms      | none                | none                     |
 
+See definitions for the types of limits and behavior below.
 Script size, number of scripts, subrequests, and available memory are not affected by plan type.
 
 ## Script Size
