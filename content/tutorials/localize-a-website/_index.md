@@ -265,6 +265,6 @@ $ wrangler publish
 
 ## Resources
 
-In this tutorial, you built and published an i18n tool using `HTMLRewriter`. If you'd like to see the full source code for this application, visit the [repo on GitHub](https://github.com/signalnerve/i18n-example-workers).
+In this tutorial, you built and published an i18n tool using `HTMLRewriter`.
 
 If you want to get started building your own projects, check out the quick-start templates we've provided in our [Template Gallery](/templates).
