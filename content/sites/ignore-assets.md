@@ -31,6 +31,6 @@ exclude = ["excluded_dir"] # must be an array.
 ```
 Wrangler will ignore files or directories matching the patterns in the `exclude` array when uploading assets to Wrangler.
 
-If you provide both an `include` and `exclude` field, the `include` field will be used and the `exclude` field will be ignored.
+If you provide both `include` and `exclude` fields, the `include` field will be used and the `exclude` field will be ignored.
 
 You can learn more about the standard patterns used for include and exclude in the [gitignore documentation](https://git-scm.com/docs/gitignore).
