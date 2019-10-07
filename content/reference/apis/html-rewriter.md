@@ -89,7 +89,7 @@ async function handleRequest(req) {
 
 ### Document Handlers
 
-A document handler represents the incoming HTML document. A number of functions can be defined on a document handler to query and manipulate a document's `doctype`, `comments`, and `text`. Unlike an element handler, a document handler's `doctype`, `comments` and `text` functions are called for content _outside_ of the top-level HTML tag:
+A document handler represents the incoming HTML document. A number of functions can be defined on a document handler to query and manipulate a document's `doctype`, `comments`, and `text`. Unlike an element handler, a document handler's `doctype`, `comments` and `text` functions are not scoped by a particular selector and called for all the content on the page including the content _outside_ of the top-level HTML tag:
 
 ```js
 class DocumentHandler {
@@ -167,7 +167,7 @@ class ElementHandler {
 #### Properties
 
 - `removed`: `Boolean` indicating whether the element has been removed or replaced by one of the previous handlers.
-- `text: String`: Read-only, text content of the chunk. Could be empty if the chunk is the last chunk of the text node.
+- `text`: `String` representing the text of the comment. This property can be assigned different values, to modify comment's text.
 
 #### Methods
 
@@ -191,9 +191,9 @@ class DocumentHandler {
 
 #### Properties
 
-- `name: String | null`: String representing the name of the element. With a doctype element, this is always "html".
-- `publicId: String | null`: The first quoted string in the doctype element, after the PUBLIC atom. This value is only set on HTML4 doctypes.
-- `systemId: String | null`: The second quoted string in the doctype element, after the PUBLIC atom. This value is only set on HTML4 doctypes.
+- `name: String | null`: Read-only, string representing the doctype name. 
+- `publicId: String | null`: Read only, the quoted string in the doctype after the PUBLIC atom.
+- `systemId: String | null`: Read only, the quoted string in the doctype after the SYSTEM atom or immidiately after the `publicId`. 
 
 ## Understanding handler errors
 
