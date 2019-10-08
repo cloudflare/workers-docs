@@ -15,25 +15,29 @@ This means that we use gitignore semantics when declaring which directory entrie
 
 If you want to include only a certain set of files or directories in your `bucket`, you can add an `include` field to your
 `[site]` section of `wrangler.toml`:
+
 ```toml
 [site]
 bucket = "./public"
 entry-point = "workers-site" 
 include = ["included_dir"] # must be an array.
 ```
+
 Wrangler will only upload files or directories matching the patterns in the `include` array.
 
 ### Excluding files/directories
 
 If you want to exclude files or directories in your `bucket`, you can add an `exclude` field to your
 `[site]` section of `wrangler.toml`:
+
 ```toml
 [site]
 bucket = "./public"
 entry-point = "workers-site" 
 exclude = ["excluded_dir"] # must be an array.
 ```
-Wrangler will ignore files or directories matching the patterns in the `exclude` array when uploading assets to Wrangler.
+
+Wrangler will ignore files or directories matching the patterns in the `exclude` array when uploading assets to Workers KV.
 
 ### Include > Exclude
 
