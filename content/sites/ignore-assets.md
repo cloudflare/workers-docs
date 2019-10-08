@@ -4,7 +4,7 @@ alwaysopen: true
 weight: 5
 ---
 
-Worker Sites require [Wrangler](https://github.com/cloudflare/wrangler) - make sure to be on the [latest version](/quickstart/#updating-the-cli) - and the Workers [Unlimited plan](https://workers.cloudflare.com/sites#plans).
+Workers Sites require [Wrangler](https://github.com/cloudflare/wrangler) - make sure to be on the [latest version](/quickstart/#updating-the-cli) - and the Workers [Unlimited plan](https://workers.cloudflare.com/sites#plans).
 
 There are cases where users may not want to upload certain static assets to their Workers Sites.
 In this case, Workers Sites can also be configured to ignore certain files or directories using logic 
