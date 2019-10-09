@@ -41,7 +41,7 @@ export const oldDocsMap = new Map([
   ['/recipes/conditional-routing', '/templates/snippets/conditional_response'],
   ['/recipes/cors-preflight-requests', '/templates/snippets/cors_header_proxy'],
   ['/recipes/country-blocking', '/templates/snippets/country_code'],
-  ['/recipes/hotlink-protection', ''],
+  ['/recipes/hotlink-protection', '/templates/snippets/hotlink-protection'],
   ['/recipes/lambda@edge-conversion', ''],
   ['/recipes/lambda@edge-conversion/changing-origins', ''],
   ['/recipes/lambda@edge-conversion/generating-responses-with-static-content', ''],
