@@ -1,7 +1,7 @@
 import { handleRedirect } from '../redirects/index'
 import { newDocsMap } from '../redirects/newDocs'
 import { oldDocsMap } from '../redirects/oldDocs'
-import { getAssetFromKV, mapRequestToAsset} from '@cloudflare/kv-asset-handler'
+import { getAssetFromKV, mapRequestToAsset } from '@cloudflare/kv-asset-handler'
 
 const myMapRequestToAsset = request => {
   request = mapRequestToAsset(request)
@@ -35,7 +35,12 @@ export async function handleRequest(event) {
     }
     let body = null
     try {
-      body = await getAssetFromKV(event, { mapRequestToAsset: myMapRequestToAsset })
+      body = await getAssetFromKV(event, {
+        mapRequestToAsset: myMapRequestToAsset,
+        cacheControl: {
+          bypassCache: true,
+        },
+      })
     } catch (e) {
       console.log(e, 'not found in KV')
     }
