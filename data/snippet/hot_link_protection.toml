@@ -25,3 +25,4 @@ addEventListener('fetch', event => {
 })
 """
 demo_url = "https://cloudflareworkers.com/#d659b20dcf91df6e6de1bedbb94f6702:https://www.cloudflare.com/img/logo-cloudflare-dark.svg"
+share = "/templates/snippets/hotlink-protection"
