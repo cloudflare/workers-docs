@@ -60,7 +60,7 @@ export const oldDocsMap = new Map([
   ['/recipes/random-content-cookies', ''],
   ['/recipes/return-403', '/templates/snippets/tls_version'],
   ['/recipes/setting-a-cookie', '/templates/snippets/ab_testing'],
-  ['/recipes/signed-requests', ''],
+  ['/recipes/signed-requests', '/templates/snippets/signed_request'],
   ['/recipes/static-site', '/templates/featured_boilerplates/cloud_storage'],
   ['/recipes/streaming-responses', ''],
   ['/recipes/tls-version-blocking', '/templates/snippets/tls_version'],
