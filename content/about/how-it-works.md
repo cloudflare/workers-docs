@@ -4,15 +4,15 @@ alwaysopen: true
 weight: 1
 ---
 
-Though Workers Ecosystem behaves similar to JavaScript in the browser or in Node.JS, there are a few subtle differences in how you have to think about your code. Under the hood, the Workers Runtime uses the [V8 engine](https://v8.dev/) - the same engine used by Chromium and Node.JS. The Workers runtime also implements many of the standard [APIs](/reference/runtime/apis) available in most modern browsers.
+Though Cloudflare Workers behaves similar to JavaScript in the browser or in Node.JS, there are a few subtle differences in how you have to think about your code. Under the hood, the Workers runtime uses the [V8 engine](https://v8.dev/) - the same engine used by Chromium and Node.JS. The Workers runtime also implements many of the standard [APIs](/reference/runtime/apis) available in most modern browsers.
 
-The difference between JavaSript written for the browser or Node.JS happen at runtime. Rather than running on an individual's machine (e.g a browser application or on a centralized server), Workers functions run on [Cloudflare's Edge Network](https://www.cloudflare.com/network/) - a growing global network of thousands of machines distributed across hundreds of locations.
+The differences between JavaScript written for the browser or Node.JS happen at runtime. Rather than running on an individual's machine (e.g a browser application or on a centralized server), Workers functions run on [Cloudflare's Edge Network](https://www.cloudflare.com/network/) - a growing global network of thousands of machines distributed across hundreds of locations.
 
 ![network](/about/media/network-map.png)
 
 Each of these machines hosts an instance of the Workers runtime, and each of those runtimes is capable of running thousands of user-defined apps. This guide will unpack some of those differences, and help you dig deeper into these differences.
 
-We'll start with the three largest differences: Isolates, Compute per Request, and Distributed Execution
+We'll start with the three largest differences: Isolates, Compute per Request, and Distributed Execution.
 
 ## Isolates
 
@@ -52,7 +52,7 @@ async function handleRequest(request) {
 }
 ```
 
-When a request to your workers.dev subdomain or to your Cloudflare-managed domain is received by any of Cloudflare's runtimes, the Workers script is passed a [`FetchEvent`](/reference/apis/fetch-event) argument to the event handler defined in the script. From there you can generate a `Response` by computing a response on the spot, calling to another server using [`fetch`](/reference/apis/fetch), etc.. The CPU cycles is takes to get to the point of the `respondWith` call all contribute to the compute time. For example, `setInterval` timeout does not consume CPU cycles while waiting.
+When a request to your workers.dev subdomain or to your Cloudflare-managed domain is received by any of Cloudflare's runtimes, the Workers script is passed a [`FetchEvent`](/reference/apis/fetch-event) argument to the event handler defined in the script. From there you can generate a `Response` by computing a response on the spot, calling to another server using [`fetch`](/reference/apis/fetch), etc.. The CPU cycles it takes to get to the point of the `respondWith` call all contribute to the compute time. For example, a `setInterval` timeout does not consume CPU cycles while waiting.
 
 **Your account is billed based on the number of requests your script handles, rather than on compute time.**
 
