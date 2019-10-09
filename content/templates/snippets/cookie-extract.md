@@ -1,6 +1,6 @@
 ---
 title: 'Cookie Extraction'
-hidden: false
+hidden: true
 ---
 
 {{< snippet "cookie_extract" >}}
