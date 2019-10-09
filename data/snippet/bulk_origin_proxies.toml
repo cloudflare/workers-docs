@@ -1,5 +1,5 @@
 name = "Bulk Origin Proxies"
-description = "Proxy third-party origins on your domain in bulk"
+description = "Resolve requests to your domain to a set of proxy third-party origins instead"
 code = """
 async function handleRequest(request) {
   let url = new URL(request.url)
@@ -22,7 +22,7 @@ addEventListener('fetch', event => {
  * An object with different url's to fetch
  * @param {Object} origins
 */
-const origins = {
+const ORIGINS = {
   'starwarsapi.yourdomain.com': 'swapi.co',
   'google.yourdomain.com': 'google.com'
 }
