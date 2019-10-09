@@ -1,13 +1,12 @@
 name = "Bulk Origin Proxies"
-description = "Resolve requests to your domain to a set of proxy third-party origins instead"
+description = "Resolve requests to your domain to a set of proxy third-party origins"
 code = """
 async function handleRequest(request) {
   let url = new URL(request.url)
   // Check if incoming hostname is
-  // a key in the origins object
-  let target = origins[url.hostname]
-  // If it is, proxy data from 
-  // third party origin and send it
+  // a key in the ORIGINS object
+  let target = ORIGINS[url.hostname]
+  // If it is, proxy request to that third party origin
   if (target) {
     url.hostname = target
     return fetch(url, request)
@@ -20,11 +19,12 @@ addEventListener('fetch', event => {
 })
 /**
  * An object with different url's to fetch
- * @param {Object} origins
-*/
+ * @param {Object} ORIGINS
+ */
 const ORIGINS = {
   'starwarsapi.yourdomain.com': 'swapi.co',
-  'google.yourdomain.com': 'google.com'
+  'google.yourdomain.com': 'google.com',
 }
 """
-demo_url = "https://cloudflareworkers.com/#66fd2a4678712d4784e061701a00d6cb:https://starwarsapi.yourdomain.com/api/people/1?format=json"
+demo_url = "https://cloudflareworkers.com/#545c79e098708ca658dcbdb860c5021a:https://starwarsapi.yourdomain.com/"
+share="/templates/snippets/bulk_origin_proxies"
