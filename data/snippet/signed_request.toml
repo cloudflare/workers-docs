@@ -1,6 +1,6 @@
 id = "signed_request"
 name = "Signed Request/Response"
-description = "Check signatures of requestst and sign responses with a private key"
+description = "Check signatures of requests and sign responses with a private key"
 code = """
 const crypto = require('crypto')
 
@@ -22,7 +22,7 @@ async function checkSignature(request) {
   let actualSignature = await request.headers.get('signature')
 
   // check that hash matches signature
-  return expectedSignature == actualSignature
+  return expectedSignature === actualSignature
 }
 
 async function signResponse(responseBody, response) {
@@ -34,7 +34,7 @@ async function signResponse(responseBody, response) {
 }
 
 /**
- * Fetch and log a request
+ * does something..
  * @param {Request} request
  */
 async function handleRequest(request) {
