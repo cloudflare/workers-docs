@@ -2,14 +2,14 @@ name = "Hot-link Protection"
 description = "Block other websites from linking to your content"
 code = """
 async function handleRequest(request) {
-  // Fetch the request
+  // Fetch the original request 
   let response = await fetch(request)
   // If it's an image, engage hotlink protection based on the
   // Referer header.
   let referer = request.headers.get('Referer')
   let contentType = response.headers.get('Content-Type') || ''
   if (referer && contentType.startsWith('image/')) {
-    // It's an image and there's a Referer. Verify that the
+    // Verify that the
     // hostnames match.
     if (new URL(referer).hostname !==
         new URL(request.url).hostname) {
@@ -28,6 +28,6 @@ addEventListener('fetch', event => {
  * The url to redirect to
  * @param {String} url
 */
-const url = 'https://tutorial.cloudflareworkers.com/'
+const HOMEPAGE_URL = 'https://tutorial.cloudflareworkers.com/'
 """
 demo_url = "https://cloudflareworkers.com/#a8ccf2b11cc45e6796969ef6d8f8b715:https://www.cloudflare.com/img/logo-cloudflare-dark.svg"
