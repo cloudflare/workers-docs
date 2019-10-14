@@ -23,15 +23,9 @@ jobs:
       run: cp config-staging.toml config.toml
     - name: Build docs
       run: hugo
-    - name: Install Wrangler
-      run: npm i @cloudflare/wrangler@1.5.0 -g
-    - name: Wrangler auth check
-      run: wrangler whoami
-      env:
-        CF_API_KEY: ${{ secrets.CF_API_KEY }}
-        CF_EMAIL: ${{ secrets.CF_EMAIL }}
-    - name: Upload assets
-      run: wrangler publish -e staging
-      env:
-        CF_API_KEY: ${{ secrets.CF_API_KEY }}
-        CF_EMAIL: ${{ secrets.CF_EMAIL }}
+    - name: Publish
+      uses: signalnerve/wrangler-action@1.0.0
+      with:
+        apiKey: ${{ secrets.CF_API_KEY }}
+        email: ${{ secrets.CF_EMAIL }}
+        environment: "staging"
