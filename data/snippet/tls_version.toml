@@ -1,3 +1,4 @@
+id = "block_on_tls_version"
 name = "Block on TLS Version"
 description = "Inspects the incoming request's TLS version and blocks if under TLSv1.2."
 code = """
