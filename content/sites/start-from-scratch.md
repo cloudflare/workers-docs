@@ -33,7 +33,7 @@ To start from scratch to create a Workers Site, follow these steps:
      zone_id = "42ef.."
      route = "example.com/*"
      ```
-   (Note: the wildcard selector is important to ensure that paths to your assets match and are loaded properly) 
+   (Note: the wildcard selector is important to ensure that paths to your assets match, and are loaded properly) 
      
  - **workers.dev**: Set `workers_dev`  to true. This is the default. 
 
