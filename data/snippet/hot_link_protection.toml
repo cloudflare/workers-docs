@@ -1,3 +1,4 @@
+id = "hotlink_protection"
 name = "Hot-link Protection"
 description = "Block other websites from linking to your content"
 code = """

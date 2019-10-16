@@ -1,3 +1,4 @@
+id = "http2_server_push"
 name = "HTTP/2 Server Push"
 description = "Push static assests to a client's browser without waiting for HTML to render"
 code = """async function handleRequest(request) {

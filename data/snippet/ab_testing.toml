@@ -1,3 +1,4 @@
+id = "ab_testing"
 name = "A/B Testing"
 description = "Set up an A/B test by controlling what response is served based on cookies"
 code = '''
