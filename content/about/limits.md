@@ -9,7 +9,7 @@ Workers plans are separate from any Cloudflare plan (Free, Professional, Busines
 
 | Plan             | CPU Limit | Daily Request Limit | Burst Rate Limit         |
 | ---------------- | --------- | ------------------- | ------------------------ |
-| Free             | 10ms      | 100,000             | 1000 requests per 10 min |
+| Free             | 10ms      | 100,000             | 1000 requests per minute |
 | Unlimited (Paid) | 50ms      | none                | none                     |
 
 See definitions for the types of limits and behavior below.
