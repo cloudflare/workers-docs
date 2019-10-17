@@ -164,6 +164,8 @@ The `--watch` flag for `preview` tells Wrangler to watch your Worker project for
 
 Wrangler's `build` command will install the necessary dependencies for your project, and compile it to make it ready for deployment. The `build` command will also notify you of any build warnings before deployment. `preview` and `publish` will both run `build` for you, but we expose it separately as it is useful for checking for errors.
 
+Node and npm are required to be installed on the system when using the webpack project type, which is the default.
+
 ```sh
 $ wrangler build
 ```
