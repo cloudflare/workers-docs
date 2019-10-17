@@ -17,7 +17,7 @@ addEventListener('fetch', event => {
 /**
  * Grabs the cookie with name from the request headers
  * @param {Request} request incoming Request
- * @param {string} name name of the cookie to grab
+ * @param {string} name of the cookie to grab
  */
 function getCookie(request, name) {
   let result = null
@@ -26,7 +26,7 @@ function getCookie(request, name) {
     let cookies = cookieString.split(';')
     cookies.forEach(cookie => {
       let cookieName = cookie.split('=')[0].trim()
-      if (cookieName == name) {
+      if (cookieName === name) {
         let cookieVal = cookie.split('=')[1]
         result = cookieVal
       }
