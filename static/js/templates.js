@@ -65,7 +65,7 @@ const processSearch = () => {
     let matches = [...header.nextElementSibling.childNodes].filter(el =>
       results.find(result => result.id === el.id),
     )
-    if (!matches.length) header.style.display = 'none'
+    header.style.display = matches.length ? '' : 'none'
   })
 }
 
