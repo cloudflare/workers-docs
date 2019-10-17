@@ -76,14 +76,14 @@ Cloudflare features all plans can set on outbound requests:
 - `mirage`: Disables [Mirage](https://www.cloudflare.com/website-optimization/mirage/) for this request. When you specify this option, the value should always be `false`. (e.g. `false`)
 - `apps`: Disables [Cloudflare Apps](https://www.cloudflare.com/apps/) for this request. When you specify this option, the value should always be `false`. (e.g. `false)`
 - `cacheTtl`: This option forces Cloudflare to cache the response for this request, regardless of what headers are seen on the response. This is equivalent to setting two page rules: ["Edge Cache TTL"](https://support.cloudflare.com/hc/en-us/articles/200168376-What-does-edge-cache-expire-TTL-mean-) and ["Cache Level" (to "Cache Everything")](https://support.cloudflare.com/hc/en-us/articles/200172266). (e.g.`300`)
+- `resolveOverride`: Redirects the request to an alternate origin server. You can use this, for example, to implement load balancing across several origins. (e.g.`us-east.example.com`)
+  - _Note - For security reasons, the hostname set in `resolveOverride` must be proxied on the same Cloudflare zone of the incoming request. Otherwise, the setting is ignored. CNAME hosts are allowed, so to resolve to a host under a different domain or a DNS only domain first declare a CNAME record within your own zone’s DNS mapping to the external hostname, set proxy on Cloudflare, then set resolveOverride to point to that CNAME record._
 
 **Enterprise only:**
 
 - `cacheKey`: A request's cache key is what determines if two requests are "the same" for caching purposes. If a request has the same cache key as some previous request, then we can serve the same cached response for both. (e.g. `'some-key'`)
 - `cacheTtlByStatus`: This option is a version of the `cacheTtl` feature which chooses a TTL based on the response's status code. If the response to this request has a status code that matches, Cloudflare will cache for the instructed time, and override cache instructives sent by the origin. (e.g. `{ "200-299": 86400, 404: 1, "500-599": 0 }`)
   - _Note - Cloudflare will still adhere to [standard cache levels](https://support.cloudflare.com/hc/en-us/articles/202775670-How-Do-I-Tell-Cloudflare-What-to-Cache-), so by default this will override cache behavior for static files. If you wish to cache non-static assets, you will need to set a [Cache Level of Cache Everything](https://support.cloudflare.com/hc/en-us/articles/200172266-What-do-the-custom-caching-options-mean-in-Page-Rules-) using a Page Rule._
-- `resolveOverride`: Redirects the request to an alternate origin server. You can use this, for example, to implement load balancing across several origins. (e.g.`us-east.example.com`)
-  - _Note - For security reasons, the hostname set in `resolveOverride` must be proxied on the same Cloudflare zone of the incoming request. Otherwise, the setting is ignored. CNAME hosts are allowed, so to resolve to a host under a different domain or a DNS only domain first declare a CNAME record within your own zone’s DNS mapping to the external hostname, set proxy on Cloudflare, then set resolveOverride to point to that CNAME record._
 
 <!-- * cache_api?  -->
 
