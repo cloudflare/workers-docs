@@ -3,7 +3,9 @@ const constructCorpus = () => {
   const toLunr = (item, type) => ({ type, ...item })
   return [
     ...Object.values(boilerplates).map(item => toLunr(item, 'boilerplates')),
-    ...Object.values(featured_boilerplates).map(item => toLunr(item, 'featured_boilerplates')),
+    ...Object.values(featured_boilerplates).map(item =>
+      toLunr(item, 'featured_boilerplates'),
+    ),
     ...Object.values(snippets).map(item => toLunr(item, 'snippets')),
   ]
 }
@@ -52,8 +54,19 @@ const processSearch = () => {
   const templates = document.querySelectorAll('.template-card')
   templates.forEach(
     elem =>
-      (elem.style = `display: ${!results.find(result => result.id === elem.id) ? 'none' : ''}`),
+      (elem.style = `display: ${
+        !results.find(result => result.id === elem.id) ? 'none' : ''
+      }`),
   )
+  // Remove section headers that contain no results
+  const sectionHeaders = document.querySelectorAll('#results>h2')
+  sectionHeaders.forEach(header => {
+    // all headers' next sibling is a `section` that parents the templates
+    let matches = [...header.nextElementSibling.childNodes].filter(el =>
+      results.find(result => result.id === el.id),
+    )
+    header.style.display = matches.length ? '' : 'none'
+  })
 }
 
 // Update the UI when there aren't any results
