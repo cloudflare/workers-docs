@@ -2,15 +2,6 @@ id = "rewrite_urls"
 name = "Rewrite URLs"
 description = "Rewrite URLs using [HTML Rewriter](/reference/apis/html-rewriter)"
 code = """
-async function handleRequest(req) {
-  const res = await fetch(req)
-  return rewriter.transform(res)
-}
-
-const rewriter = new HTMLRewriter()
-  .on('a', new AttributeRewriter('href'))
-  .on('img', new AttributeRewriter('src'))
-
 class AttributeRewriter {
   constructor(attributeName) {
     this.attributeName = attributeName
@@ -25,6 +16,15 @@ class AttributeRewriter {
       )
     }
   }
+}
+
+const rewriter = new HTMLRewriter()
+  .on('a', new AttributeRewriter('href'))
+  .on('img', new AttributeRewriter('src'))
+
+async function handleRequest(req) {
+  const res = await fetch(req)
+  return rewriter.transform(res)
 }
 
 addEventListener('fetch', event => {
