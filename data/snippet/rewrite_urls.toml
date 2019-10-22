@@ -1,7 +1,11 @@
 id = "rewrite_urls"
 name = "Rewrite URLs"
 description = "Rewrite URLs using [HTML Rewriter](/reference/apis/html-rewriter)"
-code = """
+code = """async function handleRequest(req) {
+  const res = await fetch(req)
+  return rewriter.transform(res)
+}
+
 class AttributeRewriter {
   constructor(attributeName) {
     this.attributeName = attributeName
@@ -22,13 +26,8 @@ const rewriter = new HTMLRewriter()
   .on('a', new AttributeRewriter('href'))
   .on('img', new AttributeRewriter('src'))
 
-async function handleRequest(req) {
-  const res = await fetch(req)
-  return rewriter.transform(res)
-}
-
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
 """
-demo_url = "https://cloudflareworkers.com/#2b45c17d0f6a27ba13bc30c142adb7c8:https://tutorial.cloudflareworkers.com"
+demo_url = "https://cloudflareworkers.com/#5747b68a494553e4f3a1b39cbed03f8d:https://tutorial.cloudflareworkers.com"
