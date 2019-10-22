@@ -12,7 +12,7 @@ class AttributeRewriter {
     if (attribute) {
       element.setAttribute(
         this.attributeName,
-        attribute.replace('myolddomain.com', 'mynewdomain.com')
+        attribute.replace('developer.mozilla.org', 'mynewdomain.com')
       )
     }
   }
@@ -31,3 +31,4 @@ addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
 """
+demo_url = "https://cloudflareworkers.com/#2b45c17d0f6a27ba13bc30c142adb7c8:https://tutorial.cloudflareworkers.com"
