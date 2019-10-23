@@ -104,9 +104,9 @@ cache.delete(request, options)
 
 - `request`: The lookup key as a string or [`Request`](/reference/apis/request) object. String are interpreted as the URL for a new `Request` object.
 
-- `optons`: Can contain one of these properties:
+- `options`: Can contain one of these properties:
 
-      	* `ignoreMethod` (Boolean): Consider the request method to `GET`, regardless of its actual value.
+    - `ignoreMethod` (Boolean): Consider the request method to `GET`, regardless of its actual value.
 
 ## More Information
 
