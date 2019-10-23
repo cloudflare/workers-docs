@@ -77,4 +77,4 @@ From there simply commit the change to your `main.workflow` file. In the top rig
 
 ![GitHub Action Step 5](/archive/static/step-5-action-signup.png)
 
-And you should be all set.  Check out the [REAMDE](https://github.com/cloudflare/serverless-action/blob/master/README.md) for more info!
+And you should be all set.  Check out the [README](https://github.com/cloudflare/serverless-action/blob/master/README.md) for more info!
