@@ -82,11 +82,11 @@ Unlike the browser Cache API, Cloudflare Workers do not support the `ignoreSearc
 
 Our implementation of the Cache API respects the following HTTP headers on the request passed to `match()`:
 
-    - `Range`: Results in a `206` response if a matching response is found. Your Cloudflare cache always respects range requests, even if an `Accept-Ranges` header is on the response.
+- `Range`: Results in a `206` response if a matching response is found. Your Cloudflare cache always respects range requests, even if an `Accept-Ranges` header is on the response.
 
-    - `If-Modified-Since`: Results in a `304` response if a matching response is found with a `Last-Modified` header with a value after the time specified in `If-Modified-Since`.
+- `If-Modified-Since`: Results in a `304` response if a matching response is found with a `Last-Modified` header with a value after the time specified in `If-Modified-Since`.
 
-    - `If-None-Match`: Results in a `304` response if a matching response is found with an `ETag` header with a value that matches a value in `If-None-Match`.
+- `If-None-Match`: Results in a `304` response if a matching response is found with an `ETag` header with a value that matches a value in `If-None-Match`.
 
 `cache.match()`: Never sends a subrequest to the origin. If no matching response is found in cache, the promise that `cache.match()` returns is fulfilled with `undefined`.
 
