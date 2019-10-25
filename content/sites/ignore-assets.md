@@ -45,7 +45,7 @@ If you provide both `include` and `exclude` fields, the `include` field will be 
 
 ### Default ignored entries
 
-Wrangler will always ignore
+Wrangler will always ignore:
 
 - `node_modules`
 - Hidden files and directories
