@@ -322,7 +322,7 @@ With this configuration, Wrangler will behave in the following manner:
 $ wrangler publish
 ⚠️  The `private` field is deprecated; please use `workers_dev` to toggle between publishing to your workers.dev subdomain and your own domain.
 ⚠️  Please specify the workers_dev boolean in the top level of your wrangler.toml.
-⚠️  If you do not add workers_dev, this command may act unexpectedly in v1.5.0. Please see https://github.com/cloudflare/wrangler/blob/master/docs/content/environments.md for more information.
+⚠️  If you do not add workers_dev, this command may act unexpectedly in v1.5.0. Please see [environments](/wrangler/configuration/environments) for more information.
 ✨  Built successfully, built project size is 523 bytes.
 ✨  Successfully published your script to https://my-worker.<your-subdomain>.workers.dev
 ```
@@ -332,7 +332,7 @@ $ wrangler publish --release
 ⚠️  --release will be deprecated.
 ⚠️  The `private` field is deprecated; please use `workers_dev` to toggle between publishing to your workers.dev subdomain and your own domain.
 ⚠️  Please specify the workers_dev boolean in the top level of your wrangler.toml.
-⚠️  If you do not add workers_dev, this command may act unexpectedly in v1.5.0. Please see https://github.com/cloudflare/wrangler/blob/master/docs/content/environments.md for more information.
+⚠️  If you do not add workers_dev, this command may act unexpectedly in v1.5.0. Please see [environments](/wrangler/configuration/environments) for more information.
 ✨  Built successfully, built project size is 523 bytes.
 ✨  Successfully published your script to example.com/*
 ```
