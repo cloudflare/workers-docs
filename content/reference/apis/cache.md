@@ -76,16 +76,20 @@ cache.match(request, options)
 
 - `request`: The string or [`Request`](/reference/apis/request) object used as the lookup key. Strings are interpreted as the URL for a new `Request` object.
 
-- `options`: Can contain one possible property: \* `ignoreMethod` (Boolean): Consider the request method a GET regardless of its actual value.
+- `options`: Can contain one possible property: 
+  - `ignoreMethod` (Boolean): Consider the request method a GET regardless of its actual value.
 
-      	Unlike the browser Cache API, Cloudflare Workers do not support the `ignoreSearch` or `ignoreVary` options on `match()`. You can accomplish this behavior by removing query strings or HTTP headers at `put()` time.
+Unlike the browser Cache API, Cloudflare Workers do not support the `ignoreSearch` or `ignoreVary` options on `match()`. You can accomplish this behavior by removing query strings or HTTP headers at `put()` time.
 
-      	Our implementation of the Cache API respects the following HTTP headers on the request passed to `match()`:
+Our implementation of the Cache API respects the following HTTP headers on the request passed to `match()`:
 
-      	* `Range`: Results in a `206` response if a matching response is found. Your Cloudflare cache always respects range requests, even if an `Accept-Ranges` header is on the response.
-      	* `If-Modified-Since`: Results in a `304` response if a matching response is found with a `Last-Modified` header with a value after the time specified in `If-Modified-Since`.
-      	* `If-None-Match`: Results in a `304` response if a matching response is found with an `ETag` header with a value that matches a value in `If-None-Match`.
-      	`cache.match()`: Never sends a subrequest to the origin. If no matching response is found in cache, the promise that `cache.match()` returns is fulfilled with `undefined`.
+- `Range`: Results in a `206` response if a matching response is found. Your Cloudflare cache always respects range requests, even if an `Accept-Ranges` header is on the response.
+
+- `If-Modified-Since`: Results in a `304` response if a matching response is found with a `Last-Modified` header with a value after the time specified in `If-Modified-Since`.
+
+- `If-None-Match`: Results in a `304` response if a matching response is found with an `ETag` header with a value that matches a value in `If-None-Match`.
+
+`cache.match()`: Never sends a subrequest to the origin. If no matching response is found in cache, the promise that `cache.match()` returns is fulfilled with `undefined`.
 
 #### `delete`
 
@@ -104,9 +108,9 @@ cache.delete(request, options)
 
 - `request`: The lookup key as a string or [`Request`](/reference/apis/request) object. String are interpreted as the URL for a new `Request` object.
 
-- `optons`: Can contain one of these properties:
+- `options`: Can contain one of these properties:
 
-      	* `ignoreMethod` (Boolean): Consider the request method to `GET`, regardless of its actual value.
+    - `ignoreMethod` (Boolean): Consider the request method to `GET`, regardless of its actual value.
 
 ## More Information
 
