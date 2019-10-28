@@ -77,7 +77,7 @@ async function handleRequest(request) {
 }
 ```
 
-Currently, if an incoming request isn't a POST, `response` will be undefined. Since we only care about incoming `POST` requests, populate `response` with a new `Response` with a [500 status code](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500), if the incoming request isn't a `POST`:
+Currently, if an incoming request isn't a POST, `response` will be undefined. Since we only care about incoming `POST` requests, populate `response` with a new `Response` with a [405 status code](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/405), if the incoming request isn't a `POST`:
 
 ```javascript
 async function handleRequest(request) {
@@ -85,7 +85,7 @@ async function handleRequest(request) {
   if (request.method === 'POST') {
     response = new Response('Hello worker!', { status: 200 })
   } else {
-    response = new Response('Expected POST', { status: 500 })
+    response = new Response('Expected POST', { status: 405 })
   }
   return response
 }
