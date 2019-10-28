@@ -1,13 +1,13 @@
-# 🤠 wrangler
-
-![Banner](/banner.png)
-
-[![crates.io](https://meritbadge.herokuapp.com/wrangler)](https://crates.io/crates/wrangler) &nbsp;
-[![Build Status](https://dev.azure.com/ashleygwilliams/wrangler/_apis/build/status/cloudflare.wrangler?branchName=master)](https://dev.azure.com/ashleygwilliams/wrangler/_build/latest?definitionId=1&branchName=master)
+---
+title: Wrangler
+weight: 2
+alwaysopen: true
+---
+![Banner](./banner.png)
 
 `wrangler` is a CLI tool designed for folks who are interested in using [Cloudflare Workers](https://workers.cloudflare.com/).
 
-![Wrangler Demo](/wrangler-demo.gif)
+![Wrangler Demo](./wrangler-demo.gif)
 
 ## Installation
 
