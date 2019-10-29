@@ -18,7 +18,7 @@ jobs:
     - name: Install deps
       run: npm install
     - name: Install Hugo
-      run: sudo apt-get install hugo
+      run: sudo apt install hugo
     - name: Copy config for hugo
       run: cp config-staging.toml config.toml
     - name: Build docs
