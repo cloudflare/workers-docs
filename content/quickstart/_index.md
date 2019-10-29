@@ -299,8 +299,8 @@ route = "example.com/*"
 The `route` key here is a [_route pattern_](/about/routes/). Now, we can deploy to the production environment configured above by passing the `--env` flag to `wrangler publish`:
 
 ```console
-wrangler publish --env prod # Publish to example.com
-wrangler publish            # Publish to workers.dev
+wrangler publish --env production # Publish to example.com
+wrangler publish                  # Publish to workers.dev
 ```
 
 For more information on environments, check out the [Wrangler documentation](https://github.com/cloudflare/wrangler/blob/master/docs/content/environments.md).
