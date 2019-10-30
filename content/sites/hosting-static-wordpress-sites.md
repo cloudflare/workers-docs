@@ -2,7 +2,7 @@
 title: 'Hosting Static Wordpress Sites'
 ---
 
-In this tutorial, we'll migrate a Wordpress site to Cloudflare Workers, making use of [Workers Sites](/sites). Serving a static version of your Wordpress site has many advantages over exposing your Wordpress site to your users: while Wordpress is extremely powerful and easy to use, the consistent discovery of new vulnerabilities make it an obvious target for hackers to attack. In addition, because Wordpress is built on PHP, each incoming request to your site regenerates a new response on the server – for most websites, this isn't necessary, and leads to scaling issues when your site receives a lot of traffic.
+In this tutorial, we'll migrate a Wordpress site to Cloudflare Workers, making use of [Workers Sites](/sites). Serving a static version of your Wordpress site has many advantages over directly exposing your Wordpress site: while Wordpress is extremely powerful and easy to use, the consistent discovery of new vulnerabilities make it an obvious target for hackers to attack. In addition, because Wordpress is built on PHP, each incoming request to your site regenerates a new response on the server – for most websites, this isn't necessary, and leads to scaling issues when your site receives a lot of traffic.
 
 We'll use the free Wordpress plugin [WP2Static](https://wordpress.org/plugins/static-html-output-plugin/), which generates a completely static (HTML, CSS, and JS) version of your Wordpress site, and using [Wrangler](https://github.com/cloudflare/wrangler), we'll publish the site to Cloudflare Workers. The Workers Sites functionality built into Wrangler includes support for caching your site directly in Cloudflare's CDN, meaning that users will be able to view your site quickly and securely.
 
@@ -81,14 +81,14 @@ entry-point = "workers-site"
 
 Now it's time to publish your site! Run `wrangler publish` – Wrangler will upload your files, deploy a Workers script to serve those files, and at `wp-static.$yourSubdomain.workers.dev`, you should see your Wordpress site being served via Workers!
 
-[![Demo site](/media/wordpress--demo.png)](https://www.bytesized.xyz)
+[![Demo site](/media/wordpress--demo.png)](https://wp-static.signalnerve.workers.dev)
 
 ## Conclusions
 
 Deploying your Wordpress site to Workers has huge benefits for your site's performance, security, and cost. With a static version of your site being served, you can do a number of things with your live Wordpress installation:
 
 - Move your Wordpress install to a private URL or subdomain, and serve the static version of your site by deploying the Workers application to your domain. See [Deploying to a Domain](/quickstart/#publish-to-your-domain) to learn more!
-- Run your Wordpress instance locally, or put your now-hidden WP instance behind something like [Cloudflare Access](https://www.cloudflare.com/products/cloudflare-access/) to only give access to your contributors. This has an dramatic effect on the number of attack vectors for your Wordpress site and its content.
+- Run your Wordpress instance locally, or put your now-hidden WP instance behind something like [Cloudflare Access](https://www.cloudflare.com/products/cloudflare-access/) to only give access to your contributors. This has a dramatic effect on the number of attack vectors for your Wordpress site and its content.
 - Downgrade your Wordpress hosting plan to a cheaper plan. Because the memory and bandwidth requirements for your Wordpress instance are now much smaller, you can often get away with hosting it on a cheaper plan, or moving to shared hosting. Your Cloudflare Workers plan is priced per-request, and because you can host up to thirty sites on your account, serving a high number of static Wordpress sites can be an order of magnitude cheaper on Workers.
 
 We're super excited about the future of Workers and Wordpress, and we'd love to hear about what you're building with them! TODO: FEEDBACK ME PLZ ?
