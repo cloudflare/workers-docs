@@ -1,6 +1,6 @@
 ---
 title: Start from Scratch
-alwaysopen: false
+alwaysopen: true
 weight: 2
 ---
 

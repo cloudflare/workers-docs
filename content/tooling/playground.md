@@ -1,6 +1,6 @@
 ---
 title: Playground
-alwaysopen: false
+alwaysopen: true
 weight: 2
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Start from an Existing Worker
-alwaysopen: false
+alwaysopen: true
 weight: 4
 ---
 

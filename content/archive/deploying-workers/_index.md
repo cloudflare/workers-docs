@@ -1,6 +1,6 @@
 ---
 title: Deploying Workers
-alwaysopen: false
+alwaysopen: true
 weight: 30
 ---
 

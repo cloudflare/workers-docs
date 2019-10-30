@@ -1,6 +1,6 @@
 ---
 title: "Recipes"
-alwaysopen: false
+alwaysopen: true
 weight: 60
 ---
 

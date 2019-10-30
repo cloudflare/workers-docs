@@ -1,6 +1,6 @@
 ---
 title: About
-alwaysopen: false
+alwaysopen: true
 weight: 10
 ---
 
