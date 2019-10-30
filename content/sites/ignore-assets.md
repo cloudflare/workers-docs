@@ -1,6 +1,6 @@
 ---
 title: Ignoring Subsets of Static Assets
-alwaysopen: true
+alwaysopen: false
 weight: 5
 ---
 

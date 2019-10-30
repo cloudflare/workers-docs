@@ -1,6 +1,6 @@
 ---
 title: Template Gallery
-alwaysopen: true
+alwaysopen: false
 weight: 3
 ---
 

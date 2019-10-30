@@ -1,7 +1,7 @@
 ---
 title: 'Workers KV'
 weight: 50
-alwaysopen: true
+alwaysopen: false
 ---
 
 - [Overview](/reference/storage/overview)
