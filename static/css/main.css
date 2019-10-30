@@ -62,3 +62,9 @@ a.quick-start {
   margin-left: 3px;
   padding: 2px 8px !important;
 }
+
+#sidebar a:hover > .new-badge,
+#sidebar li.active > a > .new-badge {
+  background: rgba(255, 116, 0, 0.15);
+  color: #f38020;
+}
