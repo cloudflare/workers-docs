@@ -1,6 +1,6 @@
 ---
 title: Wrangler
-weight: 2
+weight: 1
 alwaysopen: true
 ---
 ![Banner](/wrangler/media/banner.png)

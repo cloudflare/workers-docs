@@ -3,8 +3,6 @@ title: Install
 weight: 1
 ---
 
-## Installation
-
 You have many options to install wrangler!
 
 ### Install with `npm`
@@ -20,14 +18,6 @@ cargo install wrangler
 ```
 
 If you don't have `cargo` or `npm` installed, you will need to follow these [additional instructions](#additional-installation-instructions).
-
-## Updating
-
-For information regarding updating Wrangler, see the [quickstart](/quickstart/updating-the-cli/).
-
-## 🎙 Commands
-Wrangler allows you to develop and deploy code through a series of [commands](/wrangler/commands).
-
 
 
 ## Additional Installation Instructions

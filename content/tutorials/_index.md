@@ -1,7 +1,7 @@
 ---
 title: Tutorials
 alwaysopen: false
-weight: 2
+weight: 3
 ---
 
 - [Build an Application](/tutorials/build-an-application)
