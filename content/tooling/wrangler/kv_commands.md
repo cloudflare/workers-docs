@@ -3,6 +3,14 @@ title: KV
 weight: 4
 ---
 
+- [Overview](#overview)
+- [Getting Started](#getting-started)
+- [Concepts](#concepts)
+- [`kv:namespace`](#kv-namespace)
+- [`kv:key`](#kv-key)
+- [`kv:bulk`](#kv-bulk)
+
+
 ## Overview
 
 The `kv` subcommand allows you to store application data in the Cloudflare network to be accessed from Workers, using

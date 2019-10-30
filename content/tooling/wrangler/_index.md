@@ -1,5 +1,5 @@
 ---
-title: Wrangler
+title: Wrangler CLI
 weight: 1
 alwaysopen: true
 ---

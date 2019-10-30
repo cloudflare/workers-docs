@@ -4,9 +4,13 @@ weight: 2
 alwaysopen: true
 ---
 
+- [Global User](#global-user)
+  * [Using environment variables](#using-environment-variables)
+- [Per Project](#per-project)
+
 There are two types of configuration that `wrangler` uses: global user and per project.
 
-- ### Global User
+### Global User
 
   In Cloudflare's system, you have a User that can have multiple Accounts and Zones. As a result, your User is configured globally on your machine. Your Account(s) and Zone(s) will be configured per project, but will use your User credentials to authenticate all API calls. This config file is created in a `.wrangler`
   directory in your computer's home directory.
@@ -18,7 +22,7 @@ There are two types of configuration that `wrangler` uses: global user and per p
     When successful, this command will print out your user information, including the type of plan you
     are currently on.
   
-- #### Using environment variables
+#### Using environment variables
 
   You can also configure your global user with environment variables. This is the preferred method for using Wrangler in CI:
 
@@ -30,7 +34,7 @@ There are two types of configuration that `wrangler` uses: global user and per p
   # $CF_EMAIL -> your Cloudflare account email
   ```
 
-- ### Per Project
+### Per Project
 
     Your project will need to have several things configured before you can publish your worker. These values are stored in a `wrangler.toml` file that `wrangler generate` will make for you. You will need to manually edit this file to add these values before you can publish.
 

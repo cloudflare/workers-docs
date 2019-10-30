@@ -3,7 +3,19 @@ title: Commands
 weight: 2
 ---
 
-- ### 👯 `generate`
+- [👯 `generate`](#generate)
+- [📥 `init`](#init)
+- [🦀⚙️ `build`](#build)
+- [🔧 `config`](#config)
+- [☁️ 🆙 `publish`](#publish)
+  * [workers.dev](#publishing-to-workersdev)
+  * [Registered domain](#publishing-to-your-own-domain)
+  * [Multiple domains](#publishing-the-same-code-to-multiple-places)
+- [🔬 `preview`](#preview)
+- [🗂️ `kv`](#kv)
+
+
+### 👯 `generate`
 
   Scaffold a project, including boilerplate for a Rust library and a Cloudflare Worker.
   You can pass a name and template to this command optionally.
@@ -18,7 +30,7 @@ weight: 2
   - `template`: defaults to the [`https://github.com/cloudflare/worker-template`](https://github.com/cloudflare/worker-template)
   - `type`: defaults to ["webpack"](https://github.com/cloudflare/wrangler/blob/master/docs/content/webpack.md)
 
-- ### 📥 `init`
+### 📥 `init`
 
   Creates a skeleton `wrangler.toml` in an existing directory. This can be used as an alternative to `generate` if you prefer to clone a repository yourself.
 
@@ -31,14 +43,14 @@ weight: 2
   - `name`: defaults to the name of your working directory
   - `type`: defaults to ["webpack"](https://github.com/cloudflare/wrangler/blob/master/docs/content/webpack.md).
 
-- ### 🦀⚙️ `build`
+### 🦀⚙️ `build`
 
   Build your project. This command looks at your `wrangler.toml` file and runs the build steps associated
   with the `"type"` declared there.
 
   Additionally, you can build different environments. This is useful if you have different builds for different environments, but typically isn't needed. For more information see the [environments documentation](https://github.com/cloudflare/wrangler/blob/master/docs/content/environments.md).
 
-- ### 🔧 `config`
+### 🔧 `config`
 
   Configure your global Cloudflare user. This is an interactive command that will prompt you for your email and API key:
 
@@ -52,7 +64,7 @@ weight: 2
 
   You can also [use environment variables](#using-environment-variables) to configure these values.
 
-- ### ☁️ 🆙 `publish`
+### ☁️ 🆙 `publish`
 
   Publish your Worker to Cloudflare. Several keys in your `wrangler.toml` determine whether you are publishing to a workers.dev subdomain or your own registered domain, proxied through Cloudflare.
 
@@ -98,7 +110,7 @@ If you would like to publish to your own domain, you will need to specify these 
 
 If you would like to be able to publish your code to multiple places, please see the documentation for [environments](https://github.com/cloudflare/wrangler/blob/master/docs/content/environments.md).
 
-- ### 🔬 `preview`
+### 🔬 `preview`
 
   Preview your project using the [Cloudflare Workers preview service](https://cloudflareworkers.com/).
 
@@ -133,8 +145,6 @@ If you would like to be able to publish your code to multiple places, please see
 
   Additionally, you can preview different environments. This is useful if you have different builds for different environments (like staging vs. production), but typically isn't needed. For more information see the [environments documentation](https://github.com/cloudflare/wrangler/blob/master/docs/content/environments.md).
 
-- ### 🗂️ `kv`
+### 🗂️ `kv`
 
   Interact with your Cloudflare Workers KV store. [Check out the docs.](./docs/content/kv_commands.md)
-
-## 

@@ -4,6 +4,11 @@ alwaysopen: false
 weight: 6
 ---
 
+- [Commands](#commands)
+- [wrangler.toml](#wrangler-toml)
+- [Storage Limits](#storage-limits)
+- [Ignoring Subsets of Static Assets](#ignoring-subsets-of-static-assets)
+
 Workers Sites require the latest version of [Wrangler](https://github.com/cloudflare/wrangler) and the Workers [Unlimited plan](https://workers.cloudflare.com/sites#plans).
 
 ### Commands
@@ -69,7 +74,7 @@ route = "https://staging.ex.com/docs*"
 
 For very exceptionally large pages, Workers Sites might not work for you. There is a 2MB limit per page.
 
-# Ignoring Subsets of Static Assets
+### Ignoring Subsets of Static Assets
 
 Workers Sites require [Wrangler](https://github.com/cloudflare/wrangler) - make sure to be on the [latest version](/quickstart/#updating-the-cli) - and the Workers [Unlimited plan](https://workers.cloudflare.com/sites#plans).
 
@@ -78,7 +83,7 @@ In this case, Workers Sites can also be configured to ignore certain files or di
 similar to [Cargo's optional include and exclude fields](https://doc.rust-lang.org/cargo/reference/manifest.html#the-exclude-and-include-fields-optional).
 This means that we use gitignore semantics when declaring which directory entries to include or ignore in uploads.
 
-### Exclusively including files/directories
+#### Exclusively including files/directories
 
 If you want to include only a certain set of files or directories in your `bucket`, you can add an `include` field to your
 `[site]` section of `wrangler.toml`:
@@ -92,7 +97,7 @@ include = ["included_dir"] # must be an array.
 
 Wrangler will only upload files or directories matching the patterns in the `include` array.
 
-### Excluding files/directories
+#### Excluding files/directories
 
 If you want to exclude files or directories in your `bucket`, you can add an `exclude` field to your
 `[site]` section of `wrangler.toml`:
@@ -106,11 +111,11 @@ exclude = ["excluded_dir"] # must be an array.
 
 Wrangler will ignore files or directories matching the patterns in the `exclude` array when uploading assets to Workers KV.
 
-### Include > Exclude
+#### Include > Exclude
 
 If you provide both `include` and `exclude` fields, the `include` field will be used and the `exclude` field will be ignored.
 
-### Default ignored entries
+#### Default ignored entries
 
 Wrangler will always ignore:
 
@@ -118,6 +123,6 @@ Wrangler will always ignore:
 - Hidden files and directories
 - Symlinks
 
-### More about include/exclude patterns
+##### More about include/exclude patterns
 
 You can learn more about the standard patterns used for include and exclude in the [gitignore documentation](https://git-scm.com/docs/gitignore).
