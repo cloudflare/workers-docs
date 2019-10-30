@@ -1,6 +1,6 @@
 ---
 title: "WebAssembly"
-alwaysopen: false
+alwaysopen: true
 weight: 35
 ---
 

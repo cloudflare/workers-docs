@@ -1,6 +1,6 @@
 ---
 title: Start from an Existing Site
-alwaysopen: false
+alwaysopen: true
 weight: 3
 ---
 

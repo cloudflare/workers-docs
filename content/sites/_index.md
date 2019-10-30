@@ -1,6 +1,6 @@
 ---
 title: Workers Sites
-alwaysopen: false
+alwaysopen: true
 weight: 1
 new: true
 ---

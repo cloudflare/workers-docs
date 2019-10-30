@@ -1,6 +1,6 @@
 ---
 title: Wrangler Reference
-alwaysopen: false
+alwaysopen: true
 weight: 6
 ---
 

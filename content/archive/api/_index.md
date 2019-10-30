@@ -1,6 +1,6 @@
 ---
 title: "Configuration API"
-alwaysopen: false
+alwaysopen: true
 weight: 40
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: How It Works
-alwaysopen: false
+alwaysopen: true
 weight: 1
 ---
 
