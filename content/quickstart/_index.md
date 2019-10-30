@@ -1,6 +1,6 @@
 ---
 title: Quick Start
-alwaysopen: true
+alwaysopen: false
 weight: 1
 ---
 

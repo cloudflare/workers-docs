@@ -1,6 +1,6 @@
 ---
 title: Reference
-alwaysopen: true
+alwaysopen: false
 weight: 5
 ---
 
