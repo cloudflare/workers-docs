@@ -42,9 +42,9 @@ cache.put(request, response)
 ##### Invalid parameters
 
 - `cache.put` throws an error if:
-  _ the `request` passed is a method other than `GET`
-  _ the `response` passed is a `status` of [`206 Partial Content`](https://httpstatuses.com/206)
-  _ the `response` passed contains the header `Vary: _` (required by the Cache API specification)
+  - the `request` passed is a method other than `GET`
+  - the `response` passed is a `status` of [`206 Partial Content`](https://httpstatuses.com/206)
+  - the `response` passed contains the header `Vary: _` (required by the Cache API specification)
 
 ##### Headers
 
