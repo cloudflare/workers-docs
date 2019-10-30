@@ -3,16 +3,16 @@ title: Wrangler CLI
 weight: 1
 alwaysopen: true
 ---
-![Banner](/wrangler/media/banner.png)
+![Banner](/tooling/wrangler/media/banner.png)
 
 `wrangler` is a CLI tool designed for folks who are interested in using [Cloudflare Workers](https://workers.cloudflare.com/).
 
-- [Install](/wrangler/install)
-- [Commands](/wrangler/commands)
-- [Webpack](/wrangler/webpack)
-- [Configure](/wrangler/configure)
-- [Workers Sites](/wrangler/sites)
+- [Install](/tooling/wrangler/install)
+- [Commands](/tooling/wrangler/commands)
+- [Webpack](/tooling/wrangler/webpack)
+- [Configure](/tooling/wrangler/configure)
+- [Workers Sites](/tooling/wrangler/sites)
 
 
-![Wrangler Demo](/wrangler/media/wrangler-demo.gif)
+![Wrangler Demo](/tooling/wrangler/media/wrangler-demo.gif)
 

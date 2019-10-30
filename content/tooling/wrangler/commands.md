@@ -28,7 +28,7 @@ weight: 2
 
   - `name`: defaults to `worker`
   - `template`: defaults to the [`https://github.com/cloudflare/worker-template`](https://github.com/cloudflare/worker-template)
-  - `type`: defaults to ["webpack"](https://github.com/cloudflare/wrangler/blob/master/docs/content/webpack.md)
+  - `type`: defaults to ["webpack"](/tooling/wrangler/webpack)
 
 ### 📥 `init`
 
@@ -41,14 +41,14 @@ weight: 2
   All of the arguments and flags to this command are options:
 
   - `name`: defaults to the name of your working directory
-  - `type`: defaults to ["webpack"](https://github.com/cloudflare/wrangler/blob/master/docs/content/webpack.md).
+  - `type`: defaults to ["webpack"](/tooling/wrangler/webpack).
 
 ### 🦀⚙️ `build`
 
   Build your project. This command looks at your `wrangler.toml` file and runs the build steps associated
   with the `"type"` declared there.
 
-  Additionally, you can build different environments. This is useful if you have different builds for different environments, but typically isn't needed. For more information see the [environments documentation](https://github.com/cloudflare/wrangler/blob/master/docs/content/environments.md).
+  Additionally, you can build different environments. This is useful if you have different builds for different environments, but typically isn't needed. For more information see the [environments documentation](/tooling/wrangler/environments).
 
 ### 🔧 `config`
 
@@ -108,7 +108,7 @@ If you would like to publish to your own domain, you will need to specify these 
 
 #### Publishing the same code to multiple places
 
-If you would like to be able to publish your code to multiple places, please see the documentation for [environments](https://github.com/cloudflare/wrangler/blob/master/docs/content/environments.md).
+If you would like to be able to publish your code to multiple places, please see the documentation for [environments](/tooling/wrangler/environments).
 
 ### 🔬 `preview`
 
@@ -143,8 +143,8 @@ If you would like to be able to publish your code to multiple places, please see
   wrangler preview post hello=hello
   ```
 
-  Additionally, you can preview different environments. This is useful if you have different builds for different environments (like staging vs. production), but typically isn't needed. For more information see the [environments documentation](https://github.com/cloudflare/wrangler/blob/master/docs/content/environments.md).
+  Additionally, you can preview different environments. This is useful if you have different builds for different environments (like staging vs. production), but typically isn't needed. For more information see the [environments documentation](/tooling/wrangler/environments).
 
 ### 🗂️ `kv`
 
-  Interact with your Cloudflare Workers KV store. [Check out the docs.](./docs/content/kv_commands.md)
+  Interact with your Cloudflare Workers KV store. [Check out the docs.](/tooling/wrangler/kv_commands)
