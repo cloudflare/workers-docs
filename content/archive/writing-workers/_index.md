@@ -1,6 +1,6 @@
 ---
 title: Writing Workers
-alwaysopen: true
+alwaysopen: false
 weight: 20
 ---
 

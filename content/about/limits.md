@@ -5,7 +5,15 @@ weight: 4
 
 ## Plans
 
-Workers plans are separate from any Cloudflare plan (Free, Professional, Business) you may have. Everyone has access to the Free tier Workers platform by default. Upgrading to the Unlimited (Paid) plan will affect the number of requests your scripts can handle, as well as the compute time available per request.
+Workers plans are separate from any Cloudflare plan (Free, Professional, Business) you may have. All users can access the Workers free plan subject to its [request limits](#request-limits). Upgrading to the Unlimited (Paid) plan lifts the request limits and increases CPU time limits.
+
+| Plan             | CPU Limit | Daily Request Limit | Burst Rate Limit         |
+| ---------------- | --------- | ------------------- | ------------------------ |
+| Free             | 10ms      | 100,000             | 1000 requests per minute |
+| Unlimited (Paid) | 50ms      | none                | none                     |
+
+See definitions for the types of limits and behavior below.
+Script size, number of scripts, subrequests, and available memory are not affected by plan type.
 
 ## Script Size
 
@@ -17,22 +25,33 @@ Unless otherwise negotiated as a part of an enterprise level contract, all Worke
 
 **Note:** app Workers scripts do not count towards this limit.
 
-## Number of Requests Limit
+## Request Limits
 
 Unlimited (Paid) Workers scripts automatically scale onto thousands of Cloudflare edge servers around the world; there is no general limit to the number of requests per second Workers can handle.
 
 Cloudflare's abuse protection methods do not affect well-intentioned traffic. However, if you send many thousands of requests per second from a small number of client IP addresses, you can inadvertently trigger Cloudflare's abuse protection. If you expect to receive `1015` errors in response to traffic or expect your application to incur these errors, contact Cloudflare to increase your limit.
 
-Accounts using the Workers free tier are limited to a maximum of 100,000 requests per day, with a burst rate limit of 1000 requests per 10 minutes. This limit applies at the account level, meaning that requests on your workers.dev subdomain count toward the same limit as your zoned domains. Visitors who run into the rate limit will be served a Cloudflare 1015 error page, however if you are calling your script programmatically, you can detect the rate limit page and handle it yourself by looking for HTTP status code 429. Upgrading to a paid plan will automatically lift this limit.
+The burst rate and daily request limits apply at the account level, meaning that requests on your workers.dev subdomain count toward the same limit as your zones. Upgrade to a [paid plan](https://dash.cloudflare.com/?account=workers/plans) to automatically lift these limits.
+
+### Burst Rate Limit
+
+Accounts using the Workers free plan are subject to a burst rate limit of 1000 requests per minute. Users visiting a rate limited site will receive a Cloudflare 1015 error page. However if you are calling your script programmatically, you can detect the rate limit page and handle it yourself by looking for HTTP status code 429.
+
+### Daily Request Limit
+
+Accounts using the Workers free plan are subject to a daily request limit of 100,000 requests. Free plan daily requests counts reset at midnight UTC. A Worker that fails as a result of daily request limit errors can be configured by toggling its corresponding [route](/about/routes/) in two modes: _Fail open_ and _Fail closed_.
+
+#### Fail Open
+
+Routes in fail open mode will bypass the failing Worker and prevent it from operating on incoming traffic. Incoming requests will behave as if there was no Worker.
+
+#### Fail Closed
+
+Routes in fail closed mode will display a Cloudflare 1027 error page to visitors, signifying the Worker has been temporarily disabled. We recommend this option if your Worker is performing security related tasks.
 
 ## CPU/Execution Time Limit
 
-| Plan             | CPU  |
-| ---------------- | ---- |
-| Free             | 10ms |
-| Unlimited (Paid) | 50ms |
-
-Most Workers requests consume less than a millisecond. It’s rare to find a normally operating Workers script that exceeds the CPU time limit. The 10ms the Free plan allows is enough runtime for most use cases, including application hosting.
+Most Workers requests consume less than a millisecond. It’s rare to find a normally operating Workers script that exceeds the CPU time limit. A Worker may consume up to 10ms on the free plan and 50ms on the Unlimited tier. The 10ms allowance on the free plan is enough execution time for most use cases including application hosting.
 
 There is no limit on the real runtime for a Workers script. As long as the client that sent the request remains connected, the Workers script can continue processing, making subrequests, and setting timeouts on behalf of that request. When the client disconnects, all tasks associated with that client request are canceled. You can use [`event.waitUntil()`](/reference/apis/fetch-event/) to delay cancellation for another 30 seconds or until the promise passed to `waitUntil()` completes.
 

@@ -1,6 +1,6 @@
 ---
 title: Start from Scratch
-alwaysopen: true
+alwaysopen: false
 weight: 2
 ---
 
@@ -33,6 +33,7 @@ To start from scratch to create a Workers Site, follow these steps:
      zone_id = "42ef.."
      route = "example.com/*"
      ```
+   (Note: Check out documentation on [Routes](/workers/about/routes) to configure `route` properly) 
      
  - **workers.dev**: Set `workers_dev`  to true. This is the default. 
 

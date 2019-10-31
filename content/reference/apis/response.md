@@ -14,13 +14,15 @@ new Response(body, init)
 #### Parameters
 
 - `body` (optional): An object that defines the body text for the response. Can be `null` or one of these values:
-  _ [`BufferSource`](https://developer.mozilla.org/en-US/docs/Web/API/BufferSource)
-  _ [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData)
-  _ [`ReadableStream`](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
-  _ [`URLSearchParams`](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams) \* [`USVString`](https://developer.mozilla.org/en-US/docs/Web/API/USVString)
+  - [`BufferSource`](https://developer.mozilla.org/en-US/docs/Web/API/BufferSource)
+  - [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData)
+  - [`ReadableStream`](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream)
+  - [`URLSearchParams`](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)
+  - [`USVString`](https://developer.mozilla.org/en-US/docs/Web/API/USVString)
 - `init` (optional): An `options` object that contains custom settings to apply to the response. Valid options are:
-  _ `status`: The status code for the reponse, such as, `200`.
-  _ `statusText`: The status message associated with the status code, like, `OK`. \* `headers`: Any headers to add to your response that are contained within a [`Headers`](/reference/apis/fetch#headers) object or object literal of [`ByteString`](https://developer.mozilla.org/en-US/docs/Web/API/ByteString) key/value pairs.
+  - `status`: The status code for the reponse, such as `200`.
+  - `statusText`: The status message associated with the status code, like, `OK`. 
+  - `headers`: Any headers to add to your response that are contained within a [`Headers`](/reference/apis/fetch#headers) object or object literal of [`ByteString`](https://developer.mozilla.org/en-US/docs/Web/API/ByteString) key/value pairs.
 
 ### Properties
 
@@ -39,7 +41,7 @@ new Response(body, init)
 - [`Response.clone()`](https://developer.mozilla.org/en-US/docs/Web/API/Response/clone): Creates a clone of a [`Response`](#response) object.
 - [`Response.redirect()`](https://developer.mozilla.org/en-US/docs/Web/API/Response/redirect): Creates a new response with a different URL.
 - [`Response`](#response): Implements [`Body`](https://developer.mozilla.org/en-US/docs/Web/API/Body) and has the following methods available:
-  _ [`Body.arrayBuffer()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/arrayBuffer): Takes a [`Response`](#response) stream, reads it to completion, and returns a promise that resolves with an [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/API/ArrayBuffer).
-  _ [`Body.formData()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/formData): Takes a [`Response`](#response) stream, reads it to completion, and returns a promise that resolves with a [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) object.
-  _ [`Body.json()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/json): Takes a [`Response`](#response) stream, reads it to completion, and returns a promise that resolves with the result of parsing the body text as [`JSON`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON).
-  _ [`Body.text()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/text): Takes a [`Response`](#response) stream, reads it to completion, and returns a promise that resolves with a [`USVString`](https://developer.mozilla.org/en-US/docs/Web/API/USVString) (text).
+  - [`Body.arrayBuffer()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/arrayBuffer): Takes a [`Response`](#response) stream, reads it to completion, and returns a promise that resolves with an [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/API/ArrayBuffer).
+  - [`Body.formData()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/formData): Takes a [`Response`](#response) stream, reads it to completion, and returns a promise that resolves with a [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) object.
+  - [`Body.json()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/json): Takes a [`Response`](#response) stream, reads it to completion, and returns a promise that resolves with the result of parsing the body text as [`JSON`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON).
+  - [`Body.text()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/text): Takes a [`Response`](#response) stream, reads it to completion, and returns a promise that resolves with a [`USVString`](https://developer.mozilla.org/en-US/docs/Web/API/USVString) (text).

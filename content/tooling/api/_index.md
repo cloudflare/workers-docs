@@ -1,6 +1,6 @@
 ---
 title: REST API
-alwaysopen: true
+alwaysopen: false
 weight: 4
 ---
 

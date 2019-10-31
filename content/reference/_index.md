@@ -1,7 +1,7 @@
 ---
 title: Reference
-alwaysopen: true
-weight: 5
+alwaysopen: false
+weight: 7
 ---
 
 ### Runtime APIs

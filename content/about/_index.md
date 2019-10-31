@@ -1,7 +1,7 @@
 ---
 title: About
-alwaysopen: true
-weight: 4
+alwaysopen: false
+weight: 6
 ---
 
 - [How It Works](/about/how-it-works)

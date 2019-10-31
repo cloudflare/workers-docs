@@ -1,3 +1,4 @@
+id = "alter_headers"
 name = "Alter Headers"
 description = "Change the headers sent in a request or returned in a response"
 code ='''async function handleRequest(request) {

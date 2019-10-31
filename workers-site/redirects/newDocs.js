@@ -40,6 +40,9 @@ export const newDocsMap = new Map([
 
   ['/tutorials/build-a-rustwasm-function', '/templates/boilerplates/rustwasm'],
 
+  ['/sites/reference', '/tooling/wrangler/sites'],
+  ['/sites/ignore-assets', '/tooling/wrangler/sites/#ignoring-subsets-of-static-assets'],
+
   // This is a remnant of some buggy workers.cloudflare.com code,
   // we should explicitly handle this and send them to the right place
   ['/workers/docs', '/workers'],

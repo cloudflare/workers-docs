@@ -1,7 +1,7 @@
 ---
 title: Tooling
-weight: 6
-alwaysopen: true
+weight: 5
+alwaysopen: false
 ---
 
 - [Wrangler](/tooling/wrangler)

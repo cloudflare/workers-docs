@@ -1,5 +1,5 @@
 ---
-title: 'Routes'
+title: "Routes"
 weight: 4
 ---
 
@@ -15,7 +15,17 @@ Each script that runs must have a script name, so there is currently no way to r
 
 ## Cloudflare Sites
 
-For zones proxied on Cloudflare\*, route patterns decide what (if any) script is matched based on the URL of that request. Requests are routed through a Workers script when their URL matches a route pattern assigned to that script. Route patterns are created either from inside the Cloudflare Workers editor, or by using the Cloudflare API.
+For zones proxied on Cloudflare\*, route patterns decide what (if any) script is matched based on the URL of that request. Requests are routed through a Workers script when the URL matches a route pattern assigned to that script.
+
+Route patterns can be added using the Cloudflare API or by going to the [Workers tab](https://dash.cloudflare.com/?zone=workers) after selecting a zone.
+
+![Workers Route Modal](/about/media/add-route-modal.png)
+
+Cloudflare Site routes are comprised of:
+
+- Route URL (see [Matching Behavior](#matching-behavior))
+- Worker script to execute on matching requests
+- Failure mode for rate-limited accounts on the free plan (see [Daily Request Limits](/about/limits#request-limits))
 
 \* _A zone that you have registered with some registrar (not workers.dev) and setup Cloudflare to serve as [a reverse proxy](https://www.cloudflare.com/learning/cdn/glossary/reverse-proxy/)._
 
