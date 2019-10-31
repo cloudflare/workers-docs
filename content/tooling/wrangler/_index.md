@@ -2,6 +2,7 @@
 title: Wrangler CLI
 weight: 1
 alwaysopen: true
+new: true
 ---
 ![Banner](/tooling/wrangler/media/banner.png)
 
