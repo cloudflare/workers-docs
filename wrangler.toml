@@ -16,8 +16,8 @@ account_id = "b54f07a6c269ecca2fa60f1ae4920c99"
 
 # Staging
 [env.staging]
-zone_id = "ef47aa23b6bf53a4d334b7e3f3579c56"
 account_id = "95e065d2e3f97a1e50bae58aea71df6d"
-name = "docs-site-staging"
-route = "https://sites.workers-tooling.cf/workers*"
+name = "staging"
+zone_id = "8703d409e5c1c580aeee02b98f9fd448"
+route = "https://staging.bigfluffycloudflare.com/workers*"
 
