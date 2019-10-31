@@ -67,4 +67,4 @@ route = "https://staging.ex.com/docs*"
 
 ### Storage Limits
 
-For very exceptionally large pages, Workers Sites might not work for you. There is a 2MB limit per page.
+For very exceptionally large pages, Workers Sites might not work for you. There is a 10MB limit per page. If you run into this limit and want to ignore specific files, you can! Read more [here](https://developers.cloudflare.com/workers/sites/ignore-assets/)
