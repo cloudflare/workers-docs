@@ -10,7 +10,7 @@ alwaysopen: true
 - [Install](/tooling/wrangler/install)
 - [Commands](/tooling/wrangler/commands)
 - [Webpack](/tooling/wrangler/webpack)
-- [Configure](/tooling/wrangler/configure)
+- [Configure](/tooling/wrangler/configuration)
 - [Workers Sites](/tooling/wrangler/sites)
 
 

@@ -48,7 +48,7 @@ weight: 2
   Build your project. This command looks at your `wrangler.toml` file and runs the build steps associated
   with the `"type"` declared there.
 
-  Additionally, you can build different environments. This is useful if you have different builds for different environments, but typically isn't needed. For more information see the [environments documentation](/tooling/wrangler/environments).
+  Additionally, you can build different environments. This is useful if you have different builds for different environments, but typically isn't needed. For more information see the [environments documentation](/tooling/wrangler/configuration/environments).
 
 ### 🔧 `config`
 
@@ -108,7 +108,7 @@ If you would like to publish to your own domain, you will need to specify these 
 
 #### Publishing the same code to multiple places
 
-If you would like to be able to publish your code to multiple places, please see the documentation for [environments](/tooling/wrangler/environments).
+If you would like to be able to publish your code to multiple places, please see the documentation for [environments](/tooling/wrangler/configuration/environments).
 
 ### 🔬 `preview`
 
@@ -143,7 +143,7 @@ If you would like to be able to publish your code to multiple places, please see
   wrangler preview post hello=hello
   ```
 
-  Additionally, you can preview different environments. This is useful if you have different builds for different environments (like staging vs. production), but typically isn't needed. For more information see the [environments documentation](/tooling/wrangler/environments).
+  Additionally, you can preview different environments. This is useful if you have different builds for different environments (like staging vs. production), but typically isn't needed. For more information see the [environments documentation](/tooling/wrangler/configuration/environments).
 
 ### 🗂️ `kv`
 
