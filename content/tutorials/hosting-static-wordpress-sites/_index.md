@@ -24,7 +24,7 @@ We'll use the free Wordpress plugin [WP2Static](https://wordpress.org/plugins/st
 
 To start, we'll install the [WP2Static](https://wordpress.org/plugins/static-html-output-plugin/) plugin to export your Wordpress site to a zip file. In your Wordpress admin, navigate to the "Add Plugins" page, by default at `/wp-admin/plugin-install.php`. In the search bar, search WP2Static and confirm that the resulting plugin that you will be installing matches the plugin below.
 
-![Installing the plugin](/media/wordpress--install-plugin.png)
+![Installing the plugin](media/wordpress--install-plugin.png)
 
 Select "Install" on the plugin and once it's finished installing, "Activate".
 
@@ -36,7 +36,7 @@ From the "Where will you host.." dropdown on the page, select "ZIP archive (.zip
 
 It's time to do our first export! Select "Start static site export" (it might take a while), and when it completes, save the ZIP file somewhere you can easily find it later.
 
-![Exporting your Wordpress site](/media/wordpress--export.png)
+![Exporting your Wordpress site](media/wordpress--export.png)
 
 ## Creating the Workers project
 
@@ -60,7 +60,13 @@ The newly generated `wp-static` directory will contain three things:
 
 When deploying a website using Workers Sites, your static code – your HTML, CSS, and JavaScript – will be uploaded to Workers KV. The location of these files is by default the `public` folder mentioned above.
 
-Open the ZIP file downloaded from your Wordpress static export and extract the contents of the ZIP into the `public` folder. Your directory structure should look something like this:
+Open the ZIP file downloaded from your Wordpress static export, and extract the contents of the ZIP into the `public` folder:
+
+```sh
+cp -R ~/Downloads/wp-static-html-output-123/ ./public
+```
+
+Your directory structure should look something like this:
 
 ```
 wp-static
@@ -78,24 +84,13 @@ wp-static
 
 ## Deploying
 
-To preview and deploy our application, we need to fill out `wrangler.toml` - the configuration file for this project. Most of the file has been pre-filled, but you need to specify your `account_id` and where you want to deploy your application. Fill out the [`account_id`](/quickstart/#account-id-and-zone-id) field in `wrangler.toml` with your Cloudflare account ID. In this tutorial, we'll deploy to a [Workers.dev subdomain](/quickstart/#publish-to-workers-dev) tied to your account. Make sure the value `workers_dev` in your `wrangler.toml` is set to `true` and `route` and`zone_id` are omitted, indicating to Wrangler that it should publish to your subdomain. Your final `wrangler.toml` should resemble something like the following:
+To preview and deploy our application, we need to fill out `wrangler.toml` - the configuration file for this project. Most of the file has been pre-filled, but you need to specify your `account_id` and where you want to deploy your application. Fill out the [`account_id`](/quickstart/#account-id-and-zone-id) field in `wrangler.toml` with your Cloudflare account ID.
 
-```toml
-# wrangler.toml
+Using Wrangler's preview feature, we can quickly upload a version of our site to the Cloudflare Workers preview service, and make sure that the static export looks like we'd expect. Running `wrangler preview` will upload your static site and preview it in a browser window.
 
-name = "wp-static"
-type = "webpack"
-workers_dev = true
-account_id = "$accountId"
+When your site looks correct in Wrangler's preview, you can move onto publishing your project to a domain. For a guide on how to do this, check out the [Quick Start](/quickstart/#publish-your-project).
 
-[site]
-bucket = "./public"
-entry-point = "workers-site"
-```
-
-Now it's time to publish your site! Run `wrangler publish` – Wrangler will upload your files, deploy a Workers script to serve those files, and at `wp-static.<yourSubdomain>.workers.dev`, you should see your Wordpress site being served via Workers!
-
-[![Demo site](/media/wordpress--demo.png)](https://wp-static.signalnerve.workers.dev)
+[![Demo site](media/wordpress--demo.png)](https://wp-static.signalnerve.workers.dev)
 
 ## Limitations
 
