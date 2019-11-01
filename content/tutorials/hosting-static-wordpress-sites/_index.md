@@ -48,7 +48,7 @@ Once Wrangler is installed and configured, we can create a new project for deplo
 wrangler generate --site wp-static
 ```
 
-the [`--site`](/workers/tooling/wrangler/sites/#commands) flag indicates that we want to deploy a static site, namely, our static Wordpress site.
+the [`--site`](/tooling/wrangler/sites/#commands) flag indicates that we want to deploy a static site, namely, our static Wordpress site.
 
 ### Port the Wordpress Site
 
