@@ -1,6 +1,6 @@
 ---
 title: Quick Start
-alwaysopen: true
+alwaysopen: false
 weight: 1
 ---
 
@@ -8,7 +8,8 @@ weight: 1
   - [Updating the CLI](#updating-the-cli)
 - [Generating a Project](#generating-a-project)
 - [Writing Code](#writing-code)
-- [Build and Preview Your Project](#build-and-preview-your-project)
+- [Preview Your Project](#preview-your-project)
+- [Build Your Project](#build-your-project)
 - [Configure](#configure)
   - [Finding Your Cloudflare API Keys](#finding-your-cloudflare-api-keys)
     - [Account ID and Zone ID](#account-id-and-zone-id)
@@ -278,7 +279,7 @@ _Note: If you are pushing a new workers.dev Worker project you may initially see
 
 To publish your application on a domain you own (i.e. not a `workers.dev` subdomain), you can add a `route` key to your `wrangler.toml`.
 
-Wrangler's ["environments"](https://github.com/cloudflare/wrangler/blob/master/docs/content/environments.md) feature allows us to specify multiple different deploy targets for our application. Let's add a `production` environment, passing in a `route` and `zone_id` to deploy to a specific domain:
+Wrangler's ["environments"](/tooling/wrangler/configuration/environments) feature allows us to specify multiple different deploy targets for our application. Let's add a `production` environment, passing in a `route` and `zone_id` to deploy to a specific domain:
 
 ```toml
 # wrangler.toml
@@ -298,11 +299,11 @@ route = "example.com/*"
 The `route` key here is a [_route pattern_](/about/routes/). Now, we can deploy to the production environment configured above by passing the `--env` flag to `wrangler publish`:
 
 ```console
-wrangler publish --env prod # Publish to example.com
-wrangler publish            # Publish to workers.dev
+wrangler publish --env production # Publish to example.com
+wrangler publish                  # Publish to workers.dev
 ```
 
-For more information on environments, check out the [Wrangler documentation](https://github.com/cloudflare/wrangler/blob/master/docs/content/environments.md).
+For more information on environments, check out the [Wrangler documentation](/tooling/wrangler/configuration/environments).
 
 # Learn More
 

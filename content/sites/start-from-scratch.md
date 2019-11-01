@@ -1,12 +1,12 @@
 ---
 title: Start from Scratch
-alwaysopen: true
+alwaysopen: false
 weight: 2
 ---
 
 To start from scratch to create a Workers Site, follow these steps:
 
-1. Ensure you have the latest version of [Wrangler](/quickstart#installing-the-cli) and Node.js installed. Worker Sites require the Workers [Unlimited plan](https://workers.cloudflare.com/sites#plans).
+1. Ensure you have the latest version of [Wrangler](/quickstart#installing-the-cli) and Node.js installed. Workers Sites require the Workers [Unlimited plan](https://workers.cloudflare.com/sites#plans).
 
 2. In your terminal run `wrangler generate --site <project-name>`, replacing `<project-name>` with the name of your project. For example, I'll create a project called my-site by running this command:
    ```

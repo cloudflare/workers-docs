@@ -1,7 +1,7 @@
 account_id = "95e065d2e3f97a1e50bae58aea71df6d"
 name = "docs-site-blah"
 type = "webpack"
-workers_dev = false
+workers_dev = true
 
 [site]
 bucket = "./public"

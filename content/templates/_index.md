@@ -1,7 +1,7 @@
 ---
 title: Template Gallery
 alwaysopen: true
-weight: 3
+weight: 2
 ---
 
 <p>These templates are simple building blocks for developing Workers scripts.</p>

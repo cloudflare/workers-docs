@@ -1,10 +1,10 @@
 ---
 title: Start from an Existing Worker
-alwaysopen: true
+alwaysopen: false
 weight: 4
 ---
 
-Worker Sites require [Wrangler](https://github.com/cloudflare/wrangler) - make sure to be on the [latest version](/quickstart/#updating-the-cli) - and the Workers [Unlimited plan](https://workers.cloudflare.com/sites#plans).
+Workers Sites require [Wrangler](https://github.com/cloudflare/wrangler) - make sure to be on the [latest version](/quickstart/#updating-the-cli) - and the Workers [Unlimited plan](https://workers.cloudflare.com/sites#plans).
 
 Make sure to be on the latest version.
 

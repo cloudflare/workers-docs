@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "gulp": "^4.0.0",
-    "@cloudflare/hugo-cloudflare-docs": "1.0.2"
+    "@cloudflare/hugo-cloudflare-docs": "1.0.4"
   },
   "ava": {
     "require": [
