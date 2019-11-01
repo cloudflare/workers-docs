@@ -4,9 +4,9 @@ title: 'Hosting Static Wordpress Sites'
 
 - [Prerequisites](#prerequisites)
 - [Setup](#setup)
-  * [Export your Wordpress site](#export-your-wordpress-site)
+  - [Export your Wordpress site](#export-your-wordpress-site)
 - [Creating the Workers project](#creating-the-workers-project)
-  * [Port the Wordpress Site](#port-the-wordpress-site)
+  - [Port the Wordpress Site](#port-the-wordpress-site)
 - [Deploying](#deploying)
 - [Limitations](#limitations)
 - [Conclusions](#conclusions)
@@ -15,13 +15,14 @@ In this tutorial, we'll migrate a Wordpress site to Cloudflare Workers, making u
 
 We'll use the free Wordpress plugin [WP2Static](https://wordpress.org/plugins/static-html-output-plugin/), which generates a completely static (HTML, CSS, and JS) version of your Wordpress site. Using [Wrangler](https://github.com/cloudflare/wrangler), we'll publish the site to Cloudflare Workers. The Workers Sites functionality built into Wrangler includes support for serving and caching your site directly in Cloudflare's CDN, enabling users to view your site quickly and securely.
 
-## Prerequisites 
-- Administer of a Wordpress Site 
-- Able to install Wordpress Plugins 
+## Prerequisites
+
+- Administrator account on your Wordpress Site
+- Able to install Wordpress Plugins
 
 ## Setup
 
-To start, we'll install the [WP2Static](https://wordpress.org/plugins/static-html-output-plugin/) plugin to export your Wordpress site to a zip file. In your Wordpress admin, navigate to the "Add Plugins" page, by default at `/wp-admin/plugin-install.php`. In the search bar, search WP2Static and confirm that the resulting plugin that you will be installing matches the plugin below. 
+To start, we'll install the [WP2Static](https://wordpress.org/plugins/static-html-output-plugin/) plugin to export your Wordpress site to a zip file. In your Wordpress admin, navigate to the "Add Plugins" page, by default at `/wp-admin/plugin-install.php`. In the search bar, search WP2Static and confirm that the resulting plugin that you will be installing matches the plugin below.
 
 ![Installing the plugin](/media/wordpress--install-plugin.png)
 
@@ -50,13 +51,14 @@ wrangler generate --site wp-static
 the [`--site`](/workers/tooling/wrangler/sites/#commands) flag indicates that we want to deploy a static site, namely, our static Wordpress site.
 
 ### Port the Wordpress Site
+
 The newly generated `wp-static` directory will contain three things:
 
 1. A `public` directory, representing the site you want to deploy to Workers. This will be the location of your Wordpress site.
 2. A `workers-site` directory, which contains the Workers script that will serve your website content. In this tutorial, we won't change anything in this folder.
 3. A `wrangler.toml` file, which contains the configuration details for our `wp-static` file. We'll populate this file with some information before the project is deployed.
 
-When deploying a website using Workers Sites, your static code – your HTML, CSS, and JavaScript – will be uploaded to Workers KV. The location of these files is by default the `public` folder mentioned above. 
+When deploying a website using Workers Sites, your static code – your HTML, CSS, and JavaScript – will be uploaded to Workers KV. The location of these files is by default the `public` folder mentioned above.
 
 Open the ZIP file downloaded from your Wordpress static export and extract the contents of the ZIP into the `public` folder. Your directory structure should look something like this:
 
@@ -96,6 +98,7 @@ Now it's time to publish your site! Run `wrangler publish` – Wrangler will up
 [![Demo site](/media/wordpress--demo.png)](https://wp-static.signalnerve.workers.dev)
 
 ## Limitations
+
 Note that there are some features available in Wordpress sites that will not be supported in a static site environment:
 
 - WordPress Forms
