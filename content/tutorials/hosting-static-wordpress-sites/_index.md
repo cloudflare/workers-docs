@@ -63,7 +63,7 @@ When deploying a website using Workers Sites, your static code – your HTML, C
 Open the ZIP file downloaded from your Wordpress static export, and extract the contents of the ZIP into the `public` folder:
 
 ```sh
-cp -R ~/Downloads/wp-static-html-output-123/ ./public
+cp -R ~/Downloads/wp-static-html-output-<some-tag>/ ./public
 ```
 
 Your directory structure should look something like this:
