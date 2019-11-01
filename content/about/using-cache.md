@@ -9,7 +9,7 @@ Workers provide a way to customize cache behavior using Cloudflare's classic CDN
 
 Conceptually, there are two ways to interact with Cloudflare's Cache using a Worker:
 
-- Store responses on Cloudflare's classic CDN, which can be done through calling fetch(..)in a Workers script. Custom cache behavior via a Worker include:
+- Store responses on Cloudflare's classic CDN, which can be done through calling `fetch()` in a Workers script. Custom cache behavior via a Worker include:
   - Setting Cloudflare cache rules (i.e. operating on the cf object)
   - Setting custom cache headers (i.e. Cache-control). This can impact browser as well as Cloudflare Cache behavior.
 - Store responses on a zone scoped namespace separate from Cloudflare's traditional cache using the Cache API from a Workers script. One can control cache behavior of even assets not proxied on Cloudflare.
@@ -22,7 +22,7 @@ The Cache API creates a private cache key namespace for each zone using Cloudfla
 
 **How is the Cache API different from `fetch()`?** `fetch()` requests a URL and automatically applies caching rules based on your Cloudflare settings. It does not allow you to modify objects before they reach cache, or inspect if an object is in cache before making a request.
 
-The Cache API’s `caches.default` Cache object allows you to:
+The Cache API's `caches.default` Cache object allows you to:
 
 - Fetch a response for a URL if (and only if) it is cached using `caches.default.match(..)`.
 
@@ -48,7 +48,7 @@ In the context of Workers a [`fetch`](/reference/apis/fetch) provided by the run
 
 When a response fills the cache, the response header contains `CF-Cache-Status: HIT`. You can tell an object is attempting to cache if one sees the `CF-Cache-Status` at all.
 
-Phew.. that sounds like a lot but some examples should help make sense. Here are ways to customize Cloudflare CDN's cache behavior on a given request:
+Phew.. that sounds like a lot, but some examples should help make sense. Here are ways to customize Cloudflare CDN's cache behavior on a given request:
 
 #### Caching HTML (or other non-whitelisted file extensions):
 
@@ -117,7 +117,7 @@ addEventListener('fetch', event => {
 })
 ```
 
-Remember, Workers operating on behalf of different zones cannot affect each other’s cache. You can only override cache keys when making requests within your own zone (in the above example `event.request.url` was the key stored), or requests to hosts that are not on Cloudflare. When making a request to another Cloudflare zone (e.g. belonging to a different Cloudflare customer), that zone fully controls how its own content is cached within Cloudflare; you cannot override it.
+Remember, Workers operating on behalf of different zones cannot affect each other's cache. You can only override cache keys when making requests within your own zone (in the above example `event.request.url` was the key stored), or requests to hosts that are not on Cloudflare. When making a request to another Cloudflare zone (e.g. belonging to a different Cloudflare customer), that zone fully controls how its own content is cached within Cloudflare; you cannot override it.
 
 ### Overriding Browser Cache (Cache-Control headers)
 
