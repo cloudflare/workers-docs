@@ -48,7 +48,7 @@ The full signature of the `list` method (in TypeScript) is:
 
 All arguments are optional:
 
-* `prefix` is a string that representes a prefix you can use to filter all keys.
+* `prefix` is a string that represents a prefix you can use to filter all keys.
 * `limit` is the maximum number of keys returned. The default is 1000, which is
   the maximum. It is unlikely that you will want to change this default, but
   it is included for completeness.
