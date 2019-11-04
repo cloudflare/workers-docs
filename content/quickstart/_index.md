@@ -41,7 +41,7 @@ npm uninstall -g @cloudflare/wrangler && npm install -g @cloudflare/wrangler
 **Updating Wrangler with Cargo:**
 
 ```sh
-cargo uninstall wrangler && cargo install wrangler
+cargo install wrangler --force
 ```
 
 # Generating a Project
