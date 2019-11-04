@@ -74,11 +74,11 @@ weight: 2
 
   To use this command, the following fields are required in your `wrangler.toml`.
 
-  | Key        | Value                                                        | Example                                           |
-  | ---------- | ------------------------------------------------------------ | ------------------------------------------------- |
-  | name       | the name of your worker                                      | `name = "your-worker"`                            |
-  | type       | build type (webpack, rust, or javascript)                    | `type = "webpack"`                                |
-  | account_id | your Cloudflare account ID, this can be found in the Cloudflare dashboard | `account_id = "a655bacaf2b4cad0e2b51c5236a6b974"` |
+| Key        | Value                                                        | Example                                           |
+| ---------- | ------------------------------------------------------------ | ------------------------------------------------- |
+| name       | the name of your worker                                      | `name = "your-worker"`                            |
+| type       | build type (webpack, rust, or javascript)                    | `type = "webpack"`                                |
+| account_id | your Cloudflare account ID, this can be found in the Cloudflare dashboard | `account_id = "a655bacaf2b4cad0e2b51c5236a6b974"` |
 
   From here, you have two options, you can choose to publish to your own domain or you can choose to publish to [\<your-worker\>.\<your-subdomain\>.workers.dev](https://workers.dev).
 
