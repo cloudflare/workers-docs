@@ -170,3 +170,13 @@ figure.template-card.boilerplate {
   color: var(--template-snippet-font-color);
   width: calc(100% + var(--template-snippet-border-color));
 }
+
+.template-page .back {
+  display: inline-block;
+}
+#body img,
+#body .template-page .back img {
+  margin: 0;
+  margin-right: 0.8em;
+  display: inline-block;
+}
