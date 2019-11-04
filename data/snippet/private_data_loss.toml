@@ -37,12 +37,12 @@ async function handleRequest(request) {
       await postDataBreach(request)
       // respond with a block if credit card, else replace
       // senstive text with *'s
-      return kind === 'email'
-        ? new Response(text.replace(sensitiveRegex, '**********'), response)
-        : new Response(kind + ' found\nForbidden\n', {
+      return kind === 'creditCard'
+        ? new Response(kind + ' found\nForbidden\n', {
             status: 403,
             statusText: 'Forbidden',
           })
+        : new Response(text.replace(sensitiveRegex, '**********'), response)
     }
   }
   return new Response(text, response)
