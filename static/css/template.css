@@ -130,7 +130,7 @@ figure.template-card .tutorial img#tutorial {
   display: block;
   overflow: auto;
   padding: 16px;
-  margin: 8px 0;
+  margin: 8px 0 0 0;
 }
 .copy .help {
   color: #4d5257;
@@ -175,7 +175,7 @@ figure.template-card.boilerplate {
 .grey .copy code {
   white-space: pre;
   background: var(--template-grey-background);
-  margin: 0 calc(var(--template-figure-padding) * -1);
+  margin-right: 30px;
 }
 .black.copy-group {
   background: var(--template-grey-background);
@@ -199,7 +199,7 @@ figure.template-card.boilerplate {
   margin: 0;
   display: inline-block;
 }
-[class*='grid-'][class*='-noGutter'] > .col-3.demo {
+[class*='grid-'][class*='-noBottom'] > .col-3.demo {
   padding-top: 40px;
 }
 .demo a {

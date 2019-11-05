@@ -2,15 +2,36 @@
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/gridlex/2.7.1/gridlex.min.css"
 />
+<link
+  rel="stylesheet"
+  href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/styles/atelier-cave-light.min.css"
+/>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/highlight.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.6.0/dist/highlightjs-line-numbers.min.js"></script>
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', event => {
+    document.querySelectorAll('.black code').forEach(block => {
+      hljs.highlightBlock(block)
+    })
+    hljs.configure({
+      language: 'javascript',
+    })
+    document.querySelectorAll('.grey code').forEach(block => {
+      hljs.highlightBlock(block)
+      hljs.lineNumbersBlock(block)
+    })
+  })
+</script>
 <figure class="template-page" id="{{.id}}">
   <a href="/templates" class="back"
     ><img src="/templates/media/left-arrow.svg" id="img" />Template Gallery</a
   >
-  <div class="grid-3-noGutter-noBottom">
-    <div class="col-9">
+  <div class="grid-3-noBottom_xs-5">
+    <div class="col-8">
       <h2>
         {{.name}}
       </h2>
+      <hr />
     </div>
     <div class="col-3 demo">
       {{ with.demo_url }}
@@ -27,9 +48,9 @@
       {{ end }}
     </div>
   </div>
-  <hr />
+
   <div class="grid-3">
-    <div class="col-9">
+    <div class="col-8">
       <p>{{.description | markdownify}}</p>
       <div class="tag-group">
         {{ range.tags }}
@@ -53,11 +74,12 @@
           <span>Paste this into your terminal:</span>
         </div>
         <div class="copy">
-          <code>
+          <code class="bash">
             wrangler generate my-app
             <a href="{{.repository_url}}">{{.repository_url}}</a>
           </code>
         </div>
       </div>
+    </div>
   </div>
 </figure>
