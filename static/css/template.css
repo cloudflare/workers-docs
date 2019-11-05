@@ -1,6 +1,7 @@
 :root {
   --template-figure-padding: 16px;
   --template-snippet-background: #fdf8f4;
+  --template-grey-background: #f7f7f8;
   --template-snippet-font-color: #b98a64;
   --template-snippet-border-color: #e9a468;
   --template-boilerplate-color: #5f6264;
@@ -41,30 +42,30 @@ figure.template-card h2 {
   margin-bottom: 8px;
   font-size: 22px;
 }
-.template-card .tag-group {
+.tag-group {
   margin: 0.5em 0 0.5em 0;
 }
 
-.template-card .tag-group > button {
+.tag-group > button {
   border-radius: 100px;
   font-family: 'Open Sans';
   line-height: 16px;
   padding: 2px 10px 2px 10px;
   font-size: small;
 }
-.template-card .tag-group > button.Enterprise {
+.tag-group > button.Enterprise {
   color: #bf223c;
   background: #fcf0f2;
 }
-.template-card .tag-group > button.Originless {
+.tag-group > button.Originless {
   color: #398557;
   background: #eff8f3;
 }
-.template-card .tag-group > button.Middleware {
+.tag-group > button.Middleware {
   color: #6373b6;
   background: #f1f3f8;
 }
-.template-card .tag-group > button.Wasm {
+.tag-group > button.Wasm {
   color: #bf223c;
   background: #fcf0f2;
 }
@@ -104,24 +105,24 @@ figure.template-card .tutorial img#tutorial {
   width: 1.25rem;
   margin: 0 0.3em 0 0;
 }
-.template-card .copy-group {
+.copy-group {
   min-height: 0;
   display: flex;
   flex-direction: column;
 }
-.template-card .copy-step {
+.copy-step {
   padding-bottom: 0.5rem;
   flex: none;
   align-items: center;
   font-weight: bold;
   display: flex;
 }
-figure.template-card .copy-step img#img {
+.copy-step img#img {
   flex: 1;
   width: 1.25rem;
   margin: 0 0.3em 0 0;
 }
-figure.template-card .copy-step span {
+.copy-step span {
   font-size: 14px;
   flex: 30;
 }
@@ -171,7 +172,19 @@ figure.template-card.boilerplate {
   width: calc(100% + var(--template-snippet-border-color));
 }
 
+.grey .copy code {
+  white-space: pre;
+  background: var(--template-grey-background);
+  margin: 0 calc(var(--template-figure-padding) * -1);
+}
+.black .copy code {
+  background: var(--template-boilerplate-color);
+  color: white;
+  border-radius: 5px;
+}
+
 .template-page .back {
+  /* back arrow */
   display: inline-block;
 }
 #body img,
