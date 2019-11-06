@@ -233,8 +233,10 @@ figure.template-card.boilerplate {
   margin: 0;
   display: inline-block;
 }
-[class*='grid-'][class*='-noBottom'] > .col-3.demo {
-  padding-top: 40px;
+/* Crazy selector is to override specificity of gridflex */
+[class*='grid-'][class*='-noBottom'] > .col-4.demo {
+  margin-top: auto;
+  padding: 0 6px 16px 6px;
 }
 .demo a {
   border: 1px solid #eaebeb;
