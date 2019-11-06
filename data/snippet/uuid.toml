@@ -23,24 +23,21 @@ function createRandomArrayBuffer(len) {
  * @param {arrayBuffer} array buffer you want to turn into a hexidecimal string
  */
 function createHex(arrBuff) {
-  const hashArray = Array.from(new Uint8Array(arrBuff));
+  const hashArray = Array.from(arrBuff);
   return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 }
 /**
  * Combines helper functions above to create the UUID
  */
 function createUUID() {
-  const arr0 = createRandomArrayBuffer(4)
-  const arr1 = createRandomArrayBuffer(2)
-  const arr2 = createRandomArrayBuffer(2)
-  const arr3 = createRandomArrayBuffer(2)
-  const arr4 = createRandomArrayBuffer(6)
+  const arrBuff = createRandomArrayBuffer(16)
   // set Msb0-3 to 0100 to be RFC 4122 compliant
-  arr2[0] = 0x40 | (arr2[0] & 0xf)
+  arrBuff[6] = 0x40 | (arrBuff[6] & 0xf)
   // set Msb0-1 to 10 to be RFC 4122 compliant
-  arr3[0] = 0x80 | (arr3[0] & 0x3f)
-  return  `${createHex(arr0)}-${createHex(arr1)}-${createHex(arr2)}-${createHex(arr3)}-${createHex(arr4)}`
+  arrBuff[8] = 0x80 | (arrBuff[8] & 0x3f)
+  const arr = createHex(arrBuff)
+  return `${arr.slice(0,8)}-${arr.slice(8,12)}-${arr.slice(12,16)}-${arr.slice(16,20)}-${arr.slice(20,32)}`
 }
 '''
-demo_url = "https://cloudflareworkers.com/#6a5dc2435315009fca7a6294436d6168:https://tutorial.cloudflareworkers.com"
+demo_url = "https://cloudflareworkers.com/#bbf938708bd0397531aec2536d06eedf:https://tutorial.cloudflareworkers.com/"
 share = "/templates/snippets/uuid"
