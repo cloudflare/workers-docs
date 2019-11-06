@@ -171,7 +171,10 @@ figure.template-card.boilerplate {
   color: var(--template-snippet-font-color);
   width: calc(100% + var(--template-snippet-border-color));
 }
-
+.copy-trigger:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
 .grey.copy-group {
   background: var(--template-grey-background);
 }
