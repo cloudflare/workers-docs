@@ -3,6 +3,33 @@ name = "Create UUIDs"
 description = "Create a version 4 revision 2 UUID inside a worker"
 code = '''
 async function handleRequest(request) {
+  const UUID = createUUID()
+  const obj = {id: UUID}
+  return new Response(JSON.stringify(obj))
+}
+addEventListener('fetch', event => {
+  event.respondWith(handleRequest(event.request))
+})
+/**
+ * Creates a true-random array buffer.
+ * An array buffer is an array of bytes
+ * @param {length} How long you want the array buffer to be
+ */
+function createRandomArrayBuffer(len) {
+  return crypto.getRandomValues(new Uint8Array(len))
+}
+/**
+ * Turns an array buffer into a string of hexidecimal characters
+ * @param {arrayBuffer} array buffer you want to turn into a hexidecimal string
+ */
+function createHex(arrBuff) {
+  const hashArray = Array.from(new Uint8Array(arrBuff));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+/**
+ * Combines helper functions above to create the UUID
+ */
+function createUUID() {
   const arr0 = createRandomArrayBuffer(4)
   const arr1 = createRandomArrayBuffer(2)
   const arr2 = createRandomArrayBuffer(2)
@@ -12,29 +39,8 @@ async function handleRequest(request) {
   arr2[0] = 0x40 | (arr2[0] & 0xf)
   // set Msb0-1 to 10 to be RFC 4122 compliant
   arr3[0] = 0x80 | (arr3[0] & 0x3f)
-  return new Response(`${createHex(arr0)}-${createHex(arr1)}-${createHex(arr2)}-${createHex(arr3)}-${createHex(arr4)}`)
-}
-addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event.request))
-})
-/**
- * Creates a true-random array buffer.
- * An array buffer is an array of bytes
- * @param {length} How many bytes you want the array buffer to have
- */
-function createRandomArrayBuffer(len) {
-  let arr = new Uint8Array(len)
-  crypto.getRandomValues(arr)
-  return arr
-}
-/**
- * Turns an array buffer into a string of hexidecimal characters
- * @param {arrayBuffer} Array buffer you want to turn into a hexidecimal string
- */
-function createHex(arrBuff) {
-  const hashArray = Array.from(new Uint8Array(arrBuff));
-  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  return  `${createHex(arr0)}-${createHex(arr1)}-${createHex(arr2)}-${createHex(arr3)}-${createHex(arr4)}`
 }
 '''
-demo_url = "https://cloudflareworkers.com/#283515ad3b087723705f36f59b93d42b:https://tutorial.cloudflareworkers.com"
+demo_url = "https://cloudflareworkers.com/#6a5dc2435315009fca7a6294436d6168:https://tutorial.cloudflareworkers.com"
 share = "/templates/snippets/uuid"
