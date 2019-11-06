@@ -1,0 +1,40 @@
+id = "uuid"
+name = "Create UUIDs"
+description = "Create a version 4 revision 2 UUID inside a worker"
+code = '''
+async function handleRequest(request) {
+  const arr0 = createRandomArrayBuffer(4)
+  const arr1 = createRandomArrayBuffer(2)
+  const arr2 = createRandomArrayBuffer(2)
+  const arr3 = createRandomArrayBuffer(2)
+  const arr4 = createRandomArrayBuffer(6)
+  // set Msb0-3 to 0100 to be RFC 4122 compliant
+  arr2[0] = 0x40 | (arr2[0] & 0xf)
+  // set Msb0-1 to 10 to be RFC 4122 compliant
+  arr3[0] = 0x80 | (arr3[0] & 0x3f)
+  return new Response(`${createHex(arr0)}-${createHex(arr1)}-${createHex(arr2)}-${createHex(arr3)}-${createHex(arr4)}`)
+}
+addEventListener('fetch', event => {
+  event.respondWith(handleRequest(event.request))
+})
+/**
+ * Creates a true-random array buffer.
+ * An array buffer is an array of bytes
+ * @param {length} How many bytes you want the array buffer to have
+ */
+function createRandomArrayBuffer(len) {
+  let arr = new Uint8Array(len)
+  crypto.getRandomValues(arr)
+  return arr
+}
+/**
+ * Turns an array buffer into a string of hexidecimal characters
+ * @param {arrayBuffer} Array buffer you want to turn into a hexidecimal string
+ */
+function createHex(arrBuff) {
+  const hashArray = Array.from(new Uint8Array(arrBuff));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+'''
+demo_url = "https://cloudflareworkers.com/#283515ad3b087723705f36f59b93d42b:https://tutorial.cloudflareworkers.com"
+share = "/templates/snippets/uuid"
