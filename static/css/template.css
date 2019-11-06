@@ -126,18 +126,18 @@ figure.template-card .tutorial img#tutorial {
   font-size: 14px;
   flex: 30;
 }
-.copy code {
+.copy-group .copy code {
   display: block;
   overflow: auto;
   padding: 16px;
   margin: 8px 0 0 0;
 }
-.copy .help {
+.copy-group .help {
   color: #4d5257;
   font-size: 0.7rem;
   text-align: right;
 }
-.copy .help:hover {
+.copy-group .help:hover {
   opacity: 0.7;
   cursor: pointer;
   color: #f4a15d;
