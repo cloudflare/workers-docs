@@ -61,8 +61,8 @@
       </div>
       {{ if .code}}
       <div class="grey copy-group">
-        <code class="copy">{{.code}}</code>
         <img class="copy-trigger" src="/svg/copy-box.svg" id="img" />
+        <code class="copy">{{.code}}</code>
       </div>
       {{ end }}
     </div>
@@ -75,6 +75,10 @@
           <span class="copy">wrangler generate my-app {{.repository_url}}</span>
           <img class="copy-trigger" src="/svg/copy-box.svg" id="img" />
         </div>
+        <span
+          >Don't have Wrangler installed?
+          <a href="/quickstart">Get started</a></span
+        >
       </div>
     </div>
   </div>

@@ -172,10 +172,18 @@ figure.template-card.boilerplate {
   width: calc(100% + var(--template-snippet-border-color));
 }
 
-.grey .copy code {
-  white-space: pre;
+.grey.copy-group {
   background: var(--template-grey-background);
+}
+.grey img.copy-trigger#img {
+  padding: 8px 8px 0 0;
+  margin-left: auto;
+}
+.grey code.copy {
+  white-space: pre;
   margin-right: 30px;
+  background: inherit;
+  margin-top: -20px;
 }
 
 .black.copy-block {
@@ -183,7 +191,7 @@ figure.template-card.boilerplate {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: max-content;
+  max-width: max-content;
   padding: 16px;
 }
 .black .copy-group {
@@ -192,7 +200,7 @@ figure.template-card.boilerplate {
   padding: 10px;
   flex-direction: row;
   justify-content: stretch;
-  width: max-content;
+  max-width: max-content;
 }
 .black .copy-group span {
   color: white;
@@ -205,6 +213,12 @@ figure.template-card.boilerplate {
 }
 .black .copy-group img {
   min-width: 0.8rem;
+}
+.black.copy-block > span {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  padding-top: 8px;
 }
 
 /* back arrow */
