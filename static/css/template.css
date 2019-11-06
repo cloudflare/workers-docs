@@ -177,15 +177,34 @@ figure.template-card.boilerplate {
   background: var(--template-grey-background);
   margin-right: 30px;
 }
-.black.copy-group {
+
+.black.copy-block {
   background: var(--template-grey-background);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: max-content;
+  padding: 16px;
+}
+.black .copy-group {
+  background: var(--template-boilerplate-color);
   border-radius: 5px;
   padding: 10px;
+  flex-direction: row;
+  justify-content: stretch;
+  width: max-content;
 }
-.black .copy code {
-  background: var(--template-boilerplate-color);
+.black .copy-group span {
   color: white;
   border-radius: 5px;
+  white-space: nowrap;
+  overflow: scroll;
+  font-family: monaco, courier, monospace;
+  margin-right: 10px;
+  max-width: 300px;
+}
+.black .copy-group img {
+  min-width: 0.8rem;
 }
 
 /* back arrow */
@@ -195,6 +214,7 @@ figure.template-card.boilerplate {
 #body .template-page .back img {
   margin-right: 0.8em;
 }
+
 #body img {
   margin: 0;
   display: inline-block;
@@ -209,9 +229,9 @@ figure.template-card.boilerplate {
   border-radius: 5px;
   padding: 0.3em 0.4em 0.3em 0.4em;
   margin-left: 0.5rem;
+  display: inline-block;
 }
 .demo span {
-  /* font-family: Source Sans Pro; */
   font-style: normal;
   font-weight: 600;
   font-size: 16px;

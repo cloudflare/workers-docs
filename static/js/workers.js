@@ -7,7 +7,7 @@ function selectText(node) {
   return selection
 }
 
-function addCopyButton(containerEl) {
+function addCopyText(containerEl) {
   let copyBtn = document.createElement('div')
   copyBtn.className = 'help'
   copyBtn.textContent = 'Click to Copy'
@@ -18,6 +18,22 @@ function addCopyButton(containerEl) {
   copyBtn.addEventListener('click', function(el) {
     const target = el.target
     let highlight = el.target.parentElement.querySelector('code')
+    let text = selectText(highlight)
+    document.execCommand('copy')
+    text.removeAllRanges()
+    el.target.innerText = 'Copied to Clipboard'
+
+    setTimeout(() => {
+      target.innerText = 'Click to Copy'
+    }, 6000)
+  })
+}
+function addCopySquare(containerEl) {
+  let elToCopy = containerEl.querySelector('.copy')
+  let copyBtn = containerEl.querySelector('.copy-trigger')
+  copyBtn.addEventListener('click', function(el) {
+    const target = el.target
+    let highlight = el.target.parentElement.querySelector('.copy')
     let text = selectText(highlight)
     document.execCommand('copy')
     text.removeAllRanges()
@@ -47,8 +63,13 @@ window.addEventListener('DOMContentLoaded', event => {
     renderArchiveNotice()
   }
 
-  let highlightBlocks = document.querySelectorAll('.copy')
+  let highlightBlocks = document.querySelectorAll('.copy-group')
   Array.from(highlightBlocks).forEach(element => {
-    addCopyButton(element)
+    // if path is a template page, it will have 1 or more matches after templates/
+    if (window.location.pathname.match('/workers/templates/+.')) {
+      addCopySquare(element)
+    } else {
+      addCopyText(element)
+    }
   })
 })

@@ -23,8 +23,8 @@
   })
 </script>
 <figure class="template-page" id="{{.id}}">
-  <a href="/templates" class="back"
-    ><img src="/templates/media/left-arrow.svg" id="img" />Template Gallery</a
+  <a href="/templates" class="back">
+    <img src="/templates/media/left-arrow.svg" id="img" />Template Gallery</a
   >
   <div class="grid-3-noBottom_xs-5">
     <div class="col-8">
@@ -33,7 +33,7 @@
       </h2>
       <hr />
     </div>
-    <div class="col-3 demo">
+    <div class="col-4 demo">
       {{ with.demo_url }}
       <a href="{{.}}">
         <img src="/templates/media/external-link.svg" />
@@ -61,23 +61,19 @@
       </div>
       {{ if .code}}
       <div class="grey copy-group">
-        <div class="copy">
-          <code>{{.code}}</code>
-        </div>
+        <code class="copy">{{.code}}</code>
+        <img class="copy-trigger" src="/svg/copy-box.svg" id="img" />
       </div>
       {{ end }}
     </div>
-    <div class="col-3">
-      <div class="black copy-group">
+    <div class="col-4">
+      <div class="black copy-block">
         <div class="copy-step">
-          <img src="/templates/media/terminal.svg" id="img" />
-          <span>Paste this into your terminal:</span>
+          <span>Run in your terminal:</span>
         </div>
-        <div class="copy">
-          <code class="bash">
-            wrangler generate my-app
-            <a href="{{.repository_url}}">{{.repository_url}}</a>
-          </code>
+        <div class="copy-group">
+          <span class="copy">wrangler generate my-app {{.repository_url}}</span>
+          <img class="copy-trigger" src="/svg/copy-box.svg" id="img" />
         </div>
       </div>
     </div>
