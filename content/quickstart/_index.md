@@ -141,11 +141,9 @@ We'll use this approach in the [Slack Bot Tutorial](/tutorials/build-an-applicat
 
 There are a variety of examples in the [Template Gallery](/templates) for more custom solutions.
 
-### Workers Concepts
+### Runtime APIs
 
 The example outlined in this guide is just a starting point. There are many more [APIs](/reference/runtime/apis) available to manipulate intercepted requests. For example, you can retrieve data from [Cache](/reference/apis/cache), compute a custom response right from the edge, route the request to the appropriate service, filter traffic, and more.
-
-For concepts, pitfalls and guidelines to keep in mind while writing scripts, check out our [Workers Concepts](/reference/workers-concepts) articles.
 
 # Preview Your Project
 
