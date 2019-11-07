@@ -31,7 +31,6 @@
       <h2>
         {{.name}}
       </h2>
-      <hr />
     </div>
     <div class="col-4 demo">
       {{ with.demo_url }}
@@ -51,6 +50,8 @@
 
   <div class="grid-3">
     <div class="col-8">
+      <hr />
+
       <p>{{.description | markdownify}}</p>
       <div class="tag-group">
         {{ range.tags }}

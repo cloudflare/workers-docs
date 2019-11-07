@@ -44,6 +44,7 @@ figure.template-card h2 {
 }
 .tag-group {
   margin: 0.5em 0 0.5em 0;
+  padding-bottom: 2em;
 }
 
 .tag-group > button {
@@ -190,6 +191,7 @@ figure.template-card.boilerplate {
 }
 
 .black.copy-block {
+  margin-top: 0.5em;
   background: var(--template-grey-background);
   display: flex;
   flex-direction: column;
@@ -213,6 +215,7 @@ figure.template-card.boilerplate {
   font-family: monaco, courier, monospace;
   margin-right: 10px;
   max-width: 300px;
+  font-size: 14px;
 }
 .black .copy-group img {
   min-width: 0.8rem;
