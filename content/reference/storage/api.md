@@ -243,6 +243,22 @@ If you want the keys you write to be automatically deleted at some time in the f
 
 As with all updates, deletes can take up to ten seconds to propagate globally.
 
+#### List Keys
+
+`NAMESPACE.list({ [prefix], [limit], [cursor] })`
+
+Like with the `get` method, the `list` method returns a promise you can `await` to get the value. The promise resolves to an object that looks like this:
+
+```
+{
+  keys: [{ name: "foo", expiration: 1234}],
+  list_complete: false,
+  cursor: "6Ck1la0VxJ0djhidm1MdX2FyD"
+}
+```
+
+For more information about listing keys, and pagination using `cursor` and `list_complete`, see the page [listing keys]({{<ref "listing-keys.md" >}}).
+
 <style>
 h4 !important {
   font-size: 1rem;
