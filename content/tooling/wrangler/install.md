@@ -40,13 +40,13 @@ Wrangler can be installed both through [npm](https://www.npmjs.com/get-npm) and 
 
 1. Install `cargo`:
 
-   Rustup, a tool for installing Rust, will also install Cargo. On Linux and macOS systems, `rustup` can be installed as follows:
+    Rustup, a tool for installing Rust, will also install Cargo. On Linux and macOS systems, `rustup` can be installed as follows:
 
-   ```bash
-   curl https://sh.rustup.rs -sSf | sh
-   ```
+    ```bash
+    curl https://sh.rustup.rs -sSf | sh
+    ```
 
-   Additional installation methods are available [here](https://forge.rust-lang.org/other-installation-methods.html).
+    Additional installation methods are available [here](https://forge.rust-lang.org/other-installation-methods.html).
 
 2. Install `wrangler`:
 
@@ -54,11 +54,11 @@ Wrangler can be installed both through [npm](https://www.npmjs.com/get-npm) and 
    cargo install wrangler
    ```
 
-   Installing wrangler on linux requires some [OpenSSL-related packages](https://docs.rs/openssl/0.10.24/openssl/#automatic) to be installed. If you don't want to deal with this, you can use vendored OpenSSL.
+    Installing wrangler on linux requires some [OpenSSL-related packages](https://docs.rs/openssl/0.10.24/openssl/#automatic) to be installed. If you don't want to deal with this, you can use vendored OpenSSL.
 
-   ```bash
-   cargo install wrangler --features vendored-openssl
-   ```
+    ```bash
+    cargo install wrangler --features vendored-openssl
+    ```
 
 ### Manual Install
 
