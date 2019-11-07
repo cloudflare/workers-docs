@@ -27,14 +27,13 @@ weight: 2
 </div>
 
 <div id="results">
-  <h2 style="padding-bottom: 20px">Boilerplates</h2>
-  {{< boilerplates >}}
 
   <h2 style="padding-bottom: 20px">Snippets</h2>
-  {{< snippets >}}
+  {{< template-page >}}
 
-  <h2 style="padding-bottom: 20px">Featured Projects</h2>
-  {{< featured_boilerplates >}}
+<br>
+<br>
+<br>
 
 The gallery is actively growing. The <a href="https://github.com/victoriabernard92/workers-template-creator">template creator</a> allows you to share templates. Host a public repo, and then run <code>wrangler generate https://github.com/<your-repo></code>.
 
