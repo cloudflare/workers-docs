@@ -98,7 +98,7 @@ Change the user-facing name of a Namespace. Must be unique within your account.
 
 ### Keys and Values
 
-Your data is stored as Key-Value pairs. Each key can be up to 512 bytes. Values can, by default, be up to 2 MB.
+Your data is stored as Key-Value pairs. Each key can be up to 512 bytes. Values can, by default, be up to 10 MB.
 
 Keys can be composed of any printable character, but given their use in URLs we recommend avoiding the question mark (`?`) and hash (`#`) literals.
 
