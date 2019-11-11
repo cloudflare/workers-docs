@@ -1,7 +1,9 @@
 <figure class="template-card boilerplate" id="{{.id}}">
   <div class="tag-group">
     {{ range.tags }}
-    <button class="tooltip {{.}}"><span class="tooltiptext"></span>{{.}}</button>
+    <button class="tooltip {{.}}">
+      <span class="tooltiptext"></span>{{.}}
+    </button>
     {{ end }}
   </div>
   <h2>
@@ -28,7 +30,7 @@
       <span>Tutorial</span>
     </a>
     {{ end }}
-    {{ with.share }}
+    {{ with.share_url }}
     <a class="tutorial" href="{{.}}">
       <img src="/templates/media/tutorial.svg" id="tutorial" />
       <span>Learn more</span>
