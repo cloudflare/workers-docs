@@ -1,17 +1,24 @@
 <div id="results">
   {{ $urlPre := "https://template-registry.developers.workers.dev/" }}
   {{ $templatesJSON := getJSON $urlPre "/"}}
+  {{ $snippets :=  where $templatesJSON ".type" "snippet"}}
+  {{ $boilerplates :=  where $templatesJSON ".type" "boilerplate"}}
+  {{ $featured_boilerplates :=  where $templatesJSON ".type" "featured_boilerplate"}}
+  {{ if gt (len $snippets) 0 }}
   <h2 style="padding-bottom: 20px">Snippets</h2>
   <section class="template-wrapper snippet">
-    {{ range where $templatesJSON ".type" "snippet"}}
+    {{ range sort $snippets "weight" "desc" }}
     {{partial "snippet" .}}
     <script type="application/json" id="snippets">
       {{.}}
     </script>
     {{ end }}
   </section>
+  {{ end }}
+  {{ if gt (len $boilerplates) 0 }}
+  <h2 style="padding-bottom: 20px">Boilerplates</h2>
   <section class="template-wrapper boilerplates">
-    {{ range where $templatesJSON ".type" "boilerplate"}}
+    {{ range sort  $boilerplates "weight" "desc" }}
     <div class="template_result" id="{{ .id }}">
       {{partial "boilerplate" .}}
     </div>
@@ -20,14 +27,17 @@
     </script>
     {{ end }}
   </section>
+  {{ end }}
+  {{ if gt (len $featured_boilerplates) 0 }}
+  <h2 style="padding-bottom: 20px">Featured</h2>
   <section class="template-wrapper featured">
-    {{ range $template := sort .Site.Data.featured "weight" "desc" }}
-    <div class="template_result" id="{{ $template.id }}">
-      {{partial "boilerplate" $template}}
+    {{ range  sort $featured_boilerplates "weight" "desc" }}
+    <div class="template_result" id="{{ .id }}">
+      {{partial "boilerplate" .}}
     </div>
     {{ end }}
   </section>
-
+  {{ end }}
   <script type="application/json" id="templates">
     {{$templatesJSON}}
   </script>

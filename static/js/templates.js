@@ -1,20 +1,15 @@
 let boilerplates, snippets, featured_boilerplates
 const grabTemplates = async () => {
-  // let resp = await fetch('https://template-registry.developers.workers.dev')
-  // let json = await resp.json()
-  // console.log('json', json)
-  const json = JSON.parse(document.querySelector('#templates').innerText)
-  boilerplates = json.filter(el => el.type === 'boilerplate')
-  snippets = json.filter(el => el.type === 'snippet')
-  featured_boilerplates = json.filter(el => el.type === 'featured_boilerplate')
+  const templates = JSON.parse(document.querySelector('#templates').innerText)
+  boilerplates = templates.filter(el => el.type === 'boilerplate')
+  snippets = templates.filter(el => el.type === 'snippet')
+  featured_boilerplates = templates.filter(
+    el => el.type === 'featured_boilerplate',
+  )
 }
 // Process templates JSON into lunr-supported JS objects
 const constructCorpus = () => {
   const toLunr = (item, type) => ({ type, ...item })
-  // const templates = JSON.parse(document.querySelector('#templates').innerText)
-  // const boilerplates = templates.filter(temp => temp.type === 'boilerplate')
-  // console.log('boilerplates', boilerplates)
-  // const snippets = JSON.parse(document.querySelector('#snippets').innerText)
   return [
     ...Object.values(boilerplates).map(item => toLunr(item, 'boilerplates')),
     ...Object.values(featured_boilerplates).map(item =>
@@ -23,8 +18,7 @@ const constructCorpus = () => {
     ...Object.values(snippets).map(item => toLunr(item, 'snippets')),
   ]
 }
-let results
-let corpus
+let results, corpus
 window.addEventListener('DOMContentLoaded', async event => {
   await grabTemplates()
   corpus = constructCorpus()

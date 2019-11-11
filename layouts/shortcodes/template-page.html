@@ -1,5 +1,3 @@
-{{ $urlPre := "https://template-registry.developers.workers.dev" }}
-{{ $gistJ := getJSON $urlPre "" }}
-{{ range $snippet := $gistJ }}
-{{partial "template_page" $snippet}}
-{{ end }}
+{{$template := .Get 0}}
+{{$templateData := index .Site.Data.boilerplate $template}}
+{{partial "template_page" $templateData}}
