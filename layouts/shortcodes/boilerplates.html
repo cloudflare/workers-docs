@@ -1,9 +1,0 @@
-<section class="template-wrapper boilerplate">
-  {{ range $template := sort .Site.Data.boilerplate "weight" "desc" }}
-  {{partial "boilerplate" $template}}
-  {{ end }}
-</section>
-
-<script type="application/json" id="boilerplates">
-  {{.Site.Data.boilerplate}}
-</script>

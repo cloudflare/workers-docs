@@ -1,15 +1,34 @@
 <div id="results">
   {{ $urlPre := "https://template-registry.developers.workers.dev/" }}
   {{ $gistJ := getJSON $urlPre "/"}}
-  {{ $gistJ }}
-
   <h2 style="padding-bottom: 20px">Snippets</h2>
   <section class="template-wrapper snippet">
     {{ range where $gistJ ".type" "snippet"}}
     {{partial "snippet" .}}
     <script type="application/json" id="snippets">
-      blah = {{.demos}}
+      {{.}}
     </script>
     {{ end }}
   </section>
+  <section class="template-wrapper boilerplates">
+    {{ range where $gistJ ".type" "boilerplate"}}
+    <div class="template_result" id="{{ .id }}">
+      {{partial "boilerplate" .}}
+    </div>
+    <script type="application/json" id="boilerplates">
+      {{.}}
+    </script>
+    {{ end }}
+  </section>
+  <section class="template-wrapper featured">
+    {{ range $template := sort .Site.Data.featured "weight" "desc" }}
+    <div class="template_result" id="{{ $template.id }}">
+      {{partial "boilerplate" $template}}
+    </div>
+    {{ end }}
+  </section>
+
+  <script type="application/json" id="featured_boilerplates">
+    {{.Site.Data.featured}}
+  </script>
 </div>
