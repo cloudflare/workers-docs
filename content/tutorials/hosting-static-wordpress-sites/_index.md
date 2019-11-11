@@ -108,4 +108,4 @@ Deploying your Wordpress site to Workers has benefits for your site's performanc
 - Run your Wordpress instance locally, or put your now-hidden WP instance behind something like [Cloudflare Access](https://www.cloudflare.com/products/cloudflare-access/) to only give access to your contributors. This has a dramatic effect on the number of attack vectors for your Wordpress site and its content.
 - Downgrade your Wordpress hosting plan to a cheaper plan. Because the memory and bandwidth requirements for your Wordpress instance are now much smaller, you can often get away with hosting it on a cheaper plan, or moving to shared hosting. Your Cloudflare Workers plan is priced per-request, and because you can host up to thirty sites on your account, serving a high number of static Wordpress sites can be an order of magnitude cheaper on Workers.
 
-We're super excited about the future of Workers and Wordpress, and we'd love to hear about what you're building with them! TODO: FEEDBACK ME PLZ ?
+We're super excited about the future of Workers and Wordpress, and we'd love to hear about what you're building with them!
