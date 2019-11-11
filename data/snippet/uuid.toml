@@ -40,4 +40,3 @@ function createUUID() {
 }
 '''
 demo_url = "https://cloudflareworkers.com/#bbf938708bd0397531aec2536d06eedf:https://tutorial.cloudflareworkers.com/"
-share = "/templates/snippets/uuid"
