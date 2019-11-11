@@ -26,10 +26,7 @@ weight: 2
 <p>No results were found for your search. Try adjusting your search.</p>
 </div>
 
-<div id="results">
-
-  <h2 style="padding-bottom: 20px">Snippets</h2>
-  {{< template-page >}}
+{{<gallery>}}
 
 <br>
 <br>
@@ -46,8 +43,6 @@ For archived recipes, see <a href="https://developers.cloudflare.com/workers/rec
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
 <script>
-  const boilerplates = JSON.parse(document.querySelector("#boilerplates").innerText)
-  const snippets = JSON.parse(document.querySelector("#snippets").innerText)
-  const featured_boilerplates = JSON.parse(document.querySelector("#featured_boilerplates").innerText)
+
 </script>
 <script src="/js/templates.js"></script>

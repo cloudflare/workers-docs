@@ -1,0 +1,15 @@
+<div id="results">
+  {{ $urlPre := "https://template-registry.developers.workers.dev/" }}
+  {{ $gistJ := getJSON $urlPre "/"}}
+  {{ $gistJ }}
+
+  <h2 style="padding-bottom: 20px">Snippets</h2>
+  <section class="template-wrapper snippet">
+    {{ range where $gistJ ".type" "snippet"}}
+    {{partial "snippet" .}}
+    <script type="application/json" id="snippets">
+      blah = {{.demos}}
+    </script>
+    {{ end }}
+  </section>
+</div>
