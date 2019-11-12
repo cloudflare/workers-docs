@@ -1,5 +1,7 @@
 let boilerplates, snippets, featured_boilerplates
 const grabTemplates = async () => {
+  // search the DOM for an element we tagged earlier with all the
+  // templates' JSON
   const templates = JSON.parse(document.querySelector('#templates').innerText)
   boilerplates = templates.filter(el => el.type === 'boilerplate')
   snippets = templates.filter(el => el.type === 'snippet')

@@ -3,4 +3,4 @@ title: 'Cloud Storage'
 hidden: true
 ---
 
-{{< featured "cloud_storage" >}}
+{{< template-page "cloud_storage" >}}
