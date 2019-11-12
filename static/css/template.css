@@ -42,9 +42,11 @@ figure.template-card h2 {
   margin-bottom: 8px;
   font-size: 22px;
 }
+.headline {
+  padding-bottom: 2em;
+}
 .tag-group {
   margin: 0.5em 0 0.5em 0;
-  padding-bottom: 2em;
 }
 
 .tag-group > button {
