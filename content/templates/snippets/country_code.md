@@ -3,4 +3,4 @@ title: 'Country Code'
 hidden: true
 ---
 
-{{< snippet "country_code" >}}
+{{< template-page "country_code" >}}

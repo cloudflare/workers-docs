@@ -3,4 +3,4 @@ title: 'Bulk Redirects'
 hidden: true
 ---
 
-{{< snippet "bulk_redirects" >}}
+{{< template-page "bulk_redirects" >}}

@@ -108,4 +108,4 @@ async function handleRequest(request) {
 ### All together
 
 Putting the 4 tips above together, you'd get a script like:
-{{< snippet "debugging" >}}
+{{< template-page "debugging" >}}

@@ -3,7 +3,7 @@ title: 'Router'
 hidden: true
 ---
 
-{{< boilerplate "router" >}}
+{{< template-page "router" >}}
 
 The Router template allows developers to build URL-based applications on the Cloudflare Workers platform. If you've built applications with [Express](https://expressjs.com/), you'll be familiar with the API, which combines REST conventions with function handlers.
 

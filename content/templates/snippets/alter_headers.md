@@ -3,4 +3,4 @@ title: 'Alter Headers'
 hidden: true
 ---
 
-{{< snippet "alter_headers" >}}
+{{< template-page "alter_headers" >}}

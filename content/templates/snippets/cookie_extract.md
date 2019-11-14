@@ -3,4 +3,4 @@ title: 'Cookie Extraction'
 hidden: true
 ---
 
-{{< snippet "cookie_extract" >}}
+{{< template-page "cookie_extract" >}}
