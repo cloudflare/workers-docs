@@ -3,4 +3,4 @@ title: "Hotlink Protection"
 hidden: true
 ---
 
-{{< snippet "hot_link_protection" >}}
+{{< template-page "hot_link_protection" >}}

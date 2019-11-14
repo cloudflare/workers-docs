@@ -42,12 +42,12 @@ title: Cloudflare Workers Documentation
 <h2>Templates</h2>
 <p>Ready-to-use code to get you started.</p>
 <section class="template-wrapper">
-  {{< boilerplate "hello_world" >}}
-  {{< boilerplate "hello_world_rust" >}}
+  {{< template-page "hello_world" >}}
+  {{< template-page "hello_world_rust" >}}
 </section>
 <section class="snippet template-wrapper">
-  {{< snippet "bulk_redirects" >}}
-  {{< snippet "send_raw_html" >}}
+  {{< template-page "bulk_redirects" >}}
+  {{< template-page "send_raw_html" >}}
 </section>
 <a href="/templates">View all templates</a>
 
