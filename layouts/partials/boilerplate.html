@@ -22,7 +22,6 @@
       </code>
     </div>
   </div>
-  {{ if or ( .demo_url) (.demos) (.tutorial)}}
   <div class="links">
     {{ with.tutorial }}
     <a class="tutorial" href="{{.}}">
@@ -41,7 +40,11 @@
     {{ end }}
     {{ with.demo_url }}
     <a class="demo" href="{{.}}">Demo</a>
-    {{ end }}
+    {{ end }} {{ if not ( (.share_url) or (.tutorial)) }}
+    <a class="tutorial" href="/templates/pages/{{.id}}">
+      <img src="/templates/media/tutorial.svg" id="tutorial" />
+      <span>Learn more</span>
+    </a>
+    {{end}}
   </div>
-  {{ end }}
 </figure>

@@ -2,7 +2,8 @@
   <div class="tag-group">
     {{ range.tags }}
     <button class="tooltip {{.}}">
-      {{.}}<span class="tooltiptext"></span>
+      {{.}}
+      <span class="tooltiptext"></span>
     </button>
     {{ end }}
   </div>
@@ -19,14 +20,13 @@
       <code>{{.code}}</code>
     </div>
   </div>
-  {{ if or ( .demo_url) (.demos) (.tutorial)}}
   <div class="links">
     {{ with.tutorial }}
     <a class="tutorial" href="{{.}}">
       <img src="/templates/media/tutorial.svg" id="tutorial" />
       <span>Tutorial</span>
     </a>
-    {{ end }}
+    {{ end }} 
     {{ with.share_url }}
     <a class="tutorial" href="{{.}}">
       <img src="/templates/media/tutorial.svg" id="tutorial" />
@@ -39,6 +39,11 @@
     {{ with.demo_url }}
     <a class="demo" href="{{.}}">Demo</a>
     {{ end }}
+    {{ if not ( (.share_url) or (.tutorial)) }}
+    <a class="tutorial" href="/templates/pages/{{.id}}">
+      <img src="/templates/media/tutorial.svg" id="tutorial" />
+      <span>Learn more</span>
+    </a>
+    {{end}}
   </div>
-  {{ end }}
 </figure>
