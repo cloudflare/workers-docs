@@ -35,13 +35,6 @@ window.addEventListener('DOMContentLoaded', async event => {
   const type = new Choices(typeElem)
   typeElem.addEventListener('change', searchFilters)
 
-  // Handle ?q query param and set default search with it,
-  // if it exists
-  const url = new URL(window.location)
-  const initialSearch = url.searchParams.get('q')
-  if (initialSearch) {
-    handleNewSearchValue(initialSearch)
-  }
   // Construct the search index using lunr
   const idx = lunr(function() {
     this.ref('id')
@@ -55,6 +48,13 @@ window.addEventListener('DOMContentLoaded', async event => {
     }, this)
   })
   window.idx = idx
+  // Handle ?q query param and set default search with it,
+  // if it exists
+  const url = new URL(window.location)
+  const initialSearch = url.searchParams.get('q')
+  if (initialSearch) {
+    handleNewSearchValue(initialSearch)
+  }
 })
 
 // Search based on a query, updating `results`
