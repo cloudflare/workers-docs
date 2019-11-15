@@ -1,5 +1,5 @@
 <div id="results">
-  {{ $urlPre := "https://template-registry.developers.workers.dev/" }}
+  {{ $urlPre := "https://template-registry.developers.workers.dev" }}
   {{ $templatesJSON := getJSON $urlPre "/"}}
   {{ $snippets :=  where $templatesJSON ".type" "snippet"}}
   {{ $boilerplates :=  where $templatesJSON ".type" "boilerplate"}}
