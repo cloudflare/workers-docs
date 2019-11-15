@@ -3,4 +3,4 @@ title: 'Block on TLS Version'
 hidden: true
 ---
 
-{{< template-page "tls_version" >}}
+{{< template-page "block_on_tls_version" >}}
