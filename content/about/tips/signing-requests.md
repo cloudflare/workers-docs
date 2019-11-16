@@ -17,7 +17,7 @@ For debugging, this code returns error code 403 if the URL or HMAC is invalid or
 ```javascript
 // We'll need some super-secret data to use as a symmetric key.
 const encoder = new TextEncoder()
-const SECRET_KEY_DATA = encoder.encode('my secret symmetric key')
+const secretKeyData = encoder.encode('my secret symmetric key')
 
 addEventListener('fetch', event => {
   event.respondWith(verifyAndFetch(event.request))
