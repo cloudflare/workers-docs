@@ -1,4 +1,4 @@
-<div id="results">
+<div class="gallery" id="results">
   {{ $urlPre := "https://template-registry.developers.workers.dev" }}
   {{ $templatesJSON := getJSON $urlPre "/"}}
   {{ $snippets :=  where $templatesJSON ".type" "snippet"}}

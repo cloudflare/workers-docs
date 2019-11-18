@@ -22,7 +22,7 @@ const constructCorpus = () => {
 }
 let results, corpus
 window.addEventListener('DOMContentLoaded', async event => {
-  await grabTemplates()
+  grabTemplates()
   corpus = constructCorpus()
   results = corpus
 
@@ -84,9 +84,9 @@ const processSearch = () => {
   const templates = document.querySelectorAll('.template-card')
   templates.forEach(
     elem =>
-      (elem.style = `display: ${!results.find(result => result.id === elem.id)
-        ? 'none'
-        : ''}`),
+      (elem.style = `display: ${
+        !results.find(result => result.id === elem.id) ? 'none' : ''
+      }`),
   )
   // Remove section headers that contain no results
   const sectionHeaders = document.querySelectorAll('#results>h2')
