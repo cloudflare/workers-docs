@@ -28,7 +28,7 @@ There are two types of configuration that `wrangler` uses: global user and per p
 
   ```bash
   # e.g.
-  CF_API_KEY=superlongapikey CF_EMAIL=testuser@example.com wrangler publish --release
+  CF_API_KEY=superlongapikey CF_EMAIL=testuser@example.com wrangler publish
   # where
   # $CF_API_KEY -> your Cloudflare API key
   # $CF_EMAIL -> your Cloudflare account email
