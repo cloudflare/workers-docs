@@ -210,15 +210,25 @@ It should not be stored in version control or in your code, use environment vari
 
 ## Setup
 
-Set up your default credentials on your local machine via the `config` subcommand. You should only need to do this once. Running `wrangler config` will prompt you interactively for your email and API key:
+Set up your default credentials on your local machine via the `config` subcommand. This is an interactive command that will prompt you for your API token:
 
-```sh
-$ wrangler config
-Enter email:
-foo@bar.com
-Enter api key:
-123456abcdef
+```bash
+wrangler config
+Enter API token:
+superlongapitoken
 ```
+
+You can also provide your email and global API key (this is not recommended for security reasons):
+
+```bash
+wrangler config --api-key
+Enter email:
+testuser@example.com
+Enter global API key:
+superlongapikey
+```
+
+You can also [use environment variables](https://developers.cloudflare.com/workers/tooling/wrangler/configuration/) to configure these authentication credentials.
 
 To configure your project, complete the `wrangler.toml` file at the root of the generated project. This file contains the information wrangler needs to connect to the Cloudflare Workers API, and publish your code.
 

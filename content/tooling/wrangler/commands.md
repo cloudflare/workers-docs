@@ -52,17 +52,24 @@ weight: 2
 
 ### 🔧 `config`
 
-  Configure your global Cloudflare user. This is an interactive command that will prompt you for your email and API key:
+  Configure your global Cloudflare user. This is an interactive command that will prompt you for your API token:
 
   ```bash
   wrangler config
-  Enter email:
-  testuser@example.com
-  Enter api key:
-  ...
+  Enter API token:
+  superlongapitoken
   ```
 
-  You can also [use environment variables](#using-environment-variables) to configure these values.
+  You can also provide your email and global API key (this is not recommended for security reasons):
+  ```bash
+  wrangler config --api-key
+  Enter email:
+  testuser@example.com
+  Enter global API key:
+  superlongapikey
+  ```
+
+  You can also [use environment variables](https://developers.cloudflare.com/workers/tooling/wrangler/configuration/) to configure these values.
 
 ### ☁️ 🆙 `publish`
 
