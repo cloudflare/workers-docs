@@ -4,7 +4,7 @@ weight: 1
 alwaysopen: true
 new: true
 ---
-![Banner](/tooling/wrangler/media/banner.png)
+![Banner](https://raw.githubusercontent.com/cloudflare/wrangler/master/banner.png)
 
 `wrangler` is a CLI tool designed for folks who are interested in using [Cloudflare Workers](https://workers.cloudflare.com/).
 
@@ -15,5 +15,5 @@ new: true
 - [Workers Sites](/tooling/wrangler/sites)
 
 
-![Wrangler Demo](/tooling/wrangler/media/wrangler-demo.gif)
+<script id="asciicast-SXJNxWUO8GF5T7N8R2mMMvE1W" data-autoplay="true" src="https://asciinema.org/a/SXJNxWUO8GF5T7N8R2mMMvE1W.js" async></script>
 
