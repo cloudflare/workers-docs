@@ -224,7 +224,7 @@ Enter API token:
 superlongapitoken
 ```
 
-You can also provide your email and global API key (this is not recommended for security reasons):
+You can also provide your email and global API key:
 
 ```bash
 wrangler config --api-key

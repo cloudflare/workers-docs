@@ -69,7 +69,7 @@ weight: 2
   superlongapikey
   ```
 
-  You can also [use environment variables](https://developers.cloudflare.com/workers/tooling/wrangler/configuration/) to configure these values.
+  You can also [use environment variables](/tooling/wrangler/configuration/) to configure these values.
 
 ### ☁️ 🆙 `publish`
 

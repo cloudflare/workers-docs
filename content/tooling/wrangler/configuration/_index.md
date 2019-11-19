@@ -44,7 +44,6 @@ There are two types of configuration that `wrangler` uses: global user and per p
   # $CF_EMAIL -> your Cloudflare account email
   # $CF_API_KEY -> your Cloudflare API key
   ```
-
   Note that providing authentication credentials through environment variables will override whatever credentials you configured 
   if you ran `wrangler config`.
 
