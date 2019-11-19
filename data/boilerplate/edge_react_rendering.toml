@@ -1,0 +1,9 @@
+id = "edge_react_rendering"
+name = "Rendering React components in Workers"
+description = "Uses React and React-dom to render React components inside a Workers function"
+repository_url = "https://github.com/nodebotanist/workers-edge-rendering-react-boilerplate"
+demo_url = "https://cloudflareworkers.com/#547acfe6f0762e2ecfcc573ee0edaeec:https://example.com"
+weight = 98
+tags = ['Originless', 'React']
+
+tutorial = "/templates/boilerplates/edgereactrendering"
