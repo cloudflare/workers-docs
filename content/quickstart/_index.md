@@ -11,8 +11,9 @@ weight: 1
 - [Preview Your Project](#preview-your-project)
 - [Build Your Project](#build-your-project)
 - [Configure](#configure)
-  - [Finding Your Cloudflare API Keys](#finding-your-cloudflare-api-keys)
+  - [Authentication](#authentication)
     - [Account ID and Zone ID](#account-id-and-zone-id)
+    - [API Token](#api-token)
     - [Global API Key](#global-api-key)
   - [Setup](#setup)
 - [Publish Your Project](#publish-your-project)
@@ -173,14 +174,13 @@ $ wrangler build
 
 To publish Cloudflare Workers projects and serve them from our global cloud network, [create a Cloudflare account](https://dash.cloudflare.com/sign-up/workers) and setup a registered domain **_or_** a Workers.dev subdomain on Cloudflare.
 
-## Finding Your Cloudflare API Keys
+## Authentication
 
 [Wrangler](/tooling/wrangler) and [other tools](/tooling) use the following credentials to manage uploading and publishing your Worker scripts to your Cloudflare domain:
 
 - Account ID
 - Zone ID _(Note You do not need your Zone ID for deploying Workers on a `Workers.dev` subdomain)_
-- Global API Key
-- Email address
+- API Token OR the pair of Email address and Global API Key. API Tokens are preferred.
 
 ### Account ID and Zone ID
 
@@ -200,9 +200,15 @@ For workers.dev domains, you will just need the Account ID:
 1. Log in to your Cloudflare account and select **Workers**.
 2. Scroll to the _API_ section and select **Click to copy** to copy your **Account ID**.
 
+### API Token
+
+1. Click **Get API Token** below the _API_ section to jump to your _Profile_ page.
+2. Click **Create Token** and select the **Start with Template** radio button. Select the **Edit Cloudflare Workers** template.
+3. Fill out the rest of the fields and then click **Continue to Summary**, where you can click **Create Token** and issue your token for use.
+
 ### Global API Key
 
-1. Click **Get API Key** below the _API_ section to jump to your _Profile_ page.
+1. Click **Get API Token** below the _API_ section to jump to your _Profile_ page.
 2. Scroll to _API Keys_, and click **View** to copy your Global API Key **\***.
 
 **\* IMPORTANT: Treat your Global API Key like a password!**
