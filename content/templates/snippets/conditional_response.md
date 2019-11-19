@@ -3,4 +3,4 @@ title: 'Conditional Response'
 hidden: true
 ---
 
-{{< snippet "conditional_response" >}}
+{{< template-page "conditional_response" >}}

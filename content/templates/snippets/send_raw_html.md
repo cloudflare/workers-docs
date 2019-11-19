@@ -2,4 +2,4 @@
 hidden: true
 ---
 
-{{< snippet "send_raw_html" >}}
+{{< template-page "send_raw_html" >}}

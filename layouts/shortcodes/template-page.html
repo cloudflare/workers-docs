@@ -1,2 +1,6 @@
-{{$templatePage := .Get 0}} {{$templatePageData := index .Site.Data.snippet $templatePage}}
-{{partial "template_page" $templatePageData}}
+{{$id := .Get 0}} 
+
+{{ $urlPre := "https://template-registry.developers.workers.dev/templates/" }}
+{{ $templateData := getJSON $urlPre $id }} 
+
+{{ partial "template-page" $templateData  }} 

@@ -1,7 +1,0 @@
-id = "typescript"
-name = "Hello World TypeScript"
-description = "Simple Hello World in TypeScript"
-repository_url = "https://github.com/EverlastingBugstopper/worker-typescript-template"
-weight = 90
-
-tags = ['Originless']

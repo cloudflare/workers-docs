@@ -6,6 +6,10 @@
   --template-snippet-border-color: #e9a468;
   --template-boilerplate-color: #5f6264;
 }
+.gallery {
+  padding-bottom: 20px;
+}
+
 section.template-wrapper {
   display: grid;
   grid-template-columns: 100%;

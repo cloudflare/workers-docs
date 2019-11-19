@@ -26,15 +26,7 @@ weight: 2
 <p>No results were found for your search. Try adjusting your search.</p>
 </div>
 
-<div id="results">
-  <h2 style="padding-bottom: 20px">Boilerplates</h2>
-  {{< boilerplates >}}
-
-  <h2 style="padding-bottom: 20px">Snippets</h2>
-  {{< snippets >}}
-
-  <h2 style="padding-bottom: 20px">Featured Projects</h2>
-  {{< featured_boilerplates >}}
+{{<gallery>}}
 
 The gallery is actively growing. The <a href="https://github.com/victoriabernard92/workers-template-creator">template creator</a> allows you to share templates. Host a public repo, and then run <code>wrangler generate https://github.com/<your-repo></code>.
 
@@ -46,9 +38,4 @@ For archived recipes, see <a href="https://developers.cloudflare.com/workers/rec
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js" integrity="sha256-VeNaFBVDhoX3H+gJ37DpT/nTuZTdjYro9yBruHjVmoQ=" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
 <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
-<script>
-  const boilerplates = JSON.parse(document.querySelector("#boilerplates").innerText)
-  const snippets = JSON.parse(document.querySelector("#snippets").innerText)
-  const featured_boilerplates = JSON.parse(document.querySelector("#featured_boilerplates").innerText)
-</script>
 <script src="/js/templates.js"></script>

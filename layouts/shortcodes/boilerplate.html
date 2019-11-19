@@ -1,2 +1,6 @@
-{{$template := .Get 0}} {{$templateData := index .Site.Data.boilerplate $template}}
-{{partial "template" $templateData}}
+{{$id := .Get 0}}
+
+{{ $urlPre := "https://template-registry.developers.workers.dev/templates/" }}
+{{ $templateData := getJSON $urlPre $id }}
+
+{{ partial "boilerplate" $templateData  }}

@@ -3,4 +3,4 @@ title: 'Aggregate Requests'
 hidden: true
 ---
 
-{{< snippet "aggregate_requests" >}}
+{{< template-page "aggregate_requests" >}}

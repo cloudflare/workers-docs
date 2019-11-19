@@ -1,11 +1,14 @@
 <figure class="template-card snippet" id="{{.id}}">
   <div class="tag-group">
     {{ range.tags }}
-    <button class="tooltip {{.}}">{{.}}<span class="tooltiptext"></span></button>
+    <button class="tooltip {{.}}">
+      {{.}}
+      <span class="tooltiptext"></span>
+    </button>
     {{ end }}
   </div>
   <h2>
-    {{.name}}
+    {{.title}}
   </h2>
   <p>{{.description | markdownify}}</p>
   <div class="copy-group">
@@ -17,7 +20,6 @@
       <code>{{.code}}</code>
     </div>
   </div>
-  {{ if or ( .demo_url) (.demos) (.tutorial)}}
   <div class="links">
     {{ with.tutorial }}
     <a class="tutorial" href="{{.}}">
@@ -25,7 +27,7 @@
       <span>Tutorial</span>
     </a>
     {{ end }}
-    {{ with.share }}
+    {{ with.share_url }}
     <a class="tutorial" href="{{.}}">
       <img src="/templates/media/tutorial.svg" id="tutorial" />
       <span>Learn more</span>
@@ -37,6 +39,11 @@
     {{ with.demo_url }}
     <a class="demo" href="{{.}}">Demo</a>
     {{ end }}
+    {{ if not ( (.share_url) or (.tutorial)) }}
+    <a class="tutorial" href="/templates/pages/{{.id}}">
+      <img src="/templates/media/tutorial.svg" id="tutorial" />
+      <span>Learn more</span>
+    </a>
+    {{end}}
   </div>
-  {{ end }}
 </figure>
