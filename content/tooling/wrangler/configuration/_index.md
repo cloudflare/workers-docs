@@ -45,6 +45,9 @@ There are two types of configuration that `wrangler` uses: global user and per p
   # $CF_API_KEY -> your Cloudflare API key
   ```
 
+  Note that providing authentication credentials through environment variables will override whatever credentials you configured 
+  if you ran `wrangler config`.
+
 ### Per Project
 
   Your project will need to have several things configured before you can publish your worker. These values are stored in a `wrangler.toml` file that `wrangler generate` will make for you. You will need to manually edit this file to add these values before you can publish.
