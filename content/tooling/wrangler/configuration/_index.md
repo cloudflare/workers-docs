@@ -73,6 +73,6 @@ There are two types of configuration that `wrangler` uses: global user and per p
 
       Note: Creating your KV Namespaces should be handled using Wrangler's [KV Commands](/tooling/wrangler/kv_commands).
 
-  #### Environments
+#### Environments
 
   Additionally, you can configure Wrangler to publish to multiple environments. This means that your same codebase can be deployed to multiple places on your [workers.dev](https://workers.dev) subdomain, across multiple accounts, zones, and routes. Read more [here](/tooling/wrangler/configuration/environments).
