@@ -73,5 +73,8 @@ a.quick-start {
   float: right;
   display: flex;
   align-items: center;
-  color: grey;
+  color: #5f6264;
+}
+.github-edit span {
+  padding-left: 0.4em;
 }
