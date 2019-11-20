@@ -68,3 +68,13 @@ a.quick-start {
   background: rgba(255, 116, 0, 0.15);
   color: #f38020;
 }
+
+.github-edit {
+  float: right;
+  display: flex;
+  align-items: center;
+  color: #5f6264;
+}
+.github-edit span {
+  padding-left: 0.4em;
+}
