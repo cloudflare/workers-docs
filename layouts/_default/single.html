@@ -4,12 +4,18 @@
 
 <section id="body">
   <div class="padding highlightable">
+    {{if and (ne .Section "templates") (ne .Section "templates/") }}
+    blag
+    {{end}}
+    {{.Section}}
+    {{if and (ne .Section "templates") (ne .Section "templates/") }}
     <a class="github-edit" href="https://github.com/cloudflare/workers-docs/edit/master/content/{{.File.Path}}">
       <img src="/svg/github.svg" />
       <span>
         Edit on Github
       </span>
     </a>
+    {{end}}
     {{if .Params.tags }}
     <div id="tags">
       {{ range $index, $tag := .Params.tags }}
