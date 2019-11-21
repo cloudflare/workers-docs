@@ -9,9 +9,12 @@ All requests to the Cloudflare Workers REST API must
 
 - be sent over HTTPS
 - Send a JSON body (unless otherwise indicated)
-- contain valid identification headers ([Find your Cloudflare Auth info](/quickstart#finding-your-cloudflare-api-keys)).
-  - `X-Auth-Email` - the email address attached to your Cloudflare profile.
-  - `X-Auth-Key` - the Global API key attached to your Cloudflare profile.
+- contain valid identification headers ([Find your Cloudflare Auth info](/quickstart#authentication)).
+  - Using API Tokens:
+    - `Authorization` - provide an API token in standard `Bearer <token>` format.
+  - Using Email and Global API Key
+    - `X-Auth-Email` - the email address attached to your Cloudflare profile.
+    - `X-Auth-Key` - the Global API key attached to your Cloudflare profile.
 
 ## API Responses
 
