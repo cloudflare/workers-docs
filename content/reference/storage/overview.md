@@ -44,7 +44,6 @@ Your $5 Workers monthly base charge includes:
 - 1 million Worker KV writes per month
 - 1 million Worker KV deletes per month
 - 1 million Worker KV list operations per month
-- Unlimited Worker KV automatic expirations
 
 Additional KV operations are priced as follows:
 
@@ -54,3 +53,4 @@ Additional KV operations are priced as follows:
 - $5.00 per million additional Worker KV deletes
 - $5.00 per million additional Worker KV list operations
 
+Usage of all other features of Worker KV do not affect pricing.
