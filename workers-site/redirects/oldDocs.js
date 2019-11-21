@@ -89,4 +89,6 @@ export const oldDocsMap = new Map([
   ['/writing-workers/resource-limits', '/about/limits'],
   ['/writing-workers/storing-data', ''],
   ['/writing-workers/using-npm-modules', ''],
+
+  ['/archive/recipes/static-site', '/sites'],
 ])
