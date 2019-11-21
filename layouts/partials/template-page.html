@@ -76,8 +76,22 @@
           >Don't have Wrangler installed?
           <a href="/quickstart">Get started</a></span
         >
+      {{ $github_repo := replace .repository_url "https://github.com/" "https://api.github.com/repos/" }}
+       {{ $github_json := getJSON $github_repo }}
+       {{ $repo_name := $github_json.full_name}}
+       {{ $repo_date := $github_json.updated_at}}
+       <div class="github">
+        <a href="{{$github_repo}}">
+          <img src="/svg/github.svg" />
+          <div>
+            {{$repo_name}}
+          </div>
+        </a>
+        <div class="date">
+          Last Updated: {{  dateFormat "January 2, 2006" $repo_date }}
+        </div>
       </div>
-      {{end}}
+       {{end}}
     </div>
   </div>
 </figure>
