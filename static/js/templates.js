@@ -1,3 +1,14 @@
+let boilerplates, snippets, featured_boilerplates
+const grabTemplates =  () => {
+  // search the DOM for an element we tagged earlier with all the
+  // templates' JSON
+  const templates = JSON.parse(document.querySelector('#templates').innerText)
+  boilerplates = templates.filter(el => el.type === 'boilerplate')
+  snippets = templates.filter(el => el.type === 'snippet')
+  featured_boilerplates = templates.filter(
+    el => el.type === 'featured_boilerplate',
+  )
+}
 // Process templates JSON into lunr-supported JS objects
 const constructCorpus = () => {
   const toLunr = (item, type) => ({ type, ...item })
@@ -9,23 +20,42 @@ const constructCorpus = () => {
     ...Object.values(snippets).map(item => toLunr(item, 'snippets')),
   ]
 }
-const corpus = constructCorpus()
-let results = corpus
+let results, corpus
+window.addEventListener('DOMContentLoaded', async event => {
+  grabTemplates()
+  corpus = constructCorpus()
+  results = corpus
 
-// Construct the search index using lunr
-const idx = lunr(function() {
-  this.ref('id')
-  this.field('name')
-  this.field('description')
-  this.field('type')
-  this.field('tags')
+  document.querySelector('#search').addEventListener('input', evt => {
+    const value = evt.target.value
+    handleNewSearchValue(value)
+  })
+  // Set up select element using Choices library
+  const typeElem = document.querySelector('#type')
+  const type = new Choices(typeElem)
+  typeElem.addEventListener('change', searchFilters)
 
-  corpus.forEach(function(doc) {
-    this.add(doc)
-  }, this)
+  // Construct the search index using lunr
+  const idx = lunr(function() {
+    this.ref('id')
+    this.field('title')
+    this.field('description')
+    this.field('type')
+    this.field('tags')
+
+    corpus.forEach(function(doc) {
+      this.add(doc)
+    }, this)
+  })
+  window.idx = idx
+  // Handle ?q query param and set default search with it,
+  // if it exists
+  const url = new URL(window.location)
+  const initialSearch = url.searchParams.get('q')
+  if (initialSearch) {
+    handleNewSearchValue(initialSearch)
+  }
 })
-
-window.idx = idx
 
 // Search based on a query, updating `results`
 const search = query => {
@@ -101,26 +131,8 @@ const handleNewSearchValue = _.throttle(value => {
   search(value)
 }, 500)
 
-document.querySelector('#search').addEventListener('input', evt => {
-  const value = evt.target.value
-  handleNewSearchValue(value)
-})
-
 // Event handler when the #type select changes
 const searchFilters = evt => {
   const value = evt.detail.value
   search(value === 'All' ? null : value)
-}
-
-// Set up select element using Choices library
-const typeElem = document.querySelector('#type')
-const type = new Choices(typeElem)
-typeElem.addEventListener('change', searchFilters)
-
-// Handle ?q query param and set default search with it,
-// if it exists
-const url = new URL(window.location)
-const initialSearch = url.searchParams.get('q')
-if (initialSearch) {
-  handleNewSearchValue(initialSearch)
 }

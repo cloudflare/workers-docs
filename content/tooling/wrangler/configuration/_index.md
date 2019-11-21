@@ -24,15 +24,29 @@ There are two types of configuration that `wrangler` uses: global user and per p
   
 #### Using environment variables
 
-  You can also configure your global user with environment variables. This is the preferred method for using Wrangler in CI:
+  You can also configure your global user with environment variables. This is the preferred method for using Wrangler in CI.
+
+  You can deploy with authentication tokens (recommended):
 
   ```bash
   # e.g.
-  CF_API_KEY=superlongapikey CF_EMAIL=testuser@example.com wrangler publish
+
+  CF_API_TOKEN=superlongapitoken wrangler publish
   # where
-  # $CF_API_KEY -> your Cloudflare API key
-  # $CF_EMAIL -> your Cloudflare account email
+  # $CF_API_TOKEN -> a Cloudflare API token
   ```
+
+  Or you can deploy with your email and your global API key:
+
+  ```bash
+  # e.g.
+  CF_EMAIL=testuser@example.com CF_API_KEY=superlongapikey wrangler publish
+  # where
+  # $CF_EMAIL -> your Cloudflare account email
+  # $CF_API_KEY -> your Cloudflare API key
+  ```
+  Note that providing authentication credentials through environment variables will override whatever credentials you configured 
+  if you ran `wrangler config`.
 
 ### Per Project
 
@@ -73,6 +87,6 @@ There are two types of configuration that `wrangler` uses: global user and per p
 
       Note: Creating your KV Namespaces should be handled using Wrangler's [KV Commands](/tooling/wrangler/kv_commands).
 
-  #### Environments
+#### Environments
 
   Additionally, you can configure Wrangler to publish to multiple environments. This means that your same codebase can be deployed to multiple places on your [workers.dev](https://workers.dev) subdomain, across multiple accounts, zones, and routes. Read more [here](/tooling/wrangler/configuration/environments).

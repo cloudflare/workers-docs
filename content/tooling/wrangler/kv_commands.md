@@ -304,7 +304,7 @@ The schema below is the full schema for key-value entries uploaded via the bulk 
 | **Name**                       | **Description**                                              | Optional |
 | ------------------------------ | ------------------------------------------------------------ | -------- |
 | `key`<br />(String)            | A key's name. The name may be at most 512 bytes. All printable, non-whitespace characters are valid. | no       |
-| `value`<br />(String)          | A UTF-8 encoded string to be stored, up to 2 MB in length.   | no       |
+| `value`<br />(String)          | A UTF-8 encoded string to be stored, up to 10 MB in length.   | no       |
 | `expiration`<br />(Number)     | The time, measured in number of seconds since the UNIX epoch, at which the key should expire. | yes      |
 | `expiration_ttl`<br />(Number) | The number of seconds for which the key should be visible before it expires. At least 60. | yes      |
 | `base64`<br />(Boolean)        | Whether or not the server should base64 decode the value before storing it. Useful for writing values that wouldn't otherwise be valid JSON strings, such as images. Defaults to `false` | yes      |

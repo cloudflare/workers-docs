@@ -58,8 +58,8 @@ title: Cloudflare Workers Documentation
     <p>Global variables immediately available in your code</p>
   </div>
   <div>
-    <a href="/reference/workers-concepts">Concepts</a>
-    <p>The need to know while writing Workers scripts.</p>
+    <a href="/about">About</a>
+    <p>Learn about the Workers platform.</p>
   </div>
   <div>
     <a href="/tooling">Tooling</a>

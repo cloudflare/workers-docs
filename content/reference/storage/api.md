@@ -5,7 +5,7 @@ weight: 50
 
 The Cloudflare API is the best way to write data into Workers KV.
 
-Read about [writing data]({{< ref "writing-data.md" >}}) for an introduction to our API.
+Read about [writing data](/reference/storage/writing-data/) for an introduction to our API.
 
 For full documentation of all Workers KV API methods, see the [Cloudflare API documentation](https://api.cloudflare.com/#workers-kv-namespace-properties).
 
@@ -98,7 +98,7 @@ Change the user-facing name of a Namespace. Must be unique within your account.
 
 ### Keys and Values
 
-Your data is stored as Key-Value pairs. Each key can be up to 512 bytes. Values can, by default, be up to 2 MB.
+Your data is stored as Key-Value pairs. Each key can be up to 512 bytes. Values can, by default, be up to 10 MB.
 
 Keys can be composed of any printable character, but given their use in URLs we recommend avoiding the question mark (`?`) and hash (`#`) literals.
 
@@ -235,13 +235,29 @@ The type is automatically inferred from value, and can be any of:
 - ReadableStream
 - ArrayBuffer
 
-If you want the keys you write to be automatically deleted at some time in the future, see the page on [expiring keys]({{<ref "expiring-keys.md" >}}).
+If you want the keys you write to be automatically deleted at some time in the future, see the page on [expiring keys](/reference/storage/expiring-keys/).
 
 #### Delete Value
 
 `NAMESPACE.delete(key)`
 
 As with all updates, deletes can take up to ten seconds to propagate globally.
+
+#### List Keys
+
+`NAMESPACE.list({ [prefix], [limit], [cursor] })`
+
+Like with the `get` method, the `list` method returns a promise you can `await` to get the value. The promise resolves to an object that looks like this:
+
+```
+{
+  keys: [{ name: "foo", expiration: 1234}],
+  list_complete: false,
+  cursor: "6Ck1la0VxJ0djhidm1MdX2FyD"
+}
+```
+
+For more information about listing keys, and pagination using `cursor` and `list_complete`, see the page [listing keys](/reference/storage/listing-keys/).
 
 <style>
 h4 !important {

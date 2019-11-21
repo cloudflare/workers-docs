@@ -3,4 +3,4 @@ title: 'Read POST Data'
 hidden: true
 ---
 
-{{< snippet "post_data" >}}
+{{< template-page "post_data" >}}

@@ -3,4 +3,4 @@ title: 'Auth with headers'
 hidden: true
 ---
 
-{{< snippet "auth_with_headers" >}}
+{{< template-page "auth_with_headers" >}}
