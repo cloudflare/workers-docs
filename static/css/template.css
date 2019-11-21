@@ -252,6 +252,9 @@ figure.template-page {
   margin-top: auto;
   padding: 0 6px 0 6px;
 }
+[class*='grid-'] .col-4.links {
+  max-width: min-content;
+}
 .demo a {
   border: 1px solid #eaebeb;
   box-sizing: border-box;
@@ -282,11 +285,15 @@ figure.template-page {
   display: flex;
   align-content: center;
 }
-.col-4 > .github a span {
+.col-4 > .github a div {
   padding-left: 0.5em;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .col-4 > .github .date {
   font-size: 12px;
   color: #62676a;
   align-self: flex-end;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
