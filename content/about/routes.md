@@ -13,7 +13,7 @@ All the logic for routing must be done in the script itself. For example, you ca
 
 Each script that runs must have a script name, so there is currently no way to run a script on `subdomain.workers.dev`.
 
-## Cloudflare Sites
+## Custom Zones
 
 For zones proxied on Cloudflare\*, route patterns decide what (if any) script is matched based on the URL of that request. Requests are routed through a Workers script when the URL matches a route pattern assigned to that script.
 
@@ -115,3 +115,7 @@ Here is the full set of rules governing route pattern validity:
 
   - `https://example.com/path/*` matches `https://example.com/path/readme.txt`
     but _not_ `https://example.com/path2`.
+
+- **Subdomains must have a DNS Record**
+
+    All subdomains must have a [DNS record](https://support.cloudflare.com/hc/en-us/articles/360019093151#h_60566325041543261564371) to be proxied on Cloudflare and compatible with Workers. For example if you have the route pattern `*.example.com` and no DNS records, any request to example.com will result in the error `ERR_NAME_NOT_RESOLVED`. 
