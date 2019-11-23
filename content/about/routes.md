@@ -84,22 +84,19 @@ Here is the full set of rules governing route pattern validity:
   https:// URLs. If you include http:// or https://, it will only match HTTP
   or HTTPS requests, respectively.
 
-  - `https://*.example.com/` matches `https://www.example.com/` but _not_
-    `http://www.example.com/`
+  - `https://*.example.com/` matches `https://www.example.com/` but _not_ `http://www.example.com/`
 
-  - `*.example.com/` matches both `https://www.example.com/` _and_
-    `http://www.example.com/`.
+  - `*.example.com/` matches both `https://www.example.com/` _and_ `http://www.example.com/`.
 
 - **Hostnames may optionally begin with `*`**
 
-      If a route pattern hostname begins with `*`, then it matches the host *and* all subhosts.
+   If a route pattern hostname begins with `*`, then it matches the host *and* all subhosts.
 
-      If a route pattern hostname begins with `*.`, then it matches *only* all subhosts.
+   If a route pattern hostname begins with `*.`, then it matches *only* all subhosts.
 
-      - `*example.com/` matches `https://example.com/` *and* `https://www.example.com/`
+   - `*example.com/` matches `https://example.com/` *and* `https://www.example.com/`
 
-      - `*.example.com/` matches `https://www.example.com/` but *not*
-      `https://example.com/`
+   - `*.example.com/` matches `https://www.example.com/` but *not* `https://example.com/`
 
 - **Paths may optionally end with `*`**
 
