@@ -92,13 +92,9 @@ Here is the full set of rules governing route pattern validity:
 
 - **Hostnames may optionally begin with `*`**
 
-      If a route pattern hostname begins with `*`, then it matches the host *and* all
+      If a route pattern hostname begins with `*`, then it matches the host *and* all subhosts.
 
-  subhosts.
-
-      If a route pattern hostname begins with `*.`, then it matches *only* all
-
-  subhosts.
+      If a route pattern hostname begins with `*.`, then it matches *only* all subhosts.
 
       - `*example.com/` matches `https://example.com/` *and* `https://www.example.com/`
 
