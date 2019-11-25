@@ -5,9 +5,25 @@ weight: 20
 
 The most performant way to read a KV value is directly from a Worker.
 
-The first step is to bind one of your Namespaces to your Worker. This will make that Namespace accessible from within the Worker at the variable name you specify:
+You must first [create a KV namespace](https://dash.cloudflare.com/?account=workers/kv/namespaces).
 
-![Namespaces Screenshot](/reference/media/resources-namespaces.png)
+---
+
+![Create a Namespace](/reference/media/create-namespace.png)
+
+---
+
+&nbsp;
+
+After you've created a namespace, you must bind it to your Worker. This will make that Namespace accessible from within the Worker at the variable name you specify.
+
+&nbsp;
+
+![Bind a Namespace](/reference/media/bind-namespace.png)
+
+---
+
+&nbsp;
 
 Once it is bound, reading a value is a single method call:
 
