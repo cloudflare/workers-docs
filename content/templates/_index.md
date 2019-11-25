@@ -11,15 +11,6 @@ weight: 2
     <label style="font-weight: normal; color: #666;">Search templates</label>
     <input id="search" placeholder="🔎 Search by template name or other details" style="padding: 10px; width: 100%"></input>
   </div>
-  <div style="flex: 1; margin-right: 16px;">
-    <label style="font-weight: normal; color: #666;">Type</label>
-    <select id="type" style="width: 100%">
-      <option>All</option>
-      <option>Boilerplates</option>
-      <option>Snippets</option>
-      <option value="featured_boilerplates">Featured</option>
-    </select>
-  </div>
 </div>
 
 <div id="empty" style="display: none; margin-top: 20px;">

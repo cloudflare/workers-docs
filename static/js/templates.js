@@ -26,14 +26,17 @@ window.addEventListener('DOMContentLoaded', async event => {
   corpus = constructCorpus()
   results = corpus
 
-  document.querySelector('#search').addEventListener('input', evt => {
-    const value = evt.target.value
-    handleNewSearchValue(value)
-  })
+  // *** TODO tracked in issue #534  *** 
   // Set up select element using Choices library
-  const typeElem = document.querySelector('#type')
-  const type = new Choices(typeElem)
-  typeElem.addEventListener('change', searchFilters)
+  // const typeElem = document.querySelector('#type')
+  // const type = new Choices(typeElem)
+  // typeElem.addEventListener('change', searchFilters)
+  // Event handler when the #type select changes
+  // const searchFilters = evt => {
+  //   const value = evt.detail.value
+  //   search(value === 'All' ? null : value)
+  // }
+
 
   // Construct the search index using lunr
   const idx = lunr(function() {
@@ -55,6 +58,10 @@ window.addEventListener('DOMContentLoaded', async event => {
   if (initialSearch) {
     handleNewSearchValue(initialSearch)
   }
+  document.querySelector('#search').addEventListener('input', evt => {
+    const value = evt.target.value
+    handleNewSearchValue(value)
+  })
 })
 
 // Search based on a query, updating `results`
@@ -131,8 +138,3 @@ const handleNewSearchValue = _.throttle(value => {
   search(value)
 }, 500)
 
-// Event handler when the #type select changes
-const searchFilters = evt => {
-  const value = evt.detail.value
-  search(value === 'All' ? null : value)
-}
