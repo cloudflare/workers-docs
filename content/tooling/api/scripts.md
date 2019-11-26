@@ -33,7 +33,7 @@ curl -X PUT "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed0
      -H "X-Auth-Email: user@example.com" \
      -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41" \
      -H "Content-Type: application/javascript" \
---data "addEventListener('fetch', event => { event.respondWith(fetch(event.request) }))"
+--data "addEventListener('fetch', event => { event.respondWith(fetch(event.request)) })"
 ```
 
 ##### Sample Response:
@@ -44,7 +44,7 @@ curl -X PUT "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed0
   "errors": [],
   "messages": [],
   "result": {
-    "script": "addEventListener('fetch', event => { event.respondWith(fetch(event.request) }))",
+    "script": "addEventListener('fetch', event => { event.respondWith(fetch(event.request)) })",
     "etag": "ea95132c15732412d22c1476fa83f27a",
     "size": 1024,
     "modified_on": "2017-01-01T00:00:00Z"
