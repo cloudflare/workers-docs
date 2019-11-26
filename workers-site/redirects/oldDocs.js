@@ -87,8 +87,6 @@ export const oldDocsMap = new Map([
     '/about/tips/debugging#4-go-to-origin-on-error',
   ],
   ['/writing-workers/resource-limits', '/about/limits'],
-  ['/writing-workers/storing-data', ''],
-  ['/writing-workers/using-npm-modules', ''],
 
   ['/archive/recipes/static-site', '/sites'],
 ])

@@ -44,7 +44,8 @@ export async function handleRequest(event) {
     } catch (e) {
       console.log(e, 'not found in KV')
     }
-    // strip trailing slashes since newDocsMaps won't include
+    // strip trailing slashes and /workers since newDocsMaps won't include
+    pathname = pathname.replace(/\/workers/, '')
     pathname = pathname.replace(/\/$/, '')
     if (!body || newDocsMap.has(pathname) || oldDocsMap.has(pathname)) {
       console.log('Handling redirect')
