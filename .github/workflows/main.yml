@@ -19,7 +19,11 @@ jobs:
     - name: Install deps
       run: npm install
     - name: Install Hugo
-      run: sudo snap install hugo
+      run: |
+        wget https://github.com/gohugoio/hugo/releases/download/v0.59.1/hugo_0.59.1_Linux-64bit.deb
+        sudo dpkg -i hugo_0.59.1_Linux-64bit.deb
+    - name: Check Hugo version
+      run: hugo version
     - name: Install Wrangler
       run: npm i @cloudflare/wrangler@1.5.0 -g
     - name: Install Workers script deps
