@@ -18,6 +18,8 @@ async function handleRequest(request) {
 }
 {{</highlight>}}
 
+You can also [list keys on the command line with Wrangler](https://developers.cloudflare.com/workers/tooling/wrangler/kv_commands/#kv-key) or [via the API](https://api.cloudflare.com/#workers-kv-namespace-list-a-namespace-s-keys).
+
 ## More detail
 
 The `list` method has this signature (in TypeScript):

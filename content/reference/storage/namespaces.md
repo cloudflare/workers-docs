@@ -11,7 +11,10 @@ key-value pair to be globally available. You can create up to a hundred
 
 ## Creating a namespace
 
-You can [create a KV namespace in the
+You can [create a KV namespace with
+Wrangler](/tooling/wrangler/kv_commands/#kv-namespace).
+
+You can also [create a KV namespace in the
 dashboard](https://dash.cloudflare.com/?account=workers/kv/namespaces):
 
 ---
@@ -28,7 +31,11 @@ After you've created a namespace, you must bind it to your Worker. This will
 make that namespace accessible from within the Worker via a variable name
 you specify.
 
-This can be done from within the editor:
+This will automatically happen on `wrangler publish` if you've [configured
+your namespace with
+Wrangler](https://developers.cloudflare.com/workers/tooling/wrangler/kv_commands/#concepts).
+
+This can also be done from within the editor:
 
 &nbsp;
 

@@ -15,16 +15,23 @@ The type is automatically inferred from value, and can be any of:
 - `ReadableStream`
 - `ArrayBuffer`
 
-You can also [write data via the
+You can also [write key-value pairs from the command line with
+Wrangler](https://developers.cloudflare.com/workers/tooling/wrangler/kv_commands/#kv-key).
+
+Finally, you can [write data via the
 API](https://api.cloudflare.com/#workers-kv-namespace-write-key-value-pair).
+
 Due to the eventually consistent nature of Workers KV, it's a common pattern
-to write data via the API, but read the data from within a worker.
+to write data via Wrangler or the API, but read the data from within a worker.
 
 ## Writing Data in Bulk
 
-You can [write more than one key-value pair at a time via the
-API](https://api.cloudflare.com/#workers-kv-namespace-write-multiple-key-value-pairs). We
-do not support this from within a worker at this time.
+You can [write more than one key-value pair at a time with
+wrangler](https://developers.cloudflare.com/workers/tooling/wrangler/kv_commands/#kv-bulk)
+or [via the
+API](https://api.cloudflare.com/#workers-kv-namespace-write-multiple-key-value-pairs).
+
+We do not support this from within a worker at this time.
 
 ## Expiring Keys
 
@@ -74,5 +81,7 @@ Worker:
 These assume that `secondsSinceEpoch` and `secondsFromNow` are variables
 defined elsewhere in your Worker code.
 
-You can also [write with an expiration via the
+You can also [write with an expiration on the command line via
+Wrangler](https://developers.cloudflare.com/workers/tooling/wrangler/kv_commands/#kv-key)
+or [via the
 API](https://api.cloudflare.com/#workers-kv-namespace-write-key-value-pair).

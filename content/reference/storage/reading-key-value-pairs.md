@@ -37,7 +37,10 @@ async function handleRequest(request) {
 }
 {{</highlight>}}
 
-You can also [read from the
+You can also [read key-value pairs from the command line with
+wrangler](https://developers.cloudflare.com/workers/tooling/wrangler/kv_commands/#kv-key).
+
+Finally, you can also [read from the
 API](https://api.cloudflare.com/#workers-kv-namespace-read-key-value-pair).
 
 ## Types
