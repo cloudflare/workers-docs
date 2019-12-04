@@ -11,7 +11,7 @@ The basic form of this method looks like this:
 
 The type is automatically inferred from value, and can be any of:
 
-- string
+- `string`
 - `ReadableStream`
 - `ArrayBuffer`
 
