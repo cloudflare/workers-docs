@@ -6,7 +6,7 @@ weight: 80
 You can use a list operation to see all of the keys that live in a given
 namespace. Here's a basic example:
 
-{{<highlight javascript>}}
+```js
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
@@ -16,7 +16,7 @@ async function handleRequest(request) {
 
   return new Response(value.keys)
 }
-{{</highlight>}}
+```
 
 You can also [list keys on the command line with Wrangler](https://developers.cloudflare.com/workers/tooling/wrangler/kv_commands/#kv-key) or [via the API](https://api.cloudflare.com/#workers-kv-namespace-list-a-namespace-s-keys).
 
@@ -37,13 +37,13 @@ All arguments are optional:
 The `.list` method returns a promise which resolves with an object that looks
 like this:
 
-{{<highlight json>}}
+```json
 {
   keys: [{ name: "foo", expiration: 1234}],
   list_complete: false,
   cursor: "6Ck1la0VxJ0djhidm1MdX2FyD"
 }
-{{</highlight>}}
+```
 
 The `keys` property will contain an array of objects describing each key.
 That object will have two keys of its own: a `name` of the key, and its
@@ -62,7 +62,7 @@ example, say you've structured your keys with a user, a user id, and then
 some key names, separated by colons. You could get the keys for user number
 one by doing this:
 
-{{<highlight javascript>}}
+```js
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
@@ -72,7 +72,7 @@ async function handleRequest(request) {
 
   return new Response(value.keys)
 }
-{{</highlight>}}
+```
 
 This will return all of the keys that start with `"user:1:"`.
 
@@ -86,10 +86,10 @@ If you have more keys than the `limit` value, only that many will be returned. A
 `list_complete` key will be set to `false`, and a `cursor` will also be returned. In this case,
 you can call `list` again with the `cursor` value to get the next set of keys:
 
-{{<highlight javascript>}}
+```js
 const value = await NAMESPACE.list()
 
 const cursor = value.cursor
 
 const next_value = await NAMESPACE.list({"cursor": cursor})
-{{</highlight>}}
+```

@@ -22,7 +22,7 @@ We'll talk more about these types below.
 
 Here's an example of reading a key from within a Worker:
 
-{{<highlight javascript>}}
+```js
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
@@ -35,7 +35,7 @@ async function handleRequest(request) {
 
   return new Response(value)
 }
-{{</highlight>}}
+```
 
 You can also [read key-value pairs from the command line with
 wrangler](https://developers.cloudflare.com/workers/tooling/wrangler/kv_commands/#kv-key).
