@@ -36,11 +36,11 @@ Script names must:
 ##### Sample Request:
 
 ```sh
-curl -X PUT "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed06f989cc3dac/workers/scripts/example-script" \
-     -H "X-Auth-Email: user@example.com" \
-     -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41" \
+curl -X PUT "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/scripts/$SCRIPT_NAME" \
+     -H "X-Auth-Email: $CF_EMAIL" \
+     -H "X-Auth-Key: $CF_GLOBAL_KEY" \
      -H "Content-Type: application/javascript" \
---data "addEventListener('fetch', event => { event.respondWith(fetch(event.request) }))"
+     --data "addEventListener('fetch', event => { event.respondWith(fetch(event.request) }))"
 ```
 
 ##### Sample Response:
@@ -67,9 +67,9 @@ If you are including Resources in your Worker, you need to specify their Binding
 #### The basic multipart form (Script only)
 
 ```sh
-curl -X PUT "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed06f989cc3dac/workers/scripts/example-script" \
-     -H "X-Auth-Email: user@example.com" \
-     -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41" \
+curl -X PUT "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/scripts/$SCRIPT_NAME" \
+     -H "X-Auth-Email: $CF_EMAIL" \
+     -H "X-Auth-Key: $CF_GLOBAL_KEY" \
      -F "metadata=@metadata.json;type=application/json" \
      -F "script=@script.js;type=application/javascript"
 ```
@@ -124,9 +124,9 @@ The `name` value should correspond to the global variable you will use to access
 You will also need to add your Wasm module as a file part to your request, and name it the same as the `part` field in the binding. This will change the above request to:
 
 ```sh
-curl -X PUT "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed06f989cc3dac/workers/scripts/example-script" \
-     -H "X-Auth-Email: user@example.com" \
-     -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41" \
+curl -X PUT "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/scripts/$SCRIPT_NAME" \
+     -H "X-Auth-Email: $CF_EMAIL" \
+     -H "X-Auth-Key: $CF_GLOBAL_KEY" \
      -F "metadata=@metadata.json;type=application/json" \
      -F "script=@script.js;type=application/javascript" \
      -F "wasm=@module.wasm;type=application/wasm" # link your wasm module in place of module.wasm
@@ -242,9 +242,9 @@ error: {
 ##### Sample Request:
 
 ```sh
-curl -X GET "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed06f989cc3dac/workers/scripts" \
-     -H "X-Auth-Email: user@example.com" \
-     -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41"
+curl -X GET "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/scripts" \
+     -H "X-Auth-Email: $CF_EMAIL" \
+     -H "X-Auth-Key: $CF_GLOBAL_KEY"
 ```
 
 ##### Sample Response:
@@ -332,9 +332,9 @@ error: {
 ##### Sample Request:
 
 ```sh
-curl -X GET "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed06f989cc3dac/workers/scripts/example-script" \
-     -H "X-Auth-Email: user@example.com" \
-     -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41" \
+curl -X GET "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/scripts/$SCRIPT_NAME" \
+     -H "X-Auth-Email: $CF_EMAIL" \
+     -H "X-Auth-Key: $CF_GLOBAL_KEY" \
      -H "Accept: application/javascript"
 ```
 
@@ -414,9 +414,9 @@ error: {
 ##### Sample Request:
 
 ```sh
-curl -X DELETE "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed06f989cc3dac/workers/scripts/example-script" \
-     -H "X-Auth-Email: user@example.com" \
-     -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41"
+curl -X DELETE "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/scripts/$SCRIPT_NAME" \
+     -H "X-Auth-Email: $CF_EMAIL" \
+     -H "X-Auth-Key: $CF_GLOBAL_KEY"
 ```
 
 ##### Sample Response:

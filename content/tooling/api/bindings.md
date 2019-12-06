@@ -15,14 +15,14 @@ Resource bindings must be uploaded alongside your other Worker assets via the [u
 
 ## List Bindings
 
-`GET zones/:zone_identifier/workers/script/bindings`
+`GET accounts/:account_identifier/workers/script/:script_name/bindings`
 
 ##### Sample Request:
 
 ```sh
-curl -X GET "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8372d0c353/workers/script/bindings" \
-     -H "X-Auth-Email: user@example.com" \
-     -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41"
+curl -X GET "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/script/$SCRIPT_NAME/bindings" \
+     -H "X-Auth-Email: $CF_EMAIL" \
+     -H "X-Auth-Key: $CF_GLOBAL_KEY"
 ```
 
 ##### Sample Response:

@@ -26,9 +26,9 @@ Sample Object
 ##### Sample Request:
 
 ```sh
-curl -X POST "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8372d0c353/workers/routes" \
-     -H "X-Auth-Email: user@example.com" \
-     -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41" \
+curl -X POST "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes" \
+     -H "X-Auth-Email: $CF_EMAIL" \
+     -H "X-Auth-Key: $CF_GLOBAL_KEY" \
      -H "Content-Type: application/json" \
      --data '{"pattern":"example.net/*","script":"example-script"}'
 ```
@@ -150,9 +150,9 @@ error: {
 ##### Sample Request:
 
 ```sh
-curl -X GET "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8372d0c353/workers/routes" \
-     -H "X-Auth-Email: user@example.com" \
-     -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41"
+curl -X GET "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes" \
+     -H "X-Auth-Email: $CF_EMAIL" \
+     -H "X-Auth-Key: $CF_GLOBAL_KEY"
 ```
 
 ##### Sample Response:
@@ -225,9 +225,9 @@ error: {
 ##### Sample Request:
 
 ```sh
-curl -X GET "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8372d0c353/workers/routes/9a7806061c88ada191ed06f989cc3dac" \
-     -H "X-Auth-Email: user@example.com" \
-     -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41"
+curl -X GET "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes/$ROUTE_ID" \
+     -H "X-Auth-Email: $CF_EMAIL" \
+     -H "X-Auth-Key: $CF_GLOBAL_KEY"
 ```
 
 ##### Sample Response:
@@ -309,9 +309,9 @@ error: {
 ##### Sample Request:
 
 ```sh
-curl -X POST "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8372d0c353/workers/routes" \
-     -H "X-Auth-Email: user@example.com" \
-     -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41" \
+curl -X PUT "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes/$ROUTE_ID" \
+     -H "X-Auth-Email: $CF_EMAIL" \
+     -H "X-Auth-Key: $CF_GLOBAL_KEY" \
      -H "Content-Type: application/json" \
      --data '{"pattern":"example.net/*","script":"example-script"}'
 ```
@@ -434,9 +434,9 @@ error: {
 ##### Sample Request:
 
 ```sh
-curl -X DELETE "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8372d0c353/workers/routes/9a7806061c88ada191ed06f989cc3dac" \
-     -H "X-Auth-Email: user@example.com" \
-     -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41"
+curl -X DELETE "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes/$ROUTE_ID" \
+     -H "X-Auth-Email: $CF_EMAIL" \
+     -H "X-Auth-Key: $CF_GLOBAL_KEY"
 ```
 
 ##### Sample Response:
