@@ -51,4 +51,4 @@ For simple values it often makes sense to use the default `"text"` type which
 provides you with your value as a string. For convenience a `"json"` type is
 also specified which will convert a JSON value into an object before
 returning it to you. For large values you can request a `ReadableStream`, and
-for binary values an `ArrayBuffer`:
+for binary values an `ArrayBuffer`.
