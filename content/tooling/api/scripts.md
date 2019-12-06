@@ -136,10 +136,10 @@ curl -X PUT "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed0
 
 ##### URL Parameters
 
-- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](/quickstart#finding-your-cloudflare-api-keys)
+- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](/quickstart/#configure)
 - `script_name`: the name you want to assign to your script. Must follow the Workers [script naming conventions](#script-naming-conventions).
 
-##### Headers ([Find Your Auth Info](/quickstart#finding-your-cloudflare-api-keys))
+##### Headers ([Find Your Auth Info](/quickstart/#configure))
 
 - `X-Auth-Email`
 - `X-Auth-Key`
@@ -269,13 +269,13 @@ curl -X GET "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed0
 
 ##### URL Parameters
 
-- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](/quickstart#finding-your-cloudflare-api-keys)
+- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](/quickstart/#configure)
 
 ##### Query Parameters
 
 - `include_subdomain_availability`:
 
-##### Headers ([Find Your Auth Info](/quickstart#finding-your-cloudflare-api-keys))
+##### Headers ([Find Your Auth Info](/quickstart/#configure))
 
 - `X-Auth-Email`
 - `X-Auth-Key`
@@ -348,10 +348,10 @@ addEventListener('fetch', event => { event.respondWith(fetch(event.request) }))
 
 ##### URL Parameters
 
-- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](/quickstart#finding-your-cloudflare-api-keys)
+- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](/quickstart/#configure)
 - `script_name`: the name of the script to download
 
-##### Headers ([Find Your Auth Info](/quickstart#finding-your-cloudflare-api-keys))
+##### Headers ([Find Your Auth Info](/quickstart/#configure))
 
 - `X-Auth-Email`
 - `X-Auth-Key`
@@ -436,10 +436,10 @@ curl -X DELETE "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191
 
 ##### URL Parameters
 
-- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](/quickstart#finding-your-cloudflare-api-keys)
+- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](/quickstart/#configure)
 - `script_name`: the name of the script to be deleted.
 
-##### Headers ([Find Your Auth Info](/quickstart#finding-your-cloudflare-api-keys))
+##### Headers ([Find Your Auth Info](/quickstart/#configure))
 
 - `X-Auth-Email`
 - `X-Auth-Key`

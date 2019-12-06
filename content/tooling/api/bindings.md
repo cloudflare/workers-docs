@@ -45,10 +45,10 @@ curl -X GET "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a83
 
 ##### URL Parameters
 
-- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](/quickstart#finding-your-cloudflare-api-keys)
+- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](/quickstart/#configure)
 - `script_name`: the name of the script to be deleted.
 
-##### Headers ([Find Your Auth Info](/quickstart#finding-your-cloudflare-api-keys))
+##### Headers ([Find Your Auth Info](/quickstart/#configure))
 
 - `X-Auth-Email`
 - `X-Auth-Key`
