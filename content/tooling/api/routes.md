@@ -27,8 +27,7 @@ Sample Object
 
 ```sh
 curl -X POST "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes" \
-     -H "X-Auth-Email: $CF_EMAIL" \
-     -H "X-Auth-Key: $CF_GLOBAL_KEY" \
+     -H  "Authorization: Bearer $CF_API_TOKEN" \
      -H "Content-Type: application/json" \
      --data '{"pattern":"example.net/*","script":"example-script"}'
 ```
@@ -54,8 +53,7 @@ curl -X POST "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes
 
 ##### Headers ([Find Your Auth Info](/quickstart/#configure))
 
-- `X-Auth-Email`
-- `X-Auth-Key`
+- `Authorization`
 - `Content-type`: application/json
 
 ##### Payload
@@ -151,8 +149,7 @@ error: {
 
 ```sh
 curl -X GET "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes" \
-     -H "X-Auth-Email: $CF_EMAIL" \
-     -H "X-Auth-Key: $CF_GLOBAL_KEY"
+     -H  "Authorization: Bearer $CF_API_TOKEN"
 ```
 
 ##### Sample Response:
@@ -180,8 +177,7 @@ curl -X GET "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes"
 
 ##### Headers ([Find Your Auth Info](/quickstart/#configure))
 
-- `X-Auth-Email`
-- `X-Auth-Key`
+- `Authorization`
 
 ##### Payload
 
@@ -226,8 +222,7 @@ error: {
 
 ```sh
 curl -X GET "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes/$ROUTE_ID" \
-     -H "X-Auth-Email: $CF_EMAIL" \
-     -H "X-Auth-Key: $CF_GLOBAL_KEY"
+     -H  "Authorization: Bearer $CF_API_TOKEN"
 ```
 
 ##### Sample Response:
@@ -254,8 +249,7 @@ curl -X GET "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes/
 
 ##### Headers ([Find Your Auth Info](/quickstart/#configure))
 
-- `X-Auth-Email`
-- `X-Auth-Key`
+- `Authorization`
 
 ##### Payload
 
@@ -310,8 +304,7 @@ error: {
 
 ```sh
 curl -X PUT "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes/$ROUTE_ID" \
-     -H "X-Auth-Email: $CF_EMAIL" \
-     -H "X-Auth-Key: $CF_GLOBAL_KEY" \
+     -H  "Authorization: Bearer $CF_API_TOKEN" \
      -H "Content-Type: application/json" \
      --data '{"pattern":"example.net/*","script":"example-script"}'
 ```
@@ -338,8 +331,7 @@ curl -X PUT "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes/
 
 ##### Headers ([Find Your Auth Info](/quickstart/#configure))
 
-- `X-Auth-Email`
-- `X-Auth-Key`
+- `Authorization`
 - `Content-type`: application/json
 
 ##### Payload
@@ -435,8 +427,7 @@ error: {
 
 ```sh
 curl -X DELETE "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes/$ROUTE_ID" \
-     -H "X-Auth-Email: $CF_EMAIL" \
-     -H "X-Auth-Key: $CF_GLOBAL_KEY"
+     -H  "Authorization: Bearer $CF_API_TOKEN"
 ```
 
 ##### Sample Response:
@@ -461,8 +452,7 @@ curl -X DELETE "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/rout
 
 ##### Headers ([Find Your Auth Info](/quickstart/#configure))
 
-- `X-Auth-Email`
-- `X-Auth-Key`
+- `Authorization`
 
 ##### Payload (n/a)
 

@@ -37,8 +37,7 @@ Script names must:
 
 ```sh
 curl -X PUT "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/scripts/$SCRIPT_NAME" \
-     -H "X-Auth-Email: $CF_EMAIL" \
-     -H "X-Auth-Key: $CF_GLOBAL_KEY" \
+     -H  "Authorization: Bearer $CF_API_TOKEN" \
      -H "Content-Type: application/javascript" \
      --data "addEventListener('fetch', event => { event.respondWith(fetch(event.request) }))"
 ```
@@ -68,8 +67,7 @@ If you are including Resources in your Worker, you need to specify their Binding
 
 ```sh
 curl -X PUT "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/scripts/$SCRIPT_NAME" \
-     -H "X-Auth-Email: $CF_EMAIL" \
-     -H "X-Auth-Key: $CF_GLOBAL_KEY" \
+     -H  "Authorization: Bearer $CF_API_TOKEN" \
      -F "metadata=@metadata.json;type=application/json" \
      -F "script=@script.js;type=application/javascript"
 ```
@@ -125,8 +123,7 @@ You will also need to add your Wasm module as a file part to your request, and n
 
 ```sh
 curl -X PUT "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/scripts/$SCRIPT_NAME" \
-     -H "X-Auth-Email: $CF_EMAIL" \
-     -H "X-Auth-Key: $CF_GLOBAL_KEY" \
+     -H  "Authorization: Bearer $CF_API_TOKEN" \
      -F "metadata=@metadata.json;type=application/json" \
      -F "script=@script.js;type=application/javascript" \
      -F "wasm=@module.wasm;type=application/wasm" # link your wasm module in place of module.wasm
@@ -141,8 +138,7 @@ curl -X PUT "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/worker
 
 ##### Headers ([Find Your Auth Info](/quickstart/#configure))
 
-- `X-Auth-Email`
-- `X-Auth-Key`
+- `Authorization`
 - `Content-Type` application/javascript
 - `If-None-Match` [Optional] a [Script Object](#object-specification) etag
 
@@ -243,8 +239,7 @@ error: {
 
 ```sh
 curl -X GET "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/scripts" \
-     -H "X-Auth-Email: $CF_EMAIL" \
-     -H "X-Auth-Key: $CF_GLOBAL_KEY"
+     -H  "Authorization: Bearer $CF_API_TOKEN"
 ```
 
 ##### Sample Response:
@@ -277,8 +272,7 @@ curl -X GET "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/worker
 
 ##### Headers ([Find Your Auth Info](/quickstart/#configure))
 
-- `X-Auth-Email`
-- `X-Auth-Key`
+- `Authorization`
 
 ##### Payload n/a
 
@@ -333,8 +327,7 @@ error: {
 
 ```sh
 curl -X GET "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/scripts/$SCRIPT_NAME" \
-     -H "X-Auth-Email: $CF_EMAIL" \
-     -H "X-Auth-Key: $CF_GLOBAL_KEY" \
+     -H  "Authorization: Bearer $CF_API_TOKEN" \
      -H "Accept: application/javascript"
 ```
 
@@ -353,8 +346,7 @@ addEventListener('fetch', event => { event.respondWith(fetch(event.request) }))
 
 ##### Headers ([Find Your Auth Info](/quickstart/#configure))
 
-- `X-Auth-Email`
-- `X-Auth-Key`
+- `Authorization`
 - `Accept` application/javascript
 
 ##### Payload n/a
@@ -415,8 +407,7 @@ error: {
 
 ```sh
 curl -X DELETE "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/scripts/$SCRIPT_NAME" \
-     -H "X-Auth-Email: $CF_EMAIL" \
-     -H "X-Auth-Key: $CF_GLOBAL_KEY"
+     -H  "Authorization: Bearer $CF_API_TOKEN"
 ```
 
 ##### Sample Response:
@@ -441,8 +432,7 @@ curl -X DELETE "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/wor
 
 ##### Headers ([Find Your Auth Info](/quickstart/#configure))
 
-- `X-Auth-Email`
-- `X-Auth-Key`
+- `Authorization`
 
 ##### Payload n/a
 

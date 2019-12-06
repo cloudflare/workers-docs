@@ -21,8 +21,7 @@ Resource bindings must be uploaded alongside your other Worker assets via the [u
 
 ```sh
 curl -X GET "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/script/$SCRIPT_NAME/bindings" \
-     -H "X-Auth-Email: $CF_EMAIL" \
-     -H "X-Auth-Key: $CF_GLOBAL_KEY"
+     -H  "Authorization: Bearer $CF_API_TOKEN"
 ```
 
 ##### Sample Response:
@@ -50,8 +49,7 @@ curl -X GET "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/worker
 
 ##### Headers ([Find Your Auth Info](/quickstart/#configure))
 
-- `X-Auth-Email`
-- `X-Auth-Key`
+- `Authorization`
 
 ##### Payload n/a
 
