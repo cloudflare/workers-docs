@@ -52,6 +52,79 @@ curl -X PUT "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed0
 }
 ```
 
+
+### Upload or Update a Workers Script with Resource Bindings
+
+If you are including Resources in your Worker, you need to specify their Bindings as a part of your upload. This API uses a multipart form, rather than straight bytes, to send its data:
+
+#### The basic multipart form (Script only)
+
+```sh
+curl -X PUT "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed06f989cc3dac/workers/scripts/example-script" \
+     -H "X-Auth-Email: user@example.com" \
+     -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41" \
+	   -F "metadata=@metadata.json;type=application/json" \
+	   -F "script=@script.js;type=application/javascript"
+```
+
+Where the file `metadata.json` looks like this:
+
+```json
+{
+  "body_part": "script",
+  "bindings": []
+}
+```
+
+#### Add a KV Namespace Binding
+
+If your Worker uses a [KV namespace](/reference/storage/overview/), you will want to add a `kv_namespace` binding object to the `”bindings”` array in metadata.json:
+
+```json
+{
+  "body_part": "script",
+  "bindings": [
+    {
+      "type": "kv_namespace",
+      "name": "MY_NAMESPACE",
+      "namespace_id": ":namespace_id"
+    }
+  ]
+}
+```
+
+The `namespace_id` value should correspond to the identifier associated with the namespace you want to use. The `name` value should correspond to the global variable you will use to access your namespace from your Worker code.
+
+#### Add a Wasm Module
+
+If your Worker uses a [Wasm Module](/templates/boilerplates/rustwasm/), you will want to add a `wasm_module` binding object to the `”bindings”` array in metadata.json:
+
+```json
+{
+  "body_part": "script",
+  "bindings": [
+    {
+      "type": "wasm_module",
+      "name": "WASM",
+      "part": "wasm"
+    }
+  ]
+}
+```
+
+The `name` value should correspond to the global variable you will use to access your namespace from your Worker code.
+
+You will also need to add your wasm module as a file part to your request, and name it the same as the `part` field in the binding. This will change the above request to:
+
+```sh
+curl -X PUT "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed06f989cc3dac/workers/scripts/example-script" \
+     -H "X-Auth-Email: user@example.com" \
+     -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41" \
+     -F "metadata=@metadata.json;type=application/json" \
+     -F "script=@script.js;type=application/javascript" \
+     -F "wasm=@module.wasm;type=application/wasm" # link your wasm module in place of module.wasm
+```
+
 #### Request
 
 ##### URL Parameters
@@ -66,9 +139,13 @@ curl -X PUT "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed0
 - `Content-Type` application/javascript
 - `If-None-Match` [Optional] a [Script Object](#object-specification) etag
 
-##### Payload (text blob)
+##### Payload (script only)
 
 A valid JavaScript blob
+
+##### Payload (script and bindings)
+
+A multipart form containing a valid javascript file, a metatdata.json file specifying any bindings, and any wasm module files.
 
 #### Response
 
