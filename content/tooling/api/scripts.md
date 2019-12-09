@@ -39,7 +39,7 @@ Script names must:
 curl -X PUT "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/scripts/$SCRIPT_NAME" \
      -H  "Authorization: Bearer $CF_API_TOKEN" \
      -H "Content-Type: application/javascript" \
-     --data "addEventListener('fetch', event => { event.respondWith(fetch(event.request) }))"
+     --data "addEventListener('fetch', event => { event.respondWith(fetch(event.request)) })"
 ```
 
 ##### Sample Response:
@@ -50,7 +50,7 @@ curl -X PUT "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/worker
   "errors": [],
   "messages": [],
   "result": {
-    "script": "addEventListener('fetch', event => { event.respondWith(fetch(event.request) }))",
+    "script": "addEventListener('fetch', event => { event.respondWith(fetch(event.request)) })",
     "etag": "ea95132c15732412d22c1476fa83f27a",
     "size": 1024,
     "modified_on": "2017-01-01T00:00:00Z"
