@@ -8,16 +8,20 @@ weight: 3
 - `name`: a javascript variable name for the binding
 - `type`: the class of resource the binding provides (currently wasm_module)
 
+
+## Upload Bindings
+
+Resource bindings must be uploaded alongside your other Worker assets via the [upload scripts endpoint](/tooling/api/scripts/#upload-or-update-a-workers-script-with-resource-bindings).
+
 ## List Bindings
 
-`GET zones/:zone_identifier/workers/script/bindings`
+`GET accounts/:account_identifier/workers/script/:script_name/bindings`
 
 ##### Sample Request:
 
 ```sh
-curl -X GET "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8372d0c353/workers/script/bindings" \
-     -H "X-Auth-Email: user@example.com" \
-     -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41"
+curl -X GET "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/script/$SCRIPT_NAME/bindings" \
+     -H "Authorization: Bearer $CF_API_TOKEN"
 ```
 
 ##### Sample Response:
@@ -40,13 +44,14 @@ curl -X GET "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a83
 
 ##### URL Parameters
 
-- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](/quickstart#finding-your-cloudflare-api-keys)
+- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](/quickstart/#configure)
 - `script_name`: the name of the script to be deleted.
 
-##### Headers ([Find Your Auth Info](/quickstart#finding-your-cloudflare-api-keys))
+##### Headers
 
-- `X-Auth-Email`
-- `X-Auth-Key`
+[Find Your Auth Info](/quickstart/#configure)
+
+- `Authorization`
 
 ##### Payload n/a
 

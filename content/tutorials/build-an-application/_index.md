@@ -23,7 +23,7 @@ To publish your Worker to Cloudflare, and configure it with a Slack channel, you
 
 If you don't have those things quite yet, don't worry. We'll walk through each of them and make sure we're ready to go, before you start creating your application.
 
-You'll need to get your Cloudflare API keys to deploy code to Cloudflare Workers: see ["Finding your Cloudflare API keys"](/quickstart#finding-your-cloudflare-api-keys) for a brief guide on how to find them.
+You'll need to get your Cloudflare API keys to deploy code to Cloudflare Workers: see ["Finding your Cloudflare API keys"](/quickstart/#configure) for a brief guide on how to find them.
 
 ### Configure a Slack application
 
