@@ -63,8 +63,8 @@ If you are including Resources in your Worker, you need to specify their Binding
 curl -X PUT "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed06f989cc3dac/workers/scripts/example-script" \
      -H "X-Auth-Email: user@example.com" \
      -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41" \
-	   -F "metadata=@metadata.json;type=application/json" \
-	   -F "script=@script.js;type=application/javascript"
+     -F "metadata=@metadata.json;type=application/json" \
+     -F "script=@script.js;type=application/javascript"
 ```
 
 Where the file `metadata.json` looks like this:
@@ -78,7 +78,7 @@ Where the file `metadata.json` looks like this:
 
 #### Add a KV Namespace Binding
 
-If your Worker uses a [KV namespace](/reference/storage/overview/), you will want to add a `kv_namespace` binding object to the `"bindings"` array in metadata.json:
+If your Worker uses a [KV namespace](/reference/storage/overview/), you will want to add a `kv_namespace` binding object to the `"bindings"` array in `metadata.json`:
 
 ```json
 {
@@ -145,7 +145,7 @@ A valid JavaScript blob
 
 ##### Payload (script and bindings)
 
-A multipart form containing a valid javascript file, a metatdata.json file specifying any bindings, and any wasm module files.
+A multipart form containing a valid JavaScript file, a `metadata.json` file specifying any bindings, and any Wasm module files.
 
 #### Response
 
