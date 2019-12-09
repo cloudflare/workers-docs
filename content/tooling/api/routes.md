@@ -26,9 +26,8 @@ Sample Object
 ##### Sample Request:
 
 ```sh
-curl -X POST "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8372d0c353/workers/routes" \
-     -H "X-Auth-Email: user@example.com" \
-     -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41" \
+curl -X POST "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes" \
+     -H "Authorization: Bearer $CF_API_TOKEN" \
      -H "Content-Type: application/json" \
      --data '{"pattern":"example.net/*","script":"example-script"}'
 ```
@@ -50,12 +49,13 @@ curl -X POST "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8
 
 ##### URL Parameters
 
-- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart#finding-your-cloudflare-api-keys)
+- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart/#configure)
 
-##### Headers ([Find Your Auth Info](/quickstart#finding-your-cloudflare-api-keys))
+##### Headers
 
-- `X-Auth-Email`
-- `X-Auth-Key`
+[Find Your Auth Info](/quickstart/#configure)
+
+- `Authorization`
 - `Content-type`: application/json
 
 ##### Payload
@@ -150,9 +150,8 @@ error: {
 ##### Sample Request:
 
 ```sh
-curl -X GET "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8372d0c353/workers/routes" \
-     -H "X-Auth-Email: user@example.com" \
-     -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41"
+curl -X GET "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes" \
+     -H "Authorization: Bearer $CF_API_TOKEN"
 ```
 
 ##### Sample Response:
@@ -176,12 +175,13 @@ curl -X GET "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a83
 
 ##### URL Parameters
 
-- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart#finding-your-cloudflare-api-keys)
+- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart/#configure)
 
-##### Headers ([Find Your Auth Info](/quickstart#finding-your-cloudflare-api-keys))
+##### Headers
 
-- `X-Auth-Email`
-- `X-Auth-Key`
+[Find Your Auth Info](/quickstart/#configure)
+
+- `Authorization`
 
 ##### Payload
 
@@ -225,9 +225,8 @@ error: {
 ##### Sample Request:
 
 ```sh
-curl -X GET "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8372d0c353/workers/routes/9a7806061c88ada191ed06f989cc3dac" \
-     -H "X-Auth-Email: user@example.com" \
-     -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41"
+curl -X GET "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes/$ROUTE_ID" \
+     -H "Authorization: Bearer $CF_API_TOKEN"
 ```
 
 ##### Sample Response:
@@ -249,13 +248,14 @@ curl -X GET "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a83
 
 ##### URL Parameters
 
-- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart#finding-your-cloudflare-api-keys)
+- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart/#configure)
 - `route_id`: the id of the [Route Object](#object-specification) being requested.
 
-##### Headers ([Find Your Auth Info](/quickstart#finding-your-cloudflare-api-keys))
+##### Headers
 
-- `X-Auth-Email`
-- `X-Auth-Key`
+[Find Your Auth Info](/quickstart/#configure)
+
+- `Authorization`
 
 ##### Payload
 
@@ -309,9 +309,8 @@ error: {
 ##### Sample Request:
 
 ```sh
-curl -X POST "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8372d0c353/workers/routes" \
-     -H "X-Auth-Email: user@example.com" \
-     -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41" \
+curl -X PUT "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes/$ROUTE_ID" \
+     -H "Authorization: Bearer $CF_API_TOKEN" \
      -H "Content-Type: application/json" \
      --data '{"pattern":"example.net/*","script":"example-script"}'
 ```
@@ -333,13 +332,14 @@ curl -X POST "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8
 
 ##### URL Parameters
 
-- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart#finding-your-cloudflare-api-keys)
+- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart/#configure)
 - `route_id`: the id of the [Route Object](#object-specification) being updated.
 
-##### Headers ([Find Your Auth Info](/quickstart#finding-your-cloudflare-api-keys))
+##### Headers
 
-- `X-Auth-Email`
-- `X-Auth-Key`
+[Find Your Auth Info](/quickstart/#configure)
+
+- `Authorization`
 - `Content-type`: application/json
 
 ##### Payload
@@ -434,9 +434,8 @@ error: {
 ##### Sample Request:
 
 ```sh
-curl -X DELETE "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31a8372d0c353/workers/routes/9a7806061c88ada191ed06f989cc3dac" \
-     -H "X-Auth-Email: user@example.com" \
-     -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41"
+curl -X DELETE "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes/$ROUTE_ID" \
+     -H "Authorization: Bearer $CF_API_TOKEN"
 ```
 
 ##### Sample Response:
@@ -456,13 +455,14 @@ curl -X DELETE "https://api.cloudflare.com/client/v4/zones/023e105f4ecef8ad9ca31
 
 ##### URL Parameters
 
-- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart#finding-your-cloudflare-api-keys)
+- `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart/#configure)
 - `route_id`: the id of the [Route Object](#object-specification) being updated.
 
-##### Headers ([Find Your Auth Info](/quickstart#finding-your-cloudflare-api-keys))
+##### Headers
 
-- `X-Auth-Email`
-- `X-Auth-Key`
+[Find Your Auth Info](/quickstart/#configure)
+
+- `Authorization`
 
 ##### Payload (n/a)
 

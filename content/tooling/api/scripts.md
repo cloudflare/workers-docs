@@ -36,11 +36,10 @@ Script names must:
 ##### Sample Request:
 
 ```sh
-curl -X PUT "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed06f989cc3dac/workers/scripts/example-script" \
-     -H "X-Auth-Email: user@example.com" \
-     -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41" \
+curl -X PUT "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/scripts/$SCRIPT_NAME" \
+     -H  "Authorization: Bearer $CF_API_TOKEN" \
      -H "Content-Type: application/javascript" \
---data "addEventListener('fetch', event => { event.respondWith(fetch(event.request) }))"
+     --data "addEventListener('fetch', event => { event.respondWith(fetch(event.request) }))"
 ```
 
 ##### Sample Response:
@@ -67,9 +66,8 @@ If you are including Resources in your Worker, you need to specify their Binding
 #### The basic multipart form (Script only)
 
 ```sh
-curl -X PUT "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed06f989cc3dac/workers/scripts/example-script" \
-     -H "X-Auth-Email: user@example.com" \
-     -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41" \
+curl -X PUT "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/scripts/$SCRIPT_NAME" \
+     -H  "Authorization: Bearer $CF_API_TOKEN" \
      -F "metadata=@metadata.json;type=application/json" \
      -F "script=@script.js;type=application/javascript"
 ```
@@ -124,9 +122,8 @@ The `name` value should correspond to the global variable you will use to access
 You will also need to add your Wasm module as a file part to your request, and name it the same as the `part` field in the binding. This will change the above request to:
 
 ```sh
-curl -X PUT "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed06f989cc3dac/workers/scripts/example-script" \
-     -H "X-Auth-Email: user@example.com" \
-     -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41" \
+curl -X PUT "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/scripts/$SCRIPT_NAME" \
+     -H  "Authorization: Bearer $CF_API_TOKEN" \
      -F "metadata=@metadata.json;type=application/json" \
      -F "script=@script.js;type=application/javascript" \
      -F "wasm=@module.wasm;type=application/wasm" # link your wasm module in place of module.wasm
@@ -136,13 +133,14 @@ curl -X PUT "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed0
 
 ##### URL Parameters
 
-- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](/quickstart#finding-your-cloudflare-api-keys)
+- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](/quickstart/#configure)
 - `script_name`: the name you want to assign to your script. Must follow the Workers [script naming conventions](#script-naming-conventions).
 
-##### Headers ([Find Your Auth Info](/quickstart#finding-your-cloudflare-api-keys))
+##### Headers
 
-- `X-Auth-Email`
-- `X-Auth-Key`
+[Find Your Auth Info](/quickstart/#configure)
+
+- `Authorization`
 - `Content-Type` application/javascript
 - `If-None-Match` [Optional] a [Script Object](#object-specification) etag
 
@@ -242,9 +240,8 @@ error: {
 ##### Sample Request:
 
 ```sh
-curl -X GET "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed06f989cc3dac/workers/scripts" \
-     -H "X-Auth-Email: user@example.com" \
-     -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41"
+curl -X GET "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/scripts" \
+     -H "Authorization: Bearer $CF_API_TOKEN"
 ```
 
 ##### Sample Response:
@@ -269,16 +266,17 @@ curl -X GET "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed0
 
 ##### URL Parameters
 
-- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](/quickstart#finding-your-cloudflare-api-keys)
+- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](/quickstart/#configure)
 
 ##### Query Parameters
 
 - `include_subdomain_availability`:
 
-##### Headers ([Find Your Auth Info](/quickstart#finding-your-cloudflare-api-keys))
+##### Headers
 
-- `X-Auth-Email`
-- `X-Auth-Key`
+[Find Your Auth Info](/quickstart/#configure)
+
+- `Authorization`
 
 ##### Payload n/a
 
@@ -332,9 +330,8 @@ error: {
 ##### Sample Request:
 
 ```sh
-curl -X GET "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed06f989cc3dac/workers/scripts/example-script" \
-     -H "X-Auth-Email: user@example.com" \
-     -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41" \
+curl -X GET "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/scripts/$SCRIPT_NAME" \
+     -H "Authorization: Bearer $CF_API_TOKEN" \
      -H "Accept: application/javascript"
 ```
 
@@ -348,13 +345,14 @@ addEventListener('fetch', event => { event.respondWith(fetch(event.request) }))
 
 ##### URL Parameters
 
-- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](/quickstart#finding-your-cloudflare-api-keys)
+- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](/quickstart/#configure)
 - `script_name`: the name of the script to download
 
-##### Headers ([Find Your Auth Info](/quickstart#finding-your-cloudflare-api-keys))
+##### Headers
 
-- `X-Auth-Email`
-- `X-Auth-Key`
+[Find Your Auth Info](/quickstart/#configure)
+
+- `Authorization`
 - `Accept` application/javascript
 
 ##### Payload n/a
@@ -414,9 +412,8 @@ error: {
 ##### Sample Request:
 
 ```sh
-curl -X DELETE "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed06f989cc3dac/workers/scripts/example-script" \
-     -H "X-Auth-Email: user@example.com" \
-     -H "X-Auth-Key: c2547eb745079dac9320b638f5e225cf483cc5cfdda41"
+curl -X DELETE "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/scripts/$SCRIPT_NAME" \
+     -H "Authorization: Bearer $CF_API_TOKEN"
 ```
 
 ##### Sample Response:
@@ -436,13 +433,14 @@ curl -X DELETE "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191
 
 ##### URL Parameters
 
-- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](/quickstart#finding-your-cloudflare-api-keys)
+- `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](/quickstart/#configure)
 - `script_name`: the name of the script to be deleted.
 
-##### Headers ([Find Your Auth Info](/quickstart#finding-your-cloudflare-api-keys))
+##### Headers
 
-- `X-Auth-Email`
-- `X-Auth-Key`
+[Find Your Auth Info](/quickstart/#configure)
+
+- `Authorization`
 
 ##### Payload n/a
 
