@@ -7,7 +7,11 @@
     </button>
     {{ end }}
   </div>
-  {{ $page_url := .tutorial | .share_url }}
+  {{ $page_url := .tutorial }}
+  {{ if $page_url }}
+  {{ else }}
+  {{ $page_url := .share_url}}
+  {{ end }}
   {{ $template_page :=  .id | printf "./pages/%s" }}
   {{ $page_url := or $page_url $template_page}}
   <a href={{$page_url}}>
