@@ -3,6 +3,13 @@ title: Scripts
 weight: 2
 ---
 
+- [Object Specification](#object-specification)
+- [Upload or Update a Workers Script](#upload-or-update-a-workers-script)
+  * [With Resource Bindings](#with-resource-bindings)
+- [List all Scripts for an account](#list-all-scripts-for-an-account)
+- [Download a Script](#download-a-script)
+- [Delete a Script](#delete-a-script)
+
 ## Object Specification
 
 ### Script
@@ -53,7 +60,7 @@ curl -X PUT "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed0
 ```
 
 
-### Upload or Update a Workers Script with Resource Bindings
+### With Resource Bindings
 
 If you are including Resources in your Worker, you need to specify their Bindings as a part of your upload. This API uses a multipart form, rather than straight bytes, to send its data:
 

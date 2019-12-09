@@ -8,6 +8,11 @@ weight: 3
 - `name`: a javascript variable name for the binding
 - `type`: the class of resource the binding provides (currently wasm_module)
 
+
+## Upload Bindings
+
+Resource bindings must be uploaded alongside your other Worker assets via the [upload scripts endpoint](/tooling/api/scripts/#upload-or-update-a-workers-script-with-resource-bindings).
+
 ## List Bindings
 
 `GET zones/:zone_identifier/workers/script/bindings`
