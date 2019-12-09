@@ -21,7 +21,7 @@ Resource bindings must be uploaded alongside your other Worker assets via the [u
 
 ```sh
 curl -X GET "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/script/$SCRIPT_NAME/bindings" \
-     -H  "Authorization: Bearer $CF_API_TOKEN"
+     -H "Authorization: Bearer $CF_API_TOKEN"
 ```
 
 ##### Sample Response:

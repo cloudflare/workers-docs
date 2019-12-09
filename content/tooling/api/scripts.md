@@ -239,7 +239,7 @@ error: {
 
 ```sh
 curl -X GET "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/scripts" \
-     -H  "Authorization: Bearer $CF_API_TOKEN"
+     -H "Authorization: Bearer $CF_API_TOKEN"
 ```
 
 ##### Sample Response:
@@ -327,7 +327,7 @@ error: {
 
 ```sh
 curl -X GET "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/scripts/$SCRIPT_NAME" \
-     -H  "Authorization: Bearer $CF_API_TOKEN" \
+     -H "Authorization: Bearer $CF_API_TOKEN" \
      -H "Accept: application/javascript"
 ```
 
@@ -407,7 +407,7 @@ error: {
 
 ```sh
 curl -X DELETE "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/scripts/$SCRIPT_NAME" \
-     -H  "Authorization: Bearer $CF_API_TOKEN"
+     -H "Authorization: Bearer $CF_API_TOKEN"
 ```
 
 ##### Sample Response:

@@ -20,7 +20,7 @@ Once you have an API key and Account ID, the first step is to create a Namespace
 {{<highlight bash>}}
 curl "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/storage/kv/namespaces" \
   -X POST \
-  -H  "Authorization: Bearer $CF_API_TOKEN" \
+  -H "Authorization: Bearer $CF_API_TOKEN" \
   -H "Content-Type: application/json" \
   --data '{"title": "My First Namespace"}'
 {{</highlight>}}
@@ -31,7 +31,7 @@ that ID to write your first KV pair:
 {{<highlight bash>}}
 curl "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/storage/kv/namespaces/$NAMESPACE_ID/values/first-key" \
   -X PUT \
-  -H  "Authorization: Bearer $CF_API_TOKEN" \
+  -H "Authorization: Bearer $CF_API_TOKEN" \
   --data 'My first value!'
 {{</highlight>}}
 

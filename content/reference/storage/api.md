@@ -43,7 +43,7 @@ The title is used to help you identify this namespace and must be unique within 
 {{<highlight bash>}}
 curl "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/storage/kv/namespaces" \
   -X POST \
-  -H  "Authorization: Bearer $CF_API_TOKEN" \
+  -H "Authorization: Bearer $CF_API_TOKEN" \
   -H "Content-Type: application/json" \
   --data '{"title": "My First Namespace"}'
 {{</highlight>}}
@@ -156,7 +156,7 @@ that the value is decoded before being stored. Reads of the value will return th
 {{<highlight bash>}}
 curl "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/storage/kv/namespaces/$NAMESPACE_ID/bulk" \
   -X PUT \
-  -H  "Authorization: Bearer $CF_API_TOKEN" \
+  -H "Authorization: Bearer $CF_API_TOKEN" \
   -H "Content-Type: application/json" \
   --data '[{"key": "my-key", "value": "my-value"}, {"key": "my-other-key", "value": "aGVsbG8gd29ybGQ=", "base64": true}]'
 {{</highlight>}}
@@ -189,7 +189,7 @@ The bulk delete request body must be a JSON array of keys to delete.
 {{<highlight bash>}}
 curl "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/storage/kv/namespaces/$NAMESPACE_ID/bulk" \
   -X DELETE \
-  -H  "Authorization: Bearer $CF_API_TOKEN" \
+  -H "Authorization: Bearer $CF_API_TOKEN" \
   -H "Content-Type: application/json" \
   --data '["my-key", "my-other-key"]'
 {{</highlight>}}

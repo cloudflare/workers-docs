@@ -27,7 +27,7 @@ Sample Object
 
 ```sh
 curl -X POST "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes" \
-     -H  "Authorization: Bearer $CF_API_TOKEN" \
+     -H "Authorization: Bearer $CF_API_TOKEN" \
      -H "Content-Type: application/json" \
      --data '{"pattern":"example.net/*","script":"example-script"}'
 ```
@@ -149,7 +149,7 @@ error: {
 
 ```sh
 curl -X GET "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes" \
-     -H  "Authorization: Bearer $CF_API_TOKEN"
+     -H "Authorization: Bearer $CF_API_TOKEN"
 ```
 
 ##### Sample Response:
@@ -222,7 +222,7 @@ error: {
 
 ```sh
 curl -X GET "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes/$ROUTE_ID" \
-     -H  "Authorization: Bearer $CF_API_TOKEN"
+     -H "Authorization: Bearer $CF_API_TOKEN"
 ```
 
 ##### Sample Response:
@@ -304,7 +304,7 @@ error: {
 
 ```sh
 curl -X PUT "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes/$ROUTE_ID" \
-     -H  "Authorization: Bearer $CF_API_TOKEN" \
+     -H "Authorization: Bearer $CF_API_TOKEN" \
      -H "Content-Type: application/json" \
      --data '{"pattern":"example.net/*","script":"example-script"}'
 ```
@@ -427,7 +427,7 @@ error: {
 
 ```sh
 curl -X DELETE "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes/$ROUTE_ID" \
-     -H  "Authorization: Bearer $CF_API_TOKEN"
+     -H "Authorization: Bearer $CF_API_TOKEN"
 ```
 
 ##### Sample Response:
