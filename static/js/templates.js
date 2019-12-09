@@ -1,22 +1,18 @@
 let boilerplates, snippets, featured_boilerplates
-const grabTemplates =  () => {
+const grabTemplates = () => {
   // search the DOM for an element we tagged earlier with all the
   // templates' JSON
   const templates = JSON.parse(document.querySelector('#templates').innerText)
   boilerplates = templates.filter(el => el.type === 'boilerplate')
   snippets = templates.filter(el => el.type === 'snippet')
-  featured_boilerplates = templates.filter(
-    el => el.type === 'featured_boilerplate',
-  )
+  featured_boilerplates = templates.filter(el => el.type === 'featured_boilerplate')
 }
 // Process templates JSON into lunr-supported JS objects
 const constructCorpus = () => {
   const toLunr = (item, type) => ({ type, ...item })
   return [
     ...Object.values(boilerplates).map(item => toLunr(item, 'boilerplates')),
-    ...Object.values(featured_boilerplates).map(item =>
-      toLunr(item, 'featured_boilerplates'),
-    ),
+    ...Object.values(featured_boilerplates).map(item => toLunr(item, 'featured_boilerplates')),
     ...Object.values(snippets).map(item => toLunr(item, 'snippets')),
   ]
 }
@@ -59,8 +55,22 @@ window.addEventListener('DOMContentLoaded', async event => {
 
 // Search based on a query, updating `results`
 const search = query => {
+  // Get the rendered "choices" (the types in our type select)
+  // and map their text values into `types`
+  const types = [].slice
+    .call(document.querySelectorAll('.choices__item--choice'))
+    .map(el => el.getAttribute('data-value'))
+
   if (query) {
-    const opts = idx.search(`${query}*`).map(result => result.ref)
+    let searchQuery = query
+    // If the `types` array does not include the query (e.g. we are
+    // not searching by type), include an asterisk to our intended
+    // search logic (typing `graph` matches `graphql, etc)
+    if (!types.includes(query)) {
+      searchQuery += '*'
+    }
+
+    const opts = idx.search(searchQuery).map(result => result.ref)
     results = corpus.filter(item => opts.includes(item.id))
   } else {
     results = corpus
@@ -84,9 +94,7 @@ const processSearch = () => {
   const templates = document.querySelectorAll('.template-card')
   templates.forEach(
     elem =>
-      (elem.style = `display: ${
-        !results.find(result => result.id === elem.id) ? 'none' : ''
-      }`),
+      (elem.style = `display: ${!results.find(result => result.id === elem.id) ? 'none' : ''}`),
   )
   // Remove section headers that contain no results
   const sectionHeaders = document.querySelectorAll('#results>h2')
