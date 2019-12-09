@@ -78,7 +78,7 @@ Where the file `metadata.json` looks like this:
 
 #### Add a KV Namespace Binding
 
-If your Worker uses a [KV namespace](/reference/storage/overview/), you will want to add a `kv_namespace` binding object to the `”bindings”` array in metadata.json:
+If your Worker uses a [KV namespace](/reference/storage/overview/), you will want to add a `kv_namespace` binding object to the `"bindings"` array in metadata.json:
 
 ```json
 {
@@ -97,7 +97,7 @@ The `namespace_id` value should correspond to the identifier associated with the
 
 #### Add a Wasm Module
 
-If your Worker uses a [Wasm Module](/templates/boilerplates/rustwasm/), you will want to add a `wasm_module` binding object to the `”bindings”` array in metadata.json:
+If your Worker uses a [Wasm Module](/templates/boilerplates/rustwasm/), you will want to add a `wasm_module` binding object to the `"bindings"` array in metadata.json:
 
 ```json
 {
@@ -114,7 +114,7 @@ If your Worker uses a [Wasm Module](/templates/boilerplates/rustwasm/), you will
 
 The `name` value should correspond to the global variable you will use to access your namespace from your Worker code.
 
-You will also need to add your wasm module as a file part to your request, and name it the same as the `part` field in the binding. This will change the above request to:
+You will also need to add your Wasm module as a file part to your request, and name it the same as the `part` field in the binding. This will change the above request to:
 
 ```sh
 curl -X PUT "https://api.cloudflare.com/client/v4/accounts/9a7806061c88ada191ed06f989cc3dac/workers/scripts/example-script" \
