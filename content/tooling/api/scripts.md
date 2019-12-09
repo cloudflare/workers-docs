@@ -136,7 +136,9 @@ curl -X PUT "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/worker
 - `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](/quickstart/#configure)
 - `script_name`: the name you want to assign to your script. Must follow the Workers [script naming conventions](#script-naming-conventions).
 
-##### Headers ([Find Your Auth Info](/quickstart/#configure))
+##### Headers
+
+[Find Your Auth Info](/quickstart/#configure)
 
 - `Authorization`
 - `Content-Type` application/javascript
@@ -270,7 +272,9 @@ curl -X GET "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/worker
 
 - `include_subdomain_availability`:
 
-##### Headers ([Find Your Auth Info](/quickstart/#configure))
+##### Headers
+
+[Find Your Auth Info](/quickstart/#configure)
 
 - `Authorization`
 
@@ -344,7 +348,9 @@ addEventListener('fetch', event => { event.respondWith(fetch(event.request) }))
 - `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](/quickstart/#configure)
 - `script_name`: the name of the script to download
 
-##### Headers ([Find Your Auth Info](/quickstart/#configure))
+##### Headers
+
+[Find Your Auth Info](/quickstart/#configure)
 
 - `Authorization`
 - `Accept` application/javascript
@@ -430,7 +436,9 @@ curl -X DELETE "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/wor
 - `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](/quickstart/#configure)
 - `script_name`: the name of the script to be deleted.
 
-##### Headers ([Find Your Auth Info](/quickstart/#configure))
+##### Headers
+
+[Find Your Auth Info](/quickstart/#configure)
 
 - `Authorization`
 

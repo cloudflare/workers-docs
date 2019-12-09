@@ -51,7 +51,9 @@ curl -X POST "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes
 
 - `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart/#configure)
 
-##### Headers ([Find Your Auth Info](/quickstart/#configure))
+##### Headers
+
+[Find Your Auth Info](/quickstart/#configure)
 
 - `Authorization`
 - `Content-type`: application/json
@@ -175,7 +177,9 @@ curl -X GET "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes"
 
 - `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart/#configure)
 
-##### Headers ([Find Your Auth Info](/quickstart/#configure))
+##### Headers
+
+[Find Your Auth Info](/quickstart/#configure)
 
 - `Authorization`
 
@@ -247,7 +251,9 @@ curl -X GET "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes/
 - `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart/#configure)
 - `route_id`: the id of the [Route Object](#object-specification) being requested.
 
-##### Headers ([Find Your Auth Info](/quickstart/#configure))
+##### Headers
+
+[Find Your Auth Info](/quickstart/#configure)
 
 - `Authorization`
 
@@ -329,7 +335,9 @@ curl -X PUT "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes/
 - `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart/#configure)
 - `route_id`: the id of the [Route Object](#object-specification) being updated.
 
-##### Headers ([Find Your Auth Info](/quickstart/#configure))
+##### Headers
+
+[Find Your Auth Info](/quickstart/#configure)
 
 - `Authorization`
 - `Content-type`: application/json
@@ -450,7 +458,9 @@ curl -X DELETE "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/rout
 - `zone_id`: the identifier associated with the zone you are adding routes for. [Find your Cloudflare Zone ID](/quickstart/#configure)
 - `route_id`: the id of the [Route Object](#object-specification) being updated.
 
-##### Headers ([Find Your Auth Info](/quickstart/#configure))
+##### Headers
+
+[Find Your Auth Info](/quickstart/#configure)
 
 - `Authorization`
 

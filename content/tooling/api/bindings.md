@@ -47,7 +47,9 @@ curl -X GET "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/worker
 - `account_id`: the identifier associated with your Cloudflare account. [Find your Cloudflare Account ID](/quickstart/#configure)
 - `script_name`: the name of the script to be deleted.
 
-##### Headers ([Find Your Auth Info](/quickstart/#configure))
+##### Headers
+
+[Find Your Auth Info](/quickstart/#configure)
 
 - `Authorization`
 
