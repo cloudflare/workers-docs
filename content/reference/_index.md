@@ -18,9 +18,12 @@ weight: 7
 
 ### Workers KV
 
-- [Overview](/reference/storage/overview)
-- [Writing Data](/reference/storage/writing-data)
-- [Reading Data](/reference/storage/reading-data)
-- [API](/reference/storage/api)
-- [Expiring Keys](/reference/storage/expiring-keys)
-- [Limitations](/reference/storage/limitations)
+- [Overview](/reference/storage)
+- [Use cases](/reference/storage/use-cases)
+- [Limits](/reference/storage/limits)
+- [Pricing](/reference/storage/pricing)
+- [Namespaces](/reference/storage/namespaces)
+- [Reading key-value pairs](/reference/storage/reading-key-value-pairs)
+- [Writing key-value pairs](/reference/storage/writing-key-value-pairs)
+- [Deleting key-value pairs](/reference/storage/deleting-key-value-pairs)
+- [Listing keys](/reference/storage/listing-keys)
