@@ -1,6 +1,6 @@
 ---
 title: Serverless Plugin
-weight: 3
+weight: 4
 ---
 
 The [Serverless Framework](https://github.com/serverless/serverless) helps you develop and deploy serverless applications using [Cloudflare Workers](https://www.cloudflare.com/products/cloudflare-workers/). This CLI provides structure, automation, and best practices to allow you to focus on building sophisticated, event-driven, serverless architectures, comprised of functions and events.
