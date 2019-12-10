@@ -32,11 +32,19 @@ The Cache API's `caches.default` Cache object allows you to:
 
 - 50 total `put()`, `match()`, or `delete()` calls per-request, using the same quota as `fetch()`
 
-- 500 MBs total `put()` per-request
+- 5 GBs total `put()` per-request
 
-- up to 50MB for each `put()` with a valid `Content-Length` header
+- For Free, Pro, Business:
 
-- up to 500MB for a `put()` with `Transfer-Encoding: chunked`. Note that this blocks subsequent `put()`s until the transfer completes.
+  - up to 512MB for each `put()` with a valid `Content-Length` header
+
+  - up to 512MB for a `put()` with `Transfer-Encoding: chunked`. Note that this blocks subsequent `put()`s until the transfer completes.
+
+- For Enterprise:
+
+  - up to 5GBs for each `put()` with a valid `Content-Length` header
+
+  - up to 5GBs for a `put()` with `Transfer-Encoding: chunked`. Note that this blocks subsequent `put()`s until the transfer completes.
 
   Using the Cache API will _not_ set a `Cf-Cache-Status` header.
 
