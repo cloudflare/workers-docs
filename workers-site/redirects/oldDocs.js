@@ -58,9 +58,9 @@ export const oldDocsMap = new Map([
   ['/recipes/mobile-redirects', '/templates/snippets/conditional_response'],
   ['/recipes/post-requests', '/templates/snippets/post_data'],
   ['/recipes/pre-shared-keys', '/templates/snippets/auth_with_headers'],
-  ['/recipes/random-content-cookies', ''],
+  ['/recipes/random-content-cookies', '/templates/pages/ab_testing'],
   ['/recipes/return-403', '/templates/snippets/tls_version'],
-  ['/recipes/setting-a-cookie', '/templates/snippets/ab_testing'],
+  ['/recipes/setting-a-cookie', '/templates/pages/cookie_extract'],
   ['/recipes/signed-requests', '/templates/snippets/signed_request'],
   ['/recipes/static-site', '/templates/featured_boilerplates/cloud_storage'],
   ['/recipes/streaming-responses', ''],
@@ -89,5 +89,14 @@ export const oldDocsMap = new Map([
   ],
   ['/writing-workers/resource-limits', '/about/limits'],
 
+  // For archived docs that we want to maintain SEO of the old link
+  // and erase the archive article
   ['/archive/recipes/static-site', '/sites'],
+  ['/archive/recipes/a-b-testing', '/templates/pages/ab_testing'],
+  ['/archive/recipes/bulk-redirects', '/templates/pages/bulk_redirects'],
+  ['/archive/recipes/mobile-redirects', '/templates/pages/conditional_response'],
+  ['/archive/recipes/conditional-routing', '/templates/pages/conditional_response'],
+  ['/archive/recipes/cors-preflight-requests', '/templates/pages/cors_header_proxy'],
+  ['/archive/recipes/post-requests', '/templates/pages/post_json'],
+
 ])
