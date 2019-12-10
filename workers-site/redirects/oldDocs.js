@@ -6,8 +6,9 @@ export function isOldDoc(docPath) {
 export function hasDefinedRedirect(docPath) {
   return oldDocsMap.get(docPath) !== ''
 }
-// if mapped to an empty string '', then old that old doc will map to the Overview of the Workers Docs
-// (e.g. https://workers.cloudflare.com/docs)
+// if mapped to an empty string '', then old that old doc will map
+// either the archived path (e.g. archive/recipes ) 
+// if it exists or to the Overview of the Workers Docs (i.e. root)
 
 // Redirect a page in the old docs to a new article that has replaced it
 // e.g. ['/recipes', '/templates'], -> redirects requests to /recipes to /templates
@@ -18,12 +19,12 @@ export const oldDocsMap = new Map([
   ['/api/config-api-for-enterprise', '/tooling/api'],
   ['/api/resource-bindings', '/tooling/api/bindings'],
   ['/api/resource-bindings/kv-namespaces', '/reference/storage/api'],
-  ['/api/resource-bindings/webassembly-modules', ''],
-  ['/api/route-matching', ''],
+  ['/api/resource-bindings/webassembly-modules', '/tooling/api/bindings'],
+  ['/api/route-matching', '/about/routes'],
   ['/deploying-workers', '/tooling'],
-  ['/deploying-workers/github-action', ''],
+  ['/deploying-workers/github-action', '/tooling/integrations'],
   ['/deploying-workers/serverless', '/tooling/serverless'],
-  ['/deploying-workers/terraform', ''],
+  ['/deploying-workers/terraform', ''], // TODO replace this with terraform link in issue https://github.com/cloudflare/workers-docs/issues/253
   ['/deploying-workers/travis-ci', ''],
   ['/deploying-workers/unit-testing', ''],
   ['/faq', ''],
