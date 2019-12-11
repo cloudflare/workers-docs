@@ -24,7 +24,7 @@ export const oldDocsMap = new Map([
   ['/deploying-workers', '/tooling'],
   ['/deploying-workers/github-action', '/tooling/integrations'],
   ['/deploying-workers/serverless', '/tooling/serverless'],
-  ['/deploying-workers/terraform', ''], // TODO replace this with terraform link in issue https://github.com/cloudflare/workers-docs/issues/253
+  ['/deploying-workers/terraform', '/tooling/terraform'],
   ['/deploying-workers/travis-ci', ''],
   ['/deploying-workers/unit-testing', ''],
   ['/faq', ''],
