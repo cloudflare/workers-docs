@@ -6,8 +6,9 @@ export function isOldDoc(docPath) {
 export function hasDefinedRedirect(docPath) {
   return oldDocsMap.get(docPath) !== ''
 }
-// if mapped to an empty string '', then old that old doc will map to the Overview of the Workers Docs
-// (e.g. https://workers.cloudflare.com/docs)
+// if mapped to an empty string '', then that old doc will map
+// either the archived path (e.g. archive/recipes ) 
+// if it exists or to the Overview of the Workers Docs (i.e. root)
 
 // Redirect a page in the old docs to a new article that has replaced it
 // e.g. ['/recipes', '/templates'], -> redirects requests to /recipes to /templates
@@ -18,10 +19,10 @@ export const oldDocsMap = new Map([
   ['/api/config-api-for-enterprise', '/tooling/api'],
   ['/api/resource-bindings', '/tooling/api/bindings'],
   ['/api/resource-bindings/kv-namespaces', '/reference/storage/api'],
-  ['/api/resource-bindings/webassembly-modules', ''],
-  ['/api/route-matching', ''],
+  ['/api/resource-bindings/webassembly-modules', '/tooling/api/bindings'],
+  ['/api/route-matching', '/about/routes'],
   ['/deploying-workers', '/tooling'],
-  ['/deploying-workers/github-action', ''],
+  ['/deploying-workers/github-action', '/tooling/integrations'],
   ['/deploying-workers/serverless', '/tooling/serverless'],
   ['/deploying-workers/terraform', '/tooling/terraform'],
   ['/deploying-workers/travis-ci', ''],
@@ -57,9 +58,9 @@ export const oldDocsMap = new Map([
   ['/recipes/mobile-redirects', '/templates/snippets/conditional_response'],
   ['/recipes/post-requests', '/templates/snippets/post_data'],
   ['/recipes/pre-shared-keys', '/templates/snippets/auth_with_headers'],
-  ['/recipes/random-content-cookies', ''],
+  ['/recipes/random-content-cookies', '/templates/pages/ab_testing'],
   ['/recipes/return-403', '/templates/snippets/tls_version'],
-  ['/recipes/setting-a-cookie', '/templates/snippets/ab_testing'],
+  ['/recipes/setting-a-cookie', '/templates/pages/cookie_extract'],
   ['/recipes/signed-requests', '/templates/snippets/signed_request'],
   ['/recipes/static-site', '/templates/featured_boilerplates/cloud_storage'],
   ['/recipes/streaming-responses', ''],
@@ -88,5 +89,14 @@ export const oldDocsMap = new Map([
   ],
   ['/writing-workers/resource-limits', '/about/limits'],
 
+  // For archived docs that we want to maintain SEO of the old link
+  // and erase the archive article
   ['/archive/recipes/static-site', '/sites'],
+  ['/archive/recipes/a-b-testing', '/templates/pages/ab_testing'],
+  ['/archive/recipes/bulk-redirects', '/templates/pages/bulk_redirects'],
+  ['/archive/recipes/mobile-redirects', '/templates/pages/conditional_response'],
+  ['/archive/recipes/conditional-routing', '/templates/pages/conditional_response'],
+  ['/archive/recipes/cors-preflight-requests', '/templates/pages/cors_header_proxy'],
+  ['/archive/recipes/post-requests', '/templates/pages/post_json'],
+
 ])
