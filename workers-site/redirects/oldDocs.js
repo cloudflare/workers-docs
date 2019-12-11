@@ -6,7 +6,7 @@ export function isOldDoc(docPath) {
 export function hasDefinedRedirect(docPath) {
   return oldDocsMap.get(docPath) !== ''
 }
-// if mapped to an empty string '', then old that old doc will map
+// if mapped to an empty string '', then that old doc will map
 // either the archived path (e.g. archive/recipes ) 
 // if it exists or to the Overview of the Workers Docs (i.e. root)
 
