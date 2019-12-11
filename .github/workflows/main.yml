@@ -21,7 +21,7 @@ jobs:
     - name: Install Hugo
       run: sudo snap install hugo
     - name: Install Wrangler
-      run: npm i @cloudflare/wrangler@1.5.0 -g
+      run: npm i @cloudflare/wrangler@1.6.0 -g
     - name: Install Workers script deps
       run: npm install
     - name: Build docs

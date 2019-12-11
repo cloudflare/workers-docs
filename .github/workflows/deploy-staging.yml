@@ -24,8 +24,9 @@ jobs:
     - name: Build docs
       run: hugo
     - name: Publish
-      uses: signalnerve/wrangler-action@1.0.0
+      uses: cloudflare/wrangler-action@1.1.0
       with:
         apiKey: ${{ secrets.CF_API_KEY }}
         email: ${{ secrets.CF_EMAIL }}
+        wranglerVersion: '1.6.0'
         environment: "staging"
