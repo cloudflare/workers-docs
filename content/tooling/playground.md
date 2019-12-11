@@ -1,7 +1,7 @@
 ---
 title: Playground
 alwaysopen: false
-weight: 2
+weight: 3
 ---
 
 Don't want to go through _any_ setup but still want to experiment with Workers? The Workers Playground is a simple, instant way to preview and test code directly in the browser against any site.

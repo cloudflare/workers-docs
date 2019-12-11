@@ -23,7 +23,7 @@ export const oldDocsMap = new Map([
   ['/deploying-workers', '/tooling'],
   ['/deploying-workers/github-action', ''],
   ['/deploying-workers/serverless', '/tooling/serverless'],
-  ['/deploying-workers/terraform', ''],
+  ['/deploying-workers/terraform', '/tooling/terraform'],
   ['/deploying-workers/travis-ci', ''],
   ['/deploying-workers/unit-testing', ''],
   ['/faq', ''],
