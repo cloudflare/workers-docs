@@ -11,7 +11,7 @@
   {{ else }}
   {{ $page_url := .share_url}}
   {{ end }}
-  {{ $template_page :=  .id | printf "./pages/%s" }}
+  {{ $template_page :=  .id | printf "/templates/pages/%s" }}
   {{ $page_url := or $page_url $template_page}}
   <a href={{$page_url}}>
     <h2>
