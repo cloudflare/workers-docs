@@ -51,17 +51,18 @@ export async function handleRequest(event) {
       console.log('Handling redirect')
       return handleRedirect(request)
     }
-    // TODO remove this and just set the meta title in Gatsby
+    // TODO remove this and just set the meta title/descriptions in Gatsby
     if (pathname.includes('templates/pages')) {
       //Grab the template's title from the registry
       const templateId = pathname.replace(/.*pages\//, '')
       const templateResp = await fetch(templateRegURL + templateId)
       const templateJSON = await templateResp.json()
-      const templateTitle = templateJSON.title
-      // Rewrite all meta titles the the correct title
-      return await new HTMLRewriter()
-        .on('meta[property*=title]', new ElementHandler(templateTitle))
-        .transform(body)
+      const metaInfo = {
+        title: templateJSON.title + ' - Cloudflare Workers Docs',
+        description: templateJSON.description,
+      }
+      // Rewrite all meta titles/descriptions the the correct title
+      return await new HTMLRewriter().on('meta', new MetaHandler(metaInfo)).transform(body)
     }
     return body
   } catch (err) {
@@ -71,11 +72,19 @@ export async function handleRequest(event) {
     return res
   }
 }
-class ElementHandler {
-  constructor(title) {
-    this.title = title
+class MetaHandler {
+  constructor(content) {
+    this.meta = { ...content }
   }
   element(element) {
-    element.setAttribute('content', this.title + ' - Cloudflare Workers Docs')
+    let type = element.getAttribute('property')
+    type += element.getAttribute('name')
+    if (typeof type !== 'string') return
+    if (type.includes('title')) {
+      element.setAttribute('content', this.meta.title)
+    }
+    if (type.includes('description')) {
+      element.setAttribute('content', this.meta.description)
+    }
   }
 }
