@@ -2,7 +2,7 @@ import { handleRedirect } from '../redirects/index'
 import { newDocsMap } from '../redirects/newDocs'
 import { oldDocsMap } from '../redirects/oldDocs'
 import { getAssetFromKV, mapRequestToAsset } from '@cloudflare/kv-asset-handler'
-
+const templateRegURL = 'https://template-registry.developers.workers.dev/templates/'
 const myMapRequestToAsset = request => {
   request = mapRequestToAsset(request)
   let url = new URL(request.url)
@@ -51,12 +51,31 @@ export async function handleRequest(event) {
       console.log('Handling redirect')
       return handleRedirect(request)
     }
-
+    // TODO remove this and just set the meta title in Gatsby
+    if (pathname.includes('templates/pages')) {
+      //Grab the template's title from the registry
+      const templateId = pathname.replace(/.*pages\//, '')
+      const templateResp = await fetch(templateRegURL + templateId)
+      const templateJSON = await templateResp.json()
+      const templateTitle = templateJSON.title
+      // Rewrite all meta titles the the correct title
+      return await new HTMLRewriter()
+        .on('meta[property*=title]', new ElementHandler(templateTitle))
+        .transform(body)
+    }
     return body
   } catch (err) {
     console.log(err)
     let res = new Response(err.body || err.message, { status: 500 })
     res.headers.set('Content-type', 'text/html')
     return res
+  }
+}
+class ElementHandler {
+  constructor(title) {
+    this.title = title
+  }
+  element(element) {
+    element.setAttribute('content', this.title + ' - Cloudflare Workers Docs')
   }
 }
