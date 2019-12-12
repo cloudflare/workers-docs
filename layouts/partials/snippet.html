@@ -7,9 +7,19 @@
     </button>
     {{ end }}
   </div>
-  <h2>
-    {{.title}}
-  </h2>
+  {{ $page_url := .tutorial }}
+  {{ if $page_url }}
+  {{ else }}
+  {{ $page_url := .share_url}}
+  {{ end }}
+  {{ $template_page :=  .id | printf "/templates/pages/%s" }}
+  {{ $page_url := or $page_url $template_page}}
+  <a href={{$page_url}}>
+    <h2>
+      {{.title}}
+    </h2>
+    <img src="/templates/media/right-arrow.svg"/>
+  </a>
   <p>{{.description | markdownify}}</p>
   <div class="copy-group">
     <div class="copy-step">
@@ -19,31 +29,5 @@
     <div class="copy">
       <code>{{.code}}</code>
     </div>
-  </div>
-  <div class="links">
-    {{ with.tutorial }}
-    <a class="tutorial" href="{{.}}">
-      <img src="/templates/media/tutorial.svg" id="tutorial" />
-      <span>Tutorial</span>
-    </a>
-    {{ end }}
-    {{ with.share_url }}
-    <a class="tutorial" href="{{.}}">
-      <img src="/templates/media/tutorial.svg" id="tutorial" />
-      <span>Learn more</span>
-    </a>
-    {{ end }}
-    {{ if not ( (.share_url) or (.tutorial)) }}
-    <a class="tutorial" href="/templates/pages/{{.id}}">
-      <img src="/templates/media/tutorial.svg" id="tutorial" />
-      <span>Learn more</span>
-    </a>
-    {{end}}
-    {{ range.demos }}
-    <a class="demo" href="{{.url}}">{{.text}}</a>
-    {{ end }}
-    {{ with.demo_url }}
-    <a class="demo" href="{{.}}">Demo</a>
-    {{ end }}
   </div>
 </figure>

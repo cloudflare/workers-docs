@@ -41,10 +41,20 @@ figure.template-card {
   margin: 0;
   padding: 0 16px 16px 16px;
 }
+figure.template-card > a {
+  margin: 0 0 0.5em 0;
+  display: flex;
+  align-content: center;
+}
 figure.template-card h2 {
-  margin: 0;
-  margin-bottom: 8px;
+  margin: 0 0.5em 0 0;
   font-size: 22px;
+  display: inline;
+  color: black;
+}
+figure.template-card h2:hover {
+  opacity: 0.7;
+  cursor: pointer;
 }
 .headline {
   padding-bottom: 2em;
@@ -91,27 +101,7 @@ figure.template-card h2 {
 .tooltip.Business .tooltiptext:before {
   content: 'Some content restricted Business plans or above';
 }
-figure.template-card div.links {
-  margin: 16px -16px -16px -16px;
-  padding: 16px;
-  background: #f7f7f8;
-  flex: none;
-  display: flex;
-}
-figure.template-card div.links a {
-  margin-right: 18px;
-  flex: flex-end;
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  line-height: 19px;
-  white-space: nowrap;
-}
-figure.template-card .tutorial img#tutorial {
-  flex: 1;
-  width: 1.25rem;
-  margin: 0 0.3em 0 0;
-}
+
 .copy-group {
   min-height: 0;
   display: flex;
@@ -182,6 +172,9 @@ figure.template-card.boilerplate {
   opacity: 0.7;
   cursor: pointer;
 }
+
+/* Template Pages */
+
 .grey.copy-group {
   background: var(--template-grey-background);
 }
