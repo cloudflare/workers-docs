@@ -21,11 +21,9 @@
     {{end}}
 
     <div id="body-inner">
-      {{if not .IsHome}}
+      {{if and (ne .Section "templates") (not .IsHome) }}
       <h1>{{.Title}}</h1>
       {{end}}
-
-
       {{ .Content }}
     </div>
   </div>
