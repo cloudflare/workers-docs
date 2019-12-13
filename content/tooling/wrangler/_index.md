@@ -15,5 +15,4 @@ new: true
 - [Workers Sites](/tooling/wrangler/sites)
 
 
-<script id="asciicast-SXJNxWUO8GF5T7N8R2mMMvE1W" data-autoplay="true" src="https://asciinema.org/a/SXJNxWUO8GF5T7N8R2mMMvE1W.js" async></script>
-
+![Gif showing demo of using wrangler](https://github.com/cloudflare/wrangler/raw/master/wrangler-demo.gif)
