@@ -2,7 +2,7 @@ import { handleRedirect } from '../redirects/index'
 import { newDocsMap } from '../redirects/newDocs'
 import { oldDocsMap } from '../redirects/oldDocs'
 import { getAssetFromKV, mapRequestToAsset } from '@cloudflare/kv-asset-handler'
-
+const templateRegURL = 'https://template-registry.developers.workers.dev/templates/'
 const myMapRequestToAsset = request => {
   request = mapRequestToAsset(request)
   let url = new URL(request.url)
@@ -51,12 +51,51 @@ export async function handleRequest(event) {
       console.log('Handling redirect')
       return handleRedirect(request)
     }
-
+    // TODO remove this and just set the meta title/descriptions in Gatsby
+    if (pathname.includes('templates/pages')) {
+      //Grab the template's title from the registry
+      const templateId = pathname.replace(/.*pages\//, '')
+      const templateResp = await fetch(templateRegURL + templateId)
+      const templateJSON = await templateResp.json()
+      const metaInfo = {
+        title: templateJSON.title + ' - Cloudflare Workers Docs',
+        description: templateJSON.description,
+      }
+      // Rewrite all meta titles/descriptions the the correct title
+      return await new HTMLRewriter()
+        .on('meta', new MetaHandler(metaInfo))
+        .on('head>title', new TitleHandler(metaInfo))
+        .transform(body)
+    }
     return body
   } catch (err) {
     console.log(err)
     let res = new Response(err.body || err.message, { status: 500 })
     res.headers.set('Content-type', 'text/html')
     return res
+  }
+}
+class MetaHandler {
+  constructor(content) {
+    this.meta = { ...content }
+  }
+  element(element) {
+    let type = element.getAttribute('property')
+    type += element.getAttribute('name')
+    if (typeof type !== 'string') return
+    if (type.includes('title')) {
+      element.setAttribute('content', this.meta.title)
+    }
+    if (type.includes('description')) {
+      element.setAttribute('content', this.meta.description)
+    }
+  }
+}
+class TitleHandler {
+  constructor(content) {
+    this.content = { ...content }
+  }
+  element(element) {
+    element.setInnerContent(this.content.title)
   }
 }
