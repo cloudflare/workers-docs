@@ -6,7 +6,7 @@ hidden: true
 
 # Guide
 
-You can fetch your object storage assets with a Cloudflare Worker so that they can be cached in the Cloudflare CDN.
+You can fetch your 3rd-party object storage assets with a Cloudflare Worker so that they can be cached in the Cloudflare CDN.
 
 - [Overview](#overview)
     + [About object storage service URLs](#about-object-storage-service-urls)
@@ -46,47 +46,18 @@ Now the pages served from your standard origin web server could refer to your ob
 ```
 https://assets.mydomain.com/image1.jpg
 ```
-This URL pattern — along with the underlying DNS record for the subdomain — ensures that the request is treated as a Cloudflare-proxied resource that is cacheable. Make sure that the Cloudflare orange cloud is active for the new subdomain.
+
+This URL pattern — along with the underlying DNS record for the subdomain — ensures that the request is treated as a Cloudflare-proxied resource that is cacheable. Make sure that the Cloudflare orange cloud is active for the new subdomain or workers.dev domain.
 
 However, adding this DNS record doesn’t guarantee that the resource will be returned by the object storage service when requested via the new subdomain. This is because object storage services typically reject HTTP requests that do not contain a host name that matches the proprietary host name assigned to your object storage instance.
 
 As such, you still need to ensure that the asset is correctly fetched from the object storage service by using the expected URL. To do that, a Cloudflare Worker is necessary as described in Task 2 below.
 
 # Step 2 - Use a Cloudflare Worker to fetch object storage assets
-The Cloudflare Developer portal features documentation to help you make the most of Cloudflare’s services. It has a section dedicated to Cloudflare Workers where you can find recipes for different solutions.
+Fetch the resource from storage. Inside your Workers script write:
 
-Cloudflare Workers is an add-on service (available in all user plans) that when enabled appears in the Cloudflare dashboard. For subscription information, visit Cloudflare Pricing.
-The recipe Static Site Hosting illustrates how to fetch resources from an object storage instance by applying the expected hostname to the URL.
+  ```
+  return await fetch("https://myassets.s3.amazonaws.com" + path)
+  ```
 
-To add this worker to your domain:
-
-1. Copy the sample script from the recipe above.
-
-2. Open the Cloudflare dashboard and select your site.
-
-3. Click the **Workers** app.
-
-4. Under **Service Workers**, click **Launch Editor**. 
-
-5. If this is your first script, the script editor opens in edit mode; otherwise, you need to click **Add Script**.
-
-6. Paste the script and modify it to ensure that that the URL in the fetch function at the end uses the same subdomain you specified in the DNS record in Task 1 above. For example: 
-
-```
-return await fetch("https://myassets.s3.amazonaws.com" + path)
-```
-7. Next, click the **Routes** tab to add routes that would trigger the worker when the assets are requested via the Cloudflare subdomain you created. We recommend that you add your domain (with no http or https) so that both protocols are covered, plus a wildcard to represent any resource requested for your object storage instance.  For example:
-
-```
-assets.mydomain.com/* 
-```
-Learn more about Route Pattern Matching from the Cloudflare Workers documentation portal.
-
-8. Click the **Script** tab and then click **Save** to finish.
-
-You can use the **Preview** feature of the Workers script editor to test your script. If the script works as expected, you can perform further tests on your Cloudflare-proxied website and verify that the object storage assets are fetched correctly and cached.
-
-Related resources
-Cloudflare Workers
-Cloudflare Developers portal
-Which file extensions does Cloudflare cache for static content?
+This retrieves resources from an object storage instance while applying the expected hostname to the URL.
