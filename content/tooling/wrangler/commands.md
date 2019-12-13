@@ -153,7 +153,7 @@ If you would like to be able to publish your code to multiple places, please see
 
   Additionally, you can preview different environments. This is useful if you have different builds for different environments (like staging vs. production), but typically isn't needed. For more information see the [environments documentation](/tooling/wrangler/configuration/environments).
 
-#### Making preview work with WSL2
+#### Previewing on Windows Subsytem for Linux (WSL)
 
 ##### Setting $BROWSER to your browser binary
   By default, `wrangler` sees WSL/2 as a linux environment and invokes `xdg-open` to open the browser. To make it work with WSL/2, you should set your `$BROWSER` to your browser binary.
