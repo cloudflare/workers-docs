@@ -160,7 +160,7 @@ If you would like to be able to publish your code to multiple places, please see
 
   eg. `$ export BROWSER='/mnt/c/tools/firefox.exe'
   `
-  Spaces in filepath are not common in linux, however it's not illegal and needs to be quoted. Some programs like `xdg-open` breaks on [paths with spaces](https://github.com/microsoft/WSL/issues/3632#issuecomment-432821522), so you would need a workaround like linking the binary to your `/usr/local/bin`.
+  Spaces in filepaths are not common in Linux, and some programs like `xdg-open` break on [paths with spaces](https://github.com/microsoft/WSL/issues/3632#issuecomment-432821522). You can work around this by linking the binary to your `/usr/local/bin`.
 
   eg. $ ln -s '/mnt/c/Program Files/Mozilla Firefox/firefox.exe' firefox
       $ export BROWSER=firefox
