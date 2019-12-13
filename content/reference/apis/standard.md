@@ -50,4 +50,5 @@ Both TextEncoder and TextDecoder support UTF-8 encoding/decoding.
 The URL API supports urls conforming to http and https schemes.
 
 [Go to the docs](https://developer.mozilla.org/en-US/docs/Web/API/URL)
+
 _Note: Our URL implementation differs slightly from standards. To use an external implementation, you can [shim the URL class using webpack](/tooling/wrangler/webpack/#shimming-globals)._
