@@ -62,7 +62,10 @@ export async function handleRequest(event) {
         description: templateJSON.description,
       }
       // Rewrite all meta titles/descriptions the the correct title
-      return await new HTMLRewriter().on('meta', new MetaHandler(metaInfo)).transform(body)
+      return await new HTMLRewriter()
+        .on('meta', new MetaHandler(metaInfo))
+        .on('head>title', new TitleHandler(metaInfo))
+        .transform(body)
     }
     return body
   } catch (err) {
@@ -86,5 +89,13 @@ class MetaHandler {
     if (type.includes('description')) {
       element.setAttribute('content', this.meta.description)
     }
+  }
+}
+class TitleHandler {
+  constructor(content) {
+    this.content = { ...content }
+  }
+  element(element) {
+    element.setInnerContent(this.content.title)
   }
 }
