@@ -77,12 +77,12 @@
           <a href="/quickstart">Get started</a></span
         >
       </div>
-       {{ $repo_url := replace .repository_url "https://github.com/" "https://api.github.com/repos/" }}
-       {{ $repo_json := getJSON $repo_url }}
+       {{ $github_api_repo_url := replace .repository_url "https://github.com/" "https://api.github.com/repos/" }}
+       {{ $repo_json := getJSON $github_api_repo_url }}
        {{ $repo_name := $repo_json.full_name}}
        {{ $repo_date := $repo_json.updated_at}}
        <div class="github">
-        <a href="{{$repo_url}}">
+        <a href="{{.repository_url}}">
           <img src="/svg/github.svg" />
           <div>
             {{$repo_name}}
@@ -93,9 +93,9 @@
         </div>
       </div>
       {{ else }}
-        {{ $repo_url := "https://github.com/victoriabernard92/template-registry/tree/master/templates/javascript" }} 
+        {{ $github_api_repo_url := "https://github.com/victoriabernard92/template-registry/tree/master/templates/javascript" }} 
         <div class="github">
-          <a href="{{ $repo_url }}/{{ .id }}.js">
+          <a href="{{ $github_api_repo_url }}/{{ .id }}.js">
             <img src="/svg/github.svg" />
             <div>
                 template-registry/{{ .id }}.js
