@@ -156,7 +156,7 @@ If you would like to be able to publish your code to multiple places, please see
 #### Previewing on Windows Subsytem for Linux (WSL)
 
 ##### Setting $BROWSER to your browser binary
-  By default, `wrangler` sees WSL/2 as a linux environment and invokes `xdg-open` to open the browser. To make it work with WSL/2, you should set your `$BROWSER` to your browser binary.
+  WSL is a Linux environment, so `wrangler` attempts to invoke `xdg-open` in order to open your browser. To make `wrangler preview` work with WSL, you should set your `$BROWSER` to the path of your browser binary.
 
   eg. `$ export BROWSER='/mnt/c/tools/firefox.exe'
   `
