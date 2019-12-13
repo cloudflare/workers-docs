@@ -54,11 +54,12 @@ There are two types of configuration that `wrangler` uses: global user and per p
 
   - `name`: This is the name of your project. It will be the name of your script.
   - `type`: This key tells `wrangler build` how to build your project. There are currently three options (`webpack`, `javascript`, and `rust`), but we expect there to be more as the community grows.
-      - `javascript`: This project contains a single JavaScript file, defined in `package.json`'s `main` key.
+      - `javascript`\*: This project contains a single JavaScript file, defined in `package.json`'s `main` key.
       - `rust`: This project contains a Rust crate that uses `wasm-bindgen`. It will be built with `wasm-pack`.
-      - `webpack`: This project contains any number of JavaScript files or Rust/C/C++ files that compile to
+      - `webpack`\*: This project contains any number of JavaScript files or Rust/C/C++ files that compile to
           WebAssembly. Rust files will be built with `wasm-pack`.
           This project type uses webpack and webpack plugins in the background to build your worker. You can read more about this type [here](/tooling/wrangler/webpack).
+    _\* Note: All Javscript and webpack projects must include a package.json_
   - `zone_id`: This is the ID of the "zone" or domain you want to run your script on. This is optional if you are using a [workers.dev](https://workers.dev) subdomain and is only required when `workers_dev` is false, or excluded from an [environment](/tooling/wrangler/configuration/environments) configuration.
   - `account_id`: This is the ID of the account associated with your zone. You might have more than one account, so make sure to use the ID of the account associated with the `zone_id` you provide, if you provide one.
   - `route`: This is the route you'd like to use your worker on. You need to include the hostname. Examples:
