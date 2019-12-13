@@ -166,7 +166,7 @@ If you would like to be able to publish your code to multiple places, please see
       $ export BROWSER=firefox
 
 ##### Setting $BROWSER to `wsl-open`
-  Another option is to install [wsl-open](https://github.com/4U6U57/wsl-open#standalone) and set the $BROWSER env variable to `wsl-open`, via `wsl-open -w` (which associate wsl-open with links)
+  Another option is to install [wsl-open](https://github.com/4U6U57/wsl-open#standalone) and set the `$BROWSER` env variable to `wsl-open`, via `wsl-open -w`. This ensures that `xdg-open` uses `wsl-open` when it attempts to open your browser.
 
   If you're using WSL2, you would want to install via [standalone method](https://github.com/4U6U57/wsl-open#standalone), as npm is on version 1.3.0 which doesn't support WSL2 yet.
 
