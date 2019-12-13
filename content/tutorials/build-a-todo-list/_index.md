@@ -81,7 +81,7 @@ wrangler kv:namespace create "TODOS"
 
 Namespaces can be added to your application by defining them inside your Wrangler configuration. Copy your newly created namespace ID, and in your `wrangler.toml`, define a `kv-namespaces` key to set up your namespace:
 
-```toml
+```
 # wrangler.toml
 
 kv-namespaces = [

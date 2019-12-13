@@ -230,7 +230,7 @@ Our simple i18n tool built on Cloudflare Workers is complete, and it's time to d
 
 It's super easy (and quick) to deploy sites to your Workers.dev subdomain, but the `wrangler.toml` configuration file in your project needs a little bit of setup before you can deploy your project. First, you'll need to add your Cloudflare [account ID](https://developers.cloudflare.com/workers/quickstart/#account-id-and-zone-id). Set this ID at the top part of your project's `wrangler.toml`:
 
-```toml
+```
 # wrangler.toml
 
 # ...
@@ -244,7 +244,7 @@ The `[site]` section at the bottom of `wrangler.toml` tells Wrangler how to depl
 
 The final version of your project's `wrangler.toml` should look like:
 
-```toml
+```
 name = "i18n-example"
 type = "webpack"
 account_id = "6de123.."

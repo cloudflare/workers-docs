@@ -47,7 +47,7 @@ _Note: if your project uses [environments](/tooling/wrangler/configuration/envir
 
 Example of a `wrangler.toml`:
 
-```toml
+```
 account_id = "95e..."
 name = "docs-site-blah"
 type = "webpack"
@@ -88,7 +88,7 @@ This means that we use gitignore semantics when declaring which directory entrie
 If you want to include only a certain set of files or directories in your `bucket`, you can add an `include` field to your
 `[site]` section of `wrangler.toml`:
 
-```toml
+```
 [site]
 bucket = "./public"
 entry-point = "workers-site" 
@@ -102,7 +102,7 @@ Wrangler will only upload files or directories matching the patterns in the `inc
 If you want to exclude files or directories in your `bucket`, you can add an `exclude` field to your
 `[site]` section of `wrangler.toml`:
 
-```toml
+```
 [site]
 bucket = "./public"
 entry-point = "workers-site" 

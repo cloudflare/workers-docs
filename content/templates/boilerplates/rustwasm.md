@@ -39,7 +39,7 @@ The `--watch` flag for `preview` tells Wrangler to watch your Worker project for
 Let's make our Workers function more interesting. We'll pull in a dependency from the `crates.io` ecosystem called `pulldown-cmark`.
 We'll add this to our `Cargo.toml`:
 
-```toml
+```
 ## Cargo.toml
 
 [dependencies]

@@ -51,7 +51,7 @@ To prepare your application for deployment, open up the newly-created `wrangler.
 
 The `bucket` key in your `wrangler.toml` indicates the "build" folder that Sites will deploy to Workers. While many front-end application and static site generators use the folder `public`, `create-react-app` uses the folder `build`. Let's change the `bucket` key in `wrangler.toml` to `build`:
 
-```toml
+```
 # ... previous wrangler config
 
 [site]

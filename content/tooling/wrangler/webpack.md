@@ -46,7 +46,7 @@ module.exports = {
 
 `wrangler.toml`
 
-```toml
+```
 type = "webpack"
 name = "my-worker"
 account_id = "12345678901234567890"
@@ -58,7 +58,7 @@ webpack_config = "webpack.config.js"
 
 `wrangler.toml`
 
-```toml
+```
 type = "webpack"
 name = "my-worker-dev"
 account_id = "12345678901234567890"

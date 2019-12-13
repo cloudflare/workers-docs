@@ -79,7 +79,7 @@ $ wrangler preview post hello=hello
 Let's make our Worker more interesting. We'll pull in a dependency from the `crates.io` ecosystem called `pulldown-cmark`.
 We'll add this to our `Cargo.toml`:
 
-```toml
+```
 ## Cargo.toml
 
 [dependencies]

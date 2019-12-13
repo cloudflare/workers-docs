@@ -19,7 +19,7 @@ Environments is a feature that allows you to deploy the same project to multiple
 
 Here is an example `wrangler.toml` to illustrate
 
-```toml
+```
 # top level configruation
 type = "webpack"
 name = "my-worker-dev"
@@ -54,7 +54,7 @@ The most common use case for environments is deploying to a staging subdomain be
 
 This `wrangler.toml` has no environments defined and will publish `my-worker` to `example.com/*`
 
-```toml
+```
 type = "webpack"
 name = "my-worker"
 account_id = "12345678901234567890"
@@ -72,7 +72,7 @@ $ wrangler publish
 
 This `wrangler.toml` has no environments defined and will publish `my-worker` to `my-worker.<your-subdomain>.workers.dev`
 
-```toml
+```
 type = "webpack"
 name = "my-worker"
 account_id = "12345678901234567890"
@@ -89,7 +89,7 @@ $ wrangler publish
 
 This `wrangler.toml` adds two environments to the base case.
 
-```toml
+```
 type = "webpack"
 name = "my-worker-dev"
 account_id = "12345678901234567890"
@@ -131,7 +131,7 @@ $ wrangler publish --env production
 
 In order to deploy your code to workers.dev, you must include `workers_dev = true` in the desired environment. Your `wrangler.toml` may look like this:
 
-```toml
+```
 name = "my-worker"
 type = "webpack"
 account_id = "12345678901234567890"
@@ -160,7 +160,7 @@ $ wrangler publish --env staging
 
 If you only want to deploy to workers.dev you can configure Wrangler like so:
 
-```toml
+```
 name = "my-worker-dev"
 type = "webpack"
 account_id = "12345678901234567890"
@@ -197,7 +197,7 @@ $ wrangler publish --env production
 
 You can specify different webpack configurations for different environments.
 
-```toml
+```
 name = "my-worker-dev"
 type = "webpack"
 account_id = "12345678901234567890"
@@ -218,7 +218,7 @@ Your default `wrangler build`, `wrangler preview`, and `wrangler publish` comman
 
 You can specify different kv namespaces for different environments.
 
-```toml
+```
 name = "my-worker"
 type = "webpack"
 account_id = "12345678901234567890"
@@ -239,7 +239,7 @@ kv-namespaces = [
 
 You cannot specify a type for each environment, type must be specified at the top level of your `wrangler.toml`.
 
-```toml
+```
 name = "my-worker"
 type = "webpack"
 account_id = "12345678901234567890"
@@ -257,7 +257,7 @@ Wrangler will not error with this configuration, it will build with the `webpack
 
 You cannot specify multiple environments with the same name. If this were allowed, publishing each environment would overwrite your previously deployed worker, and the behavior would not be clear.
 
-```toml
+```
 name = "my-worker"
 type = "webpack"
 account_id = "12345678901234567890"
@@ -281,7 +281,7 @@ Error: ⚠️  Each name in your `wrangler.toml` must be unique, this name is du
 
 ### Defining workers_dev and route
 
-```toml
+```
 name = "my-worker"
 type = "webpack"
 account_id = "12345678901234567890"

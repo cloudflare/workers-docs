@@ -239,7 +239,7 @@ The **name** field in this config file, which will map to your script's deploy n
 
 Fill in the `account_id` field with the value found in your dashboard and `type` with the type of your project.
 
-```toml
+```
 # wrangler.toml
 
 # The name of your Workers application
@@ -269,7 +269,7 @@ $ wrangler publish
 
 With the `workers_dev` key in `wrangler.toml` set to `true`, Wrangler will publish your project to your `workers.dev` subdomain.
 
-```toml
+```
 # wrangler.toml
 
 name = "my-worker"
@@ -292,7 +292,7 @@ To publish your application on a domain you own (i.e. not a `workers.dev` subdom
 
 Wrangler's ["environments"](/tooling/wrangler/configuration/environments) feature allows us to specify multiple different deploy targets for our application. Let's add a `production` environment, passing in a `route` and `zone_id` to deploy to a specific domain:
 
-```toml
+```
 # wrangler.toml
 
 name = "my-worker"

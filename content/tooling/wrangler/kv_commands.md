@@ -68,7 +68,7 @@ Additionally, KV namespaces can be used with [environments](/tooling/wrangler/co
 a KV binding like `MY_KV`, and you want to be able to have these bindings point to different namespaces (like
 one for staging and one for production). So, if you have a `wrangler.toml` with two environments:
 
-```toml
+```
 [env.staging]
 kv-namespaces = [
          { binding = "MY_KV", id = "e29b263ab50e42ce9b637fa8370175e8" }
@@ -105,7 +105,7 @@ Most `kv` commands require you to specify a namespace. A namespace can be specif
 
 Most `kv` subcommands also allow you to specify an environment with the optional `--env` flag. This allows you to publish workers running the same code but with different namespaces. For example, you could use separate staging and production namespaces for KV data in your `wrangler.toml`:
 
-```toml
+```
 type = "webpack"
 name = "my-worker"
 account_id = "<account id here>"
