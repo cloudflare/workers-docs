@@ -82,7 +82,7 @@
        {{ $repo_name := $repo_json.full_name}}
        {{ $repo_date := $repo_json.updated_at}}
        <div class="github">
-        <a href="{{$repo_url}}">
+        <a href="{{.repository_url}}">
           <img src="/svg/github.svg" />
           <div>
             {{$repo_name}}
