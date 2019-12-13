@@ -94,6 +94,31 @@ module.exports = {
 }
 ```
 
+## Shimming globals
+
+Sometimes you want to bring your own implementation of an existing global API. You can do this by [shimming](https://webpack.js.org/guides/shimming/#shimming-globals) a third party module in its place as a webpack plugin.
+
+For example, to replace the runtime global `URL` class with the npm package `url-polyfill`, or your choice of third party package, `npm i` the package, and then add a plugin entry to your webpack config
+
+### Example with webpack plugin
+
+`webpack.config.js`
+
+```js
++ const webpack = require('webpack');
+
+  module.exports = {
+    "target": "webworker",
+    "entry": "./index.js",
+    "mode": "production",
++   plugins: [
++     new webpack.ProvidePlugin({
++       URL: 'url-polyfill',
++     }),
++   ],
+  }
+```
+
 ## Backwards Compatibility
 
 If you are using a version of Wrangler before 1.6.0, worker projects will simply use any `webpack.config.js` that is in the root of your project. This is not always obvious, so we plan to require that you specify `webpack_config` in your `wrangler.toml` if you would like to use it. If you're seeing this warning and would like to use your `webpack.config.js`, simply add `webpack_config = "webpack.config.js"` to your wrangler.toml.
