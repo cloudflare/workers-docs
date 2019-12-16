@@ -7,7 +7,7 @@ export function hasDefinedRedirect(docPath) {
   return oldDocsMap.get(docPath) !== ''
 }
 // if mapped to an empty string '', then that old doc will map
-// either the archived path (e.g. archive/recipes ) 
+// either the archived path (e.g. archive/recipes )
 // if it exists or to the Overview of the Workers Docs (i.e. root)
 
 // Redirect a page in the old docs to a new article that has replaced it
@@ -35,45 +35,36 @@ export const oldDocsMap = new Map([
   ['/kv/reading-data', '/reference/storage/reading-data'],
   ['/kv/writing-data', '/reference/storage/writing-data'],
   ['/recipes', '/templates'],
-  ['/recipes/a-b-testing', '/templates/snippets/ab_testing'],
-  [
-    '/recipes/aggregating-multiple-requests',
-    '/templates/snippets/aggregate_requests',
-  ],
-  ['/recipes/altering-headers', '/templates/snippets/alter_headers'],
-  ['/recipes/bulk-redirects', '/templates/snippets/bulk_redirects'],
-  ['/recipes/conditional-routing', '/templates/snippets/conditional_response'],
-  ['/recipes/cors-preflight-requests', '/templates/snippets/cors_header_proxy'],
-  ['/recipes/country-blocking', '/templates/snippets/country_code'],
-  ['/recipes/hotlink-protection', '/templates/snippets/hotlink-protection'],
+  ['/recipes/a-b-testing', '/templates/pages/ab_testing'],
+  ['/recipes/aggregating-multiple-requests', '/templates/pages/aggregate_requests'],
+  ['/recipes/altering-headers', '/templates/pages/alter_headers'],
+  ['/recipes/bulk-redirects', '/templates/pages/bulk_redirects'],
+  ['/recipes/conditional-routing', '/templates/pages/conditional_response'],
+  ['/recipes/cors-preflight-requests', '/templates/pages/cors_header_proxy'],
+  ['/recipes/country-blocking', '/templates/pages/country_code'],
+  ['/recipes/hotlink-protection', '/templates/pages/hotlink-protection'],
   ['/recipes/lambda@edge-conversion', ''],
   ['/recipes/lambda@edge-conversion/changing-origins', ''],
-  [
-    '/recipes/lambda@edge-conversion/generating-responses-with-static-content',
-    '',
-  ],
+  ['/recipes/lambda@edge-conversion/generating-responses-with-static-content', ''],
   ['/recipes/lambda@edge-conversion/overriding-response-headers', ''],
   ['/recipes/lambda@edge-conversion/updating-error-statuses', ''],
   ['/recipes/lambda@edge-conversion/working-with-querystrings', ''],
-  ['/recipes/mobile-redirects', '/templates/snippets/conditional_response'],
-  ['/recipes/post-requests', '/templates/snippets/post_data'],
-  ['/recipes/pre-shared-keys', '/templates/snippets/auth_with_headers'],
+  ['/recipes/mobile-redirects', '/templates/pages/conditional_response'],
+  ['/recipes/post-requests', '/templates/pages/post_data'],
+  ['/recipes/pre-shared-keys', '/templates/pages/auth_with_headers'],
   ['/recipes/random-content-cookies', '/templates/pages/ab_testing'],
-  ['/recipes/return-403', '/templates/snippets/tls_version'],
+  ['/recipes/return-403', '/templates/pages/tls_version'],
   ['/recipes/setting-a-cookie', '/templates/pages/cookie_extract'],
-  ['/recipes/signed-requests', '/templates/snippets/signed_request'],
+  ['/recipes/signed-requests', '/templates/pages/signed_request'],
   ['/recipes/static-site', '/templates/featured_boilerplates/cloud_storage'],
   ['/recipes/streaming-responses', ''],
-  ['/recipes/tls-version-blocking', '/templates/snippets/tls_version'],
+  ['/recipes/tls-version-blocking', '/templates/pages/tls_version'],
   ['/recipes/vcl-conversion', ''],
   ['/recipes/vcl-conversion/authenticating-before-returning-a-request', ''],
   ['/recipes/vcl-conversion/conditionally-changing-a-url', ''],
   ['/recipes/vcl-conversion/controlling-the-cache', ''],
   ['/recipes/vcl-conversion/delivering-custom-responses', ''],
-  [
-    '/recipes/vcl-conversion/delivering-different-content-to-different-devices',
-    '',
-  ],
+  ['/recipes/vcl-conversion/delivering-different-content-to-different-devices', ''],
   ['/recipes/vcl-conversion/inspecting-visitor-location', ''],
   ['/reference/cache-api', '/reference/apis/cache/#body-inner'],
   ['/reference/cloudflare-features', '/reference/apis/request/#the-cf-object'],
@@ -83,10 +74,7 @@ export const oldDocsMap = new Map([
   ['/writing-workers', '/quickstart/#writing-code'],
   ['/writing-workers/blog-posts', ''],
   ['/writing-workers/debugging-tips', '/about/tips/debugging'],
-  [
-    '/writing-workers/handling-errors',
-    '/about/tips/debugging#4-go-to-origin-on-error',
-  ],
+  ['/writing-workers/handling-errors', '/about/tips/debugging#4-go-to-origin-on-error'],
   ['/writing-workers/resource-limits', '/about/limits'],
 
   // For archived docs that we want to maintain SEO of the old link
@@ -98,5 +86,4 @@ export const oldDocsMap = new Map([
   ['/archive/recipes/conditional-routing', '/templates/pages/conditional_response'],
   ['/archive/recipes/cors-preflight-requests', '/templates/pages/cors_header_proxy'],
   ['/archive/recipes/post-requests', '/templates/pages/post_json'],
-
 ])

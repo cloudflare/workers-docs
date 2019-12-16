@@ -76,3 +76,11 @@ test('if archive does not exist, and it was redirected have new link', async t =
   t.is(res.status, 200)
   t.true(!!await res.text())
 })
+test('conditional_response', async t => {
+  mockGlobal()
+  const event = getEvent(new Request(`${origin}/workers/templates/snippets/conditional_response/`))
+  const res = await handleRequest(event)
+  t.is(res.status, 301)
+
+  t.is(res.headers.get('location'), `${origin}/workers/templates/pages/conditional_response`)
+})
