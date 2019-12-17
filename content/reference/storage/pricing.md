@@ -1,5 +1,5 @@
 ---
-title: 'Limits'
+title: 'Pricing'
 weight: 80
 ---
 
