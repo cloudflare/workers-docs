@@ -30,7 +30,7 @@ There are two types of configuration that `wrangler` uses: global user and per p
 
   ```bash
   # e.g.
-
+  CF_ACCOUNT_ID=youraccountid
   CF_API_TOKEN=superlongapitoken wrangler publish
   # where
   # $CF_API_TOKEN -> a Cloudflare API token
