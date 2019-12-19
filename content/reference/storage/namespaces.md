@@ -33,7 +33,7 @@ you specify.
 
 This will automatically happen on `wrangler publish` if you've [configured
 your namespace with
-Wrangler](/workers/tooling/wrangler/kv_commands/#concepts).
+Wrangler](/tooling/wrangler/kv_commands/#concepts).
 
 This can also be done from within the editor:
 
@@ -46,4 +46,4 @@ This can also be done from within the editor:
 &nbsp;
 
 Or, [via the API when you upload a
-script](/workers/archive/api/resource-bindings/kv-namespaces/).
+script](/archive/api/resource-bindings/kv-namespaces/).
