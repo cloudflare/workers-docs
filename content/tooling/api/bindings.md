@@ -6,7 +6,7 @@ weight: 3
 ## Object Specification
 
 - `name`: a javascript variable name for the binding
-- `type`: the class of resource the binding provides (currently wasm_module)
+- `type`: the class of resource the binding provides (currently wasm_module, kv_namespace, or text_blob)
 
 
 ## Upload Bindings
@@ -15,13 +15,14 @@ Resource bindings must be uploaded alongside your other Worker assets via the [u
 
 ## List Bindings
 
-`GET accounts/:account_identifier/workers/script/:script_name/bindings`
+`GET accounts/:account_identifier/workers/scripts/:script_name/bindings`
 
 ##### Sample Request:
 
 ```sh
-curl -X GET "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/script/$SCRIPT_NAME/bindings" \
-     -H "Authorization: Bearer $CF_API_TOKEN"
+curl -X GET "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/workers/scripts/$SCRIPT_NAME/bindings" \
+     -H "X-Auth-Email: $CF_EMAIL_ADDRESS" \
+     -H "X-Auth-Key: $CF_API_KEY"
 ```
 
 ##### Sample Response:
@@ -35,6 +36,15 @@ curl -X GET "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/worker
     {
       "name": "myBinding",
       "type": "wasm_module"
+    },
+    {
+      "name": "__STATIC_CONTENT",
+      "namespace_id": "2a88a930ebc145aaf48da80926a26d28",
+      "type": "kv_namespace"
+    },
+    {
+      "name": "__STATIC_CONTENT_MANIFEST",
+      "type": "text_blob"
     }
   ]
 }
@@ -51,7 +61,10 @@ curl -X GET "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/worker
 
 [Find Your Auth Info](/quickstart/#configure)
 
-- `Authorization`
+This endpoint does not yet support token-based authentication, so you will need to provide your account Email address and Global API Key.
+
+- `X-Auth-Email`
+- `X-Auth-Key`
 
 ##### Payload n/a
 
