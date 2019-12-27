@@ -1,7 +1,6 @@
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
 a.quick-start {
@@ -42,7 +41,7 @@ a.quick-start {
   border-width: 5px;
   border-style: solid;
   border-color: #555 transparent transparent transparent;
-  content: "";
+  content: '';
   left: 50%;
   margin-left: -5px;
   position: absolute;
@@ -61,5 +60,21 @@ a.quick-start {
   font-size: 12px;
   font-weight: bold;
   margin-left: 3px;
-  padding: 3px 9px !important;
+  padding: 2px 8px !important;
+}
+
+#sidebar a:hover > .new-badge,
+#sidebar li.active > a > .new-badge {
+  background: rgba(255, 116, 0, 0.15);
+  color: #f38020;
+}
+
+.github-edit {
+  float: right;
+  display: flex;
+  align-items: center;
+  color: #5f6264;
+}
+.github-edit span {
+  padding-left: 0.4em;
 }
