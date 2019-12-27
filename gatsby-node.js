@@ -15,10 +15,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   const result = await graphql(`
     {
-      allMarkdownRemark(
-        sort: { order: DESC, fields: [frontmatter___date] }
-        limit: 1000
-      ) {
+      allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }, limit: 1000) {
         edges {
           node {
             fields {
@@ -50,20 +47,20 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
   // Ensures we are processing only markdown files
-  if (node.internal.type === "MarkdownRemark") {
-    console.log("creating node", node)
+  if (node.internal.type === 'MarkdownRemark') {
+    console.log('creating node', node)
 
     // Use `createFilePath` to turn markdown files in our `markdown-pages` directory into `/workers/`slug
     const relativeFilePath = createFilePath({
       node,
       getNode,
-      basePath: "markdown-pages/",
+      basePath: 'markdown-pages/',
     })
-    console.log("relativeFilePath", relativeFilePath)
+    console.log('relativeFilePath', relativeFilePath)
     // Creates new query'able field with name of 'slug'
     createNodeField({
       node,
-      name: "slug",
+      name: 'slug',
       value: `/workers${relativeFilePath}`,
     })
   }
