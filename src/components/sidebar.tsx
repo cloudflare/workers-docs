@@ -46,7 +46,7 @@ const Sidebar = ({ isAncestor = false }: SidebarPropTypes) => {
         </span>
       </a>
       <script>{script}</script>
-      <div id="sidebar-open-backdrop"></div>
+      {/* <div id="sidebar-open-backdrop">~</div> */}
       <nav id="sidebar">
         <div className="search-container">
           <input
@@ -58,7 +58,7 @@ const Sidebar = ({ isAncestor = false }: SidebarPropTypes) => {
         </div>
         <div className="highlightable">
           <ul className="topics">
-            {data.allMarkdownRemark.edges.map(element => (
+            {data.allMarkdownRemark.edges.map((element: any) => (
               <SidebarItem
                 relURL={element.node.fields.slug}
                 title={element.node.frontmatter.title}
@@ -71,15 +71,9 @@ const Sidebar = ({ isAncestor = false }: SidebarPropTypes) => {
     </>
   )
 }
-interface CurrentNode {
-  UniqueID: string
-  isAncestor: boolean
-}
 
 interface SidebarPropTypes {
-  // siteTitle: string
   isAncestor: boolean
-  // children: React.ReactNode
 }
 
 export default Sidebar

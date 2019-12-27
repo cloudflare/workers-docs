@@ -16,12 +16,10 @@ import '../static/css/main.css'
 import '../static/css/overview.css'
 import '../static/css/code.css'
 import '../static/css/template.css'
-import '../static/js/workers.js'
-import Li from './li'
 
-const Layout = ({ children, title }: any) => {
+const Li = ({ children, path }: any) => {
   const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
+    query SiteLiTitle {
       site {
         siteMetadata {
           title
@@ -32,23 +30,25 @@ const Layout = ({ children, title }: any) => {
 
   return (
     <>
-      <SEO title={title || data.site.siteMetadata.title} />
-      <Header siteTitle={title || data.site.siteMetadata.title} />
-      <Sidebar isAncestor={true} />
-      <main>{children}</main>
-      <Li>{children}</Li>
-      <footer>
-        © {new Date().getFullYear()}, Built with
-        {` `}
-        <a href="https://www.gatsbyjs.org">Gatsby</a>
-      </footer>
+      <section id="body">
+        <div className="padding highlightable">
+          <a
+            className="github-edit"
+            href={`https://github.com/cloudflare/workers-docs/edit/master/content/${'sd'}`}
+          >
+            <img src="/svg/github.svg" />
+            <span>Edit on Github</span>
+          </a>
+          {children}
+        </div>
+      </section>
     </>
   )
 }
 
-Layout.propTypes = {
+Li.propTypes = {
   children: PropTypes.node.isRequired,
   title: String,
 }
 
-export default Layout
+export default Li

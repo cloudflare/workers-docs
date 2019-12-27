@@ -73,6 +73,28 @@ const SEO = ({ description, lang, meta, title }: SEOPropTypes) => {
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','cfDataLayer','GTM-PKQFGQB');`}</script>
+      <script type="text/javascript" src="https://cdn.bizible.com/scripts/bizible.js"></script>
+
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+      <link href="/css/theme.css" rel="stylesheet" />
+      <link href="/css/docsearch.min.css" rel="stylesheet" />
+      <script src="/js/docsearch.min.js" />
+
+      <link
+        rel="icon"
+        sizes="32x32"
+        href="https://www.cloudflare.com/img/favicon/favicon-32x32.png"
+      />
+      <link
+        rel="icon"
+        sizes="16x16"
+        href="https://www.cloudflare.com/img/favicon/favicon-16x16.png"
+      />
+      <link
+        rel="apple-touch-icon"
+        sizes="180x180"
+        href="https://www.cloudflare.com/img/favicon/apple-touch-icon.png"
+      />
     </Helmet>
   )
 }
