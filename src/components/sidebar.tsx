@@ -17,7 +17,7 @@ docsearch({
 });
 `
 
-const Sidebar = ({ isAncestor = false, children }: SidebarPropTypes) => {
+const Sidebar = ({ isAncestor = false }: SidebarPropTypes) => {
   const data = useStaticQuery(graphql`
     {
       allMarkdownRemark(limit: 1000) {
@@ -77,9 +77,9 @@ interface CurrentNode {
 }
 
 interface SidebarPropTypes {
-  siteTitle: string
+  // siteTitle: string
   isAncestor: boolean
-  children: React.ReactNode
+  // children: React.ReactNode
 }
 
 export default Sidebar
