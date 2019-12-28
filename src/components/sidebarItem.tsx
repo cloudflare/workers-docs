@@ -1,5 +1,7 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
+import { Link } from 'gatsby'
+import { Location } from '@reach/router'
 
 export const SidebarItem = ({
   relURL = '/',
@@ -18,28 +20,30 @@ export const SidebarItem = ({
   if (isAncestor) {
     ddClass += ' parent'
   }
-  if (relURL === '') {
-    ddClass += ' active'
-    ddClass += data.sitePage.path
-    // TODO set active and parent accurtely
-    // {{ if eq .UniqueID $currentNode.UniqueID}}active{{ end }}
-    // {{ if .Params.alwaysopen}}parent{{ end }}
-    // {{ if .Params.alwaysopen}}always-open{{ end }}
+  if (alwaysOpen) {
+    ddClass += ' parent alwaysOpen'
   }
   return (
-    <>
-      <li data-nav-id={relURL} className={'dd-item ' + ddClass}>
-        <a className="" href={relURL} title="Docs Home">
-          {title}
+    <Location>
+      {({ location }) => {
+        if (location.pathname === relURL) {
+          ddClass += ' active'
+        }
+        return (
+          <li data-nav-id={relURL} className={'dd-item ' + ddClass}>
+            <Link className="" to={relURL} title="Docs Home" activeClassName="active">
+              {title}
 
-          {isAncestor && alwaysOpen ? (
-            <i className="triangle-up"></i>
-          ) : (
-            <i className="triangle-down"></i>
-          )}
-        </a>
-      </li>
-    </>
+              {isAncestor && alwaysOpen ? (
+                <i className="triangle-up"></i>
+              ) : (
+                <i className="triangle-down"></i>
+              )}
+            </Link>
+          </li>
+        )
+      }}
+    </Location>
   )
 }
 
