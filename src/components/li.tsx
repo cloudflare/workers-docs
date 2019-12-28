@@ -9,15 +9,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 
-import Header from './header'
-import Sidebar from './sidebar'
-import SEO from './seo'
-import '../static/css/main.css'
-import '../static/css/overview.css'
-import '../static/css/code.css'
-import '../static/css/template.css'
-
-const Li = ({ children, path }: any) => {
+const Li = ({ children }: any) => {
   const data = useStaticQuery(graphql`
     query SiteLiTitle {
       site {

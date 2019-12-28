@@ -17,7 +17,7 @@ docsearch({
 });
 `
 
-const Sidebar = ({ isAncestor = false }: SidebarPropTypes) => {
+const Sidebar = ({ isAncestor = false, relURL = '/' }: SidebarPropTypes) => {
   const data = useStaticQuery(graphql`
     {
       allMarkdownRemark(limit: 1000) {
@@ -46,7 +46,7 @@ const Sidebar = ({ isAncestor = false }: SidebarPropTypes) => {
         </span>
       </a>
       <script>{script}</script>
-      {/* <div id="sidebar-open-backdrop">~</div> */}
+      <div id="sidebar-open-backdrop"></div>
       <nav id="sidebar">
         <div className="search-container">
           <input
@@ -58,7 +58,13 @@ const Sidebar = ({ isAncestor = false }: SidebarPropTypes) => {
         </div>
         <div className="highlightable">
           <ul className="topics">
+            <li data-nav-id={relURL} className="docs-nav-item-header">
+              <a className="" href={relURL} title="Docs Home">
+                Overview
+              </a>
+            </li>
             {data.allMarkdownRemark.edges.map((element: any) => (
+              // Todo filter out hidden pages
               <SidebarItem
                 relURL={element.node.fields.slug}
                 title={element.node.frontmatter.title}
@@ -74,6 +80,7 @@ const Sidebar = ({ isAncestor = false }: SidebarPropTypes) => {
 
 interface SidebarPropTypes {
   isAncestor: boolean
+  relURL?: string
 }
 
 export default Sidebar
