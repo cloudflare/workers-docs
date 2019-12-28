@@ -16,6 +16,7 @@ import '../static/css/main.css'
 import '../static/css/overview.css'
 import '../static/css/code.css'
 import '../static/css/template.css'
+import '../static/css/theme.css'
 import '../static/js/workers.js'
 import Li from './li'
 
@@ -33,15 +34,8 @@ const Layout = ({ children, title }: any) => {
   return (
     <>
       <SEO title={title || data.site.siteMetadata.title} />
-      <Header siteTitle={title || data.site.siteMetadata.title} />
       <Sidebar isAncestor={true} />
-      <main>{children}</main>
       <Li>{children}</Li>
-      <footer>
-        © {new Date().getFullYear()}, Built with
-        {` `}
-        <a href="https://www.gatsbyjs.org">Gatsby</a>
-      </footer>
     </>
   )
 }
