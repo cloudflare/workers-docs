@@ -9,14 +9,30 @@ export const SidebarItem = ({
   isAncestor = true,
   alwaysOpen = true,
   ddClass = '',
+  parent = '/about',
 }: SidebarItemPropTypes) => {
-  const data = useStaticQuery(graphql`
-    query MyQuery {
-      sitePage {
-        path
+  let myChildren = useStaticQuery(
+    graphql`
+      {
+        allMarkdownRemark(limit: 1000) {
+          edges {
+            node {
+              frontmatter {
+                title
+                alwaysopen
+              }
+              fileAbsolutePath
+              fields {
+                slug
+                parent
+              }
+            }
+          }
+        }
       }
-    }
-  `)
+    `,
+  )
+
   if (isAncestor) {
     ddClass += ' parent'
   }
@@ -33,13 +49,25 @@ export const SidebarItem = ({
           <li data-nav-id={relURL} className={'dd-item ' + ddClass}>
             <Link className="" to={relURL} title="Docs Home" activeClassName="active">
               {title}
-
               {isAncestor && alwaysOpen ? (
                 <i className="triangle-up"></i>
               ) : (
                 <i className="triangle-down"></i>
               )}
             </Link>
+            <ul>
+              {myChildren.allMarkdownRemark.edges
+
+                .filter((element: any) => {
+                  console.log(element.node.fields.parent)
+                  return element.node.fields.parent === parent
+                })
+                .map((element: any) => (
+                  <li>
+                    <Link to={element.node.fields.slug}>{element.node.frontmatter.title}</Link>
+                  </li>
+                ))}
+            </ul>
           </li>
         )
       }}
@@ -54,4 +82,5 @@ export interface SidebarItemPropTypes {
   isAncestor?: boolean
   alwaysOpen?: boolean
   ddClass?: string
+  parent?: string
 }
