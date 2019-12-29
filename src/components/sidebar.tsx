@@ -24,18 +24,20 @@ const Sidebar = ({ isAncestor = false, relURL = '/' }: SidebarPropTypes) => {
         edges {
           node {
             frontmatter {
-              date
               title
+              alwaysopen
             }
             fileAbsolutePath
             fields {
               slug
+              parent
             }
           }
         }
       }
     }
   `)
+
   return (
     <>
       <a id="sidebar-toggle">
@@ -63,14 +65,20 @@ const Sidebar = ({ isAncestor = false, relURL = '/' }: SidebarPropTypes) => {
                 Overview
               </a>
             </li>
-            {data.allMarkdownRemark.edges.map((element: any) => (
-              // Todo filter out hidden pages
-              <SidebarItem
-                relURL={element.node.fields.slug}
-                title={element.node.frontmatter.title}
-                children={element}
-              />
-            ))}
+            {data.allMarkdownRemark.edges
+              // Filter to top level parent
+              .filter((element: any) => element.node.fields.slug.endsWith('index/'))
+              // .filter((element: any) => element.node.fields.parent.match(/^\/[^/]+$/))
+              .map((element: any) => (
+                // Todo filter out hidden pages
+                <SidebarItem
+                  relURL={element.node.fields.slug}
+                  title={element.node.frontmatter.title}
+                  alwaysOpen={element.node.frontmatter.alwaysopen}
+                  children={element}
+                  parent={element.node.fields.parent}
+                />
+              ))}
           </ul>
         </div>
       </nav>

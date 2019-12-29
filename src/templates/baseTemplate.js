@@ -14,7 +14,6 @@ export default function Template({
   data, // this prop will be injected by the GraphQL query below.
 }) {
   const { markdownRemark } = data // data.markdownRemark holds our post data
-  console.log('data', data)
   const { frontmatter, html } = markdownRemark
   return (
     <>
@@ -31,7 +30,6 @@ export const pageQuery = graphql`
     markdownRemark(fields: { slug: { eq: $path } }) {
       html
       frontmatter {
-        date(formatString: "MMMM DD, YYYY")
         title
       }
     }

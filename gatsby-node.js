@@ -9,21 +9,24 @@ const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
+  // TODO: create the pages for path w/o index.md etc..
   const { createPage } = actions
 
   const baseTemplate = path.resolve(`src/templates/baseTemplate.js`)
 
   const result = await graphql(`
     {
-      allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }, limit: 1000) {
+      allMarkdownRemark(limit: 1000) {
         edges {
           node {
             fields {
               slug
             }
             frontmatter {
-              date
+              alwaysopen
+              weight
             }
+            fileAbsolutePath
           }
         }
       }
@@ -40,7 +43,10 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       path: node.fields.slug,
       // path: node.frontmatter.path,
       component: baseTemplate,
-      context: {}, // additional data can be passed via context
+      context: {
+        // TODO not sure if this is being used
+        parent: node.fields.parent,
+      }, // additional data can be passed via context
     })
   })
 }
@@ -48,20 +54,29 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
   // Ensures we are processing only markdown files
   if (node.internal.type === 'MarkdownRemark') {
-    console.log('creating node', node)
-
     // Use `createFilePath` to turn markdown files in our `markdown-pages` directory into `/workers/`slug
     const relativeFilePath = createFilePath({
       node,
       getNode,
       basePath: 'markdown-pages/',
     })
-    console.log('relativeFilePath', relativeFilePath)
-    // Creates new query'able field with name of 'slug'
+    const parentDir = path.dirname(relativeFilePath)
+    // Creates new query'able field with name of 'slug', 'parent'..
+    // for allMarkdownRemark edge nodes
     createNodeField({
       node,
       name: 'slug',
       value: `/workers${relativeFilePath}`,
+    })
+    createNodeField({
+      node,
+      name: `parent`,
+      value: parentDir,
+    })
+    createNodeField({
+      node,
+      name: `priority`,
+      value: 1, // TODO make this weird
     })
   }
 }
