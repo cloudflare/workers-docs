@@ -2,8 +2,6 @@ import React from 'react'
 import { graphql } from 'gatsby'
 
 import Layout from '../components/layout'
-import Li from '../components/li'
-import Head from '../components/head'
 import '../static/css/main.css'
 import '../static/css/overview.css'
 import '../static/css/code.css'
@@ -17,7 +15,6 @@ export default function Template({
   const { frontmatter, html } = markdownRemark
   return (
     <>
-      <Head />
       <Layout title={frontmatter.title}>
         <div dangerouslySetInnerHTML={{ __html: html }} />
       </Layout>

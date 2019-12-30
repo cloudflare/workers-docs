@@ -9,12 +9,45 @@ const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
-  // TODO: create the pages for path w/o index.md etc..
+  // console.log('creating pages')
+
+  // let result = await graphql(`
+  //   query MyQuery {
+  //     allFile {
+  //       nodes {
+  //         absolutePath
+  //         internal {
+  //           type
+  //           ignoreType
+  //         }
+  //         relativePath
+  //         relativeDirectory
+  //       }
+  //     }
+  //   }
+  // `)
+  // // Handle errors
+  // if (result.errors) {
+  //   reporter.panicOnBuild(`Error while running GraphQL query.`)
+  //   return
+  // }
+  // console.log('result.data', result.data.allFile.nodes)
+  // //     "allFile": {
+  // // "nodes": [
+  // result.data.allFile.nodes.forEach(node => {
+  //   console.log('node', node)
+  //   const relativeFilePath = createFilePath({
+  //     node,
+  //     getNode,
+  //     basePath: node.relativePath,
+  //   })
+  // })
+
   const { createPage } = actions
 
   const baseTemplate = path.resolve(`src/templates/baseTemplate.js`)
 
-  const result = await graphql(`
+  result = await graphql(`
     {
       allMarkdownRemark(limit: 1000) {
         edges {
