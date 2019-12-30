@@ -16,7 +16,9 @@ docsearch({
 `
 
 const Sidebar = ({ isAncestor = false, relURL = '/' }: SidebarPropTypes) => {
-  const data = useStaticQuery(graphql`
+  // get top level (i.e. slugs with /workers followed by no more than
+  // one forward slash) markdownRemark nodes
+  const topLevelMarkdown = useStaticQuery(graphql`
     {
       allMarkdownRemark(
         sort: { fields: frontmatter___weight }
@@ -62,18 +64,18 @@ const Sidebar = ({ isAncestor = false, relURL = '/' }: SidebarPropTypes) => {
         </div>
         <div className="highlightable">
           <ul className="topics">
+            {/* TODO V thinks we don't even use this li header for anything but padding */}
             <li data-nav-id={relURL} className="docs-nav-item-header">
               <a className="" href={relURL} title="Docs Home">
                 Overview
               </a>
             </li>
-            {data.allMarkdownRemark.edges.map((element: any) => (
+            {topLevelMarkdown.allMarkdownRemark.edges.map((element: any) => (
               // Todo filter out hidden pages
               <TopSidebarItem
                 relURL={element.node.fields.slug}
                 title={element.node.frontmatter.title}
                 alwaysOpen={element.node.frontmatter.alwaysopen}
-                children={element}
                 parent={element.node.fields.parent}
               />
             ))}
