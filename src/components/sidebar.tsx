@@ -66,7 +66,7 @@ const Sidebar = ({ isAncestor = false, relURL = '/' }: SidebarPropTypes) => {
               </a>
             </li>
             {data.allMarkdownRemark.edges
-              // Filter to top level parent
+              // TODO Filter to top level parent in more proper fashion
               .filter((element: any) => element.node.fields.slug.endsWith('index/'))
               // .filter((element: any) => element.node.fields.parent.match(/^\/[^/]+$/))
               .map((element: any) => (

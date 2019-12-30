@@ -28,7 +28,7 @@ const Li = ({ children }: any) => {
             className="github-edit"
             href={`https://github.com/cloudflare/workers-docs/edit/master/content/${'sd'}`}
           >
-            <img src="/svg/github.svg" />
+            <img src="/images/github.svg" />
             <span>Edit on Github</span>
           </a>
           {children}
