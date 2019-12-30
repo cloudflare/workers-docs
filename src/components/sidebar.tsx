@@ -1,8 +1,6 @@
 import { useStaticQuery, graphql } from 'gatsby'
-import { Link } from 'gatsby'
-import PropTypes from 'prop-types'
 import React from 'react'
-import { SidebarItemPropTypes, SidebarItem } from './sidebarItem'
+import { TopSidebarItem } from './TopSidebarItem'
 const script = `    document.querySelector('#sidebar-toggle').addEventListener('click', function(){
   if (document.body.classList.contains('with-sidebar-open')) {
     document.body.classList.remove('with-sidebar-open');
@@ -20,7 +18,11 @@ docsearch({
 const Sidebar = ({ isAncestor = false, relURL = '/' }: SidebarPropTypes) => {
   const data = useStaticQuery(graphql`
     {
-      allMarkdownRemark(limit: 1000) {
+      allMarkdownRemark(
+        sort: { fields: frontmatter___weight }
+        limit: 1000
+        filter: { fields: { slug: { regex: "/^/workers/[^/]+$/" } } }
+      ) {
         edges {
           node {
             frontmatter {
@@ -65,20 +67,16 @@ const Sidebar = ({ isAncestor = false, relURL = '/' }: SidebarPropTypes) => {
                 Overview
               </a>
             </li>
-            {data.allMarkdownRemark.edges
-              // TODO Filter to top level parent in more proper fashion
-              .filter((element: any) => element.node.fields.slug.endsWith('index/'))
-              // .filter((element: any) => element.node.fields.parent.match(/^\/[^/]+$/))
-              .map((element: any) => (
-                // Todo filter out hidden pages
-                <SidebarItem
-                  relURL={element.node.fields.slug}
-                  title={element.node.frontmatter.title}
-                  alwaysOpen={element.node.frontmatter.alwaysopen}
-                  children={element}
-                  parent={element.node.fields.parent}
-                />
-              ))}
+            {data.allMarkdownRemark.edges.map((element: any) => (
+              // Todo filter out hidden pages
+              <TopSidebarItem
+                relURL={element.node.fields.slug}
+                title={element.node.frontmatter.title}
+                alwaysOpen={element.node.frontmatter.alwaysopen}
+                children={element}
+                parent={element.node.fields.parent}
+              />
+            ))}
           </ul>
         </div>
       </nav>

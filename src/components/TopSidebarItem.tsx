@@ -3,14 +3,14 @@ import { useStaticQuery, graphql } from 'gatsby'
 import { Link } from 'gatsby'
 import { Location } from '@reach/router'
 
-export const SidebarItem = ({
+export const TopSidebarItem = ({
   relURL = '/',
   title,
   isAncestor = true,
   alwaysOpen = true,
   ddClass = '',
   parent = '/about',
-}: SidebarItemPropTypes) => {
+}: TopSidebarItemPropTypes) => {
   let myChildren = useStaticQuery(
     graphql`
       {
@@ -74,7 +74,7 @@ export const SidebarItem = ({
   )
 }
 
-export interface SidebarItemPropTypes {
+export interface TopSidebarItemPropTypes {
   relURL: string
   title: string
   children: React.ReactNode

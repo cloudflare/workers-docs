@@ -79,6 +79,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       context: {
         // TODO not sure if this is being used
         parent: node.fields.parent,
+        weight: node.frontmatter.weight,
       }, // additional data can be passed via context
     })
   })
@@ -88,12 +89,15 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   // Ensures we are processing only markdown files
   if (node.internal.type === 'MarkdownRemark') {
     // Use `createFilePath` to turn markdown files in our `markdown-pages` directory into `/workers/`slug
-    const relativeFilePath = createFilePath({
+    let relativeFilePath = createFilePath({
       node,
       getNode,
       basePath: 'markdown-pages/',
     })
     const parentDir = path.dirname(relativeFilePath)
+    if (relativeFilePath.includes('index')) {
+      relativeFilePath = parentDir
+    }
     // Creates new query'able field with name of 'slug', 'parent'..
     // for allMarkdownRemark edge nodes
     createNodeField({
@@ -104,12 +108,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     createNodeField({
       node,
       name: `parent`,
-      value: parentDir,
-    })
-    createNodeField({
-      node,
-      name: `priority`,
-      value: 1, // TODO make this weird
+      value: `/workers${parentDir}`,
     })
   }
 }
