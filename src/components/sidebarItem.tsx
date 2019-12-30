@@ -59,7 +59,6 @@ export const SidebarItem = ({
               {myChildren.allMarkdownRemark.edges
 
                 .filter((element: any) => {
-                  console.log(element.node.fields.parent)
                   return element.node.fields.parent === parent
                 })
                 .map((element: any) => (

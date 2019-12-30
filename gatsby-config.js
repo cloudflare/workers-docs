@@ -1,3 +1,20 @@
+const path = require('path')
+// Print out for debug help
+console.log(
+  JSON.stringify(
+    require('glob')
+      .sync(path.join(__dirname, './src/**/media'))
+      .map(source => ({
+        resolve: 'gatsby-plugin-copy-files',
+        options: {
+          source,
+          destination: source.replace(path.join(__dirname, './src/markdown-pages'), ''),
+        },
+      })),
+    null,
+    '  ',
+  ),
+)
 module.exports = {
   siteMetadata: {
     title: `Cloudflare Workers`,
@@ -5,12 +22,6 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
-    // {
-    //   resolve: `gatsby-plugin-typography`,
-    //   options: {
-    //     pathToConfigModule: `src/utils/typography`,
-    //   },
-    // },
     `gatsby-plugin-typescript`,
     `gatsby-plugin-react-helmet`,
     {
@@ -36,6 +47,17 @@ module.exports = {
         destination: '/images',
       },
     },
+    ...require('glob')
+      // TODO: instead of serving images this complicated way, change links to root
+      // e.g. (/tooling/media/image.jpq) to ref current directory (e.g. ./media/image.jpg)
+      .sync(path.join(__dirname, './src/**/media'))
+      .map(source => ({
+        resolve: 'gatsby-plugin-copy-files',
+        options: {
+          source,
+          destination: source.replace(path.join(__dirname, './src/markdown-pages'), ''),
+        },
+      })),
     // `gatsby-plugin-sharp`,
     // {
     //   resolve: `gatsby-plugin-manifest`,
