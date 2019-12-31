@@ -1,7 +1,7 @@
 import { useStaticQuery, graphql } from 'gatsby'
 import { GraphQLData, GraphQLEdge, GraphQLNode } from '../types/page'
 
-export const useMarkdownNodes = (): GraphQLEdge[] => {
+export const useMarkdownNodes = (): GraphQLData['data'] => {
   const { data }: GraphQLData = useStaticQuery(
     graphql`
       {
@@ -29,5 +29,5 @@ export const useMarkdownNodes = (): GraphQLEdge[] => {
   )
   console.log('data', data)
   // return data.data
-  return data.allMarkdownRemark.edges
+  return data //.allMarkdownRemark.edges
 }

@@ -6,8 +6,9 @@ export type FrontMattter = {
   weight: number | null
 }
 export type Fields = {
-  relURL: string
+  pathToServe: string
   parent: string
+  filePath: string
 }
 // The values from GraphQl + Remark we care about
 export type GraphQLNode = {
