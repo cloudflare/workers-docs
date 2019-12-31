@@ -1,37 +1,41 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import { Location } from '@reach/router'
-import { data } from '../hooks2/mockMarkdownRemark'
+import { data } from '../hooks/mockMarkdownRemark'
 import { GraphQLEdge, GraphQLData, GraphQLNode, FrontMattter, Fields } from '../types/page'
 // import { useMarkdownNodes } from '../hooks/useMarkdownNodes'
 // import { useSiteMetadata } from '../hooks/useSiteMeta'
-
+const maxDepth = 10
 const defaultVals = {
   isAncestor: false,
   showNew: false,
   alwaysopen: true,
 }
-export const SidebarLi: React.FunctionComponent<SidebarLiProps & SidebarItem> = ({
+export const SidebarLi: React.FunctionComponent<SidebarLiProps> = ({
   frontmatter,
   fields,
+  depth,
   // myChildren,
 }) => {
-  const { relURL } = fields
+  const { pathToServe } = fields
   const { title, alwaysopen, showNew }: FrontMattter = frontmatter
+  // const
   // const data: GraphQLData = data
   const topLevelMarkdown = data.data.allMarkdownRemark.edges
   // console.log('myChildren', myChildren)
   // myChildren =
   //   myChildren ||
   //   topLevelMarkdown
-  //     .filter((el: GraphQLEdge) => el.node.fields.parent == relURL)
+  //     .filter((el: GraphQLEdge) => el.node.fields.parent == pathToServe)
   //     .map((el: GraphQLEdge): GraphQLNode => el.node)
   const myChildren: GraphQLNode[] = topLevelMarkdown
     .filter(
       (child: GraphQLEdge) =>
         // .filter((child: GraphQLData['data']['allMarkdownRemark']['edges']) =>
-        // child.node.fields.parent.match(fields.relURL),
-        child.node.fields.parent.match(fields.relURL) && child.node.fields.relURL !== fields.relURL,
+        // child.node.fields.parent.match(fields.pathToServe),
+        child.node.fields.parent === fields.pathToServe &&
+        child.node.fields.pathToServe !== fields.pathToServe,
+      // child.node.fields.parent.match(fields.pathToServe) && child.node.fields.pathToServe !== fields.pathToServe,
     )
     .map((el: GraphQLEdge): GraphQLNode => el.node)
   const numberOfPages = myChildren.length
@@ -50,12 +54,12 @@ export const SidebarLi: React.FunctionComponent<SidebarLiProps & SidebarItem> = 
   return (
     <Location>
       {({ location }) => {
-        if (location.pathname === relURL) {
+        if (location.pathname === pathToServe) {
           ddClass += ' active'
         }
         return (
-          <li data-nav-id={relURL} className={'dd-item ' + ddClass}>
-            <Link className="" to={relURL} title="Docs Home" activeClassName="active">
+          <li data-nav-id={pathToServe} className={'dd-item ' + ddClass}>
+            <Link className="" to={pathToServe} title="Docs Home" activeClassName="active">
               {title}
               {numberOfPages ? (
                 <Triangle
@@ -67,7 +71,7 @@ export const SidebarLi: React.FunctionComponent<SidebarLiProps & SidebarItem> = 
               )}
               {showNew ? <span className="new-badge">NEW</span> : ''}
             </Link>
-            {numberOfPages > 1 ? (
+            {numberOfPages > 0 && depth < maxDepth ? (
               <ul>
                 {' '}
                 {myChildren
@@ -90,6 +94,7 @@ export const SidebarLi: React.FunctionComponent<SidebarLiProps & SidebarItem> = 
                         // myChildren={grandKids}
                         frontmatter={child.frontmatter}
                         fields={child.fields}
+                        depth={++depth}
                       />
                     )
                   })}
@@ -105,23 +110,11 @@ export const SidebarLi: React.FunctionComponent<SidebarLiProps & SidebarItem> = 
 }
 
 export type SidebarLiProps = {
-  // relURL: string
-  // title: string
   frontmatter: FrontMattter
   fields: Fields
-  // myChildren: GraphQLNode[] //SidebarItem[]
-  // parent: string | null
-  // alwaysopen: boolean | null
-  // hidden: boolean | null
+  depth: number
 }
-export type SidebarItem = {
-  // export type SidebarItem = FrontMattter &
-  //   Fields & {
-  //derived data specific to how we'll form HTML
-  // showNew?: boolean
-  // isAncestor?: boolean
-  // ddClass?: string
-}
+
 const Triangle = ({ isAncestor = false, alwaysopen = true }) => {
   return (
     <>
