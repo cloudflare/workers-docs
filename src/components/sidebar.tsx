@@ -1,6 +1,9 @@
-import { useStaticQuery, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import React from 'react'
-import { TopSidebarItem } from './TopSidebarItem'
+import { SidebarLi } from './SidebarLi'
+import { data } from '../hooks2/mockMarkdownRemark'
+
+import { GraphQLData, GraphQLEdge, GraphQLNode } from '../types/page'
 const script = `    document.querySelector('#sidebar-toggle').addEventListener('click', function(){
   if (document.body.classList.contains('with-sidebar-open')) {
     document.body.classList.remove('with-sidebar-open');
@@ -15,32 +18,10 @@ docsearch({
 });
 `
 
-const Sidebar = ({ isAncestor = false, relURL = '/' }: SidebarPropTypes) => {
-  // get top level (i.e. slugs with /workers followed by no more than
+const Sidebar = ({ relURL = '/' }: SidebarPropTypes) => {
+  // get top level (i.e. relURLs with /workers followed by no more than
   // one forward slash) markdownRemark nodes
-  const topLevelMarkdown = useStaticQuery(graphql`
-    {
-      allMarkdownRemark(
-        sort: { fields: frontmatter___weight }
-        limit: 1000
-        filter: { fields: { slug: { regex: "/^/workers/[^/]+$/" } } }
-      ) {
-        edges {
-          node {
-            frontmatter {
-              title
-              alwaysopen
-            }
-            fileAbsolutePath
-            fields {
-              slug
-              parent
-            }
-          }
-        }
-      }
-    }
-  `)
+  const topLevelMarkdown: GraphQLEdge[] = data.data.allMarkdownRemark.edges
 
   return (
     <>
@@ -70,15 +51,15 @@ const Sidebar = ({ isAncestor = false, relURL = '/' }: SidebarPropTypes) => {
                 Overview
               </a>
             </li>
-            {topLevelMarkdown.allMarkdownRemark.edges.map((element: any) => (
-              // Todo filter out hidden pages
-              <TopSidebarItem
-                relURL={element.node.fields.slug}
-                title={element.node.frontmatter.title}
-                alwaysOpen={element.node.frontmatter.alwaysopen}
-                parent={element.node.fields.parent}
-              />
-            ))}
+            {topLevelMarkdown
+              .filter((el: GraphQLEdge) => el.node.fields.relURL.match(/^\/workers\/[^/]+$/))
+              .map((element: GraphQLEdge) => {
+                const { fields, frontmatter } = element.node
+                return (
+                  // Todo filter out hidden pages
+                  <SidebarLi frontmatter={frontmatter} fields={fields} />
+                )
+              })}
           </ul>
         </div>
       </nav>
