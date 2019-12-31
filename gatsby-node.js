@@ -53,7 +53,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         edges {
           node {
             fields {
-              slug
+              relURL
             }
             frontmatter {
               alwaysopen
@@ -73,11 +73,12 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   }
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
     createPage({
-      path: node.fields.slug,
+      path: node.fields.relURL,
       // path: node.frontmatter.path,
       component: baseTemplate,
       context: {
         // TODO not sure if this is being used
+        // passed from MarkdowmRemark to the SitePage
         parent: node.fields.parent,
         weight: node.frontmatter.weight,
       }, // additional data can be passed via context
@@ -88,7 +89,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
   // Ensures we are processing only markdown files
   if (node.internal.type === 'MarkdownRemark') {
-    // Use `createFilePath` to turn markdown files in our `markdown-pages` directory into `/workers/`slug
+    // Use `createFilePath` to turn markdown files in our `markdown-pages` directory into `/workers/`relURL
     let relativeFilePath = createFilePath({
       node,
       getNode,
@@ -98,11 +99,11 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     if (relativeFilePath.includes('index')) {
       relativeFilePath = parentDir
     }
-    // Creates new query'able field with name of 'slug', 'parent'..
+    // Creates new query'able field with name of 'relURL', 'parent'..
     // for allMarkdownRemark edge nodes
     createNodeField({
       node,
-      name: 'slug',
+      name: 'relURL',
       value: `/workers${relativeFilePath}`,
     })
     createNodeField({

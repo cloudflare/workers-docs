@@ -5739,9 +5739,9 @@ github-from-package@0.0.0:
   resolved "https://registry.yarnpkg.com/github-from-package/-/github-from-package-0.0.0.tgz#97fb5d96bfde8973313f20e8288ef9a167fa64ce"
   integrity sha1-l/tdlr/eiXMxPyDoKI75oWf6ZM4=
 
-github-slugger@^1.1.1:
+github-relURLger@^1.1.1:
   version "1.2.1"
-  resolved "https://registry.yarnpkg.com/github-slugger/-/github-slugger-1.2.1.tgz#47e904e70bf2dccd0014748142d31126cfd49508"
+  resolved "https://registry.yarnpkg.com/github-relURLger/-/github-relURLger-1.2.1.tgz#47e904e70bf2dccd0014748142d31126cfd49508"
   integrity sha512-SsZUjg/P03KPzQBt7OxJPasGw6NRO5uOgiZ5RGXVud5iSIZ0eNZeNp5rTwCxtavrRUa/A77j8mePVc5lEvk0KQ==
   dependencies:
     emoji-regex ">=6.0.0 <=6.1.1"
@@ -7971,7 +7971,7 @@ mdast-util-toc@^2.1.0:
   resolved "https://registry.yarnpkg.com/mdast-util-toc/-/mdast-util-toc-2.1.0.tgz#82b6b218577bb0e67b23abf5c3f7ac73a4b5389f"
   integrity sha512-ove/QQWSrYOrf9G3xn2MTAjy7PKCtCmm261wpQwecoPAsUtkihkMVczxFqil7VihxgSz4ID9c8bBTsyXR30gQg==
   dependencies:
-    github-slugger "^1.1.1"
+    github-relURLger "^1.1.1"
     mdast-util-to-string "^1.0.2"
     unist-util-visit "^1.1.0"
 
@@ -11762,7 +11762,7 @@ table@^5.2.3:
 tapable@^1.0.0, tapable@^1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-1.1.3.tgz#a1fccc06b58db61fd7a45da2da44f5f3a3e67ba2"
-  integrity sha512-4WK/bYZmj8xLr+HUCODHGF1ZFzsYffasLUgEiMBY4fgtltdO6B4WJtlSbPaDTLpYTcGVwM2qLnFTICEcNxs3kA==
+  integrity sha512-4WK/bYZmj8xLr+HUCODHGF1ZFzsYffarelURLEiMBY4fgtltdO6B4WJtlSbPaDTLpYTcGVwM2qLnFTICEcNxs3kA==
 
 tar-fs@^2.0.0:
   version "2.0.0"
@@ -12223,11 +12223,11 @@ unique-filename@^1.1.1:
   resolved "https://registry.yarnpkg.com/unique-filename/-/unique-filename-1.1.1.tgz#1d69769369ada0583103a1e6ae87681b56573230"
   integrity sha512-Vmp0jIp2ln35UTXuryvjzkjGdRyf9b2lTXuSYUiPmzRcl3FDtYqAwOnTJkAngD9SWhnoJzDbTKwaOrZ+STtxNQ==
   dependencies:
-    unique-slug "^2.0.0"
+    unique-relURL "^2.0.0"
 
-unique-slug@^2.0.0:
+unique-relURL@^2.0.0:
   version "2.0.2"
-  resolved "https://registry.yarnpkg.com/unique-slug/-/unique-slug-2.0.2.tgz#baabce91083fc64e945b0f3ad613e264f7cd4e6c"
+  resolved "https://registry.yarnpkg.com/unique-relURL/-/unique-relURL-2.0.2.tgz#baabce91083fc64e945b0f3ad613e264f7cd4e6c"
   integrity sha512-zoWr9ObaxALD3DOPfjPSqxt4fnZiWblxHIgeWqW8x7UqDzEtHEQLzji2cuJYQFCU6KmoJikOYAZlrTHHebjx2w==
   dependencies:
     imurmurhash "^0.1.4"

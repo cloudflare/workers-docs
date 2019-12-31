@@ -24,7 +24,7 @@ export default function Template({
 
 export const pageQuery = graphql`
   query($path: String!) {
-    markdownRemark(fields: { slug: { eq: $path } }) {
+    markdownRemark(fields: { relURL: { eq: $path } }) {
       html
       frontmatter {
         title
