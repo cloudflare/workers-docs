@@ -36,7 +36,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   // // "nodes": [
   // result.data.allFile.nodes.forEach(node => {
   //   console.log('node', node)
-  //   const relativeFilePath = createFilePath({
+  //   const pathToServe = createFilePath({
   //     node,
   //     getNode,
   //     basePath: node.relativePath,
@@ -53,7 +53,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         edges {
           node {
             fields {
-              relURL
+              pathToServe
             }
             frontmatter {
               alwaysopen
@@ -73,7 +73,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   }
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
     createPage({
-      path: node.fields.relURL,
+      path: node.fields.pathToServe,
       // path: node.frontmatter.path,
       component: baseTemplate,
       context: {
@@ -89,27 +89,34 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
   // Ensures we are processing only markdown files
   if (node.internal.type === 'MarkdownRemark') {
-    // Use `createFilePath` to turn markdown files in our `markdown-pages` directory into `/workers/`relURL
-    let relativeFilePath = createFilePath({
-      node,
-      getNode,
-      basePath: 'markdown-pages/',
-    })
-    const parentDir = path.dirname(relativeFilePath)
-    if (relativeFilePath.includes('index')) {
-      relativeFilePath = parentDir
+    // Use `createFilePath` to turn markdown files in our `markdown-pages` directory into `/workers/`pathToServe
+    let originalPath,
+      pathToServe = createFilePath({
+        node,
+        getNode,
+        basePath: 'markdown-pages/',
+      })
+    let parentDir = path.dirname(pathToServe)
+    if (pathToServe.includes('index')) {
+      pathToServe = parentDir
+      parentDir = path.dirname(parentDir)
     }
-    // Creates new query'able field with name of 'relURL', 'parent'..
+    // Creates new query'able field with name of 'pathToServe', 'parent'..
     // for allMarkdownRemark edge nodes
     createNodeField({
       node,
-      name: 'relURL',
-      value: `/workers${relativeFilePath}`,
+      name: 'pathToServe',
+      value: `/workers${pathToServe}`,
     })
     createNodeField({
       node,
       name: `parent`,
       value: `/workers${parentDir}`,
+    })
+    createNodeField({
+      node,
+      name: `filePath`,
+      value: `${originalPath}`,
     })
   }
 }
