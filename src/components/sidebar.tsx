@@ -1,9 +1,9 @@
-import { graphql } from 'gatsby'
+import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
 import { SidebarLi } from './SidebarLi'
-import { data } from '../hooks2/mockMarkdownRemark'
-
-import { GraphQLData, GraphQLEdge, GraphQLNode } from '../types/page'
+import { sortByWeight } from './utils'
+import { GraphQLEdge } from '../types/page'
+// import { useMarkdownNodes } from '../hooks/useMarkdownRemark'
 const script = `    document.querySelector('#sidebar-toggle').addEventListener('click', function(){
   if (document.body.classList.contains('with-sidebar-open')) {
     document.body.classList.remove('with-sidebar-open');
@@ -18,11 +18,32 @@ docsearch({
 });
 `
 
-// const Sidebar = ({ pathToServe = '/' }: SidebarPropTypes) => {
 const Sidebar = ({ pathToServe = '/' }) => {
-  // get top level (i.e. relURLs with /workers followed by no more than
-  // one forward slash) markdownRemark nodes
-  const topLevelMarkdown: GraphQLEdge[] = data.data.allMarkdownRemark.edges
+  const topLevelMarkdown: GraphQLEdge[] = useStaticQuery(
+    graphql`
+      {
+        allMarkdownRemark(limit: 1000) {
+          edges {
+            node {
+              frontmatter {
+                title
+                alwaysopen
+                hidden
+                showNew
+                weight
+              }
+              fileAbsolutePath
+              fields {
+                pathToServe
+                parent
+                filePath
+              }
+            }
+          }
+        }
+      }
+    `,
+  ).allMarkdownRemark.edges
 
   return (
     <>
@@ -53,12 +74,16 @@ const Sidebar = ({ pathToServe = '/' }) => {
               </a>
             </li>
             {topLevelMarkdown
-              .filter((el: GraphQLEdge) => el.node.fields.pathToServe.match(/^\/workers\/[^/]+$/))
-              .map((element: GraphQLEdge) => {
-                const { fields, frontmatter } = element.node
+              // get top level (i.e. relURLs with /workers followed by no more than
+              // one forward slash) markdownRemark nodes
+              .filter(edge => edge.node.fields.pathToServe.match(/^\/workers\/[^/]+$/))
+              .map(edge => edge.node)
+              .sort(sortByWeight)
+              .map(node => {
+                const { fields, frontmatter } = node
                 return (
                   // Todo filter out hidden pages
-                  <SidebarLi frontmatter={frontmatter} fields={fields} />
+                  <SidebarLi depth={1} frontmatter={frontmatter} fields={fields} />
                 )
               })}
           </ul>
