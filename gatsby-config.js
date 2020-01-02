@@ -36,6 +36,7 @@ module.exports = {
       options: {
         name: `markdown-pages`,
         path: `${__dirname}/src/markdown-pages`,
+        ignore: [`**/CONTRIBUTING*`, '/styles/**'],
       },
     },
     `gatsby-transformer-sharp`,
