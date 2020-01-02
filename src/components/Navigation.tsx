@@ -1,6 +1,5 @@
 import React from 'react'
-import Helmet from 'react-helmet'
-import { useStaticQuery, graphql } from 'gatsby'
+import { Link } from 'gatsby'
 
 export const Navigation = () => {
   return (
@@ -151,27 +150,27 @@ export const Navigation = () => {
             </svg>
           </div>
         </a>
-        <a href="/" className="active navigation-link">
+        <Link to="/workers" className="active navigation-link">
           <strong>Docs</strong>
-        </a>
-        <a href="/quickstart/" className="navigation-link">
+        </Link>
+        <Link to="/workers/quickstart/" className="navigation-link">
           <span>Quick&nbsp;Start</span>
-        </a>
-        <a href="/templates/" className="navigation-link">
+        </Link>
+        <Link to="/workers/templates/" className="navigation-link">
           <span>Templates</span>
-        </a>
-        <a href="/tutorials/" className="navigation-link">
+        </Link>
+        <Link to="/workers/tutorials/" className="navigation-link">
           <span>Tutorials</span>
-        </a>
-        <a href="/reference/" className="navigation-link">
+        </Link>
+        <Link to="/workers/reference/" className="navigation-link">
           <span>Reference</span>
-        </a>
-        <a href="/tooling/" className="navigation-link">
+        </Link>
+        <Link to="/workers/tooling/" className="navigation-link">
           <span>Tooling</span>
-        </a>
-        <a href="/about/" className="navigation-link">
+        </Link>
+        <Link to="/workers/about/" className="navigation-link">
           <span>About</span>
-        </a>
+        </Link>
       </div>
       <script>{script}</script>
     </>
