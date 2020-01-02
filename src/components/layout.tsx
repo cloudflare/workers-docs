@@ -19,6 +19,7 @@ import '../static/css/template.css'
 import '../static/css/theme.css'
 import '../static/js/workers.js'
 import Li from './li'
+import { Navigation } from './Navigation'
 
 const Layout = ({ children, title }: any) => {
   const data = useStaticQuery(graphql`
@@ -34,7 +35,8 @@ const Layout = ({ children, title }: any) => {
   return (
     <>
       <SEO title={title || data.site.siteMetadata.title} />
-      <Sidebar isAncestor={true} />
+      <Navigation />
+      <Sidebar />
       <Li>{children}</Li>
     </>
   )
