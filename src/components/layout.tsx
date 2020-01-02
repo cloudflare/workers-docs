@@ -6,10 +6,8 @@
  */
 
 import React from 'react'
-import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 
-import Header from './Header'
 import Sidebar from './Sidebar'
 import SEO from './SEO'
 import '../static/css/main.css'
@@ -20,7 +18,7 @@ import '../static/css/theme.css'
 import '../static/js/workers.js'
 import Body from './Body'
 import { Navigation } from './Navigation'
-import { GraphQLEdge, GraphQLNode, FrontMattter, Fields } from '../types/page'
+import { FrontMattter, Fields } from '../types/page'
 const Layout: React.FC<LayoutProps> = ({ frontmatter, fields, children }) => {
   const { title } = frontmatter
   const data = useStaticQuery(graphql`
@@ -44,8 +42,6 @@ const Layout: React.FC<LayoutProps> = ({ frontmatter, fields, children }) => {
 }
 
 type LayoutProps = {
-  // children: PropTypes.node.isRequired,
-  // title: string
   frontmatter: FrontMattter
   fields: Fields
 }

@@ -8,7 +8,7 @@ const Body: React.FC<BodyProps> = ({ children, frontmatter, fields }) => {
         <div className="padding highlightable">
           <a
             className="github-edit"
-            href={`https://github.com/cloudflare/workers-docs/edit/master/content/${fields.filePath}`}
+            href={`https://github.com/cloudflare/workers-docs/edit/master/content${fields.filePath}`}
           >
             <img src="/images/github.svg" />
             <span>Edit on Github</span>
