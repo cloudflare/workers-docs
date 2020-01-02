@@ -5,11 +5,6 @@ import { GraphQLEdge, GraphQLNode, FrontMattter, Fields } from '../types/page'
 import { sortByWeight } from './utils'
 // import { useMarkdownNodes } from '../hooks/useMarkdownNodes'
 const maxDepth = 10
-const defaultVals = {
-  isAncestor: false,
-  showNew: false,
-  alwaysopen: true,
-}
 
 export const SidebarLi: React.FunctionComponent<SidebarLiProps> = ({
   frontmatter,
@@ -52,12 +47,11 @@ export const SidebarLi: React.FunctionComponent<SidebarLiProps> = ({
     .map(child => child.node)
     .filter(child => !child.frontmatter.hidden)
     .sort(sortByWeight)
-  const numberOfPages = myChildren.length
+  const numberOfPages = myChildren.filter(child => !child.frontmatter.hidden).length
 
   let ddClass = ''
   // TODO double check this assumed def of Ancestor
-  const isAncestor = numberOfPages > 0
-
+  let isAncestor = numberOfPages > 0
   if (isAncestor) {
     ddClass += ' parent'
   }
@@ -67,26 +61,18 @@ export const SidebarLi: React.FunctionComponent<SidebarLiProps> = ({
   return (
     <Location>
       {({ location }) => {
-        // console.log('location.pathname', location.pathname)
-        // console.log('pathToServe', pathToServe)
-        const currentPathActive = location.pathname.includes(pathToServe)
+        const currentPathActive = location.pathname === pathToServe
         if (currentPathActive) {
           ddClass += ' active'
         }
+        let currentPathActiveChildren = currentPathActive || location.pathname.includes(pathToServe)
         const showChildren =
-          numberOfPages > 0 && depth < maxDepth && (!!alwaysopen || currentPathActive)
+          numberOfPages > 0 && depth < maxDepth && (!!alwaysopen || currentPathActiveChildren)
         return (
           <li data-nav-id={pathToServe} className={'dd-item ' + ddClass}>
             <Link className="" to={pathToServe} title="Docs Home" activeClassName="active">
-              {title}
-              {numberOfPages ? (
-                <Triangle
-                  isAncestor={isAncestor}
-                  alwaysopen={alwaysopen || defaultVals.alwaysopen}
-                />
-              ) : (
-                ''
-              )}
+              {title || 'No title'}
+              {numberOfPages ? <Triangle isAncestor={isAncestor} alwaysopen={showChildren} /> : ''}
               {showNew ? <span className="new-badge">NEW</span> : ''}
             </Link>
             {showChildren ? (
@@ -117,8 +103,11 @@ export type SidebarLiProps = {
   fields: Fields
   depth: number
 }
-
-const Triangle = ({ isAncestor = false, alwaysopen = true }) => {
+type TriangleProps = {
+  isAncestor: boolean
+  alwaysopen: boolean
+}
+const Triangle = ({ isAncestor, alwaysopen }: TriangleProps) => {
   return (
     <>
       {''}
