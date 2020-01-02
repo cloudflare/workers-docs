@@ -28,3 +28,6 @@ export type GraphQLData = {
     }
   }
 }
+export type markdownRemark = GraphQLNode & {
+  data: { markdownRemark: GraphQLNode & { html: string } }
+}
