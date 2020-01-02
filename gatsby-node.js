@@ -90,12 +90,15 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   // Ensures we are processing only markdown files
   if (node.internal.type === 'MarkdownRemark') {
     // Use `createFilePath` to turn markdown files in our `markdown-pages` directory into `/workers/`pathToServe
-    let originalPath,
-      pathToServe = createFilePath({
-        node,
-        getNode,
-        basePath: 'markdown-pages/',
-      })
+    const originalPath = node.fileAbsolutePath.replace(
+      node.fileAbsolutePath.match(/.*markdown-pages/)[0],
+      '',
+    )
+    let pathToServe = createFilePath({
+      node,
+      getNode,
+      basePath: 'markdown-pages/',
+    })
     let parentDir = path.dirname(pathToServe)
     if (pathToServe.includes('index')) {
       pathToServe = parentDir

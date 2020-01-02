@@ -14,7 +14,6 @@ const Template: React.FC<markdownRemark> = ({
 }) => {
   const { markdownRemark } = data // data.markdownRemark holds our post data
   const { frontmatter, html, fields } = markdownRemark
-  console.log('markdownRemark', markdownRemark)
   return (
     <>
       <Layout {...{ fields, frontmatter }}>
