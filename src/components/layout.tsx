@@ -18,10 +18,11 @@ import '../static/css/code.css'
 import '../static/css/template.css'
 import '../static/css/theme.css'
 import '../static/js/workers.js'
-import Li from './Li'
+import Body from './Body'
 import { Navigation } from './Navigation'
-
-const Layout = ({ children, title }: any) => {
+import { GraphQLEdge, GraphQLNode, FrontMattter, Fields } from '../types/page'
+const Layout: React.FC<LayoutProps> = ({ frontmatter, fields, children }) => {
+  const { title } = frontmatter
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -37,14 +38,16 @@ const Layout = ({ children, title }: any) => {
       <SEO title={title || data.site.siteMetadata.title} />
       <Navigation />
       <Sidebar />
-      <Li>{children}</Li>
+      <Body {...{ title, frontmatter, fields }}>{children}</Body>
     </>
   )
 }
 
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-  title: String,
+type LayoutProps = {
+  // children: PropTypes.node.isRequired,
+  // title: string
+  frontmatter: FrontMattter
+  fields: Fields
 }
 
 export default Layout
