@@ -17,7 +17,7 @@ To start from scratch to create a Workers Site, follow these steps:
    - `workers-site`: The JavaScript for serving your assets. You don't need to edit this- but if you want to see how it works or add more functionality to your Worker, you can edit `workers-site/index.js`.
    - `wrangler.toml`: Your configuration file. You'll configure your account and project information here.
 
-3. Add your `account_id` your `wrangler.toml`. You can find your `account_id` on the right sidebar of the Workers or Overview Dashboard. Note: You may need to scroll down! For more details on finding your `account_id` click [here](https://developers.cloudflare.com/workers/quickstart/#account-id-and-zone-id).
+3. Add your `account_id` your `wrangler.toml`. You can find your `account_id` on the right sidebar of the Workers or Overview Dashboard. Note: You may need to scroll down! For more details on finding your `account_id` click [here](/quickstart/#account-id-and-zone-id).
 
 
 4. You can preview your site by running:
@@ -33,7 +33,7 @@ To start from scratch to create a Workers Site, follow these steps:
      zone_id = "42ef.."
      route = "example.com/*"
      ```
-   (Note: Check out documentation on [Routes](/workers/about/routes) to configure `route` properly) 
+   (Note: Check out documentation on [Routes](/about/routes) to configure `route` properly) 
      
  - **workers.dev**: Set `workers_dev`  to true. This is the default. 
 
