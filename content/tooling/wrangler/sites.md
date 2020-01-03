@@ -37,7 +37,7 @@ There are a few specific configuration settings for Workers Sites in your `wrang
 | Key           | Value                                                                              | Example                          | Required |
 | ------------- | ---------------------------------------------------------------------------------- | -------------------------------- | -------- |
 | `bucket`      | The directory containing your static assets, path relative to your `wrangler.toml` | `bucket = "./public"`            | yes      |
-| `entry-point` | The location of your Worker script, default is `workers-site`                      | `entry-point = "./workers-site"` | yes      |
+| `entry-point` | The location of your Worker script, default is `workers-site`                      | `entry-point = "./workers-site"` | no       |
 | `include`     | A list of gitignore-style patterns for files or directories in `bucket` you exclusively want to upload. | `include = ["upload_dir"]` | no |
 | `exclude`     | A list of gitignore-style patterns for files or directories in `bucket` you want to exclude from uploads. | `exclude = ["ignore_dir"]` | no |
 
