@@ -1,7 +1,6 @@
 import React from 'react'
 import { FrontMattter, Fields } from '../types/page'
 const Body: React.FC<BodyProps> = ({ children, frontmatter, fields }) => {
-  console.log('fields', fields)
   return (
     <>
       <section id="body">
@@ -13,7 +12,7 @@ const Body: React.FC<BodyProps> = ({ children, frontmatter, fields }) => {
             <img src="/images/github.svg" />
             <span>Edit on Github</span>
           </a>
-          {/* Todo maybe add tags? 
+          {/* Todo maybe add tags? here is original hugo
           <div id="tags">
             {{ range $index, $tag := .Params.tags }}
             <a class="label label-default" href="{{$.Site.BaseURL}}/tags/{{ $tag | urlize }}">{{ $tag }}</a>

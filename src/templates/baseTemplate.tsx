@@ -1,12 +1,11 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import Layout from '../components/layout'
+import Layout from '../components/Layout'
 import '../static/css/main.css'
 import '../static/css/overview.css'
 import '../static/css/code.css'
 import '../static/css/template.css'
-import '../static/js/workers.js'
 import { markdownRemark } from '../types/page'
 
 const Template: React.FC<markdownRemark> = ({

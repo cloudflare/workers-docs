@@ -41,13 +41,13 @@ export const SidebarLi: React.FunctionComponent<SidebarLiProps> = ({
   const myChildren: GraphQLNode[] = topLevelMarkdown
     .filter(
       edge =>
-        edge.node.fields.parent === fields.pathToServe &&
-        edge.node.fields.pathToServe !== fields.pathToServe,
+        fields.pathToServe === '/workers' + edge.node.fields.parent &&
+        fields.pathToServe !== edge.node.fields.pathToServe
     )
     .map(child => child.node)
     .filter(child => !child.frontmatter.hidden)
     .sort(sortByWeight)
-  const numberOfPages = myChildren.filter(child => !child.frontmatter.hidden).length
+  const numberOfPages = myChildren.length
 
   let ddClass = ''
   // TODO double check this assumed def of Ancestor
@@ -89,8 +89,8 @@ export const SidebarLi: React.FunctionComponent<SidebarLiProps> = ({
                 })}
               </ul>
             ) : (
-              ''
-            )}
+                ''
+              )}
           </li>
         )
       }}
@@ -114,8 +114,8 @@ const Triangle = ({ isAncestor, alwaysopen }: TriangleProps) => {
       {isAncestor && alwaysopen ? (
         <i className="triangle-up"></i>
       ) : (
-        <i className="triangle-down"></i>
-      )}
+          <i className="triangle-down"></i>
+        )}
     </>
   )
 }

@@ -1,26 +1,27 @@
 const path = require('path')
 // Print out for debug help
-console.log(
-  JSON.stringify(
-    require('glob')
-      .sync(path.join(__dirname, './src/**/media'))
-      .map(source => ({
-        resolve: 'gatsby-plugin-copy-files',
-        options: {
-          source,
-          destination: source.replace(path.join(__dirname, './src/markdown-pages'), ''),
-        },
-      })),
-    null,
-    '  ',
-  ),
-)
+// console.log(
+//   JSON.stringify(
+//     require('glob')
+//       .sync(path.join(__dirname, './src/**/media'))
+//       .map(source => ({
+//         resolve: 'gatsby-plugin-copy-files',
+//         options: {
+//           source,
+//           destination: source.replace(path.join(__dirname, './src/markdown-pages'), ''),
+//         },
+//       })),
+//     null,
+//     '  ',
+//   ),
+// )
 module.exports = {
   siteMetadata: {
     title: `Cloudflare Workers`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@gatsbyjs`,
   },
+  // pathPrefix: `/workers`,
   plugins: [
     `gatsby-plugin-typescript`,
     `gatsby-plugin-react-helmet`,
