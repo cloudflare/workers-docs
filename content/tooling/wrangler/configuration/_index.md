@@ -67,7 +67,17 @@ There are two types of configuration that `wrangler` uses: global user and per p
       - `*example.com/*`
       - `http://example.com/hello`
       
-      This key is optional if you are using a [workers.dev](https://workers.dev) subdomain and is only required when `workers_dev` is false, or excluded from an [environment](/tooling/wrangler/configuration/environments). 
+      This key is optional if you are using a [workers.dev](https://workers.dev) subdomain and is only required when `workers_dev` is false, or excluded from an [environment](/tooling/wrangler/configuration/environments).
+  - `routes`: A list of routes you'd like to use your worker on. These follow exactly the same rules a `route`, but you can specify a list of them.
+
+    For example:
+
+    ```toml
+    routes = [
+        "http://example.com/hello",
+        "http://example.com/goodbye"
+    ]
+    ```
 
   - `webpack_config`: This is the path to a custom webpack configuration file for your worker. You must specify this field to use a custom webpack configuration, otherwise Wrangler will use a default configuration for you. You can read more [here](/tooling/wrangler/webpack).
   - `workers_dev`: This is a boolean flag that specifies if your worker will be deployed to your [workers.dev](https://workers.dev) subdomain. For more information, please read the [environments documentation](/tooling/wrangler/configuration/environments).

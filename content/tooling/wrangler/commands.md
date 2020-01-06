@@ -106,13 +106,14 @@ weight: 2
 
 #### Publishing to your own domain
 
-If you would like to publish to your own domain, you will need to specify these three fields in your `wrangler.toml`.
+  If you would like to publish to your own domain, you will need to specify these three fields in your `wrangler.toml`.
 
-| Key         | Value                                                        | Example                                        |
-| ----------- | ------------------------------------------------------------ | ---------------------------------------------- |
-| workers_dev | false                                                        | `workers_dev = false`                          |
-| route       | The route you would like to publish to                       | `route = "example.com/my-worker/*"`            |
-| zone_id     | Your Cloudflare zone ID, this can be found in the Cloudflare dashboard | `zone_id = "b6558acaf2b4cad1f2b51c5236a6b972"` |
+| Key             | Value                                     | Example                                        |
+| -----------     | ----------------------------------------- | ---------------------------------------------- |
+| zone_id         | Your Cloudflare zone ID*                  | `zone_id = "b6558acaf2b4cad1f2b51c5236a6b972"` |
+| route OR routes | The route(s) you would like to publish to | `route = "example.com/my-worker/*"` or <br /> `routes = ["example.com/foo/*", example.com/bar/*]` |
+
+  *Note: Your Cloudflare Zone ID can be found in the [Cloudflare dashboard](https://dash.cloudflare.com).
 
 #### Publishing the same code to multiple places
 
@@ -169,6 +170,24 @@ If you would like to be able to publish your code to multiple places, please see
   Another option is to install [wsl-open](https://github.com/4U6U57/wsl-open#standalone) and set the `$BROWSER` env variable to `wsl-open`, via `wsl-open -w`. This ensures that `xdg-open` uses `wsl-open` when it attempts to open your browser.
 
   If you're using WSL 2, you will need to install `wsl-open` via their [standalone method](https://github.com/4U6U57/wsl-open#standalone) rather than through `npm`. This is because their npm package has not yet been updated with WSL 2 support.
+  
+### ➡️ `route`
+
+  List or delete a route associated with a zone:
+
+  ```bash
+  wrangler route list
+  ```
+
+  Will return a json response from the [List Routes API](/tooling/api/routes/#list-routes). Each entry includes the route id, pattern, and associated Worker name for a route. Piping this through a tool such as `jq` will pretty up the output.
+
+  ```bash
+  wrangler route delete longhashedrouteid
+  ```
+
+  Will remove the route specified by the indicated route id. Route IDs can be found by running the list routes command (above).
+
+  Both commands accept a `--env` flag in case you are working on a project that spans zones. For more information see the [environments documentation](/tooling/wrangler/configuration/environments).
 
 ### 🗂️ `kv`
 

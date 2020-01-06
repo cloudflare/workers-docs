@@ -87,7 +87,7 @@ $ wrangler publish
 
 #### Introducing Environments
 
-This `wrangler.toml` adds two environments to the base case.
+This `wrangler.toml` adds two environments to the base case. Note that you must provide a route/routes key for each environment.
 
 ```toml
 type = "webpack"
@@ -102,7 +102,10 @@ route = "staging.example.com/*"
 
 [env.production]
 name = "my-worker"
-route = "example.com/*"
+routes = [
+	"example.com/foo/*",
+	"example.com/bar/*"
+]
 ```
 
 In order to use environments with this configuration, you can pass the name of the environment via the `--env` flag.
