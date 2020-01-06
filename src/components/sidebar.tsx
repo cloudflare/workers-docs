@@ -76,7 +76,8 @@ const Sidebar = ({ pathToServe = '/' }) => {
             {topLevelMarkdown
               // get top level (i.e. relURLs with /workers followed by no more than
               // one forward slash) markdownRemark nodes
-              .filter(edge => edge.node.fields.pathToServe.match(/^\/workers\/[^/]+$/))
+              .filter(edge => edge.node.fields.parent === '/')
+              // .filter(edge => edge.node.fields.pathToServe.match(/^\/[^/]+$/))
               .map(edge => edge.node)
               .sort(sortByWeight)
               .map(node => {

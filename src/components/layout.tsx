@@ -15,25 +15,25 @@ import '../static/css/overview.css'
 import '../static/css/code.css'
 import '../static/css/template.css'
 import '../static/css/theme.css'
-import '../static/js/workers.js'
+// import '../static/js/workers.js'
 import Body from './Body'
 import { Navigation } from './Navigation'
 import { FrontMattter, Fields } from '../types/page'
 const Layout: React.FC<LayoutProps> = ({ frontmatter, fields, children }) => {
-  const { title } = frontmatter
   const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
+  query SiteTitleQuery {
       site {
         siteMetadata {
           title
         }
       }
     }
-  `)
+    `)
+  const title = frontmatter ? frontmatter.title : data.site.siteMetadata.title
 
   return (
     <>
-      <SEO title={title || data.site.siteMetadata.title} />
+      <SEO title={title} />
       <Navigation />
       <Sidebar />
       <Body {...{ title, frontmatter, fields }}>{children}</Body>

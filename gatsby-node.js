@@ -72,7 +72,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     return
   }
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-    createPage({
+    return createPage({
       path: node.fields.pathToServe,
       // path: node.frontmatter.path,
       component: baseTemplate,
@@ -102,7 +102,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     let parentDir = path.dirname(pathToServe)
     if (pathToServe.includes('index')) {
       pathToServe = parentDir
-      parentDir = path.dirname(parentDir)
+      parentDir = path.dirname(parentDir) // "/" dirname will = "/"
     }
     // Creates new query'able field with name of 'pathToServe', 'parent'..
     // for allMarkdownRemark edge nodes
@@ -114,7 +114,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     createNodeField({
       node,
       name: `parent`,
-      value: `/workers${parentDir}`,
+      value: `${parentDir}`,
     })
     createNodeField({
       node,
