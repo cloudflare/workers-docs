@@ -1,6 +1,6 @@
-import { GraphQLNode } from '../types/page'
+import { markdownRemark } from '../types/page'
 
-export const sortByWeight = (a: GraphQLNode, b: GraphQLNode): number => {
+export const sortByWeight = (a: markdownRemark, b: markdownRemark): number => {
   let aWeight = a.frontmatter.weight === null ? 100 : a.frontmatter.weight
   let bWeight = b.frontmatter.weight === null ? 100 : b.frontmatter.weight
   return aWeight > bWeight ? 1 : aWeight === bWeight ? 0 : -1

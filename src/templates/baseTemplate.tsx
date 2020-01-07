@@ -27,7 +27,7 @@ const Template: React.FC<markdownBaseProps> = ({
     <>
       <Layout title={title}>
         <Body {...{ title, frontmatter, fields }}>
-          <div dangerouslySetInnerHTML={{ __html: html }} />
+          {html ? (<div dangerouslySetInnerHTML={{ __html: html }} />) : null}
         </Body>
       </Layout>
     </>

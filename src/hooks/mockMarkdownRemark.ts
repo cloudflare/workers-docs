@@ -1,6 +1,6 @@
-import { GraphQLData } from "../types/page"
+import { allMarkdownRemarkResult } from "../types/page"
 
-export   const data: GraphQLData = {
+export   const data: allMarkdownRemarkResult = {
   "data": {
     "allMarkdownRemark": {
       "edges": [

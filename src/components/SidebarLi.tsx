@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 import { Location } from '@reach/router'
-import { GraphQLEdge, GraphQLNode, FrontMattter, Fields } from '../types/page'
+import { markdownRemarkEdge, markdownRemark, FrontMattter, Fields } from '../types/page'
 import { sortByWeight } from './utils'
 // import { useMarkdownNodes } from '../hooks/useMarkdownNodes'
 const maxDepth = 10
@@ -13,7 +13,7 @@ export const SidebarLi: React.FunctionComponent<SidebarLiProps> = ({
 }) => {
   const { pathToServe } = fields
   const { title, alwaysopen, showNew }: FrontMattter = frontmatter
-  const topLevelMarkdown: GraphQLEdge[] = useStaticQuery(
+  const topLevelMarkdown: markdownRemarkEdge[] = useStaticQuery(
     graphql`
       {
         allMarkdownRemark(limit: 1000) {
@@ -38,7 +38,7 @@ export const SidebarLi: React.FunctionComponent<SidebarLiProps> = ({
       }
     `,
   ).allMarkdownRemark.edges
-  const myChildren: GraphQLNode[] = topLevelMarkdown
+  const myChildren: markdownRemark[] = topLevelMarkdown
     .filter(
       edge =>
         fields.pathToServe === '/workers' + edge.node.fields.parent &&
@@ -78,7 +78,7 @@ export const SidebarLi: React.FunctionComponent<SidebarLiProps> = ({
             {showChildren ? (
               <ul>
                 {' '}
-                {myChildren.map((child: GraphQLNode) => {
+                {myChildren.map((child: markdownRemark) => {
                   return (
                     <SidebarLi
                       frontmatter={child.frontmatter}
