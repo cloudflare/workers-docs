@@ -48,7 +48,15 @@ module.exports = {
         source: `${__dirname}/src/images`,
         destination: '/images',
       },
+    }, // Simple config, passing URL
+    // In your gatsby-config.js
+    {
+      resolve: 'gatsby-source-rest-api',
+      options: {
+        endpoints: ['https://template-registry.developers.workers.dev/templates'],
+      },
     },
+
     ...require('glob')
       // TODO: instead of serving images this complicated way, change links to root
       // e.g. (/tooling/media/image.jpq) to ref current directory (e.g. ./media/image.jpg)
