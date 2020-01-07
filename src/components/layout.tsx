@@ -19,7 +19,7 @@ import '../static/css/theme.css'
 import Body from './Body'
 import { Navigation } from './Navigation'
 import { FrontMattter, Fields } from '../types/page'
-const Layout: React.FC<LayoutProps> = ({ frontmatter, fields, children }) => {
+const Layout: React.FC<LayoutProps> = ({ title, children }) => {
   const data = useStaticQuery(graphql`
   query SiteTitleQuery {
       site {
@@ -29,21 +29,19 @@ const Layout: React.FC<LayoutProps> = ({ frontmatter, fields, children }) => {
       }
     }
     `)
-  const title = frontmatter ? frontmatter.title : data.site.siteMetadata.title
 
   return (
     <>
-      <SEO title={title} />
+      <SEO title={title ? title : data.site.siteMetadata.title} />
       <Navigation />
       <Sidebar />
-      <Body {...{ title, frontmatter, fields }}>{children}</Body>
+      {children}
     </>
   )
 }
 
 type LayoutProps = {
-  frontmatter: FrontMattter
-  fields: Fields
+  title?: string
 }
 
 export default Layout
