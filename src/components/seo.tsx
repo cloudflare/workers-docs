@@ -76,9 +76,14 @@ const SEO = ({ description, lang, meta, title }: SEOPropTypes) => {
       <script type="text/javascript" src="https://cdn.bizible.com/scripts/bizible.js"></script>
 
       <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
-      <link href="/css/theme.css" rel="stylesheet" />
       <link href="/css/docsearch.min.css" rel="stylesheet" />
       <script src="/js/docsearch.min.js" />
+      <script src="/js/workers.js" />
+      <link href='/css/theme.css' rel="stylesheet" />
+      <link href='/css/main.css' rel="stylesheet" />
+      <link href='/css/overview.css' rel="stylesheet" />
+      <link href='/css/code.css' rel="stylesheet" />
+      <link href='/css/template.css' rel="stylesheet" />
 
       <link
         rel="icon"
