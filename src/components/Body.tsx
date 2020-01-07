@@ -1,17 +1,17 @@
 import React from 'react'
 import { FrontMattter, Fields } from '../types/page'
-const Body: React.FC<BodyProps> = ({ children, frontmatter, fields }) => {
+const Body: React.FC<BodyProps> = ({ children, github_edit_url }) => {
   return (
     <>
       <section id="body">
         <div className="padding highlightable">
-          <a
+          {github_edit_url ? (<a
             className="github-edit"
-            href={`https://github.com/cloudflare/workers-docs/edit/master/content${fields.filePath}`}
+            href={github_edit_url}
           >
             <img src="/images/github.svg" />
             <span>Edit on Github</span>
-          </a>
+          </a>) : null}
           {/* Todo maybe add tags? here is original hugo
           <div id="tags">
             {{ range $index, $tag := .Params.tags }}
@@ -20,7 +20,6 @@ const Body: React.FC<BodyProps> = ({ children, frontmatter, fields }) => {
           </div>
          */}
           <div id="body-inner">
-            <h1>{frontmatter.title}</h1>
             {children}
           </div>
         </div>
@@ -30,8 +29,7 @@ const Body: React.FC<BodyProps> = ({ children, frontmatter, fields }) => {
 }
 
 type BodyProps = {
-  frontmatter: FrontMattter
-  fields: Fields
+  github_edit_url?: string
 }
 
 export default Body
