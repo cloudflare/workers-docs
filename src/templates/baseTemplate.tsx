@@ -25,8 +25,9 @@ const Template: React.FC<markdownBaseProps> = ({
   const { title } = frontmatter
   return (
     <>
-      <Layout title={title}>
-        <Body {...{ title, frontmatter, fields }}>
+      <Layout title={title}  >
+        <Body github_edit_url={`https://github.com/cloudflare/workers-docs/edit/master/content${fields.filePath}`}>
+          <h1>{frontmatter.title}</h1>
           {html ? (<div dangerouslySetInnerHTML={{ __html: html }} />) : null}
         </Body>
       </Layout>
