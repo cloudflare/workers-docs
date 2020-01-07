@@ -84,7 +84,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       }, // additional data can be passed via context
     })
   })
-  const templatePage = path.resolve(`src/templates/template.tsx`)
+  const templatePage = path.resolve(`src/templates/templatePage.tsx`)
   templates = await graphql(`
     {
       allRestApiTemplates {
