@@ -1,8 +1,8 @@
 import { useStaticQuery, graphql } from 'gatsby'
-import { GraphQLData, GraphQLEdge, GraphQLNode } from '../types/page'
+import { allMarkdownRemarkResult, markdownRemarkEdge, markdownRemark } from '../types/page'
 
-export const useMarkdownNodes = (): GraphQLData['data'] => {
-  const { data }: GraphQLData = useStaticQuery(
+export const useMarkdownNodes = (): allMarkdownRemarkResult['data'] => {
+  const { data }: allMarkdownRemarkResult = useStaticQuery(
     graphql`
       {
         allMarkdownRemark(limit: 1000) {

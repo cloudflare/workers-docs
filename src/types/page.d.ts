@@ -11,23 +11,48 @@ export type Fields = {
   filePath: string
 }
 // The values from GraphQl + Remark we care about
-export type GraphQLNode = {
-  frontmatter: FrontMattter
+export type markdownRemark = {
   fileAbsolutePath: string
+  html?: string
+  frontmatter: FrontMattter
   fields: Fields
 }
-export type GraphQLEdge = {
-  node: GraphQLNode
+export type markdownRemarkEdge = {
+  node: markdownRemark
 }
-// export type GraphQLEdge = GraphQLData['data']['allMarkdownRemark']['edges']
-export type GraphQLData = {
+// export type markdownRemarkEdge = allMarkdownRemarkResult['data']['allMarkdownRemark']['edges']
+export type allMarkdownRemarkResult = {
   data: {
     allMarkdownRemark: {
-      edges: GraphQLEdge[]
-      // edges: { node: GraphQLNode }[]
+      edges: markdownRemarkEdge[]
+      // edges: { node: markdownRemark }[]
     }
   }
 }
-export type markdownRemark = GraphQLNode & {
-  data: { markdownRemark: GraphQLNode & { html: string } }
+export type markdownRemarkResult = markdownRemark & {
+  data: { markdownRemark: markdownRemark & { html?: string } }
+}
+export type markdownPageContext = {
+  weight: number
+  parent: string
+}
+export type template = {
+  repository_url: string | null
+  code: string | null
+  share_url: string | null
+  weight: number
+  url: string | null
+  tags: string[] | null
+  title: string
+  endpointId: string
+  description: string
+  type: string
+  demos: {
+    [key: string]: {
+      share_url: string | null
+      tags: string[] | null
+      text: string
+      url: string
+    } | null
+  }
 }

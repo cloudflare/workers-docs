@@ -2,7 +2,7 @@ import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
 import { SidebarLi } from './SidebarLi'
 import { sortByWeight } from './utils'
-import { GraphQLEdge } from '../types/page'
+import { markdownRemarkEdge } from '../types/page'
 // import { useMarkdownNodes } from '../hooks/useMarkdownRemark'
 const script = `    document.querySelector('#sidebar-toggle').addEventListener('click', function(){
   if (document.body.classList.contains('with-sidebar-open')) {
@@ -19,7 +19,7 @@ docsearch({
 `
 
 const Sidebar = ({ pathToServe = '/' }) => {
-  const topLevelMarkdown: GraphQLEdge[] = useStaticQuery(
+  const topLevelMarkdown: markdownRemarkEdge[] = useStaticQuery(
     graphql`
       {
         allMarkdownRemark(limit: 1000) {
