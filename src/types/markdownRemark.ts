@@ -36,23 +36,3 @@ export type markdownPageContext = {
   weight: number
   parent: string
 }
-export type template = {
-  repository_url: string | null
-  code: string | null
-  share_url: string | null
-  weight: number
-  url: string | null
-  tags: string[] | null
-  title: string
-  endpointId: string
-  description: string
-  type: string
-  demos: {
-    [key: string]: {
-      share_url: string | null
-      tags: string[] | null
-      text: string
-      url: string
-    } | null
-  }
-}

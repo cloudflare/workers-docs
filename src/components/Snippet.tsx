@@ -1,34 +1,39 @@
-export const Snippet = () => {
-  return (<figure className="template-card snippet" id="{{.id}}">
+import { restApiTemplate } from "../types/restApiTemplates"
+
+type snippetProps = restApiTemplate & {
+  page_url?: string
+
+}
+export const Snippet: React.FC<snippetProps> = ({ endpointId, page_url, code, description, title, share_url, tags }) => {
+  const template_page = "/templates/pages/" + endpointId
+  page_url = share_url || template_page // TODO may need to consider tutorial? 
+
+  return (<figure className="template-card snippet" id={endpointId}>
     <div className="tag-group">
-      {{ range.tags }}
-      <button className="tooltip {{.}}">
-        {{.}}
-        <span className="tooltiptext"></span>
-      </button>
-      {{ end }}
+      {tags?.map(tag => (
+        <button className={"tooltip " + tag}>
+          {tag}
+          <span className="tooltiptext"></span>
+        </button>
+      ))}
     </div>
-    {{ $page_url:= .tutorial }}
-    {{ if $page_url }}
-    {{ else }}
-    {{ $page_url:= .share_url }}
-    {{ end }}
-    {{ $template_page:=  .id | printf "/templates/pages/%s" }}
-    {{ $page_url:= or $page_url $template_page }}
-    <a href={{ $page_url }}>
+
+    <a href={page_url}>
       <h2>
-        {{.title }}
+        {title}
       </h2>
       <img src="/templates/media/right-arrow.svg" />
     </a>
-    <p>{{.description | markdownify }}</p>
+    {/* might neded to markdownify */}
+    <p>{description}</p>
     <div className="copy-group">
       <div className="copy-step">
-        <img id="img" type="image/svg+xml" src="/templates/media/file.svg" />
+        <img id="img" src="/templates/media/file.svg" />
+        {/* //  type="image/svg+xml" */}
         <span>Copy into a Worker script:</span>
       </div>
       <div className="copy">
-        <code>{{.code }}</code>
+        <code>{code}</code>
       </div>
     </div>
   </figure>)
