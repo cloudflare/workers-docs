@@ -45,7 +45,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   const { createPage } = actions
 
-  const baseTemplate = path.resolve(`src/templates/baseTemplate.tsx`)
+  const markdownTemplate = path.resolve(`src/templates/markdownTemplate.tsx`)
 
   result = await graphql(`
     {
@@ -75,7 +75,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     return createPage({
       path: node.fields.pathToServe,
       // path: node.frontmatter.path,
-      component: baseTemplate,
+      component: markdownTemplate,
       context: {
         // TODO not sure if this is being used
         // passed from MarkdowmRemark to the SitePage

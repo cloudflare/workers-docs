@@ -26,6 +26,7 @@ const SearchBox = () => {
 export const Gallery: React.FunctionComponent<GalleryProps> = ({
 
 }) => {
+  // TODO get hooks working instead of useStaticQuery in components
   const templates: allRestApiTemplates['data'] = useStaticQuery(
     graphql`
     query {

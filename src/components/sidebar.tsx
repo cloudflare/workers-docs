@@ -19,6 +19,7 @@ docsearch({
 `
 
 const Sidebar = ({ pathToServe = '/' }) => {
+  // TODO get hooks working instead of useStaticQuery in components
   const topLevelMarkdown: markdownRemarkEdge[] = useStaticQuery(
     graphql`
       {

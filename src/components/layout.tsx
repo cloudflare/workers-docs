@@ -10,16 +10,10 @@ import { useStaticQuery, graphql } from 'gatsby'
 
 import Sidebar from './Sidebar'
 import SEO from './SEO'
-// import '../static/css/main.css'
-// import '../static/css/overview.css'
-// import '../static/css/code.css'
-// import '../static/css/template.css'
-// import '../static/css/theme.css'// style loader
-// import '../static/js/workers.js'
-import Body from './Body'
+
 import { Navigation } from './Navigation'
-import { FrontMattter, Fields } from '../types/markdownRemark'
 const Layout: React.FC<LayoutProps> = ({ title, children }) => {
+  // TODO get hooks working instead of useStaticQuery in components
   const data = useStaticQuery(graphql`
   query SiteTitleQuery {
       site {
