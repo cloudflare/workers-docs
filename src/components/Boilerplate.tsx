@@ -4,7 +4,7 @@ import { Link } from "gatsby"
 type boilerplateProps = restApiTemplate & {
   page_url?: string
 }
-export const Boilerplate: React.FC<boilerplateProps> = ({ endpointId, page_url, code, description, title, share_url, tags, repository_url }) => {
+export const Boilerplate: React.FC<boilerplateProps> = ({ endpointId, page_url, description, title, share_url, tags, repository_url }) => {
   const template_page = "/workers/templates/pages/" + endpointId
   page_url = share_url || template_page // TODO may need to consider tutorial? 
   return (<figure className="template-card boilerplate" id="{{.id}}">

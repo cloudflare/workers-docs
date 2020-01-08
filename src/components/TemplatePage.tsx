@@ -53,7 +53,7 @@ const TemplatePage: React.FC<templateProps> = ({
 
   if (!githubData) return <div>loading</div>
   const { repo_name, repo_date, github_api_repo_url } = githubData
-  const repo_date_text = "December 13, 2019" // TODO convert repo_data into this format
+  const repo_date_text = "December 13, 2019" // TODO convert repo_date into this format
   return (
     <>
       <Helmet>

@@ -99,8 +99,8 @@ export const Gallery: React.FunctionComponent<GalleryProps> = ({
 export type GalleryProps = {
 
 }
-
-const gal: allRestApiTemplates = {
+// TODO: remove this is just to check graphql is returning the correct type
+const IgnoreMe: allRestApiTemplates = {
   "data": {
     "allRestApiTemplates": {
       "edges": [
