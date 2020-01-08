@@ -114,10 +114,11 @@ figure.template-card h2:hover {
   font-weight: bold;
   display: flex;
 }
-.copy-step img#img {
-  flex: 1;
-  width: 1.25rem;
-  margin: 0 0.3em 0 0;
+.copy-step img {
+  /* Need to override theme */
+  flex: 1 !important;
+  width: 1.25rem !important;
+  margin: 0 0.3em 0 0 !important;
 }
 .copy-step span {
   font-size: 14px;
@@ -178,9 +179,9 @@ figure.template-card.boilerplate {
 .grey.copy-group {
   background: var(--template-grey-background);
 }
-.grey img.copy-trigger#img {
-  padding: 8px 8px 0 0;
-  margin-left: auto;
+.grey img.copy-trigger {
+  padding: 8px 8px 0 0 !important;
+  margin-left: auto !important;
 }
 .grey code.copy {
   white-space: pre;
@@ -237,7 +238,7 @@ figure.template-page {
 }
 
 #body img {
-  margin: 0;
+  margin: 0 0.3em 0 0;
   display: inline-block;
 }
 /* Crazy selector is to override specificity of gridflex */
