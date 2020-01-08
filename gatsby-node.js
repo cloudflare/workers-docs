@@ -9,40 +9,6 @@ const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
 exports.createPages = async ({ actions, graphql, reporter }) => {
-  // console.log('creating pages')
-
-  // let result = await graphql(`
-  //   query MyQuery {
-  //     allFile {
-  //       nodes {
-  //         absolutePath
-  //         internal {
-  //           type
-  //           ignoreType
-  //         }
-  //         relativePath
-  //         relativeDirectory
-  //       }
-  //     }
-  //   }
-  // `)
-  // // Handle errors
-  // if (result.errors) {
-  //   reporter.panicOnBuild(`Error while running GraphQL query.`)
-  //   return
-  // }
-  // console.log('result.data', result.data.allFile.nodes)
-  // //     "allFile": {
-  // // "nodes": [
-  // result.data.allFile.nodes.forEach(node => {
-  //   console.log('node', node)
-  //   const pathToServe = createFilePath({
-  //     node,
-  //     getNode,
-  //     basePath: node.relativePath,
-  //   })
-  // })
-
   const { createPage } = actions
 
   const markdownTemplate = path.resolve(`src/templates/markdownTemplate.tsx`)
@@ -74,14 +40,11 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
     return createPage({
       path: node.fields.pathToServe,
-      // path: node.frontmatter.path,
       component: markdownTemplate,
       context: {
-        // TODO not sure if this is being used
-        // passed from MarkdowmRemark to the SitePage
         parent: node.fields.parent,
         weight: node.frontmatter.weight,
-      }, // additional data can be passed via context
+      }, // additional data can be passed via context, can use as variable on query
     })
   })
   const templatePage = path.resolve(`src/templates/templatePage.tsx`)
