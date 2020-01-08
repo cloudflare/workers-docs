@@ -1,41 +1,42 @@
 import { restApiTemplate } from "../types/restApiTemplates"
 import React from 'react'
+import { Link } from "gatsby"
 type boilerplateProps = restApiTemplate & {
   page_url?: string
-
 }
-export const Boilerplate: React.FC<boilerplateProps> = ({ endpointId, page_url, code, description, title, share_url, tags }) => {
+export const Boilerplate: React.FC<boilerplateProps> = ({ endpointId, page_url, code, description, title, share_url, tags, repository_url }) => {
+  const template_page = "/workers/templates/pages/" + endpointId
+  page_url = share_url || template_page // TODO may need to consider tutorial? 
   return (<figure className="template-card boilerplate" id="{{.id}}">
     <div className="tag-group">
-      {{ range.tags }}
-      <button className="tooltip {{.}}">
-        <span className="tooltiptext"></span>{{.}}
-      </button>
-      {{ end }}
+      {tags?.map(tag => (
+        <button className={"tooltip " + tag}>
+          {tag}
+          <span className="tooltiptext"></span>
+        </button>
+      ))}
     </div>
-    {{ $page_url:= .tutorial }}
-    {{ if $page_url }}
-    {{ else }}
-    {{ $page_url:= .share_url }}
-    {{ end }}
-    {{ $template_page:=  .id | printf "/templates/pages/%s" }}
-    {{ $page_url:= or $page_url $template_page }}
-    <a href={{ $page_url }}>
+    <Link to={page_url}>
       <h2>
-        {{.title }}
+        {title}
       </h2>
       <img src="/templates/media/right-arrow.svg" />
-    </a>
-    <p>{{.description | markdownify }}</p>
+    </Link>
+    {/* Todo may need mardownify */}
+    <p>{description}</p>
     <div className="copy-group">
       <div className="copy-step">
-        <img src="/templates/media/terminal.svg" id="img" />
+        <img src="/templates/media/terminal.svg" />
         <span>Paste this into your terminal:</span>
       </div>
+
       <div className="copy">
         <code>
           wrangler generate my-app
-        <a href="{{.repository_url}}">{{.repository_url }}</a>
+          {repository_url ? (
+            <a href={repository_url}>{repository_url}</a>
+          ) : null
+          }
         </code>
       </div>
     </div>
