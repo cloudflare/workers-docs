@@ -1,5 +1,5 @@
 import { restApiTemplate } from "../types/restApiTemplates"
-
+import React from 'react'
 type snippetProps = restApiTemplate & {
   page_url?: string
 
