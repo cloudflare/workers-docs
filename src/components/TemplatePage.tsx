@@ -4,8 +4,6 @@ import { Helmet } from "react-helmet";
 
 import { restApiTemplate } from "../types/restApiTemplates"
 type templateProps = {
-  // id: string
-  // pageContext: any
   id: string
   data: restApiTemplate
 }
