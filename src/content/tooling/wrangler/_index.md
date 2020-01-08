@@ -2,7 +2,7 @@
 title: Wrangler CLI
 weight: 1
 alwaysopen: true
-isNew: true
+showNew: true
 ---
 ![Banner](https://raw.githubusercontent.com/cloudflare/wrangler/master/banner.png)
 
