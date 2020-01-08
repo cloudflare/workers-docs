@@ -13,7 +13,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/index.md",
             "fields": {
               "pathToServe": "/workers/",
               "parent": "/workers/",
@@ -30,7 +30,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/licenses.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/licenses.md",
             "fields": {
               "pathToServe": "/workers/licenses/",
               "parent": "/workers/",
@@ -47,7 +47,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 3
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/tutorials/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/tutorials/_index.md",
             "fields": {
               "pathToServe": "/workers/tutorials",
               "parent": "/workers/",
@@ -64,7 +64,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 5
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/tooling/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/tooling/_index.md",
             "fields": {
               "pathToServe": "/workers/tooling",
               "parent": "/workers/",
@@ -81,7 +81,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": true,
               "weight": 5
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/tooling/integrations.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/tooling/integrations.md",
             "fields": {
               "pathToServe": "/workers/tooling/integrations/",
               "parent": "/workers/tooling",
@@ -98,7 +98,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 3
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/tooling/playground.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/tooling/playground.md",
             "fields": {
               "pathToServe": "/workers/tooling/playground/",
               "parent": "/workers/tooling",
@@ -115,7 +115,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 4
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/tooling/serverless.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/tooling/serverless.md",
             "fields": {
               "pathToServe": "/workers/tooling/serverless/",
               "parent": "/workers/tooling",
@@ -132,7 +132,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 4
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/tooling/terraform.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/tooling/terraform.md",
             "fields": {
               "pathToServe": "/workers/tooling/terraform/",
               "parent": "/workers/tooling",
@@ -149,7 +149,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": true,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/tutorials/localize-a-website/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/tutorials/localize-a-website/_index.md",
             "fields": {
               "pathToServe": "/workers/tutorials/localize-a-website",
               "parent": "/workers/tutorials",
@@ -166,7 +166,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/tutorials/hosting-static-wordpress-sites/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/tutorials/hosting-static-wordpress-sites/_index.md",
             "fields": {
               "pathToServe": "/workers/tutorials/hosting-static-wordpress-sites",
               "parent": "/workers/tutorials",
@@ -183,7 +183,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": true,
               "weight": 1
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/tooling/wrangler/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/tooling/wrangler/_index.md",
             "fields": {
               "pathToServe": "/workers/tooling/wrangler",
               "parent": "/workers/tooling",
@@ -200,7 +200,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 2
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/tooling/wrangler/commands.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/tooling/wrangler/commands.md",
             "fields": {
               "pathToServe": "/workers/tooling/wrangler/commands/",
               "parent": "/workers/tooling/wrangler",
@@ -217,7 +217,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 1
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/tooling/wrangler/install.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/tooling/wrangler/install.md",
             "fields": {
               "pathToServe": "/workers/tooling/wrangler/install/",
               "parent": "/workers/tooling/wrangler",
@@ -234,7 +234,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 4
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/tooling/wrangler/kv_commands.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/tooling/wrangler/kv_commands.md",
             "fields": {
               "pathToServe": "/workers/tooling/wrangler/kv_commands/",
               "parent": "/workers/tooling/wrangler",
@@ -251,7 +251,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 6
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/tooling/wrangler/sites.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/tooling/wrangler/sites.md",
             "fields": {
               "pathToServe": "/workers/tooling/wrangler/sites/",
               "parent": "/workers/tooling/wrangler",
@@ -268,7 +268,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 3
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/tooling/wrangler/webpack.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/tooling/wrangler/webpack.md",
             "fields": {
               "pathToServe": "/workers/tooling/wrangler/webpack/",
               "parent": "/workers/tooling/wrangler",
@@ -285,7 +285,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 4
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/tooling/api/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/tooling/api/_index.md",
             "fields": {
               "pathToServe": "/workers/tooling/api",
               "parent": "/workers/tooling",
@@ -302,7 +302,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 3
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/tooling/api/bindings.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/tooling/api/bindings.md",
             "fields": {
               "pathToServe": "/workers/tooling/api/bindings/",
               "parent": "/workers/tooling/api",
@@ -319,7 +319,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 4
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/tooling/api/routes.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/tooling/api/routes.md",
             "fields": {
               "pathToServe": "/workers/tooling/api/routes/",
               "parent": "/workers/tooling/api",
@@ -336,7 +336,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 2
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/tooling/api/scripts.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/tooling/api/scripts.md",
             "fields": {
               "pathToServe": "/workers/tooling/api/scripts/",
               "parent": "/workers/tooling/api",
@@ -353,7 +353,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 1
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/tooling/api/requests.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/tooling/api/requests.md",
             "fields": {
               "pathToServe": "/workers/tooling/api/requests/",
               "parent": "/workers/tooling/api",
@@ -370,7 +370,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": true,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/tutorials/deploy-a-react-app/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/tutorials/deploy-a-react-app/_index.md",
             "fields": {
               "pathToServe": "/workers/tutorials/deploy-a-react-app",
               "parent": "/workers/tutorials",
@@ -387,7 +387,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/tutorials/configure-your-cdn/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/tutorials/configure-your-cdn/_index.md",
             "fields": {
               "pathToServe": "/workers/tutorials/configure-your-cdn",
               "parent": "/workers/tutorials",
@@ -404,7 +404,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 2
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/tutorials/build-an-application/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/tutorials/build-an-application/_index.md",
             "fields": {
               "pathToServe": "/workers/tutorials/build-an-application",
               "parent": "/workers/tutorials",
@@ -421,7 +421,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 2
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/tooling/wrangler/configuration/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/tooling/wrangler/configuration/_index.md",
             "fields": {
               "pathToServe": "/workers/tooling/wrangler/configuration",
               "parent": "/workers/tooling/wrangler",
@@ -438,7 +438,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 3
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/tooling/wrangler/configuration/environments.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/tooling/wrangler/configuration/environments.md",
             "fields": {
               "pathToServe": "/workers/tooling/wrangler/configuration/environments/",
               "parent": "/workers/tooling/wrangler/configuration",
@@ -455,7 +455,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 3
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/tutorials/build-a-todo-list/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/tutorials/build-a-todo-list/_index.md",
             "fields": {
               "pathToServe": "/workers/tutorials/build-a-todo-list",
               "parent": "/workers/tutorials",
@@ -472,7 +472,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 4
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/tutorials/build-a-serverless-function/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/tutorials/build-a-serverless-function/_index.md",
             "fields": {
               "pathToServe": "/workers/tutorials/build-a-serverless-function",
               "parent": "/workers/tutorials",
@@ -489,7 +489,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": true,
               "weight": 4
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/sites/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/sites/_index.md",
             "fields": {
               "pathToServe": "/workers/sites",
               "parent": "/workers/",
@@ -506,7 +506,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 3
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/sites/start-from-existing.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/sites/start-from-existing.md",
             "fields": {
               "pathToServe": "/workers/sites/start-from-existing/",
               "parent": "/workers/sites",
@@ -523,7 +523,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 2
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/sites/start-from-scratch.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/sites/start-from-scratch.md",
             "fields": {
               "pathToServe": "/workers/sites/start-from-scratch/",
               "parent": "/workers/sites",
@@ -540,7 +540,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 4
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/sites/start-from-worker.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/sites/start-from-worker.md",
             "fields": {
               "pathToServe": "/workers/sites/start-from-worker/",
               "parent": "/workers/sites",
@@ -557,7 +557,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/CONTRIBUTING.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/CONTRIBUTING.md",
             "fields": {
               "pathToServe": "/workers/templates/CONTRIBUTING/",
               "parent": "/workers/templates",
@@ -574,7 +574,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 2
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/_index.md",
             "fields": {
               "pathToServe": "/workers/templates",
               "parent": "/workers/",
@@ -591,7 +591,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 7
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/reference/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/reference/_index.md",
             "fields": {
               "pathToServe": "/workers/reference",
               "parent": "/workers/",
@@ -608,7 +608,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 1
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/quickstart/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/quickstart/_index.md",
             "fields": {
               "pathToServe": "/workers/quickstart",
               "parent": "/workers/",
@@ -625,7 +625,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/_index.md",
             "fields": {
               "pathToServe": "/workers/archive",
               "parent": "/workers/",
@@ -642,7 +642,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 6
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/about/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/about/_index.md",
             "fields": {
               "pathToServe": "/workers/about",
               "parent": "/workers/",
@@ -659,7 +659,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 1
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/about/how-it-works.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/about/how-it-works.md",
             "fields": {
               "pathToServe": "/workers/about/how-it-works/",
               "parent": "/workers/about",
@@ -676,7 +676,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 4
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/about/limits.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/about/limits.md",
             "fields": {
               "pathToServe": "/workers/about/limits/",
               "parent": "/workers/about",
@@ -693,7 +693,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 4
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/about/routes.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/about/routes.md",
             "fields": {
               "pathToServe": "/workers/about/routes/",
               "parent": "/workers/about",
@@ -710,7 +710,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 2
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/about/security.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/about/security.md",
             "fields": {
               "pathToServe": "/workers/about/security/",
               "parent": "/workers/about",
@@ -727,7 +727,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 3
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/about/using-cache.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/about/using-cache.md",
             "fields": {
               "pathToServe": "/workers/about/using-cache/",
               "parent": "/workers/about",
@@ -744,7 +744,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/style/javascript.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/style/javascript.md",
             "fields": {
               "pathToServe": "/workers/templates/style/javascript/",
               "parent": "/workers/templates/style",
@@ -761,7 +761,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/style/rust.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/style/rust.md",
             "fields": {
               "pathToServe": "/workers/templates/style/rust/",
               "parent": "/workers/templates/style",
@@ -778,7 +778,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/ab_testing.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/ab_testing.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/ab_testing/",
               "parent": "/workers/templates/pages",
@@ -795,7 +795,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/alter_headers.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/alter_headers.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/alter_headers/",
               "parent": "/workers/templates/pages",
@@ -812,7 +812,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/aggregate_requests.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/aggregate_requests.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/aggregate_requests/",
               "parent": "/workers/templates/pages",
@@ -829,7 +829,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/auth_with_headers.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/auth_with_headers.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/auth_with_headers/",
               "parent": "/workers/templates/pages",
@@ -846,7 +846,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/binast_cf_worker.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/binast_cf_worker.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/binast_cf_worker/",
               "parent": "/workers/templates/pages",
@@ -863,7 +863,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/block_on_tls_version.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/block_on_tls_version.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/block_on_tls_version/",
               "parent": "/workers/templates/pages",
@@ -880,7 +880,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/bulk_origin_proxies.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/bulk_origin_proxies.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/bulk_origin_proxies/",
               "parent": "/workers/templates/pages",
@@ -897,7 +897,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/bulk_redirects.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/bulk_redirects.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/bulk_redirects/",
               "parent": "/workers/templates/pages",
@@ -914,7 +914,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/cache_api.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/cache_api.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/cache_api/",
               "parent": "/workers/templates/pages",
@@ -931,7 +931,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/cache_ttl.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/cache_ttl.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/cache_ttl/",
               "parent": "/workers/templates/pages",
@@ -948,7 +948,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/cloud_storage.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/cloud_storage.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/cloud_storage/",
               "parent": "/workers/templates/pages",
@@ -965,7 +965,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/conditional_response.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/conditional_response.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/conditional_response/",
               "parent": "/workers/templates/pages",
@@ -982,7 +982,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/cookie_extract.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/cookie_extract.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/cookie_extract/",
               "parent": "/workers/templates/pages",
@@ -999,7 +999,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/cors_header_proxy.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/cors_header_proxy.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/cors_header_proxy/",
               "parent": "/workers/templates/pages",
@@ -1016,7 +1016,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/country_code.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/country_code.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/country_code/",
               "parent": "/workers/templates/pages",
@@ -1033,7 +1033,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/debugging_tips.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/debugging_tips.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/debugging_tips/",
               "parent": "/workers/templates/pages",
@@ -1050,7 +1050,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/emscripten.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/emscripten.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/emscripten/",
               "parent": "/workers/templates/pages",
@@ -1067,7 +1067,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/fetch_html.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/fetch_html.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/fetch_html/",
               "parent": "/workers/templates/pages",
@@ -1084,7 +1084,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/fetch_json.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/fetch_json.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/fetch_json/",
               "parent": "/workers/templates/pages",
@@ -1101,7 +1101,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/graphql_server.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/graphql_server.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/graphql_server/",
               "parent": "/workers/templates/pages",
@@ -1118,7 +1118,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/hello_world.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/hello_world.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/hello_world/",
               "parent": "/workers/templates/pages",
@@ -1135,7 +1135,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/hello_world_rust.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/hello_world_rust.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/hello_world_rust/",
               "parent": "/workers/templates/pages",
@@ -1152,7 +1152,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/hot_link_protection.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/hot_link_protection.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/hot_link_protection/",
               "parent": "/workers/templates/pages",
@@ -1169,7 +1169,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/http2_server_push.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/http2_server_push.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/http2_server_push/",
               "parent": "/workers/templates/pages",
@@ -1186,7 +1186,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/img_color_worker.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/img_color_worker.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/img_color_worker/",
               "parent": "/workers/templates/pages",
@@ -1203,7 +1203,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/modify_req_props.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/modify_req_props.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/modify_req_props/",
               "parent": "/workers/templates/pages",
@@ -1220,7 +1220,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/modify_res_props.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/modify_res_props.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/modify_res_props/",
               "parent": "/workers/templates/pages",
@@ -1237,7 +1237,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/post_data.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/post_data.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/post_data/",
               "parent": "/workers/templates/pages",
@@ -1254,7 +1254,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/post_json.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/post_json.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/post_json/",
               "parent": "/workers/templates/pages",
@@ -1271,7 +1271,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/private_data_loss.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/private_data_loss.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/private_data_loss/",
               "parent": "/workers/templates/pages",
@@ -1288,7 +1288,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/redirect.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/redirect.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/redirect/",
               "parent": "/workers/templates/pages",
@@ -1305,7 +1305,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/rewrite_urls.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/rewrite_urls.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/rewrite_urls/",
               "parent": "/workers/templates/pages",
@@ -1322,7 +1322,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/router.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/router.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/router/",
               "parent": "/workers/templates/pages",
@@ -1339,7 +1339,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/send_raw_html.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/send_raw_html.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/send_raw_html/",
               "parent": "/workers/templates/pages",
@@ -1356,7 +1356,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/send_raw_json.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/send_raw_json.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/send_raw_json/",
               "parent": "/workers/templates/pages",
@@ -1373,7 +1373,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/sentry.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/sentry.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/sentry/",
               "parent": "/workers/templates/pages",
@@ -1390,7 +1390,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/signed_request.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/signed_request.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/signed_request/",
               "parent": "/workers/templates/pages",
@@ -1407,7 +1407,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/pages/speedtest_worker.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/pages/speedtest_worker.md",
             "fields": {
               "pathToServe": "/workers/templates/pages/speedtest_worker/",
               "parent": "/workers/templates/pages",
@@ -1424,7 +1424,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/templates/featured_boilerplates/cloud_storage.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/templates/featured_boilerplates/cloud_storage.md",
             "fields": {
               "pathToServe": "/workers/templates/featured_boilerplates/cloud_storage/",
               "parent": "/workers/templates/featured_boilerplates",
@@ -1441,7 +1441,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 50
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/reference/storage/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/reference/storage/_index.md",
             "fields": {
               "pathToServe": "/workers/reference/storage",
               "parent": "/workers/reference",
@@ -1458,7 +1458,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 80
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/reference/storage/deleting-key-value-pairs.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/reference/storage/deleting-key-value-pairs.md",
             "fields": {
               "pathToServe": "/workers/reference/storage/deleting-key-value-pairs/",
               "parent": "/workers/reference/storage",
@@ -1475,7 +1475,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 80
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/reference/storage/limits.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/reference/storage/limits.md",
             "fields": {
               "pathToServe": "/workers/reference/storage/limits/",
               "parent": "/workers/reference/storage",
@@ -1492,7 +1492,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 80
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/reference/storage/namespaces.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/reference/storage/namespaces.md",
             "fields": {
               "pathToServe": "/workers/reference/storage/namespaces/",
               "parent": "/workers/reference/storage",
@@ -1509,7 +1509,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 80
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/reference/storage/listing-keys.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/reference/storage/listing-keys.md",
             "fields": {
               "pathToServe": "/workers/reference/storage/listing-keys/",
               "parent": "/workers/reference/storage",
@@ -1526,7 +1526,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 80
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/reference/storage/pricing.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/reference/storage/pricing.md",
             "fields": {
               "pathToServe": "/workers/reference/storage/pricing/",
               "parent": "/workers/reference/storage",
@@ -1543,7 +1543,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 80
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/reference/storage/reading-key-value-pairs.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/reference/storage/reading-key-value-pairs.md",
             "fields": {
               "pathToServe": "/workers/reference/storage/reading-key-value-pairs/",
               "parent": "/workers/reference/storage",
@@ -1560,7 +1560,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 50
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/reference/storage/use-cases.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/reference/storage/use-cases.md",
             "fields": {
               "pathToServe": "/workers/reference/storage/use-cases/",
               "parent": "/workers/reference/storage",
@@ -1577,7 +1577,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 80
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/reference/storage/writing-key-value-pairs.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/reference/storage/writing-key-value-pairs.md",
             "fields": {
               "pathToServe": "/workers/reference/storage/writing-key-value-pairs/",
               "parent": "/workers/reference/storage",
@@ -1594,7 +1594,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 1
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/reference/apis/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/reference/apis/_index.md",
             "fields": {
               "pathToServe": "/workers/reference/apis",
               "parent": "/workers/reference",
@@ -1611,7 +1611,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 10
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/reference/apis/cache.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/reference/apis/cache.md",
             "fields": {
               "pathToServe": "/workers/reference/apis/cache/",
               "parent": "/workers/reference/apis",
@@ -1628,7 +1628,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 6
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/reference/apis/encoding.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/reference/apis/encoding.md",
             "fields": {
               "pathToServe": "/workers/reference/apis/encoding/",
               "parent": "/workers/reference/apis",
@@ -1645,7 +1645,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 3
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/reference/apis/fetch-event.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/reference/apis/fetch-event.md",
             "fields": {
               "pathToServe": "/workers/reference/apis/fetch-event/",
               "parent": "/workers/reference/apis",
@@ -1662,7 +1662,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 2
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/reference/apis/fetch.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/reference/apis/fetch.md",
             "fields": {
               "pathToServe": "/workers/reference/apis/fetch/",
               "parent": "/workers/reference/apis",
@@ -1679,7 +1679,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": true,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/reference/apis/html-rewriter.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/reference/apis/html-rewriter.md",
             "fields": {
               "pathToServe": "/workers/reference/apis/html-rewriter/",
               "parent": "/workers/reference/apis",
@@ -1696,7 +1696,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 4
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/reference/apis/request.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/reference/apis/request.md",
             "fields": {
               "pathToServe": "/workers/reference/apis/request/",
               "parent": "/workers/reference/apis",
@@ -1713,7 +1713,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 4
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/reference/apis/response.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/reference/apis/response.md",
             "fields": {
               "pathToServe": "/workers/reference/apis/response/",
               "parent": "/workers/reference/apis",
@@ -1730,7 +1730,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 1
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/reference/apis/standard.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/reference/apis/standard.md",
             "fields": {
               "pathToServe": "/workers/reference/apis/standard/",
               "parent": "/workers/reference/apis",
@@ -1747,7 +1747,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 5
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/reference/apis/streams.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/reference/apis/streams.md",
             "fields": {
               "pathToServe": "/workers/reference/apis/streams/",
               "parent": "/workers/reference/apis",
@@ -1764,7 +1764,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 7
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/reference/apis/web-crypto.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/reference/apis/web-crypto.md",
             "fields": {
               "pathToServe": "/workers/reference/apis/web-crypto/",
               "parent": "/workers/reference/apis",
@@ -1781,7 +1781,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 35
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/webassembly/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/webassembly/_index.md",
             "fields": {
               "pathToServe": "/workers/archive/webassembly",
               "parent": "/workers/archive",
@@ -1798,7 +1798,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 20
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/webassembly/tutorial.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/webassembly/tutorial.md",
             "fields": {
               "pathToServe": "/workers/archive/webassembly/tutorial/",
               "parent": "/workers/archive/webassembly",
@@ -1815,7 +1815,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 20
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/writing-workers/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/writing-workers/_index.md",
             "fields": {
               "pathToServe": "/workers/archive/writing-workers",
               "parent": "/workers/archive",
@@ -1832,7 +1832,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 500
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/writing-workers/blog-posts.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/writing-workers/blog-posts.md",
             "fields": {
               "pathToServe": "/workers/archive/writing-workers/blog-posts/",
               "parent": "/workers/archive/writing-workers",
@@ -1849,7 +1849,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 20
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/writing-workers/debugging-tips.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/writing-workers/debugging-tips.md",
             "fields": {
               "pathToServe": "/workers/archive/writing-workers/debugging-tips/",
               "parent": "/workers/archive/writing-workers",
@@ -1866,7 +1866,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 35
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/writing-workers/handling-errors.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/writing-workers/handling-errors.md",
             "fields": {
               "pathToServe": "/workers/archive/writing-workers/handling-errors/",
               "parent": "/workers/archive/writing-workers",
@@ -1883,7 +1883,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 100
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/writing-workers/resource-limits.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/writing-workers/resource-limits.md",
             "fields": {
               "pathToServe": "/workers/archive/writing-workers/resource-limits/",
               "parent": "/workers/archive/writing-workers",
@@ -1900,7 +1900,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 50
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/writing-workers/storing-data.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/writing-workers/storing-data.md",
             "fields": {
               "pathToServe": "/workers/archive/writing-workers/storing-data/",
               "parent": "/workers/archive/writing-workers",
@@ -1917,7 +1917,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/writing-workers/using-npm-modules.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/writing-workers/using-npm-modules.md",
             "fields": {
               "pathToServe": "/workers/archive/writing-workers/using-npm-modules/",
               "parent": "/workers/archive/writing-workers",
@@ -1934,7 +1934,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 5
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/about/tips/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/about/tips/_index.md",
             "fields": {
               "pathToServe": "/workers/about/tips",
               "parent": "/workers/about",
@@ -1951,7 +1951,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 1
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/about/tips/debugging.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/about/tips/debugging.md",
             "fields": {
               "pathToServe": "/workers/about/tips/debugging/",
               "parent": "/workers/about/tips",
@@ -1968,7 +1968,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/about/tips/fetch-event-lifecycle.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/about/tips/fetch-event-lifecycle.md",
             "fields": {
               "pathToServe": "/workers/about/tips/fetch-event-lifecycle/",
               "parent": "/workers/about/tips",
@@ -1985,7 +1985,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 10
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/about/tips/headers.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/about/tips/headers.md",
             "fields": {
               "pathToServe": "/workers/about/tips/headers/",
               "parent": "/workers/about/tips",
@@ -2002,7 +2002,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/about/tips/request-context.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/about/tips/request-context.md",
             "fields": {
               "pathToServe": "/workers/about/tips/request-context/",
               "parent": "/workers/about/tips",
@@ -2019,7 +2019,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/about/tips/signing-requests.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/about/tips/signing-requests.md",
             "fields": {
               "pathToServe": "/workers/about/tips/signing-requests/",
               "parent": "/workers/about/tips",
@@ -2036,7 +2036,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 70
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/reference/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/reference/_index.md",
             "fields": {
               "pathToServe": "/workers/archive/reference",
               "parent": "/workers/archive",
@@ -2053,7 +2053,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 10
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/reference/cache-api.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/reference/cache-api.md",
             "fields": {
               "pathToServe": "/workers/archive/reference/cache-api/",
               "parent": "/workers/archive/reference",
@@ -2070,7 +2070,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/reference/cloudflare-features.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/reference/cloudflare-features.md",
             "fields": {
               "pathToServe": "/workers/archive/reference/cloudflare-features/",
               "parent": "/workers/archive/reference",
@@ -2087,7 +2087,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/reference/request-attributes.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/reference/request-attributes.md",
             "fields": {
               "pathToServe": "/workers/archive/reference/request-attributes/",
               "parent": "/workers/archive/reference",
@@ -2104,7 +2104,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 60
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/recipes/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/recipes/_index.md",
             "fields": {
               "pathToServe": "/workers/archive/recipes",
               "parent": "/workers/archive",
@@ -2121,7 +2121,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/recipes/aggregating-multiple-requests.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/recipes/aggregating-multiple-requests.md",
             "fields": {
               "pathToServe": "/workers/archive/recipes/aggregating-multiple-requests/",
               "parent": "/workers/archive/recipes",
@@ -2138,7 +2138,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/recipes/altering-headers.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/recipes/altering-headers.md",
             "fields": {
               "pathToServe": "/workers/archive/recipes/altering-headers/",
               "parent": "/workers/archive/recipes",
@@ -2155,7 +2155,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/recipes/cors-preflight-requests.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/recipes/cors-preflight-requests.md",
             "fields": {
               "pathToServe": "/workers/archive/recipes/cors-preflight-requests/",
               "parent": "/workers/archive/recipes",
@@ -2172,7 +2172,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/recipes/country-blocking.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/recipes/country-blocking.md",
             "fields": {
               "pathToServe": "/workers/archive/recipes/country-blocking/",
               "parent": "/workers/archive/recipes",
@@ -2189,7 +2189,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/recipes/hotlink-protection.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/recipes/hotlink-protection.md",
             "fields": {
               "pathToServe": "/workers/archive/recipes/hotlink-protection/",
               "parent": "/workers/archive/recipes",
@@ -2206,7 +2206,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/recipes/mobile-redirects.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/recipes/mobile-redirects.md",
             "fields": {
               "pathToServe": "/workers/archive/recipes/mobile-redirects/",
               "parent": "/workers/archive/recipes",
@@ -2223,7 +2223,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/recipes/pre-shared-keys.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/recipes/pre-shared-keys.md",
             "fields": {
               "pathToServe": "/workers/archive/recipes/pre-shared-keys/",
               "parent": "/workers/archive/recipes",
@@ -2240,7 +2240,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/recipes/random-content-cookies.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/recipes/random-content-cookies.md",
             "fields": {
               "pathToServe": "/workers/archive/recipes/random-content-cookies/",
               "parent": "/workers/archive/recipes",
@@ -2257,7 +2257,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/recipes/return-403.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/recipes/return-403.md",
             "fields": {
               "pathToServe": "/workers/archive/recipes/return-403/",
               "parent": "/workers/archive/recipes",
@@ -2274,7 +2274,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/recipes/setting-a-cookie.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/recipes/setting-a-cookie.md",
             "fields": {
               "pathToServe": "/workers/archive/recipes/setting-a-cookie/",
               "parent": "/workers/archive/recipes",
@@ -2291,7 +2291,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/recipes/signed-requests.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/recipes/signed-requests.md",
             "fields": {
               "pathToServe": "/workers/archive/recipes/signed-requests/",
               "parent": "/workers/archive/recipes",
@@ -2308,7 +2308,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/recipes/streaming-responses.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/recipes/streaming-responses.md",
             "fields": {
               "pathToServe": "/workers/archive/recipes/streaming-responses/",
               "parent": "/workers/archive/recipes",
@@ -2325,7 +2325,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/recipes/tls-version-blocking.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/recipes/tls-version-blocking.md",
             "fields": {
               "pathToServe": "/workers/archive/recipes/tls-version-blocking/",
               "parent": "/workers/archive/recipes",
@@ -2342,7 +2342,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 80
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/faq/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/faq/_index.md",
             "fields": {
               "pathToServe": "/workers/archive/faq",
               "parent": "/workers/archive",
@@ -2359,7 +2359,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 40
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/api/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/api/_index.md",
             "fields": {
               "pathToServe": "/workers/archive/api",
               "parent": "/workers/archive",
@@ -2376,7 +2376,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 20
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/api/config-api-for-enterprise.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/api/config-api-for-enterprise.md",
             "fields": {
               "pathToServe": "/workers/archive/api/config-api-for-enterprise/",
               "parent": "/workers/archive/api",
@@ -2393,7 +2393,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 30
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/deploying-workers/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/deploying-workers/_index.md",
             "fields": {
               "pathToServe": "/workers/archive/deploying-workers",
               "parent": "/workers/archive",
@@ -2410,7 +2410,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 50
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/deploying-workers/serverless.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/deploying-workers/serverless.md",
             "fields": {
               "pathToServe": "/workers/archive/deploying-workers/serverless/",
               "parent": "/workers/archive/deploying-workers",
@@ -2427,7 +2427,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 50
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/deploying-workers/terraform.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/deploying-workers/terraform.md",
             "fields": {
               "pathToServe": "/workers/archive/deploying-workers/terraform/",
               "parent": "/workers/archive/deploying-workers",
@@ -2444,7 +2444,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 50
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/deploying-workers/unit-testing.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/deploying-workers/unit-testing.md",
             "fields": {
               "pathToServe": "/workers/archive/deploying-workers/unit-testing/",
               "parent": "/workers/archive/deploying-workers",
@@ -2461,7 +2461,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 50
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/deploying-workers/travis-ci.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/deploying-workers/travis-ci.md",
             "fields": {
               "pathToServe": "/workers/archive/deploying-workers/travis-ci/",
               "parent": "/workers/archive/deploying-workers",
@@ -2478,7 +2478,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 10
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/about/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/about/_index.md",
             "fields": {
               "pathToServe": "/workers/archive/about",
               "parent": "/workers/archive",
@@ -2495,7 +2495,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/about/how-workers-work.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/about/how-workers-work.md",
             "fields": {
               "pathToServe": "/workers/archive/about/how-workers-work/",
               "parent": "/workers/archive/about",
@@ -2512,7 +2512,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/recipes/lambda@edge-conversion/changing-origins.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/recipes/lambda@edge-conversion/changing-origins.md",
             "fields": {
               "pathToServe": "/workers/archive/recipes/lambda@edge-conversion/changing-origins/",
               "parent": "/workers/archive/recipes/lambda@edge-conversion",
@@ -2529,7 +2529,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 50
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/recipes/lambda@edge-conversion/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/recipes/lambda@edge-conversion/_index.md",
             "fields": {
               "pathToServe": "/workers/archive/recipes/lambda@edge-conversion",
               "parent": "/workers/archive/recipes",
@@ -2546,7 +2546,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/recipes/lambda@edge-conversion/generating-responses-with-static-content.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/recipes/lambda@edge-conversion/generating-responses-with-static-content.md",
             "fields": {
               "pathToServe": "/workers/archive/recipes/lambda@edge-conversion/generating-responses-with-static-content/",
               "parent": "/workers/archive/recipes/lambda@edge-conversion",
@@ -2563,7 +2563,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/recipes/lambda@edge-conversion/overriding-response-headers.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/recipes/lambda@edge-conversion/overriding-response-headers.md",
             "fields": {
               "pathToServe": "/workers/archive/recipes/lambda@edge-conversion/overriding-response-headers/",
               "parent": "/workers/archive/recipes/lambda@edge-conversion",
@@ -2580,7 +2580,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/recipes/lambda@edge-conversion/updating-error-statuses.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/recipes/lambda@edge-conversion/updating-error-statuses.md",
             "fields": {
               "pathToServe": "/workers/archive/recipes/lambda@edge-conversion/updating-error-statuses/",
               "parent": "/workers/archive/recipes/lambda@edge-conversion",
@@ -2597,7 +2597,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/recipes/lambda@edge-conversion/working-with-querystrings.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/recipes/lambda@edge-conversion/working-with-querystrings.md",
             "fields": {
               "pathToServe": "/workers/archive/recipes/lambda@edge-conversion/working-with-querystrings/",
               "parent": "/workers/archive/recipes/lambda@edge-conversion",
@@ -2614,7 +2614,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 50
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/recipes/vcl-conversion/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/recipes/vcl-conversion/_index.md",
             "fields": {
               "pathToServe": "/workers/archive/recipes/vcl-conversion",
               "parent": "/workers/archive/recipes",
@@ -2631,7 +2631,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/recipes/vcl-conversion/authenticating-before-returning-a-request.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/recipes/vcl-conversion/authenticating-before-returning-a-request.md",
             "fields": {
               "pathToServe": "/workers/archive/recipes/vcl-conversion/authenticating-before-returning-a-request/",
               "parent": "/workers/archive/recipes/vcl-conversion",
@@ -2648,7 +2648,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/recipes/vcl-conversion/conditionally-changing-a-url.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/recipes/vcl-conversion/conditionally-changing-a-url.md",
             "fields": {
               "pathToServe": "/workers/archive/recipes/vcl-conversion/conditionally-changing-a-url/",
               "parent": "/workers/archive/recipes/vcl-conversion",
@@ -2665,7 +2665,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/recipes/vcl-conversion/delivering-custom-responses.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/recipes/vcl-conversion/delivering-custom-responses.md",
             "fields": {
               "pathToServe": "/workers/archive/recipes/vcl-conversion/delivering-custom-responses/",
               "parent": "/workers/archive/recipes/vcl-conversion",
@@ -2682,7 +2682,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/recipes/vcl-conversion/controlling-the-cache.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/recipes/vcl-conversion/controlling-the-cache.md",
             "fields": {
               "pathToServe": "/workers/archive/recipes/vcl-conversion/controlling-the-cache/",
               "parent": "/workers/archive/recipes/vcl-conversion",
@@ -2699,7 +2699,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/recipes/vcl-conversion/delivering-different-content-to-different-devices.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/recipes/vcl-conversion/delivering-different-content-to-different-devices.md",
             "fields": {
               "pathToServe": "/workers/archive/recipes/vcl-conversion/delivering-different-content-to-different-devices/",
               "parent": "/workers/archive/recipes/vcl-conversion",
@@ -2716,7 +2716,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/recipes/vcl-conversion/inspecting-visitor-location.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/recipes/vcl-conversion/inspecting-visitor-location.md",
             "fields": {
               "pathToServe": "/workers/archive/recipes/vcl-conversion/inspecting-visitor-location/",
               "parent": "/workers/archive/recipes/vcl-conversion",
@@ -2733,7 +2733,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": 60
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/api/resource-bindings/_index.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/api/resource-bindings/_index.md",
             "fields": {
               "pathToServe": "/workers/archive/api/resource-bindings",
               "parent": "/workers/archive/api",
@@ -2750,7 +2750,7 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/markdown-pages/archive/api/resource-bindings/kv-namespaces.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/api/resource-bindings/kv-namespaces.md",
             "fields": {
               "pathToServe": "/workers/archive/api/resource-bindings/kv-namespaces/",
               "parent": "/workers/archive/api/resource-bindings",

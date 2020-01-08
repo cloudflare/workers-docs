@@ -1,6 +1,6 @@
 ---
 title: 'Integrations'
-isNew: true
+showNew: true
 weight: 5
 ---
 

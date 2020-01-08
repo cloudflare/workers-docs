@@ -21,7 +21,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `markdown-pages`,
-        path: `${__dirname}/src/markdown-pages`,
+        path: `${__dirname}/src/content`,
         ignore: [`**/CONTRIBUTING*`, '/styles/**'],
       },
     },
@@ -50,7 +50,7 @@ module.exports = {
         resolve: 'gatsby-plugin-copy-files',
         options: {
           source,
-          destination: source.replace(path.join(__dirname, './src/markdown-pages'), ''),
+          destination: source.replace(path.join(__dirname, './src/content'), ''),
         },
       })),
   ],
