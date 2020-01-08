@@ -18,7 +18,7 @@ import SEO from './SEO'
 // import '../static/js/workers.js'
 import Body from './Body'
 import { Navigation } from './Navigation'
-import { FrontMattter, Fields } from '../types/page'
+import { FrontMattter, Fields } from '../types/markdownRemark'
 const Layout: React.FC<LayoutProps> = ({ title, children }) => {
   const data = useStaticQuery(graphql`
   query SiteTitleQuery {

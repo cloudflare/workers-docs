@@ -1,5 +1,9 @@
 import { useStaticQuery, graphql } from 'gatsby'
-import { allMarkdownRemarkResult, markdownRemarkEdge, markdownRemark } from '../types/page'
+import {
+  allMarkdownRemarkResult,
+  markdownRemarkEdge,
+  markdownRemark,
+} from '../types/markdownRemark'
 
 export const useMarkdownNodes = (): allMarkdownRemarkResult['data'] => {
   const { data }: allMarkdownRemarkResult = useStaticQuery(

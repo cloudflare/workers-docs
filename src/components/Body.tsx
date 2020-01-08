@@ -1,5 +1,4 @@
 import React from 'react'
-import { FrontMattter, Fields } from '../types/page'
 const Body: React.FC<BodyProps> = ({ children, github_edit_url }) => {
   return (
     <>

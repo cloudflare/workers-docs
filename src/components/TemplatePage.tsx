@@ -7,13 +7,13 @@ import '../static/css/main.css'
 import '../static/css/overview.css'
 import '../static/css/code.css'
 import '../static/css/template.css'
-import { template } from "../types/page"
+import { restApiTemplate } from "../types/restApiTemplates"
 import Body from '../components/Body'
 type templateProps = {
   // id: string
   // pageContext: any
   id: string
-  data: template
+  data: restApiTemplate
 }
 async function grabGithubData(url: string | null) {
   if (!url) { throw 'no url' }
@@ -101,7 +101,7 @@ const TemplatePage: React.FC<templateProps> = ({
             </h2>
           </div>
           <div className="col-4 demo">
-            {Object.keys(demos).map((key) => {
+            {demos ? Object.keys(demos).map((key) => {
               const demo = demos[key]
               return demo ? (
                 <Link to={demo.url}>
@@ -109,7 +109,7 @@ const TemplatePage: React.FC<templateProps> = ({
                   <span>{demo.text}</span>
                 </Link>
               ) : null
-            })}
+            }) : null}
 
           </div>
         </div>

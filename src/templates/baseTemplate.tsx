@@ -6,7 +6,7 @@ import '../static/css/main.css'
 import '../static/css/overview.css'
 import '../static/css/code.css'
 import '../static/css/template.css'
-import { markdownRemarkResult, markdownPageContext, markdownRemark } from '../types/page'
+import { markdownRemarkResult, markdownPageContext, markdownRemark } from '../types/markdownRemark'
 import Body from '../components/Body'
 
 type markdownBaseProps = {

@@ -1,4 +1,4 @@
-import { markdownRemark } from '../types/page'
+import { markdownRemark } from '../types/markdownRemark'
 
 export const sortByWeight = (a: markdownRemark, b: markdownRemark): number => {
   let aWeight = a.frontmatter.weight === null ? 100 : a.frontmatter.weight

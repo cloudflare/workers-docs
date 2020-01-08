@@ -1,4 +1,4 @@
-import { allMarkdownRemarkResult } from "../types/page"
+import { allMarkdownRemarkResult } from "../types/markdownRemark"
 
 export   const data: allMarkdownRemarkResult = {
   "data": {

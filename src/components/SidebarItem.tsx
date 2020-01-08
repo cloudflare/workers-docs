@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 import { Location } from '@reach/router'
-import { markdownRemarkEdge, markdownRemark, FrontMattter, Fields } from '../types/page'
+import { markdownRemarkEdge, markdownRemark, FrontMattter, Fields } from '../types/markdownRemark'
 import { sortByWeight } from './utils'
 // import { useMarkdownNodes } from '../hooks/useMarkdownNodes'
 const maxDepth = 10
