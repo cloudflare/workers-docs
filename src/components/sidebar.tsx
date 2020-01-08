@@ -1,6 +1,6 @@
 import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
-import { SidebarLi } from './SidebarLi'
+import { SidebarLi } from './SidebarItem'
 import { sortByWeight } from './utils'
 import { markdownRemarkEdge } from '../types/markdownRemark'
 // import { useMarkdownNodes } from '../hooks/useMarkdownRemark'

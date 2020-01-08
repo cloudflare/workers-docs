@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { graphql, Link } from 'gatsby'
+import { Link } from 'gatsby'
 import { Helmet } from "react-helmet";
 
-import Layout from '../components/Layout'
-import '../static/css/main.css'
-import '../static/css/overview.css'
-import '../static/css/code.css'
-import '../static/css/template.css'
 import { restApiTemplate } from "../types/restApiTemplates"
-import Body from '../components/Body'
 type templateProps = {
   // id: string
   // pageContext: any
