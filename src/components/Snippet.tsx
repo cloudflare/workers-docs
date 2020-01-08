@@ -28,7 +28,7 @@ export const Snippet: React.FC<snippetProps> = ({ endpointId, page_url, code, de
     <p>{description}</p>
     <div className="copy-group">
       <div className="copy-step">
-        <img id="img" src="/templates/media/file.svg" />
+        <img src="/templates/media/file.svg" />
         {/* //  type="image/svg+xml" */}
         <span>Copy into a Worker script:</span>
       </div>

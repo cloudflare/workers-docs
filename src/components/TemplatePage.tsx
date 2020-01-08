@@ -53,6 +53,7 @@ const TemplatePage: React.FC<templateProps> = ({
 
   if (!githubData) return <div>loading</div>
   const { repo_name, repo_date, github_api_repo_url } = githubData
+  const repo_date_text = "December 13, 2019" // TODO convert repo_data into this format
   return (
     <>
       <Helmet>
@@ -67,7 +68,7 @@ const TemplatePage: React.FC<templateProps> = ({
         <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/highlight.min.js"></script>
         <script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.6.0/dist/highlightjs-line-numbers.min.js"></script>
         <script>
-          {`  console.log('addding listenr');document.addEventListener('DOMContentLoaded', event => {
+          {` TODO need to make this code actually execute or use SyntaxHightlighting console.log('addding listenr');document.addEventListener('DOMContentLoaded', event => {
                 document.querySelectorAll('.black code').forEach(block => {
                   hljs.highlightBlock(block)
                 })
@@ -84,7 +85,7 @@ const TemplatePage: React.FC<templateProps> = ({
       </Helmet>
       <figure className="template-page" id={id}>
         <Link to="/templates" className="back">
-          <img src="/templates/media/left-arrow.svg" id="img" />Template Gallery
+          <img src="/templates/media/left-arrow.svg" />Template Gallery
           </Link>
         <div className="grid-3-noBottom_xs-5">
           <div className="col-8">
@@ -122,22 +123,37 @@ const TemplatePage: React.FC<templateProps> = ({
             </div>
             {code ?
               <div className="grey copy-group">
-                <img className="copy-trigger" src="/svg/copy-box.svg" id="img" />
+                <img className="copy-trigger" src="/svg/copy-box.svg" />
                 <code className="copy">{code}</code>
               </div>
               : null}
           </div>
           <div className="col-4 links">
+            {repository_url ?
+              <div className="black copy-block">
+                <div className="copy-step">
+                  <span>Run in your terminal:</span>
+                </div>
+                <div className="copy-group">
+                  <span className="copy">wrangler generate my-app {repository_url}</span>
+                  <img className="copy-trigger" src="/svg/copy-box.svg" />
+                </div>
+                <span>Don't have Wrangler installed?
+                      <a href="/quickstart"> Get started</a>
+                </span>
+              </div>
+              : null}
             <div className="github">
-              {repository_url ? (
+              {repository_url ? (<>
                 <Link to={repository_url}>
                   <img src="/svg/github.svg" />
                   <div>{repo_name}</div>
-                  <div className="date">{repo_date}</div>
-                </Link>) : (<Link to={github_api_repo_url + id + ".js"}>
-                  <img src="/svg/github.svg" />
-                  <div>template-registry/{id}.js</div>
-                </Link>)}
+                </Link>
+                <div className="date">{repo_date_text}</div>
+              </>) : (<a href={github_api_repo_url + '/' + id + ".js"}>
+                <img src="/svg/github.svg" />
+                <div>template-registry/{id}.js</div>
+              </a>)}
             </div>
           </div>
         </div>
