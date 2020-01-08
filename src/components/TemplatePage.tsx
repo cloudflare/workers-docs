@@ -14,26 +14,17 @@ async function grabGithubData(url: string | null) {
 }
 const TemplatePage: React.FC<templateProps> = ({
   id,
-  data, // this prop will be injected by the GraphQL query below.
+  data,
 }) => {
 
   const { demos, repository_url, title, description, tags, code } = data
 
-  // data.markdownRemark holds our post data
   let [githubData, setState] = useState(null as any | null)
 
-
-  // const repo_json = getJSON $github_api_repo_url
-
   useEffect(() => {
-    console.log('using effect')
-
     if (repository_url) {
-
       let github_api_repo_url = repository_url.replace("https://github.com/", "https://api.github.com/repos/")
-      console.log('github_api_repo_url', github_api_repo_url)
       grabGithubData(github_api_repo_url).then(data => {
-        console.log('setting data', data)
         setState({
           repo_name: data.full_name,
           repo_date: data.updated_at,

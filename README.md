@@ -28,6 +28,12 @@ To test the Worker logic serving these static files (i.e. anything in `./workers
 npm run start
 ```
 
+## Build
+To build all files to `/public`:
+```
+yarn build
+```
+
 ## Test
 To run test of the Workers script, run:
 

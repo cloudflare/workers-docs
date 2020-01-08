@@ -10,6 +10,7 @@ import Helmet from 'react-helmet'
 import { useStaticQuery, graphql } from 'gatsby'
 
 const SEO = ({ description, lang, meta, title }: SEOPropTypes) => {
+  // TODO get hooks working instead of useStaticQuery in components
   const { site } = useStaticQuery(
     graphql`
       query {

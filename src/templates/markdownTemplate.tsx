@@ -10,11 +10,9 @@ type markdownBaseProps = {
   data: { markdownRemark: markdownRemarkResult }
   pageContext: markdownPageContext
 }
-const Template: React.FC<markdownBaseProps> = ({
+const MarkdownTemplate: React.FC<markdownBaseProps> = ({
   data, // this prop will be injected by the GraphQL query below.
-  pageContext
 }) => {
-  console.log('pageContext', pageContext)
   const { markdownRemark } = data // data.markdownRemark holds our post data
   const { frontmatter, html, fields } = markdownRemark
   const { title } = frontmatter
@@ -29,7 +27,7 @@ const Template: React.FC<markdownBaseProps> = ({
     </>
   )
 }
-export default Template
+export default MarkdownTemplate
 
 export const pageQuery = graphql`
   query($path: String!) {
