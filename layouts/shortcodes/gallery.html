@@ -4,17 +4,6 @@
   {{ $snippets :=  where $templatesJSON ".type" "snippet"}}
   {{ $boilerplates :=  where $templatesJSON ".type" "boilerplate"}}
   {{ $featured_boilerplates :=  where $templatesJSON ".type" "featured_boilerplate"}}
-  {{ if gt (len $snippets) 0 }}
-  <h2 style="padding-bottom: 20px">Snippets</h2>
-  <section class="template-wrapper snippet">
-    {{ range sort $snippets "weight" "desc" }}
-    {{partial "snippet" .}}
-    <script type="application/json" id="snippets">
-      {{.}}
-    </script>
-    {{ end }}
-  </section>
-  {{ end }}
   {{ if gt (len $boilerplates) 0 }}
   <h2 style="padding-bottom: 20px">Boilerplates</h2>
   <section class="template-wrapper boilerplates">
@@ -23,6 +12,17 @@
       {{partial "boilerplate" .}}
     </div>
     <script type="application/json" id="boilerplates">
+      {{.}}
+    </script>
+    {{ end }}
+  </section>
+  {{ end }}
+  {{ if gt (len $snippets) 0 }}
+  <h2 style="padding-bottom: 20px">Snippets</h2>
+  <section class="template-wrapper snippet">
+    {{ range sort $snippets "weight" "desc" }}
+    {{partial "snippet" .}}
+    <script type="application/json" id="snippets">
       {{.}}
     </script>
     {{ end }}
