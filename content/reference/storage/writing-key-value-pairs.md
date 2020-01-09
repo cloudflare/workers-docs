@@ -28,7 +28,7 @@ to write data via Wrangler or the API, but read the data from within a worker.
 
 You can [write more than one key-value pair at a time with
 wrangler](/tooling/wrangler/kv_commands/#kv-bulk) or [via the
-API](https://api.cloudflare.com/#workers-kv-namespace-write-multiple-key-value-pairs).
+API](https://api.cloudflare.com/#workers-kv-namespace-write-multiple-key-value-pairs), up to 10,000 KV pairs. A `key` and `value` are required for each KV pair. The entire request size must be less than 100 megabytes.
 We do not support this from within a worker at this time.
 
 ## Expiring Keys
