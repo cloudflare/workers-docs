@@ -26,12 +26,20 @@ module.exports = {
       },
     },
     `gatsby-transformer-sharp`,
-    `gatsby-transformer-remark`,
     {
-      resolve: 'gatsby-plugin-copy-files',
+      resolve: `gatsby-plugin-mdx`,
       options: {
-        source: `${__dirname}/src/images`,
-        destination: '/images',
+        extensions: [`.mdx`],
+        // extensions: [`.mdx`, `.md`],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-plugin-copy-files',
+            options: {
+              source: `${__dirname}/src/images`,
+              destination: '/images',
+            },
+          },
+        ],
       },
     }, // Simple config, passing URL
     // In your gatsby-config.js

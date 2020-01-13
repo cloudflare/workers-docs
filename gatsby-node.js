@@ -15,7 +15,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   result = await graphql(`
     {
-      allMarkdownRemark(limit: 1000) {
+      allMdx(limit: 1000) {
         edges {
           node {
             fields {
@@ -37,7 +37,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     reporter.panicOnBuild(`Error while running GraphQL query.`)
     return
   }
-  result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+  result.data.allMdx.edges.forEach(({ node }) => {
     return createPage({
       path: node.fields.pathToServe,
       component: markdownTemplate,
@@ -70,7 +70,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
   // Ensures we are processing only markdown files
-  if (node.internal.type === 'MarkdownRemark') {
+  if (node.internal.type === 'Mdx') {
     // Use `createFilePath` to turn markdown files in our `content` directory into `/workers/`pathToServe
     const originalPath = node.fileAbsolutePath.replace(
       node.fileAbsolutePath.match(/.*content/)[0],
@@ -87,7 +87,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       parentDir = path.dirname(parentDir) // "/" dirname will = "/"
     }
     // Creates new query'able field with name of 'pathToServe', 'parent'..
-    // for allMarkdownRemark edge nodes
+    // for allMdx edge nodes
     createNodeField({
       node,
       name: 'pathToServe',
