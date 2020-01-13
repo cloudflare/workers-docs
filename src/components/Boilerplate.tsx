@@ -1,10 +1,21 @@
 import { restApiTemplate } from "../types/restApiTemplates"
 import React from 'react'
 import { Link } from "gatsby"
+import { useRestApiTemplates } from "../hooks/useMarkdownRemark"
 type boilerplateProps = restApiTemplate & {
   page_url?: string
 }
-export const Boilerplate: React.FC<boilerplateProps> = ({ endpointId, page_url, description, title, share_url, tags, repository_url }) => {
+export const Boilerplate: React.FC<boilerplateProps> = (props) => {
+  const { allRestApiTemplates } = useRestApiTemplates()
+  const getBoilerplate = (id: string) => {
+    const boilerplate = allRestApiTemplates.edges.map(edge => edge.node).find(node => node.endpointId === id)
+    if (!boilerplate) {
+      throw "Boilerplate not found with id" + id
+    }
+    return boilerplate
+  }
+  let { endpointId, description, title, share_url, tags, repository_url } = props.description ? props : getBoilerplate(props.endpointId || "")
+  let { page_url } = props
   const template_page = "/workers/templates/pages/" + endpointId
   page_url = share_url || template_page // TODO may need to consider tutorial? 
   return (<figure className="template-card boilerplate" id="{{.id}}">
