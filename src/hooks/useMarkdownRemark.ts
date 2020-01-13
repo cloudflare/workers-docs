@@ -1,12 +1,12 @@
 import { useStaticQuery, graphql } from 'gatsby'
-import { allMarkdownRemarkResult } from '../types/markdownRemark'
+import { allMarkdownRemarkResult } from '../types/mdx'
 
 // TODO get hooks working instead of useStaticQuery in components
 export const useMarkdownNodes = (): allMarkdownRemarkResult['data'] => {
   const { data }: allMarkdownRemarkResult = useStaticQuery(
     graphql`
       {
-        allMarkdownRemark(limit: 1000) {
+        allMdx(limit: 1000) {
           edges {
             node {
               frontmatter {
@@ -29,5 +29,5 @@ export const useMarkdownNodes = (): allMarkdownRemarkResult['data'] => {
     `,
   )
 
-  return data //.allMarkdownRemark.edges
+  return data //.allMdx.edges
 }

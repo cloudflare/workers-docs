@@ -1,6 +1,6 @@
-import { markdownRemark } from '../types/markdownRemark'
+import { mdx } from '../types/mdx'
 
-export const sortByWeight = (a: markdownRemark, b: markdownRemark): number => {
+export const sortByWeight = (a: mdx, b: mdx): number => {
   let aWeight = a.frontmatter.weight === null ? 100 : a.frontmatter.weight
   let bWeight = b.frontmatter.weight === null ? 100 : b.frontmatter.weight
   return aWeight > bWeight ? 1 : aWeight === bWeight ? 0 : -1

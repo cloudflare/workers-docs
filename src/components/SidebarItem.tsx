@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 import { Location } from '@reach/router'
-import { markdownRemarkEdge, markdownRemark, FrontMattter, Fields } from '../types/markdownRemark'
+import { markdownRemarkEdge, mdx, FrontMattter, Fields } from '../types/mdx'
 import { sortByWeight } from './utils'
 // import { useMarkdownNodes } from '../hooks/useMarkdownNodes'
 const maxDepth = 10
@@ -16,7 +16,7 @@ export const SidebarLi: React.FunctionComponent<SidebarLiProps> = ({
   const topLevelMarkdown: markdownRemarkEdge[] = useStaticQuery(
     graphql`
       {
-        allMarkdownRemark(limit: 1000) {
+        allMdx(limit: 1000) {
           edges {
             node {
               frontmatter {
@@ -37,8 +37,8 @@ export const SidebarLi: React.FunctionComponent<SidebarLiProps> = ({
         }
       }
     `,
-  ).allMarkdownRemark.edges
-  const myChildren: markdownRemark[] = topLevelMarkdown
+  ).allMdx.edges
+  const myChildren: mdx[] = topLevelMarkdown
     .filter(
       edge =>
         fields.pathToServe === '/workers' + edge.node.fields.parent &&
@@ -78,7 +78,7 @@ export const SidebarLi: React.FunctionComponent<SidebarLiProps> = ({
             {showChildren ? (
               <ul>
                 {' '}
-                {myChildren.map((child: markdownRemark) => {
+                {myChildren.map((child: mdx) => {
                   return (
                     <SidebarLi
                       frontmatter={child.frontmatter}
