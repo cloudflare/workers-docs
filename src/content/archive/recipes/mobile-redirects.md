@@ -6,7 +6,7 @@ This header can contain one of three options: `mobile`, `tablet`, `desktop`.
 
 <sub>Note: This "Cf-Device-Type" header will not be present in the Preview pane. Please talk with your account manager or Solutions Engineer for more information.</sub>
 
-{{< highlight javascript >}}
+```js
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 });
@@ -37,4 +37,4 @@ async function handleRequest(request) {
   }
   return await fetch(request)
 }
-{{< / highlight >}}
+```

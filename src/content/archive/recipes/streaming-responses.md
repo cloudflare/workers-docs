@@ -30,7 +30,7 @@ method.
 
 Here's a minimal pass-through example to show their basic usage.
 
-{{< highlight javascript >}}
+```js
 addEventListener("fetch", event => {
   event.respondWith(fetchAndStream(event.request))
 })
@@ -55,7 +55,7 @@ async function streamBody(readable, writable) {
   // returns its response.
   return readable.pipeTo(writable)
 }
-{{</ highlight >}}
+```
 
 Although `streamBody()` is an asynchronous function, we do *not* `await` it, so
 that it does not block forward progress of the calling `fetchAndStream()`
@@ -76,7 +76,7 @@ recipe, but this time we'll start writing our response as soon as we've
 verified that every subrequest succeeded --- no need to wait for the actual
 response bodies.
 
-{{< highlight javascript >}}
+```js
 addEventListener('fetch', event => {
     event.respondWith(fetchAndApply(event.request))
 })
@@ -138,7 +138,7 @@ async function streamJsonBodies(bodies, writable) {
 
   await writer.close()
 }
-{{</ highlight >}}
+```
 
 The runtime expects to receive TypedArrays on the readable side of the TransformStream.
 Therefore, we never pass a string to `writer.write()`, only Uint8Arrays. If you need to

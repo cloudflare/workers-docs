@@ -5,7 +5,7 @@ title: "Changing Origins"
 You can change traffic gradually from an old storage bucket to a new one with Workers.
 
 ## With Lambda@Edge:
-{{<highlight javascript>}}
+```js
 'use strict';
 
 function getRandomInt(min, max) {
@@ -34,10 +34,10 @@ exports.handler = (event, context, callback) => {
   }
   callback(null, request);
 };
-{{</highlight>}}
+```
 
 ## With Workers:
-{{<highlight javascript>}}
+```js
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
@@ -58,12 +58,12 @@ async function handleRequest(request) {
 
   return fetch(request)
 }
-{{</highlight>}}
+```
 
 You can also change origins for different regions based on request headers.
 
 ## With Lambda@Edge:
-{{<highlight javascript>}}
+```js
 'use strict';
 
 exports.handler = (event, context, callback) => {
@@ -79,10 +79,10 @@ exports.handler = (event, context, callback) => {
 
   callback(null, request);
 };
-{{</highlight>}}
+```
 
 ## With Workers:
-{{<highlight javascript>}}
+```js
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
@@ -98,5 +98,5 @@ async function handleRequest(request) {
 
   return fetch(request)
 }
-{{</highlight>}}
+```
 
