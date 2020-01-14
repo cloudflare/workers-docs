@@ -3,7 +3,7 @@ title: Hot-link Protection
 ---
 You can use Cloudflare Workers to protect your hot-links on your web properties. 
 
-{{<highlight javascript>}}
+```js
 addEventListener('fetch', event => {
   event.respondWith(fetchAndApply(event.request))
 })
@@ -35,4 +35,4 @@ async function fetchAndApply(request) {
   // Everything is fine, return the response normally.
   return response
 }
-{{</highlight>}}
+```

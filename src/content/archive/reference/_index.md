@@ -34,13 +34,13 @@ you need.
 
     For example:
 
-    {{<highlight javascript>}}
+    ```js
 const promise = fetch("https://example.com/")       // ERROR
 
 addEventListener("fetch", event => {
   event.respondWith(fetch("https://example.com/"))  // OK
 })
-{{</highlight>}}
+```
 
     This code snippet **will throw** during script startup, and the `"fetch"` event
     listener will never be registered.

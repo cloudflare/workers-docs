@@ -26,27 +26,27 @@ You get all the speed and security of the world’s most peered CDN with all the
 
 A Worker can return a static response:
 
-{{< highlight javascript >}}
+```js
 addEventListener('fetch', event => {
   event.respondWith(new Response('hello world'))
 })
-{{< / highlight >}}
+```
 
 It can also make a request to another location, and return that. In this case we’re
 adding '/index.html' to the end of the URL:
 
-{{< highlight javascript >}}
+```js
 addEventListener('fetch', event => {
   event.respondWith(
     fetch(event.request.url + "/index.html", event.request)
   )
 })
-{{< / highlight >}}
+```
 
 Being JavaScript, it’s possible to leverage these capabilities in almost any way imaginable.
 You could, for example, make decisions about where to route the request based on its contents:
 
-{{< highlight javascript >}}
+```js
 addEventListener('fetch', event => {
   let url = new URL(event.request.url)
 
@@ -59,4 +59,4 @@ addEventListener('fetch', event => {
     fetch(url, event.request)
   )
 })
-{{< / highlight >}}
+```

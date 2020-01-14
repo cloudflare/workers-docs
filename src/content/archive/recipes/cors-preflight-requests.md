@@ -4,7 +4,7 @@ title: "CORS preflight requests"
 
 With this Worker, you can handle [CORS preflight requests](https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request). It passes GET, POST and HEAD requests through to the origin, while OPTIONS requests are answered directly.
 
-{{<highlight javascript>}}
+```js
 addEventListener('fetch', event => {
   event.respondWith(handle(event.request))
 })
@@ -52,4 +52,4 @@ function handleOptions(request) {
     })
   }
 }
-{{</highlight>}}
+```

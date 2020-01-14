@@ -3,7 +3,7 @@ title: Aggregating Multiple Requests
 ---
 Here, we make multiple requests to different API endpoints, aggregate the responses and send it back as a single response.
 
-{{<highlight javascript>}}
+```js
 addEventListener('fetch', event => {
     event.respondWith(fetchAndApply(event.request))
 })
@@ -39,4 +39,4 @@ async function fetchAndApply(request) {
     return new Response(JSON.stringify(combined), responseInit)
 }
 
-{{</highlight>}}
+```

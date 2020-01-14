@@ -22,12 +22,12 @@ By default, Workers will follow the Cloudflare caching behavior. You can read mo
 
 You will find some of the following snippets in your VCL. Although you can be explicit, Cloudflare will define these settings for you by default:
 
-{{<highlight vcl>}}
+```vcl
     if (req.request != "HEAD" && req.request != "GET") {
-{{</highlight>}}
+```
 
 
-{{<highlight vcl>}}
+```vcl
   if ((beresp.status == 500 || beresp.status == 503) && req.restarts < 1 && (req.request == "GET" || req.request == "HEAD")) {
     restart;
   }
@@ -43,7 +43,7 @@ You will find some of the following snippets in your VCL. Although you can be ex
     return (pass);
   }
 
-{{</highlight>}}
+```
 
 ### Caching HTML (or other non-whitelisted file extensions):
 ```javascript

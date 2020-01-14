@@ -25,57 +25,57 @@ For long-time Cloudflare API users: please note that `account_id`s retain the va
 ### Upload a Worker
 `PUT /accounts/:account_id/workers/scripts/:script_name`
 
-{{<highlight bash>}}
+```bash
 curl -X PUT "https://api.cloudflare.com/client/v4/accounts/:account_id/workers/scripts/:script_name" -H "X-Auth-Email:YOUR_CLOUDFLARE_EMAIL" -H "X-Auth-Key:ACCOUNT_AUTH_KEY" -H "Content-Type:application/javascript" --data-binary "@PATH_TO_YOUR_WORKER_SCRIPT"
-{{</highlight>}}
+```
 
 ### Download a Worker
 `GET /accounts/:account_id/workers/scripts/:script_name`
 
-{{<highlight bash>}}
+```bash
 curl -X GET "https://api.cloudflare.com/client/v4/accounts/:account_id/workers/scripts/:script_name" -H "X-Auth-Email:YOUR_CLOUDFLARE_EMAIL" -H "Content-Type:application/javascript" -H "X-Auth-Key:ACCOUNT_AUTH_KEY"
-{{</highlight>}}
+```
 
 ### Delete a Worker
 `DELETE /accounts/:account_id/workers/scripts/:script_name`
 
-{{<highlight bash>}}
+```bash
 curl -X DELETE "https://api.cloudflare.com/client/v4/accounts/:account_id/workers/script/:script_name" -H "X-Auth-Email:YOUR_CLOUDFLARE_EMAIL" -H "Content-Type:application/javascript" -H "X-Auth-Key:ACCOUNT_AUTH_KEY"
-{{</highlight>}}
+```
 
 ### Get a list of scripts
 `GET /accounts/:account_id/workers/scripts`
 
-{{<highlight bash>}}
+```bash
 curl -X GET "https://api.cloudflare.com/client/v4/accounts/:account_id/workers/scripts" -H "X-Auth-Email:YOUR_CLOUDFLARE_EMAIL" -H "Content-Type:application/javascript" -H "X-Auth-Key:ACCOUNT_AUTH_KEY"
-{{</highlight>}}
+```
 
 ### Get Routes
 `GET /zones/:zone_id/workers/routes`
 
-{{<highlight bash>}}
+```bash
 curl -H "Content-Type: application/javascript" -H "X-Auth-Email: YOUR_CLOUDFLARE_EMAIL" -H "X-Auth-Key: ACCOUNT_AUTH_KEY" -X GET https://api.cloudflare.com/client/v4/zones/:zone_id/workers/routes
-{{</highlight>}}
+```
 
 ### Create a Route
 `POST /zones/:zone_id/workers/routes`
 
-{{<highlight bash>}}
+```bash
 curl -X POST https://api.cloudflare.com/client/v4/zones/:zone_id/workers/routes -H "Content-Type: application/json" -H "X-Auth-Email: YOUR_CLOUDFLARE_EMAIL" -H "X-Auth-Key: ACCOUNT_AUTH_KEY" -d '{"pattern": "example.com/*", "script": "script_name"}'
-{{</highlight>}}
+```
 
 ### Change an Existing Route
 `PUT /zones/:zone_id/workers/routes/:route_id`
 
-{{<highlight bash>}}
+```bash
 curl -X PUT "https://api.cloudflare.com/client/v4/zones/:zone_id/workers/routes/:route_id" -H
 "X-Auth-Email:YOUR_CLOUDFLARE_EMAIL" -H "X-Auth-Key:ACCOUNT_AUTH_KEY" -H "Content-type: application/json" -d '{"pattern": "example.com/*", "script": "script_name}'
-{{</highlight>}}
+```
 
 ### Delete a Route
 `DELETE /zones/:zone_id/workers/routes/:route_id`
 
-{{<highlight bash>}}
+```bash
 curl -X DELETE "https://api.cloudflare.com/client/v4/zones/:zone_id/workers/routes/:route_id" -H
 "X-Auth-Email:YOUR_CLOUDFLARE_EMAIL" -H "X-Auth-Key:ACCOUNT_AUTH_KEY"
-{{</highlight>}}
+```

@@ -34,7 +34,7 @@ For debugging convenience, this Worker returns 403 if the URL or HMAC is
 invalid, or if the URL has expired. You may wish to return 404 in an actual
 implementation.
 
-{{< highlight javascript >}}
+```js
 addEventListener('fetch', event => {
   event.respondWith(verifyAndFetch(event.request))
 })
@@ -109,7 +109,7 @@ function byteStringToUint8Array(byteString) {
   }
   return ui
 }
-{{</ highlight >}}
+```
 
 ## Generating signed requests
 
@@ -122,7 +122,7 @@ For any request URL beginning with `/generate/`, we'll replace `/generate/` with
 `/verify/`, sign the resulting path with its timestamp, and return the full,
 signed URL via the response body.
 
-{{< highlight javascript >}}
+```js
 addEventListener('fetch', event => {
   const url = new URL(event.request.url)
   const prefix = "/generate/"
@@ -167,4 +167,4 @@ async function generateSignedUrl(url) {
 
   return new Response(url)
 }
-{{</ highlight >}}
+```
