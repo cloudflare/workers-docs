@@ -17,10 +17,11 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `markdown-pages`,
+        name: `mdx-pages`,
         path: `${__dirname}/src/content`,
         ignore: [`**/CONTRIBUTING*`, '/styles/**'],
       },
@@ -29,8 +30,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
-        extensions: [`.mdx`],
-        // extensions: [`.mdx`, `.md`],
+        extensions: [`.mdx`, `.md`],
         gatsbyRemarkPlugins: [
           {
             resolve: 'gatsby-plugin-copy-files',

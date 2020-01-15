@@ -12,7 +12,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   const galleryTemplate = path.resolve(`src/templates/gallery.tsx`)
   const markdownTemplate = path.resolve(`src/templates/markdownTemplate.tsx`)
-
+  // Create a custom page for the Template Gallery that's NOT based on markdown, just TSX
   createPage({
     path: `/workers/templates/`,
     component: galleryTemplate,
