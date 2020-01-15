@@ -7,11 +7,16 @@
 // You can delete this file if you're not using it
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
-
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions
 
+  const galleryTemplate = path.resolve(`src/templates/gallery.tsx`)
   const markdownTemplate = path.resolve(`src/templates/markdownTemplate.tsx`)
+
+  createPage({
+    path: `/workers/templates/`,
+    component: galleryTemplate,
+  })
 
   result = await graphql(`
     {
