@@ -4,6 +4,8 @@ import { SidebarLi } from './SidebarItem'
 import { sortByWeight } from './utils'
 import { markdownRemarkEdge } from '../types/mdx'
 // import { useMarkdownNodes } from '../hooks/useMarkdownRemark'
+
+const EXCLUDED_PATHS = [/\/archive\/*/, /\/workers\/$/]// Paths to not include in the sidebar
 const script = `    document.querySelector('#sidebar-toggle').addEventListener('click', function(){
   if (document.body.classList.contains('with-sidebar-open')) {
     document.body.classList.remove('with-sidebar-open');
@@ -78,7 +80,10 @@ const Sidebar = ({ pathToServe = '/' }) => {
               // get top level (i.e. relURLs with /workers followed by no more than
               // one forward slash) mdx nodes
               .filter(edge => edge.node.fields.parent === '/')
-              // .filter(edge => edge.node.fields.pathToServe.match(/^\/[^/]+$/))
+              .filter(edge => { //exclude the path if it has a match in EXCLUDED_PATHS
+                const matchedPaths = EXCLUDED_PATHS.filter((excludePath) => excludePath.test(edge.node.fields.pathToServe))
+                return matchedPaths.length < 1
+              })
               .map(edge => edge.node)
               .sort(sortByWeight)
               .map(node => {
