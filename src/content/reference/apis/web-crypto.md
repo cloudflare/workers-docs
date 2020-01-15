@@ -22,7 +22,7 @@ Implements the full API described [here](https://developer.mozilla.org/en-US/doc
 Cloudflare implements a subset of the most common crytographic algorithms, as shown in the following table.
 We are happy to add support for more algorithms – [let us know](https://community.cloudflare.com/c/developers/workers).
 
-|  Algorithm  | sign()<br>verify() | encrypt()<br>decrypt() | digest() | deriveBits()<br>deriveKey() | generateKey() | wrapKey()<br>unwrapKey() |
+|  Algorithm  | sign()<br/>verify() | encrypt()<br/>decrypt() | digest() | deriveBits()<br/>deriveKey() | generateKey() | wrapKey()<br/>unwrapKey() |
 | :---------------- | :----------------- | :--------------------- | :------- | :-------------------------- | :------------ | :----------------------- |
 | RSASSA-PKCS1-v1_5 | ✓                  |                        |          |                             |               |                          |
 | ECDSA             | ✓                  |                        |          |                             |               |                          |
