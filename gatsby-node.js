@@ -64,7 +64,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   `)
   templates.data.allRestApiTemplates.nodes.forEach(({ endpointId }) => {
     createPage({
-      path: `/workers/templates/pages/${endpointId}`,
+      path: `/workers/templates/pages/${endpointId}/`,
       component: templatePage,
       context: {
         id: endpointId,
@@ -91,6 +91,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       pathToServe = parentDir
       parentDir = path.dirname(parentDir) // "/" dirname will = "/"
     }
+    pathToServe = pathToServe.replace(/\/+$/, '/') // always end the path with a slash
     // Creates new query'able field with name of 'pathToServe', 'parent'..
     // for allMdx edge nodes
     createNodeField({

@@ -5,6 +5,7 @@ type snippetProps = Partial<restApiTemplate> & {
   page_url?: string
 }
 import { useRestApiTemplates } from '../hooks/useMarkdownRemark'
+import { PREFIX } from "./utils"
 export const Snippet: React.FC<snippetProps> = (props) => {
   const { allRestApiTemplates } = useRestApiTemplates()
   const getSnippet = (id: string) => {
@@ -18,8 +19,8 @@ export const Snippet: React.FC<snippetProps> = (props) => {
   let { endpointId, code, description, title, share_url, tags } = props.description ? props : getSnippet(props.endpointId || "")
   let { page_url } = props
   const template_page = "/templates/pages/" + endpointId
-  page_url = share_url || template_page // TODO may need to consider tutorial? 
-
+  page_url = share_url ? ("/" + share_url) : template_page // TODO may need to consider tutorial? 
+  page_url = PREFIX + page_url
   return (<figure className="template-card snippet" id={endpointId}>
     <div className="tag-group">
       {tags?.map(tag => (

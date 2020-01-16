@@ -6,7 +6,7 @@ module.exports = {
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@gatsbyjs`,
   },
-  // pathPrefix: `/workers`,
+  // pathPrefix: `/workers`, //  this breaks MDX links like (/reference..) but not the sidebar for some reason if it's inside MDX Render it breaks only
   plugins: [
     `gatsby-plugin-typescript`,
     `gatsby-plugin-react-helmet`,
