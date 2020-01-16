@@ -5,7 +5,8 @@
   "author": "Victoria <bernerd.victoria22@gmail.com>",
   "dependencies": {
     "@mdx-js/mdx": "^1.5.3",
-    "@mdx-js/react": "^1.5.3",
+    "@mdx-js/react": "^1.5.4",
+    "@types/mdx-js__react": "^1.5.0",
     "gatsby": "^2.15.29",
     "gatsby-image": "^2.2.24",
     "gatsby-plugin-copy-files": "^1.0.3",
@@ -29,7 +30,7 @@
   },
   "devDependencies": {
     "@types/node": "^12.7.12",
-    "@types/react": "^16.9.5",
+    "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.1",
     "@types/react-helmet": "^5.0.14",
     "glob": "^7.1.6",
