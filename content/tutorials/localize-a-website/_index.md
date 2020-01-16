@@ -18,7 +18,7 @@ To publish your project to Cloudflare Workers, you'll need a few things:
 
 This tutorial is designed to use an existing website. To simplify this process, we'll use a free HTML5 template from [HTML5 UP](https://html5up.net/). With this website as the base, we'll use the `HTMLRewriter` functionality in the Workers platform to overlay an i18n layer, automatically translating the site based on the user's language.
 
-If you'd like to deploy your own version of the site, you can find the source [on GitHub](https://github.com/signalnerve/i18n-example-workers-site). Instructions on how to deploy this application can be found in the project's README.
+If you'd like to deploy your own version of the site, you can find the source [on GitHub](https://github.com/signalnerve/i18n-example-workers). Instructions on how to deploy this application can be found in the project's README.
 
 ## Generate a project
 
