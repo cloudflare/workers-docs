@@ -17,7 +17,7 @@ type markdownBaseProps = {
 const components = {
   Gallery,
   a: (props: any) => {
-    return <Link {...props} />
+    return <Link to={props.href} {...props} />
   }
 }
 const MarkdownTemplate: React.FC<markdownBaseProps> = ({
