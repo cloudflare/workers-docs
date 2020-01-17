@@ -1,20 +1,23 @@
-﻿---
+---
 title: Limits
 weight: 4
 ---
-
-## Plans
-
-Workers plans are separate from any Cloudflare plan (Free, Professional, Business) you may have. All users can access the Workers free plan subject to its [request limits](#request-limits). Upgrading to the Unlimited (Paid) plan lifts the request limits and increases CPU time limits.
-
-| Plan             | CPU Limit | Daily Request Limit | Burst Rate Limit         |
-| ---------------- | --------- | ------------------- | ------------------------ |
-| Free             | 10ms      | 100,000             | 1000 requests per minute |
-| Unlimited (Paid) | 50ms      | none                | none                     |
-
-See definitions for the types of limits and behavior below.
-Script size, number of scripts, subrequests, and available memory are not affected by plan type.
-
+- [Script Size](#script-size)
+- [Number of Scripts](#number-of-scripts)
+- [Request Limits](#request-limits)
+  * [Burst Rate Limit](#burst-rate-limit)
+  * [Daily Request Limit](#daily-request-limit)
+    + [Fail Open](#fail-open)
+    + [Fail Closed](#fail-closed)
+- [CPU/Execution Time Limit](#cpu-execution-time-limit)
+- [Memory](#memory)
+- [Subrequests](#subrequests)
+  * [Can a Workers script make subrequests to load other sites on the Internet?](#can-a-workers-script-make-subrequests-to-load-other-sites-on-the-internet-)
+  * [How many subrequests can I make?](#how-many-subrequests-can-i-make-)
+  * [Can I make a subrequest after my Workers has responded to the user?](#can-i-make-a-subrequest-after-my-workers-has-responded-to-the-user-)
+  * [How long can a subrequest take?](#how-long-can-a-subrequest-take-)
+- [Simultaneous Open Connections](#simultaneous-open-connections)
+- [KV](#kv)
 ## Script Size
 
 A Workers script plus any [Asset Bindings](/tooling/api/bindings) can be up to 1MB in size after compression.
@@ -92,3 +95,25 @@ While handling a request, each Worker script is allowed to have up to six connec
 Once a Worker has six connections open, it can still attempt to open additional connections. However, these attempts are put in a pending queue - the connections won't be actually be initiated until one of the currently open connections has closed. Since earlier connections can delay later ones, if a Worker tries to make many simultaneous subrequests, its later subrequests may appear to take longer to start.
 
 If the system detects that a Worker is deadlocked on open connections - for instance, if the Worker has pending connection attempts but has no in-progress reads or writes on the connections that it already has open - then the least-recently-used open connection will be canceled to unblock the Worker. If the Worker later attempts to use a canceled connection, an exception will be thrown. These exceptions should rarely occur in practice, though, since it's uncommon for a Worker to open a connection that it doesn't have an immediate use for.
+
+# KV 
+
+After subscriptiont to a Workers Unlimited plan, KV is enabled. Workers KV supports:
+
+- Up to 100 Namespaces per account
+- Unlimited keys per Namespace
+- Keys of up to 512 bytes
+- Values of up to 10 MB
+- Unlimited reads per second per key
+- Up to one write per second per key
+
+
+Workers KV read performance is determined by the amount of read-volume a
+given key receives. Maximum performance for a key is not reached unless that
+key is being read at least a couple times per minute in any given data
+center.
+
+Workers KV is an eventually consistent system, meaning that reads will
+sometimes reflect an older state of the system. While writes will often be
+visible globally immediately, it can take up to 60 seconds before reads in
+all edge locations are guaranteed to see the new value.
