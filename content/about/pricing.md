@@ -7,11 +7,6 @@ Workers is now free to enable for all and are subject to some limits. To avoid t
 
 If you are an Enterprise customer, reach out to your account team to confirm pricing details.
 
-[Limits](#limits)
-- [KV](#kv)
-- [Other](#other)
-- [Behavior](#behavior)
-
 ## Limits 
 
 To protect our systems against abuse there are surge limits in place for domains without subscriptions. 
