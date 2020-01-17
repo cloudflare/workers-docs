@@ -1,8 +1,20 @@
 {
-  "name": "gatsby-cloudflare-workers",
+  "name": "cloudflare-workers-docs",
+  "version": "1.0.0",
+  "description": "Cloudflare Workers developer docs",
+  "license": "Apache-2.0 OR MIT",
+  "main": "workers-site/index.js",
   "private": true,
-  "description": "Gatsby and Cloudflare Workers docs",
-  "author": "Victoria <bernerd.victoria22@gmail.com>",
+  "scripts": {
+    "build": "gatsby build",
+    "worker-build": "npm run build && wrangler build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "test": "ava workers-site/test/index.js --verbose",
+    "start": "npm run develop",
+    "worker-start": "npm run develop && wrangler preview --watch -e staging",
+    "publish": "npm run build && wrangler publish -e"
+  },
   "dependencies": {
     "gatsby": "^2.15.29",
     "gatsby-image": "^2.2.24",
@@ -24,24 +36,23 @@
     "react-typography": "^0.16.19",
     "typography": "^0.16.19"
   },
+  "ava": {
+    "require": [
+      "esm"
+    ]
+  },
   "devDependencies": {
     "@types/node": "^12.7.12",
     "@types/react": "^16.9.5",
     "@types/react-dom": "^16.9.1",
     "@types/react-helmet": "^5.0.14",
     "glob": "^7.1.6",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "ava": "^2.4.0"
   },
   "keywords": [
-    "gatsby"
-  ],
-  "license": "MIT",
-  "scripts": {
-    "build": "gatsby build --prefix-paths",
-    "develop": "gatsby develop --prefix-paths",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "start": "yarn develop",
-    "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \""
-  }
+    "gatsby",
+    "workers",
+    "cloudflare"
+  ]
 }
