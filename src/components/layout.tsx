@@ -9,7 +9,7 @@ import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
 import Sidebar from './Sidebar'
-import SEO from './SEO'
+import SEO from './Seo'
 
 import { Navigation } from './Navigation'
 const Layout: React.FC<LayoutProps> = ({ title, children }) => {

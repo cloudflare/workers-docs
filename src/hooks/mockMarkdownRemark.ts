@@ -1,8 +1,8 @@
-import { allMarkdownRemarkResult } from "../types/markdownRemark"
+import { allMarkdownRemarkResult } from "../types/mdx"
 
 export   const data: allMarkdownRemarkResult = {
   "data": {
-    "allMarkdownRemark": {
+    "allMdx": {
       "edges": [
         {
           "node": {

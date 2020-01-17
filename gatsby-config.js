@@ -6,7 +6,7 @@ module.exports = {
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@gatsbyjs`,
   },
-  // pathPrefix: `/workers`,
+  // pathPrefix: `/workers`, //  this breaks MDX links like (/reference..) but not the sidebar for some reason if it's inside MDX Render it breaks only
   plugins: [
     `gatsby-plugin-typescript`,
     `gatsby-plugin-react-helmet`,
@@ -17,21 +17,29 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `markdown-pages`,
+        name: `mdx-pages`,
         path: `${__dirname}/src/content`,
         ignore: [`**/CONTRIBUTING*`, '/styles/**'],
       },
     },
     `gatsby-transformer-sharp`,
-    `gatsby-transformer-remark`,
     {
-      resolve: 'gatsby-plugin-copy-files',
+      resolve: `gatsby-plugin-mdx`,
       options: {
-        source: `${__dirname}/src/images`,
-        destination: '/images',
+        extensions: [`.mdx`, `.md`],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-plugin-copy-files',
+            options: {
+              source: `${__dirname}/src/images`,
+              destination: '/images',
+            },
+          },
+        ],
       },
     }, // Simple config, passing URL
     // In your gatsby-config.js

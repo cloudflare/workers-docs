@@ -5,7 +5,7 @@ title: "Updating Error Statuses"
 This example catches request errors between 400 and 599 and returns static content in its place with a 200 status.
 
 ## With Lambda@Edge:
-{{<highlight javascript>}}
+```js
 'use strict';
 
 exports.handler = (event, context, callback) => {
@@ -26,10 +26,10 @@ exports.handler = (event, context, callback) => {
 
     callback(null, response);
 };
-{{</highlight>}}
+```
 
 ## With Workers:
-{{<highlight javascript>}}
+```js
 addEventListener('fetch', event => {
   event.respondWith(handle(event.request))
 })
@@ -46,4 +46,4 @@ async function handle(request) {
 
   return response
 }
-{{</highlight>}}
+```

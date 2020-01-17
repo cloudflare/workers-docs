@@ -4,7 +4,7 @@ title: "TLS Version Blocking"
 
 Block predefined TLS versions inside of Workers.
 
-{{< highlight javascript >}}
+```js
 addEventListener('fetch', event => {
   event.respondWith(sslBlock(event.request))
 })
@@ -22,4 +22,4 @@ async function sslBlock(request) {
 
   return fetch(request)
 }
-{{< / highlight >}}
+```

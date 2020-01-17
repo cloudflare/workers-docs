@@ -5,7 +5,7 @@ title: "Generating Responses with Static Content"
 Workers allow you to generate responses with static content and gzip your response without any external libraries.
 
 ## With Lambda@Edge:
-{{<highlight javascript>}}
+```js
 'use strict';
 
 const zlib = require('zlib');
@@ -45,10 +45,10 @@ exports.handler = (event, context, callback) => {
 
   callback(null, response);
 };
-{{</highlight>}}
+```
 
 ## With Workers:
-{{<highlight javascript>}}
+```js
 addEventListener('fetch', event => {
   event.respondWith(handle(event.request))
 })
@@ -78,4 +78,4 @@ async function handle(request) {
     }
   })
 }
-{{</highlight>}}
+```

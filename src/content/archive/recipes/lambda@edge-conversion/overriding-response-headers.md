@@ -5,7 +5,7 @@ title: "Overriding Response Headers"
 This example shows how you can override response headers in Workers.
 
 ## With Lambda@Edge:
-{{<highlight javascript>}}
+```js
 'use strict';
 
 exports.handler = (event, context, callback) => {
@@ -24,10 +24,10 @@ exports.handler = (event, context, callback) => {
 
    callback(null, response);
 };
-{{</highlight>}}
+```
 
 ## With Workers:
-{{<highlight javascript>}}
+```js
 addEventListener('fetch', event => {
   event.respondWith(handle(event.request))
 })
@@ -46,4 +46,4 @@ async function handle(request) {
 
   return response
 }
-{{</highlight>}}
+```

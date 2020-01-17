@@ -17,11 +17,11 @@ When a Worker running in production has an error that prevents it from returning
 | Error code | Meaning                                                                         |
 | ---------- | ------------------------------------------------------------------------------- |
 | 1101       | Worker threw a JavaScript exception.                                            |
-| 1102       | Worker exceeded CPU time limit. See: [Resource Limits]({{< relref "about/limits" >}}) |
+| 1102       | Worker exceeded CPU time limit. See: [Resource Limits](/about/limits) |
 | 1015       | Your client IP is being rate limited.                                           |
 | 1027       | Worker exceeded free tier [daily request limit](/about/limits#Daily-Request-Limit)                                  |
 
-<br>Other 11xx errors generally indicate a problem with the Workers runtime itself - please check our [status page](https://www.cloudflarestatus.com/) if you see one.
+<br/>Other 11xx errors generally indicate a problem with the Workers runtime itself - please check our [status page](https://www.cloudflarestatus.com/) if you see one.
 
 # Debug tips
 

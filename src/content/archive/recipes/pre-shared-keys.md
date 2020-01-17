@@ -7,7 +7,7 @@ This Worker provides a way to quickly block access to content of your choosing, 
 
 While this simple implementation is helpful, it is not meant to replace more secure scripts such as [signed requests](https://developers.cloudflare.com/workers/recipes/signed-requests/) using the WebCrypto API.
 
-{{<highlight javascript>}}
+```js
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
@@ -29,4 +29,4 @@ async function handleRequest(request) {
         { status: 403, statusText: 'Forbidden' });
   }
 }
-{{</highlight>}}
+```

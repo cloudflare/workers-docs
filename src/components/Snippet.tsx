@@ -1,13 +1,26 @@
-import { restApiTemplate } from "../types/restApiTemplates"
+import { restApiTemplate, allRestApiTemplates } from "../types/restApiTemplates"
 import React from 'react'
-type snippetProps = restApiTemplate & {
+import { useStaticQuery, graphql } from "gatsby"
+type snippetProps = Partial<restApiTemplate> & {
   page_url?: string
-
 }
-export const Snippet: React.FC<snippetProps> = ({ endpointId, page_url, code, description, title, share_url, tags }) => {
-  const template_page = "/templates/pages/" + endpointId
-  page_url = share_url || template_page // TODO may need to consider tutorial? 
+import { useRestApiTemplates } from '../hooks/useMarkdownRemark'
+import { PREFIX } from "./utils"
+export const Snippet: React.FC<snippetProps> = (props) => {
+  const { allRestApiTemplates } = useRestApiTemplates()
+  const getSnippet = (id: string) => {
+    const snippet = allRestApiTemplates.edges.map(edge => edge.node).find(node => node.endpointId === id)
+    if (!snippet) {
+      throw "Snippet not found with id" + id
+    }
+    return snippet
+  }
 
+  let { endpointId, code, description, title, share_url, tags } = props.description ? props : getSnippet(props.endpointId || "")
+  let { page_url } = props
+  const template_page = "/templates/pages/" + endpointId
+  page_url = share_url ? ("/" + share_url) : template_page // TODO may need to consider tutorial? 
+  page_url = PREFIX + page_url
   return (<figure className="template-card snippet" id={endpointId}>
     <div className="tag-group">
       {tags?.map(tag => (
@@ -38,3 +51,5 @@ export const Snippet: React.FC<snippetProps> = ({ endpointId, page_url, code, de
     </div>
   </figure>)
 }
+
+
