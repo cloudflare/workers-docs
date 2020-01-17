@@ -6,14 +6,14 @@
   "main": "workers-site/index.js",
   "private": true,
   "scripts": {
-    "build": "gatsby build",
-    "worker-build": "npm run build && wrangler build",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "test": "ava workers-site/test/index.js --verbose",
+    "build": "gatsby build --prefix-paths",
+    "develop": "gatsby develop --prefix-paths",
     "start": "npm run develop",
-    "worker-start": "npm run develop && wrangler preview --watch -e staging",
-    "publish": "npm run build && wrangler publish -e"
+    "worker-build": "npm run build && wrangler build",
+    "worker-start": "npm run build && wrangler preview --watch -e staging",
+    "worker-test": "ava workers-site/test/index.js --verbose",
+    "publish": "npm run build && wrangler publish -e",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\""
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.5.3",

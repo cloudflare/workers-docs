@@ -38,14 +38,14 @@ npm run build
 
 To build all Worker files to `worker-site/dist`:
 ```
-npm run build-worker
+npm run worker-build
 ```
 
 ## Test
 To run test of the Workers script, run:
 
 ```
-npm test
+npm worker-test
 ```
 
 ## What's inside
