@@ -11,26 +11,27 @@ export type Fields = {
   filePath: string
 }
 // The values from GraphQl + Remark we care about
-export type markdownRemark = {
+export type mdx = {
   fileAbsolutePath: string
   html?: string
+  body?: string
   frontmatter: FrontMattter
   fields: Fields
 }
 export type markdownRemarkEdge = {
-  node: markdownRemark
+  node: mdx
 }
-// export type markdownRemarkEdge = allMarkdownRemarkResult['data']['allMarkdownRemark']['edges']
+// export type markdownRemarkEdge = allMarkdownRemarkResult['data']['allMdx']['edges']
 export type allMarkdownRemarkResult = {
   data: {
-    allMarkdownRemark: {
+    allMdx: {
       edges: markdownRemarkEdge[]
-      // edges: { node: markdownRemark }[]
+      // edges: { node: mdx }[]
     }
   }
 }
-export type markdownRemarkResult = markdownRemark & {
-  data: { markdownRemark: markdownRemark & { html?: string } }
+export type markdownRemarkResult = mdx & {
+  data: { mdx: mdx & { html?: string; body: string } }
 }
 export type markdownPageContext = {
   weight: number

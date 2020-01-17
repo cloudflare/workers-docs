@@ -4,7 +4,7 @@ title: "Setting a Cookie"
 
 You can set cookies using Cloudflare Workers.
 
-{{< highlight javascript >}}
+```js
 addEventListener('fetch', event => {
   event.respondWith(fetchAndApply(event.request))
 })
@@ -20,4 +20,4 @@ async function fetchAndApply(request) {
 
   return response
 }
-{{< / highlight >}}
+```

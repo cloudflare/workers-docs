@@ -5,16 +5,16 @@ title: "Delivering Different Content to Different Devices"
 Just like with VCL, you can read the User Agent of your visitor and alter the request to match their device.
 
 ## With VCL:
-{{<highlight vcl>}}
+```vcl
 if (req.http.User-Agent ~ "(?i)ip(hone|od)") {
   set req.url = "/mobile" req.url;
 } elsif (req.http.User-Agent ~ "(?i)ipad") {
   set req.url = "/tablet" req.url;
 }
-{{</highlight>}}
+```
 
 ## With Workers:
-{{<highlight javascript>}}
+```js
 async function fetchAndApply(request) {
   let uaSuffix = ''
 
@@ -27,4 +27,4 @@ async function fetchAndApply(request) {
 
   return fetch(request.url + uaSuffix, request)
 }
-{{</highlight>}}
+```

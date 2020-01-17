@@ -5,7 +5,7 @@ title: "Authenticating Before Returning a Request"
 Just like VCL, Workers allows for authenticating before returning a request for header-based authentication.
 
 ## With VCL:
-{{<highlight vcl>}}
+```vcl
 sub vcl_recv {
 
   /* unset state tracking header to avoid client sending it */
@@ -70,10 +70,10 @@ sub vcl_deliver {
 
   ...etc...
 }
-{{</highlight>}}
+```
 
 ## With Workers:
-{{<highlight javascript>}}
+```js
 addEventListener('fetch', event => {
   event.respondWith(handle(event.request))
 })
@@ -103,4 +103,4 @@ async function handle(request) {
     })
   }
 }
-{{</highlight>}}
+```

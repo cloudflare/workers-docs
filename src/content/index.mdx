@@ -1,7 +1,12 @@
 ---
 title: Cloudflare Workers Documentation
+alwaysopen: true
+hidden: true
+showNew: true
+weight: 10
 ---
-
+import { Snippet } from "../components/Snippet"
+import { Boilerplate } from "../components/Boilerplate"
 <p>
   Cloudflare Workers provides a serverless execution environment that allows you to create entirely
   new applications or augment existing ones without configuring or maintaining infrastructure.
@@ -42,12 +47,12 @@ title: Cloudflare Workers Documentation
 <h2>Templates</h2>
 <p>Ready-to-use code to get you started.</p>
 <section class="template-wrapper">
-  {{< boilerplate "hello_world" >}}
-  {{< boilerplate "hello_world_rust" >}}
+<Boilerplate endpointId="hello_world"/>
+<Boilerplate endpointId="hello_world_rust"/>
 </section>
 <section class="snippet template-wrapper">
-  {{< snippet "bulk_redirects" >}}
-  {{< snippet "send_raw_html" >}}
+    <Snippet endpointId="bulk_redirects"/>
+    <Snippet endpointId="send_raw_html"/>
 </section>
 <a href="/templates">View all templates</a>
 

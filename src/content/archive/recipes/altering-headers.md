@@ -6,7 +6,7 @@ To modify  request or response headers, you'll first need to make a copy of the 
 ## Response headers
 Set a new header on your response before returning it the end user.
 
-{{<highlight javascript>}}
+```js
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
@@ -20,13 +20,13 @@ async function handleRequest(request) {
 
   return response
 }
-{{</highlight>}}
+```
 
 
 ## Request headers
 Set a new header on the request before fetching a response from the origin.
 
-{{<highlight javascript>}}
+```js
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event.request))
 })
@@ -38,4 +38,4 @@ async function handleRequest(request) {
 
   return await fetch(request)
 }
-{{</highlight>}}
+```

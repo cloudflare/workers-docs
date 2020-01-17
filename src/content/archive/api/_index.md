@@ -27,30 +27,30 @@ You can find your Zone ID by visiting `https://www.cloudflare.com/a/overview/YOU
 
 Upload a Worker (or new version of a Worker).
 
-{{<highlight bash>}}
+```bash
 curl -X PUT "https://api.cloudflare.com/client/v4/zones/:zone_id/workers/script" -H
 "X-Auth-Email:YOUR_CLOUDFLARE_EMAIL" -H "X-Auth-Key:ACCOUNT_AUTH_KEY" -H
 "Content-Type:application/javascript" --data-binary "@PATH_TO_YOUR_WORKER_SCRIPT"
-{{</highlight>}}
+```
 
 ### Download a Worker
 `GET /zones/:zone_id/workers/script`
 
 Download the latest version of the Worker. The response body is raw JavaScript (not JSON).
-{{<highlight bash>}}
+```bash
 curl -X GET "https://api.cloudflare.com/client/v4/zones/:zone_id/workers/script" -H
 "X-Auth-Email:YOUR_CLOUDFLARE_EMAIL" -H "X-Auth-Key:ACCOUNT_AUTH_KEY"
-{{</highlight>}}
+```
 
 ### Delete a Worker
 `DELETE /zones/:zone_id/workers/script`
 
 Delete a Worker.
 
-{{<highlight bash>}}
+```bash
 curl -X DELETE "https://api.cloudflare.com/client/v4/zones/:zone_id/workers/script" -H
 "X-Auth-Email:YOUR_CLOUDFLARE_EMAIL" -H "X-Auth-Key:ACCOUNT_AUTH_KEY"
-{{</highlight>}}
+```
 
 ### Create a Route
 `POST /zones/:zone_id/workers/filters`
@@ -59,20 +59,20 @@ Create a route for your Worker. Note that by setting `enabled` to `true`,
 your Worker will run on the provided `pattern`. If you want to create a route
 where the Worker will *not* run, set `enabled` to `false`.
 
-{{<highlight bash>}}
+```bash
 curl -X POST "https://api.cloudflare.com/client/v4/zones/:zone_id/workers/filters" -H
 "X-Auth-Email:YOUR_CLOUDFLARE_EMAIL" -H "X-Auth-Key:ACCOUNT_AUTH_KEY" -H "Content-type: application/json" -d '{"pattern": "example.com/*", "enabled": true}'
-{{</highlight>}}
+```
 
 The response body will be JSON encoded and look similar to:
 
-{{<highlight json>}}
+```json
 {
     "result": {
         "id": "000000000000000000000"
     }
 }
-{{</highlight>}}
+```
 
 You can use the returned filter ID to enable, disable, update the pattern, or
 delete a route.
@@ -85,27 +85,27 @@ state of an existing route. Note that patterns *must* be unique, and attempting
 to change (or create) a route with a pattern that already exists will return
 a `409 Conflict`.
 
-{{<highlight bash>}}
+```bash
 curl -X PUT "https://api.cloudflare.com/client/v4/zones/:zone_id/workers/filters/:filter_id" -H
 "X-Auth-Email:YOUR_CLOUDFLARE_EMAIL" -H "X-Auth-Key:ACCOUNT_AUTH_KEY" -H "Content-type: application/json" -d '{"pattern": "example.com/*", "enabled": false}'
-{{</highlight>}}
+```
 
 ### Get Assigned Routes
 `GET /zones/:zone_id/workers/filters`
 
 Get the list of routes. This is an enveloped JSON list of objects.
 
-{{<highlight bash>}}
+```bash
 curl -X GET "https://api.cloudflare.com/client/v4/zones/:zone_id/workers/filters" -H
 "X-Auth-Email:YOUR_CLOUDFLARE_EMAIL" -H "X-Auth-Key:ACCOUNT_AUTH_KEY"
-{{</highlight>}}
+```
 
 ### Delete a Route
 `DELETE /zones/:zone_id/workers/filters/:filter_id`
 
 Delete a route. You can retrieve the `filter_id` from getting the assigned routes.
 
-{{<highlight bash>}}
+```bash
 curl -X DELETE "https://api.cloudflare.com/client/v4/zones/:zone_id/workers/filters/:filter_id" -H
 "X-Auth-Email:YOUR_CLOUDFLARE_EMAIL" -H "X-Auth-Key:ACCOUNT_AUTH_KEY"
-{{</highlight>}}
+```

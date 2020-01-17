@@ -6,7 +6,7 @@ You can use Cloudflare Workers to determine an end user's country and block them
 
 A full list of country codes can be found [here](https://support.cloudflare.com/hc/en-us/articles/205072537).
 
-{{< highlight javascript >}}
+```js
 addEventListener('fetch', event => {
   event.respondWith(blockCountries(event.request))
 })
@@ -34,4 +34,4 @@ async function blockCountries(request) {
   // Catch-all return of the original response
   return await fetch(request)
 }
-{{< / highlight >}}
+```

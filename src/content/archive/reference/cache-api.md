@@ -12,7 +12,7 @@ This API is strongly influenced by the web browsers’ Cache API, but there are 
 
 ## Quick start: What does it look like to use the Cache API?
 
-{{< highlight javascript >}}
+```js
 self.addEventListener('fetch', event => event.respondWith(handle(event)))
 
 async function handle(event) {
@@ -26,7 +26,7 @@ async function handle(event) {
 
   return response
 };
-{{< / highlight >}}
+```
 
 # Detailed documentation
 
@@ -151,7 +151,7 @@ Setting the Cache-Control header on the response you put into the cache will mod
 This script will add [cache tags](https://support.cloudflare.com/hc/en-us/articles/206596608-How-to-Purge-Cache-Using-Cache-Tags-Enterprise-only-) to the response corresponding to directories in the request. For example, the url `https://www.example.com/foo/bar/baz.jpg` will get the header:
 `Cache-Tag: www.example.com/foo/*,www.example.com/foo/bar/*`
 
-{{< highlight javascript >}}
+```js
 
 addEventListener('fetch', event => {
   event.respondWith(handleRequest(event))
@@ -191,10 +191,10 @@ async function handleRequest(event) {
   return response
 }
 
-{{< / highlight >}}
+```
 
 ## Caching POST requests
-{{< highlight javascript >}}
+```js
 async function handleRequest(event) {
   let request = event.request
   let response
@@ -240,4 +240,4 @@ async function sha256(message) {
   return hashHex
 }
 
-{{< / highlight >}}
+```

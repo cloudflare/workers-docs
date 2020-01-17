@@ -5,7 +5,7 @@ title: "Working with Querystrings"
 Just like Lambda@Edge, Workers allows for working with querystrings. Here's an example that redirects an unauthenticated user and adds the original url to the url as a querystring.
 
 ## With Lambda@Edge:
-{{<highlight javascript>}}
+```js
 'use strict';
 
 function parseCookies(headers) {
@@ -50,10 +50,10 @@ exports.handler = (event, context, callback) => {
   };
   callback(null, response);
 };
-{{</highlight>}}
+```
 
 ## With Workers:
-{{<highlight javascript>}}
+```js
 addEventListener('fetch', event => {
   event.respondWith(handle(event.request))
 })
@@ -87,4 +87,4 @@ async function handle(request) {
 
   return Response.redirect(`https://www.example.com/signin?redirect_url=${encodedRedirectUrl}`, 302)
 }
-{{</highlight>}}
+```

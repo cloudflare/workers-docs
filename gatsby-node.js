@@ -7,15 +7,20 @@
 // You can delete this file if you're not using it
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
-
 exports.createPages = async ({ actions, graphql, reporter }) => {
   const { createPage } = actions
 
+  const galleryTemplate = path.resolve(`src/templates/gallery.tsx`)
   const markdownTemplate = path.resolve(`src/templates/markdownTemplate.tsx`)
+  // Create a custom page for the Template Gallery that's NOT based on markdown, just TSX
+  createPage({
+    path: `/workers/templates/`,
+    component: galleryTemplate,
+  })
 
   result = await graphql(`
     {
-      allMarkdownRemark(limit: 1000) {
+      allMdx(limit: 1000) {
         edges {
           node {
             fields {
@@ -37,7 +42,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     reporter.panicOnBuild(`Error while running GraphQL query.`)
     return
   }
-  result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+  result.data.allMdx.edges.forEach(({ node }) => {
     return createPage({
       path: node.fields.pathToServe,
       component: markdownTemplate,
@@ -59,7 +64,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   `)
   templates.data.allRestApiTemplates.nodes.forEach(({ endpointId }) => {
     createPage({
-      path: `/workers/templates/pages/${endpointId}`,
+      path: `/workers/templates/pages/${endpointId}/`,
       component: templatePage,
       context: {
         id: endpointId,
@@ -70,7 +75,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
   // Ensures we are processing only markdown files
-  if (node.internal.type === 'MarkdownRemark') {
+  if (node.internal.type === 'Mdx') {
     // Use `createFilePath` to turn markdown files in our `content` directory into `/workers/`pathToServe
     const originalPath = node.fileAbsolutePath.replace(
       node.fileAbsolutePath.match(/.*content/)[0],
@@ -86,8 +91,9 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       pathToServe = parentDir
       parentDir = path.dirname(parentDir) // "/" dirname will = "/"
     }
+    pathToServe = pathToServe.replace(/\/+$/, '/') // always end the path with a slash
     // Creates new query'able field with name of 'pathToServe', 'parent'..
-    // for allMarkdownRemark edge nodes
+    // for allMdx edge nodes
     createNodeField({
       node,
       name: 'pathToServe',

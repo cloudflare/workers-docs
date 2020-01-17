@@ -40,7 +40,7 @@ You will see a default Worker script. This script, when deployed does a simple p
 
 Replace the pre-filled script with the following snippet of code and save it:
 
-{{< highlight javascript >}}
+```js
 addEventListener('fetch', event => {
   event.respondWith(fetchAndApply(event.request))
 })
@@ -48,7 +48,7 @@ addEventListener('fetch', event => {
 async function fetchAndApply(request) {
   return new Response('hello world')
 }
-{{< / highlight >}}
+```
 
 This script, instead of loading from your origin, returns a response directly from our edge.
 
@@ -69,4 +69,4 @@ Visit your-site.com/helloWorld on your browser. You will see your Worker returni
 
 ---
 
-Check out our [recipes]({{< relref "archive/recipes" >}}) to see what other cool things you can do with Workers.
+Check out our [recipes](/archive/recipes) to see what other cool things you can do with Workers.
