@@ -3,7 +3,10 @@ title: Pricing
 weight: 4
 ---
 
-Workers is now free to enable for all and are subject to some limits. To avoid the limits and enable KV, you can subscribe to the Workers Unlimited Plan for $5 USD per month for a account. Workers Unlimited plan is separate from any Cloudflare plan (Free, Professional, Business) you may have.
+Workers is now free to enable for all and are subject to some limits. 
+
+## Unlimited 
+To avoid the limits and enable KV, you can subscribe to the Workers Unlimited Plan for **$5 USD per month for a account**. Workers Unlimited plan is separate from any Cloudflare plan (Free, Professional, Business) you may have.
 
 If you are an Enterprise customer, reach out to your account team to confirm pricing details.
 
