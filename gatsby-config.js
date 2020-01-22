@@ -3,8 +3,8 @@ const path = require('path')
 module.exports = {
   siteMetadata: {
     title: `Cloudflare Workers`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    description: `Use Cloudflare’s APIs and edge network to build secure, ultra-fast applications.`,
+    author: `@cloudflaredev`,
   },
   // pathPrefix: `/workers`, //  this breaks MDX links like (/reference..) but not the sidebar for some reason if it's inside MDX Render it breaks only
   plugins: [
