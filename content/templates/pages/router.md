@@ -25,7 +25,7 @@ const jsonHandler = request => {
 async function handleRequest(request) {
   const r = new Router()
   r.get('/', () => new Response('Hello worker!'))
-  r.post('/', req => new Response(`Your body is ${await req.text()}`))
+  r.post('/', async req => new Response(`Your body is ${await req.text()}`))
   r.get('/json', jsonHandler)
   return r.route(request)
 }
