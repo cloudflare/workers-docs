@@ -7,13 +7,16 @@ To create a new key-value pair, or to update the value for a particular key,
 you can call the `put` method on any namespace you've bound to your script.
 The basic form of this method looks like this:
 
-`NAMESPACE.put(key, value)`
+`await NAMESPACE.put(key, value)`
 
 The type is automatically inferred from value, and can be any of:
 
 - `string`
 - `ReadableStream`
 - `ArrayBuffer`
+
+This method returns a promise that you should `await` on in order to verify
+a successful update.
 
 You can also [write key-value pairs from the command line with
 Wrangler](/tooling/wrangler/kv_commands/#kv-key).
