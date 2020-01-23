@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'gatsby'
+import { Link } from './Link'
 import { Helmet } from "react-helmet";
 
 import { restApiTemplate } from "../types/restApiTemplates"
@@ -23,13 +23,20 @@ const TemplatePage: React.FC<templateProps> = ({
   let [githubData, setState] = useState(null as any | null)
 
   useEffect(() => {
-    if (repository_url) {
+    if (repository_url) { // NOTE: (disclaimer not the best logic) 
+      // repository_url being passed in means there was a specific repo for
+      // this template (i.e. a boilerplate)
       let github_api_repo_url = repository_url.replace("https://github.com/", "https://api.github.com/repos/")
       grabGithubData(github_api_repo_url).then(data => {
         setState({
           repo_name: data.full_name,
           repo_date: data.updated_at,
           github_api_repo_url: github_api_repo_url
+        })
+      }).catch(e => {
+        console.log('error from grabbing github', e)
+        setState({
+          github_api_repo_url: "" // set this to empty string so doesn't render github block
         })
       })
     } else {
@@ -76,9 +83,9 @@ const TemplatePage: React.FC<templateProps> = ({
         </script>
       </Helmet>
       <figure className="template-page" id={id}>
-        <Link to={PREFIX + "/templates"} className="back">
+        <Link to={"/templates"} {...{ className: "back" }}>
           <img src={PREFIX + "/templates/media/left-arrow.svg"} />Template Gallery
-          </Link>
+        </Link>
         <div className="grid-3-noBottom_xs-5">
           <div className="col-8">
             <h2>
@@ -135,7 +142,7 @@ const TemplatePage: React.FC<templateProps> = ({
                 </span>
               </div>
               : null}
-            <div className="github">
+            {!!github_api_repo_url ? (<div className="github">
               {repository_url ? (<>
                 <Link to={repository_url}>
                   <img src={PREFIX + "/svg/github.svg"} />
@@ -146,7 +153,7 @@ const TemplatePage: React.FC<templateProps> = ({
                 <img src={PREFIX + "/svg/github.svg"} />
                 <div>template-registry/{id}.js</div>
               </a>)}
-            </div>
+            </div>) : ''}
           </div>
         </div>
       </figure >

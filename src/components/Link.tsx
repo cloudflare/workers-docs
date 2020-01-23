@@ -1,17 +1,16 @@
-import { Link as GatsbyLink } from "gatsby"
+import { Link as GatsbyLink, GatsbyLinkProps } from "gatsby"
 import React from 'react'
 import { PREFIX } from "./utils"
 // Since DOM elements <a> cannot receive activeClassName
 // and partiallyActive, destructure the prop here and
 // pass it only to GatsbyLink
 type LinkProps = {
-  children: React.ElementType
+  children?: React.ReactNode | React.ElementType[]
   to: string
-  activeClassName: any
-  partiallyActive: any
-
+  [x: string]: any // To improve types, might want to inherit from  GatsbyLinkProps<TState> instead
 }
-export const Link: React.FC<LinkProps> = ({ children, to, activeClassName, partiallyActive, ...other }) => {
+
+export const Link: React.FC<LinkProps> = ({ children, to, ...other }) => {
   // Tailor the following test to your environment.
   // This example assumes that any internal link (intended for Gatsby)
   // will start with exactly one slash, and that anything else is external.
@@ -22,8 +21,6 @@ export const Link: React.FC<LinkProps> = ({ children, to, activeClassName, parti
     return (
       <GatsbyLink
         to={PREFIX + to}
-        activeClassName={activeClassName}
-        partiallyActive={partiallyActive}
         {...other}
       >
         {children}
