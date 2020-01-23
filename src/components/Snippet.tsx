@@ -18,7 +18,7 @@ export const Snippet: React.FC<snippetProps> = (props) => {
 
   let { endpointId, code, description, title, share_url, tags } = props.description ? props : getSnippet(props.endpointId || "")
   let { page_url } = props
-  const template_page = "/templates/pages/" + endpointId
+  const template_page = PREFIX + "/templates/pages/" + endpointId
   page_url = share_url ? ("/" + share_url) : template_page // TODO may need to consider tutorial? 
   page_url = PREFIX + page_url
   return (<figure className="template-card snippet" id={endpointId}>
@@ -35,13 +35,13 @@ export const Snippet: React.FC<snippetProps> = (props) => {
       <h2>
         {title}
       </h2>
-      <img src="/templates/media/right-arrow.svg" />
+      <img src={PREFIX + "/templates/media/right-arrow.svg"} />
     </a>
     {/* might neded to markdownify */}
     <p>{description}</p>
     <div className="copy-group">
       <div className="copy-step">
-        <img src="/templates/media/file.svg" />
+        <img src={PREFIX + "/templates/media/file.svg"} />
         {/* //  type="image/svg+xml" */}
         <span>Copy into a Worker script:</span>
       </div>

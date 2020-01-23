@@ -2157,7 +2157,8 @@ tbody td {
   }
 }
 .copy-to-clipboard {
-  background-image: url('../../../images/clippy.svg');
+  background-image: url('../svg/clippy.svg');
+  /* Todo just use static/workers/svg file */
   background-position: 50% 50%;
   background-size: 16px 16px;
   background-repeat: no-repeat;
