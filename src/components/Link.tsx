@@ -36,3 +36,24 @@ export const Link: React.FC<LinkProps> = ({ children, to, activeClassName, parti
     </a>
   )
 }
+type ImageProps = {
+  children: React.ElementType
+  src: string
+
+}
+export const Image: React.FC<ImageProps> = ({ children, src, ...props }) => {
+  const internal = /^\/(?!\/)/.test(src)
+
+  if (internal) {
+    return (
+      <img src={PREFIX + src} {...props}>
+        {children}
+      </img>
+    )
+  }
+  return (
+    <img src={src} {...props}>
+      {children}
+    </img>
+  )
+}

@@ -77,7 +77,7 @@ const TemplatePage: React.FC<templateProps> = ({
       </Helmet>
       <figure className="template-page" id={id}>
         <Link to={PREFIX + "/templates"} className="back">
-          <img src="/templates/media/left-arrow.svg" />Template Gallery
+          <img src={PREFIX + "/templates/media/left-arrow.svg"} />Template Gallery
           </Link>
         <div className="grid-3-noBottom_xs-5">
           <div className="col-8">
@@ -90,7 +90,7 @@ const TemplatePage: React.FC<templateProps> = ({
               const demo = demos[key]
               return demo ? (
                 <Link to={demo.url}>
-                  <img src="/templates/media/external-link.svg" />
+                  <img src={PREFIX + "/templates/media/external-link.svg"} />
                   <span>{demo.text}</span>
                 </Link>
               ) : null
@@ -115,7 +115,7 @@ const TemplatePage: React.FC<templateProps> = ({
             </div>
             {code ?
               <div className="grey copy-group">
-                <img className="copy-trigger" src={PREFIX + "/workers/svg/copy-box.svg"} />
+                <img className="copy-trigger" src={PREFIX + "/svg/copy-box.svg"} />
                 <code className="copy">{code}</code>
               </div>
               : null}

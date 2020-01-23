@@ -34,13 +34,13 @@ export const Boilerplate: React.FC<boilerplateProps> = (props) => {
       <h2>
         {title}
       </h2>
-      <img src="/templates/media/right-arrow.svg" />
+      <img src={PREFIX + "/templates/media/right-arrow.svg"} />
     </Link>
     {/* Todo may need mardownify */}
     <p>{description}</p>
     <div className="copy-group">
       <div className="copy-step">
-        <img src="/templates/media/terminal.svg" />
+        <img src={PREFIX + "/templates/media/terminal.svg"} />
         <span>Paste this into your terminal:</span>
       </div>
 
@@ -48,11 +48,11 @@ export const Boilerplate: React.FC<boilerplateProps> = (props) => {
         <code>
           wrangler generate my-app
           {repository_url ? (
-            <a href={repository_url}>{repository_url}</a>
+            <a href={repository_url}>{' '}{repository_url}</a>
           ) : null
           }
         </code>
       </div>
     </div>
-  </figure>)
+  </figure >)
 }

@@ -6,7 +6,7 @@ import Layout from '../components/Layout'
 import { markdownRemarkResult, markdownPageContext } from '../types/mdx'
 import Body from '../components/Body'
 import { Gallery } from '../components/Gallery'
-import { Link } from '../components/Link'
+import { Link, Image } from '../components/Link'
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import { MDXProvider } from "@mdx-js/react"
 
@@ -18,6 +18,9 @@ const components = {
   Gallery,
   a: (props: any) => {
     return <Link to={props.href} {...props} />
+  },
+  img: (props: any) => {
+    return <Image src={props.src} {...props} />
   }
 }
 const MarkdownTemplate: React.FC<markdownBaseProps> = ({

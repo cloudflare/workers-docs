@@ -10,13 +10,6 @@ module.exports = {
   plugins: [
     `gatsby-plugin-typescript`,
     `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -26,20 +19,19 @@ module.exports = {
         ignore: [`**/CONTRIBUTING*`, '/styles/**'],
       },
     },
-    `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.mdx`, `.md`],
-        gatsbyRemarkPlugins: [
-          {
-            resolve: 'gatsby-plugin-copy-files',
-            options: {
-              source: `${__dirname}/src/images`,
-              destination: '/images',
-            },
-          },
-        ],
+        // gatsbyRemarkPlugins: [
+        //   {
+        //     resolve: 'gatsby-plugin-copy-files',
+        //     options: {
+        //       source: `${__dirname}/src/images`,
+        //       destination: '/images',
+        //     },
+        //   },
+        // ],
       },
     }, // Simple config, passing URL
     // In your gatsby-config.js
