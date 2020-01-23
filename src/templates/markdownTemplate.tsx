@@ -28,13 +28,10 @@ const MarkdownTemplate: React.FC<markdownBaseProps> = ({
   pageContext
 }) => {
   if (data && !data.mdx) {
-
-
-    console.log('pageContext', pageContext)
+    // console.log('pageContext', pageContext)
   }
   if (!data) {
-    console.log('pageContext', pageContext)
-
+    // console.log('pageContext', pageContext)
   }
   const { mdx } = data // data.mdx holds our post data
   const { frontmatter, body, fields } = mdx
