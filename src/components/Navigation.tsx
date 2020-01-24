@@ -151,25 +151,25 @@ export const Navigation = () => {
             </svg>
           </div>
         </a>
-        <Link to={PREFIX} className="active navigation-link">
+        <Link to={"/"} className="active navigation-link">
           <strong>Docs</strong>
         </Link>
-        <Link to="/workers/quickstart/" className="navigation-link">
+        <Link to="/quickstart/" className="navigation-link">
           <span>Quick&nbsp;Start</span>
         </Link>
-        <Link to="/workers/templates/" className="navigation-link">
+        <Link to="/templates/" className="navigation-link">
           <span>Templates</span>
         </Link>
-        <Link to="/workers/tutorials/" className="navigation-link">
+        <Link to="/tutorials/" className="navigation-link">
           <span>Tutorials</span>
         </Link>
-        <Link to="/workers/reference/" className="navigation-link">
+        <Link to="/reference/" className="navigation-link">
           <span>Reference</span>
         </Link>
-        <Link to="/workers/tooling/" className="navigation-link">
+        <Link to="/tooling/" className="navigation-link">
           <span>Tooling</span>
         </Link>
-        <Link to="/workers/about/" className="navigation-link">
+        <Link to="/about/" className="navigation-link">
           <span>About</span>
         </Link>
       </div>

@@ -21,4 +21,4 @@ export const sortByWeight = (a: mdx, b: mdx): number => {
 //   { frontmatter: { weight: 2 } },
 //   { frontmatter: { weight: 0 } },
 // ]
-export const PREFIX = '/workers'
+export const PREFIX = ""

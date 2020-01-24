@@ -6,7 +6,7 @@ module.exports = {
     description: `Use Cloudflare’s APIs and edge network to build secure, ultra-fast applications.`,
     author: `@cloudflaredev`,
   },
-  // pathPrefix: `/workers`, //  this breaks MDX links like (/reference..) but not the sidebar for some reason if it's inside MDX Render it breaks only
+  pathPrefix: `/workers`, //  this breaks MDX links like (/reference..) but not the sidebar for some reason if it's inside MDX Render it breaks only
   plugins: [
     `gatsby-plugin-typescript`,
     `gatsby-plugin-react-helmet`,

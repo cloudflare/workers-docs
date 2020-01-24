@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "build": "gatsby build --prefix-paths",
-    "develop": "gatsby develop --prefix-paths",
+    "develop": "gatsby develop",
     "start": "npm run develop",
     "worker-build": "npm run build && wrangler build",
     "worker-start": "npm run build && wrangler preview --watch -e staging",

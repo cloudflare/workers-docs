@@ -14,7 +14,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   const markdownTemplate = path.resolve(`src/templates/markdownTemplate.tsx`)
   // Create a custom page for the Template Gallery that's NOT based on markdown, just TSX
   createPage({
-    path: `/workers/templates/`,
+    path: `/templates/`,
     component: galleryTemplate,
   })
 
@@ -64,7 +64,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   `)
   templates.data.allRestApiTemplates.nodes.forEach(({ endpointId }) => {
     createPage({
-      path: `/workers/templates/pages/${endpointId}/`,
+      path: `/templates/pages/${endpointId}/`,
       component: templatePage,
       context: {
         id: endpointId,
@@ -75,29 +75,29 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
   // Ensures we are processing only markdown files
-  if (node.internal.type === 'Mdx') {
+  if (node.internal.type === "Mdx") {
     // Use `createFilePath` to turn markdown files in our `content` directory into `/workers/`pathToServe
     const originalPath = node.fileAbsolutePath.replace(
       node.fileAbsolutePath.match(/.*content/)[0],
-      '',
+      ""
     )
     let pathToServe = createFilePath({
       node,
       getNode,
-      basePath: 'content/',
+      basePath: "content/",
     })
     let parentDir = path.dirname(pathToServe)
-    if (pathToServe.includes('index')) {
+    if (pathToServe.includes("index")) {
       pathToServe = parentDir
       parentDir = path.dirname(parentDir) // "/" dirname will = "/"
     }
-    pathToServe = pathToServe.replace(/\/+$/, '/') // always end the path with a slash
+    pathToServe = pathToServe.replace(/\/+$/, "/") // always end the path with a slash
     // Creates new query'able field with name of 'pathToServe', 'parent'..
     // for allMdx edge nodes
     createNodeField({
       node,
-      name: 'pathToServe',
-      value: `/workers${pathToServe}`,
+      name: "pathToServe",
+      value: `${pathToServe}`,
     })
     createNodeField({
       node,
