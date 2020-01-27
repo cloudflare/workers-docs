@@ -59,7 +59,7 @@ entry-point = "workers-site"
 
 [env.production]
 name = "docs-site"
-route = "https://ex.com/docs*"
+route = "https://example.com/docs*"
 zone_id = "351c.."
 account_id = "b54f07a.."
 
@@ -67,7 +67,7 @@ account_id = "b54f07a.."
 zone_id = "ef47a..."
 account_id = "95e5d..."
 name = "docs-site-staging"
-route = "https://staging.ex.com/docs*"
+route = "https://staging.example.com/docs*"
 ```
 
 ### Storage Limits
