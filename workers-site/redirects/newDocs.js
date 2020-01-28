@@ -68,15 +68,15 @@ export const newDocsMap = new Map([
 
   [
     '/reference/storage/reading-key-value-pairs',
-    '/reference/apis/config_vars/kv#reading-key-value-pairs',
+    '/reference/apis/configuration_variables/kv#reading-key-value-pairs',
   ],
-  ['/reference/storage/listing-keys', '/reference/apis/config_vars/kv#listing-keys'],
+  ['/reference/storage/listing-keys', '/reference/apis/configuration_variables/kv#listing-keys'],
   [
     '/reference/storage/writing-key-value-pairs',
-    '/reference/apis/config_vars/kv#writing-key-value-pairs',
+    '/reference/apis/configuration_variables/kv#writing-key-value-pairs',
   ],
   [
     '/reference/storage/deleting-key-value-pairs',
-    '/reference/apis/config_vars/kv##deleting-key-value-pairs',
+    '/reference/apis/configuration_variables/kv##deleting-key-value-pairs',
   ],
 ])
