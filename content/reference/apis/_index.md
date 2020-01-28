@@ -4,6 +4,7 @@ alwaysopen: false
 weight: 1
 ---
 
+- [Configuration Variables](/reference/apis/config_vars)
 - [Web Standards](/reference/apis/standard)
 - [Fetch](/reference/apis/fetch)
 - [FetchEvent](/reference/apis/fetch-event)
