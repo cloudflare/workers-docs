@@ -65,4 +65,18 @@ export const newDocsMap = new Map([
   // This is a remnant of some buggy workers.cloudflare.com code,
   // we should explicitly handle this and send them to the right place
   ['/workers/docs', '/workers'],
+
+  [
+    '/reference/storage/reading-key-value-pairs',
+    '/reference/apis/configuration_variables/kv#reading-key-value-pairs',
+  ],
+  ['/reference/storage/listing-keys', '/reference/apis/configuration_variables/kv#listing-keys'],
+  [
+    '/reference/storage/writing-key-value-pairs',
+    '/reference/apis/configuration_variables/kv#writing-key-value-pairs',
+  ],
+  [
+    '/reference/storage/deleting-key-value-pairs',
+    '/reference/apis/configuration_variables/kv##deleting-key-value-pairs',
+  ],
 ])
