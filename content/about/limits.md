@@ -98,7 +98,7 @@ If the system detects that a Worker is deadlocked on open connections - for inst
 
 # KV 
 
-After subscriptiont to a Workers Unlimited plan, KV is enabled. Workers KV supports:
+After subscription to a Workers Unlimited plan, KV is enabled. Workers KV supports:
 
 - Up to 100 Namespaces per account
 - Unlimited keys per Namespace
