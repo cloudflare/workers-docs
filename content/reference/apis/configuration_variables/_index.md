@@ -7,4 +7,4 @@ weight: 4
   - [Writing key-value pairs](/reference/apis/configuration_variables/kv#reading-key-value-pairs)
   - [Reading key-value pairs](/reference/apis/configuration_variables/kv#listing-keys)
   - [Deleting key-value pairs](/reference/apis/configuration_variables/kv#writing-key-value-pairs)
-  - [Listing keys](/reference/apis/configuration_variables/kv##deleting-key-value-pairs)
+  - [Listing keys](/reference/apis/configuration_variables/kv#deleting-key-value-pairs)
