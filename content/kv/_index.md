@@ -1,6 +1,6 @@
 ---
 title: 'Workers KV'
-weight: 50
+weight: 5
 alwaysopen: false
 ---
 

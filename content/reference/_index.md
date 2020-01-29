@@ -14,16 +14,14 @@ weight: 7
 - [Encoding](/reference/apis/encoding)
 - [Web Crypto](/reference/apis/web-crypto)
 
-### [Limits](/about/limits)
+### Wrangler CLI
+- [Install](/reference/tooling/wrangler/install)
+- [Commands](/reference/tooling/wrangler/commands)
+- [Webpack](/reference/tooling/wrangler/webpack)
+- [Configure](/reference/tooling/wrangler/configuration)
+- [Workers Sites](/reference/tooling/wrangler/sites)
 
-### Workers KV
-
-- [Overview](/reference/storage)
-- [Use cases](/reference/storage/use-cases)
-- [Limits](/about/limits#kv)
-- [Pricing](/about/pricing#kv)
-- [Namespaces](/reference/storage/namespaces)
-- [Reading key-value pairs](/reference/storage/reading-key-value-pairs)
-- [Writing key-value pairs](/reference/storage/writing-key-value-pairs)
-- [Deleting key-value pairs](/reference/storage/deleting-key-value-pairs)
-- [Listing keys](/reference/storage/listing-keys)
+### Tooling
+- [Playground](/reference/tooling/playground)
+- [Serverless Framework](/reference/tooling/serverless)
+- [REST API](/reference/tooling/api)
