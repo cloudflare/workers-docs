@@ -77,6 +77,6 @@ export const newDocsMap = new Map([
   ],
   [
     '/reference/storage/deleting-key-value-pairs',
-    '/reference/apis/configuration_variables/kv##deleting-key-value-pairs',
+    '/reference/apis/configuration_variables/kv#deleting-key-value-pairs',
   ],
 ])
