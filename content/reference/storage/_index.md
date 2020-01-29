@@ -29,8 +29,8 @@ Workers KV is an account-level feature, and comes with your Workers Unlimited
 subscription.
 
 - [Use cases](/reference/storage/use-cases)
-- [Limits](/reference/storage/limits)
-- [Pricing](/reference/storage/pricing)
+- [Limits](/about/limits#kv)
+- [Pricing](/about/pricing#kv)
 - [Namespaces](/reference/storage/namespaces)
 - [Reading key-value pairs](/reference/storage/reading-key-value-pairs)
 - [Writing key-value pairs](/reference/storage/writing-key-value-pairs)
