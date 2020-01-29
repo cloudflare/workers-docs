@@ -30,8 +30,7 @@ weight: 2
   - `name`: defaults to `worker`
   - `template`: defaults to the [`https://github.com/cloudflare/worker-template`](https://github.com/cloudflare/worker-template)
   - `type`: defaults to ["webpack"](/tooling/wrangler/webpack)
-
-  - `--site`: generates a [Workers Site](/sites) from an exisiting static site
+  - `--site`: generates a [Workers Site](/sites) from an existing static site
 
 ### 📥 `init`
 
@@ -45,8 +44,7 @@ weight: 2
 
   - `name`: defaults to the name of your working directory
   - `type`: defaults to ["webpack"](/tooling/wrangler/webpack).
-  
-  - `--site`: generates a [Workers Site](/sites) from an exisiting static site
+  - `--site`: generates a [Workers Site](/sites) from an existing static site
 
 ### 🦀⚙️ `build`
 
