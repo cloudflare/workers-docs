@@ -14,14 +14,14 @@ There are two types of configuration that `wrangler` uses: global user and per p
 
   In Cloudflare's system, you have a User that can have multiple Accounts and Zones. As a result, your User is configured globally on your machine. Your Account(s) and Zone(s) will be configured per project, but will use your User credentials to authenticate all API calls. This config file is created in a `.wrangler`
   directory in your computer's home directory.
-  
+
   To set up `wrangler` to work with your Cloudflare user, use the following commands:
 
   - 🔧 `config`: a command that prompts you to enter your `email` and `api` key.
 - 🕵️‍♀️ `whoami`: run this command to confirm that your configuration is appropriately set up.
     When successful, this command will print out your user information, including the type of plan you
     are currently on.
-  
+
 #### Using environment variables
 
   You can also configure your global user with environment variables. This is the preferred method for using Wrangler in CI.
@@ -53,6 +53,7 @@ There are two types of configuration that `wrangler` uses: global user and per p
   Your project will need to have several things configured before you can publish your worker. These values are stored in a `wrangler.toml` file that `wrangler generate` will make for you. You will need to manually edit this file to add these values before you can publish.
 
   - `name`: This is the name of your project. It will be the name of your script.
+
   - `type`: This key tells `wrangler build` how to build your project. There are currently three options (`webpack`, `javascript`, and `rust`), but we expect there to be more as the community grows.
       - `javascript`\*: This project contains a single JavaScript file, defined in `package.json`'s `main` key.
       - `rust`: This project contains a Rust crate that uses `wasm-bindgen`. It will be built with `wasm-pack`.
@@ -60,8 +61,11 @@ There are two types of configuration that `wrangler` uses: global user and per p
           WebAssembly. Rust files will be built with `wasm-pack`.
           This project type uses webpack and webpack plugins in the background to build your worker. You can read more about this type [here](/tooling/wrangler/webpack).
     _\* Note: All Javscript and webpack projects must include a package.json_
+    
   - `zone_id`: This is the ID of the "zone" or domain you want to run your script on. This is optional if you are using a [workers.dev](https://workers.dev) subdomain and is only required when `workers_dev` is false, or excluded from an [environment](/tooling/wrangler/configuration/environments) configuration.
+
   - `account_id`: This is the ID of the account associated with your zone. You might have more than one account, so make sure to use the ID of the account associated with the `zone_id` you provide, if you provide one.
+
   - `route`: This is the route you'd like to use your worker on. You need to include the hostname. Examples:
 
       - `*example.com/*`
@@ -70,7 +74,20 @@ There are two types of configuration that `wrangler` uses: global user and per p
       This key is optional if you are using a [workers.dev](https://workers.dev) subdomain and is only required when `workers_dev` is false, or excluded from an [environment](/tooling/wrangler/configuration/environments). 
 
   - `webpack_config`: This is the path to a custom webpack configuration file for your worker. You must specify this field to use a custom webpack configuration, otherwise Wrangler will use a default configuration for you. You can read more [here](/tooling/wrangler/webpack).
+
   - `workers_dev`: This is a boolean flag that specifies if your worker will be deployed to your [workers.dev](https://workers.dev) subdomain. For more information, please read the [environments documentation](/tooling/wrangler/configuration/environments).
+
+  - `config_vars`: An object of the text configuration variables that can be directly accessed in a Worker script as text.
+      
+```
+      config_vars = {
+      			FOO = "0f2ac74b498b48028cb68387c421e279" 
+      BAR = "068c101e168d03c65bddf4ba75150fb0" 
+      }
+```
+      
+      Note: Using secrets should be handled using Wrangler's [Secrets Commands](/tooling/wrangler/secret/).
+      
   - `kv-namespaces`: These specify any [Workers KV](/reference/storage/) Namespaces you want to access from
       inside your Worker. Each namespace you include should have an entry in your `wrangler.toml` that includes:
 

@@ -54,7 +54,7 @@ Outputs any calls to `console.log` that were called for the current preview run 
 
 #### Sources
 
-The sources that make up your Workers script. Note currently only Wasm and the script are supported and not KV storage.
+The sources that make up your Workers script. Note currently only previewing with an account (i.e. inside the dashboard or `wrangler preview` after autheticating) supports configuration variables - KV store, text, and secrets. 
 
 ## Deploy
 
