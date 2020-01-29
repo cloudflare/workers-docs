@@ -22,7 +22,7 @@ weight: 2
   You can pass a name and template to this command optionally.
 
   ```bash
-  wrangler generate <name> <template> --type=["webpack", "javascript", "rust"]
+  wrangler generate <name> <template> --type=["webpack", "javascript", "rust"] --site
   ```
 
   All of the arguments and flags to this command are optional:
@@ -31,18 +31,22 @@ weight: 2
   - `template`: defaults to the [`https://github.com/cloudflare/worker-template`](https://github.com/cloudflare/worker-template)
   - `type`: defaults to ["webpack"](/tooling/wrangler/webpack)
 
+  - `--site`: generates a [Workers Site](/sites) from an exisiting static site
+
 ### 📥 `init`
 
   Creates a skeleton `wrangler.toml` in an existing directory. This can be used as an alternative to `generate` if you prefer to clone a repository yourself.
 
   ```bash
-  wrangler init <name> --type=["webpack", "javascript", "rust"]
+  wrangler init <name> --type=["webpack", "javascript", "rust"] --site
   ```
 
   All of the arguments and flags to this command are options:
 
   - `name`: defaults to the name of your working directory
   - `type`: defaults to ["webpack"](/tooling/wrangler/webpack).
+  
+  - `--site`: generates a [Workers Site](/sites) from an exisiting static site
 
 ### 🦀⚙️ `build`
 
