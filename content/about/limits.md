@@ -12,12 +12,20 @@ weight: 4
 - [CPU/Execution Time Limit](#cpu-execution-time-limit)
 - [Memory](#memory)
 - [Subrequests](#subrequests)
-  * [Can a Workers script make subrequests to load other sites on the Internet?](#can-a-workers-script-make-subrequests-to-load-other-sites-on-the-internet-)
-  * [How many subrequests can I make?](#how-many-subrequests-can-i-make-)
-  * [Can I make a subrequest after my Workers has responded to the user?](#can-i-make-a-subrequest-after-my-workers-has-responded-to-the-user-)
-  * [How long can a subrequest take?](#how-long-can-a-subrequest-take-)
+  * [Can a Workers script make subrequests to load other sites on the Internet?](#can-a-workers-script-make-subrequests-to-load-other-sites-on-the-internet)
+  * [How many subrequests can I make?](#how-many-subrequests-can-i-make)
+  * [Can I make a subrequest after my Worker has responded to the user?](#can-i-make-a-subrequest-after-my-worker-has-responded-to-the-user)
+  * [How long can a subrequest take?](#how-long-can-a-subrequest-take)
 - [Simultaneous Open Connections](#simultaneous-open-connections)
 - [KV](#kv)
+# Overview of Limits by Plan
+
+| Plan                        | [CPU Limit](/about/limits/#cpu-execution-time-limit) | [Daily Request Limit](/about/limits/#daily-request-limit) | [Burst Rate Limit](/about/limits/#burst-rate-limit) |
+| --------------------------- | ---------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------- |
+| Free                        | 10ms                                                 | 100,000                                                   | 1000 requests per minute                            |
+| [Unlimited](/about/pricing) | 50ms                                                 | none                                                      | none                                                |
+| Additional\*                | -                                                    | -                                                         | -                                                   |
+
 ## Script Size
 
 A Workers script plus any [Asset Bindings](/tooling/api/bindings) can be up to 1MB in size after compression.
@@ -74,7 +82,7 @@ Yes. Use the [Fetch API](/reference/apis/fetch/) to make arbitrary requests to o
 
 The limit for subrequests a Workers script can make is 50 per request. Each subrequest in a redirect chain counts against this limit. This means that the number of subrequests a Workers script makes could be greater than the number of `fetch(request)` calls in the script.
 
-### Can I make a subrequest after my Workers has responded to the user?
+### Can I make a subrequest after my Worker has responded to the user?
 
 Yes, you can use [`event.waitUntil()`](/reference/apis/fetch-event) to register asynchronous tasks that may continue after the response has been returned.
 
@@ -89,7 +97,7 @@ When the client disconnects, all tasks associated with that client’s request a
 While handling a request, each Worker script is allowed to have up to six connections open simultaneously. The connections opened by the following API calls all count toward this limit:
 
 - the `fetch()` method of the [Fetch API](/reference/apis/fetch/)
-- `get()`, `put()`, `list()`, and `delete()` methods of [Workers KV Namespace objects](/reference/storage/api/#worker-api)
+- `get()`, `put()`, `list()`, and `delete()` methods of [Workers KV namespace objects](/reference/storage/api/#worker-api)
 - `put()`, `match()`, and `delete()` methods of [Cache objects](/reference/apis/cache/)
 
 Once a Worker has six connections open, it can still attempt to open additional connections. However, these attempts are put in a pending queue - the connections won't be actually be initiated until one of the currently open connections has closed. Since earlier connections can delay later ones, if a Worker tries to make many simultaneous subrequests, its later subrequests may appear to take longer to start.
@@ -101,7 +109,7 @@ If the system detects that a Worker is deadlocked on open connections - for inst
 After subscription to a Workers Unlimited plan, KV is enabled. Workers KV supports:
 
 - Up to 100 Namespaces per account
-- Unlimited keys per Namespace
+- Unlimited keys per namespace
 - Keys of up to 512 bytes
 - Values of up to 10 MB
 - Unlimited reads per second per key
