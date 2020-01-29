@@ -1,6 +1,7 @@
 ---
 title: Secret
 weight: 4
+new: true
 ---
 
 ### `put`
