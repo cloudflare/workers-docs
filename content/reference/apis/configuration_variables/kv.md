@@ -46,7 +46,7 @@ to write data via Wrangler or the API, but read the data from within a worker.
 You can [write more than one key-value pair at a time with
 wrangler](/tooling/wrangler/kv_commands/#kv-bulk) or [via the
 API](https://api.cloudflare.com/#workers-kv-namespace-write-multiple-key-value-pairs), up to 10,000 KV pairs. A `key` and `value` are required for each KV pair. The entire request size must be less than 100 megabytes.
-We do not support this from within a worker at this time.
+We do not support this from within a Worker script at this time.
 
 ## Expiring Keys
 
@@ -194,7 +194,7 @@ You can also [list keys on the command line with Wrangler](/tooling/wrangler/kv_
 
 The `list` method has this signature (in TypeScript):
 
-`Namespace.list({prefix?: string, limit?: number, cursor?: string})`
+`NAMESPACE.list({prefix?: string, limit?: number, cursor?: string})`
 
 All arguments are optional:
 
@@ -222,14 +222,15 @@ The expiration value will only be returned if the key has an expiration, and
 will be in the absolute value form, even if it was set in the TTL form.
 
 Additionally, if `list_complete` is `false`, there are more keys to fetch.
-You'll use the `cursor` property to get more keys. See the Pagination section
+You'll use the `cursor` property to get more keys. See the [Pagination section](#pagination)
+
 below for more details.
 
 ## Listing by prefix
 
 You can also list all of the keys starting with a particular prefix. For
 example, say you've structured your keys with a user, a user id, and then
-some key names, separated by colons. You could get the keys for user number
+some key names, separated by colons (e.g. ` user:1:<key>`). You could get the keys for user number
 one by doing this:
 
 ```js
