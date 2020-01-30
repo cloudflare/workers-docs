@@ -77,7 +77,7 @@ There are two types of configuration that `wrangler` uses: global user and per p
 
   - `workers_dev`: This is a boolean flag that specifies if your worker will be deployed to your [workers.dev](https://workers.dev) subdomain. For more information, please read the [environments documentation](/tooling/wrangler/configuration/environments).
 
-  - `config_vars`: An object of the text configuration variables that can be directly accessed in a Worker script as text.
+  - `config`: An object containing configuration variables that can be directly accessed in a Worker script.
       
 ```
       config = {
