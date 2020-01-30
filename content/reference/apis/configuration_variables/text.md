@@ -1,15 +1,18 @@
 ---
-title: 'Text Variables'
+title: 'Configuration Variables'
 weight: 3
 ---
 
-Once a text variable is set using [wrangler](/tooling/wrangler/configuration) or in the UI, it becomes available to your Worker script as a string.
+Once a configuration variable is uploaded via [wrangler](/tooling/wrangler/configuration) or in the UI, the string is exposed on the global namespace as type [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String).
 
 ```
-if(TEXT_VARIABLE === "staging"){....}
+if (ENVIRONMENT === "staging") {
+  // staging-specific code
+} else if (ENVIRONMENT === "production" {
+  // production-specific code
+}
 ```
 
 Caveats:
 
-- Text variables are not shared amongst scripts. Use [environments](/tooling/wrangler/configuration/environments) in wrangler to configure multiple variables on one project
-
+- Configuration variables are not shared between scripts. Use [environments](/tooling/wrangler/configuration/environments) in [Wrangler](https://github.com/cloudflare/wrangler) to configure multiple configuration variables for one script

@@ -179,4 +179,4 @@ If you would like to be able to publish your code to multiple places, please see
 
 ### 🤫 `secret`
 
-  Interact with your secret variables. [Check out the docs.](/tooling/wrangler/secrets)
+  Interact with your secrets. [Check out the docs.](/tooling/wrangler/secrets)

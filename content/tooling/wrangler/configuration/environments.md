@@ -216,7 +216,7 @@ Your default `wrangler build`, `wrangler preview`, and `wrangler publish` comman
 
 ### Configuration Variables
 
-You can specify different KV namespaces and text variables for different environments.
+You can specify different KV namespaces and configuration variables for different environments.
 
 ```toml
 name = "my-worker"
@@ -231,12 +231,12 @@ kv-namespaces = [
 kv-namespaces = [
     { binding = "KV", id = "bd46d6484b665e6bd134b0496ad97760" }
 ]
-config_vars = {
+config = {
 			FOO = "some text",
 }
 ```
 
-Note: Secret variables are assigned to specific environments by default when using the [`wrangler secrete create`](/tooling/wrangler/secret/) command.
+Note: Secret variables are assigned to specific environments by default when using the [`wrangler secret create`](/tooling/wrangler/secret/) command.
 
 ## Invalid configurations
 
