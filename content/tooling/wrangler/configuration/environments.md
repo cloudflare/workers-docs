@@ -232,7 +232,7 @@ kv-namespaces = [
     { binding = "KV", id = "bd46d6484b665e6bd134b0496ad97760" }
 ]
 config = {
-			FOO = "some text",
+  FOO = "some text",
 }
 ```
 
