@@ -36,7 +36,25 @@ export const newDocsMap = new Map([
   ['/reference/runtime/apis/streams', '/reference/apis/streams'],
   ['/reference/runtime/apis/web-crypto', '/reference/apis/web-crypto'],
 
-  ['/reference/storage/overview/writing-data', '/reference/storage/writing-data'],
+  ['/reference/storage/overview', '/reference/storage'],
+  [
+    '/reference/storage/overview/writing-data',
+    '/reference/apis/configuration_variables/kv#writing-key-value-pairs',
+  ],
+  [
+    '/reference/storage/reading-data',
+    '/reference/apis/configuration_variables/kv#reading-key-value-pairs',
+  ],
+  [
+    '/reference/storage/writing-data',
+    '/reference/apis/configuration_variables/kv#writing-key-value-pairs',
+  ],
+  ['/reference/storage/limitations', '/about/limits#kv'],
+  ['/reference/storage/expiring-keys', '/reference/apis/configuration_variables/kv/#expiring-keys'],
+  // Redirecting to https://api.cloudflare.com/#workers-kv-namespace-properties
+  // would probably be best since we don't have good KV API docs anymore,, but
+  // the KV landing page isn't terrible.
+  ['/reference/storage/api', '/reference/storage'],
 
   //Template pages
   ['/tutorials/build-a-rustwasm-function', '/templates/pages/rustwasm'],
