@@ -3,7 +3,6 @@ import { Link } from './Link'
 import { Helmet } from "react-helmet";
 
 import { restApiTemplate } from "../types/restApiTemplates"
-import { PREFIX } from './utils';
 type templateProps = {
   id: string
   data: restApiTemplate
@@ -23,7 +22,7 @@ const TemplatePage: React.FC<templateProps> = ({
   let [githubData, setState] = useState(null as any | null)
 
   useEffect(() => {
-    if (repository_url) { // NOTE: (disclaimer not the best logic) 
+    if (repository_url) { // NOTE: (disclaimer not the best logic)
       // repository_url being passed in means there was a specific repo for
       // this template (i.e. a boilerplate)
       let github_api_repo_url = repository_url.replace("https://github.com/", "https://api.github.com/repos/")
@@ -84,7 +83,7 @@ const TemplatePage: React.FC<templateProps> = ({
       </Helmet>
       <figure className="template-page" id={id}>
         <Link to={"/templates"} {...{ className: "back" }}>
-          <img src={PREFIX + "/templates/media/left-arrow.svg"} />Template Gallery
+          <img src={"/workers/templates/media/left-arrow.svg"} />Template Gallery
         </Link>
         <div className="grid-3-noBottom_xs-5">
           <div className="col-8">
@@ -97,7 +96,7 @@ const TemplatePage: React.FC<templateProps> = ({
               const demo = demos[key]
               return demo ? (
                 <Link to={demo.url}>
-                  <img src={PREFIX + "/templates/media/external-link.svg"} />
+                  <img src={"/workers/templates/media/external-link.svg"} />
                   <span>{demo.text}</span>
                 </Link>
               ) : null
@@ -122,7 +121,7 @@ const TemplatePage: React.FC<templateProps> = ({
             </div>
             {code ?
               <div className="grey copy-group">
-                <img className="copy-trigger" src={PREFIX + "/svg/copy-box.svg"} />
+                <img className="copy-trigger" src={"/workers/svg/copy-box.svg"} />
                 <code className="copy">{code}</code>
               </div>
               : null}
@@ -135,22 +134,22 @@ const TemplatePage: React.FC<templateProps> = ({
                 </div>
                 <div className="copy-group">
                   <span className="copy">wrangler generate my-app {repository_url}</span>
-                  <img className="copy-trigger" src={PREFIX + "/svg/copy-box.svg"} />
+                  <img className="copy-trigger" src={"/workers/svg/copy-box.svg"} />
                 </div>
                 <span>Don't have Wrangler installed?
-                      <a href={PREFIX + "/quickstart"}> Get started</a>
+                      <a href={"/quickstart"}> Get started</a>
                 </span>
               </div>
               : null}
             {!!github_api_repo_url ? (<div className="github">
               {repository_url ? (<>
                 <Link to={repository_url}>
-                  <img src={PREFIX + "/svg/github.svg"} />
+                  <img src={"/workers/svg/github.svg"} />
                   <div>{repo_name}</div>
                 </Link>
                 <div className="date">{repo_date_text}</div>
               </>) : (<a href={github_api_repo_url + '/' + id + ".js"}>
-                <img src={PREFIX + "/svg/github.svg"} />
+                <img src={"/workers/svg/github.svg"} />
                 <div>template-registry/{id}.js</div>
               </a>)}
             </div>) : ''}

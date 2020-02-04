@@ -22,7 +22,7 @@ docsearch({
 
 const Sidebar = ({ pathToServe = '/' }) => {
   // TODO get hooks working instead of useStaticQuery in components
-  const topLevelMarkdown: markdownRemarkEdge[] = useStaticQuery(
+  const topLevelMarkdown: any[] = useStaticQuery(
     graphql`
       {
         allMdx(limit: 1000) {
@@ -47,6 +47,11 @@ const Sidebar = ({ pathToServe = '/' }) => {
       }
     `,
   ).allMdx.edges
+
+  const templateGalleryPage = {
+    fields: { pathToServe: '/workers/templates', parent: '/', filePath: 'src/content/workers/templates' },
+    frontmatter: { showNew: false, weight: 1, alwaysopen: false, hidden: false, title: 'Template Gallery' },
+  }
 
   return (
     <>
@@ -85,6 +90,7 @@ const Sidebar = ({ pathToServe = '/' }) => {
                 return matchedPaths.length < 1
               })
               .map(edge => edge.node)
+              .concat(templateGalleryPage)
               .sort(sortByWeight)
               .map(node => {
                 const { fields, frontmatter } = node

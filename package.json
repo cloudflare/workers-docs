@@ -6,7 +6,8 @@
   "main": "workers-site/index.js",
   "private": true,
   "scripts": {
-    "build": "gatsby build --prefix-paths",
+    "build": "gatsby clean && gatsby build --prefix-paths",
+    "postbuild": "bin/postbuild",
     "develop": "gatsby develop --prefix-paths",
     "start": "npm run develop",
     "worker-build": "npm run build && wrangler build",

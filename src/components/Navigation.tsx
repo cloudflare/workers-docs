@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { PREFIX } from './utils'
 
 export const Navigation = () => {
   return (
@@ -151,7 +150,7 @@ export const Navigation = () => {
             </svg>
           </div>
         </a>
-        <Link to={PREFIX} className="active navigation-link">
+        <Link to={'/workers'} className="active navigation-link">
           <strong>Docs</strong>
         </Link>
         <Link to="/workers/quickstart/" className="navigation-link">

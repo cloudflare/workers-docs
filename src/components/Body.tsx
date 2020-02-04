@@ -1,5 +1,4 @@
 import React from 'react'
-import { PREFIX } from './utils'
 const Body: React.FC<BodyProps> = ({ children, github_edit_url }) => {
   return (
     <>
@@ -9,7 +8,7 @@ const Body: React.FC<BodyProps> = ({ children, github_edit_url }) => {
             className="github-edit"
             href={github_edit_url}
           >
-            <img src={PREFIX + "/svg/github.svg"} />
+            <img src={"/workers/svg/github.svg"} />
             <span>Edit on Github</span>
           </a>) : null}
           {/* Todo maybe add tags? here is original hugo

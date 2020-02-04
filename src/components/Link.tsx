@@ -1,6 +1,5 @@
 import { Link as GatsbyLink, GatsbyLinkProps } from "gatsby"
 import React from 'react'
-import { PREFIX } from "./utils"
 // Since DOM elements <a> cannot receive activeClassName
 // and partiallyActive, destructure the prop here and
 // pass it only to GatsbyLink
@@ -20,7 +19,7 @@ export const Link: React.FC<LinkProps> = ({ children, to, ...other }) => {
   if (internal) {
     return (
       <GatsbyLink
-        to={PREFIX + to}
+        to={to}
         {...other}
       >
         {children}
@@ -43,7 +42,7 @@ export const Image: React.FC<ImageProps> = ({ children, src, ...props }) => {
 
   if (internal) {
     return (
-      <img src={PREFIX + src} {...props}>
+      <img src={'/workers' + src} {...props}>
         {children}
       </img>
     )
