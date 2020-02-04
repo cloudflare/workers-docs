@@ -63,12 +63,11 @@ export const Gallery: React.FunctionComponent<GalleryProps> = ({
         }
       }
     }
-    
+
     `,
   )
   const snippets = templates.allRestApiTemplates.edges.map(edge => edge.node).filter(template => template.type === "snippet")
   const boilerplates = templates.allRestApiTemplates.edges.map(edge => edge.node).filter(template => template.type === "boilerplate")
-  console.log('templates', templates)
   return (
     <Layout title="Template Gallery">
       <Body>

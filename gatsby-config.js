@@ -6,6 +6,8 @@ module.exports = {
     description: `Use Cloudflare’s APIs and edge network to build secure, ultra-fast applications.`,
     author: `@cloudflaredev`,
   },
+  assetPrefix: `/workers`,
+  // pathPrefix: `/workers`,
   // pathPrefix: `/workers`, //  this breaks MDX links like (/reference..) but not the sidebar for some reason if it's inside MDX Render it breaks only
   plugins: [
     `gatsby-plugin-typescript`,
@@ -47,10 +49,8 @@ module.exports = {
       // e.g. (/tooling/media/image.jpq) to ref current directory (e.g. ./media/image.jpg)
       .sync(path.join(__dirname, './src/static'))
       .map(source => {
-        console.log('source', source)
         // console.log('path.join', path.join(__dirname, './src'))
         const destination = source.replace(path.join(__dirname, './src/content'), '')
-        console.log('desination', destination)
         return {
           resolve: 'gatsby-plugin-copy-files',
           options: {
