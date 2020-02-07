@@ -534,7 +534,6 @@ export const constructGhIssueSlackMessage = (
 Back in `src/handlers/webhook.js`, the `blocks` that are returned from `constructGhIssueSlackMessage` become the body in a new `fetch` request, an HTTP POST request to a Slack webhook URL. Once that request completes, return a simple response with status code 200, and the body text "OK":
 
 ```javascript
-import { slackWebhookUrl } from '../config'
 import { constructGhIssueSlackMessage } from '../utils/slack'
 
 export default async request => {
@@ -544,7 +543,7 @@ export default async request => {
   const issue_string = `${repository.owner.login}/${repository.name}#${issue.number}`
   const blocks = constructGhIssueSlackMessage(issue, issue_string, prefix_text)
 
-  const postToSlack = await fetch(slackWebhookUrl, {
+  const postToSlack = await fetch(SLACK_WEBHOOK_URL, {
     body: JSON.stringify({ blocks }),
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -554,26 +553,18 @@ export default async request => {
 }
 ```
 
-The additional import in the first line of `src/handlers/webhook.js` signifies the final new file needed in our project: `src/config.js`. In this file, fill in the Slack Webhook URL that you created all the way back in the [Incoming Webhook] section of this guide:
-
-```javascript
-export const slackWebhookUrl = 'https://hooks.slack.com/services/abc123'
-```
-
-**This webhook allows developers to post directly to your Slack channel, so it should be kept secret!** In particular, add `src/config.js` to your `.gitignore` file to ensure that the file doesn't get committed into your source control, and published to GitHub:
+The constant `SLACK_WEBHOOK_URL` represents the Slack Webhook URL that you created all the way back in the "Incoming Webhook" section of this guide. **This webhook allows developers to post directly to your Slack channel, so it should be kept secret!** To use this constant inside of your codebase, you can use Wrangler's [Secrets](/tooling/wrangler/secrets) feature:
 
 ```sh
-echo "src/config.js" >> .gitignore
+wrangler secret create SLACK_WEBHOOK_URL
+Enter the secret text you'd like assigned to the variable name on the script named slack-bot-ENVIRONMENT_NAME: https://hooks.slack.com/services/abc123
 ```
-
-(Note: if you're unable to run the above command, adding a new line with `src/config.js` to `.gitignore` in your favorite text editor will work as well).
 
 #### Handling errors
 
 Similarly to the `lookup` function handler, the `webhook` function handler should include some basic error handling. Unlike `lookup`, which sends responses directly back into Slack, if something goes wrong with your webhook, it may be useful to actually generate an erroneous response, and return it to GitHub. To do this, wrap the majority of the `webhook` function handler in a try/catch block, and construct a new response with a status code of 500, and return it. The final version of `src/handlers/webhook.js` looks like this:
 
 ```javascript
-import { slackWebhookUrl } from '../config'
 import { constructGhIssueSlackMessage } from '../utils/slack'
 
 export default async request => {
@@ -588,7 +579,7 @@ export default async request => {
       prefix_text,
     )
 
-    const postToSlack = await fetch(slackWebhookUrl, {
+    const postToSlack = await fetch(SLACK_WEBHOOK_URL, {
       body: JSON.stringify({ blocks }),
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
