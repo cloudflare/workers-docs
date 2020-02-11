@@ -32,7 +32,7 @@ wrangler secret delete <name> --env ENVIRONMENT_NAME
 List all the secret names bound to a specific script
 
 ```bash
-wrangler list --env ENVIRONMENT_NAME
+wrangler secret list --env ENVIRONMENT_NAME
 ```
 
 - `--env`: (optional) binds the secret to the script of the specific [environment](/tooling/wrangler/configuration/environments/)
