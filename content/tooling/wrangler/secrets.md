@@ -9,7 +9,7 @@ new: true
 Interactive command to create or replace a secret
 
 ```bash
-wrangler secret create <name> --env ENVIRONMENT_NAME
+wrangler secret put <name> --env ENVIRONMENT_NAME
 Enter the secret text you'd like assigned to the variable name on the script named my-worker-ENVIRONMENT_NAME:
 ```
 
