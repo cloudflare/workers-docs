@@ -79,14 +79,13 @@ There are two types of configuration that `wrangler` uses: global user and per p
 
   - `config`: An object containing configuration variables that can be directly accessed in a Worker script.
       
-```toml
-    config = {
-      FOO = "0f2ac74b498b48028cb68387c421e279",
-      BAR = "068c101e168d03c65bddf4ba75150fb0" 
-    }
-```
-      
-      Note: Using secrets should be handled using [`wrangler secret`](/tooling/wrangler/secret/).
+      ```toml
+          config = {
+            FOO = "0f2ac74b498b48028cb68387c421e279",
+            BAR = "068c101e168d03c65bddf4ba75150fb0" 
+          }
+      ``` 
+      Note: Using secrets should be handled using [wrangler secret](/tooling/wrangler/secret/).
       
   - `kv-namespaces`: These specify any [Workers KV](/reference/storage/) Namespaces you want to access from
       inside your Worker. Each namespace you include should have an entry in your `wrangler.toml` that includes:
