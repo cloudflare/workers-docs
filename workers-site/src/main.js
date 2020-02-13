@@ -52,22 +52,6 @@ export async function handleRequest(event) {
       console.log('Handling redirect')
       return handleRedirect(request)
     }
-    // TODO remove this and just set the meta title/descriptions in Gatsby
-    if (pathname.includes('templates/pages')) {
-      //Grab the template's title from the registry
-      const templateId = pathname.replace(/.*pages\//, '')
-      const templateResp = await fetch(templateRegURL + templateId)
-      const templateJSON = await templateResp.json()
-      const metaInfo = {
-        title: templateJSON.title + ' - Cloudflare Workers Docs',
-        description: templateJSON.description,
-      }
-      // Rewrite all meta titles/descriptions the the correct title
-      return await new HTMLRewriter()
-        .on('meta', new MetaHandler(metaInfo))
-        .on('head>title', new TitleHandler(metaInfo))
-        .transform(body)
-    }
     return body
   } catch (err) {
     console.log(err)
