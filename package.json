@@ -6,15 +6,39 @@
   "main": "workers-site/index.js",
   "private": true,
   "scripts": {
-    "build": "hugo && wrangler build",
-    "start-hugo": "hugo -D server",
-    "test": "ava workers-site/test/index.js --verbose",
-    "start": "hugo && wrangler preview --watch -e staging",
-    "publish": "npm run build && wrangler publish -e"
+    "build": "gatsby clean && gatsby build --prefix-paths",
+    "postbuild": "bin/postbuild",
+    "develop": "gatsby develop --prefix-paths",
+    "start": "npm run develop",
+    "worker-build": "npm run build && wrangler build",
+    "worker-start": "npm run build && wrangler preview --watch -e staging",
+    "worker-test": "ava workers-site/test/index.js --verbose",
+    "publish": "npm run build && wrangler publish -e",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\""
   },
   "dependencies": {
-    "gulp": "^4.0.0",
-    "@cloudflare/hugo-cloudflare-docs": "1.0.4"
+    "@mdx-js/mdx": "^1.5.3",
+    "@mdx-js/react": "^1.5.4",
+    "@types/mdx-js__react": "^1.5.0",
+    "gatsby": "^2.15.29",
+    "gatsby-image": "^2.2.24",
+    "gatsby-plugin-copy-files": "^1.0.3",
+    "gatsby-plugin-feed-mdx": "^1.0.0",
+    "gatsby-plugin-manifest": "^2.2.20",
+    "gatsby-plugin-mdx": "^1.0.67",
+    "gatsby-plugin-offline": "^3.0.11",
+    "gatsby-plugin-react-helmet": "^3.1.10",
+    "gatsby-plugin-sharp": "^2.4.0",
+    "gatsby-plugin-typescript": "^2.1.11",
+    "gatsby-plugin-typography": "^2.3.11",
+    "gatsby-source-filesystem": "^2.1.29",
+    "gatsby-source-rest-api": "^0.2.2",
+    "prop-types": "^15.7.2",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-helmet": "^5.2.1",
+    "react-typography": "^0.16.19",
+    "typography": "^0.16.19"
   },
   "ava": {
     "require": [
@@ -22,6 +46,16 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@types/node": "^12.7.12",
+    "@types/react": "^16.9.17",
+    "@types/react-dom": "^16.9.1",
+    "@types/react-helmet": "^5.0.14",
+    "glob": "^7.1.6",
+    "prettier": "^1.18.2",
     "ava": "^2.4.0"
-  }
+  },
+  "keywords": [
+    "gatsby"
+  ]
 }

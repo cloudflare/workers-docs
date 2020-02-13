@@ -17,14 +17,8 @@ jobs:
         node-version: '10.x'
     - name: Install deps
       run: npm install
-    - name: Install Hugo
-      run: |
-        wget https://github.com/gohugoio/hugo/releases/download/v0.59.1/hugo_0.59.1_Linux-64bit.deb
-        sudo dpkg -i hugo_0.59.1_Linux-64bit.deb
-    - name: Copy config for hugo
-      run: cp config-production.toml config.toml
     - name: Build docs
-      run: hugo
+      run: npm run build
     - name: Publish
       uses: signalnerve/wrangler-action@1.0.0
       with:

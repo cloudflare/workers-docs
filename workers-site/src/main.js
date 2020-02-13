@@ -6,7 +6,8 @@ const templateRegURL = 'https://template-registry.developers.workers.dev/templat
 const myMapRequestToAsset = request => {
   request = mapRequestToAsset(request)
   let url = new URL(request.url)
-  url.pathname = url.pathname.replace(/^\/workers/, '/')
+  // url.pathname = url.pathname.replace(/^\/workers/, '/')
+  url.pathname = url.pathname.replace(/^(?!\/*workers.*$).*/, '/workers' + url.pathname) //nothing that doesn't start with /workers (i.e. probably called by gatsby, prepend /workers)
   return new Request(url, request)
 }
 function is_directory(path) {
