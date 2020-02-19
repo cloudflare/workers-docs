@@ -5,9 +5,9 @@ weight: 3
 
 - [Concepts](#concepts)
 - [Usage](#usage)
-  * [Examples](#examples)
-  * [Custom webpack configurations](#custom-webpack-configurations)
-  * [Configuration Variables](#configuration-variables)
+  - [Examples](#examples)
+  - [Custom webpack configurations](#custom-webpack-configurations)
+  - [Environment Variables](#environment-variables)
 - [Invalid configurations](#invalid-configurations)
 
 Environments is a feature that allows you to deploy the same project to multiple places under multiple names. These environments are utilized with the `--env` or `-e` flag on `wrangler build`, `wrangler preview`, and `wrangler publish`.
@@ -214,9 +214,9 @@ name = "my-worker-staging"
 
 Your default `wrangler build`, `wrangler preview`, and `wrangler publish` commands will all build with `webpack.dev.js`, as will `wrangler build -e staging`, `wrangler preview -e staging`, and `wrangler publish -e staging`. `wrangler build -e production`, `wrangler preview -e production`, and `wrangler publish -e production` would all use your `webpack.config.js` file.
 
-### Configuration Variables
+### Environment Variables
 
-You can specify different KV namespaces and configuration variables for different environments.
+You can specify different KV namespaces, secrets, and text variables for different environments.
 
 ```toml
 name = "my-worker"

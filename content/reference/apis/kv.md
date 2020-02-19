@@ -1,7 +1,8 @@
 ---
 title: 'KV'
-weight: 1
+weight: 5
 ---
+
 - [Writing key-value pairs](#writing-key-value-pairs)
   * [Writing Data in Bulk](#writing-data-in-bulk)
   * [Expiring Keys](#expiring-keys)

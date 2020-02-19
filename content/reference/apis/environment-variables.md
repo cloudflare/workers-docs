@@ -1,7 +1,21 @@
 ---
-title: 'Secrets'
-weight: 2
+title: "Environment Variables"
+weight: 5
 ---
+
+# Text
+
+Once a configuration variable is uploaded via [wrangler](/tooling/wrangler/configuration) or in the UI, the string is exposed on the global namespace as type [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String).
+
+```
+if (ENVIRONMENT === "staging") {
+  // staging-specific code
+} else if (ENVIRONMENT === "production" {
+  // production-specific code
+}
+```
+
+# Secrets
 
 Once a secret is uploaded via [wrangler](/tooling/wrangler/secret) or in the UI, the string is exposed on the global namespace as type [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String).
 
