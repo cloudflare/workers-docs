@@ -3,9 +3,11 @@ title: "Environment Variables"
 weight: 5
 ---
 
+ Environment variables can be managed via wrangler or in the UI, it is recommended to adhere to one method.
+
 # Text
 
-Once a configuration variable is uploaded via [wrangler](/tooling/wrangler/configuration) or in the UI, the string is exposed on the global namespace as type [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String).
+Once a text variable is uploaded via [wrangler](/tooling/wrangler/configuration) or in the UI, the string is exposed on the global namespace as type [`String`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String).
 
 ```
 if (ENVIRONMENT === "staging") {
@@ -34,4 +36,4 @@ Using the secret inside of your Workers script:
 let headers = new Headers({ Authorization: SECRET })
 ```
 
-TODO: copy about `wrangler secret` vs Cloudflare dashboard UI secrets
+

@@ -54,7 +54,7 @@ Outputs any calls to `console.log` that were called for the current preview run 
 
 #### Sources
 
-The sources that make up your Workers script. Note that access KV, configuration, and secret bindings are only accessible when authenticated with an account. This means you must be logged in to the dashboard, or use `wrangler preview` with your account credentials.
+The sources that make up your Workers script. Note that access KV, text, and secret bindings are only accessible when authenticated with an account. This means you must be logged in to the dashboard, or use `wrangler preview` with your account credentials.
 
 ## Deploy
 
