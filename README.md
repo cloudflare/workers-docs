@@ -36,10 +36,10 @@ npm test
 
 ## Publishing
 
-To publish to staging:
+To publish to developement environment (which is protected by access at dev.bigfluffycloudflare.com/workers) run:
 
 ```
-npm run publish staging
+npm run publish dev
 ```
 
 # Releasing
