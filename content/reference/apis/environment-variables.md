@@ -3,7 +3,7 @@ title: "Environment Variables"
 weight: 5
 ---
 
- Environment variables can be managed via wrangler or in the UI, it is recommended to adhere to one method.
+Environment variables can be managed via wrangler or in the UI, it is recommended to adhere to one method.
 
 # Text
 
@@ -35,5 +35,3 @@ Using the secret inside of your Workers script:
 ```javascript
 let headers = new Headers({ Authorization: SECRET })
 ```
-
-
