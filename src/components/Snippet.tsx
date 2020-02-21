@@ -43,11 +43,11 @@ export const Snippet: React.FC<snippetProps> = (props) => {
         {/* //  type="image/svg+xml" */}
         <span>Copy into a Worker script:</span>
       </div>
-      <div className="copy">
-        <code>{code}</code>
-      </div>
+      {code ? <div className="copy">
+        <code className="copy" >{code}</code>
+      </div> : ""}
     </div>
-  </figure>)
+  </figure >)
 }
 
 
