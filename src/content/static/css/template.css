@@ -181,8 +181,9 @@ figure.template-card.boilerplate {
 }
 .grey img.copy-trigger {
   padding: 8px 8px 0 0 !important;
-  margin-left: auto !important;
+  margin: 0 0 0 auto !important;
 }
+
 .grey code.copy {
   white-space: pre;
   margin-right: 30px;

@@ -96,7 +96,7 @@ const TemplatePage: React.FC<templateProps> = ({
             {demos ? Object.keys(demos).map((key) => {
               const demo = demos[key]
               return demo ? (
-                <Link to={demo.url}>
+                <Link key={demo.url} to={demo.url}>
                   <img src={withPrefix("/templates/media/external-link.svg")} />
                   <span>{demo.text}</span>
                 </Link>
@@ -113,7 +113,7 @@ const TemplatePage: React.FC<templateProps> = ({
               <p>{description}</p>
               <div className="tag-group">
                 {tags ? tags.map(tag => (
-                  <button className={"tooltip " + tag} >
+                  <button key={tag} className={"tooltip " + tag} >
                     <span className="tooltiptext"></span>{tag}
                   </button>
                 ))
@@ -137,7 +137,9 @@ const TemplatePage: React.FC<templateProps> = ({
                 </div>
                 <div className="copy-group">
                   <span className="copy">wrangler generate my-app {repository_url}</span>
-                  <img className="copy-trigger" src={withPrefix("/svg/copy-box.svg")} />
+                  <CopyToClipboard text={"wrangler generate my-app " + repository_url}>
+                    <img className="copy-trigger" src={withPrefix("/svg/copy-box.svg")} />
+                  </CopyToClipboard>
                 </div>
                 <span>Don't have Wrangler installed?
                       <a href={"/quickstart"}> Get started</a>
