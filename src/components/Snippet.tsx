@@ -22,7 +22,7 @@ export const Snippet: React.FC<snippetProps> = (props) => {
   return (<figure className="template-card snippet" id={endpointId}>
     <div className="tag-group">
       {tags?.map(tag => (
-        <button className={"tooltip " + tag}>
+        <button key={endpointId + '-' + tag} className={"tooltip " + tag}>
           {tag}
           <span className="tooltiptext"></span>
         </button>

@@ -22,7 +22,7 @@ export const Boilerplate: React.FC<boilerplateProps> = (props) => {
   return (<figure className="template-card boilerplate" id="{{.id}}">
     <div className="tag-group">
       {tags?.map(tag => (
-        <button className={"tooltip " + tag}>
+        <button className={"tooltip " + tag} key={endpointId + '-' + tag} >
           {tag}
           <span className="tooltiptext"></span>
         </button>
