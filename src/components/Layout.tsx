@@ -6,19 +6,18 @@
  */
 
 import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
+import { useStaticQuery, graphql, withPrefix } from 'gatsby'
 
 import Sidebar from './Sidebar'
 import SEO from './Seo'
-// import "../content/static"
-// import "../content/static/js/docsearch.min.js"
-// import "/static/js/workers.js"
 import '../content/static/css/theme.css'
 import '../content/static/css/main.css'
 import '../content/static/css/overview.css'
 import '../content/static/css/code.css'
 import '../content/static/css/template.css'
+import '../content/static/css/docsearch.min.css'
 import { Navigation } from './Navigation'
+import Helmet from 'react-helmet'
 const Layout: React.FC<LayoutProps> = ({ title, children }) => {
   // TODO get hooks working instead of useStaticQuery in components
   const data = useStaticQuery(graphql`
@@ -36,6 +35,17 @@ const Layout: React.FC<LayoutProps> = ({ title, children }) => {
       <SEO title={title ? title : data.site.siteMetadata.title} />
       <Navigation />
       <Sidebar />
+      <Helmet>
+        <script type="text/javascript" src={withPrefix("/js/docsearch.min.js")} />
+        <script>
+          {`
+          window.docsearch({
+            apiKey: '4c1a7e1b6289032a8e8fd1dbbae112a3',
+            indexName: 'cloudflare',
+            inputSelector: '#docsearch-input'
+          });`}
+        </script>
+      </Helmet>
       {children}
     </>
   )

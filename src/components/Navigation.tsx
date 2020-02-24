@@ -36,8 +36,8 @@ export const Navigation = () => {
                       y1="100%"
                       y2="8.7%"
                     >
-                      <stop offset="0%" stop-color="#eb6f07"></stop>
-                      <stop offset="100%" stop-color="#fab743"></stop>
+                      <stop offset="0%" stopColor="#eb6f07"></stop>
+                      <stop offset="100%" stopColor="#fab743"></stop>
                     </linearGradient>
                     <linearGradient
                       id="CloudflareWorkersLogoCombinationMarkHorizontal--gradient-b"
@@ -46,8 +46,8 @@ export const Navigation = () => {
                       y1="83.7%"
                       y2="29.5%"
                     >
-                      <stop offset="0%" stop-color="#d96504"></stop>
-                      <stop offset="100%" stop-color="#d96504" stop-opacity="0"></stop>
+                      <stop offset="0%" stopColor="#d96504"></stop>
+                      <stop offset="100%" stopColor="#d96504" stopOpacity="0"></stop>
                     </linearGradient>
                     <linearGradient
                       id="CloudflareWorkersLogoCombinationMarkHorizontal--gradient-c"
@@ -56,8 +56,8 @@ export const Navigation = () => {
                       y1="8.7%"
                       y2="79.9%"
                     >
-                      <stop offset="0%" stop-color="#eb6f07"></stop>
-                      <stop offset="100%" stop-color="#eb720a" stop-opacity="0"></stop>
+                      <stop offset="0%" stopColor="#eb6f07"></stop>
+                      <stop offset="100%" stopColor="#eb720a" stopOpacity="0"></stop>
                     </linearGradient>
                     <linearGradient
                       id="CloudflareWorkersLogoCombinationMarkHorizontal--gradient-d"
@@ -66,8 +66,8 @@ export const Navigation = () => {
                       y1="100%"
                       y2="8.7%"
                     >
-                      <stop offset="0%" stop-color="#ee6f05"></stop>
-                      <stop offset="100%" stop-color="#fab743"></stop>
+                      <stop offset="0%" stopColor="#ee6f05"></stop>
+                      <stop offset="100%" stopColor="#fab743"></stop>
                     </linearGradient>
                     <linearGradient
                       id="CloudflareWorkersLogoCombinationMarkHorizontal--gradient-e"
@@ -76,9 +76,9 @@ export const Navigation = () => {
                       y1="100%"
                       y2="0%"
                     >
-                      <stop offset="0%" stop-color="#d96504" stop-opacity=".8"></stop>
-                      <stop offset="49.8%" stop-color="#d96504" stop-opacity=".2"></stop>
-                      <stop offset="100%" stop-color="#d96504" stop-opacity="0"></stop>
+                      <stop offset="0%" stopColor="#d96504" stopOpacity=".8"></stop>
+                      <stop offset="49.8%" stopColor="#d96504" stopOpacity=".2"></stop>
+                      <stop offset="100%" stopColor="#d96504" stopOpacity="0"></stop>
                     </linearGradient>
                     <linearGradient
                       id="CloudflareWorkersLogoCombinationMarkHorizontal--gradient-f"
@@ -87,8 +87,8 @@ export const Navigation = () => {
                       y1="100%"
                       y2="8.7%"
                     >
-                      <stop offset="0%" stop-color="#ffa95f"></stop>
-                      <stop offset="100%" stop-color="#ffebc8"></stop>
+                      <stop offset="0%" stopColor="#ffa95f"></stop>
+                      <stop offset="100%" stopColor="#ffebc8"></stop>
                     </linearGradient>
                     <linearGradient
                       id="CloudflareWorkersLogoCombinationMarkHorizontal--gradient-g"
@@ -97,8 +97,8 @@ export const Navigation = () => {
                       y1="1.1%"
                       y2="48.8%"
                     >
-                      <stop offset="0%" stop-color="#fff" stop-opacity=".5"></stop>
-                      <stop offset="100%" stop-color="#fff" stop-opacity=".1"></stop>
+                      <stop offset="0%" stopColor="#fff" stopOpacity=".5"></stop>
+                      <stop offset="100%" stopColor="#fff" stopOpacity=".1"></stop>
                     </linearGradient>
                     <linearGradient
                       id="CloudflareWorkersLogoCombinationMarkHorizontal--gradient-h"
@@ -106,8 +106,8 @@ export const Navigation = () => {
                       y1="104.2%"
                       y2="46.2%"
                     >
-                      <stop offset="0%" stop-color="#fff" stop-opacity=".5"></stop>
-                      <stop offset="100%" stop-color="#fff" stop-opacity=".1"></stop>
+                      <stop offset="0%" stopColor="#fff" stopOpacity=".5"></stop>
+                      <stop offset="100%" stopColor="#fff" stopOpacity=".1"></stop>
                     </linearGradient>
                   </defs>
                   <path

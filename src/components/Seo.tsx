@@ -75,7 +75,7 @@ const SEO = ({ description, lang, meta, title }: SEOPropTypes) => {
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','cfDataLayer','GTM-PKQFGQB');`}</script>
       <script type="text/javascript" src="https://cdn.bizible.com/scripts/bizible.js"></script>
-      <script type="text/javascript" src="/workers/static/js/worker.js"></script>
+
       <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
       <link
         rel="icon"
@@ -92,6 +92,13 @@ const SEO = ({ description, lang, meta, title }: SEOPropTypes) => {
         sizes="180x180"
         href="https://www.cloudflare.com/img/favicon/apple-touch-icon.png"
       />
+      {/* <script>
+        {`  docsearch({
+        apiKey: '4c1a7e1b6289032a8e8fd1dbbae112a3',
+        indexName: 'cloudflare',
+        inputSelector: '#docsearch-input'
+      });`}
+      </script> */}
     </Helmet>
   )
 }

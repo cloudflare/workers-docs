@@ -84,6 +84,7 @@ export const SidebarLi: React.FunctionComponent<SidebarLiProps> = ({
                       frontmatter={child.frontmatter}
                       fields={child.fields}
                       depth={++depth}
+                      key={child.frontmatter.title}
                     />
                   )
                 })}
