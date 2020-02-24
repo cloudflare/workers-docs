@@ -2,8 +2,6 @@ import React from 'react'
 import { allRestApiTemplates } from '../types/restApiTemplates'
 import { useStaticQuery, graphql } from 'gatsby'
 import { Snippet } from './Snippet'
-import Layout from './Layout'
-import Body from './Body'
 import { Boilerplate } from './Boilerplate'
 const SearchBox = () => {
   return (

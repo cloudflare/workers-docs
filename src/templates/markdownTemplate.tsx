@@ -25,23 +25,15 @@ const components = {
 }
 const MarkdownTemplate: React.FC<markdownBaseProps> = ({
   data, // this prop will be injected by the GraphQL query below.
-  pageContext
 }) => {
-  if (data && !data.mdx) {
-    // console.log('pageContext', pageContext)
-  }
-  if (!data) {
-    // console.log('pageContext', pageContext)
-  }
   const { mdx } = data // data.mdx holds our post data
   const { frontmatter, body, fields } = mdx
   const { title } = frontmatter
   return (
     <>
       <Layout title={title}  >
-        <Body github_edit_url={`https://github.com/cloudflare/workers-docs/edit/master/src/content${fields.filePath}`}>
+        <Body archived={fields.filePath.includes("/archive/")} github_edit_url={`https://github.com/cloudflare/workers-docs/edit/master/src/content${fields.filePath}`}>
           <h1>{frontmatter.title}</h1>
-          {/* {html ? (<div dangerouslySetInnerHTML={{ __html: html }} />) : null} */}
           <MDXProvider components={components}><MDXRenderer>{body || ""}</MDXRenderer></MDXProvider>
         </Body>
       </Layout>
