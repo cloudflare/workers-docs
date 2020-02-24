@@ -1,26 +1,10 @@
 import React from 'react'
-import { allRestApiTemplates } from '../types/restApiTemplates'
+import { allRestApiTemplates } from '../../types/restApiTemplates'
 import { useStaticQuery, graphql } from 'gatsby'
 import { Snippet } from './Snippet'
 import { Boilerplate } from './Boilerplate'
-const SearchBox = () => {
-  return (
-    <div style={{ display: "flex" }}>
-      <div style={{ flex: 2, marginRight: "16px" }}>
-        <label style={{ fontWeight: "normal", color: "#666" }}> Search templates</label >
-        <input id="search" placeholder="🔎 Search by template name or other details" style={{ padding: "10px", width: "100%" }}></input>
-      </div >
-      <div style={{ flex: 1, marginRight: "16px" }}>
-        <label style={{ fontWeight: "normal", color: "#666" }}> Type</label >
-        <select id="type" style={{ width: "100%" }}>
-          <option>All</option>
-          <option>Boilerplates</option>
-          <option>Snippets</option>
-          <option value="featured_boilerplates">Featured</option>
-        </select>
-      </div >
-    </div >)
-}
+import { SearchBox } from './SearchBox'
+
 export const Gallery: React.FunctionComponent<GalleryProps> = ({
 
 }) => {

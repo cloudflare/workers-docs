@@ -5,7 +5,7 @@ import Layout from '../components/Layout'
 
 import { markdownRemarkResult, markdownPageContext } from '../types/mdx'
 import Body from '../components/Body'
-import { Gallery } from '../components/Gallery'
+import { Gallery } from '../components/TemplateGallery/Gallery'
 import { Link, Image } from '../components/Link'
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import { MDXProvider } from "@mdx-js/react"

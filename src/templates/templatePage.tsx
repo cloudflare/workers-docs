@@ -4,10 +4,9 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 
 import Body from '../components/Body'
-import TemplatePage from '../components/TemplatePage';
+import TemplatePage from '../components/TemplateGallery/TemplatePage';
 import { restApiTemplateResult } from '../types/restApiTemplates';
 type templateProps = {
-  // id: string
   pageContext: any
   data: restApiTemplateResult['data']
 }

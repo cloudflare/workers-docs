@@ -1,7 +1,7 @@
-import { restApiTemplate } from "../types/restApiTemplates"
+import { restApiTemplate } from "../../types/restApiTemplates"
 import React from 'react'
 import { Link } from "gatsby"
-import { useRestApiTemplates } from "../hooks/useMarkdownRemark"
+import { useRestApiTemplates } from "../../hooks/useMarkdownRemark"
 type boilerplateProps = restApiTemplate & {
   page_url?: string
 }

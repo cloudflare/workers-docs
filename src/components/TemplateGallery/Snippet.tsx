@@ -1,9 +1,9 @@
-import { restApiTemplate, allRestApiTemplates } from "../types/restApiTemplates"
+import { restApiTemplate, allRestApiTemplates } from "../../types/restApiTemplates"
 import React from 'react'
 type snippetProps = Partial<restApiTemplate> & {
   page_url?: string
 }
-import { useRestApiTemplates } from '../hooks/useMarkdownRemark'
+import { useRestApiTemplates } from '../../hooks/useMarkdownRemark'
 export const Snippet: React.FC<snippetProps> = (props) => {
   const { allRestApiTemplates } = useRestApiTemplates()
   const getSnippet = (id: string) => {

@@ -1,10 +1,10 @@
 import React, { useEffect, useState, ClipboardEvent, useRef } from 'react'
-import { Link } from './Link'
+import { Link } from '../Link'
 import CopyToClipboard from "react-copy-to-clipboard"
 import { Helmet } from "react-helmet";
 
-import { restApiTemplate } from "../types/restApiTemplates"
-import { withPrefix } from 'gatsby';
+import { restApiTemplate } from "../../types/restApiTemplates"
+import { withPrefix, withAssetPrefix } from 'gatsby';
 type templateProps = {
   id: string
   data: restApiTemplate
