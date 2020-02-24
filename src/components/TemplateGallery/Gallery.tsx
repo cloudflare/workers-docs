@@ -54,7 +54,7 @@ export const Gallery: React.FunctionComponent<GalleryProps> = ({
     <>
       <h1>Template Gallery</h1>
       <p>These templates are simple building blocks for developing Workers scripts.</p>
-      <SearchBox />
+      <SearchBox snippets={snippets} boilerplates={boil} />
       <div className="gallery" id="results">
         <h2>Boilerplates</h2>
         {/* TODO add in style <h2 style="padding-bottom: 20px">Snippets</h2> */}

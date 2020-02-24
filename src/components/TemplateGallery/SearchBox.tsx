@@ -1,57 +1,9 @@
-// let boilerplates, snippets, featured_boilerplates
-// const grabTemplates = () => {
-//   // search the DOM for an element we tagged earlier with all the
-//   // templates' JSON
-//   const templates = JSON.parse(document.querySelector('#templates').innerText)
-//   boilerplates = templates.filter(el => el.type === 'boilerplate')
-//   snippets = templates.filter(el => el.type === 'snippet')
-//   featured_boilerplates = templates.filter(el => el.type === 'featured_boilerplate')
-// }
-// // Process templates JSON into lunr-supported JS objects
-// const constructCorpus = () => {
-//   const toLunr = (item, type) => ({ type, ...item })
-//   return [
-//     ...Object.values(boilerplates).map(item => toLunr(item, 'boilerplates')),
-//     ...Object.values(featured_boilerplates).map(item => toLunr(item, 'featured_boilerplates')),
-//     ...Object.values(snippets).map(item => toLunr(item, 'snippets')),
-//   ]
-// }
-// let results, corpus
-// window.addEventListener('DOMContentLoaded', async event => {
-//   grabTemplates()
-//   corpus = constructCorpus()
-//   results = corpus
+import lunr from 'lunr'
+import React from 'react'
+import { restApiTemplate } from '../../types/restApiTemplates'
 
-//   document.querySelector('#search').addEventListener('input', evt => {
-//     const value = evt.target.value
-//     handleNewSearchValue(value)
-//   })
-//   // Set up select element using Choices library
-//   const typeElem = document.querySelector('#type')
-//   const type = new Choices(typeElem)
-//   typeElem.addEventListener('change', searchFilters)
 
-//   // Construct the search index using lunr
-//   const idx = lunr(function() {
-//     this.ref('id')
-//     this.field('title')
-//     this.field('description')
-//     this.field('type')
-//     this.field('tags')
 
-//     corpus.forEach(function(doc) {
-//       this.add(doc)
-//     }, this)
-//   })
-//   window.idx = idx
-//   // Handle ?q query param and set default search with it,
-//   // if it exists
-//   const url = new URL(window.location)
-//   const initialSearch = url.searchParams.get('q')
-//   if (initialSearch) {
-//     handleNewSearchValue(initialSearch)
-//   }
-// })
 
 // // Search based on a query, updating `results`
 // const search = query => {
@@ -125,47 +77,95 @@
 //   const value = evt.detail.value
 //   search(value === 'All' ? null : value)
 // }
-export const SearchBox = () => {
-    const handleNewSearchValue = (value: any) => {
+type SearchBoxProps = {
+    boilerplates: restApiTemplate[]
+    snippets: restApiTemplate[]
+}
+type SearchBoxState = {
+    searchQuery: string
+    results: any[]
+    idx: any
+    documents: any
+}
+export class SearchBox extends React.Component<SearchBoxProps, SearchBoxState> {
+    constructor({ boilerplates, snippets, ...other }: SearchBoxProps) {
+        super({ boilerplates, snippets, ...other })
+        // const { boilerplates, snippets } = props
+        // Process templates JSON into lunr-supported JS objects
+        const constructCorpus = () => {
+            const toLunr = (item: any, type: any) => ({ type, ...item })
+            return [
+                ...Object.values(boilerplates).map(item => toLunr(item, 'boilerplates')),
+                // ...Object.values(featured_boilerplates).map(item => toLunr(item, 'featured_boilerplates')),
+                ...Object.values(snippets).map(item => toLunr(item, 'snippets')),
+            ]
+        }
+        let results, corpus: any
+        corpus = constructCorpus()
+        results = corpus
+        const idx = lunr(function () {
+            this.ref('endpointId')
+            this.field('title')
+            this.field('description')
+            this.field('type')
+            this.field('tags')
+
+            corpus.forEach((doc: any) => {
+                console.log('doc', doc)
+                this.add(doc)
+            }, this)
+        })
+        console.log(corpus)
+        window.idx = idx
+        // moonwalkers.forEach(walker => this.add(walker))
+        this.state = { searchQuery: '', idx, results: [], documents: corpus }
+    }
+
+
+    handleNewSearchValue = (value: any) => {
         // const handleNewSearchValue = _.throttle(value => {
         console.log("vallue", value)
-        const params = new URLSearchParams(location.search)
-
-        if (value.length) {
-            params.set('q', value)
-            window.history.replaceState({}, '', `${location.pathname}?${params}`)
-        } else {
-            params.delete('q')
-            window.history.replaceState({}, '', location.pathname)
-        }
-
-        // document.querySelector('#search').value = value
 
         if (value.length && value.length < 3) {
             return
         }
+        const results = this.getResults(this.state.searchQuery)
+
+        this.setState({ searchQuery: value.target.value, results })
     }
     //     search(value)
     // }, 500)
-    return (
-        <div style={{ display: "flex" }}>
-            <div style={{ flex: 2, marginRight: "16px" }}>
-                <label style={{ fontWeight: "normal", color: "#666" }}> Search templates</label >
-                <input id="search" placeholder="🔎 Search by template name or other details"
-                    style={{ padding: "10px", width: "100%" }}
-                    onChange={handleNewSearchValue}>
-                </input>
+    getResults(searchQuery: string) {
+        if (!searchQuery) return []
+        const results = this.state.idx
+            .search(searchQuery) // search the index
+            .map(({ ref, ...rest }: any) => ({
+                ref,
+                item: this.state.documents.find((m: any) => m.endpointId === ref),
+                ...rest
+            })) // attach each item
+        return results
+        // this.setState({ results, searchQuery })
+    }
+
+    render() {
+        console.log('resultss', this.state.results)
+        return (
+            <div style={{ display: "flex" }} >
+                Blah
+                <div style={{ flex: 2, marginRight: "16px" }}>
+                    <label style={{ fontWeight: "normal", color: "#666" }}> Search templates</label >
+                    <input id="search" placeholder="🔎 Search by template name or other details"
+                        style={{ padding: "10px", width: "100%" }}
+                        onChange={this.handleNewSearchValue}
+                        value={this.state.searchQuery}>
+                    </input>
+                </div >
+                {this.state.results.map(template => (<span>{template.item.title}</span>))}
             </div >
-            <div style={{ flex: 1, marginRight: "16px" }}>
-                <label style={{ fontWeight: "normal", color: "#666" }}> Type</label >
-                <select id="type" style={{ width: "100%" }}>
-                    <option>All</option>
-                    <option>Boilerplates</option>
-                    <option>Snippets</option>
-                    <option value="featured_boilerplates">Featured</option>
-                </select>
-            </div >
-        </div >)
+        )
+
+    }
 }
 const EmptyResults = () => {
     return (//   resultsContainer.style.display = 'none'
@@ -174,8 +174,12 @@ const EmptyResults = () => {
             <div id='#empty' style={{
                 display: 'block',
                 // hack to fix rendering of select
-                marginBottom: '999px'
+                marginBottom: '999px',
+                marginTop: '20px'
             }}>
+                <p>No results were found for your search. Try adjusting your search.</p>
             </div>
-        </div>)
+        </div>
+
+    )
 }
