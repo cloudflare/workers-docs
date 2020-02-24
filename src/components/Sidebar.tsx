@@ -3,6 +3,7 @@ import React from 'react'
 import { SidebarLi } from './SidebarItem'
 import { sortByWeight } from './utils'
 import { mdx } from '../types/mdx'
+import DocSearch from './DocSearch'
 // import { useMarkdownNodes } from '../hooks/useMarkdownRemark'
 
 const EXCLUDED_PATHS = [/\/workers\/$/]// Paths to not include in the sidebar
@@ -48,6 +49,7 @@ const Sidebar = ({ pathToServe = '/' }) => {
     frontmatter: { showNew: false, weight: 1, alwaysopen: false, hidden: false, title: 'Template Gallery' },
   }
 
+
   return (
     <>
       <a id="sidebar-toggle" onClick={clickHandler}>
@@ -60,12 +62,7 @@ const Sidebar = ({ pathToServe = '/' }) => {
       <div id="sidebar-open-backdrop"></div>
       <nav id="sidebar">
         <div className="search-container">
-          <input
-            className="search-input"
-            type="text"
-            id="docsearch-input"
-            placeholder="Search the docs..."
-          />
+          <DocSearch />
         </div>
         <div className="highlightable">
           <ul className="topics">

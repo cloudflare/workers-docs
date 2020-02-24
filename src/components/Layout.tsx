@@ -37,14 +37,6 @@ const Layout: React.FC<LayoutProps> = ({ title, children }) => {
       <Sidebar />
       <Helmet>
         <script type="text/javascript" src={withPrefix("/js/docsearch.min.js")} />
-        <script>
-          {`
-          window.docsearch({
-            apiKey: '4c1a7e1b6289032a8e8fd1dbbae112a3',
-            indexName: 'cloudflare',
-            inputSelector: '#docsearch-input'
-          });`}
-        </script>
       </Helmet>
       {children}
     </>
