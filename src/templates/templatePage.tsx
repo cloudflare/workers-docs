@@ -12,8 +12,6 @@ type templateProps = {
 }
 
 const Template: React.FC<templateProps> = ({ data, pageContext }) => {
-  console.log('data', data)
-  console.log('pageContext', pageContext)
   return (
     <>
       <Layout>

@@ -1,6 +1,6 @@
 import { restApiTemplate } from '../../types/restApiTemplates'
 import React from 'react'
-import { Link } from 'gatsby'
+import { Link, Src } from '../../components/Link'
 import { useRestApiTemplates } from '../../hooks/useMarkdownRemark'
 type boilerplateProps = restApiTemplate & {
   page_url?: string
@@ -20,8 +20,11 @@ export const Boilerplate: React.FC<boilerplateProps> = props => {
     ? props
     : getBoilerplate(props.endpointId || '')
   let { page_url } = props
-  const template_page = '/workers/templates/pages/' + endpointId
-  page_url = share_url ? '/' + share_url : template_page // TODO may need to consider tutorial? // TODO may need to consider tutorial?
+  const template_page = Src('/templates/pages/' + endpointId)
+
+  page_url = share_url ? share_url : template_page // TODO may need to consider tutorial? // TODO may need to consider tutorial?
+  page_url = Src(page_url)
+
   // TODO use regex to make sure leading slash
   return (
     <figure className="template-card boilerplate" id="{{.id}}">
@@ -35,13 +38,13 @@ export const Boilerplate: React.FC<boilerplateProps> = props => {
       </div>
       <Link to={page_url}>
         <h2>{title}</h2>
-        <img src={'/workers/templates/media/right-arrow.svg'} />
+        <img src={Src('/templates/media/right-arrow.svg')} />
       </Link>
       {/* Todo may need mardownify */}
       <p>{description}</p>
       <div className="copy-group">
         <div className="copy-step">
-          <img src={'/workers/templates/media/terminal.svg'} />
+          <img src={Src('/templates/media/terminal.svg')} />
           <span>Paste this into your terminal:</span>
         </div>
 

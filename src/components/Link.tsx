@@ -1,4 +1,4 @@
-import { Link as GatsbyLink, GatsbyLinkProps } from 'gatsby'
+import { Link as GatsbyLink } from 'gatsby'
 import React from 'react'
 // Since DOM elements <a> cannot receive activeClassName
 // and partiallyActive, destructure the prop here and
@@ -8,7 +8,17 @@ type LinkProps = {
   to: string
   [x: string]: any // To improve types, might want to inherit from  GatsbyLinkProps<TState> instead
 }
+// replace anything with /workers or / prepended to just /workers
+const stripWokrers = (url: string) =>
+  url.replace(/^(\/workers){1,3}/, '').replace(/^\/(?!\/)/, '/workers/')
 
+export const Src = (src: string) => {
+  // export const Src: React.FC<LinkProps> = ({ children, to, ...other }) => {
+  const internal = /^\/(?!\/)/.test(src)
+
+  // Use Gatsby Link for internal links, and <a> for others
+  return internal ? stripWokrers(src) : src
+}
 export const Link: React.FC<LinkProps> = ({ children, to, ...other }) => {
   // Tailor the following test to your environment.
   // This example assumes that any internal link (intended for Gatsby)
@@ -18,7 +28,7 @@ export const Link: React.FC<LinkProps> = ({ children, to, ...other }) => {
   // Use Gatsby Link for internal links, and <a> for others
   if (internal) {
     return (
-      <GatsbyLink to={to} {...other}>
+      <GatsbyLink to={stripWokrers(to)} {...other}>
         {children}
       </GatsbyLink>
     )
