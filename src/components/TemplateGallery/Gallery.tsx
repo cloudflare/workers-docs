@@ -4,6 +4,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import { Snippet } from './Snippet'
 import { Boilerplate } from './Boilerplate'
 import { SearchBox } from './SearchBox'
+import { SearchResults } from './SearchResults'
 
 export const Gallery: React.FunctionComponent<GalleryProps> = ({
 
@@ -50,28 +51,15 @@ export const Gallery: React.FunctionComponent<GalleryProps> = ({
   )
   const snippets = templates.allRestApiTemplates.edges.map(edge => edge.node).filter(template => template.type === "snippet")
   const boilerplates = templates.allRestApiTemplates.edges.map(edge => edge.node).filter(template => template.type === "boilerplate")
+  const featured_boilerplates = templates.allRestApiTemplates.edges.map(edge => edge.node).filter(template => template.type === "featured_boilerplate")
+  const allTemplates = templates.allRestApiTemplates.edges.map(edge => edge.node)
   return (
     <>
       <h1>Template Gallery</h1>
       <p>These templates are simple building blocks for developing Workers scripts.</p>
-      <SearchBox snippets={snippets} boilerplates={boil} />
-      <div className="gallery" id="results">
-        <h2>Boilerplates</h2>
-        {/* TODO add in style <h2 style="padding-bottom: 20px">Snippets</h2> */}
-        <section className="template-wrapper boilerplate">
-          {boilerplates.length ? boilerplates.map(template => (
-            <Boilerplate {...template} key={template.endpointId}></Boilerplate>
-          )) : null}
-        </section>
-        <h2>Snippets</h2>
-        {/* TODO add in style <h2 style="padding-bottom: 20px">Snippets</h2> */}
-        <section className="template-wrapper snippet">
-          {snippets.length ? snippets.map(template => (
-            <Snippet {...template} key={template.endpointId}></Snippet>
-          )) : null}
-        </section>
-        {/* TODO add in the raw JS that adds templates to global */}
-      </div>
+      <SearchBox snippets={snippets} boilerplates={boilerplates}>
+        {(results) => <SearchResults results={results} />}
+      </SearchBox>
     </>
   )
 }

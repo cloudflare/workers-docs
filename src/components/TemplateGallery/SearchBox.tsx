@@ -1,5 +1,5 @@
 import lunr from 'lunr'
-import React from 'react'
+import React, { ReactElement } from 'react'
 import { restApiTemplate } from '../../types/restApiTemplates'
 
 
@@ -13,26 +13,9 @@ import { restApiTemplate } from '../../types/restApiTemplates'
 //     .call(document.querySelectorAll('.choices__item--choice'))
 //     .map(el => el.getAttribute('data-value'))
 
-//   if (query) {
-//     let searchQuery = query
-//     // If the `types` array does not include the query (e.g. we are
-//     // not searching by type), include an asterisk to our intended
-//     // search logic (typing `graph` matches `graphql, etc)
-//     if (!types.includes(query)) {
-//       searchQuery += '*'
-//     }
 
-//     const opts = idx.search(searchQuery).map(result => result.ref)
-//     results = corpus.filter(item => opts.includes(item.id))
-//   } else {
-//     results = corpus
-//   }
-//   if (results.length) {
-//     processSearch()
-//   } else {
-//     processEmpty()
-//   }
-// }
+
+
 
 // // Update the UI with search results
 // const processSearch = () => {
@@ -80,6 +63,7 @@ import { restApiTemplate } from '../../types/restApiTemplates'
 type SearchBoxProps = {
     boilerplates: restApiTemplate[]
     snippets: restApiTemplate[]
+    children: (input: restApiTemplate[]) => ReactElement
 }
 type SearchBoxState = {
     searchQuery: string
@@ -96,7 +80,7 @@ export class SearchBox extends React.Component<SearchBoxProps, SearchBoxState> {
             const toLunr = (item: any, type: any) => ({ type, ...item })
             return [
                 ...Object.values(boilerplates).map(item => toLunr(item, 'boilerplates')),
-                // ...Object.values(featured_boilerplates).map(item => toLunr(item, 'featured_boilerplates')),
+                ...Object.values(featured_boilerplates).map(item => toLunr(item, 'featured_boilerplates')),
                 ...Object.values(snippets).map(item => toLunr(item, 'snippets')),
             ]
         }
@@ -122,16 +106,16 @@ export class SearchBox extends React.Component<SearchBoxProps, SearchBoxState> {
     }
 
 
-    handleNewSearchValue = (value: any) => {
+    handleNewSearchValue = (event: any) => {
+        // TODO: use a debouncer from lodash
         // const handleNewSearchValue = _.throttle(value => {
-        console.log("vallue", value)
-
+        const value = event.target.value
         if (value.length && value.length < 3) {
             return
         }
         const results = this.getResults(this.state.searchQuery)
 
-        this.setState({ searchQuery: value.target.value, results })
+        this.setState({ searchQuery: value, results })
     }
     //     search(value)
     // }, 500)
@@ -145,14 +129,12 @@ export class SearchBox extends React.Component<SearchBoxProps, SearchBoxState> {
                 ...rest
             })) // attach each item
         return results
-        // this.setState({ results, searchQuery })
     }
 
     render() {
         console.log('resultss', this.state.results)
         return (
             <div style={{ display: "flex" }} >
-                Blah
                 <div style={{ flex: 2, marginRight: "16px" }}>
                     <label style={{ fontWeight: "normal", color: "#666" }}> Search templates</label >
                     <input id="search" placeholder="🔎 Search by template name or other details"
@@ -161,7 +143,7 @@ export class SearchBox extends React.Component<SearchBoxProps, SearchBoxState> {
                         value={this.state.searchQuery}>
                     </input>
                 </div >
-                {this.state.results.map(template => (<span>{template.item.title}</span>))}
+                {this.props.children ? this.props.children(this.state.results.map(result => result.item)) : ''}
             </div >
         )
 
