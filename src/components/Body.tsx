@@ -5,13 +5,12 @@ const Body: React.FC<BodyProps> = ({ children, github_edit_url, archived }) => {
     <>
       <section id="body">
         <div className="padding highlightable">
-          {github_edit_url ? (<a
-            className="github-edit"
-            href={github_edit_url}
-          >
-            <img src={"/workers/svg/github.svg"} />
-            <span>Edit on Github</span>
-          </a>) : null}
+          {github_edit_url ? (
+            <a className="github-edit" href={github_edit_url}>
+              <img src={'/workers/svg/github.svg'} />
+              <span>Edit on Github</span>
+            </a>
+          ) : null}
           {/* Todo maybe add tags? here is original hugo
           <div id="tags">
             {{ range $index, $tag := .Params.tags }}

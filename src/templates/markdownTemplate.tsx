@@ -7,8 +7,8 @@ import { markdownRemarkResult, markdownPageContext } from '../types/mdx'
 import Body from '../components/Body'
 import { Gallery } from '../components/TemplateGallery/Gallery'
 import { Link, Image } from '../components/Link'
-import { MDXRenderer } from "gatsby-plugin-mdx"
-import { MDXProvider } from "@mdx-js/react"
+import { MDXRenderer } from 'gatsby-plugin-mdx'
+import { MDXProvider } from '@mdx-js/react'
 
 type markdownBaseProps = {
   data: { mdx: markdownRemarkResult }
@@ -21,7 +21,7 @@ const components = {
   },
   img: (props: any) => {
     return <Image src={props.src} {...props} />
-  }
+  },
 }
 const MarkdownTemplate: React.FC<markdownBaseProps> = ({
   data, // this prop will be injected by the GraphQL query below.
@@ -31,10 +31,15 @@ const MarkdownTemplate: React.FC<markdownBaseProps> = ({
   const { title } = frontmatter
   return (
     <>
-      <Layout title={title}  >
-        <Body archived={fields.filePath.includes("/archive/")} github_edit_url={`https://github.com/cloudflare/workers-docs/edit/master/src/content${fields.filePath}`}>
+      <Layout title={title}>
+        <Body
+          archived={fields.filePath.includes('/archive/')}
+          github_edit_url={`https://github.com/cloudflare/workers-docs/edit/master/src/content${fields.filePath}`}
+        >
           <h1>{frontmatter.title}</h1>
-          <MDXProvider components={components}><MDXRenderer>{body || ""}</MDXRenderer></MDXProvider>
+          <MDXProvider components={components}>
+            <MDXRenderer>{body || ''}</MDXRenderer>
+          </MDXProvider>
         </Body>
       </Layout>
     </>

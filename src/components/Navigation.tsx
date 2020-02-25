@@ -24,10 +24,10 @@ export const Navigation = () => {
                 >
                   <title id="CloudflareWorkersLogoCombinationMarkHorizontal--title">
                     Cloudflare Workers logo (horizontal)
-              </title>
+                  </title>
                   <desc id="CloudflareWorkersLogoCombinationMarkHorizontal--desc">
                     The horizontal wordmark logo for the Cloudflare Workers brand.
-              </desc>
+                  </desc>
                   <defs>
                     <linearGradient
                       id="CloudflareWorkersLogoCombinationMarkHorizontal--gradient-a"
@@ -158,32 +158,58 @@ export const Navigation = () => {
                 </svg>
               </div>
             </a>
-            <Link to="/workers/" className={"navigation-link" + (isActiveRootTab() ? " active" : "")
-            }>
+            <Link
+              to="/workers/"
+              className={'navigation-link' + (isActiveRootTab() ? ' active' : '')}
+            >
               <span>Docs</span>
             </Link>
-            <Link to="/workers/quickstart/" className={"navigation-link" + (isActiveSubNavTab("/workers/quickstart/") ? " active" : "")
-            }>
+            <Link
+              to="/workers/quickstart/"
+              className={
+                'navigation-link' + (isActiveSubNavTab('/workers/quickstart/') ? ' active' : '')
+              }
+            >
               <span>Quick&nbsp;Start</span>
             </Link>
-            <Link to="/workers/templates/" className={"navigation-link" + (isActiveSubNavTab("/workers/templates/") ? " active" : "")
-            }>
+            <Link
+              to="/workers/templates/"
+              className={
+                'navigation-link' + (isActiveSubNavTab('/workers/templates/') ? ' active' : '')
+              }
+            >
               <span>Templates</span>
             </Link>
-            <Link to="/workers/tutorials/" className={"navigation-link" + (isActiveSubNavTab("/workers/tutorials/") ? " active" : "")
-            }>
+            <Link
+              to="/workers/tutorials/"
+              className={
+                'navigation-link' + (isActiveSubNavTab('/workers/tutorials/') ? ' active' : '')
+              }
+            >
               <span>Tutorials</span>
             </Link>
-            <Link to="/workers/reference/" className={"navigation-link" + (isActiveSubNavTab("/workers/reference/") ? " active" : "")
-            }>
+            <Link
+              to="/workers/reference/"
+              className={
+                'navigation-link' + (isActiveSubNavTab('/workers/reference/') ? ' active' : '')
+              }
+            >
               <span>Reference</span>
             </Link>
-            <Link to="/workers/tooling/" className={"navigation-link" + (isActiveSubNavTab("/workers/tooling/") ? " active" : "")
-            }>
+            <Link
+              to="/workers/tooling/"
+              className={
+                'navigation-link' + (isActiveSubNavTab('/workers/tooling/') ? ' active' : '')
+              }
+            >
               <span>Tooling</span>
             </Link>
-            <Link to="/workers/about/" className={"navigation-link" + (isActiveSubNavTab("/workers/about/") ? " active" : "")
-            }>
+            <Link
+              to="/workers/about/"
+              className={
+                'navigation-link' + (isActiveSubNavTab('/workers/about/') ? ' active' : '')
+              }
+            >
               <span>About</span>
             </Link>
           </div>

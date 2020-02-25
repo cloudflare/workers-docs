@@ -36,10 +36,7 @@ const Layout: React.FC<LayoutProps> = ({ title, children }) => {
       <Navigation />
       <Sidebar />
       <Helmet>
-        <script
-          type="text/javascript"
-          src={withAssetPrefix('/js/docsearch.min.js')}
-        />
+        <script type="text/javascript" src={withAssetPrefix('/js/docsearch.min.js')} />
       </Helmet>
       {children}
     </>
