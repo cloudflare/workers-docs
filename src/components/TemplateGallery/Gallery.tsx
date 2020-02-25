@@ -6,64 +6,65 @@ import { Boilerplate } from './Boilerplate'
 import { SearchBox } from './SearchBox'
 import { SearchResults } from './SearchResults'
 
-export const Gallery: React.FunctionComponent<GalleryProps> = ({
-
-}) => {
+export const Gallery: React.FunctionComponent<GalleryProps> = ({}) => {
   // TODO get hooks working instead of useStaticQuery in components
   const templates: allRestApiTemplates['data'] = useStaticQuery(
     graphql`
-    query {
-      allRestApiTemplates {
-        edges {
-          node {
-            tags
-            share_url
-            repository_url
-            endpointId
-            description
-            demos {
-              bar {
-                text
-                url
+      query {
+        allRestApiTemplates {
+          edges {
+            node {
+              tags
+              share_url
+              repository_url
+              endpointId
+              description
+              demos {
+                bar {
+                  text
+                  url
+                }
+                foo {
+                  text
+                  url
+                }
+                main {
+                  share_url
+                  tags
+                  text
+                  url
+                }
               }
-              foo {
-                text
-                url
-              }
-              main {
-                share_url
-                tags
-                text
-                url
-              }
+              code
+              title
+              type
+              url
+              weight
             }
-            code
-            title
-            type
-            url
-            weight
           }
         }
       }
-    }
-
-    `,
+    `
   )
-  const snippets = templates.allRestApiTemplates.edges.map(edge => edge.node).filter(template => template.type === "snippet")
-  const boilerplates = templates.allRestApiTemplates.edges.map(edge => edge.node).filter(template => template.type === "boilerplate")
-  const featured_boilerplates = templates.allRestApiTemplates.edges.map(edge => edge.node).filter(template => template.type === "featured_boilerplate")
+  const snippets = templates.allRestApiTemplates.edges
+    .map(edge => edge.node)
+    .filter(template => template.type === 'snippet')
+  const boilerplates = templates.allRestApiTemplates.edges
+    .map(edge => edge.node)
+    .filter(template => template.type === 'boilerplate')
+  const featured_boilerplates = templates.allRestApiTemplates.edges
+    .map(edge => edge.node)
+    .filter(template => template.type === 'featured_boilerplate')
   const allTemplates = templates.allRestApiTemplates.edges.map(edge => edge.node)
   return (
     <>
       <h1>Template Gallery</h1>
       <p>These templates are simple building blocks for developing Workers scripts.</p>
       <SearchBox snippets={snippets} boilerplates={boilerplates}>
-        {(results) => <SearchResults results={results} />}
+        {results => <SearchResults results={results} />}
       </SearchBox>
     </>
   )
 }
 
-export type GalleryProps = {
-
-}
+export type GalleryProps = {}
