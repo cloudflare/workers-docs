@@ -236,7 +236,7 @@ vars = {
 }
 ```
 
-Note: Secret variables are assigned to specific environments by default when using the [`wrangler secret create`](/tooling/wrangler/secret/) command.
+Note: Secret variables can be assigned to specific environments by passing the `-e/--env <environment_name>` flag while using the [`wrangler secret create`](/tooling/wrangler/secret/) command.
 
 ## Invalid configurations
 
