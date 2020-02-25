@@ -60,7 +60,11 @@ export const Gallery: React.FunctionComponent<GalleryProps> = ({}) => {
     <>
       <h1>Template Gallery</h1>
       <p>These templates are simple building blocks for developing Workers scripts.</p>
-      <SearchBox snippets={snippets} boilerplates={boilerplates}>
+      <SearchBox
+        featured_boilerplates={featured_boilerplates}
+        snippets={snippets}
+        boilerplates={boilerplates}
+      >
         {results => <SearchResults results={results} />}
       </SearchBox>
     </>
