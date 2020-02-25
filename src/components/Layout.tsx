@@ -6,7 +6,7 @@
  */
 
 import React from 'react'
-import { useStaticQuery, graphql, withPrefix } from 'gatsby'
+import { useStaticQuery, graphql, withAssetPrefix } from 'gatsby'
 
 import Sidebar from './Sidebar'
 import SEO from './Seo'
@@ -36,7 +36,7 @@ const Layout: React.FC<LayoutProps> = ({ title, children }) => {
       <Navigation />
       <Sidebar />
       <Helmet>
-        <script type="text/javascript" src={withPrefix('/js/docsearch.min.js')} />
+        <script type="text/javascript" src={withAssetPrefix('/js/docsearch.min.js')} />
       </Helmet>
       {children}
     </>

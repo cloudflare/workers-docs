@@ -86,7 +86,7 @@ const TemplatePage: React.FC<templateProps> = ({ id, data }) => {
       </Helmet>
       <figure className="template-page" id={id}>
         <Link to={'/templates'} {...{ className: 'back' }}>
-          <img src={withPrefix('/templates/media/left-arrow.svg')} />
+          <img src={withAssetPrefix('/templates/media/left-arrow.svg')} />
           Template Gallery
         </Link>
         <div className="grid-3-noBottom_xs-5">
@@ -99,7 +99,7 @@ const TemplatePage: React.FC<templateProps> = ({ id, data }) => {
                   const demo = demos[key]
                   return demo ? (
                     <Link key={demo.url} to={demo.url}>
-                      <img src={withPrefix('/templates/media/external-link.svg')} />
+                      <img src={withAssetPrefix('/templates/media/external-link.svg')} />
                       <span>{demo.text}</span>
                     </Link>
                   ) : null
@@ -127,7 +127,7 @@ const TemplatePage: React.FC<templateProps> = ({ id, data }) => {
             {code ? (
               <div className="grey copy-group">
                 <CopyToClipboard text={code}>
-                  <img className="copy-trigger" src={withPrefix('/svg/copy-box.svg')} />
+                  <img className="copy-trigger" src={withAssetPrefix('/svg/copy-box.svg')} />
                 </CopyToClipboard>
                 <code className="copy">{code}</code>
               </div>
@@ -142,7 +142,7 @@ const TemplatePage: React.FC<templateProps> = ({ id, data }) => {
                 <div className="copy-group">
                   <span className="copy">wrangler generate my-app {repository_url}</span>
                   <CopyToClipboard text={'wrangler generate my-app ' + repository_url}>
-                    <img className="copy-trigger" src={withPrefix('/svg/copy-box.svg')} />
+                    <img className="copy-trigger" src={withAssetPrefix('/svg/copy-box.svg')} />
                   </CopyToClipboard>
                 </div>
                 <span>
@@ -156,14 +156,14 @@ const TemplatePage: React.FC<templateProps> = ({ id, data }) => {
                 {repository_url ? (
                   <>
                     <Link to={repository_url}>
-                      <img src={withPrefix('/svg/github.svg')} />
+                      <img src={withAssetPrefix('/svg/github.svg')} />
                       <div>{repo_name}</div>
                     </Link>
                     <div className="date">{repo_date_text}</div>
                   </>
                 ) : (
                   <a href={github_api_repo_url + '/' + id + '.js'}>
-                    <img src={withPrefix('/svg/github.svg')} />
+                    <img src={withAssetPrefix('/svg/github.svg')} />
                     <div>template-registry/{id}.js</div>
                   </a>
                 )}

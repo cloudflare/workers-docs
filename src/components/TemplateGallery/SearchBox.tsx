@@ -53,9 +53,7 @@ import debounce from 'lodash.debounce'
 //   search(value === 'All' ? null : value)
 // }
 type SearchBoxProps = {
-  boilerplates: restApiTemplate[]
-  snippets: restApiTemplate[]
-  featured_boilerplates: restApiTemplate[]
+  templates: restApiTemplate[]
   children: (input: restApiTemplate[]) => ReactElement
 }
 type SearchBoxState = {
@@ -69,14 +67,12 @@ export class SearchBox extends React.Component<SearchBoxProps, SearchBoxState> {
 
   constructor(props: SearchBoxProps) {
     super(props)
-    const { boilerplates, snippets, featured_boilerplates } = props
+    const { templates } = props
     // Process templates JSON into lunr-supported JS objects
     const constructCorpus = () => {
-      const toLunr = (item: restApiTemplate, type: restApiTemplate['type']) => ({ type, ...item })
+      // const toLunr = (item: restApiTemplate, type: restApiTemplate['type']) => ({ type, ...item })
       return [
-        ...Object.values(boilerplates).map(item => toLunr(item, 'boilerplates')),
-        ...Object.values(featured_boilerplates).map(item => toLunr(item, 'featured_boilerplates')),
-        ...Object.values(snippets).map(item => toLunr(item, 'snippets')),
+        ...Object.values(templates), // .map(item => toLunr(item, 'boilerplates')),
       ]
     }
     let results, corpus: any
@@ -104,9 +100,9 @@ export class SearchBox extends React.Component<SearchBoxProps, SearchBoxState> {
     // @ts-ignore
     window.idx = this.idx
   }
-  handleNewSearchValue2 = (event: any) => {
+  handleNewSearchValue = (event: any) => {
     const value = event.target.value
-    // if (value.length && value.length < 3) {
+    // if (!value.length) {
     //   return
     // }
     const doSearch = debounce((value: string) => {
@@ -140,14 +136,20 @@ export class SearchBox extends React.Component<SearchBoxProps, SearchBoxState> {
             id="search"
             placeholder="🔎 Search by template name or other details"
             style={{ padding: '10px', width: '100%' }}
-            onChange={this.handleNewSearchValue2}
-            // onChange={e => this.handleNewSearchValue2(e.target.value)}
+            onChange={this.handleNewSearchValue}
+            // onChange={e => this.handleNewSearchValue(e.target.value)}
             value={this.state.searchQuery}
           ></input>
         </div>
-        {this.props.children
-          ? this.props.children(this.state.results.map(result => result.item))
-          : ''}
+        {this.state.results.length ? (
+          this.props.children ? (
+            this.props.children(this.state.results.map(result => result.item))
+          ) : (
+            ''
+          )
+        ) : (
+          <EmptyResults />
+        )}
       </>
     )
   }
@@ -156,7 +158,7 @@ const EmptyResults = () => {
   return (
     //   resultsContainer.style.display = 'none'
 
-    <div id="#results" style={{ display: 'none' }}>
+    <div id="#results">
       <div
         id="#empty"
         style={{
