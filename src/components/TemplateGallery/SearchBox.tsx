@@ -133,7 +133,7 @@ export class SearchBox extends React.Component<SearchBoxProps, SearchBoxState> {
   render() {
     console.log('resultss', this.state.results)
     return (
-      <div style={{ display: 'flex' }}>
+      <>
         <div style={{ flex: 2, marginRight: '16px' }}>
           <label style={{ fontWeight: 'normal', color: '#666' }}> Search templates</label>
           <input
@@ -148,7 +148,7 @@ export class SearchBox extends React.Component<SearchBoxProps, SearchBoxState> {
         {this.props.children
           ? this.props.children(this.state.results.map(result => result.item))
           : ''}
-      </div>
+      </>
     )
   }
 }

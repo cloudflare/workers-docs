@@ -28,7 +28,13 @@ export const SearchResults: React.FunctionComponent<GalleryProps> = ({
                     <Snippet {...template} key={template.endpointId}></Snippet>
                 )) : null}
             </section>
-            {/* TODO add in the raw JS that adds templates to global */}
+            <h2>Featured Boilerplates</h2>
+            {/* TODO add in style <h2 style="padding-bottom: 20px">Snippets</h2> */}
+            <section className="template-wrapper boilerplate">
+                {featured_boilerplates.length ? featured_boilerplates.map(template => (
+                    <Boilerplate {...template} key={template.endpointId}></Boilerplate>
+                )) : null}
+            </section>
         </div>
     )
 }
