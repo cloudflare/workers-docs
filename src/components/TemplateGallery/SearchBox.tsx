@@ -1,6 +1,7 @@
 import lunr from 'lunr'
 import React, { ReactElement } from 'react'
 import { restApiTemplate } from '../../types/restApiTemplates'
+import debounce from 'lodash.debounce'
 
 // // Search based on a query, updating `results`
 // const search = query => {
@@ -54,21 +55,24 @@ import { restApiTemplate } from '../../types/restApiTemplates'
 type SearchBoxProps = {
   boilerplates: restApiTemplate[]
   snippets: restApiTemplate[]
+  featured_boilerplates: restApiTemplate[]
   children: (input: restApiTemplate[]) => ReactElement
 }
 type SearchBoxState = {
   searchQuery: string
   results: any[]
-  idx: any
+  //   idx: any
   documents: any
 }
 export class SearchBox extends React.Component<SearchBoxProps, SearchBoxState> {
-  constructor({ boilerplates, snippets, ...other }: SearchBoxProps) {
-    super({ boilerplates, snippets, ...other })
-    // const { boilerplates, snippets } = props
+  public idx: lunr.Index
+
+  constructor(props: SearchBoxProps) {
+    super(props)
+    const { boilerplates, snippets, featured_boilerplates } = props
     // Process templates JSON into lunr-supported JS objects
     const constructCorpus = () => {
-      const toLunr = (item: any, type: any) => ({ type, ...item })
+      const toLunr = (item: restApiTemplate, type: restApiTemplate['type']) => ({ type, ...item })
       return [
         ...Object.values(boilerplates).map(item => toLunr(item, 'boilerplates')),
         ...Object.values(featured_boilerplates).map(item => toLunr(item, 'featured_boilerplates')),
@@ -78,7 +82,8 @@ export class SearchBox extends React.Component<SearchBoxProps, SearchBoxState> {
     let results, corpus: any
     corpus = constructCorpus()
     results = corpus
-    const idx = lunr(function() {
+    // const idx = lunr(function() {
+    this.idx = lunr(function() {
       this.ref('endpointId')
       this.field('title')
       this.field('description')
@@ -90,32 +95,32 @@ export class SearchBox extends React.Component<SearchBoxProps, SearchBoxState> {
         this.add(doc)
       }, this)
     })
-    console.log(corpus)
-
+    // window.idx = this.idx
     // moonwalkers.forEach(walker => this.add(walker))
-    this.state = { searchQuery: '', idx, results: [], documents: corpus }
+    this.state = { searchQuery: '', results: [], documents: corpus }
   }
 
   componentDidMount() {
     // @ts-ignore
-    window.idx = idx
+    window.idx = this.idx
   }
-  handleNewSearchValue = (event: any) => {
-    // TODO: use a debouncer from lodash
-    // const handleNewSearchValue = _.throttle(value => {
+  handleNewSearchValue2 = (event: any) => {
     const value = event.target.value
-    if (value.length && value.length < 3) {
-      return
-    }
-    const results = this.getResults(this.state.searchQuery)
+    // if (value.length && value.length < 3) {
+    //   return
+    // }
+    const doSearch = debounce((value: string) => {
+      const results = this.getResults(value)
+      this.setState({ searchQuery: value, results })
+    })
 
-    this.setState({ searchQuery: value, results })
+    this.setState({ searchQuery: value }, () => {
+      doSearch(value)
+    })
   }
-  //     search(value)
-  // }, 500)
   getResults(searchQuery: string) {
     if (!searchQuery) return []
-    const results = this.state.idx
+    const results = this.idx
       .search(searchQuery) // search the index
       .map(({ ref, ...rest }: any) => ({
         ref,
@@ -135,7 +140,8 @@ export class SearchBox extends React.Component<SearchBoxProps, SearchBoxState> {
             id="search"
             placeholder="🔎 Search by template name or other details"
             style={{ padding: '10px', width: '100%' }}
-            onChange={this.handleNewSearchValue}
+            onChange={this.handleNewSearchValue2}
+            // onChange={e => this.handleNewSearchValue2(e.target.value)}
             value={this.state.searchQuery}
           ></input>
         </div>
