@@ -6,14 +6,15 @@ import { mdx } from '../types/mdx'
 import DocSearch from './DocSearch'
 // import { useMarkdownNodes } from '../hooks/useMarkdownRemark'
 
-const EXCLUDED_PATHS = [/\/workers\/$/] // Paths to not include in the sidebar
+const EXCLUDED_PATHS = [/\/workers\/$/]// Paths to not include in the sidebar
+
 
 const Sidebar = ({ pathToServe = '/' }) => {
   const clickHandler = () => {
     if (document.body.classList.contains('with-sidebar-open')) {
-      document.body.classList.remove('with-sidebar-open')
+      document.body.classList.remove('with-sidebar-open');
     } else {
-      document.body.classList.add('with-sidebar-open')
+      document.body.classList.add('with-sidebar-open');
     }
   }
   // TODO get hooks working instead of useStaticQuery in components
@@ -40,23 +41,14 @@ const Sidebar = ({ pathToServe = '/' }) => {
           }
         }
       }
-    `
+    `,
   ).allMdx.edges
 
   const templateGalleryPage = {
-    fields: {
-      pathToServe: '/workers/templates',
-      parent: '/',
-      filePath: 'src/content/workers/templates',
-    },
-    frontmatter: {
-      showNew: false,
-      weight: 1,
-      alwaysopen: false,
-      hidden: false,
-      title: 'Template Gallery',
-    },
+    fields: { pathToServe: '/workers/templates', parent: '/', filePath: 'src/content/workers/templates' },
+    frontmatter: { showNew: false, weight: 1, alwaysopen: false, hidden: false, title: 'Template Gallery' },
   }
+
 
   return (
     <>
@@ -85,11 +77,8 @@ const Sidebar = ({ pathToServe = '/' }) => {
               // one forward slash) mdx nodes
               .filter(edge => edge.node.fields.parent === '/')
               .filter(edge => !edge.node.frontmatter.hidden)
-              .filter(edge => {
-                //exclude the path if it has a match in EXCLUDED_PATHS
-                const matchedPaths = EXCLUDED_PATHS.filter(excludePath =>
-                  excludePath.test(edge.node.fields.pathToServe)
-                )
+              .filter(edge => { //exclude the path if it has a match in EXCLUDED_PATHS
+                const matchedPaths = EXCLUDED_PATHS.filter((excludePath) => excludePath.test(edge.node.fields.pathToServe))
                 return matchedPaths.length < 1
               })
               .map(edge => edge.node)
@@ -99,12 +88,7 @@ const Sidebar = ({ pathToServe = '/' }) => {
                 const { fields, frontmatter } = node
                 return (
                   // Todo filter out hidden pages
-                  <SidebarLi
-                    depth={1}
-                    frontmatter={frontmatter}
-                    fields={fields}
-                    key={frontmatter.title}
-                  />
+                  <SidebarLi depth={1} frontmatter={frontmatter} fields={fields} key={frontmatter.title} />
                 )
               })}
           </ul>

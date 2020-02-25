@@ -9,51 +9,49 @@ type templateProps = {
   data: restApiTemplate
 }
 async function grabGithubData(url: string | null) {
-  if (!url) {
-    throw 'no url'
-  }
+  if (!url) { throw 'no url' }
   const resp = await fetch(url)
   return await resp.json()
 }
-const TemplatePage: React.FC<templateProps> = ({ id, data }) => {
+const TemplatePage: React.FC<templateProps> = ({
+  id,
+  data,
+}) => {
+
   const { demos, repository_url, title, description, tags, code } = data
 
   let [githubData, setState] = useState(null as any | null)
   useEffect(() => {
-    if (repository_url) {
-      // NOTE: (disclaimer not the best logic)
+    if (repository_url) { // NOTE: (disclaimer not the best logic)
       // repository_url being passed in means there was a specific repo for
       // this template (i.e. a boilerplate)
-      let github_api_repo_url = repository_url.replace(
-        'https://github.com/',
-        'https://api.github.com/repos/'
-      )
-      grabGithubData(github_api_repo_url)
-        .then(data => {
-          setState({
-            repo_name: data.full_name,
-            repo_date: data.updated_at,
-            github_api_repo_url: github_api_repo_url,
-          })
+      let github_api_repo_url = repository_url.replace("https://github.com/", "https://api.github.com/repos/")
+      grabGithubData(github_api_repo_url).then(data => {
+        setState({
+          repo_name: data.full_name,
+          repo_date: data.updated_at,
+          github_api_repo_url: github_api_repo_url
         })
-        .catch(e => {
-          console.log('error from grabbing github', e)
-          setState({
-            github_api_repo_url: '', // set this to empty string so doesn't render github block
-          })
+      }).catch(e => {
+        console.log('error from grabbing github', e)
+        setState({
+          github_api_repo_url: "" // set this to empty string so doesn't render github block
         })
+      })
     } else {
       setState({
-        github_api_repo_url:
-          'https://github.com/victoriabernard92/template-registry/tree/master/templates/javascript',
-        repo_name: 'template-registry/' + id + '.js',
+        github_api_repo_url: "https://github.com/victoriabernard92/template-registry/tree/master/templates/javascript",
+        repo_name: "template-registry/" + id + ".js"
       })
     }
-  }, [repository_url])
+
+  }, [repository_url]
+  )
+
 
   if (!githubData) return <div>loading</div>
   const { repo_name, repo_date, github_api_repo_url } = githubData
-  const repo_date_text = 'December 13, 2019' // TODO convert repo_date into this format
+  const repo_date_text = "December 13, 2019" // TODO convert repo_date into this format
   return (
     <>
       <Helmet>
@@ -90,7 +88,9 @@ const TemplatePage: React.FC<templateProps> = ({ id, data }) => {
         </Link>
         <div className="grid-3-noBottom_xs-5">
           <div className="col-8">
-            <h2>{title}</h2>
+            <h2>
+              {title}
+            </h2>
           </div>
           <div className="col-4 demo">
             {demos
@@ -113,27 +113,25 @@ const TemplatePage: React.FC<templateProps> = ({ id, data }) => {
               {/* Might need to markdownify */}
               <p>{description}</p>
               <div className="tag-group">
-                {tags
-                  ? tags.map(tag => (
-                      <button key={tag} className={'tooltip ' + tag}>
-                        <span className="tooltiptext"></span>
-                        {tag}
-                      </button>
-                    ))
+                {tags ? tags.map(tag => (
+                  <button key={tag} className={"tooltip " + tag} >
+                    <span className="tooltiptext"></span>{tag}
+                  </button>
+                ))
                   : null}
               </div>
             </div>
-            {code ? (
+            {code ?
               <div className="grey copy-group">
                 <CopyToClipboard text={code}>
                   <img className="copy-trigger" src={Src('/svg/copy-box.svg')} />
                 </CopyToClipboard>
-                <code className="copy">{code}</code>
+                <code className="copy" >{code}</code>
               </div>
-            ) : null}
+              : null}
           </div>
           <div className="col-4 links">
-            {repository_url ? (
+            {repository_url ?
               <div className="black copy-block">
                 <div className="copy-step">
                   <span>Run in your terminal:</span>
@@ -144,9 +142,8 @@ const TemplatePage: React.FC<templateProps> = ({ id, data }) => {
                     <img className="copy-trigger" src={Src('/svg/copy-box.svg')} />
                   </CopyToClipboard>
                 </div>
-                <span>
-                  Don't have Wrangler installed?
-                  <a href={'/quickstart'}> Get started</a>
+                <span>Don't have Wrangler installed?
+                      <a href={"/quickstart"}> Get started</a>
                 </span>
               </div>
             ) : null}
@@ -172,7 +169,7 @@ const TemplatePage: React.FC<templateProps> = ({ id, data }) => {
             )}
           </div>
         </div>
-      </figure>
+      </figure >
     </>
   )
 }

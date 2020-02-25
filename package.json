@@ -15,7 +15,7 @@
     "worker-start": "npm run build && wrangler preview --watch -e staging",
     "worker-test": "ava workers-site/test/index.js --verbose",
     "publish": "npm run build && wrangler publish -e",
-    "format": "prettier --write \"**/*.{ts,tsx,json,md}\""
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\""
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.5.3",

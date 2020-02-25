@@ -1,5 +1,5 @@
 ---
-title: 'Using NPM Modules'
+title: "Using NPM Modules"
 ---
 
 You can create a Worker locally, import NPM packages, bundle all the code with Webpack, and push it to the edge using the Workers [Configuration API](/archive/api/).
@@ -13,7 +13,7 @@ addEventListener('fetch', event => {
   event.respondWith(sendDate(event.request))
 })
 
-const _ = require('lodash')
+const _ = require("lodash")
 
 async function sendDate(request) {
   return new Response(`${_.now()}`)
@@ -26,8 +26,8 @@ Since JavaScript can be run in multiple environments, Webpack offers the ability
 
 ```js
 module.exports = {
-  target: 'webworker',
-}
+  target: 'webworker'
+};
 ```
 
 The package.json has a section for adding scripts to run to manage the project. When we run scripts from the package.json by using `npm run <SCRIPT_NAME>`, npm will update our path to include packages in the `node_modules` folder, allowing us to use packages that are installed for use in the project that we don’t want in the global scope of our computer. Edit your package.json to include a script called `build` that will run `webpack`, bundling our needed packages with our Worker:

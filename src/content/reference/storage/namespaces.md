@@ -5,7 +5,7 @@ weight: 80
 
 While Workers KV is an account-level feature, you may not want every
 key-value pair to be globally available. You can create up to a hundred
-_namespaces_ in your account, and then bind that namespace to your script. The
+*namespaces* in your account, and then bind that namespace to your script. The
 script will then only have access to that specific namespace, and will read
 keys from and write keys to it, specifically.
 

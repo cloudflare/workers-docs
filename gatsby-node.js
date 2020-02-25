@@ -79,7 +79,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     // Use `createFilePath` to turn markdown files in our `content` directory into `/workers/`pathToServe
     const originalPath = node.fileAbsolutePath.replace(
       node.fileAbsolutePath.match(/.*content/)[0],
-      ''
+      '',
     )
     let pathToServe = createFilePath({
       node,

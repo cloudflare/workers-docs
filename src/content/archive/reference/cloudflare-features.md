@@ -89,7 +89,7 @@ For security reasons, `resolveOverride` is only honored when both the URL hostna
 
 ## Custom Cache Keys
 
-_This feature is available to enterprise users only._
+*This feature is available to enterprise users only.*
 
 ```javascript
 // Set cache key for this request to "some-string".
@@ -102,7 +102,7 @@ Normally, Cloudflare computes the cache key for a request based on the request's
 
 ```javascript
 addEventListener('fetch', event => {
-  let url = new URL(event.request.url)
+  let url = new URL(event.request.url);
   if (Math.random() < 0.5) {
     url.hostname = 'example.s3.amazonaws.com'
   } else {
@@ -110,19 +110,17 @@ addEventListener('fetch', event => {
   }
 
   let request = new Request(url, event.request)
-  event.respondWith(
-    fetch(request, {
-      cf: { cacheKey: event.request.url },
-    })
-  )
+  event.respondWith(fetch(request, {
+    cf: { cacheKey: event.request.url }
+  }))
 })
 ```
 
 Notes:
 
-- Each zone has its own private cache key namespace. That means that two Workers operating within the same zone (even on different hostnames) may share cache using custom cache keys, but Workers operating on behalf of different zones cannot affect each other's cache.
-- You can only override cache keys when making requests within your own zone, or requests to hosts that are not on Cloudflare. When making a request to another Cloudflare zone (e.g. belonging to a different Cloudflare customer), that zone fully controls how its own content is cached within Cloudflare; you cannot override it.
-- URLs that are fetch()ed with a custom cache key _cannot be purged_ using a URL purge. However you can use the Cache API and [set a Cache Tag on the response object](/archive/reference/cache-api/) if you need to purge the URL.
+* Each zone has its own private cache key namespace. That means that two Workers operating within the same zone (even on different hostnames) may share cache using custom cache keys, but Workers operating on behalf of different zones cannot affect each other's cache.
+* You can only override cache keys when making requests within your own zone, or requests to hosts that are not on Cloudflare. When making a request to another Cloudflare zone (e.g. belonging to a different Cloudflare customer), that zone fully controls how its own content is cached within Cloudflare; you cannot override it.
+* URLs that are fetch()ed with a custom cache key *cannot be purged* using a URL purge. However you can use the Cache API and [set a Cache Tag on the response object](/archive/reference/cache-api/) if you need to purge the URL.
 
 ## Override Cache TTL
 
@@ -137,12 +135,12 @@ Negative values for `cacheTtl` have no effect.
 
 ## Override based on origin response code
 
-_This feature is available to enterprise users only._
+*This feature is available to enterprise users only.*
 
 ```javascript
 // Force response to be cached for 86400 seconds for 200 status codes, 1 second for 404,
 // and do not cache 500 errors
-fetch(request, { cf: { cacheTtlByStatus: { '200-299': 86400, 404: 1, '500-599': 0 } } })
+fetch(request, { cf: { cacheTtlByStatus: { "200-299": 86400, 404: 1, "500-599": 0 } } })
 ```
 
 This option is a version of the `cacheTtl` feature which chooses a TTL based on the response's status code. If the response to this request has a status code that matches, Cloudflare will cache for the instructed time, and override cache instructives sent by the origin.
@@ -153,8 +151,8 @@ You may still choose to have different rules based on request settings by checki
 
 TTL values:
 
-- Positive TTL values indicate in seconds how long Cloudflare should cache the asset for
-- `0` TTL will cause assets to get cached, but expire immediately (revalidate from origin every time)
-- `-1`, or any negative value will instruct Cloudflare not to cache at all (note: `-1` is NOT supported by `cacheTtl`)
+ * Positive TTL values indicate in seconds how long Cloudflare should cache the asset for
+ * `0` TTL will cause assets to get cached, but expire immediately (revalidate from origin every time)
+ * `-1`, or any negative value will instruct Cloudflare not to cache at all (note: `-1` is NOT supported by `cacheTtl`)
 
-Please note, that Cloudflare will still adhere to [standard cache levels](https://support.cloudflare.com/hc/en-us/articles/202775670-How-Do-I-Tell-Cloudflare-What-to-Cache-), so by default this will override cache behavior for static files. If you wish to cache non-static assets, you will need to set a [Cache Level of Cache Everything](https://support.cloudflare.com/hc/en-us/articles/200172266-What-do-the-custom-caching-options-mean-in-Page-Rules-) using a Page Rule.
+ Please note, that Cloudflare will still adhere to [standard cache levels](https://support.cloudflare.com/hc/en-us/articles/202775670-How-Do-I-Tell-Cloudflare-What-to-Cache-), so by default this will override cache behavior for static files. If you wish to cache non-static assets, you will need to set a [Cache Level of Cache Everything](https://support.cloudflare.com/hc/en-us/articles/200172266-What-do-the-custom-caching-options-mean-in-Page-Rules-) using a Page Rule.

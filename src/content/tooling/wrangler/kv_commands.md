@@ -10,14 +10,15 @@ weight: 4
 - [`kv:key`](#kv-key)
 - [`kv:bulk`](#kv-bulk)
 
+
 ## Overview
 
 The `kv` subcommand allows you to store application data in the Cloudflare network to be accessed from Workers, using
 [Workers KV](https://www.cloudflare.com/products/workers-kv/).
 KV operations are scoped to your account, so in order to use any of these commands, you need to:
 
-- have a Wrangler project set up with your `account_id` configured in the `wrangler.toml`
-- call commands from within a Wrangler project directory.
+* have a Wrangler project set up with your `account_id` configured in the `wrangler.toml`
+* call commands from within a Wrangler project directory.
 
 ## Getting Started
 
@@ -44,7 +45,7 @@ Make sure to add the `kv-namespaces` output above to your `wrangler.toml`. You c
 access it from a Worker with code like:
 
 ```js
-let value = await MY_KV.get('my-key')
+let value = await MY_KV.get("my-key");
 ```
 
 The full KV API for Workers can be found [here](/reference/storage/).
@@ -80,7 +81,6 @@ kv-namespaces = [
 ```
 
 To insert a value into a specific KV namespace, you can use
-
 ```console
 $ wrangler kv:key put --env=staging --binding=MY_MV "key" "value"
 ✨  Success
@@ -95,13 +95,13 @@ There are way more helpful Wrangler subcommands for interacting with Workers KV,
 Most `kv` commands require you to specify a namespace. A namespace can be specified in two ways:
 
 1. With a `--binding`:
-   ```sh
-   wrangler kv:key get --binding=MY_KV "my key"
-   ```
+    ```sh
+    wrangler kv:key get --binding=MY_KV "my key"
+    ```
 1. With a `--namespace_id`:
-   ```sh
-   wrangler kv:key get --namespace-id=06779da6940b431db6e566b4846d64db "my key"
-   ```
+    ```sh
+    wrangler kv:key get --namespace-id=06779da6940b431db6e566b4846d64db "my key"
+    ```
 
 Most `kv` subcommands also allow you to specify an environment with the optional `--env` flag. This allows you to publish workers running the same code but with different namespaces. For example, you could use separate staging and production namespaces for KV data in your `wrangler.toml`:
 
@@ -159,7 +159,6 @@ kv-namespaces = [
 Outputs a list of all KV namespaces associated with your account id.
 
 #### Usage
-
 The example below uses the `jq` command line tool to pretty-print output.
 
 ```console
@@ -207,7 +206,7 @@ Optional params include:
 1. `--env`: The [environment](/tooling/wrangler/configuration/environments) argument.
 1. `--ttl`: Number of seconds for which the entries should be visible before they expire. At least 60. Takes precedence over 'expiration' option.
 1. `--expiration`: Number of seconds since the UNIX epoch, indicating when the key-value pair should expire.
-1. `--path`: Read value from the file at a given path. _This is good for security-sensitive operations, like uploading keys to KV; uploading from a file prevents a key value from being saved in areas like your terminal history._
+1. `--path`: Read value from the file at a given path. *This is good for security-sensitive operations, like uploading keys to KV; uploading from a file prevents a key value from being saved in areas like your terminal history.*
 
 #### Usage
 
@@ -292,22 +291,22 @@ Writes a file full of key/value pairs to the given namespace. Takes as an argume
 
 ```json
 [
-  {
-    "key": "test_key",
-    "value": "test_value",
-    "expiration_ttl": 3600
-  }
+    {
+        "key": "test_key",
+        "value": "test_value",
+        "expiration_ttl": 3600
+    }
 ]
 ```
 
 The schema below is the full schema for key-value entries uploaded via the bulk API:
 
-| **Name**                       | **Description**                                                                                                                                                                          | Optional |
-| ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| `key`<br />(String)            | A key's name. The name may be at most 512 bytes. All printable, non-whitespace characters are valid.                                                                                     | no       |
-| `value`<br />(String)          | A UTF-8 encoded string to be stored, up to 10 MB in length.                                                                                                                              | no       |
-| `expiration`<br />(Number)     | The time, measured in number of seconds since the UNIX epoch, at which the key should expire.                                                                                            | yes      |
-| `expiration_ttl`<br />(Number) | The number of seconds for which the key should be visible before it expires. At least 60.                                                                                                | yes      |
+| **Name**                       | **Description**                                              | Optional |
+| ------------------------------ | ------------------------------------------------------------ | -------- |
+| `key`<br />(String)            | A key's name. The name may be at most 512 bytes. All printable, non-whitespace characters are valid. | no       |
+| `value`<br />(String)          | A UTF-8 encoded string to be stored, up to 10 MB in length.   | no       |
+| `expiration`<br />(Number)     | The time, measured in number of seconds since the UNIX epoch, at which the key should expire. | yes      |
+| `expiration_ttl`<br />(Number) | The number of seconds for which the key should be visible before it expires. At least 60. | yes      |
 | `base64`<br />(Boolean)        | Whether or not the server should base64 decode the value before storing it. Useful for writing values that wouldn't otherwise be valid JSON strings, such as images. Defaults to `false` | yes      |
 
 If both `expiration` and `expiration_ttl` are specified for a given key, the API will prefer `expiration_ttl`.
@@ -330,11 +329,11 @@ Takes as an argument a JSON file with a list of key-value pairs to delete (see J
 
 ```json
 [
-  {
-    "key": "test_key",
-    "value": "test_value",
-    "expiration_ttl": 3600
-  }
+    {
+        "key": "test_key",
+        "value": "test_value",
+        "expiration_ttl": 3600
+    }
 ]
 ```
 

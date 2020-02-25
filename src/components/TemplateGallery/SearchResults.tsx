@@ -3,9 +3,13 @@ import { restApiTemplate } from '../../types/restApiTemplates'
 import { Snippet } from './Snippet'
 import { Boilerplate } from './Boilerplate'
 
-export const SearchResults: React.FunctionComponent<GalleryProps> = ({ results }) => {
+export const SearchResults: React.FunctionComponent<GalleryProps> = ({
+  results,
+}) => {
   const snippets = results.filter(template => template.type === 'snippet')
-  const boilerplates = results.map(edge => edge).filter(template => template.type === 'boilerplate')
+  const boilerplates = results
+    .map(edge => edge)
+    .filter(template => template.type === 'boilerplate')
   const featured_boilerplates = results
     .map(edge => edge)
     .filter(template => template.type === 'featured_boilerplate')
@@ -18,7 +22,10 @@ export const SearchResults: React.FunctionComponent<GalleryProps> = ({ results }
           <section className="template-wrapper boilerplate">
             {boilerplates.length
               ? boilerplates.map(template => (
-                  <Boilerplate {...template} key={template.endpointId}></Boilerplate>
+                  <Boilerplate
+                    {...template}
+                    key={template.endpointId}
+                  ></Boilerplate>
                 ))
               : null}
           </section>
@@ -43,7 +50,10 @@ export const SearchResults: React.FunctionComponent<GalleryProps> = ({ results }
           <h2>Featured Boilerplates</h2>
           <section className="template-wrapper boilerplate">
             {featured_boilerplates.map(template => (
-              <Boilerplate {...template} key={template.endpointId}></Boilerplate>
+              <Boilerplate
+                {...template}
+                key={template.endpointId}
+              ></Boilerplate>
             ))}
           </section>
         </div>

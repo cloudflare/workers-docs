@@ -22,7 +22,7 @@ const SEO = ({ description, lang, meta, title }: SEOPropTypes) => {
           }
         }
       }
-    `
+    `,
   )
 
   const metaDescription = description || site.siteMetadata.description

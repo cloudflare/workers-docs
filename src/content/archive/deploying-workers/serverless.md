@@ -3,18 +3,17 @@ title: Serverless Framework
 weight: 50
 ---
 
-The [Serverless Framework](https://github.com/serverless/serverless) helps you develop and deploy serverless applications using [Cloudflare Workers](https://www.cloudflare.com/products/cloudflare-workers/). It's a CLI that offers structure, automation, and best practices out-of-the-box, allowing you to focus on building sophisticated, event-driven, serverless architectures, comprised of Functions and Events.
+The [Serverless Framework](https://github.com/serverless/serverless) helps you develop and deploy serverless applications using [Cloudflare Workers](https://www.cloudflare.com/products/cloudflare-workers/). It's a CLI that offers structure, automation, and best practices out-of-the-box, allowing you to focus on building sophisticated, event-driven, serverless architectures, comprised of Functions and Events. 
 
-The Serverless Framework manages your code as well as your infrastructure. It lets you manage your Worker routing in a flat configuration file that you can keep alongside the rest of your code in version control. And it intelligently manages your routes as you edit them and re-deploy your application.
+The Serverless Framework  manages your code as well as your infrastructure. It lets you manage your Worker routing in a flat configuration file that you can keep alongside the rest of your code in version control. And it intelligently manages your routes as you edit them and re-deploy your application.
 
 ### Additional Documentation
 
 [Learn more](https://serverless.com/framework/docs/providers/cloudflare/) about using Cloudflare Workers with Serverless.
 
 ### Core Concepts
-
+ 
 #### Functions
-
 A Function is a Cloudflare Worker. It's an independent unit of deployment, like a microservice. It's merely code, deployed on Cloudflare’s 152+ PoPs (points of presence), that is most often written to perform a single job, such as:
 
 - Performing A/B Testing
@@ -23,21 +22,19 @@ A Function is a Cloudflare Worker. It's an independent unit of deployment, like 
 - Rendering a page
 
 #### Events
-
 Anything that triggers a Cloudflare Worker to execute is regarded by the Framework as an **Event**. Since the only event that can trigger a Worker is an HTTP request, declaring events is optional, and only used to declare specific endpoints that can be called by [`serverless invoke`](https://serverless.com/framework/docs/providers/cloudflare/cli-reference/invoke/). This is useful for defining specific hooks into your application for testing.
-
+ 
 #### Services
-
-A **Service** is the Serverless Framework's unit of organization. You can think of it as a project file, though you can have multiple services for a single application. It's where you define your Functions and the routes they will live on, all in one file entitled `serverless.yml`. Non-Enterprise Cloudflare accounts can only deploy one Function (that can be deployed to multiple routes), while Enterprise Cloudflare accounts can deploy multiple Functions at once:
+A **Service** is the Serverless Framework's unit of organization. You can think of it as a project file, though you can have multiple services for a single application. It's where you define your Functions and the routes they will live on, all in one file entitled `serverless.yml`. Non-Enterprise Cloudflare accounts can only deploy one Function (that can be deployed to multiple routes), while Enterprise Cloudflare accounts can deploy multiple Functions at once: 
 
 ```yml
 # serverless.yml
 
 service:
-  name: hello-world
-  config:
-    accountId: ${env:CLOUDFLARE_ACCOUNT_ID}
-    zoneId: ${env:CLOUDFLARE_ZONE_ID}
+    name: hello-world
+    config:
+      accountId: ${env:CLOUDFLARE_ACCOUNT_ID}
+      zoneId: ${env:CLOUDFLARE_ZONE_ID}
 
 provider:
   name: cloudflare
@@ -58,6 +55,7 @@ functions:
           method: GET
           headers:
             someKey: someValue
+
 
   # Only Enterprise accounts would be allowed to add this second function and its corresponding route above
   foo:

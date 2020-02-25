@@ -14,10 +14,10 @@ included:
 
 If you need more than that, no worries! Here's the prices for extra:
 
-- \$0.50 per GB of additional Worker KV storage per month
-- \$0.50 per million additional Worker KV reads
-- \$5.00 per million additional Worker KV writes
-- \$5.00 per million additional Worker KV deletes
-- \$5.00 per million additional Worker KV list operations
+- $0.50 per GB of additional Worker KV storage per month
+- $0.50 per million additional Worker KV reads
+- $5.00 per million additional Worker KV writes
+- $5.00 per million additional Worker KV deletes
+- $5.00 per million additional Worker KV list operations
 
 Usage of all other features of Workers KV do not affect pricing.

@@ -5,9 +5,9 @@ weight: 3
 
 - [Concepts](#concepts)
 - [Usage](#usage)
-  - [Examples](#examples)
-  - [Custom webpack configurations](#custom-webpack-configurations)
-  - [KV Namespaces with environments](#kv-namespaces-with-environments)
+  * [Examples](#examples)
+  * [Custom webpack configurations](#custom-webpack-configurations)
+  * [KV Namespaces with environments](#kv-namespaces-with-environments)
 - [Invalid configurations](#invalid-configurations)
 
 Environments is a feature that allows you to deploy the same project to multiple places under multiple names. These environments are utilized with the `--env` or `-e` flag on `wrangler build`, `wrangler preview`, and `wrangler publish`.
