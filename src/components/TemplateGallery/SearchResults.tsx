@@ -12,31 +12,42 @@ export const SearchResults: React.FunctionComponent<GalleryProps> = ({ results }
 
   return (
     <div className="gallery" id="results">
-      <h2>Boilerplates</h2>
-      {/* TODO add in style <h2 style="padding-bottom: 20px">Snippets</h2> */}
-      <section className="template-wrapper boilerplate">
-        {boilerplates.length
-          ? boilerplates.map(template => (
+      {boilerplates.length ? (
+        <div>
+          <h2>Boilerplates</h2>
+          <section className="template-wrapper boilerplate">
+            {boilerplates.length
+              ? boilerplates.map(template => (
+                  <Boilerplate {...template} key={template.endpointId}></Boilerplate>
+                ))
+              : null}
+          </section>
+        </div>
+      ) : null}
+      {featured_boilerplates.length ? (
+        <div>
+          <h2>Snippets</h2>
+          <section className="template-wrapper snippet"></section>
+          <h2>Boilerplates</h2>
+          <section className="template-wrapper snippet">
+            {snippets.length
+              ? snippets.map(template => (
+                  <Snippet {...template} key={template.endpointId}></Snippet>
+                ))
+              : null}
+          </section>
+        </div>
+      ) : null}
+      {featured_boilerplates.length ? (
+        <div>
+          <h2>Featured Boilerplates</h2>
+          <section className="template-wrapper boilerplate">
+            {featured_boilerplates.map(template => (
               <Boilerplate {...template} key={template.endpointId}></Boilerplate>
-            ))
-          : null}
-      </section>
-      <h2>Snippets</h2>
-      {/* TODO add in style <h2 style="padding-bottom: 20px">Snippets</h2> */}
-      <section className="template-wrapper snippet">
-        {snippets.length
-          ? snippets.map(template => <Snippet {...template} key={template.endpointId}></Snippet>)
-          : null}
-      </section>
-      <h2>Featured Boilerplates</h2>
-      {/* TODO add in style <h2 style="padding-bottom: 20px">Snippets</h2> */}
-      <section className="template-wrapper boilerplate">
-        {featured_boilerplates.length
-          ? featured_boilerplates.map(template => (
-              <Boilerplate {...template} key={template.endpointId}></Boilerplate>
-            ))
-          : null}
-      </section>
+            ))}
+          </section>
+        </div>
+      ) : null}
     </div>
   )
 }
