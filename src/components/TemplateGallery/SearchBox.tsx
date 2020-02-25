@@ -75,22 +75,12 @@ export class SearchBox extends React.Component<SearchBoxProps, SearchBoxState> {
         this.add(doc)
       }, this)
     })
-    console.log('templaasdtes', templates)
     let emptySearch = this.idx.search('*').map(({ ref, ...rest }: lunr.Index.Result) => ({
       ref,
       item: corpus.find((m: any) => m.endpointId === ref),
       ...rest,
     }))
-    // let initResults = corpus.map(temp => ({
-    //   ref: '',
-    //   item: temp, //this.state.documents.find((m: any) => m.endpointId === ref),
-    //   matchData: {},
-    //   score: 0,
-    //   // ...rest,
-    // }))
-    console.log('idx', this.idx.toJSON())
 
-    // let initResults = this.idx.search()
     this.state = { searchQuery: '', results: emptySearch, documents: corpus }
   }
 
@@ -141,35 +131,8 @@ export class SearchBox extends React.Component<SearchBoxProps, SearchBoxState> {
             value={this.state.searchQuery}
           ></input>
         </div>
-        {this.state.results.length ? (
-          this.props.children ? (
-            this.props.children(results)
-          ) : (
-            ''
-          )
-        ) : (
-          <EmptyResults />
-        )}
+        {this.props.children ? this.props.children(results) : ''}
       </>
     )
   }
-}
-const EmptyResults = () => {
-  return (
-    //   resultsContainer.style.display = 'none'
-
-    <div id="#results">
-      <div
-        id="#empty"
-        style={{
-          display: 'block',
-          // hack to fix rendering of select
-          marginBottom: '999px',
-          marginTop: '20px',
-        }}
-      >
-        <p>No results were found for your search. Try adjusting your search.</p>
-      </div>
-    </div>
-  )
 }

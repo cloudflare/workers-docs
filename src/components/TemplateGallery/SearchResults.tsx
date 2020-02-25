@@ -47,3 +47,23 @@ export type GalleryProps = {
   // featured_boilerplates?: restApiTemplate[]
   results: restApiTemplate[]
 }
+
+export const EmptyResults = () => {
+  return (
+    //   resultsContainer.style.display = 'none'
+
+    <div id="#results">
+      <div
+        id="#empty"
+        style={{
+          display: 'block',
+          // hack to fix rendering of select
+          marginBottom: '999px',
+          marginTop: '20px',
+        }}
+      >
+        <p>No results were found for your search. Try adjusting your search.</p>
+      </div>
+    </div>
+  )
+}

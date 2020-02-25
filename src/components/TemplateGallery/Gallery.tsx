@@ -2,7 +2,7 @@ import React from 'react'
 import { allRestApiTemplates } from '../../types/restApiTemplates'
 import { useStaticQuery, graphql } from 'gatsby'
 import { SearchBox } from './SearchBox'
-import { SearchResults } from './SearchResults'
+import { SearchResults, EmptyResults } from './SearchResults'
 
 export const Gallery: React.FunctionComponent<GalleryProps> = ({}) => {
   // TODO get hooks working instead of useStaticQuery in components
@@ -50,7 +50,7 @@ export const Gallery: React.FunctionComponent<GalleryProps> = ({}) => {
       <h1>Template Gallery</h1>
       <p>These templates are simple building blocks for developing Workers scripts.</p>
       <SearchBox templates={allTemplates}>
-        {results => <SearchResults results={results} />}
+        {results => (results.length ? <SearchResults results={results} /> : <EmptyResults />)}
       </SearchBox>
     </>
   )
