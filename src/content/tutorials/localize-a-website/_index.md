@@ -209,7 +209,9 @@ async function handleEvent(event) {
 
     const response = await getAssetFromKV(event, options)
 
-    return new HTMLRewriter().on('[data-i18n-key]', new ElementHandler(countryStrings)).transform(response)
+    return new HTMLRewriter()
+      .on('[data-i18n-key]', new ElementHandler(countryStrings))
+      .transform(response)
   } catch (e) {
     if (DEBUG) {
       return new Response(e.message || e.toString(), {

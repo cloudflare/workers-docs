@@ -394,7 +394,7 @@ export default async request => {
       blocks,
       response_type: 'in_channel',
     }),
-    { headers: { 'Content-type': 'application/json' } },
+    { headers: { 'Content-type': 'application/json' } }
   )
 }
 ```
@@ -428,7 +428,7 @@ export default async request => {
         blocks,
         response_type: 'in_channel',
       }),
-      { headers: { 'Content-type': 'application/json' } },
+      { headers: { 'Content-type': 'application/json' } }
     )
   } catch (err) {
     const errorText =
@@ -498,11 +498,7 @@ Add a simple utility function, `compact`, which takes an array, and filters out 
 ```javascript
 const compact = array => array.filter(el => el)
 
-export const constructGhIssueSlackMessage = (
-  issue,
-  issue_string,
-  prefix_text,
-) => {
+export const constructGhIssueSlackMessage = (issue, issue_string, prefix_text) => {
   const issue_link = `<${issue.html_url}|${issue_string}>`
   const user_link = `<${issue.user.html_url}|${issue.user.login}>`
   const date = new Date(Date.parse(issue.created_at)).toLocaleDateString()
@@ -582,11 +578,7 @@ export default async request => {
     const { action, issue, repository } = JSON.parse(body)
     const prefix_text = `An issue was ${action}:`
     const issue_string = `${repository.owner.login}/${repository.name}#${issue.number}`
-    const blocks = constructGhIssueSlackMessage(
-      issue,
-      issue_string,
-      prefix_text,
-    )
+    const blocks = constructGhIssueSlackMessage(issue, issue_string, prefix_text)
 
     const postToSlack = await fetch(slackWebhookUrl, {
       body: JSON.stringify({ blocks }),

@@ -1,9 +1,11 @@
 ---
 title: Altering Headers
 ---
-To modify  request or response headers, you'll first need to make a copy of the object in order to make it mutable. You can then use the [Headers interface](https://developer.mozilla.org/en-US/docs/Web/API/Headers) to add, change, or remove headers.
+
+To modify request or response headers, you'll first need to make a copy of the object in order to make it mutable. You can then use the [Headers interface](https://developer.mozilla.org/en-US/docs/Web/API/Headers) to add, change, or remove headers.
 
 ## Response headers
+
 Set a new header on your response before returning it the end user.
 
 ```js
@@ -22,8 +24,8 @@ async function handleRequest(request) {
 }
 ```
 
-
 ## Request headers
+
 Set a new header on the request before fetching a response from the origin.
 
 ```js

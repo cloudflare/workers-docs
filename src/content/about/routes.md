@@ -1,5 +1,5 @@
 ---
-title: "Routes"
+title: 'Routes'
 weight: 4
 ---
 
@@ -69,20 +69,20 @@ Here is the full set of rules governing route pattern validity:
 
 - **Route patterns must include your zone**
 
-    If your zone is `example.com`, then the simplest possible route pattern you
+  If your zone is `example.com`, then the simplest possible route pattern you
   can have is `example.com`, which would match `http://example.com/` and
   `https://example.com/`, and _nothing else_.
   As with a URL, there is an implied path of `/` if you do not specify one.
 
 - **Route patterns may not contain any query parameters**
 
-    For example, `https://example.com/?anything` is not a valid route pattern.
+  For example, `https://example.com/?anything` is not a valid route pattern.
 
 - **Route patterns may optionally begin with http:// or https://**
 
-    If you omit a scheme in your route pattern, it will match both http:// and
-    https:// URLs. If you include http:// or https://, it will only match HTTP
-    or HTTPS requests, respectively.
+  If you omit a scheme in your route pattern, it will match both http:// and
+  https:// URLs. If you include http:// or https://, it will only match HTTP
+  or HTTPS requests, respectively.
 
   - `https://*.example.com/` matches `https://www.example.com/` but _not_ `http://www.example.com/`
 
@@ -90,22 +90,24 @@ Here is the full set of rules governing route pattern validity:
 
 - **Hostnames may optionally begin with `*`**
 
-    If a route pattern hostname begins with `*`, then it matches the host *and* all subhosts.
-    If a route pattern hostname begins with `*.`, then it matches *only* all subhosts.
-   - `*example.com/` matches `https://example.com/` *and* `https://www.example.com/`
+  If a route pattern hostname begins with `*`, then it matches the host _and_ all subhosts.
+  If a route pattern hostname begins with `*.`, then it matches _only_ all subhosts.
 
-   - `*.example.com/` matches `https://www.example.com/` but *not* `https://example.com/`
+  - `*example.com/` matches `https://example.com/` _and_ `https://www.example.com/`
+
+  - `*.example.com/` matches `https://www.example.com/` but _not_ `https://example.com/`
 
 - **Paths may optionally end with `*`**
-    
-    If a route pattern path ends with `*`, then it matches all suffixes of that
-  path.
-    - `https://example.com/path*` matches `https://example.com/path` _and_
-      `https://example.com/path2` _and_ `https://example.com/path/readme.txt`
 
-    - `https://example.com/path/*` matches `https://example.com/path/readme.txt`
-      but _not_ `https://example.com/path2`.
+  If a route pattern path ends with `*`, then it matches all suffixes of that
+  path.
+
+  - `https://example.com/path*` matches `https://example.com/path` _and_
+    `https://example.com/path2` _and_ `https://example.com/path/readme.txt`
+
+  - `https://example.com/path/*` matches `https://example.com/path/readme.txt`
+    but _not_ `https://example.com/path2`.
 
 - **Subdomains must have a DNS Record**
 
-    All subdomains must have a [DNS record](https://support.cloudflare.com/hc/en-us/articles/360019093151#h_60566325041543261564371) to be proxied on Cloudflare and compatible with Workers. For example if you have the route pattern `*.example.com` and no DNS records, any request to subdomain.example.com will result in the error `ERR_NAME_NOT_RESOLVED`. 
+  All subdomains must have a [DNS record](https://support.cloudflare.com/hc/en-us/articles/360019093151#h_60566325041543261564371) to be proxied on Cloudflare and compatible with Workers. For example if you have the route pattern `*.example.com` and no DNS records, any request to subdomain.example.com will result in the error `ERR_NAME_NOT_RESOLVED`.

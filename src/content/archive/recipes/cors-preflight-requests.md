@@ -1,5 +1,5 @@
 ---
-title: "CORS preflight requests"
+title: 'CORS preflight requests'
 ---
 
 With this Worker, you can handle [CORS preflight requests](https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request). It passes GET, POST and HEAD requests through to the origin, while OPTIONS requests are answered directly.
@@ -10,17 +10,15 @@ addEventListener('fetch', event => {
 })
 
 async function handle(request) {
-  if (request.method === "OPTIONS") {
+  if (request.method === 'OPTIONS') {
     return handleOptions(request)
-  } else if (request.method === "GET" ||
-             request.method === "HEAD" ||
-             request.method === "POST") {
+  } else if (request.method === 'GET' || request.method === 'HEAD' || request.method === 'POST') {
     // Pass-through to origin.
     return fetch(request)
   } else {
     return new Response(null, {
       status: 405,
-      statusText: "Method Not Allowed",
+      statusText: 'Method Not Allowed',
     })
   }
 }
@@ -30,25 +28,27 @@ async function handle(request) {
 // present on all responses to all CORS requests. In practice, this means
 // all responses to OPTIONS requests.
 const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET, HEAD, POST, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type",
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, HEAD, POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type',
 }
 
 function handleOptions(request) {
-  if (request.headers.get("Origin") !== null &&
-      request.headers.get("Access-Control-Request-Method") !== null &&
-      request.headers.get("Access-Control-Request-Headers") !== null) {
+  if (
+    request.headers.get('Origin') !== null &&
+    request.headers.get('Access-Control-Request-Method') !== null &&
+    request.headers.get('Access-Control-Request-Headers') !== null
+  ) {
     // Handle CORS pre-flight request.
     return new Response(null, {
-      headers: corsHeaders
+      headers: corsHeaders,
     })
   } else {
     // Handle standard OPTIONS request.
     return new Response(null, {
       headers: {
-        "Allow": "GET, HEAD, POST, OPTIONS",
-      }
+        Allow: 'GET, HEAD, POST, OPTIONS',
+      },
     })
   }
 }

@@ -33,6 +33,7 @@ You can skip tests altogether by adding:
 ```hcl
 install: true
 ```
+
 before the `deploy` stanza.
 
 In this case we have also added the `npm_modules` to the `.gitignore` file to prevent any conflicts.

@@ -21,7 +21,7 @@ new Response(body, init)
   - [`USVString`](https://developer.mozilla.org/en-US/docs/Web/API/USVString)
 - `init` (optional): An `options` object that contains custom settings to apply to the response. Valid options are:
   - `status`: The status code for the reponse, such as `200`.
-  - `statusText`: The status message associated with the status code, like, `OK`. 
+  - `statusText`: The status message associated with the status code, like, `OK`.
   - `headers`: Any headers to add to your response that are contained within a [`Headers`](/reference/apis/fetch#headers) object or object literal of [`ByteString`](https://developer.mozilla.org/en-US/docs/Web/API/ByteString) key/value pairs.
 
 ### Properties

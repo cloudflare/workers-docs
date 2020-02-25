@@ -1,4 +1,4 @@
-import { Link as GatsbyLink, GatsbyLinkProps } from "gatsby"
+import { Link as GatsbyLink, GatsbyLinkProps } from 'gatsby'
 import React from 'react'
 // Since DOM elements <a> cannot receive activeClassName
 // and partiallyActive, destructure the prop here and
@@ -18,10 +18,7 @@ export const Link: React.FC<LinkProps> = ({ children, to, ...other }) => {
   // Use Gatsby Link for internal links, and <a> for others
   if (internal) {
     return (
-      <GatsbyLink
-        to={to}
-        {...other}
-      >
+      <GatsbyLink to={to} {...other}>
         {children}
       </GatsbyLink>
     )
@@ -35,7 +32,6 @@ export const Link: React.FC<LinkProps> = ({ children, to, ...other }) => {
 type ImageProps = {
   children: React.ElementType
   src: string
-
 }
 export const Image: React.FC<ImageProps> = ({ children, src, ...props }) => {
   const internal = /^\/(?!\/)/.test(src)

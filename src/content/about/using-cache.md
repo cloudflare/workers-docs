@@ -120,7 +120,7 @@ addEventListener('fetch', event => {
   event.respondWith(
     fetch(request, {
       cf: { cacheKey: event.request.url },
-    }),
+    })
   )
 })
 ```

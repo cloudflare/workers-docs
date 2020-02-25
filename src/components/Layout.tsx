@@ -21,14 +21,14 @@ import Helmet from 'react-helmet'
 const Layout: React.FC<LayoutProps> = ({ title, children }) => {
   // TODO get hooks working instead of useStaticQuery in components
   const data = useStaticQuery(graphql`
-  query SiteTitleQuery {
+    query SiteTitleQuery {
       site {
         siteMetadata {
           title
         }
       }
     }
-    `)
+  `)
 
   return (
     <>
@@ -36,7 +36,7 @@ const Layout: React.FC<LayoutProps> = ({ title, children }) => {
       <Navigation />
       <Sidebar />
       <Helmet>
-        <script type="text/javascript" src={withPrefix("/js/docsearch.min.js")} />
+        <script type="text/javascript" src={withPrefix('/js/docsearch.min.js')} />
       </Helmet>
       {children}
     </>

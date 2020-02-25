@@ -16,7 +16,8 @@ To test the content or static gatsby files locally, run:
 npm run install
 npm run start
 ```
- Your site is now running at `http://localhost:8000`!
+
+Your site is now running at `http://localhost:8000`!
 
     _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.org/tutorial/part-five/#introducing-graphiql)._
 
@@ -31,17 +32,21 @@ npm run worker-start
 ```
 
 ## Build
+
 To build all files to `/public`:
+
 ```
 npm run build
 ```
 
 To build all Worker files to `worker-site/dist`:
+
 ```
 npm run worker-build
 ```
 
 ## Test
+
 To run test of the Workers script, run:
 
 ```
@@ -49,6 +54,7 @@ npm worker-test
 ```
 
 ## What's inside
+
 1.  **`/src`**: This directory will contain all of the code related to what you will see on the front-end of your site (what you see in the browser) such as your site header or a page template. `src` is a convention for “source code”.
 
 2.  **`gatsby-browser.js`**: This file is where Gatsby expects to find any usage of the [Gatsby browser APIs](https://www.gatsbyjs.org/docs/browser-apis/) (if any). These allow customization/extension of default Gatsby settings affecting the browser.
@@ -58,7 +64,6 @@ npm worker-test
 4.  **`gatsby-node.js`**: This file is where Gatsby expects to find any usage of the [Gatsby Node APIs](https://www.gatsbyjs.org/docs/node-apis/) (if any). These allow customization/extension of default Gatsby settings affecting pieces of the site build process.
 
 5.  **`gatsby-ssr.js`**: This file is where Gatsby expects to find any usage of the [Gatsby server-side rendering APIs](https://www.gatsbyjs.org/docs/ssr-apis/) (if any). These allow customization of default Gatsby settings affecting server-side rendering.
-   
 
 ## Publishing
 

@@ -1,5 +1,5 @@
 ---
-title: "FAQ"
+title: 'FAQ'
 weight: 80
 ---
 
@@ -72,7 +72,7 @@ in a Worker.
 
 ### Will my Worker’s response be cached by Cloudflare?
 
-No. Workers are applied to requests *before* they reach Cloudflare's cache. This means your
+No. Workers are applied to requests _before_ they reach Cloudflare's cache. This means your
 Worker’s responses are not cached. Any subrequests they make using the Fetch API will
 be able to utilize the cache, though. This even includes requests to sites that are not
 powered by Cloudflare, as long as the remote server returns appropriate caching headers.

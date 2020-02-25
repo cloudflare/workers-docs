@@ -4,7 +4,7 @@ title: The Request Context
 
 ## What is the `Request` context?
 
-Request context is the context of the `"fetch"` event callback. It is important to note that due to how workers are executed, asynchronous tasks (e.g. `fetch `) can only be run *inside* the request context.
+Request context is the context of the `"fetch"` event callback. It is important to note that due to how workers are executed, asynchronous tasks (e.g. `fetch`) can only be run _inside_ the request context.
 
 During a [Fetch Event](/reference/apis/fetch-event/) callback:
 
@@ -26,7 +26,7 @@ addEventListener('fetch', event => {
   event.respondWith(eventHandler(event))
 })
 // no request context here
-async function eventHandler(event){
+async function eventHandler(event) {
   // request context is available here
   return new Response('Hello, Workers!')
 }

@@ -1,5 +1,5 @@
 ---
-title: "Recipes"
+title: 'Recipes'
 alwaysopen: false
 weight: 60
 ---

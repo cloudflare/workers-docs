@@ -1,5 +1,5 @@
 ---
-title: "Setting a Cookie"
+title: 'Setting a Cookie'
 hidden: true
 ---
 

@@ -1,11 +1,11 @@
-import React, { } from 'react'
+import React from 'react'
 import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 
 import Body from '../components/Body'
-import TemplatePage from '../components/TemplateGallery/TemplatePage';
-import { restApiTemplateResult } from '../types/restApiTemplates';
+import TemplatePage from '../components/TemplateGallery/TemplatePage'
+import { restApiTemplateResult } from '../types/restApiTemplates'
 type templateProps = {
   pageContext: any
   data: restApiTemplateResult['data']
@@ -16,8 +16,8 @@ const Template: React.FC<templateProps> = ({ data, pageContext }) => {
   console.log('pageContext', pageContext)
   return (
     <>
-      <Layout  >
-        <Body >
+      <Layout>
+        <Body>
           <TemplatePage data={data.restApiTemplates} id={pageContext.id} />
           {/* <TemplatePage {...{ data, pageContext }} /> */}
         </Body>
@@ -26,34 +26,35 @@ const Template: React.FC<templateProps> = ({ data, pageContext }) => {
   )
 }
 export default Template
-export const pageQuery = graphql`query ($id: String!) {
-        restApiTemplates(endpointId: {eq: $id}) {
-        repository_url
-    share_url
-        weight
-        url
-        tags
-        title
-        endpointId
-        description
-        type
-        code
-    demos {
+export const pageQuery = graphql`
+  query($id: String!) {
+    restApiTemplates(endpointId: { eq: $id }) {
+      repository_url
+      share_url
+      weight
+      url
+      tags
+      title
+      endpointId
+      description
+      type
+      code
+      demos {
         bar {
-        text
-        url
+          text
+          url
+        }
+        foo {
+          text
+          url
+        }
+        main {
+          share_url
+          tags
+          text
+          url
+        }
+      }
+    }
   }
-      foo {
-        text
-        url
-  }
-      main {
-        share_url
-        tags
-    text
-    url
-  }
-}
-}
-}`
-
+`

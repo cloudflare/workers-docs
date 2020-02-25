@@ -76,7 +76,7 @@ cache.match(request, options)
 
 - `request`: The string or [`Request`](/reference/apis/request) object used as the lookup key. Strings are interpreted as the URL for a new `Request` object.
 
-- `options`: Can contain one possible property: 
+- `options`: Can contain one possible property:
   - `ignoreMethod` (Boolean): Consider the request method a GET regardless of its actual value.
 
 Unlike the browser Cache API, Cloudflare Workers do not support the `ignoreSearch` or `ignoreVary` options on `match()`. You can accomplish this behavior by removing query strings or HTTP headers at `put()` time.
@@ -110,7 +110,7 @@ cache.delete(request, options)
 
 - `options`: Can contain one of these properties:
 
-    - `ignoreMethod` (Boolean): Consider the request method to `GET`, regardless of its actual value.
+  - `ignoreMethod` (Boolean): Consider the request method to `GET`, regardless of its actual value.
 
 ## More Information
 

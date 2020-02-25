@@ -14,7 +14,7 @@ If a `fetch` event handler does not call `respondWith()`, the runtime delivers t
 
 ## `waitUntil()`
 
- Extends the lifetime of the event using a `Promise` passed into the function. Use this method to notify the runtime to wait for tasks, such as streaming and caching, that run longer than the usual time it takes to send a response. This is good for handling logging and analytics to third-party services, where you don't want to block the `response`.
+Extends the lifetime of the event using a `Promise` passed into the function. Use this method to notify the runtime to wait for tasks, such as streaming and caching, that run longer than the usual time it takes to send a response. This is good for handling logging and analytics to third-party services, where you don't want to block the `response`.
 
 ## `passThroughOnException()`
 

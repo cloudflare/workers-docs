@@ -2,22 +2,24 @@
 title: Limits
 weight: 4
 ---
+
 - [Script Size](#script-size)
 - [Number of Scripts](#number-of-scripts)
 - [Request Limits](#request-limits)
-  * [Burst Rate Limit](#burst-rate-limit)
-  * [Daily Request Limit](#daily-request-limit)
-    + [Fail Open](#fail-open)
-    + [Fail Closed](#fail-closed)
+  - [Burst Rate Limit](#burst-rate-limit)
+  - [Daily Request Limit](#daily-request-limit)
+    - [Fail Open](#fail-open)
+    - [Fail Closed](#fail-closed)
 - [CPU/Execution Time Limit](#cpu-execution-time-limit)
 - [Memory](#memory)
 - [Subrequests](#subrequests)
-  * [Can a Workers script make subrequests to load other sites on the Internet?](#can-a-workers-script-make-subrequests-to-load-other-sites-on-the-internet)
-  * [How many subrequests can I make?](#how-many-subrequests-can-i-make)
-  * [Can I make a subrequest after my Worker has responded to the user?](#can-i-make-a-subrequest-after-my-worker-has-responded-to-the-user)
-  * [How long can a subrequest take?](#how-long-can-a-subrequest-take)
+  - [Can a Workers script make subrequests to load other sites on the Internet?](#can-a-workers-script-make-subrequests-to-load-other-sites-on-the-internet)
+  - [How many subrequests can I make?](#how-many-subrequests-can-i-make)
+  - [Can I make a subrequest after my Worker has responded to the user?](#can-i-make-a-subrequest-after-my-worker-has-responded-to-the-user)
+  - [How long can a subrequest take?](#how-long-can-a-subrequest-take)
 - [Simultaneous Open Connections](#simultaneous-open-connections)
 - [KV](#kv)
+
 # Overview of Limits by Plan
 
 | Plan                        | [CPU Limit](/about/limits/#cpu-execution-time-limit) | [Daily Request Limit](/about/limits/#daily-request-limit) | [Burst Rate Limit](/about/limits/#burst-rate-limit) |
@@ -104,7 +106,7 @@ Once a Worker has six connections open, it can still attempt to open additional 
 
 If the system detects that a Worker is deadlocked on open connections - for instance, if the Worker has pending connection attempts but has no in-progress reads or writes on the connections that it already has open - then the least-recently-used open connection will be canceled to unblock the Worker. If the Worker later attempts to use a canceled connection, an exception will be thrown. These exceptions should rarely occur in practice, though, since it's uncommon for a Worker to open a connection that it doesn't have an immediate use for.
 
-# KV 
+# KV
 
 After subscription to a Workers Unlimited plan, KV is enabled. Workers KV supports:
 
@@ -114,7 +116,6 @@ After subscription to a Workers Unlimited plan, KV is enabled. Workers KV suppor
 - Values of up to 10 MB
 - Unlimited reads per second per key
 - Up to one write per second per key
-
 
 Workers KV read performance is determined by the amount of read-volume a
 given key receives. Maximum performance for a key is not reached unless that

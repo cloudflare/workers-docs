@@ -1,5 +1,5 @@
 ---
-title: "TLS Version Blocking"
+title: 'TLS Version Blocking'
 ---
 
 Block predefined TLS versions inside of Workers.
@@ -15,9 +15,11 @@ async function sslBlock(request) {
   let tlsVersion = (request.cf || {}).tlsVersion
 
   // Allow only TLS versions 1.2 and 1.3
-  if ((tlsVersion != 'TLSv1.2') && (tlsVersion != 'TLSv1.3')){
-    return new Response("Please use TLS version 1.2 or higher.",
-    { status: 403, statusText: "Forbidden" })
+  if (tlsVersion != 'TLSv1.2' && tlsVersion != 'TLSv1.3') {
+    return new Response('Please use TLS version 1.2 or higher.', {
+      status: 403,
+      statusText: 'Forbidden',
+    })
   }
 
   return fetch(request)

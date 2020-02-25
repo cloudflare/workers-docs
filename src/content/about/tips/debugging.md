@@ -1,5 +1,5 @@
 ---
-title: "Debugging Tips"
+title: 'Debugging Tips'
 weight: 1
 ---
 
@@ -14,12 +14,12 @@ weight: 1
 
 When a Worker running in production has an error that prevents it from returning a response, the client will receive an error page with an error code, defined as follows:
 
-| Error code | Meaning                                                                         |
-| ---------- | ------------------------------------------------------------------------------- |
-| 1101       | Worker threw a JavaScript exception.                                            |
-| 1102       | Worker exceeded CPU time limit. See: [Resource Limits](/about/limits) |
-| 1015       | Your client IP is being rate limited.                                           |
-| 1027       | Worker exceeded free tier [daily request limit](/about/limits#Daily-Request-Limit)                                  |
+| Error code | Meaning                                                                            |
+| ---------- | ---------------------------------------------------------------------------------- |
+| 1101       | Worker threw a JavaScript exception.                                               |
+| 1102       | Worker exceeded CPU time limit. See: [Resource Limits](/about/limits)              |
+| 1015       | Your client IP is being rate limited.                                              |
+| 1027       | Worker exceeded free tier [daily request limit](/about/limits#Daily-Request-Limit) |
 
 <br/>Other 11xx errors generally indicate a problem with the Workers runtime itself - please check our [status page](https://www.cloudflarestatus.com/) if you see one.
 
@@ -121,7 +121,7 @@ async function handleRequest(event) {
         'Bad response at origin. Status: ' +
           response.status +
           ' Body: ' +
-          body.trim().substring(0, 10), // ensures is string that can be a header
+          body.trim().substring(0, 10) // ensures is string that can be a header
       )
     }
   } catch (err) {

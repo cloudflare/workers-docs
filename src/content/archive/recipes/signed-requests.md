@@ -1,8 +1,8 @@
 ---
-title: "Signed Requests"
+title: 'Signed Requests'
 ---
 
-A common URL authentication method known as *request signing*[^hmac-vs-signature]
+A common URL authentication method known as _request signing_[^hmac-vs-signature]
 can be implemented in a Worker with the help of the
 [Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API).
 
@@ -18,12 +18,14 @@ so we can rely on the user-provided timestamp being correct if the HMAC is
 correct, and thus know when the URL expires. Moreover, the user can also
 determine whether a URL in their possession has expired or not.
 
-[^hmac-vs-signature]: Technically, a Message Authentication Code like an HMAC is
-    not a cryptographic signature, because it guarantees only *integrity* and
-    *authenticity*, not *non-repudiation*.
+[^hmac-vs-signature]:
 
-    Nonetheless, it is common practice to informally refer to HMAC-authenticated
-    URLs as *signed requests*.
+  Technically, a Message Authentication Code like an HMAC is
+  not a cryptographic signature, because it guarantees only _integrity_ and
+  _authenticity_, not _non-repudiation_.
+
+  Nonetheless, it is common practice to informally refer to HMAC-authenticated
+  URLs as _signed requests_.
 
 ## Verifying signed requests
 
@@ -44,33 +46,35 @@ async function verifyAndFetch(request) {
 
   // If the path doesn't begin with our protected prefix, just pass the request
   // through.
-  if (!url.pathname.startsWith("/verify/")) {
+  if (!url.pathname.startsWith('/verify/')) {
     return fetch(request)
   }
 
   // Make sure we have the minimum necessary query parameters.
-  if (!url.searchParams.has("mac") || !url.searchParams.has("expiry")) {
-    return new Response("Missing query parameter", { status: 403 })
+  if (!url.searchParams.has('mac') || !url.searchParams.has('expiry')) {
+    return new Response('Missing query parameter', { status: 403 })
   }
 
   // We'll need some super-secret data to use as a symmetric key.
   const encoder = new TextEncoder()
-  const secretKeyData = encoder.encode("my secret symmetric key")
+  const secretKeyData = encoder.encode('my secret symmetric key')
   const key = await crypto.subtle.importKey(
-    "raw", secretKeyData,
-    { name: "HMAC", hash: "SHA-256" },
-    false, [ "verify" ]
+    'raw',
+    secretKeyData,
+    { name: 'HMAC', hash: 'SHA-256' },
+    false,
+    ['verify']
   )
 
   // Extract the query parameters we need and run the HMAC algorithm on the
   // parts of the request we're authenticating: the path and the expiration
   // timestamp.
-  const expiry = Number(url.searchParams.get("expiry"))
+  const expiry = Number(url.searchParams.get('expiry'))
   const dataToAuthenticate = url.pathname + expiry
 
   // The received MAC is Base64-encoded, so we have to go to some trouble to
   // get it into a buffer type that crypto.subtle.verify() can read.
-  const receivedMacBase64 = url.searchParams.get("mac")
+  const receivedMacBase64 = url.searchParams.get('mac')
   const receivedMac = byteStringToUint8Array(atob(receivedMacBase64))
 
   // Use crypto.subtle.verify() to guard against timing attacks. Since HMACs use
@@ -79,13 +83,14 @@ async function verifyAndFetch(request) {
   // bail out on the first mismatch, which leaks information to potential
   // attackers.
   const verified = await crypto.subtle.verify(
-    "HMAC", key,
+    'HMAC',
+    key,
     receivedMac,
     encoder.encode(dataToAuthenticate)
   )
 
   if (!verified) {
-    const body = "Invalid MAC"
+    const body = 'Invalid MAC'
     return new Response(body, { status: 403 })
   }
 
@@ -125,7 +130,7 @@ signed URL via the response body.
 ```js
 addEventListener('fetch', event => {
   const url = new URL(event.request.url)
-  const prefix = "/generate/"
+  const prefix = '/generate/'
   if (url.pathname.startsWith(prefix)) {
     // Replace the "/generate/" path prefix with "/verify/", which we
     // use in the first example to recognize authenticated paths.
@@ -139,11 +144,13 @@ addEventListener('fetch', event => {
 async function generateSignedUrl(url) {
   // We'll need some super-secret data to use as a symmetric key.
   const encoder = new TextEncoder()
-  const secretKeyData = encoder.encode("my secret symmetric key")
+  const secretKeyData = encoder.encode('my secret symmetric key')
   const key = await crypto.subtle.importKey(
-    "raw", secretKeyData,
-    { name: "HMAC", hash: "SHA-256" },
-    false, [ "sign" ]
+    'raw',
+    secretKeyData,
+    { name: 'HMAC', hash: 'SHA-256' },
+    false,
+    ['sign']
   )
 
   // Signed requests expire after one minute. Note that you could choose
@@ -153,17 +160,14 @@ async function generateSignedUrl(url) {
   const expiry = Date.now() + expirationMs
   const dataToAuthenticate = url.pathname + expiry
 
-  const mac = await crypto.subtle.sign(
-    "HMAC", key,
-    encoder.encode(dataToAuthenticate)
-  )
+  const mac = await crypto.subtle.sign('HMAC', key, encoder.encode(dataToAuthenticate))
 
   // `mac` is an ArrayBuffer, so we need to jump through a couple hoops to get
   // it into a ByteString, then a Base64-encoded string.
   const base64Mac = btoa(String.fromCharCode(...new Uint8Array(mac)))
 
-  url.searchParams.set("mac", base64Mac)
-  url.searchParams.set("expiry", expiry)
+  url.searchParams.set('mac', base64Mac)
+  url.searchParams.set('expiry', expiry)
 
   return new Response(url)
 }

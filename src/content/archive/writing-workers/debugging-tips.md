@@ -1,5 +1,5 @@
 ---
-title: "Debugging Tips"
+title: 'Debugging Tips'
 weight: 20
 ---
 
@@ -7,11 +7,11 @@ weight: 20
 
 When a Worker running in production has an error that prevents it from returning a response, the client will receive an error page with an error code, defined as follows:
 
-| Error code | Meaning                                                                                                             |
-| ---------- | ------------------------------------------------------------------------------------------------------------------- |
-| 1101       | Worker threw a JavaScript exception.                                                                                |
+| Error code | Meaning                                                                                          |
+| ---------- | ------------------------------------------------------------------------------------------------ |
+| 1101       | Worker threw a JavaScript exception.                                                             |
 | 1102       | Worker exceeded CPU time limit. See: [Resource Limits](/archive/writing-workers/resource-limits) |
-| 1015       | Your client IP is being rate limited.                                                                               |
+| 1015       | Your client IP is being rate limited.                                                            |
 
 <br/>Other 11xx errors generally indicate a problem with the Workers runtime itself -- please [raise a support ticket](https://support.cloudflare.com/hc/en-us/requests/new) if you see one.
 
@@ -29,7 +29,7 @@ A common quick hack to get some debug information out of your Worker is to retur
 
 ```javascript
 addEventListener('fetch', event => {
-  event.respondWith(handle(event.request));
+  event.respondWith(handle(event.request))
 })
 
 async function handle(request) {
@@ -40,13 +40,13 @@ async function handle(request) {
   response = new Response(response.body, response)
 
   // Shove our rewritten URL into a header to find out what it was.
-  response.headers.set("X-Debug", newUrl)
+  response.headers.set('X-Debug', newUrl)
 
   return response
 }
 
 function myRewriteFunction(url) {
-  return url + "?foo=bar"
+  return url + '?foo=bar'
 }
 ```
 
@@ -58,7 +58,7 @@ When logging using this strategy, you must account for a small but important det
 
 ```javascript
 addEventListener('fetch', event => {
-  event.respondWith(handle(event));
+  event.respondWith(handle(event))
 })
 
 async function handle(event) {
@@ -73,14 +73,14 @@ async function handle(event) {
 }
 
 function postLog(data) {
-  return fetch("https://log-service.example.com/", {
-    method: "POST",
-    body: data
+  return fetch('https://log-service.example.com/', {
+    method: 'POST',
+    body: data,
   })
 }
 
 function myRewriteFunction(url) {
-  return url + "?foo=bar"
+  return url + '?foo=bar'
 }
 ```
 
@@ -90,7 +90,7 @@ If you're getting error code 1101 from your Worker, that means it is throwing an
 
 ```javascript
 addEventListener('fetch', event => {
-  event.respondWith(handle(event.request));
+  event.respondWith(handle(event.request))
 })
 
 async function handle(request) {
@@ -104,7 +104,7 @@ async function handle(request) {
 }
 
 function myRewriteFunction(url) {
-  throw new Error("oops!")
+  throw new Error('oops!')
 }
 ```
 
@@ -145,7 +145,7 @@ is the same behavior that browsers implement.
 The reason this happens is because [Headers](https://developer.mozilla.org/en-US/docs/Web/API/Headers)
 objects do not store headers in enumerable JavaScript properties, so the
 developer console and JSON stringifier do not know how to read the names and
-values of the headers. It's not an empty object *per se*, but rather an opaque
+values of the headers. It's not an empty object _per se_, but rather an opaque
 object.
 
 Headers objects are iterable, however, which we can take advantage of to develop
@@ -164,8 +164,8 @@ This works because:
 
 - Map objects can be constructed from iterables, like Headers.
 
-- The Map object *does* store its entries in an enumerable JavaScript property,
-    so the developer console can see into it.
+- The Map object _does_ store its entries in an enumerable JavaScript property,
+  so the developer console can see into it.
 
 ### Spread Headers into an array
 

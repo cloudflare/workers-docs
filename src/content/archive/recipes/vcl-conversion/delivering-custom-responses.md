@@ -1,8 +1,9 @@
 ---
-title: "Delivering Custom Responses"
+title: 'Delivering Custom Responses'
 ---
 
 ## With VCL:
+
 VCL does not allow you to define custom responses in the code itself. You will have to upload the response via your CDN provider, and reference it in the code block by creating a condition:
 
 ```vcl
@@ -15,17 +16,19 @@ VCL does not allow you to define custom responses in the code itself. You will h
 ```
 
 ## With Workers:
+
 Workers allow you to fully customize the responses that are sent to the client. You may find more examples of how to create responses that never hit your origin [here](/archive/recipes/return-403/).
 
 Example of returning a blocked response based on country (with the response itself in the Worker!):
+
 ```js
 // request.cf is only available in production and will be undefined in the playground.
-if ((request.cf || {}).country == "UK") {
-  return new Response("<html>No cats for you!</html>", {
-    headers: { "Content-Type": "text/html" },
+if ((request.cf || {}).country == 'UK') {
+  return new Response('<html>No cats for you!</html>', {
+    headers: { 'Content-Type': 'text/html' },
     status: 403,
-    statusText: "Forbidden"
-  });
+    statusText: 'Forbidden',
+  })
 }
 ```
 
@@ -39,17 +42,15 @@ let url = new URL(request.url)
 
 Once the URL has been created, you can parse out hostnames, paths and query string.
 Blocking certain hosts:
+
 ```js
 if (url.hostname == 'blocked.mywebsite.com')
 ```
 
 Blocking based on a predefined blacklist of hosts:
+
 ```js
-let forbidden = new Set([
-  "nope.mywebsite.com",
-  "nachosite.mywebsite.com",
-  "bye.website.com"
-]);
+let forbidden = new Set(['nope.mywebsite.com', 'nachosite.mywebsite.com', 'bye.website.com'])
 
 if (forbidden.has(url.hostname)) {
   // ...
@@ -57,9 +58,10 @@ if (forbidden.has(url.hostname)) {
 ```
 
 Action based on file extension
+
 ```js
-let forbiddenExt = ["doc", "xml"];
-let forbiddenExtRegExp = new RegExp(`\\.(${forbiddenExt.join("|")})$`); // /\.(doc|xml)$/
+let forbiddenExt = ['doc', 'xml']
+let forbiddenExtRegExp = new RegExp(`\\.(${forbiddenExt.join('|')})$`) // /\.(doc|xml)$/
 if (forbiddenExtRegExp.test(url.pathname)) {
   // Do some action here
 }
@@ -92,4 +94,3 @@ if (request.headers.get('CF-Connecting-IP'))
 // request.cf is only available in production and will be undefined in the playground.
 if ((request.cf || {}).asn == 64512)
 ```
-

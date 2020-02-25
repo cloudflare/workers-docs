@@ -1,5 +1,5 @@
 ---
-title: "WebAssembly"
+title: 'WebAssembly'
 alwaysopen: false
 weight: 35
 ---
@@ -28,48 +28,49 @@ cargo install wrangler
 
 1. Generate a new project:
 
-    ```
-    wrangler generate
-    ```
+   ```
+   wrangler generate
+   ```
 
 2. Move into the new project directory:
-    ```
 
-    cd wasm-worker
-    ```
+   ```
+
+   cd wasm-worker
+   ```
 
 3. Build your project:
 
-    ```
-    wrangler build
-    ```
+   ```
+   wrangler build
+   ```
 
 4. Preview your project:
 
-    ```
-    wrangler preview
-    ```
+   ```
+   wrangler preview
+   ```
 
 5. (optional) Configure with your Cloudflare account:
 
-    ```
-    wrangler config <email> <api_key>
-    ```
+   ```
+   wrangler config <email> <api_key>
+   ```
 
-    You must configure your account to be able to use the `publish` step, which will push your Worker live to the
-    Cloudflare edge. If you don't configure, you can still use `wrangler` to generate, build, and preview
-    a Worker.
+   You must configure your account to be able to use the `publish` step, which will push your Worker live to the
+   Cloudflare edge. If you don't configure, you can still use `wrangler` to generate, build, and preview
+   a Worker.
 
 6. Check your configuration:
 
-    ```
-    wrangler whoami
-    ```
+   ```
+   wrangler whoami
+   ```
 
 7. Publish your project:
 
-    ```
-    wrangler publish <zone_id>
-    ```
+   ```
+   wrangler publish <zone_id>
+   ```
 
-    ... where `<zone_id>` is replaced with the `id` for the Cloudflare zone you are publishing to!
+   ... where `<zone_id>` is replaced with the `id` for the Cloudflare zone you are publishing to!

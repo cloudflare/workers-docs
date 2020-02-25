@@ -1,32 +1,36 @@
 ---
-title: "Overriding Response Headers"
+title: 'Overriding Response Headers'
 ---
 
 This example shows how you can override response headers in Workers.
 
 ## With Lambda@Edge:
+
 ```js
-'use strict';
+'use strict'
 
 exports.handler = (event, context, callback) => {
-   const response = event.Records[0].cf.response;
-   const headers = response.headers;
+  const response = event.Records[0].cf.response
+  const headers = response.headers
 
-   const headerNameSrc = 'Orig-Header';
-   const headerNameDst = 'Last-Modified';
+  const headerNameSrc = 'Orig-Header'
+  const headerNameDst = 'Last-Modified'
 
-   if (headers[headerNameSrc.toLowerCase()]) {
-      headers[headerNameDst.toLowerCase()] = [
-         headers[headerNameSrc.toLowerCase()][0],
-      ];
-      console.log(`Response header "${headerNameDst}" was set to "${headers[headerNameDst.toLowerCase()][0].value}"`);
-   }
+  if (headers[headerNameSrc.toLowerCase()]) {
+    headers[headerNameDst.toLowerCase()] = [headers[headerNameSrc.toLowerCase()][0]]
+    console.log(
+      `Response header "${headerNameDst}" was set to "${
+        headers[headerNameDst.toLowerCase()][0].value
+      }"`
+    )
+  }
 
-   callback(null, response);
-};
+  callback(null, response)
+}
 ```
 
 ## With Workers:
+
 ```js
 addEventListener('fetch', event => {
   event.respondWith(handle(event.request))
@@ -41,7 +45,9 @@ async function handle(request) {
 
   if (response.headers.has(headerNameSrc)) {
     response.headers.set(headerNameDst, response.headers.get(headerNameSrc))
-    console.log(`Response header "${headerNameDst}" was set to "${response.headers.get(headerNameDst)}"`)
+    console.log(
+      `Response header "${headerNameDst}" was set to "${response.headers.get(headerNameDst)}"`
+    )
   }
 
   return response

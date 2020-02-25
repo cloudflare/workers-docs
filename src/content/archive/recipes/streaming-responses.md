@@ -1,10 +1,10 @@
 ---
-title: "Streaming Responses"
+title: 'Streaming Responses'
 ---
 
 A Worker script doesn't need to prepare its entire response body before
 delivering a Response to `event.respondWith()`. Using a TransformStream, it is
-possible to stream a response body *after* sending the response's front matter
+possible to stream a response body _after_ sending the response's front matter
 (i.e., HTTP status line and headers). This allows us to minimize:
 
 - The visitor's time-to-first-byte.
@@ -16,7 +16,7 @@ response bodies that are larger than the Worker's memory limit. In these cases,
 streaming is the only feasible implementation strategy.
 
 **Note:** The Cloudflare Worker service already streams by default wherever
-possible. You only need to use these APIs if you wish to *modify* the response
+possible. You only need to use these APIs if you wish to _modify_ the response
 body in some way, while maintaining streaming behavior. If your Worker script
 only passes subrequest responses back to the client verbatim, without reading
 their bodies, then its body handling is already optimal, and there is no need
@@ -31,7 +31,7 @@ method.
 Here's a minimal pass-through example to show their basic usage.
 
 ```js
-addEventListener("fetch", event => {
+addEventListener('fetch', event => {
   event.respondWith(fetchAndStream(event.request))
 })
 
@@ -57,7 +57,7 @@ async function streamBody(readable, writable) {
 }
 ```
 
-Although `streamBody()` is an asynchronous function, we do *not* `await` it, so
+Although `streamBody()` is an asynchronous function, we do _not_ `await` it, so
 that it does not block forward progress of the calling `fetchAndStream()`
 function. It will continue to run asynchronously until the response has been
 completed or the client disconnects.
@@ -78,7 +78,7 @@ response bodies.
 
 ```js
 addEventListener('fetch', event => {
-    event.respondWith(fetchAndApply(event.request))
+  event.respondWith(fetchAndApply(event.request))
 })
 
 /**
@@ -88,12 +88,12 @@ addEventListener('fetch', event => {
  */
 async function fetchAndApply(request) {
   const requestInit = {
-    headers: { "Authorization": "XXXXXX" }
+    headers: { Authorization: 'XXXXXX' },
   }
   const fetches = [
-    "https://api.coinbase.com/v2/prices/BTC-USD/spot",
-    "https://api.coinbase.com/v2/prices/ETH-USD/spot",
-    "https://api.coinbase.com/v2/prices/LTC-USD/spot"
+    'https://api.coinbase.com/v2/prices/BTC-USD/spot',
+    'https://api.coinbase.com/v2/prices/ETH-USD/spot',
+    'https://api.coinbase.com/v2/prices/LTC-USD/spot',
   ].map(url => fetch(url, requestInit))
 
   // Wait for each fetch() to complete.
@@ -107,7 +107,10 @@ async function fetchAndApply(request) {
   // Create a pipe and stream the response bodies out
   // as a JSON array.
   let { readable, writable } = new TransformStream()
-  streamJsonBodies(responses.map(r => r.body), writable)
+  streamJsonBodies(
+    responses.map(r => r.body),
+    writable
+  )
 
   return new Response(readable)
 }
@@ -123,18 +126,18 @@ async function streamJsonBodies(bodies, writable) {
   let writer = writable.getWriter()
   let encoder = new TextEncoder()
 
-  await writer.write(encoder.encode("[\n"))
+  await writer.write(encoder.encode('[\n'))
 
   for (let i = 0; i < bodies.length; ++i) {
     if (i > 0) {
-      await writer.write(encoder.encode(",\n"))
+      await writer.write(encoder.encode(',\n'))
     }
     writer.releaseLock()
     await bodies[i].pipeTo(writable, { preventClose: true })
     writer = writable.getWriter()
   }
 
-  await writer.write(encoder.encode("]"))
+  await writer.write(encoder.encode(']'))
 
   await writer.close()
 }

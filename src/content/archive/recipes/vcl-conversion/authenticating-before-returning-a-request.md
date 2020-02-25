@@ -1,10 +1,11 @@
 ---
-title: "Authenticating Before Returning a Request"
+title: 'Authenticating Before Returning a Request'
 ---
 
 Just like VCL, Workers allows for authenticating before returning a request for header-based authentication.
 
 ## With VCL:
+
 ```vcl
 sub vcl_recv {
 
@@ -73,6 +74,7 @@ sub vcl_deliver {
 ```
 
 ## With Workers:
+
 ```js
 addEventListener('fetch', event => {
   event.respondWith(handle(event.request))
@@ -82,11 +84,11 @@ async function handle(request) {
   // Make an authentication request that is identical to the
   // original request, but a GET with no body.
   let authUrl = new URL(request.url)
-  authUrl.pathname = "/authenticate"
+  authUrl.pathname = '/authenticate'
   let authResponse = await fetch(authUrl, {
     ...request,
-    method: "GET",
-    body: null
+    method: 'GET',
+    body: null,
   })
 
   if (authResponse.status === 200) {
@@ -99,7 +101,7 @@ async function handle(request) {
     // Every other response from the authentication server becomes 403.
     return new Response(null, {
       status: 403,
-      statusText: "Forbidden",
+      statusText: 'Forbidden',
     })
   }
 }

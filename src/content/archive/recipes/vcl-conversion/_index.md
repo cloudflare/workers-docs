@@ -1,5 +1,5 @@
 ---
-title: "VCL to Workers tutorials"
+title: 'VCL to Workers tutorials'
 weight: 50
 ---
 

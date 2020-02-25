@@ -70,7 +70,7 @@ export const useRestApiTemplates = () =>
             }
           }
         }
-      `,
+      `
     )
     // const { allMdx, allRestApiTemplates } = data
     return { allRestApiTemplates, allMdx }

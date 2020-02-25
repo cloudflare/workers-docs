@@ -2,18 +2,19 @@
 title: 'KV'
 weight: 1
 ---
+
 - [Writing key-value pairs](#writing-key-value-pairs)
-  * [Writing Data in Bulk](#writing-data-in-bulk)
-  * [Expiring Keys](#expiring-keys)
-    + [Creating expiring keys](#creating-expiring-keys)
+  - [Writing Data in Bulk](#writing-data-in-bulk)
+  - [Expiring Keys](#expiring-keys)
+    - [Creating expiring keys](#creating-expiring-keys)
 - [Reading key-value pairs](#reading-key-value-pairs)
-  * [Types](#types)
+  - [Types](#types)
 - [Deleting key-value pairs](#deleting-key-value-pairs)
 - [Listing keys](#listing-keys)
-  * [More detail](#more-detail)
-  * [Listing by prefix](#listing-by-prefix)
-  * [Ordering](#ordering)
-  * [Pagination](#pagination)
+  - [More detail](#more-detail)
+  - [Listing by prefix](#listing-by-prefix)
+  - [Ordering](#ordering)
+  - [Pagination](#pagination)
 
 # Writing key-value pairs
 
@@ -118,9 +119,9 @@ addEventListener('fetch', event => {
 })
 
 async function handleRequest(request) {
-  const value = await FIRST_KV_NAMESPACE.get("first-key")
+  const value = await FIRST_KV_NAMESPACE.get('first-key')
   if (value === null) {
-    return new Response("Value not found", {status: 404})
+    return new Response('Value not found', { status: 404 })
   }
 
   return new Response(value)
@@ -198,20 +199,20 @@ The `list` method has this signature (in TypeScript):
 
 All arguments are optional:
 
-* `prefix` is a string that represents a prefix you can use to filter all keys.
-* `limit` is the maximum number of keys returned. The default is 1000, which is
+- `prefix` is a string that represents a prefix you can use to filter all keys.
+- `limit` is the maximum number of keys returned. The default is 1000, which is
   the maximum. It is unlikely that you will want to change this default, but
   it is included for completeness.
-* `cursor` is a string used for paginating responses. See below for more.
+- `cursor` is a string used for paginating responses. See below for more.
 
 The `.list` method returns a promise which resolves with an object that looks
 like this:
 
 ```json
 {
-  keys: [{ name: "foo", expiration: 1234}],
-  list_complete: false,
-  cursor: "6Ck1la0VxJ0djhidm1MdX2FyD"
+  "keys": [{ "name": "foo", "expiration": 1234 }],
+  "list_complete": false,
+  "cursor": "6Ck1la0VxJ0djhidm1MdX2FyD"
 }
 ```
 
@@ -230,7 +231,7 @@ below for more details.
 
 You can also list all of the keys starting with a particular prefix. For
 example, say you've structured your keys with a user, a user id, and then
-some key names, separated by colons (e.g. ` user:1:<key>`). You could get the keys for user number
+some key names, separated by colons (e.g. `user:1:<key>`). You could get the keys for user number
 one by doing this:
 
 ```js
@@ -239,7 +240,7 @@ addEventListener('fetch', event => {
 })
 
 async function handleRequest(request) {
-  const value = await NAMESPACE.list({"prefix": "user:1:"})
+  const value = await NAMESPACE.list({ prefix: 'user:1:' })
 
   return new Response(value.keys)
 }
@@ -262,5 +263,5 @@ const value = await NAMESPACE.list()
 
 const cursor = value.cursor
 
-const next_value = await NAMESPACE.list({"cursor": cursor})
+const next_value = await NAMESPACE.list({ cursor: cursor })
 ```

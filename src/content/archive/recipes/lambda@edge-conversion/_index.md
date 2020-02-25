@@ -1,5 +1,5 @@
 ---
-title: "Lambda@Edge Tutorials"
+title: 'Lambda@Edge Tutorials'
 weight: 50
 ---
 
