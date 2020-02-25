@@ -35,32 +35,18 @@ import debounce from 'lodash.debounce'
 //     header.style.display = matches.length ? '' : 'none'
 //   })
 // }
-
-// // Update the UI when there aren't any results
-// const processEmpty = () => {
-//   const resultsContainer = document.querySelector('#results')
-//   resultsContainer.style.display = 'none'
-
-//   const empty = document.querySelector('#empty')
-//   empty.style.display = 'block'
-//   // hack to fix rendering of select
-//   empty.style.marginBottom = '999px'
-// }
-
-// // Event handler when the #type select changes
-// const searchFilters = evt => {
-//   const value = evt.detail.value
-//   search(value === 'All' ? null : value)
-// }
 type SearchBoxProps = {
   templates: restApiTemplate[]
   children: (input: restApiTemplate[]) => ReactElement
 }
 type SearchBoxState = {
   searchQuery: string
-  results: any[]
+  results: lunrResult[]
   //   idx: any
-  documents: any
+  documents: restApiTemplate[]
+}
+type lunrResult = lunr.Index.Result & {
+  item: restApiTemplate | undefined
 }
 export class SearchBox extends React.Component<SearchBoxProps, SearchBoxState> {
   public idx: lunr.Index
@@ -75,9 +61,8 @@ export class SearchBox extends React.Component<SearchBoxProps, SearchBoxState> {
         ...Object.values(templates), // .map(item => toLunr(item, 'boilerplates')),
       ]
     }
-    let results, corpus: any
+    let corpus: restApiTemplate[]
     corpus = constructCorpus()
-    results = corpus
     // const idx = lunr(function() {
     this.idx = lunr(function() {
       this.ref('endpointId')
@@ -87,13 +72,26 @@ export class SearchBox extends React.Component<SearchBoxProps, SearchBoxState> {
       this.field('tags')
 
       corpus.forEach((doc: any) => {
-        console.log('doc', doc)
         this.add(doc)
       }, this)
     })
-    // window.idx = this.idx
-    // moonwalkers.forEach(walker => this.add(walker))
-    this.state = { searchQuery: '', results: [], documents: corpus }
+    console.log('templaasdtes', templates)
+    let emptySearch = this.idx.search('*').map(({ ref, ...rest }: lunr.Index.Result) => ({
+      ref,
+      item: corpus.find((m: any) => m.endpointId === ref),
+      ...rest,
+    }))
+    // let initResults = corpus.map(temp => ({
+    //   ref: '',
+    //   item: temp, //this.state.documents.find((m: any) => m.endpointId === ref),
+    //   matchData: {},
+    //   score: 0,
+    //   // ...rest,
+    // }))
+    console.log('idx', this.idx.toJSON())
+
+    // let initResults = this.idx.search()
+    this.state = { searchQuery: '', results: emptySearch, documents: corpus }
   }
 
   componentDidMount() {
@@ -116,9 +114,9 @@ export class SearchBox extends React.Component<SearchBoxProps, SearchBoxState> {
   }
   getResults(searchQuery: string) {
     if (!searchQuery) return []
-    const results = this.idx
+    const results: lunrResult[] = this.idx
       .search(searchQuery) // search the index
-      .map(({ ref, ...rest }: any) => ({
+      .map(({ ref, ...rest }: lunr.Index.Result) => ({
         ref,
         item: this.state.documents.find((m: any) => m.endpointId === ref),
         ...rest,
@@ -127,7 +125,9 @@ export class SearchBox extends React.Component<SearchBoxProps, SearchBoxState> {
   }
 
   render() {
-    console.log('resultss', this.state.results)
+    const results = this.state.results
+      .filter(result => typeof result !== undefined)
+      .map(result => result.item) as restApiTemplate[]
     return (
       <>
         <div style={{ flex: 2, marginRight: '16px' }}>
@@ -143,7 +143,7 @@ export class SearchBox extends React.Component<SearchBoxProps, SearchBoxState> {
         </div>
         {this.state.results.length ? (
           this.props.children ? (
-            this.props.children(this.state.results.map(result => result.item))
+            this.props.children(results)
           ) : (
             ''
           )

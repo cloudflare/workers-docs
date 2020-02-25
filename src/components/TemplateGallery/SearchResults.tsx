@@ -1,12 +1,10 @@
 import React from 'react'
-import { allRestApiTemplates, restApiTemplate } from '../../types/restApiTemplates'
-import { useStaticQuery, graphql } from 'gatsby'
+import { restApiTemplate } from '../../types/restApiTemplates'
 import { Snippet } from './Snippet'
 import { Boilerplate } from './Boilerplate'
-import { SearchBox } from './SearchBox'
 
 export const SearchResults: React.FunctionComponent<GalleryProps> = ({ results }) => {
-  const snippets = results.map(edge => edge).filter(template => template.type === 'snippet')
+  const snippets = results.filter(template => template.type === 'snippet')
   const boilerplates = results.map(edge => edge).filter(template => template.type === 'boilerplate')
   const featured_boilerplates = results
     .map(edge => edge)
