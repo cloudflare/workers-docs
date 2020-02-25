@@ -100,12 +100,15 @@ export class SearchBox extends React.Component<SearchBoxProps, SearchBoxState> {
             }, this)
         })
         console.log(corpus)
-        window.idx = idx
+
         // moonwalkers.forEach(walker => this.add(walker))
         this.state = { searchQuery: '', idx, results: [], documents: corpus }
     }
 
-
+    componentDidMount() {
+        // @ts-ignore
+        window.idx = idx
+    }
     handleNewSearchValue = (event: any) => {
         // TODO: use a debouncer from lodash
         // const handleNewSearchValue = _.throttle(value => {
