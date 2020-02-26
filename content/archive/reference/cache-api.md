@@ -207,17 +207,17 @@ async function handleRequest(event) {
     url.pathname = "/posts" + url.pathname + hash
 
     // Convert to a GET to be able to cache
-    let cacheKey = new Request(url, {headers: request.headers, method: 'GET'})
+    let getRequest = new Request(url, {headers: request.headers, method: 'GET'})
 
     let cache = caches.default
     //try to find the cache key in the cache
-    response = await cache.match(cacheKey)
+    response = await cache.match(getRequest)
 
     // otherwise, fetch from origin
     if (!response) {
       // makes POST to the origin
       response = await fetch(request.url, newRequest)
-      event.waitUntil(cache.put(cacheKey, response.clone()))
+      event.waitUntil(cache.put(getRequest, response.clone()))
     }
   } else {
     response = await fetch(request) 
