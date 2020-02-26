@@ -154,7 +154,7 @@ returning it to you. For large values you can request a `ReadableStream`, and
 for binary values an `ArrayBuffer`.
 
 For large values, the choice of `type` can have a noticeable effect on latency
-and CPU usage. For reference, the `type`s can ordered from fastest to slowest
+and CPU usage. For reference, the `type`s can be ordered from fastest to slowest
 as `"stream"`, `"arrayBuffer"`, `"text"`, and `"json"`.
 
 # Deleting key-value pairs
