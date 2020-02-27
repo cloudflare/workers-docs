@@ -36,4 +36,4 @@ Using the secret inside of your Workers script:
 let headers = new Headers({ Authorization: SECRET })
 ```
 
-Limits for environment variables can be seen in the [about section](/about/limits#enviornment-variables).
+Limits for environment variables can be seen in the [about section](/about/limits#environment-variables).
