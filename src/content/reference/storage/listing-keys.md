@@ -28,20 +28,20 @@ The `list` method has this signature (in TypeScript):
 
 All arguments are optional:
 
-- `prefix` is a string that represents a prefix you can use to filter all keys.
-- `limit` is the maximum number of keys returned. The default is 1000, which is
+* `prefix` is a string that represents a prefix you can use to filter all keys.
+* `limit` is the maximum number of keys returned. The default is 1000, which is
   the maximum. It is unlikely that you will want to change this default, but
   it is included for completeness.
-- `cursor` is a string used for paginating responses. See below for more.
+* `cursor` is a string used for paginating responses. See below for more.
 
 The `.list` method returns a promise which resolves with an object that looks
 like this:
 
 ```json
 {
-  "keys": [{ "name": "foo", "expiration": 1234 }],
-  "list_complete": false,
-  "cursor": "6Ck1la0VxJ0djhidm1MdX2FyD"
+  keys: [{ name: "foo", expiration: 1234}],
+  list_complete: false,
+  cursor: "6Ck1la0VxJ0djhidm1MdX2FyD"
 }
 ```
 
@@ -68,7 +68,7 @@ addEventListener('fetch', event => {
 })
 
 async function handleRequest(request) {
-  const value = await NAMESPACE.list({ prefix: 'user:1:' })
+  const value = await NAMESPACE.list({"prefix": "user:1:"})
 
   return new Response(value.keys)
 }
@@ -91,5 +91,5 @@ const value = await NAMESPACE.list()
 
 const cursor = value.cursor
 
-const next_value = await NAMESPACE.list({ cursor: cursor })
+const next_value = await NAMESPACE.list({"cursor": cursor})
 ```

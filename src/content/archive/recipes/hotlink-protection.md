@@ -1,8 +1,7 @@
 ---
 title: Hot-link Protection
 ---
-
-You can use Cloudflare Workers to protect your hot-links on your web properties.
+You can use Cloudflare Workers to protect your hot-links on your web properties. 
 
 ```js
 addEventListener('fetch', event => {
@@ -10,7 +9,7 @@ addEventListener('fetch', event => {
 })
 
 /**
- * If the browser is requesting an image and
+ * If the browser is requesting an image and 
  * the referer does not match your host
  * we redirect the request to your page
  */
@@ -25,7 +24,8 @@ async function fetchAndApply(request) {
   if (referer && contentType.startsWith('image/')) {
     // It's an image and there's a Referer. Verify that the
     // hostnames match.
-    if (new URL(referer).hostname !== new URL(request.url).hostname) {
+    if (new URL(referer).hostname !==
+        new URL(request.url).hostname) {
       // Hosts don't match. This is a hotlink. Redirect the
       // user to our homepage.
       return Response.redirect('/', 302)

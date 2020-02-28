@@ -128,7 +128,6 @@ resource "cloudflare_worker_route" "my_route" {
 ```
 
 ### Deploying your Workers
-
 After you've defined your configuration file, you're ready to deploy your scripts and routes. Make sure you [Install Terraform](https://www.terraform.io/intro/getting-started/install.html) and then run `terraform init` to run the initial setup.
 
 ```

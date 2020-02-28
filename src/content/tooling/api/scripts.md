@@ -5,7 +5,7 @@ weight: 2
 
 - [Object Specification](#object-specification)
 - [Upload or Update a Workers Script](#upload-or-update-a-workers-script)
-  - [With Resource Bindings](#with-resource-bindings)
+  * [With Resource Bindings](#with-resource-bindings)
 - [List all Scripts for an account](#list-all-scripts-for-an-account)
 - [Download a Script](#download-a-script)
 - [Delete a Script](#delete-a-script)
@@ -57,6 +57,7 @@ curl -X PUT "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/worker
   }
 }
 ```
+
 
 ### With Resource Bindings
 

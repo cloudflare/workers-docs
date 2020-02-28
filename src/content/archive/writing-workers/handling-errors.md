@@ -1,9 +1,9 @@
 ---
-title: 'Handling Errors'
+title: "Handling Errors"
 weight: 35
 ---
 
-As with any programming environment, Workers can have bugs. Your Worker could include a logical
+As with any programming environment, Workers can have bugs.  Your Worker could include a logical
 error, fail to handle an edge case, or otherwise trigger a JavaScript exception.
 
 As Workers are designed to support use-cases where they implement security on top of your site, by default,
@@ -27,7 +27,7 @@ async function handleRequest(request) {
   try {
     var response = dangerousThingWhichMightError()
   } catch (e) {
-    return new Response('Something didn’t quite work')
+    return new Response("Something didn’t quite work")
   }
 
   return response

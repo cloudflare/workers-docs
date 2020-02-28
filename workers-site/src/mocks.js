@@ -17,8 +17,7 @@ export const mockResponseRedirect = (url, code) =>
 export const mockKV = () => {
   const store = {
     'templates/index.123HASHBROWN.html': 'templates/index.html',
-    'archive/recipes/pre-shared-keys/index.123HASHBROWN.html':
-      'archive/recipes/pre-shared-keys/index.html',
+    'archive/recipes/pre-shared-keys/index.123HASHBROWN.html': 'archive/recipes/pre-shared-keys/index.html',
     'archive/recipes/static-site/index.123HASHBROWN.html': `archive/recipes/static-site/index.html`,
   }
   return {

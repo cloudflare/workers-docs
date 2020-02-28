@@ -42,7 +42,7 @@ async function verifyAndFetch(request) {
     secretKeyData,
     { name: 'HMAC', hash: 'SHA-256' },
     false,
-    ['verify']
+    ['verify'],
   )
 
   // Extract the query parameters we need and run the HMAC algorithm on the
@@ -65,7 +65,7 @@ async function verifyAndFetch(request) {
     'HMAC',
     key,
     receivedMac,
-    encoder.encode(dataToAuthenticate)
+    encoder.encode(dataToAuthenticate),
   )
 
   if (!verified) {
@@ -128,7 +128,7 @@ async function generateSignedUrl(url) {
     secretKeyData,
     { name: 'HMAC', hash: 'SHA-256' },
     false,
-    ['sign']
+    ['sign'],
   )
 
   // Signed requests expire after one minute. Note that you could choose

@@ -73,7 +73,7 @@ For the remainder of this tutorial, we'll walk through each step in this process
 
 To begin, we should understand how to populate our todo list with actual data. To do this, we’ll make use of Cloudflare’s Workers KV - it’s a simple key-value store that you can access inside of your Worker script to read and write data.
 
-To get started with KV, we need to set up a “namespace”. All of our cached data will be stored inside that namespace, and given just a bit of configuration, we can access that namespace inside the script with a predefined variable. Use Wrangler to create a new namespace and get the associated namespace ID.
+To get started with KV, we need to set up a “namespace”. All of our cached data will be stored inside that namespace, and given just a bit of configuration, we can access that namespace inside the script with a predefined variable.  Use Wrangler to create a new namespace and get the associated namespace ID.
 
 ```
 wrangler kv:namespace create "TODOS"
@@ -95,6 +95,7 @@ Let's start storing data by defining an initial set of data, which we’ll put i
 
 ```js
 async function handleRequest(request) {
+  
   const defaultData = {
     todos: [
       {

@@ -1,5 +1,5 @@
 ---
-title: 'Controlling the Cache'
+title: "Controlling the Cache"
 ---
 
 VCL is often used to define the caching behavior for a CDN. VCL is a very explicit language, so when doing a VCL to Workers conversion, there are many behaviors you will get by default, and don't have to worry about implementing with Workers.
@@ -8,11 +8,11 @@ VCL is often used to define the caching behavior for a CDN. VCL is a very explic
 
 By default, Workers will follow the Cloudflare caching behavior. You can read more [here about how Cloudflare decides what to cache](https://support.cloudflare.com/hc/en-us/articles/202775670-How-Do-I-Tell-Cloudflare-What-to-Cache-).
 
-- On request, Cloudflare will determine whether something is deemed cacheable.
-- By default, Cloudflare will cache static content (based on a whitelist of file extensions).
-- Cacheability can be overriden with certain Page Rules or settings.
-- Only responses to GET and HEAD methods will get cached by default.
-- After Cloudflare has decided to cache something, its expiration time will be determined based on the Cache-Control header sent by the origin.
+ - On request, Cloudflare will determine whether something is deemed cacheable.
+ - By default, Cloudflare will cache static content (based on a whitelist of file extensions).
+ - Cacheability can be overriden with certain Page Rules or settings.
+ - Only responses to GET and HEAD methods will get cached by default.
+ - After Cloudflare has decided to cache something, its expiration time will be determined based on the Cache-Control header sent by the origin.
 - How long something is cached for can be overriden with Page Rules, or using the `cf` attribute in a request.
 - Each zone has its own private cache key namespace. That means that two Workers operating within the same zone (even on different hostnames) may share cache using custom cache keys, but Workers operating on behalf of different zones cannot affect each other's cache.
 - You can only override cache keys when making requests within your own zone, or requests to hosts that are not on Cloudflare. When making a request to another Cloudflare zone (e.g. belonging to a different Cloudflare customer), that zone fully controls how its own content is cached within Cloudflare; you cannot override it.
@@ -25,6 +25,7 @@ You will find some of the following snippets in your VCL. Although you can be ex
 ```vcl
     if (req.request != "HEAD" && req.request != "GET") {
 ```
+
 
 ```vcl
   if ((beresp.status == 500 || beresp.status == 503) && req.restarts < 1 && (req.request == "GET" || req.request == "HEAD")) {
@@ -45,7 +46,6 @@ You will find some of the following snippets in your VCL. Although you can be ex
 ```
 
 ### Caching HTML (or other non-whitelisted file extensions):
-
 ```javascript
 // Force Cloudflare to cache an asset
 fetch(event.request, { cf: { cacheEverything: true } })
@@ -66,38 +66,41 @@ This option forces Cloudflare to cache the response for this request, regardless
 
 ```javascript
 async function fetchAndApply(request) {
-  let response = await fetch(request)
+  let response = await fetch(request);
 
   // Make response headers mutable
-  response = new Response(response.body, response)
+  response = new Response(response.body, response);
 
-  response.headers.set('Cache-Control', 'max-age=1500')
+  response.headers.set("Cache-Control", "max-age=1500");
 
-  return response
+  return response;
 }
 ```
 
+
 ### Override based on origin response code:
 
-_This feature is available to enterprise users only._
+*This feature is available to enterprise users only.*
 
 ```javascript
 // Force response to be cached for 86400 seconds for 200 status codes, 1 second for 404,
 // and do not cache 500 errors
-fetch(request, { cf: { cacheTtlByStatus: { '200-299': 86400, 404: 1, '500-599': 0 } } })
+fetch(request, { cf: { cacheTtlByStatus: { "200-299": 86400, 404:1, "500-599": 0 } } })
 ```
 
 This option is a version of the `cacheTtl` feature which chooses a TTL based on the response's status code. If the response to this request has a status code that matches, Cloudflare will cache for the instructed time, and override cache directives sent by the origin.
 
 TTL values:
 
-- Positive TTL values indicate in seconds how long Cloudflare should cache the asset for
-- `0` TTL will cause assets to get cached, but expire immediately (revalidate from origin every time)
-- `-1`, or any negative value will instruct Cloudflare not to cache at all
+ - Positive TTL values indicate in seconds how long Cloudflare should cache the asset for
+ - `0` TTL will cause assets to get cached, but expire immediately (revalidate from origin every time)
+ - `-1`, or any negative value will instruct Cloudflare not to cache at all
+
+
 
 ### Custom Cache Keys
 
-_This feature is available to enterprise users only._
+*This feature is available to enterprise users only.*
 
 ```javascript
 // Set cache key for this request to "some-string".
@@ -109,26 +112,25 @@ A request's cache key is what determines if two requests are "the same" for cach
 Normally, Cloudflare computes the cache key for a request based on the request's URL. Sometimes, though, you'd like different URLs to be treated as if they were the same for caching purposes. For example, say your web site content is hosted from both Amazon S3 and Google Cloud Storage -- you have the same content in both places, and you use a Worker to randomly balance between the two. However, you don't want to end up caching two copies of your content! You could utilize custom cache keys to cache based on the original request URL rather than the subrequest URL:
 
 ```javascript
-addEventListener('fetch', event => {
-  let url = new URL(event.request.url)
+addEventListener("fetch", event => {
+  let url = new URL(event.request.url);
   if (Math.random() < 0.5) {
-    url.hostname = 'example.s3.amazonaws.com'
+    url.hostname = "example.s3.amazonaws.com";
   } else {
-    url.hostname = 'example.storage.googleapis.com'
+    url.hostname = "example.storage.googleapis.com";
   }
 
-  let request = new Request(url, event.request)
+  let request = new Request(url, event.request);
   event.respondWith(
     fetch(request, {
-      cf: { cacheKey: event.request.url },
+      cf: { cacheKey: event.request.url }
     })
-  )
-})
+  );
+});
 ```
-
 ### Setting surrogate keys (Cache-Tags)
 
-_This feature is available to enterprise users only._
+*This feature is available to enterprise users only.*
 
 Cache-Tags (known to VCL users as surrogate keys) allow a website owner to add tags to items cached at Cloudflare’s edge. The purpose is for a Cloudflare Enterprise customer to be able to purge cached content with the specified cache-tags.
 
@@ -152,7 +154,7 @@ async function handleRequest(event) {
   if (!response) {
     let requestUrl = new URL(event.request.url)
     let tags = []
-    let dirs = requestUrl.pathname.split('/')
+    let dirs = requestUrl.pathname.split("/")
 
     // Drop first and last element so that we only get necessary parts of the path
     dirs = dirs.slice(1, -1)
@@ -161,7 +163,7 @@ async function handleRequest(event) {
     dirs = dirs.map(encodeURIComponent)
 
     for (let i = 0; i < dirs.length; i++) {
-      tags[i] = requestUrl.hostname + '/' + dirs.slice(0, i + 1).join('/') + '/*'
+      tags[i] = requestUrl.hostname + "/" + dirs.slice(0, i+1).join("/") + "/*"
     }
 
     response = await fetch(request)

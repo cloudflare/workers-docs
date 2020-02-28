@@ -1,5 +1,5 @@
 ---
-title: 'How Workers Work'
+title: "How Workers Work"
 ---
 
 Cloudflare Workers is modeled on the [Service Workers](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)
@@ -10,10 +10,10 @@ Once your JavaScript is handling the request, you may elect to make any number o
 subrequests to your site or others, and finally return any response you would like to
 your visitor.
 
-Unlike standard Service Workers, Cloudflare Workers runs on Cloudflare's servers, _not_
+Unlike standard Service Workers, Cloudflare Workers runs on Cloudflare's servers, *not*
 in the user's browser. That means you can trust that your code will run in a trusted
 environment where it cannot be bypassed by malicious clients. It also means that the
-user does _not_ need to be using a modern browser that supports Service Workers --
+user does *not* need to be using a modern browser that supports Service Workers --
 you can even intercept requests from API clients that aren't browsers at all.
 
 Internally, Cloudflare uses the same V8 JavaScript engine which is used in the Google

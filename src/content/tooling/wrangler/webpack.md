@@ -15,9 +15,9 @@ This is the default webpack configuration that Wrangler uses to build your worke
 
 ```js
 module.exports = {
-  target: 'webworker',
-  entry: './index.js', // inferred from "main" in package.json
-}
+  "target": "webworker",
+  "entry": "./index.js" // inferred from "main" in package.json
+};
 ```
 
 Our default configuration sets `target` to `webworker`. From the [webpack docs](https://webpack.js.org/concepts/targets/):
@@ -38,9 +38,9 @@ You can tell Wrangler to use a custom webpack configuration file by setting `web
 
 ```js
 module.exports = {
-  target: 'webworker',
-  entry: './index.js',
-  mode: 'production',
+  "target": "webworker",
+  "entry": "./index.js",
+  "mode": "production"
 }
 ```
 
@@ -78,9 +78,9 @@ webpack_config = "webpack.production.js"
 
 ```js
 module.exports = {
-  target: 'webworker',
-  entry: './index.js',
-  mode: 'development',
+  "target": "webworker",
+  "entry": "./index.js",
+  "mode": "development"
 }
 ```
 
@@ -88,9 +88,9 @@ module.exports = {
 
 ```js
 module.exports = {
-  target: 'webworker',
-  entry: './index.js',
-  mode: 'production',
+  "target": "webworker",
+  "entry": "./index.js",
+  "mode": "production"
 }
 ```
 

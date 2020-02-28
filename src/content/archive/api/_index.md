@@ -1,5 +1,5 @@
 ---
-title: 'Configuration API'
+title: "Configuration API"
 alwaysopen: false
 weight: 40
 ---
@@ -7,27 +7,22 @@ weight: 40
 Cloudflare’s API allows you to upload and activate Workers without using our UI. You can use the API to integrate Cloudflare Workers into your CLI, build process, or tooling. If you are on the Enterprise Plan, please check out the [this page](config-api-for-enterprise/) for the configuration API.
 
 ## The Basics
-
 Each request you make will need the following:
 
 #### Your Cloudflare Email
-
 This will be the email address you used to signup with Cloudflare. We will refer to this as `YOUR_CLOUDFLARE_EMAIL` in the examples below.
 
 #### Account Authentication Key
-
 You can find your Account Authentication Key by visiting https://dash.cloudflare.com/profile. We will refer to this as `ACCOUNT_AUTH_KEY` in the examples below.
 ![Account Authentication Key](/archive/static/view-authentication-key.png)
 
 #### Zone ID
-
 You can find your Zone ID by visiting `https://www.cloudflare.com/a/overview/YOUR_DOMAIN`
 ![Zone ID](/archive/static/zone-id.png)
 
 ## Endpoints
 
 ### Upload a Worker
-
 `PUT /zones/:zone_id/workers/script`
 
 Upload a Worker (or new version of a Worker).
@@ -39,18 +34,15 @@ curl -X PUT "https://api.cloudflare.com/client/v4/zones/:zone_id/workers/script"
 ```
 
 ### Download a Worker
-
 `GET /zones/:zone_id/workers/script`
 
 Download the latest version of the Worker. The response body is raw JavaScript (not JSON).
-
 ```bash
 curl -X GET "https://api.cloudflare.com/client/v4/zones/:zone_id/workers/script" -H
 "X-Auth-Email:YOUR_CLOUDFLARE_EMAIL" -H "X-Auth-Key:ACCOUNT_AUTH_KEY"
 ```
 
 ### Delete a Worker
-
 `DELETE /zones/:zone_id/workers/script`
 
 Delete a Worker.
@@ -61,12 +53,11 @@ curl -X DELETE "https://api.cloudflare.com/client/v4/zones/:zone_id/workers/scri
 ```
 
 ### Create a Route
-
 `POST /zones/:zone_id/workers/filters`
 
 Create a route for your Worker. Note that by setting `enabled` to `true`,
 your Worker will run on the provided `pattern`. If you want to create a route
-where the Worker will _not_ run, set `enabled` to `false`.
+where the Worker will *not* run, set `enabled` to `false`.
 
 ```bash
 curl -X POST "https://api.cloudflare.com/client/v4/zones/:zone_id/workers/filters" -H
@@ -77,9 +68,9 @@ The response body will be JSON encoded and look similar to:
 
 ```json
 {
-  "result": {
-    "id": "000000000000000000000"
-  }
+    "result": {
+        "id": "000000000000000000000"
+    }
 }
 ```
 
@@ -87,11 +78,10 @@ You can use the returned filter ID to enable, disable, update the pattern, or
 delete a route.
 
 ### Change an Existing Route
-
 `PUT /zones/:zone_id/workers/filters/:filter_id`
 
 Change an existing route. You can change the pattern as well as the `enabled`
-state of an existing route. Note that patterns _must_ be unique, and attempting
+state of an existing route. Note that patterns *must* be unique, and attempting
 to change (or create) a route with a pattern that already exists will return
 a `409 Conflict`.
 
@@ -101,7 +91,6 @@ curl -X PUT "https://api.cloudflare.com/client/v4/zones/:zone_id/workers/filters
 ```
 
 ### Get Assigned Routes
-
 `GET /zones/:zone_id/workers/filters`
 
 Get the list of routes. This is an enveloped JSON list of objects.
@@ -112,7 +101,6 @@ curl -X GET "https://api.cloudflare.com/client/v4/zones/:zone_id/workers/filters
 ```
 
 ### Delete a Route
-
 `DELETE /zones/:zone_id/workers/filters/:filter_id`
 
 Delete a route. You can retrieve the `filter_id` from getting the assigned routes.

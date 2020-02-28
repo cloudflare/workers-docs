@@ -29,11 +29,11 @@ The **TextDecoder** interface represents a UTF-8 decoder. Decoders take a stream
 
 ### Properties
 
-- [`encoding`](https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder/encoding)(Read only) is a [`DOMString`](https://developer.mozilla.org/en-US/docs/Web/API/DOMString) with the name of the decoder that describes the method the `TextDecoder` uses.
+* [`encoding`](https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder/encoding)(Read only) is a [`DOMString`](https://developer.mozilla.org/en-US/docs/Web/API/DOMString) with the name of the decoder that describes the method the `TextDecoder` uses.
 
-- `TextDecoder.fatal` (Read only) is a Boolean value to indicate if the error mode is fatal.
+* `TextDecoder.fatal` (Read only) is a Boolean value to indicate if the error mode is fatal.
 
-- `TextDecoder.ignoreBOM` (Read only) is a Boolean value to indicate if the byte-order marker is ignored.
+* `TextDecoder.ignoreBOM` (Read only) is a Boolean value to indicate if the byte-order marker is ignored.
 
 ### Methods
 

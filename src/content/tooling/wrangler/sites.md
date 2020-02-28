@@ -34,12 +34,12 @@ Workers Sites require the latest version of [Wrangler](https://github.com/cloudf
 
 There are a few specific configuration settings for Workers Sites in your `wrangler.toml`:
 
-| Key           | Value                                                                                                     | Example                          | Required |
-| ------------- | --------------------------------------------------------------------------------------------------------- | -------------------------------- | -------- |
-| `bucket`      | The directory containing your static assets, path relative to your `wrangler.toml`                        | `bucket = "./public"`            | yes      |
-| `entry-point` | The location of your Worker script, default is `workers-site`                                             | `entry-point = "./workers-site"` | no       |
-| `include`     | A list of gitignore-style patterns for files or directories in `bucket` you exclusively want to upload.   | `include = ["upload_dir"]`       | no       |
-| `exclude`     | A list of gitignore-style patterns for files or directories in `bucket` you want to exclude from uploads. | `exclude = ["ignore_dir"]`       | no       |
+| Key           | Value                                                                              | Example                          | Required |
+| ------------- | ---------------------------------------------------------------------------------- | -------------------------------- | -------- |
+| `bucket`      | The directory containing your static assets, path relative to your `wrangler.toml` | `bucket = "./public"`            | yes      |
+| `entry-point` | The location of your Worker script, default is `workers-site`                      | `entry-point = "./workers-site"` | no       |
+| `include`     | A list of gitignore-style patterns for files or directories in `bucket` you exclusively want to upload. | `include = ["upload_dir"]` | no |
+| `exclude`     | A list of gitignore-style patterns for files or directories in `bucket` you want to exclude from uploads. | `exclude = ["ignore_dir"]` | no |
 
 To learn more about the optional `include` and `exclude` fields, visit [Ignoring Subsets of Static Assets](/tooling/wrangler/sites/#ignoring-subsets-of-static-assets).
 
@@ -79,7 +79,7 @@ For very exceptionally large pages, Workers Sites might not work for you. There 
 Workers Sites require [Wrangler](https://github.com/cloudflare/wrangler) - make sure to be on the [latest version](/quickstart/#updating-the-cli) - and the Workers [Unlimited plan](https://workers.cloudflare.com/sites#plans).
 
 There are cases where users may not want to upload certain static assets to their Workers Sites.
-In this case, Workers Sites can also be configured to ignore certain files or directories using logic
+In this case, Workers Sites can also be configured to ignore certain files or directories using logic 
 similar to [Cargo's optional include and exclude fields](https://doc.rust-lang.org/cargo/reference/manifest.html#the-exclude-and-include-fields-optional).
 This means that we use gitignore semantics when declaring which directory entries to include or ignore in uploads.
 
@@ -91,7 +91,7 @@ If you want to include only a certain set of files or directories in your `bucke
 ```toml
 [site]
 bucket = "./public"
-entry-point = "workers-site"
+entry-point = "workers-site" 
 include = ["included_dir"] # must be an array.
 ```
 
@@ -105,7 +105,7 @@ If you want to exclude files or directories in your `bucket`, you can add an `ex
 ```toml
 [site]
 bucket = "./public"
-entry-point = "workers-site"
+entry-point = "workers-site" 
 exclude = ["excluded_dir"] # must be an array.
 ```
 

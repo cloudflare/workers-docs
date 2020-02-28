@@ -40,19 +40,19 @@ All API endpoint paths are prefixed with either `/accounts/:account_id/` or `/zo
 
 ```json
 {
-  "errors": [
-    {
-      "code": 7003,
-      "message": "Could not route to /zones/notazone/workers/script/bindings, perhaps your object identifier is invalid?"
-    },
-    {
-      "code": 7000,
-      "message": "No route for that URI"
-    }
-  ],
-  "messages": [],
-  "result": null,
-  "success": false
+    "errors": [
+        {
+            "code": 7003,
+            "message": "Could not route to /zones/notazone/workers/script/bindings, perhaps your object identifier is invalid?"
+        },
+        {
+            "code": 7000,
+            "message": "No route for that URI"
+        }
+    ],
+    "messages": [],
+    "result": null,
+    "success": false
 }
 ```
 
@@ -62,13 +62,13 @@ If you fail to match the AccountID or ZoneID and your authorization headers, you
 
 ```json
 {
-  "errors": [
-    {
-      "code": 10000,
-      "message": "Authentication error"
-    }
-  ],
-  "success": false
+    "errors": [
+        {
+            "code": 10000,
+            "message": "Authentication error"
+        }
+    ],
+    "success": false
 }
 ```
 
@@ -78,12 +78,12 @@ If you fail to include the appropriate [Authentication headers](#auth-headers), 
 
 ```json
 {
-  "errors": [
-    {
-      "code": 9106,
-      "message": "Missing X-Auth-Key, X-Auth-Email or Authorization headers"
-    }
-  ],
-  "success": false
+    "errors": [
+        {
+            "code": 9106,
+            "message": "Missing X-Auth-Key, X-Auth-Email or Authorization headers"
+        }
+    ],
+    "success": false
 }
 ```
