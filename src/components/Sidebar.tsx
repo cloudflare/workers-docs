@@ -2,24 +2,20 @@ import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
 import { SidebarLi } from './SidebarItem'
 import { sortByWeight } from './utils'
+import { mdx } from '../types/mdx'
+import DocSearch from './DocSearch'
 // import { useMarkdownNodes } from '../hooks/useMarkdownRemark'
 
-const EXCLUDED_PATHS = [/\/workers\/$/ ]// Paths to not include in the sidebar
-const script = `    document.querySelector('#sidebar-toggle').addEventListener('click', function(){
-  if (document.body.classList.contains('with-sidebar-open')) {
-    document.body.classList.remove('with-sidebar-open');
-  } else {
-    document.body.classList.add('with-sidebar-open');
-  }
-})
-docsearch({
-  apiKey: '4c1a7e1b6289032a8e8fd1dbbae112a3',
-  indexName: 'cloudflare',
-  inputSelector: '#docsearch-input'
-});
-`
+const EXCLUDED_PATHS = [/\/workers\/$/] // Paths to not include in the sidebar
 
 const Sidebar = ({ pathToServe = '/' }) => {
+  const clickHandler = () => {
+    if (document.body.classList.contains('with-sidebar-open')) {
+      document.body.classList.remove('with-sidebar-open')
+    } else {
+      document.body.classList.add('with-sidebar-open')
+    }
+  }
   // TODO get hooks working instead of useStaticQuery in components
   const topLevelMarkdown: any[] = useStaticQuery(
     graphql`
@@ -44,33 +40,37 @@ const Sidebar = ({ pathToServe = '/' }) => {
           }
         }
       }
-    `,
+    `
   ).allMdx.edges
 
   const templateGalleryPage = {
-    fields: { pathToServe: '/workers/templates', parent: '/', filePath: 'src/content/workers/templates' },
-    frontmatter: { showNew: false, weight: 1, alwaysopen: false, hidden: false, title: 'Template Gallery' },
+    fields: {
+      pathToServe: '/workers/templates',
+      parent: '/',
+      filePath: 'src/content/workers/templates',
+    },
+    frontmatter: {
+      showNew: false,
+      weight: 1,
+      alwaysopen: false,
+      hidden: false,
+      title: 'Template Gallery',
+    },
   }
 
   return (
     <>
-      <a id="sidebar-toggle">
+      <a id="sidebar-toggle" onClick={clickHandler}>
         <span>
           <b></b>
           <b></b>
           <b></b>
         </span>
       </a>
-      <script>{script}</script>
       <div id="sidebar-open-backdrop"></div>
       <nav id="sidebar">
         <div className="search-container">
-          <input
-            className="search-input"
-            type="text"
-            id="docsearch-input"
-            placeholder="Search the docs..."
-          />
+          <DocSearch />
         </div>
         <div className="highlightable">
           <ul className="topics">
@@ -85,18 +85,26 @@ const Sidebar = ({ pathToServe = '/' }) => {
               // one forward slash) mdx nodes
               .filter(edge => edge.node.fields.parent === '/')
               .filter(edge => !edge.node.frontmatter.hidden)
-              .filter(edge => { //exclude the path if it has a match in EXCLUDED_PATHS
-                const matchedPaths = EXCLUDED_PATHS.filter((excludePath) => excludePath.test(edge.node.fields.pathToServe))
+              .filter(edge => {
+                //exclude the path if it has a match in EXCLUDED_PATHS
+                const matchedPaths = EXCLUDED_PATHS.filter(excludePath =>
+                  excludePath.test(edge.node.fields.pathToServe)
+                )
                 return matchedPaths.length < 1
               })
               .map(edge => edge.node)
               .concat(templateGalleryPage)
               .sort(sortByWeight)
-              .map(node => {
+              .map((node: mdx) => {
                 const { fields, frontmatter } = node
                 return (
                   // Todo filter out hidden pages
-                  <SidebarLi depth={1} frontmatter={frontmatter} fields={fields} />
+                  <SidebarLi
+                    depth={1}
+                    frontmatter={frontmatter}
+                    fields={fields}
+                    key={frontmatter.title}
+                  />
                 )
               })}
           </ul>

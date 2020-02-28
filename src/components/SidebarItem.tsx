@@ -36,7 +36,7 @@ export const SidebarLi: React.FunctionComponent<SidebarLiProps> = ({
           }
         }
       }
-    `,
+    `
   ).allMdx.edges
   const myChildren: mdx[] = topLevelMarkdown
     .filter(
@@ -84,13 +84,14 @@ export const SidebarLi: React.FunctionComponent<SidebarLiProps> = ({
                       frontmatter={child.frontmatter}
                       fields={child.fields}
                       depth={++depth}
+                      key={child.frontmatter.title}
                     />
                   )
                 })}
               </ul>
             ) : (
-                ''
-              )}
+              ''
+            )}
           </li>
         )
       }}
@@ -114,8 +115,8 @@ const Triangle = ({ isAncestor, alwaysopen }: TriangleProps) => {
       {isAncestor && alwaysopen ? (
         <i className="triangle-up"></i>
       ) : (
-          <i className="triangle-down"></i>
-        )}
+        <i className="triangle-down"></i>
+      )}
     </>
   )
 }

@@ -22,7 +22,7 @@ const SEO = ({ description, lang, meta, title }: SEOPropTypes) => {
           }
         }
       }
-    `,
+    `
   )
 
   const metaDescription = description || site.siteMetadata.description
@@ -75,7 +75,7 @@ const SEO = ({ description, lang, meta, title }: SEOPropTypes) => {
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','cfDataLayer','GTM-PKQFGQB');`}</script>
       <script type="text/javascript" src="https://cdn.bizible.com/scripts/bizible.js"></script>
-      <script type="text/javascript" src="/workers/static/js/worker.js"></script>
+
       <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
       <link
         rel="icon"

@@ -1,16 +1,16 @@
 import React from 'react'
-const Body: React.FC<BodyProps> = ({ children, github_edit_url }) => {
+import { ArchiveNotice } from './Markdown/ArchiveNotice'
+const Body: React.FC<BodyProps> = ({ children, github_edit_url, archived }) => {
   return (
     <>
       <section id="body">
         <div className="padding highlightable">
-          {github_edit_url ? (<a
-            className="github-edit"
-            href={github_edit_url}
-          >
-            <img src={"/workers/svg/github.svg"} />
-            <span>Edit on Github</span>
-          </a>) : null}
+          {github_edit_url ? (
+            <a className="github-edit" href={github_edit_url}>
+              <img src={'/workers/svg/github.svg'} />
+              <span>Edit on Github</span>
+            </a>
+          ) : null}
           {/* Todo maybe add tags? here is original hugo
           <div id="tags">
             {{ range $index, $tag := .Params.tags }}
@@ -19,6 +19,7 @@ const Body: React.FC<BodyProps> = ({ children, github_edit_url }) => {
           </div>
          */}
           <div id="body-inner">
+            {archived ? <ArchiveNotice /> : ''}
             {children}
           </div>
         </div>
@@ -29,6 +30,7 @@ const Body: React.FC<BodyProps> = ({ children, github_edit_url }) => {
 
 type BodyProps = {
   github_edit_url?: string
+  archived?: boolean
 }
 
 export default Body
