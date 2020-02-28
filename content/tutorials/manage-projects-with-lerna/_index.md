@@ -9,7 +9,7 @@ Using [`lerna`](https://github.com/lerna/lerna), a tool for managing multiple Ja
 Begin by creating a `lerna` project in the folder `workers-monorepo`:
 
 ```bash
-$ mkdir workers-monorepo && cd $_
+$ mkdir workers-monorepo && cd workers-monorepo
 $ npx lerna init
 ```
 
@@ -53,8 +53,8 @@ Using the `bootstrap` command, you can link the packages together and use them i
 $ lerna bootstrap
 ```
 
+In `public-api/index.js`:
 ```js
-// public-api/index.js
 
 // Omitting addEventListener and boilerplate code
 
@@ -68,6 +68,7 @@ After adding an identical `dependency` to `private-api/package.json`, you can ru
 
 When you're ready to deploy your codebases, you can coordinate deploying them simultaneously by defining scripts in `package.json` that can be read by `lerna run`:
 
+In `handlers/package.json`:
 ```json
 {
   "name": "public-api",
@@ -103,4 +104,4 @@ lerna success - public-api
 lerna success - private-api
 ```
 
-If you'd like to explore an example repository, [check out the accompanying open-source codebase on GitHub](https://github.com/signalnerve/lerna-wrangler-monorepo-example) for this tutorial!
+If you'd like to explore an example repository, check out the accompanying open-source codebase on [GitHub](https://github.com/signalnerve/lerna-wrangler-monorepo-example) for this tutorial.
