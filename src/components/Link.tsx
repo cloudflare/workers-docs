@@ -9,7 +9,7 @@ type LinkProps = {
   [x: string]: any // To improve types, might want to inherit from  GatsbyLinkProps<TState> instead
 }
 // replace anything with /workers or / prepended to just /workers
-const stripWokrers = (url: string) =>
+const stripWorkers = (url: string) =>
   url.replace(/^(\/workers){1,3}/, '').replace(/^\/(?!\/)/, '/workers/')
 
 export const Src = (src: string) => {
@@ -17,7 +17,7 @@ export const Src = (src: string) => {
   const internal = /^\/(?!\/)/.test(src)
 
   // Use Gatsby Link for internal links, and <a> for others
-  return internal ? stripWokrers(src) : src
+  return internal ? stripWorkers(src) : src
 }
 export const Link: React.FC<LinkProps> = ({ children, to, ...other }) => {
   // Tailor the following test to your environment.
@@ -28,7 +28,7 @@ export const Link: React.FC<LinkProps> = ({ children, to, ...other }) => {
   // Use Gatsby Link for internal links, and <a> for others
   if (internal) {
     return (
-      <GatsbyLink to={stripWokrers(to)} {...other}>
+      <GatsbyLink to={stripWorkers(to)} {...other}>
         {children}
       </GatsbyLink>
     )
