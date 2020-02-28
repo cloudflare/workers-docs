@@ -18,6 +18,7 @@ weight: 4
   * [How long can a subrequest take?](#how-long-can-a-subrequest-take)
 - [Simultaneous Open Connections](#simultaneous-open-connections)
 - [KV](#kv)
+- [Environment Variables](#environment-variables)
 # Overview of Limits by Plan
 
 | Plan                        | [CPU Limit](/about/limits/#cpu-execution-time-limit) | [Daily Request Limit](/about/limits/#daily-request-limit) | [Burst Rate Limit](/about/limits/#burst-rate-limit) |
@@ -125,3 +126,9 @@ Workers KV is an eventually consistent system, meaning that reads will
 sometimes reflect an older state of the system. While writes will often be
 visible globally immediately, it can take up to 60 seconds before reads in
 all edge locations are guaranteed to see the new value.
+
+# Environment Variables
+
+The maximum number of environment variables (secret and text combined) for an account is 32 variables.
+
+Each environment variable has a size limitation of 1kB.

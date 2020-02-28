@@ -1,7 +1,8 @@
 ---
 title: 'KV'
-weight: 1
+weight: 5
 ---
+
 - [Writing key-value pairs](#writing-key-value-pairs)
   * [Writing Data in Bulk](#writing-data-in-bulk)
   * [Expiring Keys](#expiring-keys)
@@ -151,6 +152,10 @@ provides you with your value as a string. For convenience a `"json"` type is
 also specified which will convert a JSON value into an object before
 returning it to you. For large values you can request a `ReadableStream`, and
 for binary values an `ArrayBuffer`.
+
+For large values, the choice of `type` can have a noticeable effect on latency
+and CPU usage. For reference, the `type`s can be ordered from fastest to slowest
+as `"stream"`, `"arrayBuffer"`, `"text"`, and `"json"`.
 
 # Deleting key-value pairs
 

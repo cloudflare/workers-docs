@@ -414,9 +414,9 @@ One interesting and fairly trivial addition is implementing per-user caching. Of
 
 ```js
 const ip = request.headers.get('CF-Connecting-IP')
-const cacheKey = `data-${ip}`
+const myKey = `data-${ip}`
 const getCache = key => TODOS.get(key)
-getCache(cacheKey)
+getCache(myKey)
 ```
 
 One more deploy of our Workers project, and we have a full todo list application, with per-user functionality, served at the edge!
@@ -513,11 +513,11 @@ const getCache = key => TODOS.get(key)
 
 async function getTodos(request) {
   const ip = request.headers.get('CF-Connecting-IP')
-  const cacheKey = `data-${ip}`
+  const myKey = `data-${ip}`
   let data
-  const cache = await getCache(cacheKey)
+  const cache = await getCache(myKey)
   if (!cache) {
-    await setCache(cacheKey, JSON.stringify(defaultData))
+    await setCache(myKey, JSON.stringify(defaultData))
     data = defaultData
   } else {
     data = JSON.parse(cache)
@@ -531,10 +531,10 @@ async function getTodos(request) {
 async function updateTodos(request) {
   const body = await request.text()
   const ip = request.headers.get('CF-Connecting-IP')
-  const cacheKey = `data-${ip}`
+  const myKey = `data-${ip}`
   try {
     JSON.parse(body)
-    await setCache(cacheKey, body)
+    await setCache(myKey, body)
     return new Response(body, { status: 200 })
   } catch (err) {
     return new Response(err, { status: 500 })

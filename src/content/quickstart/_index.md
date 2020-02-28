@@ -22,7 +22,7 @@ weight: 1
 
 # Installing the CLI
 
-All of the tutorials in the Workers documentation use [Wrangler](https://github.com/cloudflare/wrangler), Cloudflare's open-source command-line tool for managing Cloudflare Workers projects. To begin, you’ll need to [install Wrangler](https://github.com/cloudflare/wrangler#installation) on your machine.
+All of the tutorials in the Workers documentation use [Wrangler](https://github.com/cloudflare/wrangler), Cloudflare's open-source command-line tool for managing Cloudflare Workers projects. To begin, you’ll need to [install Wrangler](https://developers.cloudflare.com/workers/tooling/wrangler/install/) on your machine.
 
 To confirm that Wrangler has successfully installed on your machine, run `wrangler --help` on the command-line:
 
@@ -307,7 +307,11 @@ zone_id = "$yourZoneId"
 route = "example.com/*"
 ```
 
-The `route` key here is a [_route pattern_](/about/routes/). Now, we can deploy to the production environment configured above by passing the `--env` flag to `wrangler publish`:
+The `route` key here is a [_route pattern_](/about/routes/). 
+
+**Note:** if your route is configured to a hostname, you will need to add a DNS record to Cloudflare to ensure that the hostname can be resolved externally. If your Worker acts as your origin (the response comes directly from a Worker), you may enter a placeholder (dummy) record, pointing to an IP such as `1.2.3.4`, since the Worker will respond before ever connecting to that origin. 
+
+Now, we can deploy to the production environment configured above by passing the `--env` flag to `wrangler publish`:
 
 ```console
 wrangler publish --env production # Publish to example.com

@@ -4,10 +4,11 @@ alwaysopen: false
 weight: 1
 ---
 
-- [Configuration Variables](/reference/apis/configuration_variables)
 - [Web Standards](/reference/apis/standard)
 - [Fetch](/reference/apis/fetch)
 - [FetchEvent](/reference/apis/fetch-event)
+- [Environment Variables](/reference/apis/environment-variables)
+- [KV](/reference/apis/kv)
 - [HTMLRewriter](/reference/apis/html-rewriter)
 - [Cache](/reference/apis/cache)
 - [Streams](/reference/apis/streams)

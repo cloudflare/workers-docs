@@ -14,6 +14,7 @@ weight: 2
 - [🔬 `preview`](#preview)
   * [Making it work with WSL](#making-preview-work-with-wsl2)
 - [🗂️ `kv`](#kv)
+- [🤫 `secret`](#secret)
 
 
 ### 👯 `generate`
@@ -175,3 +176,7 @@ If you would like to be able to publish your code to multiple places, please see
 ### 🗂️ `kv`
 
   Interact with your Cloudflare Workers KV store. [Check out the docs.](/tooling/wrangler/kv_commands)
+
+### 🤫 `secret`
+
+  Interact with your secrets. [Check out the docs.](/tooling/wrangler/secrets)

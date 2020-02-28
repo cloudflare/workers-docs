@@ -3,7 +3,6 @@ import { Link } from 'gatsby'
 import { Location } from '@reach/router'
 
 export const Navigation = () => {
-  console.log('location rendered')
   return (
     <Location>
       {({ location }) => {
