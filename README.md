@@ -36,7 +36,7 @@ npm test
 
 ## Publishing
 
-To publish to developement environment (which is protected by access at dev.bigfluffycloudflare.com/workers) run:
+To publish to development environment (which is protected by access at dev.bigfluffycloudflare.com/workers) run:
 
 ```
 npm run publish dev
