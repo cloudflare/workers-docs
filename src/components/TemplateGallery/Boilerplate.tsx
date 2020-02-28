@@ -38,13 +38,13 @@ export const Boilerplate: React.FC<boilerplateProps> = props => {
       </div>
       <Link to={page_url}>
         <h2>{title}</h2>
-        <img src={Src('/templates/media/right-arrow.svg')} />
+        <img src={Src('/templates/media/right-arrow.svg')} alt="right arrow" />
       </Link>
       {/* Todo may need mardownify */}
       <p>{description}</p>
       <div className="copy-group">
         <div className="copy-step">
-          <img src={Src('/templates/media/terminal.svg')} />
+          <img src={Src('/templates/media/terminal.svg')} alt="terminal icon" />
           <span>Paste this into your terminal:</span>
         </div>
 

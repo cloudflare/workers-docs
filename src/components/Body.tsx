@@ -7,7 +7,7 @@ const Body: React.FC<BodyProps> = ({ children, github_edit_url, archived }) => {
         <div className="padding highlightable">
           {github_edit_url ? (
             <a className="github-edit" href={github_edit_url}>
-              <img src={'/workers/svg/github.svg'} />
+              <img src={'/workers/svg/github.svg'} alt="Github icon" />
               <span>Edit on Github</span>
             </a>
           ) : null}

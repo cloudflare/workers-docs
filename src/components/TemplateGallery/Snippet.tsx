@@ -36,13 +36,13 @@ export const Snippet: React.FC<snippetProps> = props => {
 
       <a href={page_url}>
         <h2>{title}</h2>
-        <img src={'/workers/templates/media/right-arrow.svg'} />
+        <img src={'/workers/templates/media/right-arrow.svg'} alt="right arrow"/>
       </a>
       {/* might neded to markdownify */}
       <p>{description}</p>
       <div className="copy-group">
         <div className="copy-step">
-          <img src={'/workers/templates/media/file.svg'} />
+          <img src={'/workers/templates/media/file.svg'} alt="file icon" />
           {/* //  type="image/svg+xml" */}
           <span>Copy into a Worker script:</span>
         </div>

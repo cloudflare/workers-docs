@@ -74,9 +74,15 @@ const SEO = ({ description, lang, meta, title }: SEOPropTypes) => {
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','cfDataLayer','GTM-PKQFGQB');`}</script>
-      <script type="text/javascript" src="https://cdn.bizible.com/scripts/bizible.js"></script>
+      <script
+        type="text/javascript"
+        src="https://cdn.bizible.com/scripts/bizible.js"
+      ></script>
 
-      <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+      <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans"
+        rel="stylesheet"
+      />
       <link
         rel="icon"
         sizes="32x32"
