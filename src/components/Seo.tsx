@@ -77,12 +77,8 @@ const SEO = ({ description, lang, meta, title }: SEOPropTypes) => {
       <script
         type="text/javascript"
         src="https://cdn.bizible.com/scripts/bizible.js"
+        async
       ></script>
-
-      <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans"
-        rel="stylesheet"
-      />
       <link
         rel="icon"
         sizes="32x32"
@@ -97,6 +93,10 @@ const SEO = ({ description, lang, meta, title }: SEOPropTypes) => {
         rel="apple-touch-icon"
         sizes="180x180"
         href="https://www.cloudflare.com/img/favicon/apple-touch-icon.png"
+      />
+      <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans"
+        rel="stylesheet"
       />
     </Helmet>
   )

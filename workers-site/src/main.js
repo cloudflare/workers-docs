@@ -38,9 +38,6 @@ export async function handleRequest(event) {
     try {
       body = await getAssetFromKV(event, {
         mapRequestToAsset: myMapRequestToAsset,
-        cacheControl: {
-          bypassCache: true,
-        },
       })
     } catch (e) {
       console.log(e, 'not found in KV')
