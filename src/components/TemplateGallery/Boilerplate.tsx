@@ -27,7 +27,7 @@ export const Boilerplate: React.FC<boilerplateProps> = props => {
 
   // TODO use regex to make sure leading slash
   return (
-    <figure className="template-card boilerplate" id="{{.id}}">
+    <figure className="template-card boilerplate" id={endpointId}>
       <div className="tag-group">
         {tags?.map(tag => (
           <button className={'tooltip ' + tag} key={endpointId + '-' + tag}>

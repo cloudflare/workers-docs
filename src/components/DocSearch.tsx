@@ -20,12 +20,15 @@ const DocSearch: FunctionComponent<{ initial?: boolean }> = ({
   }, [])
 
   return (
+    <>
     <input
       className="search-input"
       type="text"
       id="docsearch-input"
       placeholder="Search the docs..."
     />
+    <label htmlFor="docsearch-input"></label>
+    </>
   )
 }
 
