@@ -100,9 +100,6 @@ const SEO = ({ description, lang, meta, title }: SEOPropTypes) => {
         sizes="180x180"
         href="https://www.cloudflare.com/img/favicon/apple-touch-icon.png"
       />
-      {/* <link href={withAssetPrefix("css/font-awesome.min.css")} rel="stylesheet"/> */}
-      <link href="https://fonts.googleapis.com/css?display=swap&family=Open+Sans" rel="stylesheet"></link>
-      <link rel="preload" as="style" href="https://fonts.googleapis.com/css?display=swap&family=Open+Sans" ></link>
     </Helmet>
   )
 }
