@@ -1,6 +1,0 @@
-{{$id := .Get 0}}
-
-{{ $urlPre := "https://template-registry.developers.workers.dev/templates/" }}
-{{ $templateData := getJSON $urlPre $id }}
-
-{{ partial "snippet" $templateData  }}
