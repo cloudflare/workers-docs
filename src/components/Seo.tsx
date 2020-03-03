@@ -7,8 +7,14 @@
 
 import React from 'react'
 import Helmet from 'react-helmet'
-import { useStaticQuery, graphql } from 'gatsby'
+import { useStaticQuery, graphql, withAssetPrefix } from 'gatsby'
+// import WebFont from 'webfontloader'
 
+// WebFont.load({
+//   google: {
+//     families: ['Open Sans']
+//   }
+// });
 const SEO = ({ description, lang, meta, title }: SEOPropTypes) => {
   // TODO get hooks working instead of useStaticQuery in components
   const { site } = useStaticQuery(
@@ -94,10 +100,9 @@ const SEO = ({ description, lang, meta, title }: SEOPropTypes) => {
         sizes="180x180"
         href="https://www.cloudflare.com/img/favicon/apple-touch-icon.png"
       />
-      <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans"
-        rel="stylesheet"
-      />
+      {/* <link href={withAssetPrefix("css/font-awesome.min.css")} rel="stylesheet"/> */}
+      <link href="https://fonts.googleapis.com/css?display=swap&family=Open+Sans" rel="stylesheet"></link>
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css?display=swap&family=Open+Sans" ></link>
     </Helmet>
   )
 }
