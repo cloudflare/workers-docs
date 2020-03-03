@@ -8,13 +8,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { useStaticQuery, graphql, withAssetPrefix } from 'gatsby'
-// import WebFont from 'webfontloader'
 
-// WebFont.load({
-//   google: {
-//     families: ['Open Sans']
-//   }
-// });
 const SEO = ({ description, lang, meta, title }: SEOPropTypes) => {
   // TODO get hooks working instead of useStaticQuery in components
   const { site } = useStaticQuery(
