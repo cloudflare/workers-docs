@@ -7,7 +7,7 @@
 
 import React from 'react'
 import Helmet from 'react-helmet'
-import { useStaticQuery, graphql } from 'gatsby'
+import { useStaticQuery, graphql, withAssetPrefix } from 'gatsby'
 
 const SEO = ({ description, lang, meta, title }: SEOPropTypes) => {
   // TODO get hooks working instead of useStaticQuery in components
@@ -77,12 +77,8 @@ const SEO = ({ description, lang, meta, title }: SEOPropTypes) => {
       <script
         type="text/javascript"
         src="https://cdn.bizible.com/scripts/bizible.js"
+        async
       ></script>
-
-      <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans"
-        rel="stylesheet"
-      />
       <link
         rel="icon"
         sizes="32x32"

@@ -16,6 +16,7 @@ import '../content/static/css/overview.css'
 import '../content/static/css/code.css'
 import '../content/static/css/template.css'
 import '../content/static/css/docsearch.min.css'
+import '../content/static/css/OpenSans.css'
 import { Navigation } from './Navigation'
 import Helmet from 'react-helmet'
 const Layout: React.FC<LayoutProps> = ({ title, children }) => {
@@ -41,6 +42,7 @@ const Layout: React.FC<LayoutProps> = ({ title, children }) => {
         <script
           type="text/javascript"
           src={withAssetPrefix('/js/docsearch.min.js')}
+          async
         />
       </Helmet>
       {children}
