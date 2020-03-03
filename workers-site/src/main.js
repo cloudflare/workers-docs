@@ -40,7 +40,7 @@ export async function handleRequest(event) {
         mapRequestToAsset: myMapRequestToAsset,
         cacheControl:{
           browserTTL: 31536000,
-          edgeTTL: 1000
+          edgeTTL: 31536000
         }
       })
     } catch (e) {
