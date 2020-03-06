@@ -40,6 +40,12 @@ https://*.example.com/images/*
 This pattern would match all HTTPS requests destined for a subhost of
 example.com and whose paths are prefixed by `/images/`.
 
+A pattern to match all requests looks like this:
+
+```
+*example.com/*
+```
+
 While they look similar to a [regex](https://en.wikipedia.org/wiki/Regular_expression) pattern, route patterns follow specific rules:
 
 - The only supported operator is wildcard `*` which matches zero or more of any character.
@@ -97,7 +103,7 @@ Here is the full set of rules governing route pattern validity:
    - `*.example.com/` matches `https://www.example.com/` but *not* `https://example.com/`
 
 - **Paths may optionally end with `*`**
-    
+
     If a route pattern path ends with `*`, then it matches all suffixes of that
   path.
     - `https://example.com/path*` matches `https://example.com/path` _and_
@@ -108,4 +114,4 @@ Here is the full set of rules governing route pattern validity:
 
 - **Subdomains must have a DNS Record**
 
-    All subdomains must have a [DNS record](https://support.cloudflare.com/hc/en-us/articles/360019093151#h_60566325041543261564371) to be proxied on Cloudflare and compatible with Workers. For example if you have the route pattern `*.example.com` and no DNS records, any request to subdomain.example.com will result in the error `ERR_NAME_NOT_RESOLVED`. 
+    All subdomains must have a [DNS record](https://support.cloudflare.com/hc/en-us/articles/360019093151#h_60566325041543261564371) to be proxied on Cloudflare and compatible with Workers. For example if you have the route pattern `*.example.com` and no DNS records, any request to subdomain.example.com will result in the error `ERR_NAME_NOT_RESOLVED`.
