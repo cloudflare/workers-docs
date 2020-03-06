@@ -79,7 +79,7 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     // Use `createFilePath` to turn markdown files in our `content` directory into `/workers/`pathToServe
     const originalPath = node.fileAbsolutePath.replace(
       node.fileAbsolutePath.match(/.*content/)[0],
-      '',
+      ''
     )
     let pathToServe = createFilePath({
       node,
@@ -92,6 +92,10 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       parentDir = path.dirname(parentDir) // "/" dirname will = "/"
     }
     pathToServe = pathToServe.replace(/\/+$/, '/') // always end the path with a slash
+
+    const templateId = pathToServe.match(/^\/templates\/pages.*/)
+      ? pathToServe.replace(/^\/templates\/pages\//, '').replace('/', '')
+      : ''
     // Creates new query'able field with name of 'pathToServe', 'parent'..
     // for allMdx edge nodes
     createNodeField({
@@ -108,6 +112,11 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       node,
       name: `filePath`,
       value: `${originalPath}`,
+    })
+    createNodeField({
+      node,
+      name: `templateId`,
+      value: `${templateId}`,
     })
   }
 }
