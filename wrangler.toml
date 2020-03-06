@@ -22,3 +22,10 @@ name = "staging"
 zone_id = "8703d409e5c1c580aeee02b98f9fd448"
 route = "https://staging.bigfluffycloudflare.com/workers*"
 
+# Developement for testing 
+[env.dev]
+account_id = "95e065d2e3f97a1e50bae58aea71df6d"
+name = "dev"
+zone_id = "8703d409e5c1c580aeee02b98f9fd448"
+route = "https://dev.bigfluffycloudflare.com/workers*"
+
