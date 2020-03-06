@@ -79,6 +79,7 @@ webpack_config = "webpack.production.js"
 ```js
 module.exports = {
   "target": "webworker",
+  "devtool": "cheap-module-source-map",
   "entry": "./index.js",
   "mode": "development"
 }
