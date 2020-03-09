@@ -14,6 +14,24 @@ type markdownBaseProps = {
   data: { mdx: markdownRemarkResult }
   pageContext: markdownPageContext
 }
+const getChildrenAsString = (
+  props: React.HtmlHTMLAttributes<HTMLHeadingElement>
+) => {
+  if (typeof props.children === 'string') {
+    return props.children.replace(/(\s|\.)+/g, '-').toLowerCase()
+  }
+  // TODO if we'd like headers with children to still have IDs
+  // then we can test and uncomment this code
+  // if (props.children) {
+  //   const textChild = Object.keys(props.children).map(key => {
+  //     let child = props.children[key]
+  //     return typeof child === 'string' ? child : ''
+  //   })[0]
+  //   return textChild ? textChild.replace(/\s+/g, '-').toLowerCase() : ''
+  // }
+
+  return ''
+}
 const components = {
   Gallery,
   a: (props: any) => {
@@ -21,6 +39,18 @@ const components = {
   },
   img: (props: any) => {
     return <Image src={props.src} {...props} />
+  },
+  h1: (props: React.HtmlHTMLAttributes<HTMLHeadingElement>) => {
+    return <h1 id={getChildrenAsString(props)} {...props} />
+  },
+  h2: (props: React.HtmlHTMLAttributes<HTMLHeadingElement>) => {
+    return <h2 id={getChildrenAsString(props)} {...props} />
+  },
+  h3: (props: React.HtmlHTMLAttributes<HTMLHeadingElement>) => {
+    return <h3 id={getChildrenAsString(props)} {...props} />
+  },
+  h4: (props: React.HtmlHTMLAttributes<HTMLHeadingElement>) => {
+    return <h4 id={getChildrenAsString(props)} {...props} />
   },
 }
 const MarkdownTemplate: React.FC<markdownBaseProps> = ({
