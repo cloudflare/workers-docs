@@ -2,6 +2,7 @@ import { restApiTemplate } from '../../types/restApiTemplates'
 import React from 'react'
 import { Link, Src } from '../../components/Link'
 import { useRestApiTemplates } from '../../hooks/useMarkdownRemark'
+import marked from 'marked'
 type boilerplateProps = restApiTemplate & {
   page_url?: string
 }
@@ -40,8 +41,7 @@ export const Boilerplate: React.FC<boilerplateProps> = props => {
         <h2>{title}</h2>
         <img src={Src('/templates/media/right-arrow.svg')} alt="right arrow" />
       </Link>
-      {/* Todo may need mardownify */}
-      <p>{description}</p>
+      <p dangerouslySetInnerHTML={{ __html: marked(description) }} />
       <div className="copy-group">
         <div className="copy-step">
           <img src={Src('/templates/media/terminal.svg')} alt="terminal icon" />

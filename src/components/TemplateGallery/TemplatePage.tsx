@@ -4,6 +4,9 @@ import CopyToClipboard from 'react-copy-to-clipboard'
 import { Helmet } from 'react-helmet'
 
 import { restApiTemplate } from '../../types/restApiTemplates'
+import marked from 'marked'
+import { MDXProvider } from '@mdx-js/react'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 type templateProps = {
   id: string
   data: restApiTemplate
@@ -85,7 +88,7 @@ const TemplatePage: React.FC<templateProps> = ({ id, data }) => {
       </Helmet>
       <figure className="template-page" id={id}>
         <Link to={'/templates'} {...{ className: 'back' }}>
-          <img src={Src('/templates/media/left-arrow.svg')} alt="left arrow icon"/>
+          <img src={Src('/templates/media/left-arrow.svg')} alt="left arrow icon" />
           Template Gallery
         </Link>
         <div className="grid-3-noBottom_xs-5">
@@ -98,7 +101,10 @@ const TemplatePage: React.FC<templateProps> = ({ id, data }) => {
                   const demo = demos[key]
                   return demo ? (
                     <Link key={demo.url} to={demo.url}>
-                      <img src={Src('/templates/media/external-link.svg')} alt="external link icon" />
+                      <img
+                        src={Src('/templates/media/external-link.svg')}
+                        alt="external link icon"
+                      />
                       <span>{demo.text}</span>
                     </Link>
                   ) : null
@@ -111,7 +117,7 @@ const TemplatePage: React.FC<templateProps> = ({ id, data }) => {
             <div className="headline">
               <hr />
               {/* Might need to markdownify */}
-              <p>{description}</p>
+              <span dangerouslySetInnerHTML={{ __html: marked(description) }} />
               <div className="tag-group">
                 {tags
                   ? tags.map(tag => (
@@ -141,7 +147,11 @@ const TemplatePage: React.FC<templateProps> = ({ id, data }) => {
                 <div className="copy-group">
                   <span className="copy">wrangler generate my-app {repository_url}</span>
                   <CopyToClipboard text={'wrangler generate my-app ' + repository_url}>
-                    <img className="copy-trigger" src={Src('/svg/copy-box.svg')} alt="copy box icon" />
+                    <img
+                      className="copy-trigger"
+                      src={Src('/svg/copy-box.svg')}
+                      alt="copy box icon"
+                    />
                   </CopyToClipboard>
                 </div>
                 <span>
