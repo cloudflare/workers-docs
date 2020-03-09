@@ -6,18 +6,25 @@ import Layout from '../components/Layout'
 import Body from '../components/Body'
 import TemplatePage from '../components/TemplateGallery/TemplatePage'
 import { restApiTemplateResult } from '../types/restApiTemplates'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 type templateProps = {
   pageContext: any
-  data: restApiTemplateResult['data']
+  data: {
+    restApiTemplates: restApiTemplateResult['data']['restApiTemplates'] | null
+    mdx: { body: string } | null
+  }
 }
 
 const Template: React.FC<templateProps> = ({ data, pageContext }) => {
+  const { mdx, restApiTemplates } = data // data.mdx holds our post data
+
   return (
     <>
       <Layout>
         <Body>
-          <TemplatePage data={data.restApiTemplates} id={pageContext.id} />
+          {restApiTemplates ? <TemplatePage data={restApiTemplates} id={pageContext.id} /> : ''}
           {/* <TemplatePage {...{ data, pageContext }} /> */}
+          {mdx ? <MDXRenderer>{mdx.body || ''}</MDXRenderer> : ''}
         </Body>
       </Layout>
     </>
@@ -53,6 +60,9 @@ export const pageQuery = graphql`
           url
         }
       }
+    }
+    mdx(fields: { templateId: { eq: $id } }) {
+      body
     }
   }
 `
