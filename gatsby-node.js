@@ -105,18 +105,18 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     })
     createNodeField({
       node,
-      name: `parent`,
-      value: `${parentDir}`,
+      name: 'parent',
+      value: parentDir,
     })
     createNodeField({
       node,
-      name: `filePath`,
-      value: `${originalPath}`,
+      name: 'filePath',
+      value: originalPath,
     })
     createNodeField({
       node,
-      name: `templateId`,
-      value: `${templateId}`,
+      name: 'templateId',
+      value: templateId,
     })
   }
 }
