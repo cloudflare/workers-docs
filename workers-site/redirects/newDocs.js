@@ -76,6 +76,7 @@ export const newDocsMap = new Map([
   ['/templates/snippets/private_data_loss', '/templates/pages/private_data_loss'],
   ['/templates/snippets/send_raw_html', '/templates/pages/send_raw_html'],
   ['/templates/snippets/signed_request', '/templates/pages/signed_request'],
+  ['/templates/featured_boilerplates/cloud_storage', '/templates/pages/cloud_storage'],
 
   ['/sites/reference', '/tooling/wrangler/sites'],
   ['/sites/ignore-assets', '/tooling/wrangler/sites/#ignoring-subsets-of-static-assets'],
