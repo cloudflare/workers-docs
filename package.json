@@ -22,6 +22,7 @@
     "@mdx-js/react": "^1.5.4",
     "@types/lodash.debounce": "^4.0.6",
     "@types/lunr": "^2.3.2",
+    "@types/marked": "^0.7.3",
     "@types/mdx-js__react": "^1.5.0",
     "@types/react-copy-to-clipboard": "^4.3.0",
     "gatsby": "^2.15.29",
@@ -39,6 +40,7 @@
     "gatsby-source-rest-api": "^0.2.2",
     "lodash.debounce": "^4.0.8",
     "lunr": "^2.3.8",
+    "marked": "^0.8.0",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-copy-to-clipboard": "^5.0.2",
@@ -58,9 +60,9 @@
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.1",
     "@types/react-helmet": "^5.0.14",
+    "ava": "^2.4.0",
     "glob": "^7.1.6",
-    "prettier": "^1.18.2",
-    "ava": "^2.4.0"
+    "prettier": "^1.18.2"
   },
   "keywords": [
     "gatsby"

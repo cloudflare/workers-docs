@@ -4,6 +4,7 @@ type snippetProps = Partial<restApiTemplate> & {
   page_url?: string
 }
 import { useRestApiTemplates } from '../../hooks/useMarkdownRemark'
+import marked from 'marked'
 export const Snippet: React.FC<snippetProps> = props => {
   const { allRestApiTemplates } = useRestApiTemplates()
   const getSnippet = (id: string) => {
@@ -36,10 +37,9 @@ export const Snippet: React.FC<snippetProps> = props => {
 
       <a href={page_url}>
         <h2>{title}</h2>
-        <img src={'/workers/templates/media/right-arrow.svg'} alt="right arrow"/>
+        <img src={'/workers/templates/media/right-arrow.svg'} alt="right arrow" />
       </a>
-      {/* might neded to markdownify */}
-      <p>{description}</p>
+      {description ? <p dangerouslySetInnerHTML={{ __html: marked(description) }} /> : ''}
       <div className="copy-group">
         <div className="copy-step">
           <img src={'/workers/templates/media/file.svg'} alt="file icon" />
