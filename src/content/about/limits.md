@@ -98,7 +98,7 @@ When the client disconnects, all tasks associated with that client’s request a
 While handling a request, each Worker script is allowed to have up to six connections open simultaneously. The connections opened by the following API calls all count toward this limit:
 
 - the `fetch()` method of the [Fetch API](/reference/apis/fetch/)
-- `get()`, `put()`, `list()`, and `delete()` methods of [Workers KV namespace objects](/reference/storage/api/#worker-api)
+- `get()`, `put()`, `list()`, and `delete()` methods of [Workers KV namespace objects](/reference/apis/kv)
 - `put()`, `match()`, and `delete()` methods of [Cache objects](/reference/apis/cache/)
 
 Once a Worker has six connections open, it can still attempt to open additional connections. However, these attempts are put in a pending queue - the connections won't be actually be initiated until one of the currently open connections has closed. Since earlier connections can delay later ones, if a Worker tries to make many simultaneous subrequests, its later subrequests may appear to take longer to start.
