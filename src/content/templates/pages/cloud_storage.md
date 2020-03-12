@@ -8,11 +8,6 @@ hidden: true
 
 You can fetch your 3rd-party object storage assets with a Cloudflare Worker so that they can be cached in the Cloudflare CDN.
 
-- [Overview](#overview)
-    + [About object storage service URLs](#about-object-storage-service-urls)
-- [Step 1 - Modify your Cloudflare DNS to add a subdomain](#step-1-modify-your-cloudflare-dns-to-add-a-subdomain)
-- [Step 2 - Use a Cloudflare Worker to fetch object storage assets](#step-2-use-a-cloudflare-worker-to-fetch-object-storage-assets)
-
 # Overview
 There are cases when a website runs in a traditional origin web server such as Apache, NGINX, or Microsoft IIS, but has references to resources stored in a cloud object storage service like Amazon S3, DigitalOcean Spaces, or Microsoft Azure Storage. 
 
