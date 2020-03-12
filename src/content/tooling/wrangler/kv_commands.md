@@ -131,6 +131,8 @@ wrangler kv:key get --binding "MY_KV" --env=production "my key"
 
 To learn more about environments, check out the [environments documentation](/tooling/wrangler/configuration/environments).
 
+<span id="kv-namespace"></span>
+
 ## `kv:namespace`
 
 ### `create`
@@ -154,6 +156,8 @@ kv-namespaces = [
 ]
 ```
 
+<span id="kv-list"></span>
+
 ### `list`
 
 Outputs a list of all KV namespaces associated with your account id.
@@ -175,6 +179,8 @@ $ wrangler kv:namespace list | jq '.'
 ]
 ```
 
+<span id="kv-delete"></span>
+
 ### `delete`
 
 Deletes a given namespace.
@@ -192,6 +198,8 @@ yes
 🌀  Deleting namespace f7b02e7fc70443149ac906dd81ec1791
 ✨  Success
 ```
+
+<span id="kv-key"></span>
 
 ## `kv:key`
 
@@ -220,6 +228,8 @@ $ wrangler kv:key put --binding=MY_KV "key" value.txt --path
 ✨  Success
 ```
 
+<span id="kv-list"></span>
+
 ### `list`
 
 Outputs a list of all keys in a given namespace.
@@ -247,6 +257,8 @@ $ wrangler kv:key list --binding=MY_KV --prefix="public" | jq '.'
     }
 ]
 ```
+
+<span id="kv-get"></span>
 
 ### `get`
 
@@ -280,6 +292,8 @@ yes
 🌀  Deleting key "key"
 ✨  Success
 ```
+
+<span id="kv-bulk"></span>
 
 ## `kv:bulk`
 
@@ -319,6 +333,8 @@ The `put` command also takes an optional `--env` [environment](/tooling/wrangler
 $ wrangler kv:bulk put --binding=MY_KV allthethingsupload.json
 ✨  Success
 ```
+
+<span id="=kv-delete"></span>
 
 ### `delete`
 
