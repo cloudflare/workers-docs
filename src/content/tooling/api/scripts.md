@@ -129,6 +129,46 @@ curl -X PUT "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/worker
      -F "wasm=@module.wasm;type=application/wasm" # link your wasm module in place of module.wasm
 ```
 
+#### Add a Secret Text Binding
+
+*Note: Secret text bindings are actually persisted between deploys, so if you are not changing the content of your secret, this is unnecessary, but also un-harmful.*
+
+If your Worker uses encrypted environment variables, you will want to add a `secret_text` binding object for each one to the `"bindings"` array in `metadata.json`:
+
+```json
+{
+  "body_part": "script",
+  "bindings": [
+    {
+      "type": "secret_text",
+      "name": "MY_SECRET",
+      "text": "secret things are secret"
+    }
+  ]
+}
+```
+
+The `text` value should correspond to the text you want to store. The `name` value should correspond to the global variable you will use to access your secret from your Worker code.
+
+#### Add a Plain Text Binding
+
+If your Worker uses plain text environment variables, you will want to add a `plain_text` binding object for each one to the `"bindings"` array in `metadata.json`:
+
+```json
+{
+  "body_part": "script",
+  "bindings": [
+    {
+      "type": "plain_text",
+      "name": "ENV_VAR",
+      "text": "plain text things are not secret"
+    }
+  ]
+}
+```
+
+The `text` value should correspond to the text you want to store. The `name` value should correspond to the global variable you will use to access your variable from your Worker code.
+
 #### Request
 
 ##### URL Parameters
