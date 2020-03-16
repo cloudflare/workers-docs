@@ -74,12 +74,9 @@ There are two types of configuration that `wrangler` uses: global user and per p
   - `vars`: An object containing text variables that can be directly accessed in a Worker script.
 
     ```toml
-    vars = {
-      FOO = "0f2ac74b498b48028cb68387c421e279",
-      BAR = "068c101e168d03c65bddf4ba75150fb0"
-    }
+    vars = { FOO = "0f2ac74b498b48028cb68387c421e279", BAR = "068c101e168d03c65bddf4ba75150fb0" }
     ```
-    Note: Using secrets should be handled using [wrangler secret](/tooling/wrangler/secret/).
+    Note: Using secrets should be handled using [wrangler secret](/tooling/wrangler/secret/). The `vars` definition in your `wrangler.toml` must not contain newlines in order to be valid TOML.
   - `kv-namespaces`: These specify any [Workers KV](/reference/storage/) Namespaces you want to access from
       inside your Worker. Each namespace you include should have an entry in your `wrangler.toml` that includes:
 
