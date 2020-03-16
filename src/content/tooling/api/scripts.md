@@ -133,7 +133,7 @@ curl -X PUT "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/worker
 
 *Note: Secret text bindings are actually persisted between deploys, so if you are not changing the content of your secret, this is unnecessary, but also un-harmful.*
 
-If your Worker uses encrypted environment variables, you will want to add a `secret_text` binding object for each one to the `"bindings"` array in `metadata.json`:
+If your Worker script uses [secrets](reference/apis/environment-variables#secrets), add a corresponding `secret_text` binding to the `"bindings"` array in `metadata.json`:
 
 ```json
 {
