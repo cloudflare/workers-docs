@@ -18,7 +18,8 @@ const getChildrenAsString = (
   props: React.HtmlHTMLAttributes<HTMLHeadingElement>
 ) => {
   if (typeof props.children === 'string') {
-    return props.children.replace(/(\s|\.)+/g, '-').toLowerCase()
+   // replace all not alphanumeric characters with dashes
+    return props.children.replace(/(\s|\W)+/g, '-').toLowerCase()
   }
   // TODO if we'd like headers with children to still have IDs
   // then we can test and uncomment this code
