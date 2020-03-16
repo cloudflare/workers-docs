@@ -149,7 +149,7 @@ If your Worker script uses [secrets](reference/apis/environment-variables#secret
 ```
 
 * `text` : the text you want to store
-*  `name`:  the global variable to access your secret from your Worker code
+* `name`:  the global variable to access your secret from your Worker code
 
 #### Add a Plain Text Binding
 
@@ -168,7 +168,8 @@ If your Worker uses plain text environment variables, you will want to add a `pl
 }
 ```
 
-The `text` value should correspond to the text you want to store. The `name` value should correspond to the global variable you will use to access your variable from your Worker code.
+* `text` : the text you want to store
+* `name`:  the global variable to access your secret from your Worker code
 
 #### Request
 
