@@ -20,7 +20,7 @@ Environments is a feature that allows you to deploy the same project to multiple
 Here is an example `wrangler.toml` to illustrate
 
 ```toml
-# top level configruation
+# top level configuration
 type = "webpack"
 name = "my-worker-dev"
 account_id = "12345678901234567890"
