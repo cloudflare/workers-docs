@@ -156,7 +156,7 @@ kv-namespaces = [
 ]
 ```
 
-<span id="kv-list"></span>
+<span id="kv-list">
 
 ### `list`
 
@@ -178,8 +178,8 @@ $ wrangler kv:namespace list | jq '.'
     }
 ]
 ```
-
-<span id="kv-delete"></span>
+</span>
+<span id="kv-delete">
 
 ### `delete`
 
@@ -198,8 +198,8 @@ yes
 🌀  Deleting namespace f7b02e7fc70443149ac906dd81ec1791
 ✨  Success
 ```
-
-<span id="kv-key"></span>
+</span>
+<span id="kv-key">
 
 ## `kv:key`
 
@@ -227,8 +227,8 @@ $ wrangler kv:key put --binding=MY_KV "key" "value" --ttl=10000
 $ wrangler kv:key put --binding=MY_KV "key" value.txt --path
 ✨  Success
 ```
-
-<span id="kv-list"></span>
+</span>
+<span id="kv-list">
 
 ### `list`
 
@@ -257,8 +257,8 @@ $ wrangler kv:key list --binding=MY_KV --prefix="public" | jq '.'
     }
 ]
 ```
-
-<span id="kv-get"></span>
+</span>
+<span id="kv-get">
 
 ### `get`
 
@@ -293,7 +293,8 @@ yes
 ✨  Success
 ```
 
-<span id="kv-bulk"></span>
+</span>
+<span id="kv-bulk">
 
 ## `kv:bulk`
 
@@ -334,7 +335,8 @@ $ wrangler kv:bulk put --binding=MY_KV allthethingsupload.json
 ✨  Success
 ```
 
-<span id="=kv-delete"></span>
+</span>
+<span id="=kv-delete">
 
 ### `delete`
 
@@ -363,3 +365,5 @@ Are you sure you want to delete all keys in allthethingsdelete.json? [y/n]
 yes
 ✨  Success
 ```
+
+</span>
