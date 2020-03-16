@@ -131,7 +131,7 @@ curl -X PUT "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/worker
 
 #### Add a Secret Text Binding
 
-*Note: Secret text bindings are actually persisted between deploys, so if you are not changing the content of your secret, this is unnecessary, but also un-harmful.*
+*Note: Secrets are persisted between deploys of a Worker. You only need to include secrets in API calls when you are adding or changing the secret's content.*
 
 If your Worker script uses [secrets](reference/apis/environment-variables#secrets), add a corresponding `secret_text` binding to the `"bindings"` array in `metadata.json`:
 
