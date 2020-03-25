@@ -60,8 +60,8 @@ There are two types of configuration that `wrangler` uses: global user and per p
           WebAssembly. Rust files will be built with `wasm-pack`.
           This project type uses webpack and webpack plugins in the background to build your worker. You can read more about this type [here](/tooling/wrangler/webpack).
     _\* Note: All Javscript and webpack projects must include a package.json_
-  - `zone_id`: This is the ID of the "zone" or domain you want to run your script on. This is optional if you are using a [workers.dev](https://workers.dev) subdomain and is only required when `workers_dev` is false, or excluded from an [environment](/tooling/wrangler/configuration/environments) configuration.
-  - `account_id`: This is the ID of the account associated with your zone. You might have more than one account, so make sure to use the ID of the account associated with the `zone_id` you provide, if you provide one.
+  - `zone_id`: This is the ID of the "zone" or domain you want to run your script on. This is optional if you are using a [workers.dev](https://workers.dev) subdomain and is only required when `workers_dev` is false, or excluded from an [environment](/tooling/wrangler/configuration/environments) configuration. It can also be specified through the `CF_ZONE_ID` environment variable.
+  - `account_id`: This is the ID of the account associated with your zone. You might have more than one account, so make sure to use the ID of the account associated with the `zone_id` you provide, if you provide one. It can also be specified through the `CF_ACCOUNT_ID` environment variable.
   - `route`: This is the route you'd like to use your worker on. You need to include the hostname. Examples:
 
       - `*example.com/*`
