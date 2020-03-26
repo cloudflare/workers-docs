@@ -14,7 +14,7 @@ To test the content or static gatsby files locally, run:
 
 ```
 npm install
-npm start
+npm run start
 ```
 
 Your site is now running at `http://localhost:8000`!
