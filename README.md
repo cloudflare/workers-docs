@@ -13,8 +13,8 @@ Ensure you have the the following installed:
 To test the content or static gatsby files locally, run:
 
 ```
-npm run install
-npm run start
+npm install
+npm start
 ```
 
 Your site is now running at `http://localhost:8000`!
