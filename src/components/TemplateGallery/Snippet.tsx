@@ -1,10 +1,10 @@
 import { restApiTemplate, allRestApiTemplates } from '../../types/restApiTemplates'
 import React from 'react'
-type snippetProps = Partial<restApiTemplate> & {
-  page_url?: string
-}
+type snippetProps = Partial<restApiTemplate>
+
 import { useRestApiTemplates } from '../../hooks/useMarkdownRemark'
 import marked from 'marked'
+import { Src } from '../Link'
 export const Snippet: React.FC<snippetProps> = props => {
   const { allRestApiTemplates } = useRestApiTemplates()
   const getSnippet = (id: string) => {
@@ -17,13 +17,11 @@ export const Snippet: React.FC<snippetProps> = props => {
     return snippet
   }
 
-  let { endpointId, code, description, title, share_url, tags } = props.description
+  let { endpointId, code, description, title, tags } = props.description
     ? props
     : getSnippet(props.endpointId || '')
-  let { page_url } = props
-  const template_page = '/workers/templates/pages/' + endpointId
-  page_url = share_url ? '/' + share_url : template_page // TODO may need to consider tutorial?
-  page_url = page_url
+  const template_page = Src('/workers/templates/pages/' + endpointId)
+
   return (
     <figure className="template-card snippet" id={endpointId}>
       <div className="tag-group">
@@ -35,7 +33,7 @@ export const Snippet: React.FC<snippetProps> = props => {
         ))}
       </div>
 
-      <a href={page_url}>
+      <a href={template_page}>
         <h2>{title}</h2>
         <img src={'/workers/templates/media/right-arrow.svg'} alt="right arrow" />
       </a>

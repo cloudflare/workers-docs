@@ -3,9 +3,7 @@ import React from 'react'
 import { Link, Src } from '../../components/Link'
 import { useRestApiTemplates } from '../../hooks/useMarkdownRemark'
 import marked from 'marked'
-type boilerplateProps = restApiTemplate & {
-  page_url?: string
-}
+type boilerplateProps = restApiTemplate
 export const Boilerplate: React.FC<boilerplateProps> = props => {
   const { allRestApiTemplates } = useRestApiTemplates()
   const getBoilerplate = (id: string) => {
@@ -17,14 +15,10 @@ export const Boilerplate: React.FC<boilerplateProps> = props => {
     }
     return boilerplate
   }
-  let { endpointId, description, title, share_url, tags, repository_url } = props.description
+  let { endpointId, description, title, tags, repository_url } = props.description
     ? props
     : getBoilerplate(props.endpointId || '')
-  let { page_url } = props
   const template_page = Src('/templates/pages/' + endpointId)
-
-  page_url = share_url ? share_url : template_page // TODO may need to consider tutorial? // TODO may need to consider tutorial?
-  page_url = Src(page_url)
 
   // TODO use regex to make sure leading slash
   return (
@@ -37,7 +31,7 @@ export const Boilerplate: React.FC<boilerplateProps> = props => {
           </button>
         ))}
       </div>
-      <Link to={page_url}>
+      <Link to={template_page}>
         <h2>{title}</h2>
         <img src={Src('/templates/media/right-arrow.svg')} alt="right arrow" />
       </Link>
