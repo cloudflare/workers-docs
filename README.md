@@ -13,7 +13,7 @@ Ensure you have the the following installed:
 To test the content or static gatsby files locally, run:
 
 ```
-npm run install
+npm install
 npm run start
 ```
 
