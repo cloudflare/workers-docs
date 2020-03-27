@@ -47,6 +47,8 @@ There are two types of configuration that `wrangler` uses: global user and per p
   ```
   Note that providing authentication credentials through environment variables will override whatever credentials you configured 
   if you ran `wrangler config`.
+  
+  You can also specify or override the Zone ID used by `wrangler publish` with the `CF_ZONE_ID` environment variable.
 
 ### Per Project
 
