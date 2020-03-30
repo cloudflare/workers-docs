@@ -39,7 +39,7 @@ Adjacent to your API projects, you can create a new package `handlers`, which ca
 $ lerna create handlers
 ```
 
-In `public-api/package.json`:
+In `packages/public-api/package.json`:
 
 ```json
 {
@@ -55,7 +55,7 @@ Using the `bootstrap` command, you can link the packages together and use them i
 $ lerna bootstrap
 ```
 
-In `public-api/index.js`:
+In `packages/public-api/index.js`:
 
 ```js
 // Omitting addEventListener and boilerplate code
@@ -70,7 +70,7 @@ After adding an identical `dependency` to `private-api/package.json`, you can ru
 
 When you're ready to deploy your codebases, you can coordinate deploying them simultaneously by defining scripts in each package's `package.json` file, that can be read by `lerna run`:
 
-In `handlers/public-api/package.json`:
+In `packages/public-api/package.json`:
 
 ```json
 {
@@ -81,7 +81,7 @@ In `handlers/public-api/package.json`:
 }
 ```
 
-In `handlers/private-api/package.json`:
+In `packages/private-api/package.json`:
 
 ```json
 {
