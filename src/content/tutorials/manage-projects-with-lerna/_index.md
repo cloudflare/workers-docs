@@ -2,15 +2,16 @@
 title: Managing multiple Workers projects with Lerna
 ---
 
-*Note: this integration tutorial assumes the usage of [`wrangler`](https://github.com/cloudflare/wrangler), our open-source CLI tool, for building and deploying your projects.*
+_Note: this integration tutorial assumes the usage of [`wrangler`](https://github.com/cloudflare/wrangler), our open-source CLI tool, for building and deploying your projects._
 
 Using [`lerna`](https://github.com/lerna/lerna), a tool for managing multiple JavaScript codebases inside a single "monorepo", developers can work with multiple Wrangler projects and share dependencies between them. If your codebase is already managed with `lerna`, you can also add a new Wrangler project into your existing monorepo without disrupting your workflow.
 
-Begin by creating a `lerna` project in the folder `workers-monorepo`:
+Begin by installing `lerna`, and creating a new project in the folder `workers-monorepo`:
 
 ```bash
+$ npm install -g lerna
 $ mkdir workers-monorepo && cd workers-monorepo
-$ npx lerna init
+$ lerna init
 ```
 
 Inside of `packages`, where `lerna` will look for your projects, you can generate multiple new Wrangler codebases, or even `git clone` your existing Workers codebase to migrate it into a `lerna` monorepo:
@@ -31,6 +32,7 @@ $ cd packages
 $ wrangler generate public-api
 $ wrangler generate private-api
 ```
+
 Adjacent to your API projects, you can create a new package `handlers`, which can be imported into each project:
 
 ```bash
@@ -54,8 +56,8 @@ $ lerna bootstrap
 ```
 
 In `public-api/index.js`:
-```js
 
+```js
 // Omitting addEventListener and boilerplate code
 
 import { json } from 'handlers'
@@ -66,9 +68,10 @@ const handler = request => {
 
 After adding an identical `dependency` to `private-api/package.json`, you can run `lerna bootstrap` again, and begin sharing code between your projects.
 
-When you're ready to deploy your codebases, you can coordinate deploying them simultaneously by defining scripts in `package.json` that can be read by `lerna run`:
+When you're ready to deploy your codebases, you can coordinate deploying them simultaneously by defining scripts in each package's `package.json` file, that can be read by `lerna run`:
 
-In `handlers/package.json`:
+In `handlers/public-api/package.json`:
+
 ```json
 {
   "name": "public-api",
@@ -76,6 +79,11 @@ In `handlers/package.json`:
     "publish": "wrangler publish"
   }
 }
+```
+
+In `handlers/private-api/package.json`:
+
+```json
 {
   "name": "private-api",
   "scripts": {
