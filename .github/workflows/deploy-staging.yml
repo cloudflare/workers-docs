@@ -17,12 +17,8 @@ jobs:
         node-version: '10.x'
     - name: Install deps
       run: npm install
-    - name: Install Hugo
-      run: sudo snap install hugo
-    - name: Copy config for hugo
-      run: cp config-staging.toml config.toml
     - name: Build docs
-      run: hugo
+      run: npm run build
     - name: Publish
       uses: signalnerve/wrangler-action@1.0.0
       with:
