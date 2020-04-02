@@ -1,5 +1,5 @@
 account_id = "95e065d2e3f97a1e50bae58aea71df6d"
-name = "docs-site-blah"
+name = "docs-site-workers"
 type = "webpack"
 workers_dev = true
 webpack_config = "webpack.config.js"
@@ -10,7 +10,6 @@ entry-point = "./workers-site"
 
 # Production
 [env.production]
-name = "docs-site"
 route = "https://developers.cloudflare.com/workers*"
 zone_id = "351cf9fc660523187714fa772ad5ca49"
 account_id = "b54f07a6c269ecca2fa60f1ae4920c99"
@@ -18,14 +17,12 @@ account_id = "b54f07a6c269ecca2fa60f1ae4920c99"
 # Staging
 [env.staging]
 account_id = "95e065d2e3f97a1e50bae58aea71df6d"
-name = "staging"
 zone_id = "8703d409e5c1c580aeee02b98f9fd448"
 route = "https://staging.bigfluffycloudflare.com/workers*"
 
 # Developement for testing 
 [env.dev]
 account_id = "95e065d2e3f97a1e50bae58aea71df6d"
-name = "dev"
 zone_id = "8703d409e5c1c580aeee02b98f9fd448"
 route = "https://dev.bigfluffycloudflare.com/workers*"
 
