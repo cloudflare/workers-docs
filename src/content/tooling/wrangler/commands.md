@@ -11,7 +11,7 @@ weight: 2
   * [workers.dev](#publishing-to-workersdev)
   * [Registered domain](#publishing-to-your-own-domain)
   * [Multiple domains](#publishing-the-same-code-to-multiple-places)
-- [👂 `dev`](#dev)
+- [👂 `dev`](#dev-(alpha))
 - [🔬 `preview`](#preview)
   * [Making it work with WSL](#making-preview-work-with-wsl2)
 - [🗂️ `kv`](#kv)
@@ -121,7 +121,7 @@ If you would like to publish to your own domain, you will need to specify these 
 
 If you would like to be able to publish your code to multiple places, please see the documentation for [environments](/tooling/wrangler/configuration/environments).
 
-### dev _(alpha)_
+### dev (alpha)
 
 #### Disclaimer
 
