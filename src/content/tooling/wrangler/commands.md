@@ -11,7 +11,7 @@ weight: 2
   * [workers.dev](#publishing-to-workersdev)
   * [Registered domain](#publishing-to-your-own-domain)
   * [Multiple domains](#publishing-the-same-code-to-multiple-places)
-- [👂 `dev`](#dev-(alpha))
+- [👂 `dev`](#dev-alpha-))
 - [🔬 `preview`](#preview)
   * [Making it work with WSL](#making-preview-work-with-wsl2)
 - [🗂️ `kv`](#kv)
