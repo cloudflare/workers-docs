@@ -11,6 +11,7 @@ weight: 2
   * [workers.dev](#publishing-to-workersdev)
   * [Registered domain](#publishing-to-your-own-domain)
   * [Multiple domains](#publishing-the-same-code-to-multiple-places)
+- [👂 `dev`](#dev)
 - [🔬 `preview`](#preview)
   * [Making it work with WSL](#making-preview-work-with-wsl2)
 - [🗂️ `kv`](#kv)
@@ -63,7 +64,6 @@ weight: 2
   Enter API token:
   superlongapitoken
   ```
-
   You can also provide your email and global API key (this is not recommended for security reasons):
   ```bash
   wrangler config --api-key
@@ -120,6 +120,24 @@ If you would like to publish to your own domain, you will need to specify these 
 #### Publishing the same code to multiple places
 
 If you would like to be able to publish your code to multiple places, please see the documentation for [environments](/tooling/wrangler/configuration/environments).
+
+### dev _(alpha)_
+
+#### Disclaimer
+
+  This feature is still in alpha! The way this tool works in the future _will_ change, _**proceed with caution**_.
+
+#### Usage
+
+  `wrangler dev` will start a server on `localhost` that connects to Cloudflare's servers and executes your Worker on incoming HTTP requests. After starting `wrangler dev` in a directory with a project, you can send it HTTP requests to test your Worker with clients such as cURL, Postman, or your browser.
+
+  You should run `wrangler dev` from your Worker directory, and if your Worker makes any requests to a backend, you should specify the host with `--host example.com`.
+
+  From here you can send HTTP requests to `localhost:8787` and your Worker should execute as expected. You will also see console.log messages and exceptions appearing in your terminal. If either of these things _don't_ happen, or you think the output is incorrect, please [file an issue](https://github.com/cloudflare/wrangler).
+
+  If you have feedback about `wrangler dev` or general questions, we will respond [here](https://github.com/cloudflare/wrangler/issues/1047).
+
+
 
 ### preview
 
