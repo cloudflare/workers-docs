@@ -1,6 +1,5 @@
 ---
 title: HTMLRewriter
-showNew: true
 ---
 
 - [Overview](#overview)
