@@ -1,5 +1,6 @@
 ---
 title: Managing multiple Workers projects with Lerna
+showNew: true
 ---
 
 *Note: this integration tutorial assumes the usage of [`wrangler`](https://github.com/cloudflare/wrangler), our open-source CLI tool, for building and deploying your projects.*
