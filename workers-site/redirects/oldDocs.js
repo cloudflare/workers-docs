@@ -56,7 +56,7 @@ export const oldDocsMap = new Map([
   ['/recipes/return-403', '/templates/pages/tls_version'],
   ['/recipes/setting-a-cookie', '/templates/pages/cookie_extract'],
   ['/recipes/signed-requests', '/templates/pages/signed_request'],
-  ['/recipes/static-site', '/templates/featured_boilerplates/cloud_storage'],
+  ['/recipes/static-site', '/templates/pages/cloud_storage'],
   ['/recipes/streaming-responses', ''],
   ['/recipes/tls-version-blocking', '/templates/pages/tls_version'],
   ['/recipes/vcl-conversion', ''],

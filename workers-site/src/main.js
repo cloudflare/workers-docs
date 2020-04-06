@@ -6,7 +6,8 @@ const templateRegURL = 'https://template-registry.developers.workers.dev/templat
 const myMapRequestToAsset = request => {
   request = mapRequestToAsset(request)
   let url = new URL(request.url)
-  url.pathname = url.pathname.replace(/^\/workers/, '/')
+  // url.pathname = url.pathname.replace(/^\/workers/, '/')
+  url.pathname = url.pathname.replace(/^(?!\/*workers.*$).*/, '/workers' + url.pathname) //nothing that doesn't start with /workers (i.e. probably called by gatsby, prepend /workers)
   return new Request(url, request)
 }
 function is_directory(path) {
@@ -37,9 +38,10 @@ export async function handleRequest(event) {
     try {
       body = await getAssetFromKV(event, {
         mapRequestToAsset: myMapRequestToAsset,
-        cacheControl: {
-          bypassCache: true,
-        },
+        cacheControl:{
+          browserTTL: 31536000,
+          edgeTTL: 31536000
+        }
       })
     } catch (e) {
       console.log(e, 'not found in KV')
@@ -50,22 +52,6 @@ export async function handleRequest(event) {
     if (!body || newDocsMap.has(pathname) || oldDocsMap.has(pathname)) {
       console.log('Handling redirect')
       return handleRedirect(request)
-    }
-    // TODO remove this and just set the meta title/descriptions in Gatsby
-    if (pathname.includes('templates/pages')) {
-      //Grab the template's title from the registry
-      const templateId = pathname.replace(/.*pages\//, '')
-      const templateResp = await fetch(templateRegURL + templateId)
-      const templateJSON = await templateResp.json()
-      const metaInfo = {
-        title: templateJSON.title + ' - Cloudflare Workers Docs',
-        description: templateJSON.description,
-      }
-      // Rewrite all meta titles/descriptions the the correct title
-      return await new HTMLRewriter()
-        .on('meta', new MetaHandler(metaInfo))
-        .on('head>title', new TitleHandler(metaInfo))
-        .transform(body)
     }
     return body
   } catch (err) {

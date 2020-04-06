@@ -36,7 +36,25 @@ export const newDocsMap = new Map([
   ['/reference/runtime/apis/streams', '/reference/apis/streams'],
   ['/reference/runtime/apis/web-crypto', '/reference/apis/web-crypto'],
 
-  ['/reference/storage/overview/writing-data', '/reference/storage/writing-data'],
+  ['/reference/storage/overview', '/reference/storage'],
+  [
+    '/reference/storage/overview/writing-data',
+    '/reference/apis/configuration_variables/kv#writing-key-value-pairs',
+  ],
+  [
+    '/reference/storage/reading-data',
+    '/reference/apis/configuration_variables/kv#reading-key-value-pairs',
+  ],
+  [
+    '/reference/storage/writing-data',
+    '/reference/apis/configuration_variables/kv#writing-key-value-pairs',
+  ],
+  ['/reference/storage/limitations', '/about/limits#kv'],
+  ['/reference/storage/expiring-keys', '/reference/apis/configuration_variables/kv/#expiring-keys'],
+  // Redirecting to https://api.cloudflare.com/#workers-kv-namespace-properties
+  // would probably be best since we don't have good KV API docs anymore,, but
+  // the KV landing page isn't terrible.
+  ['/reference/storage/api', '/reference/storage'],
 
   //Template pages
   ['/tutorials/build-a-rustwasm-function', '/templates/pages/rustwasm'],
@@ -58,6 +76,7 @@ export const newDocsMap = new Map([
   ['/templates/snippets/private_data_loss', '/templates/pages/private_data_loss'],
   ['/templates/snippets/send_raw_html', '/templates/pages/send_raw_html'],
   ['/templates/snippets/signed_request', '/templates/pages/signed_request'],
+  ['/templates/featured_boilerplates/cloud_storage', '/templates/pages/cloud_storage'],
 
   ['/sites/reference', '/tooling/wrangler/sites'],
   ['/sites/ignore-assets', '/tooling/wrangler/sites/#ignoring-subsets-of-static-assets'],
@@ -65,4 +84,19 @@ export const newDocsMap = new Map([
   // This is a remnant of some buggy workers.cloudflare.com code,
   // we should explicitly handle this and send them to the right place
   ['/workers/docs', '/workers'],
+  [
+    '/reference/storage/reading-key-value-pairs',
+    '/reference/apis/kv#reading-key-value-pairs',
+  ],
+  ['/reference/storage/listing-keys', '/reference/apis/kv#listing-keys'],
+  [
+    '/reference/storage/writing-key-value-pairs',
+    '/reference/apis/kv#writing-key-value-pairs',
+  ],
+  [
+    '/reference/storage/deleting-key-value-pairs',
+    '/reference/apis/kv#deleting-key-value-pairs',
+  ],
+  ['/reference/storage/limits', '/about/limits#kv'],
+  ['/reference/storage/pricing', '/about/pricing#kv'],
 ])
