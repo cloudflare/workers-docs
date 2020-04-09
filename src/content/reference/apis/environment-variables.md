@@ -12,7 +12,7 @@ Once a text variable is uploaded via [wrangler](/tooling/wrangler/configuration)
 ```
 if (ENVIRONMENT === "staging") {
   // staging-specific code
-} else if (ENVIRONMENT === "production" {
+} else if (ENVIRONMENT === "production") {
   // production-specific code
 }
 ```
