@@ -24,7 +24,9 @@ The `HTMLRewriter` class allows developers to build comprehensive and expressive
 The `HTMLRewriter` class should be instantiated once in your Workers script, with a number of handlers attached using the `on` and `onDocument` functions:
 
 ```js
-new HTMLRewriter.on('*', new ElementHandler()).onDocument(new DocumentHandler())
+new HTMLRewriter()
+  .on('*', new ElementHandler())
+  .onDocument(new DocumentHandler())
 ```
 
 ## Selectors
