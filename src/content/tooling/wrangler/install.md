@@ -65,3 +65,6 @@ Wrangler can be installed both through [npm](https://www.npmjs.com/get-npm) and 
 1. Download the binary tarball for your platform from our [releases page](https://github.com/cloudflare/wrangler/releases). You don't need to download wranglerjs, wrangler will install that for you.
 
 2. Unpack the tarball and place the binary `wrangler` somewhere on your `PATH`, preferably `/usr/local/bin` for linux/macOS or `Program Files` for windows.
+
+### Note for Windows users
+After installing wrangler, you might need to add it to you Environment path if you don't have already.Otherwise you might face some unexpected problems when you run wrangller commands in you command prompt. For more info on how to do so you can follow this  [tutorial here](https://helpdeskgeek.com/windows-10/add-windows-path-environment-variable/)
