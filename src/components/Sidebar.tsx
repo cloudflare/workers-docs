@@ -60,56 +60,53 @@ const Sidebar = ({ pathToServe = '/' }) => {
 
   return (
     <>
-      <a id="sidebar-toggle" onClick={clickHandler}>
-        <span>
-          <b></b>
-          <b></b>
-          <b></b>
-        </span>
-      </a>
-      <div id="sidebar-open-backdrop"></div>
-      <nav id="sidebar">
-        <div className="search-container">
-          <DocSearch />
+      <div className="DocsSidebar">
+        <div className="DocsSidebar--sections">
+          <div className="DocsSidebar--section DocsSidebar--nav-section">
+            <div className="DocsSidebar--section-shadow"></div>
+            <div className="DocsSidebar--section-shadow-cover"></div>
+            <ul className="DocsSidebar--nav">
+              {/* TODO V thinks we don't even use this li header for anything but padding */}
+              <li data-nav-id={pathToServe} className="DocsSidebar--nav-item">
+                <a
+                  className="DocsSidebar--nav-link DocsSidebar--link"
+                  href={pathToServe}
+                  title="Docs Home"
+                >
+                  Overview
+                </a>
+              </li>
+              {topLevelMarkdown
+                // get top level (i.e. relURLs with /workers followed by no more than
+                // one forward slash) mdx nodes
+                .filter(edge => edge.node.fields.parent === '/')
+                .filter(edge => !edge.node.frontmatter.hidden)
+                .filter(edge => {
+                  //exclude the path if it has a match in EXCLUDED_PATHS
+                  const matchedPaths = EXCLUDED_PATHS.filter(excludePath =>
+                    excludePath.test(edge.node.fields.pathToServe)
+                  )
+                  return matchedPaths.length < 1
+                })
+                .map(edge => edge.node)
+                .concat(templateGalleryPage)
+                .sort(sortByWeight)
+                .map((node: mdx) => {
+                  const { fields, frontmatter } = node
+                  return (
+                    // Todo filter out hidden pages
+                    <SidebarLi
+                      depth={1}
+                      frontmatter={frontmatter}
+                      fields={fields}
+                      key={frontmatter.title}
+                    />
+                  )
+                })}
+            </ul>
+          </div>
         </div>
-        <div className="highlightable">
-          <ul className="topics">
-            {/* TODO V thinks we don't even use this li header for anything but padding */}
-            <li data-nav-id={pathToServe} className="docs-nav-item-header">
-              <a className="" href={pathToServe} title="Docs Home">
-                Overview
-              </a>
-            </li>
-            {topLevelMarkdown
-              // get top level (i.e. relURLs with /workers followed by no more than
-              // one forward slash) mdx nodes
-              .filter(edge => edge.node.fields.parent === '/')
-              .filter(edge => !edge.node.frontmatter.hidden)
-              .filter(edge => {
-                //exclude the path if it has a match in EXCLUDED_PATHS
-                const matchedPaths = EXCLUDED_PATHS.filter(excludePath =>
-                  excludePath.test(edge.node.fields.pathToServe)
-                )
-                return matchedPaths.length < 1
-              })
-              .map(edge => edge.node)
-              .concat(templateGalleryPage)
-              .sort(sortByWeight)
-              .map((node: mdx) => {
-                const { fields, frontmatter } = node
-                return (
-                  // Todo filter out hidden pages
-                  <SidebarLi
-                    depth={1}
-                    frontmatter={frontmatter}
-                    fields={fields}
-                    key={frontmatter.title}
-                  />
-                )
-              })}
-          </ul>
-        </div>
-      </nav>
+      </div>
     </>
   )
 }

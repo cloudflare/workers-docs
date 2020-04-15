@@ -69,26 +69,43 @@ export const SidebarLi: React.FunctionComponent<SidebarLiProps> = ({
         const showChildren =
           numberOfPages > 0 && depth < maxDepth && (!!alwaysopen || currentPathActiveChildren)
         return (
-          <li data-nav-id={pathToServe} className={'dd-item ' + ddClass}>
-            <Link className="" to={pathToServe} title="Docs Home" activeClassName="active">
-              {title || 'No title'}
-              {numberOfPages ? <Triangle isAncestor={isAncestor} alwaysopen={showChildren} /> : ''}
+          <li data-nav-id={pathToServe} className={'DocsSidebar--nav-item'} is-expanded>
+            <button
+              className="Button DocsSidebar--nav-expand-collapse-button"
+              js-nav-expand-collapse-button=""
+            >
+              <span className="DocsSidebar--nav-expand-collapse-button-content"></span>
+            </button>
+            <Link
+              className="DocsSidebar--nav-link DocsSidebar--link"
+              to={pathToServe}
+              title="Docs Home"
+              activeClassName="active"
+            >
+              <div className="DocsSidebar--nav-link-highlight"></div>
+              <span className="DocsSidebar--nav-link-text">{title || 'No title'}</span>
               {showNew ? <span className="new-badge">NEW</span> : ''}
             </Link>
             {showChildren ? (
-              <ul>
-                {' '}
-                {myChildren.map((child: mdx) => {
-                  return (
-                    <SidebarLi
-                      frontmatter={child.frontmatter}
-                      fields={child.fields}
-                      depth={++depth}
-                      key={child.frontmatter.title}
-                    />
-                  )
-                })}
-              </ul>
+              <div
+                className="DocsSidebar--nav-item-collapse-wrapper"
+                js-nav-expand-collapse=""
+                style={{ height: '349px' }}
+              >
+                <ul className="DocsSidebar--nav-subnav">
+                  {' '}
+                  {myChildren.map((child: mdx) => {
+                    return (
+                      <SidebarLi
+                        frontmatter={child.frontmatter}
+                        fields={child.fields}
+                        depth={++depth}
+                        key={child.frontmatter.title}
+                      />
+                    )
+                  })}
+                </ul>
+              </div>
             ) : (
               ''
             )}
