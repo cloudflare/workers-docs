@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import Layout from '../components/Layout'
+import { Layout } from '../components/Layout'
 
 import { markdownRemarkResult, markdownPageContext } from '../types/mdx'
 import Body from '../components/Body'

@@ -94,6 +94,10 @@ const SEO = ({ description, lang, meta, title }: SEOPropTypes) => {
         sizes="180x180"
         href="https://www.cloudflare.com/img/favicon/apple-touch-icon.png"
       />
+      <link
+        rel="stylesheet"
+        href="https://gistcdn.githack.com/adamschwartz/6008ee5866973271e0cf41e4b0c9ab1e/raw/3966f7392063562c1b95091d18b85bea70c619b4/cloudflare-docs-markdown.css"
+      />
     </Helmet>
   )
 }

@@ -18,7 +18,7 @@ const Body: React.FC<BodyProps> = ({ children, github_edit_url, archived }) => {
             {{ end }}
           </div>
          */}
-          <div id="body-inner">
+          <div id="body-inner" className="DocsMarkdown">
             {archived ? <ArchiveNotice /> : ''}
             {children}
           </div>

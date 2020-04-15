@@ -1,8 +1,5 @@
 import React from 'react'
 
-import Layout from '../components/Layout'
-import SEO from '../components/Seo'
-
 const NotFoundPage: React.FC = () => (
   <>
     <h1>NOT FOUND</h1>

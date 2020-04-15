@@ -1,5 +1,5 @@
 import { Gallery } from '../components/TemplateGallery/Gallery'
-import Layout from '../components/Layout'
+import { Layout } from '../components/Layout'
 import React from 'react'
 import Body from '../components/Body'
 
