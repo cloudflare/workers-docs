@@ -231,9 +231,7 @@ kv-namespaces = [
 kv-namespaces = [
     { binding = "KV", id = "bd46d6484b665e6bd134b0496ad97760" }
 ]
-vars = {
-  FOO = "some text",
-}
+vars = {FOO = "some text"}
 ```
 
 Note: Secret variables can be assigned to specific environments by passing the `-e/--env <environment_name>` flag while using the [`wrangler secret create`](/tooling/wrangler/secret/) command.
