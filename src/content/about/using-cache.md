@@ -11,10 +11,10 @@ Cache is globally distributed and namespaced by zone of the incoming request, me
 
 Conceptually, there are two ways to interact with Cloudflare's Cache using a Worker:
 
-- Call to `fetch()` in a Workers script. Requests proxied through Cloudflare are cached even without Workers according to a default or zone’s configured behavior (e.g. static assets like files ending in .jpg are cached by default). Through Workers this behavior can further be customized through:
-  - Setting Cloudflare cache rules (i.e. operating on the cf object of a [request](TODO: linke )
-  - Setting custom cache headers (i.e. Cache-control). This can impact browsers as well as Cloudflare Cache behavior.
-- Store responses using the Cache API from a Workers script. You can control cache behavior of even assets not proxied on Cloudflare and granular control of the cache that would otherwise rely on headers from an origin.
+- Call to `fetch()` in a Workers script. Requests proxied through Cloudflare are cached even without Workers according to a default or zone’s configured behavior (e.g. static assets like files ending in .jpg are cached by default). Workers can further customize this behavior by:
+  - Setting Cloudflare cache rules (i.e. operating on the `cf` object of a [request](/reference/apis/request/).
+  - Setting custom cache headers (i.e. `Cache-control`). This can impact browsers as well as Cloudflare Cache behavior.
+- Store responses using the Cache API from a Workers script. You can granularly control cache behavior of even assets not proxied on Cloudflare or that would otherwise rely on headers from an origin.
 
 We won't discuss in this article, but other means to control Cloudflare's cache include: Page rules and Cloudflare cache settings. I highly recommend the article [How to Control Cloudflare's cache](https://support.cloudflare.com/hc/en-us/articles/202775670) if you wish to avoid writing Javascript with still some granularity of control.
 
