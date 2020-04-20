@@ -19,6 +19,8 @@ weight: 4
 - [Simultaneous Open Connections](#simultaneous-open-connections)
 - [KV](#kv)
 - [Environment Variables](#environment-variables)
+- [Cache API](#cache-api)
+
 # Overview of Limits by Plan
 
 | Plan                        | [CPU Limit](/about/limits/#cpu-execution-time-limit) | [Daily Request Limit](/about/limits/#daily-request-limit) | [Burst Rate Limit](/about/limits/#burst-rate-limit) |
@@ -132,3 +134,23 @@ all edge locations are guaranteed to see the new value.
 The maximum number of environment variables (secret and text combined) for an account is 32 variables.
 
 Each environment variable has a size limitation of 1kB.
+
+# Cache API
+
+- 50 total `put()`, `match()`, or `delete()` calls per-request, using the same quota as `fetch()`
+
+- 5 GBs total `put()` per-request
+
+- For Free, Pro, Business:
+
+  - up to 512MB for each `put()` with a valid `Content-Length` header
+
+  - up to 512MB for a `put()` with `Transfer-Encoding: chunked`. Note that this blocks subsequent `put()`s until the transfer completes.
+
+- For Enterprise:
+
+  - up to 5GBs for each `put()` with a valid `Content-Length` header
+
+  - up to 5GBs for a `put()` with `Transfer-Encoding: chunked`. Note that this blocks subsequent `put()`s until the transfer completes.
+
+  Using the Cache API will _not_ set a `Cf-Cache-Status` header.
