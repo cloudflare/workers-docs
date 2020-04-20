@@ -69,7 +69,7 @@ const auth0 = {
 const redirectUrl = `${auth0.domain}/authorize?response_type=code&client_id=${auth0.clientId}&redirect_uri=${auth0.callbackUrl}&scope=openid%20profile%20email`
 
 const verify = async event => {
-  // Verify a user based on an auth cookie and KV data
+  // Verify a user based on an auth cookie and Workers KV data
   return { accessToken: '123' }
 }
 
@@ -91,7 +91,7 @@ The `verify` function, which we'll stub out in our first pass through this file,
 
 The `authorize` function, which should be exported from `./auth0.js`, will wait for the response from the `verify` function, and return an array that can be used to determine how the application should proceed.
 
-In `workers-site/index.js`, we can import the `authorize` function from `./auth0.js`, and use it inside of our `handleEvent` function. Note that by default, the Workers Sites template contains code for rendering your Workers Site from KV – to keep that code functioning, make sure that you replace `handleEvent` as defined below:
+In `workers-site/index.js`, we can import the `authorize` function from `./auth0.js`, and use it inside of our `handleEvent` function. Note that by default, the Workers Sites template contains code for rendering your Workers Site from Workers KV – to keep that code functioning, make sure that you replace `handleEvent` as defined below:
 
 ```js
 // workers-site/index.js
@@ -292,7 +292,7 @@ const persistAuth = async exchange => {
 }
 ```
 
-With the decoded JWT available, we can hash-and-salt the `sub` value, and use it as a unique identifier for the current user. To do this, we'll use the [Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API), which is available inside the Workers runtime. Taking the `SALT` value, a secret that we'll set later in the tutorial as we prepare to publish the project, and combining it with the `sub` value, we'll create a SHA-256 digest of the value, convert it into a valid string, and put the JWT in KV using the encrypted ID as a key:
+With the decoded JWT available, we can hash-and-salt the `sub` value, and use it as a unique identifier for the current user. To do this, we'll use the [Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API), which is available inside the Workers runtime. Taking the `SALT` value, a secret that we'll set later in the tutorial as we prepare to publish the project, and combining it with the `sub` value, we'll create a SHA-256 digest of the value, convert it into a valid string, and put the JWT in Workers KV using the encrypted ID as a key:
 
 ```js
 const persistAuth = async exchange => {
@@ -617,15 +617,15 @@ Deploying an "origin" version of this code can be a great approach for users who
 
 We're finally ready to deploy our application to Workers. Before we can successfully deploy the application, we need to set some configuration values both in Workers and Auth0.
 
-### Creating a KV namespace
+### Creating a Workers KV namespace
 
-In the code for this tutorial, we've used the constant `AUTH_STORE` to refer to a Workers KV namespace where we store authorization info for our users. Before we can deploy this project, we need to create a KV namespace and attach it to our Workers application. Using wrangler, we can create this KV namespace directly from the command-line:
+In the code for this tutorial, we've used the constant `AUTH_STORE` to refer to a Workers KV namespace where we store authorization info for our users. Before we can deploy this project, we need to create a Workers KV namespace and attach it to our Workers application. Using wrangler, we can create this Workers KV namespace directly from the command-line:
 
 ```sh
 $ wrangler kv:namespace create AUTH_STORE
 ```
 
-The output of running that command will be a block of code that you can paste directly into `wrangler.toml`, which will "bind" your new KV namespace to your application. It should look something like this:
+The output of running that command will be a block of code that you can paste directly into `wrangler.toml`, which will "bind" your new Workers KV namespace to your application. It should look something like this:
 
 ```toml
 # wrangler.toml
