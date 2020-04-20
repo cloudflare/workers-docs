@@ -384,7 +384,7 @@ const verify = async event => {
 }
 ```
 
-With the unique ID `sub` parsed from the `Cookie` header, we can use it to retrieve the user information we previously stored in KV:
+With the unique ID `sub` parsed from the `Cookie` header, we can use it to retrieve the user information we previously stored in KV. First, we'll do a lookup to Workers KV using the `sub` field as a key - if it isn't found, we'll throw an `Error`. Next, we'll take that data from Workers KV and attempt to parse it as JSON - if that fails, another `Error` will be thrown:
 
 ```js
 // workers-site/auth0.js
@@ -396,7 +396,18 @@ const verify = async event => {
     if (!cookies[cookieKey]) return {}
     const sub = cookies[cookieKey]
 
-    const kvStored = JSON.parse(await AUTH_STORE.get(sub))
+    const kvData = await AUTH_STORE.get(sub)
+    if (!kvData) {
+      throw new Error('Unable to find authorization data')
+    }
+
+    let kvStored
+    try {
+      kvStored = JSON.parse(kvData)
+    } catch (err) {
+      throw new Error('Unable to parse auth information from Workers KV')
+    }
+
     const { access_token: accessToken, id_token: idToken } = kvStored
     const decoded = JSON.parse(decodeJWT(idToken))
   }
@@ -415,7 +426,18 @@ const verify = async event => {
     if (!cookies[cookieKey]) return {}
     const sub = cookies[cookieKey]
 
-    const kvStored = JSON.parse(await AUTH_STORE.get(sub))
+    const kvData = await AUTH_STORE.get(sub)
+    if (!kvData) {
+      throw new Error('Unable to find authorization data')
+    }
+
+    let kvStored
+    try {
+      kvStored = JSON.parse(kvData)
+    } catch (err) {
+      throw new Error('Unable to parse auth information from Workers KV')
+    }
+
     const { access_token: accessToken, id_token: idToken } = kvStored
     const decoded = JSON.parse(decodeJWT(idToken))
 
