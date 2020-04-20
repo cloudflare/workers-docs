@@ -135,22 +135,18 @@ The maximum number of environment variables (secret and text combined) for an ac
 
 Each environment variable has a size limitation of 1kB.
 
-# Cache API
+# [Cache API](/reference/apis/cache/)
 
 - 50 total `put()`, `match()`, or `delete()` calls per-request, using the same quota as `fetch()`
 
 - 5 GBs total `put()` per-request
 
-- For Free, Pro, Business:
 
-  - up to 512MB for each `put()` with a valid `Content-Length` header
+For `put()` with a valid `Content-Length` header and `put()` with `Transfer-Encoding: chunked` ( Note:  chunked blocks subsequent `put()`s until the transfer completes), the limits vary by plan:
 
-  - up to 512MB for a `put()` with `Transfer-Encoding: chunked`. Note that this blocks subsequent `put()`s until the transfer completes.
+| Plan                        | `Content-Length` header | `Transfer-Encoding` header |
+| --------------------------- | ----------------------- | -------------------------- |
+| Free                        | 512MB                   | 512MB                      |
+| [Unlimited](/about/pricing) | 512MB                   | 512MB                      |
+| Enterprise                  | 5GBs                    | 5GBs                       |
 
-- For Enterprise:
-
-  - up to 5GBs for each `put()` with a valid `Content-Length` header
-
-  - up to 5GBs for a `put()` with `Transfer-Encoding: chunked`. Note that this blocks subsequent `put()`s until the transfer completes.
-
-  Using the Cache API will _not_ set a `Cf-Cache-Status` header.
