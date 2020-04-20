@@ -33,7 +33,7 @@ Inside of your application's settings, the client ID and client secret are keys 
 
 ## Generate a new project
 
-Using wrangler's `generate` command, we can begin building a new application using templates provided by the Workers team. For this tutorial, we'll heavily modify the default template for [Workers Sites](https://developers.cloudflare.com/workers/sites), which deploys a static HTML application:
+Using wrangler's `generate` command, we can begin building a new application using a Workers template. For this tutorial, we'll heavily modify the default template for [Workers Sites](https://developers.cloudflare.com/workers/sites), which deploys a static HTML application:
 
 ```sh
 $ wrangler generate --site my-auth-example
@@ -52,9 +52,9 @@ In a traditional application that is attached to a database, the authorization t
 
 ![Auth0 Flow](https://cdn2.auth0.com/docs/media/articles/flows/concepts/auth-sequence-auth-code.png)
 
-### Verifying a user
+### Authenticating a user
 
-Let's begin implementing the login flow described in the previous section. When a user makes a request to the Workers application, we should verify that the user is authenticated. To define this logic, create a new file, `workers-site/auth0.js`, which will contain the authorization/verification logic for our application:
+Let's begin implementing the login flow described in the previous section. When a user makes a request to the Workers application, we should verify that the user is authenticated. To define this logic, create a new file, `workers-site/auth0.js`, which will contain the authorization logic for our application:
 
 ```js
 // workers-site/auth0.js
@@ -199,7 +199,7 @@ export const handleRedirect = async event => {
   const url = new URL(event.request.url)
   const code = url.searchParams.get('code')
   if (code) {
-    return await exchangeCode(code)
+    return exchangeCode(code)
   }
   return {}
 }
@@ -324,7 +324,7 @@ const persistAuth = async exchange => {
 
   const headers = {
     Location: '/',
-    'Set-cookie': `${cookieKey}=${id}; HttpOnly; SameSite=Lax; Expires=${date.toUTCString()}`,
+    'Set-cookie': `${cookieKey}=${id}; Secure; HttpOnly; SameSite=Lax; Expires=${date.toUTCString()}`,
   }
 
   return { headers, status: 302 }
@@ -356,7 +356,7 @@ async function handleEvent(event) {
 
 ## Adding the verify read block
 
-With our application persisting authentication data in KV, and associating it to the current user via a cookie, we're now prepared to fill out the `verify` function defined earlier in the tutorial. This function will look at the `Cookie` header, and look up the authentication info that we persisted in Workers KV. The tokens saved in Workers KV can be used to make a subrequest to Auth0, which has the benefit of both re-verifying the user, as well as getting some user info, such as name and email address, if they're provided using the user's authentication method of choice.
+With our application persisting authentication data in KV, and associating it to the current user via a cookie, we're now prepared to fill out the `verify` function defined earlier in the tutorial. This function will look at the `Cookie` header, and look up the authentication info that we persisted in Workers KV. The saved information in Workers KV can be used to make a subrequest to Auth0's `/userinfo`, to validate the token is valid. The endpoint provided by Auth0 returns user info, such as name and email address, if they're provided using the user's authentication method of choice.
 
 To begin, install the NPM package [`cookie`](https://www.npmjs.com/package/cookie), which we'll use to simplify parsing the `Cookie` header in the `request`:
 
@@ -493,7 +493,7 @@ export const logout = event => {
   if (cookieHeader && cookieHeader.includes(cookieKey)) {
     return {
       headers: {
-        'Set-cookie': `${cookieKey}="";`,
+        'Set-cookie': `${cookieKey}=""; SameSize-Lax; Secure;`,
       },
     }
   }
@@ -677,9 +677,9 @@ Following this example, the callback URL for my application is `my-auth-test.sig
 
 #### Setting the salt
 
-In order to safely store user IDs (the `sub` value from Auth0), we should always refer to them by an encrypted value, which we can generate using the `crypto.subtle.digest` function in the Web Crypto API. In order to do this, we need to set a _salt_: a secret value that is included in the text we're encrypting.
+In order to safely store user IDs (the sub value from Auth0) in the cookie we set in the browser, we should always refer to them by a value that cannot be easily guessed by someone else. To do this, we'll generate a unique value based on the user's ID and a _salt_: a secret value provided by the application.
 
-Cloudflare provides an API for random data at `csprng.xyz`: visit `https://csprng.xyz/v1/api`, and copy the `Data` field to your clipboard. If you'd like to generate a string yourself, remember that it's important that the salt can't easily be guessed!
+To generate a salt, we'll simply make a new, random string, and save it as a "secret" for our application. Cloudflare provides an API for random data at `csprng.xyz`: visit `https://csprng.xyz/v1/api`, and copy the `Data` field to your clipboard. If you'd like to generate a string yourself, remember that it's important that the salt can't easily be guessed!
 
 With a random string generated, you can set it using `wrangler secret`:
 
