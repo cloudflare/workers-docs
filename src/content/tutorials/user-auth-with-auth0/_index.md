@@ -27,7 +27,7 @@ You'll need to get your Cloudflare API tokens to deploy code to Cloudflare Worke
 
 Every Auth0 account contains _applications_, which allow developers to create login/signup flows that are verified by Auth0. Integrating Auth0 with Workers requires creating an application in your Auth0 dashboard; if you've created an account for this tutorial, the "Default (Generic)" application provided by Auth0 will work, otherwise, create a new application with the type "Regular Web Application".
 
-![Creating an application](/tutorials/user-auth-with-auth0/media/creating-an-application.png)
+![Creating an Auth0 application](/tutorials/user-auth-with-auth0/media/creating-an-application.png)
 
 Inside of your application's settings, the client ID and client secret are keys that we'll provide to our Workers application in order to authenticate with Auth0. There are a number of settings and configuration options here, but relevant to this tutorial are the "Allowed Callback URLs" and "Allowed Web Origins" options. In the "Publish" section of this tutorial, we'll fill in these values with the final deployed URL of our application.
 
@@ -271,7 +271,7 @@ const decodeJWT = function(token) {
       throw 'Illegal base64url string!'
   }
 
-  var result = atob(output)
+  const result = atob(output)
 
   try {
     return decodeURIComponent(escape(result))
@@ -296,7 +296,7 @@ With the decoded JWT available, we can hash-and-salt the `sub` value, and use it
 
 ```js
 const persistAuth = async exchange => {
-  ... 
+  ...
 
   const text = new TextEncoder().encode(`${SALT}-${decoded.sub}`)
   const digest = await crypto.subtle.digest({ name: 'SHA-256' }, text)
@@ -572,7 +572,7 @@ While we're currently using Workers Sites, you can update `workers-site/index.js
 async function handleEvent(event) {
   try {
     // BEGINNING OF WORKERS SITES
-    // ^- this can now be thought of as "BEGINNING OF ORIGIN REQUEST"
+    // ↳ this can now be thought of as "BEGINNING OF ORIGIN REQUEST"
 
     // Replace the below line of code
     // response = getAssetFromKV(event)
@@ -580,7 +580,7 @@ async function handleEvent(event) {
     // With a fetch request to your origin
     response = await fetch(request)
     // END OF WORKERS SITES
-    // ^- this can now be thought of as "END OF ORIGIN REQUEST"
+    // ↳ this can now be thought of as "END OF ORIGIN REQUEST"
   }
 }
 ```
