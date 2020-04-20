@@ -50,7 +50,9 @@ Before we begin implementing an "authorizer" in our application, which will veri
 
 In a traditional application that is attached to a database, the authorization tokens returned from Auth0 are often persisted in a database, allowing users to return to the application and continue to use it, without the need for re-authorization. With a Workers application, we have a quick and easy-to-use data storage solution that lives right next to our serverless application: Workers KV. Using Workers KV, we'll store authorization tokens and tie them to a user using an authorization cookie.
 
-![Auth0 Flow](https://cdn2.auth0.com/docs/media/articles/flows/concepts/auth-sequence-auth-code.png)
+[![Auth0 Flow](/tutorials/user-auth-with-auth0/media/auth0-flow.png)](https://auth0.com/docs/flows/concepts/auth-code)
+
+<small>Auth0 Flow Diagram courtesy of <a href="https://auth0.com/docs/flows/concepts/auth-code">Auth0</a></small>
 
 ### Authenticating a user
 
