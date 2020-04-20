@@ -3,7 +3,7 @@ title: 'User Auth with Auth0'
 showNew: true
 ---
 
-In this tutorial, you'll integrate Auth0, an authentication and authorization provider, into a Cloudflare Workers application. Adding authorization and authentication to an application is a common task for developers, and by implementing it using Cloudflare Workers, you can take advantage of Workers' unique platform advantages to simplify how and when your application needs user data.
+In this tutorial you'll integrate Auth0, an authentication and authorization provider, into a Cloudflare Workers application. Adding authorization and authentication to an application is a common task for developers. By implementing it using Cloudflare Workers, you can take advantage of Workers' unique platform advantages to simplify how and when your application needs user data.
 
 ## What you'll learn
 
@@ -21,7 +21,7 @@ To publish your Worker to Cloudflare, you'll need a few things:
 
 If you don't have those things quite yet, don't worry. We'll walk through each of them and make sure we're ready to go, before you start creating your application.
 
-You'll need to get your Cloudflare API keys to deploy code to Cloudflare Workers: see ["Finding your Cloudflare API keys"](https://developers.cloudflare.com/workers/quickstart/#configure) for a brief guide on how to find them.
+You'll need to get your Cloudflare API tokens to deploy code to Cloudflare Workers: see ["Finding your Cloudflare API keys"](https://developers.cloudflare.com/workers/quickstart/#configure) for a brief guide on how to find them.
 
 ### Configure an Auth0 application
 
@@ -29,7 +29,7 @@ Every Auth0 account contains _applications_, which allow developers to create lo
 
 ![Creating an application](/tutorials/user-auth-with-auth0/media/creating-an-application.png)
 
-Inside of your application's settings, the client ID and client secret are keys that we'll provide to our Workers application in order to authenticate with Auth0. There are a number of settings and configuration options here, but relevant to this tutorial are the "Allowed Callback URLs" and "Allowed Web Origins" options -- in the "Publish" section of this tutorial, we'll fill in these values with the final deployed URL of our application.
+Inside of your application's settings, the client ID and client secret are keys that we'll provide to our Workers application in order to authenticate with Auth0. There are a number of settings and configuration options here, but relevant to this tutorial are the "Allowed Callback URLs" and "Allowed Web Origins" options. In the "Publish" section of this tutorial, we'll fill in these values with the final deployed URL of our application.
 
 ## Generate a new project
 
@@ -296,7 +296,7 @@ With the decoded JWT available, we can hash-and-salt the `sub` value, and use it
 
 ```js
 const persistAuth = async exchange => {
-  // ... previous code
+  ... 
 
   const text = new TextEncoder().encode(`${SALT}-${decoded.sub}`)
   const digest = await crypto.subtle.digest({ name: 'SHA-256' }, text)
@@ -554,7 +554,7 @@ export const logout = event => {
 
 ### Improvements and customizations
 
-This tutorial provides a good starting point for understanding and implementing authentication in Workers, using Auth0. There's a number of customizations and improvements that can be done to this codebase that are out-of-scope for the purposes of this tutorial, but will be briefly mentioned in this section, along with links to learn more.
+This tutorial introduces concepts for implementing authentication in Workers using Auth0. There's a number of potential customizations and improvements to this codebase that are out-of-scope for the purposes of this tutorial. I will briefly mentioned a few in this section along with links to learn more.
 
 #### Deploying to origin/originless
 
