@@ -3,7 +3,7 @@ title: fetchEvent
 weight: 3
 ---
 
-The event type for HTTP requests dispatched to a Worker (i.e the`Object` passed through as `'fetch'` in `addEventListener('fetch', event => {…})`).
+The event type for HTTP requests dispatched to a Worker (i.e the `Object` passed through as `event` in `addEventListener('fetch', event => {…})`).
 
 If multiple event listeners are registered, when an event handler does not call `respondWith()` the runtime delivers the event to the next registered event handler.
 
