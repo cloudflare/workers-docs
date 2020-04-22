@@ -3,11 +3,11 @@ title: Metrics
 weight: 4
 ---
 
-- [Per Worker Script Metrics](#per-worker-script-metrics)
-  - [Invocation statuses](#invocation-statuses)
+- [Worker Script Metrics](#worker-script-metrics)
   - [Requests](#requests)
   - [CPU time](#cpu-time)
-- [Per Zone Metrics](#per-zone-metrics)
+  - [Invocation statuses](#invocation-statuses)
+- [Zone Metrics](#zone-metrics)
   - [Total requests](#total-requests)
   - [Status codes](#status-codes)
   - [Bandwidth](#bandwidth)
@@ -16,13 +16,25 @@ weight: 4
 
 Workers metrics show performance and usage of your Workers and help diagnose issues.
 
-Workers Metrics are available in Per Zone and Per Worker script contexts.
+Workers Metrics are available in Zone and Worker script contexts.
 
-## Per Worker Script Metrics
+## Worker Script Metrics
 
 Aggregates request data for an individual Worker script across all zones including your workers.dev subdomain. On your [Workers dashboard](https://dash.cloudflare.com/?account=workers/overview), click on any Worker to view its metrics.
 
-Per Worker script metrics can be inspected by time ranges within the last 30 days. The dashboard includes the charts and information described below.
+Worker script metrics can be inspected by time ranges within the last 30 days. The dashboard includes the charts and information described below.
+
+### Requests
+
+This chart shows historical request counts from the Workers runtime broken down into successful requests, failed requests, and subrequests.
+
+- Successful requests: Success and Client Disconnected invocation statuses.
+- Failed requests: Every other invocation status.
+- Subrequests: Requests triggered by calling `fetch` from within a Worker script. A subrequest that throws an uncaught error will not be counted.
+
+### CPU Time
+
+The CPU time chart shows historical CPU time data broken down into relevant quantiles using [reservoir sampling](https://en.wikipedia.org/wiki/Reservoir_sampling). You can learn more about interpreting quantiles [here](https://www.statisticshowto.com/quantile-definition-find-easy-steps/). In some cases, higher quantiles may appear to exceed [CPU time limits](/about/limits/#cpu-execution-time-limit) without generating invocation errors because of a mechanism in the Workers runtime that allows rollover CPU time for requests below the CPU limit.
 
 ### Invocation statuses
 
@@ -38,27 +50,15 @@ Worker invocation statuses:
 | ¹ Exceeded Resources   | exceededResources    | 1102, 1027         | Worker script exceeded runtime limits                                    |
 | ² Internal Error       | internalError        |                    | Workers runtime encountered an error                                     |
 
-¹ The Exceeded Resources status may appear when the Worker exceeds a [runtime limit](/about/limits). The most common cause is excessive CPU time, but is also caused if a script exceeds startup time or free tier limits.
+¹ The Exceeded Resources status may appear when the Worker exceeds a [runtime limit](/about/limits). The most common cause is excessive CPU time, but is also caused by a script exceeding startup time or free tier limits.
 
 ² The Internal Error status may appear when the Workers runtime fails to process a request due to an internal failure in our system. These errors are not caused by any issue with the Worker code nor any resource limit. While requests with Internal Error status are rare, we expect that some may appear during normal operation. These requests are not counted towards usage for billing purposes. If you notice an elevated rate of requests with Internal Error status, please check www.cloudflarestatus.com.
 
-### Requests
-
-This chart shows historical request counts from the Workers runtime broken down into successful requests, failed requests, and subrequests.
-
-- Successful requests: Success and Client Disconnected invocation statuses.
-- Failed requests: Every other invocation status.
-- Subrequests: Requests triggered by calling `fetch` from within a Worker script. A subrequest that throws an uncaught error will not be counted.
-
-### CPU Time
-
-The CPU time chart shows historical CPU time data broken down into relevant quantiles using [reservoir sampling](https://en.wikipedia.org/wiki/Reservoir_sampling). In some cases, higher quantiles may appear to exceed [CPU time limits](/about/limits/#cpu-execution-time-limit) because of a mechanism in the Workers runtime that allows rollover CPU time for requests below the CPU limit.
-
-## Per Zone Metrics
+## Zone Metrics
 
 Aggregates request data for all scripts assigned to any [routes](/about/routes/) defined for a zone. On your Cloudflare dashboard, click the analytics tab to [view the dashboard](https://dash.cloudflare.com/?zone=analytics/workers).
 
-Per Zone data can be scoped by time range within the last 30 days. The dashboard includes charts and information described below.
+Zone data can be scoped by time range within the last 30 days. The dashboard includes charts and information described below.
 
 ### Total Requests
 
@@ -81,4 +81,4 @@ This chart shows subrequests - requests triggered by calling `fetch` from within
 
 ## GraphQL
 
-Per Worker script metrics are powered by GraphQL. Learn more about querying our data sets in the [API documentation](https://developers.cloudflare.com/analytics/graphql-api/features/data-sets/).
+Worker script metrics are powered by GraphQL. Learn more about querying our data sets in the [API documentation](https://developers.cloudflare.com/analytics/graphql-api/features/data-sets/).
