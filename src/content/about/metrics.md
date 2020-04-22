@@ -4,9 +4,9 @@ weight: 4
 ---
 
 - [Worker Script Metrics](#worker-script-metrics)
+  - [Invocation statuses](#invocation-statuses)
   - [Requests](#requests)
   - [CPU time](#cpu-time)
-  - [Invocation statuses](#invocation-statuses)
 - [Zone Metrics](#zone-metrics)
   - [Total requests](#total-requests)
   - [Status codes](#status-codes)
@@ -23,18 +23,6 @@ Workers Metrics are available in Zone and Worker script contexts.
 Aggregates request data for an individual Worker script across all zones including your workers.dev subdomain. On your [Workers dashboard](https://dash.cloudflare.com/?account=workers/overview), click on any Worker to view its metrics.
 
 Worker script metrics can be inspected by time ranges within the last 30 days. The dashboard includes the charts and information described below.
-
-### Requests
-
-This chart shows historical request counts from the Workers runtime broken down into successful requests, failed requests, and subrequests.
-
-- Successful requests: Success and Client Disconnected invocation statuses.
-- Failed requests: Every other invocation status.
-- Subrequests: Requests triggered by calling `fetch` from within a Worker script. A subrequest that throws an uncaught error will not be counted.
-
-### CPU Time
-
-The CPU time chart shows historical CPU time data broken down into relevant quantiles using [reservoir sampling](https://en.wikipedia.org/wiki/Reservoir_sampling). You can learn more about interpreting quantiles [here](https://www.statisticshowto.com/quantile-definition-find-easy-steps/). In some cases, higher quantiles may appear to exceed [CPU time limits](/about/limits/#cpu-execution-time-limit) without generating invocation errors because of a mechanism in the Workers runtime that allows rollover CPU time for requests below the CPU limit.
 
 ### Invocation statuses
 
@@ -53,6 +41,18 @@ Worker invocation statuses:
 ¹ The Exceeded Resources status may appear when the Worker exceeds a [runtime limit](/about/limits). The most common cause is excessive CPU time, but is also caused by a script exceeding startup time or free tier limits.
 
 ² The Internal Error status may appear when the Workers runtime fails to process a request due to an internal failure in our system. These errors are not caused by any issue with the Worker code nor any resource limit. While requests with Internal Error status are rare, we expect that some may appear during normal operation. These requests are not counted towards usage for billing purposes. If you notice an elevated rate of requests with Internal Error status, please check www.cloudflarestatus.com.
+
+### Requests
+
+This chart shows historical request counts from the Workers runtime broken down into successful requests, failed requests, and subrequests.
+
+- Successful requests: Success and Client Disconnected invocation statuses.
+- Failed requests: Every other invocation status.
+- Subrequests: Requests triggered by calling `fetch` from within a Worker script. A subrequest that throws an uncaught error will not be counted.
+
+### CPU Time
+
+The CPU time chart shows historical CPU time data broken down into relevant quantiles using [reservoir sampling](https://en.wikipedia.org/wiki/Reservoir_sampling). You can learn more about interpreting quantiles [here](https://www.statisticshowto.com/quantile-definition-find-easy-steps/). In some cases, higher quantiles may appear to exceed [CPU time limits](/about/limits/#cpu-execution-time-limit) without generating invocation errors because of a mechanism in the Workers runtime that allows rollover CPU time for requests below the CPU limit.
 
 ## Zone Metrics
 
