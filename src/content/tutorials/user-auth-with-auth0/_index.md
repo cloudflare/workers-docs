@@ -179,15 +179,13 @@ import { authorize, handleRedirect } from './auth0'
 
 async function handleEvent(event) {
   try {
-    // END OF REDIRECT CODE BLOCK
-
     // BEGINNING OF HANDLE AUTH REDIRECT CODE BLOCK
     if (url.pathname === '/auth') {
       const authorizedResponse = await handleRedirect(event)
     }
     // END OF HANDLE AUTH REDIRECT CODE BLOCK
 
-    // BEGINNING OF WORKERS SITES
+    // BEGINNING OF REDIRECT CODE BLOCK
   }
 }
 ```
@@ -298,7 +296,7 @@ With the decoded JWT available, we can hash and salt the `sub` value, and use it
 
 ```js
 const persistAuth = async exchange => {
-  ...
+  // ...
 
   const text = new TextEncoder().encode(`${SALT}-${decoded.sub}`)
   const digest = await crypto.subtle.digest({ name: 'SHA-256' }, text)
@@ -363,7 +361,7 @@ With our application persisting authentication data in Workers KV and associatin
 To begin, install the NPM package [`cookie`](https://www.npmjs.com/package/cookie), which we'll use to simplify parsing the `Cookie` header in the `request`:
 
 ```sh
-$ npm install cookie
+$ cd workers-site && npm install cookie
 ```
 
 In `workers-site/auth0.js`, we can begin to flesh out the contents of the `verify` function, beginning by parsing the `Cookie` header, looking for our `cookieKey` as defined earlier in the tutorial:
@@ -419,6 +417,8 @@ Finally, we'll make a subrequest to Auth0's [`/userinfo`](https://auth0.com/docs
 ```js
 // workers-site/auth0.js
 
+const userInfoUrl = `${auth0.domain}/userInfo`
+
 const verify = async event => {
   const cookieHeader = event.request.headers.get('Cookie')
   if (cookieHeader && cookieHeader.includes(cookieKey)) {
@@ -471,6 +471,10 @@ export const authorize = async event => {
 
 By implementing this function, we've now completed the authorization/authentication portion of the tutorial! Our application will authorize any incoming users, redirecting them to Auth0 and verifying their access tokens, before they're allowed to see our Workers Site content. To configure your deployment, and publish the application, you can skip to the "Publish" section, but in the next few portions of the tutorial, we'll focus on some of the more interesting aspects of this project: using user information in our application, via "edge state hydration", logging out our users, and some improvements and customizations that can be done to this application to make it ready for production usage.
 
+### Improvements and customizations
+
+This tutorial introduces concepts for implementing authentication in Workers using Auth0. There are several potential customizations and improvements to this codebase that are out-of-scope for this tutorial. I will briefly mention a few in this section, along with links to learn more.
+
 ### Using user data in our application
 
 In the previous section of the tutorial, we made a request to Auth0's `/userinfo` endpoint, which provides information such as name and email address for use in our application. Using Workers' [HTML Rewriter](https://developers.cloudflare.com/workers/reference/apis/html-rewriter/), we can embed the `userInfo` object that we've received from Auth0 directly into our site, by creating an instance of the `HTMLRewriter` class, and attaching a handler `hydrateState` to any found `head` tags that pass through the rewriter. The `hydrateState` handler will add a new `script` tag with an ID of `edge_state`, which we can parse and utilize in any front-end JavaScript code we'll deploy with our application. Instead of simply returning `response` in `handleEvent`, we can replace it with the HTML rewriter code, and return a transformed version of `response`:
@@ -486,6 +490,9 @@ const hydrateState = (state = {}) => ({
 
 async function handleEvent(event) {
   try {
+    // BEGINNING OF WORKERS SITES
+    // Note the addition of the `await` keyword
+    response = await getAssetFromKV(event);
     // END OF WORKERS SITES
 
     // Remove the line of code below
@@ -531,7 +538,7 @@ import { ..., logout } from './auth0.js'
 
 async function handleEvent(event) {
   try {
-    // END OF HANDLE AUTH REDIRECT CODE BLOCK
+    // END OF WORKERS SITES CODE BLOCK
 
     // BEGINNING OF LOGOUT CODE BLOCK
     if (url.pathname === "/logout") {
@@ -556,7 +563,16 @@ In your Workers Site, you can add a "Log out" link, which will send users to the
 <a href="/logout">Log out</a>
 ```
 
-Note that by design, the placement of the `LOGOUT CODE BLOCK` in `workers-site/index.js` is placed _after_ the `AUTH REDIRECT CODE BLOCK`. This is intentional: it allows users to continue to your application's deployed Workers Site code, meaning that you can provide a corresponding `logout/index.html` template with a "You're logged out!" message, or something similar. When the user refreshes the page, they'll be identified as an unauthorized user, and be redirected to Auth0's login page. For a more advanced implementation of logout functionality, you may choose to _always_ return a redirect to your app's root path: this will force every user to sign in again immediately after logging in:
+Note that by design, the placement of the `LOGOUT CODE BLOCK` in `workers-site/index.js` is placed _after_ the `WORKERS SITES CODE BLOCK`. This is intentional: it allows users to continue to your application's deployed Workers Site code, meaning that you can provide a corresponding `logout/index.html` template with a "You're logged out!" message, or something similar. Here's an example you can use:
+
+```html
+<!-- public/logout/index.html -->
+
+<h1>You're logged out</h1>
+<div><a href="/">Log back in</a></div>
+```
+
+When the user refreshes the page, they'll be identified as an unauthorized user, and be redirected to Auth0's login page. For a more advanced implementation of logout functionality, you may choose to _always_ return a redirect to your app's root path: this will force every user to sign in again immediately after logging in:
 
 ```js
 // workers-site/auth0.js
@@ -575,10 +591,6 @@ export const logout = event => {
   return {};
 };
 ```
-
-### Improvements and customizations
-
-This tutorial introduces concepts for implementing authentication in Workers using Auth0. There are several potential customizations and improvements to this codebase that are out-of-scope for this tutorial. I will briefly mention a few in this section, along with links to learn more.
 
 #### Deploying to origin/originless
 
@@ -599,7 +611,7 @@ async function handleEvent(event) {
     // ↳ this can now be thought of as "BEGINNING OF ORIGIN REQUEST"
 
     // Replace the below line of code
-    // response = getAssetFromKV(event)
+    // response = await getAssetFromKV(event)
 
     // With a fetch request to your origin
     response = await fetch(request)
@@ -641,6 +653,16 @@ Deploying an "origin" version of this code can be a great approach for users who
 
 We're finally ready to deploy our application to Workers. Before we can successfully deploy the application, we need to set some configuration values both in Workers and Auth0.
 
+### Configuring `wrangler.toml`
+
+The `wrangler.toml` generated as part of your application tells wrangler how and where to deploy your application. Using the ["Configure" section of the Quick Start](https://developers.cloudflare.com/workers/quickstart/#configure) as a guide, populate `wrangler.toml` with your account ID, which will allow you to deploy your application to your Cloudflare account:
+
+```toml
+# wrangler.toml
+
+account_id = "$accountId"
+```
+
 ### Creating a Workers KV namespace
 
 In the code for this tutorial, we've used the constant `AUTH_STORE` to refer to a Workers KV namespace where we store authorization info for our users. Before we can deploy this project, we need to create a Workers KV namespace and attach it to our Workers application. Using wrangler, we can create this Workers KV namespace directly from the command-line:
@@ -669,7 +691,7 @@ Below is the complete list of secrets that the Workers script will look for when
 
 | `wrangler secret` key | Value                                                                            |
 | --------------------- | -------------------------------------------------------------------------------- |
-| AUTH0_DOMAIN          | Your Auth0 domain (e.g. `myapp.auth0.com`)                                       |
+| AUTH0_DOMAIN          | Your Auth0 domain (e.g. `https://myapp.auth0.com`)                               |
 | AUTH0_CLIENT_ID       | Your Auth0 client ID                                                             |
 | AUTH0_CLIENT_SECRET   | Your Auth0 client secret                                                         |
 | AUTH0_CALLBACK_URL    | The callback url for your application (see "Setting the callback url" below)     |
@@ -689,15 +711,15 @@ $ wrangler secret put SALT
 
 #### Setting the callback url
 
-To correctly set the callback URL for your application, you will need to determine where your application will be deployed. Regardless of whether you're setting up an _originless_ or _origin_-based deploy, the callback handler for this project is defined at `/auth`. This means that if you're testing or deploying a staging version of this project, your callback URL will likely be something like `my-auth-example.signalnerve.workers.dev/auth`, or for production, you should set it to something like `my-production-app.com/auth`.
+To correctly set the callback URL for your application, you will need to determine where your application will be deployed. Regardless of whether you're setting up an _originless_ or _origin_-based deploy, the callback handler for this project is defined at `/auth`. This means that if you're testing or deploying a staging version of this project, your callback URL will likely be something like `https://my-auth-example.signalnerve.workers.dev/auth`, or for production, you should set it to something like `https://my-production-app.com/auth`.
 
 This tutorial assumes the usage of a `workers.dev` subdomain, which is provided for free to all developers using Workers. You can determine your callback URL by combining the name of your application (chosen during the `wrangler generate` phase -- in this tutorial, we picked `my-auth-example`) and your workers.dev subdomain, as seen below:
 
 ```
-$applicationName.$subdomain.workers.dev/auth
+https://$applicationName.$subdomain.workers.dev/auth
 ```
 
-Following this example, the callback URL for my application is `my-auth-test.signalnerve.workers.dev/auth`.
+Following this example, the callback URL for my application is `https://my-auth-test.signalnerve.workers.dev/auth`.
 
 #### Setting the salt
 
@@ -715,22 +737,12 @@ $ wrangler secret put SALT
 
 Note that Auth0 has great security defaults and any callback URLs or origins that you'll use as sources to log in from need to be explicitly provided in the Auth0 dashboard as part of your application config. Using the above `workers.dev` example, you should ensure the following values are set in the application settings page of your Auth0 dashboard, along with any additional urls used as part of testing (e.g. `localhost:8787` for [wrangler dev][wrangler dev] usage):
 
-| URL                                          | Description          |
-| -------------------------------------------- | -------------------- |
-| $applicationName.$subdomain.workers.dev      | Allowed Origin       |
-| $applicationName.$subdomain.workers.dev/auth | Allowed Callback URL |
+| URL                                                  | Description          |
+| ---------------------------------------------------- | -------------------- |
+| https://$applicationName.$subdomain.workers.dev/auth | Allowed Callback URL |
+| https://$applicationName.$subdomain.workers.dev      | Allowed Origin       |
 
 ![Auth0 allowed URLs](/tutorials/user-auth-with-auth0/media/auth0-allowed-urls.png)
-
-### Configuring `wrangler.toml`
-
-The `wrangler.toml` generated as part of your application tells wrangler how and where to deploy your application. Using the ["Configure" section of the Quick Start](https://developers.cloudflare.com/workers/quickstart/#configure) as a guide, populate `wrangler.toml` with your account ID, which will allow you to deploy your application to your Cloudflare account:
-
-```toml
-# wrangler.toml
-
-account_id = "$accountId"
-```
 
 ### Publishing your application
 
