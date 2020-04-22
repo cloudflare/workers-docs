@@ -5,7 +5,7 @@ weight: 4
 
 - [Per Worker Script Metrics](#per-worker-script-metrics)
   - [Invocation statuses](#invocation-statuses)
-  - [Worker requests](#worker-requests)
+  - [Requests](#requests)
   - [CPU time](#cpu-time)
 - [Per Zone Metrics](#per-zone-metrics)
   - [Total requests](#total-requests)
@@ -42,7 +42,7 @@ Worker invocation statuses:
 
 ² The Internal Error status may appear when the Workers runtime fails to process a request due to an internal failure in our system. These errors are not caused by any issue with the Worker code nor any resource limit. While requests with Internal Error status are rare, we expect that some may appear during normal operation. These requests are not counted towards usage for billing purposes. If you notice an elevated rate of requests with Internal Error status, please check www.cloudflarestatus.com.
 
-### Worker Requests
+### Requests
 
 This chart shows historical request counts from the Workers runtime broken down into successful requests, failed requests, and subrequests.
 
