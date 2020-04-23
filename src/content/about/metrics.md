@@ -28,28 +28,26 @@ Worker script metrics can be inspected by time ranges within the last 30 days. T
 
 Worker invocation statuses indicate whether a Worker script executed successfully or failed to generate a response in the Workers runtime. Invocation statuses differ from HTTP status codes. In some cases, a Worker script invocation succeeds but does not generate a successful HTTP status because of another error encountered outside of the Workers runtime. Some invocation statuses result in a [Workers error code](/about/tips/debugging/#error-pages-generated-by-workers) being returned to the client.
 
-Worker invocation statuses:
+| Invocation status      | Definition                                                               | Workers Error code | GraphQL field          |
+| ---------------------- | ------------------------------------------------------------------------ | ------------------ | ---------------------- |
+| Success                | Worker script executed successfully                                      |                    | `success`              |
+| Client Disconnected    | HTTP client (i.e. the browser) disconnected before the request completed |                    | `clientDisconnected`   |
+| Script Threw Exception | Worker script threw an unhandled Javascript exception                    | 1101               | `scriptThrewException` |
+| ¹ Exceeded Resources   | Worker script exceeded runtime limits                                    | 1102, 1027         | `exceededResources`    |
+| ² Internal Error       | Workers runtime encountered an error                                     |                    | `internalError`        |
 
-| Invocation status      | GraphQL field        | Workers Error code | Definition                                                               |
-| ---------------------- | -------------------- | ------------------ | ------------------------------------------------------------------------ |
-| Success                | success              |                    | Worker script executed successfully                                      |
-| Client Disconnected    | clientDisconnected   |                    | HTTP client (i.e. the browser) disconnected before the request completed |
-| Script Threw Exception | scriptThrewException | 1101               | Worker script threw an unhandled Javascript exception                    |
-| ¹ Exceeded Resources   | exceededResources    | 1102, 1027         | Worker script exceeded runtime limits                                    |
-| ² Internal Error       | internalError        |                    | Workers runtime encountered an error                                     |
+_¹ The Exceeded Resources status may appear when the Worker exceeds a [runtime limit](/about/limits/#request-limits). The most common cause is excessive CPU time, but is also caused by a script exceeding startup time or free tier limits._
 
-¹ The Exceeded Resources status may appear when the Worker exceeds a [runtime limit](/about/limits). The most common cause is excessive CPU time, but is also caused by a script exceeding startup time or free tier limits.
-
-² The Internal Error status may appear when the Workers runtime fails to process a request due to an internal failure in our system. These errors are not caused by any issue with the Worker code nor any resource limit. While requests with Internal Error status are rare, we expect that some may appear during normal operation. These requests are not counted towards usage for billing purposes. If you notice an elevated rate of requests with Internal Error status, please check www.cloudflarestatus.com.
+_² The Internal Error status may appear when the Workers runtime fails to process a request due to an internal failure in our system. These errors are not caused by any issue with the Worker code nor any resource limit. While requests with Internal Error status are rare, we expect that some may appear during normal operation. These requests are not counted towards usage for billing purposes. If you notice an elevated rate of requests with Internal Error status, please check www.cloudflarestatus.com._
 
 ### Requests
 
 This chart shows historical request counts from the Workers runtime broken down into successful requests, errored requests, and subrequests.
 
-- Total: All incoming requests registered by a Worker script. Requests blocked by [WAF](https://www.cloudflare.com/waf/) or other security features will not count.
-- Successful requests: Success and Client Disconnected invocation statuses.
-- Errored requests: Every other invocation status.
-- Subrequests: Requests triggered by calling `fetch` from within a Worker script. A subrequest that throws an uncaught error will not be counted.
+- **Total**: All incoming requests registered by a Worker script. Requests blocked by [WAF](https://www.cloudflare.com/waf/) or other security features will not count.
+- **Successful requests**: Success and Client Disconnected invocation statuses.
+- **Errored requests**: Every other invocation status.
+- **Subrequests**: Requests triggered by calling `fetch` from within a Worker script. A subrequest that throws an uncaught error will not be counted.
 
 ### CPU Time
 
@@ -65,8 +63,8 @@ Zone data can be scoped by time range within the last 30 days. The dashboard inc
 
 This chart shows subrequests - requests triggered by calling `fetch` from within a Worker script - broken down by cache status.
 
-- Uncached - requests answered directly by your origin server or other servers responding to subrequests
-- Cached - requests answered by Cloudflare’s [cache](https://www.cloudflare.com/learning/cdn/what-is-caching/). As Cloudflare caches more of your content, it accelerates content delivery and reduces load on your origin.
+- **Uncached**: requests answered directly by your origin server or other servers responding to subrequests
+- **Cached**: requests answered by Cloudflare’s [cache](https://www.cloudflare.com/learning/cdn/what-is-caching/). As Cloudflare caches more of your content, it accelerates content delivery and reduces load on your origin.
 
 ### Bandwidth
 
