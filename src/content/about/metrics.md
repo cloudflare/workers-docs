@@ -8,10 +8,10 @@ weight: 4
   - [Requests](#requests)
   - [CPU time](#cpu-time)
 - [Zone Metrics](#zone-metrics)
-  - [Total requests](#total-requests)
-  - [Status codes](#status-codes)
-  - [Bandwidth](#bandwidth)
   - [Subrequests](#subrequests)
+  - [Bandwidth](#bandwidth)
+  - [Status codes](#status-codes)
+  - [Total requests](#total-requests)
 - [GraphQL](#graphql)
 
 Workers metrics show performance and usage of your Workers and help diagnose issues.
