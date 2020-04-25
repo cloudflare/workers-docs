@@ -199,13 +199,14 @@ For workers.dev domains, you will just need the Account ID:
 
 ## API Token
 
-1. Click **Get API Token** below the _API_ section to jump to your _Profile_ page.
-2. Click **Create Token** and select the **Start with Template** radio button. Select the **Edit Cloudflare Workers** template.
-3. Fill out the rest of the fields and then click **Continue to Summary**, where you can click **Create Token** and issue your token for use.
+1. Click **Get your API token** below the _CLI and API_ section to jump to your _Profile_ page.
+2. Click **Create Token**. 
+3. Under the _API token templates_ section, find the **Edit Cloudflare Workers** template and click **Use template**.
+4. Fill out the rest of the fields and then click **Continue to Summary**, where you can click **Create Token** and issue your token for use.
 
 ## Global API Key
 
-1. Click **Get API Token** below the _API_ section to jump to your _Profile_ page.
+1. Click **Get your API token** below the _CLI and API_ section to jump to your _Profile_ page.
 2. Scroll to _API Keys_, and click **View** to copy your Global API Key **\***.
 
 **\* IMPORTANT: Treat your Global API Key like a password!**
