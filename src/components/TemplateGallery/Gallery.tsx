@@ -44,14 +44,20 @@ export const Gallery: React.FunctionComponent<GalleryProps> = ({}) => {
       }
     `
   )
-  const allTemplates = templates.allRestApiTemplates.edges.map(edge => edge.node)
+  const allTemplates = templates.allRestApiTemplates.edges.map((edge) => edge.node)
   return (
     <>
       <h1>Template Gallery</h1>
       <p>These templates are simple building blocks for developing Workers scripts.</p>
       <SearchBox templates={allTemplates}>
-        {results => (results.length ? <SearchResults results={results} /> : <EmptyResults />)}
+        {(results) => (results.length ? <SearchResults results={results} /> : <EmptyResults />)}
       </SearchBox>
+      <p>
+        The gallery is actively growing. The{' '}
+        <a href="https://github.com/ashleygwilliams/template-registry">template registry</a> allows
+        you to share templates. Host a public repo, and then run{' '}
+        <code>wrangler generate https://github.com/:your-repo</code>.
+      </p>
     </>
   )
 }
