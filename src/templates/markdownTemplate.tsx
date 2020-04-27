@@ -14,11 +14,9 @@ type markdownBaseProps = {
   data: { mdx: markdownRemarkResult }
   pageContext: markdownPageContext
 }
-const getChildrenAsString = (
-  props: React.HtmlHTMLAttributes<HTMLHeadingElement>
-) => {
+const getChildrenAsString = (props: React.HtmlHTMLAttributes<HTMLHeadingElement>) => {
   if (typeof props.children === 'string') {
-   // replace all not alphanumeric characters with dashes
+    // replace all not alphanumeric characters with dashes
     return props.children.replace(/(\s|\W)+/g, '-').toLowerCase()
   }
   // TODO if we'd like headers with children to still have IDs
@@ -33,7 +31,7 @@ const getChildrenAsString = (
 
   return ''
 }
-const components = {
+export const components = {
   Gallery,
   a: (props: any) => {
     return <Link to={props.href} {...props} />
@@ -54,6 +52,11 @@ const components = {
     return <h4 id={getChildrenAsString(props)} {...props} />
   },
 }
+export const MDXwithComponents: React.SFC<{ body?: string }> = ({ body }) => (
+  <MDXProvider components={components}>
+    <MDXRenderer>{body || ''}</MDXRenderer>
+  </MDXProvider>
+)
 const MarkdownTemplate: React.FC<markdownBaseProps> = ({
   data, // this prop will be injected by the GraphQL query below.
 }) => {
@@ -68,9 +71,7 @@ const MarkdownTemplate: React.FC<markdownBaseProps> = ({
           github_edit_url={`https://github.com/cloudflare/workers-docs/edit/master/src/content${fields.filePath}`}
         >
           <h1>{frontmatter.title}</h1>
-          <MDXProvider components={components}>
-            <MDXRenderer>{body || ''}</MDXRenderer>
-          </MDXProvider>
+          <MDXwithComponents body={body} />
         </Body>
       </Layout>
     </>
