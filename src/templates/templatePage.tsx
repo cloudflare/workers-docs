@@ -6,7 +6,8 @@ import Layout from '../components/Layout'
 import Body from '../components/Body'
 import TemplatePage from '../components/TemplateGallery/TemplatePage'
 import { restApiTemplateResult } from '../types/restApiTemplates'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
+import { MDXwithComponents } from './markdownTemplate'
+
 type templateProps = {
   pageContext: any
   data: {
@@ -24,7 +25,7 @@ const Template: React.FC<templateProps> = ({ data, pageContext }) => {
         <Body>
           {restApiTemplates ? <TemplatePage data={restApiTemplates} id={pageContext.id} /> : ''}
           {/* <TemplatePage {...{ data, pageContext }} /> */}
-          {mdx ? <MDXRenderer>{mdx.body || ''}</MDXRenderer> : ''}
+          {mdx ? <MDXwithComponents body={mdx.body} /> : ''}
         </Body>
       </Layout>
     </>
