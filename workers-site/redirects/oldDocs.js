@@ -86,4 +86,5 @@ export const oldDocsMap = new Map([
   ['/archive/recipes/conditional-routing', '/templates/pages/conditional_response'],
   ['/archive/recipes/cors-preflight-requests', '/templates/pages/cors_header_proxy'],
   ['/archive/recipes/post-requests', '/templates/pages/post_json'],
+  ['/archive/writing-workers/debugging-tips/', '/about/tips/debugging'],
 ])
