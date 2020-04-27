@@ -11,19 +11,21 @@ Cache is globally distributed and namespaced by zone of the incoming request, me
 
 Conceptually, there are two ways to interact with Cloudflare's Cache using a Worker:
 
-- Call to `fetch()` in a Workers script. Requests proxied through Cloudflare are cached even without Workers according to a default or zone’s configured behavior (e.g. static assets like files ending in .jpg are cached by default). Workers can further customize this behavior by:
+- Call to `fetch()` in a Workers script. Requests proxied through Cloudflare are cached even without Workers according to a zone's default or configured behavior (e.g. static assets like files ending in .jpg are cached by default). Workers can further customize this behavior by:
   - Setting Cloudflare cache rules (i.e. operating on the `cf` object of a [request](/reference/apis/request/).
-  - Setting custom cache headers (i.e. `Cache-control`). This can impact browsers as well as Cloudflare Cache behavior.
-- Store responses using the Cache API from a Workers script. You can granularly control cache behavior of even assets not proxied on Cloudflare or that would otherwise rely on headers from an origin.
+- Store responses using the Cache API from a Workers script. You can granularly control cache behavior of even assets not proxied on Cloudflare or that would otherwise rely on headers from an origin by:
+  - Setting `Cache-Control` as a header to the response passed Cloudflare's cache in `cache.put()`
+
+Browser cache is controlled through the `Cache-Control` header sent in the response to the eyeball. Workers can control this cache behavior by setting the cache headers on response to the eyeball ( i.e. the response passed into `event.respondWith()` )
 
 We won't discuss in this article, but other means to control Cloudflare's cache include: Page rules and Cloudflare cache settings. I highly recommend the article [How to Control Cloudflare's cache](https://support.cloudflare.com/hc/en-us/articles/202775670) if you wish to avoid writing Javascript with still some granularity of control.
 
 **What should I use: the Cache API or fetch for caching objects on Cloudflare? **
-For requests where Workers are behaving as middleware (i.e. they are sending a subrequest via `fetch`) it is recommended to use fetch. This is because pre existing settings are in place that optimize caching while preventing unintended dynamic caching. For projects where there is no backend (i.e. the entire project is on Workers as in [Workers Sites](/sites)) the Cache API is the only option for caching.
+For requests where Workers are behaving as middleware (i.e. they are sending a subrequest via `fetch`) it is recommended to use fetch. This is because pre existing settings are in place that optimize caching while preventing unintended dynamic caching. For projects where there is no backend (i.e. the entire project is on Workers as in [Workers Sites](/sites)) the Cache API is the only option to customize caching.
 
 ### `fetch`
 
-In the context of Workers a [`fetch`](/reference/apis/fetch) provided by the runtime communicates with the Cloudflare cache. First, `fetch` checks to see if the URL matches a different zone. If it does, it reads through that zone's cache. Otherwise, it reads through its own zone's cache, even if the URL is for a non-Cloudflare site. Cache settings on `fetch` automatically apply caching rules based on your Cloudflare settings. `fetch` does not allow you to _modify or inspect objects_ before they reach the cache, but does allow you to modify _how it will cache_.
+In the context of Workers a [`fetch`](/reference/apis/fetch) provided by the runtime communicates with the Cloudflare cache. First, `fetch` checks to see if the URL matches a different zone. If it does, it reads through that zone's cache (or Worker!). Otherwise, it reads through its own zone's cache, even if the URL is for a non-Cloudflare site. Cache settings on `fetch` automatically apply caching rules based on your Cloudflare settings. `fetch` does not allow you to _modify or inspect objects_ before they reach the cache, but does allow you to modify _how it will cache_.
 
 When a response fills the cache, the response header contains `CF-Cache-Status: HIT`. You can tell an object is attempting to cache if one sees the `CF-Cache-Status` at all.
 
@@ -31,11 +33,11 @@ This [template](/templates/pages/cache_ttl) shows ways to customize Cloudflare c
 
 ### [Cache API](/reference/apis/cache)
 
-The Cache API creates a private cache key namespace for each zone on Cloudflare’s CDN. Cache objects are stored in the local datacenter handling the request and are not replicated to other datacenters.
+The Cache API uses a cache key namespace on Cloudflare's CDN that is private to the Worker's zone. Cache objects are stored in the local datacenter handling the request and are not replicated to other datacenters.
 
-When to use Cache API:
+When to use the Cache API:
 
-- Attempts to read from cache without calling fetch. (i.e. send me the response to slow.com/resource if and only if it’s already a HIT on cache is cached using `caches.default.match(..)`.
-- Explicitly store a response in the cache using `caches.default.put(..)` and explicitly delete `caches.default.delete(..)`. For example, the zone. https://fonts.googleapis.com/css is not gray clouded since it’s not on Cloudflare, so we could store https://fonts.googleapis.com/css as cache key on our zone’s namespace.
+- When you need to read from cache without calling fetch. (i.e. send me the response to slow.com/resource if and only if it’s already a HIT on cache is cached using `caches.default.match(..)`.
+- Explicitly store a response in the cache using `caches.default.put(..)` and explicitly delete `caches.default.delete(..)`. For example, say your origin is returning `max-age:0` and you can't figure out how to change that header at your origin. You can explicitly tell Cloudflare to cache this response by setting `cache-control: max-age=1000` on the response passed into `cache.put()`.
 
 This [template](/templates/pages/cache_api) shows ways to use the cache API. For limits of the cache API see [limits](/about/limits).

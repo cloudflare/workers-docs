@@ -87,7 +87,7 @@ Cloudflare features all plans can set on outbound requests:
 
 A Workers script runs after Cloudflare security features, but before everything else. Therefore, a Workers script cannot affect the operation of security features (since they already finished), but it can affect other features, like Polish or ScrapeShield, or how Cloudflare caches the response.
 
-Updating the `cf` object is similar to [modifying a request](/templates/snippets/modify_req_props//). You can add the `cf` object to a `Request` by passing a custom object to [`fetch`](/reference/apis/fetch/). For examples on controling cache settings see [the template](/templates/pages/cache_ttl).
+Updating the `cf` object is similar to [modifying a request](/templates/snippets/modify_req_props//). You can add the `cf` object to a `Request` by passing a custom object to [`fetch`](/reference/apis/fetch/). For examples on controlling cache settings see [the template](/templates/pages/cache_ttl).
 
 ```javascript
 // Disable ScrapeShield for this request.

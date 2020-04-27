@@ -137,16 +137,17 @@ Each environment variable has a size limitation of 1kB.
 
 # [Cache API](/reference/apis/cache/)
 
+
 - 50 total `put()`, `match()`, or `delete()` calls per-request, using the same quota as `fetch()`
 
 - 5 GBs total `put()` per-request
 
+Cached response size limits vary by plan:
 
-For `put()` with a valid `Content-Length` header and `put()` with `Transfer-Encoding: chunked` ( Note:  chunked blocks subsequent `put()`s until the transfer completes), the limits vary by plan:
+| Plan                        | Response size |
+| --------------------------- | ----------------------- |
+| Free                        | 512MB                   |
+| [Unlimited](/about/pricing) | 512MB                   |
+| Enterprise                  | 5GBs                    |
 
-| Plan                        | `Content-Length` header | `Transfer-Encoding` header |
-| --------------------------- | ----------------------- | -------------------------- |
-| Free                        | 512MB                   | 512MB                      |
-| [Unlimited](/about/pricing) | 512MB                   | 512MB                      |
-| Enterprise                  | 5GBs                    | 5GBs                       |
-
+Note that because the size of chunked response bodies (`Transfer-Encoding: chunked`) is not known in advance, `.put()`ing such responses will block subsequent `.put()`s from starting until the current `.put()` completes.
