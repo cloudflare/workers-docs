@@ -14,9 +14,7 @@ weight: 4
   - [Total requests](#total-requests)
 - [GraphQL](#graphql)
 
-Workers metrics show performance and usage of your Workers and help diagnose issues.
-
-Workers Metrics are available in Zone and Worker script contexts.
+Workers metrics show performance and usage of your Workers and help diagnose issues and are available in Zone and Worker script contexts.
 
 ## Worker Script Metrics
 
