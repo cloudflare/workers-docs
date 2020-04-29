@@ -57,7 +57,7 @@ The CPU time chart shows historical CPU time data broken down into relevant quan
 
 ## Zone Metrics
 
-Aggregates request data for all scripts assigned to any [routes](/about/routes/) defined for a zone. On your Cloudflare dashboard, click the analytics tab to [view the dashboard](https://dash.cloudflare.com/?zone=analytics/workers).
+Aggregates request data for all scripts assigned to any [routes](/about/routes/) defined for a zone. You’ll find Zone Metrics on the [analytics tab](https://dash.cloudflare.com/?zone=analytics/workers) of your Cloudflare dashboard.
 
 Zone data can be scoped by time range within the last 30 days. The dashboard includes charts and information described below.
 
