@@ -135,8 +135,11 @@ The maximum number of environment variables (secret and text combined) for an ac
 
 Each environment variable has a size limitation of 1kB.
 
+<span id="cache-api">
+
 # [Cache API](/reference/apis/cache/)
 
+</span>
 
 - 50 total `put()`, `match()`, or `delete()` calls per-request, using the same quota as `fetch()`
 
