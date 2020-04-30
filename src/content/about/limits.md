@@ -15,6 +15,8 @@ weight: 4
 - [Simultaneous Open Connections](#simultaneous-open-connections)
 - [KV](#kv)
 - [Environment Variables](#environment-variables)
+- [Cache API](#cache-api)
+
 # Overview of Limits by Plan
 
 | Plan                        | [CPU Limit](/about/limits/#cpu-execution-time-limit) | [Daily Request Limit](/about/limits/#daily-request-limit) | [Burst Rate Limit](/about/limits/#burst-rate-limit) |
@@ -128,3 +130,23 @@ all edge locations are guaranteed to see the new value.
 The maximum number of environment variables (secret and text combined) for an account is 32 variables.
 
 Each environment variable has a size limitation of 1kB.
+
+<span id="cache-api">
+
+# [Cache API](/reference/apis/cache/)
+
+</span>
+
+- 50 total `put()`, `match()`, or `delete()` calls per-request, using the same quota as `fetch()`
+
+- 5 GBs total `put()` per-request
+
+Cached response size limits vary by plan:
+
+| Plan                        | Response size |
+| --------------------------- | ----------------------- |
+| Free                        | 512MB                   |
+| [Unlimited](/about/pricing) | 512MB                   |
+| Enterprise                  | 5GBs                    |
+
+Note that because the size of chunked response bodies (`Transfer-Encoding: chunked`) is not known in advance, `.put()`ing such responses will block subsequent `.put()`s from starting until the current `.put()` completes.

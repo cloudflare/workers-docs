@@ -17,7 +17,7 @@ new Request(input [, init])
 
 - `init` (optional): An options object that contains custom settings to apply to the request. Valid options are:
   - `method`: The request method, such as `GET` or `POST`
-  - `headers`: A [Headers](/reference/apis/fetch#headers) object 
+  - `headers`: A [Headers](/reference/apis/fetch#headers) object
     - `body`: Any text to add to the request. **Note:** Requests using the `GET` or `HEAD` methods cannot have a body.
     - `redirect`: The mode respected when the request is fetched. **Note:** default for requests generated from the incoming `fetchEvent` from the event handler is `manual`. Default for newly constructed Requests (i.e. `new Request(url)` ) is `follow`. Valid options:
     - `follow`: If a redirect reponse is returned to the fetch, another fetch will be fired based on the `Location` header in the response until a non-redirect code is returned. (i.e. `await fetch(..)` could never return a `301` redirect)
@@ -85,11 +85,9 @@ Cloudflare features all plans can set on outbound requests:
 - `cacheTtlByStatus`: This option is a version of the `cacheTtl` feature which chooses a TTL based on the response's status code. If the response to this request has a status code that matches, Cloudflare will cache for the instructed time, and override cache instructives sent by the origin. (e.g. `{ "200-299": 86400, 404: 1, "500-599": 0 }`)
   - _Note - Cloudflare will still adhere to [standard cache levels](https://support.cloudflare.com/hc/en-us/articles/202775670-How-Do-I-Tell-Cloudflare-What-to-Cache-), so by default this will override cache behavior for static files. If you wish to cache non-static assets, you will need to set a [Cache Level of Cache Everything](https://support.cloudflare.com/hc/en-us/articles/200172266-What-do-the-custom-caching-options-mean-in-Page-Rules-) using a Page Rule._
 
-<!-- * cache_api?  -->
-
 A Workers script runs after Cloudflare security features, but before everything else. Therefore, a Workers script cannot affect the operation of security features (since they already finished), but it can affect other features, like Polish or ScrapeShield, or how Cloudflare caches the response.
 
-Updating the `cf` object is similar to [modifying a request](/templates/snippets/modify_req_props//). You can add the `cf` object to a `Request` by passing a custom object to [`fetch`](/reference/apis/fetch/).
+Updating the `cf` object is similar to [modifying a request](/templates/snippets/modify_req_props//). You can add the `cf` object to a `Request` by passing a custom object to [`fetch`](/reference/apis/fetch/). For examples on controlling cache settings see [the template](/templates/pages/cache_ttl).
 
 ```javascript
 // Disable ScrapeShield for this request.
@@ -104,5 +102,5 @@ Note: Invalid or incorrectly-named settings in the cf object will be silently ig
 - `Request`: Implements [`Body`](https://developer.mozilla.org/en-US/docs/Web/API/Body) and has the following methods:
   - [`Body.arrayBuffer()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/arrayBuffer): Returns a promise that resolves with an [`ArrayBuffer`](https://developer.mozilla.org/en-US/docs/Web/API/ArrayBuffer) representation of the request body.
   - [`Body.formData()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/formData): Returns a promise that resolves with a [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) representation of the request body.
-  - [`Body.json()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/json): Returns a promise that resolves with a [`JSON`](https://developer.mozilla.org/en-US/docs/Web/API/JSON) representation of the request body. 
+  - [`Body.json()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/json): Returns a promise that resolves with a [`JSON`](https://developer.mozilla.org/en-US/docs/Web/API/JSON) representation of the request body.
   - [`Body.text()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/text): Returns a promise that resolves with an [`USVString`](https://developer.mozilla.org/en-US/docs/Web/API/USVString) (text) representation of the request body.
