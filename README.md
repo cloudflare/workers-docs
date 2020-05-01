@@ -77,4 +77,4 @@ Releasing done through CI for whatever is on master. Ask Ashley Williams or Kris
 
 This repo is overseen by the Workers Developer Experience team. Check out our contribution guide at [CONTRIBUTING.md](/CONTRIBUTING.md)!
 
-To contribute to templates see [Template Contributing Guide](content/templates/CONTRIBUTING.md).
+To contribute to templates see [Template Contributing Guide](https://github.com/ashleygwilliams/template-registry/blob/master/CONTRIBUTING.md).
