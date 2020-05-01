@@ -9,7 +9,7 @@ import React from 'react'
 import { useStaticQuery, graphql, withAssetPrefix } from 'gatsby'
 
 import Sidebar from './Sidebar'
-import SEO from './Seo'
+import Head from './Head'
 import '../content/static/css/theme.css'
 import '../content/static/css/main.css'
 import '../content/static/css/overview.css'
@@ -35,15 +35,11 @@ const Layout: React.FC<LayoutProps> = ({ title, children }) => {
 
   return (
     <>
-      <SEO title={title ? title : data.site.siteMetadata.title} />
+      <Head title={title ? title : data.site.siteMetadata.title} />
       <Navigation />
       <Sidebar />
       <Helmet>
-        <script
-          type="text/javascript"
-          src={withAssetPrefix('/js/docsearch.min.js')}
-          async
-        />
+        <script type="text/javascript" src={withAssetPrefix('/js/docsearch.min.js')} async />
       </Helmet>
       {children}
     </>
