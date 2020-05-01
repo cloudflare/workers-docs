@@ -6,7 +6,7 @@ This project contains the static website content for the [Cloudflare Workers doc
 
 Ensure you have the the following installed:
 
-- [node](https://nodejs.org/en/download/) version 9
+- [node](https://nodejs.org/en/download/) version 10.13.0 or higher
 
 ## Preview
 
