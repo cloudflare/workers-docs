@@ -55,8 +55,6 @@ export type GalleryProps = {
 
 export const EmptyResults = () => {
   return (
-    //   resultsContainer.style.display = 'none'
-
     <div id="results">
       <div
         id="#empty"

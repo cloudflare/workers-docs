@@ -3,38 +3,6 @@ import React, { ReactElement } from 'react'
 import { restApiTemplate } from '../../types/restApiTemplates'
 import debounce from 'lodash.debounce'
 
-// // Search based on a query, updating `results`
-// const search = query => {
-//   // Get the rendered "choices" (the types in our type select)
-//   // and map their text values into `types`
-//   const types = [].slice
-//     .call(document.querySelectorAll('.choices__item--choice'))
-//     .map(el => el.getAttribute('data-value'))
-
-// // Update the UI with search results
-// const processSearch = () => {
-//   const resultsContainer = document.querySelector('#results')
-//   resultsContainer.style.display = 'block'
-
-//   const empty = document.querySelector('#empty')
-//   empty.style.display = 'none'
-//   empty.style.marginBottom = null
-
-//   const templates = document.querySelectorAll('.template-card')
-//   templates.forEach(
-//     elem =>
-//       (elem.style = `display: ${!results.find(result => result.id === elem.id) ? 'none' : ''}`),
-//   )
-//   // Remove section headers that contain no results
-//   const sectionHeaders = document.querySelectorAll('#results>h2')
-//   sectionHeaders.forEach(header => {
-//     // all headers' next sibling is a `section` that parents the templates
-//     let matches = [...header.nextElementSibling.childNodes].filter(el =>
-//       results.find(result => result.id === el.id),
-//     )
-//     header.style.display = matches.length ? '' : 'none'
-//   })
-// }
 type SearchBoxProps = {
   templates: restApiTemplate[]
   children: (input: restApiTemplate[]) => ReactElement
