@@ -24,11 +24,9 @@ export const SearchResults: React.FunctionComponent<GalleryProps> = ({ results }
           </section>
         </div>
       ) : null}
-      {featured_boilerplates.length ? (
+      {snippets.length ? (
         <div>
           <h2>Snippets</h2>
-          <section className="template-wrapper snippet"></section>
-          <h2>Boilerplates</h2>
           <section className="template-wrapper snippet">
             {snippets.length
               ? snippets.map(template => (
