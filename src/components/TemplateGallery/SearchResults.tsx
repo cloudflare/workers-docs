@@ -9,7 +9,6 @@ export const SearchResults: React.FunctionComponent<GalleryProps> = ({ results }
   const featured_boilerplates = results
     .map(edge => edge)
     .filter(template => template.type === 'featured_boilerplate')
-
   return (
     <div className="gallery" id="results">
       {boilerplates.length ? (
@@ -51,9 +50,6 @@ export const SearchResults: React.FunctionComponent<GalleryProps> = ({ results }
 }
 
 export type GalleryProps = {
-  // snippets: restApiTemplate[]
-  // boilerplates: restApiTemplate[]
-  // featured_boilerplates?: restApiTemplate[]
   results: restApiTemplate[]
 }
 
@@ -61,7 +57,7 @@ export const EmptyResults = () => {
   return (
     //   resultsContainer.style.display = 'none'
 
-    <div id="#results">
+    <div id="results">
       <div
         id="#empty"
         style={{
