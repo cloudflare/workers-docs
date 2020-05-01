@@ -49,7 +49,7 @@ type lunrResult = lunr.Index.Result & {
 }
 export class SearchBox extends React.Component<SearchBoxProps, SearchBoxState> {
   public idx: lunr.Index
-  public fullResults: lunrResult[]
+  public unFilteredResults: lunrResult[]
 
   constructor(props: SearchBoxProps) {
     super(props)
@@ -70,13 +70,13 @@ export class SearchBox extends React.Component<SearchBoxProps, SearchBoxState> {
         this.add(doc)
       }, this)
     })
-    this.fullResults = this.idx.search('*').map(({ ref, ...rest }: lunr.Index.Result) => ({
+    this.unFilteredResults = this.idx.search('*').map(({ ref, ...rest }: lunr.Index.Result) => ({
       ref,
       item: corpus.find((m: any) => m.endpointId === ref),
       ...rest,
     }))
 
-    this.state = { searchQuery: '', results: this.fullResults, documents: corpus }
+    this.state = { searchQuery: '', results: this.unFilteredResults, documents: corpus }
   }
 
   componentDidMount() {
@@ -95,9 +95,9 @@ export class SearchBox extends React.Component<SearchBoxProps, SearchBoxState> {
     this.doSearch(value)
   }
   getResults(searchQuery: string) {
-    if (!searchQuery) return this.fullResults
-
-    return this.idx.search(searchQuery).map(({ ref, ...rest }: lunr.Index.Result) => {
+    if (!searchQuery) return this.unFilteredResults
+    //~2 controls the fuzziness of the search
+    return this.idx.search(searchQuery + '~2').map(({ ref, ...rest }: lunr.Index.Result) => {
       return {
         ref,
         item: this.state.documents.find((m: any) => m.endpointId === ref),
