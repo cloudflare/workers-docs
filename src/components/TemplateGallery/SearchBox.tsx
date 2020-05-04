@@ -3,38 +3,6 @@ import React, { ReactElement } from 'react'
 import { restApiTemplate } from '../../types/restApiTemplates'
 import debounce from 'lodash.debounce'
 
-// // Search based on a query, updating `results`
-// const search = query => {
-//   // Get the rendered "choices" (the types in our type select)
-//   // and map their text values into `types`
-//   const types = [].slice
-//     .call(document.querySelectorAll('.choices__item--choice'))
-//     .map(el => el.getAttribute('data-value'))
-
-// // Update the UI with search results
-// const processSearch = () => {
-//   const resultsContainer = document.querySelector('#results')
-//   resultsContainer.style.display = 'block'
-
-//   const empty = document.querySelector('#empty')
-//   empty.style.display = 'none'
-//   empty.style.marginBottom = null
-
-//   const templates = document.querySelectorAll('.template-card')
-//   templates.forEach(
-//     elem =>
-//       (elem.style = `display: ${!results.find(result => result.id === elem.id) ? 'none' : ''}`),
-//   )
-//   // Remove section headers that contain no results
-//   const sectionHeaders = document.querySelectorAll('#results>h2')
-//   sectionHeaders.forEach(header => {
-//     // all headers' next sibling is a `section` that parents the templates
-//     let matches = [...header.nextElementSibling.childNodes].filter(el =>
-//       results.find(result => result.id === el.id),
-//     )
-//     header.style.display = matches.length ? '' : 'none'
-//   })
-// }
 type SearchBoxProps = {
   templates: restApiTemplate[]
   children: (input: restApiTemplate[]) => ReactElement
@@ -42,7 +10,6 @@ type SearchBoxProps = {
 type SearchBoxState = {
   searchQuery: string
   results: lunrResult[]
-  //   idx: any
   documents: restApiTemplate[]
 }
 type lunrResult = lunr.Index.Result & {
@@ -50,68 +17,61 @@ type lunrResult = lunr.Index.Result & {
 }
 export class SearchBox extends React.Component<SearchBoxProps, SearchBoxState> {
   public idx: lunr.Index
+  public unFilteredResults: lunrResult[]
 
   constructor(props: SearchBoxProps) {
     super(props)
     const { templates } = props
     // Process templates JSON into lunr-supported JS objects
     const constructCorpus = () => {
-      // const toLunr = (item: restApiTemplate, type: restApiTemplate['type']) => ({ type, ...item })
-      return [
-        ...Object.values(templates), // .map(item => toLunr(item, 'boilerplates')),
-      ]
+      return [...Object.values(templates)]
     }
     let corpus: restApiTemplate[]
     corpus = constructCorpus()
-    // const idx = lunr(function() {
-    this.idx = lunr(function() {
+    this.idx = lunr(function () {
       this.ref('endpointId')
       this.field('title')
       this.field('description')
       this.field('type')
       this.field('tags')
-
       corpus.forEach((doc: any) => {
         this.add(doc)
       }, this)
     })
-    let emptySearch = this.idx.search('*').map(({ ref, ...rest }: lunr.Index.Result) => ({
+    this.unFilteredResults = this.idx.search('*').map(({ ref, ...rest }: lunr.Index.Result) => ({
       ref,
       item: corpus.find((m: any) => m.endpointId === ref),
       ...rest,
     }))
 
-    this.state = { searchQuery: '', results: emptySearch, documents: corpus }
+    this.state = { searchQuery: '', results: this.unFilteredResults, documents: corpus }
   }
 
   componentDidMount() {
     // @ts-ignore
     window.idx = this.idx
   }
+
+  doSearch = debounce((value: string) => {
+    this.setState({ results: this.getResults(value) })
+  }, 150)
+
   handleNewSearchValue = (event: any) => {
     const value = event.target.value
-    // if (!value.length) {
-    //   return
-    // }
-    const doSearch = debounce((value: string) => {
-      const results = this.getResults(value)
-      this.setState({ searchQuery: value, results })
-    })
 
-    this.setState({ searchQuery: value }, () => {
-      doSearch(value)
-    })
+    this.setState({ searchQuery: value })
+    this.doSearch(value)
   }
   getResults(searchQuery: string) {
-    if (!searchQuery) return []
-    const results: lunrResult[] = this.idx
-      .search(searchQuery) // search the index
-      .map(({ ref, ...rest }: lunr.Index.Result) => ({
+    if (!searchQuery) return this.unFilteredResults
+    //~2 controls the fuzziness of the search
+    return this.idx.search(searchQuery + '~2').map(({ ref, ...rest }: lunr.Index.Result) => {
+      return {
         ref,
         item: this.state.documents.find((m: any) => m.endpointId === ref),
         ...rest,
-      })) // attach each item
-    return results
+      }
+    }) // attach each item
   }
 
   render() {
@@ -127,7 +87,6 @@ export class SearchBox extends React.Component<SearchBoxProps, SearchBoxState> {
             placeholder="🔎 Search by template name or other details"
             style={{ padding: '10px', width: '100%' }}
             onChange={this.handleNewSearchValue}
-            // onChange={e => this.handleNewSearchValue(e.target.value)}
             value={this.state.searchQuery}
           ></input>
         </div>
