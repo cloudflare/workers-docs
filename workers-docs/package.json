@@ -1,0 +1,37 @@
+{
+  "name": "cloudflare-workers-docs",
+  "version": "1.0.0",
+  "description": "Cloudflare Workers developer docs",
+  "license": "Apache-2.0 OR MIT",
+  "main": "workers-site/index.js",
+  "private": true,
+  "scripts": {
+    "build": "gatsby clean && gatsby build --prefix-paths",
+    "postbuild": "bin/postbuild",
+    "clean": "gatsby clean",
+    "develop": "gatsby develop -p 1313",
+    "start": "npm run develop",
+    "worker-build": "npm run build && wrangler build",
+    "worker-start": "npm run build && wrangler preview --watch -e staging",
+    "worker-test": "ava workers-site/test/index.js --verbose",
+    "publish": "npm run build && wrangler publish -e",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\""
+  },
+  "dependencies": {
+    "cloudflare-docs-theme": "*",
+    "gatsby": "^2.21.12",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "ava": {
+    "require": [
+      "esm"
+    ]
+  },
+  "devDependencies": {
+    "ava": "^2.4.0",
+    "glob": "^7.1.6",
+    "prettier": "^1.18.2"
+  },
+  "keywords": []
+}
