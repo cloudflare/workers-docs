@@ -9,6 +9,7 @@ import { Gallery } from '../components/TemplateGallery/Gallery'
 import { Link, Image } from '../components/Link'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { MDXProvider } from '@mdx-js/react'
+import Highlight from 'react-highlight.js'
 
 type markdownBaseProps = {
   data: { mdx: markdownRemarkResult }
@@ -51,6 +52,11 @@ export const components = {
   h4: (props: React.HtmlHTMLAttributes<HTMLHeadingElement>) => {
     return <h4 id={getChildrenAsString(props)} {...props} />
   },
+  code: (props: React.HtmlHTMLAttributes<HTMLElement>) => {
+    const language = props.className ? props.className.replace(/language-/, '') : ''
+    return <Highlight language={language} {...props} />
+  },
+  pre: (props: React.HtmlHTMLAttributes<HTMLElement>) => <div {...props} />,
 }
 export const MDXwithComponents: React.SFC<{ body?: string }> = ({ body }) => (
   <MDXProvider components={components}>

@@ -5,12 +5,12 @@ import { Helmet } from 'react-helmet'
 
 import { restApiTemplate } from '../../types/restApiTemplates'
 import marked from 'marked'
-import { MDXProvider } from '@mdx-js/react'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
+import Highlight from 'react-highlight.js'
 type templateProps = {
   id: string
   data: restApiTemplate
 }
+
 async function grabGithubData(url: string | null) {
   if (!url) {
     throw 'no url'
@@ -134,7 +134,7 @@ const TemplatePage: React.FC<templateProps> = ({ id, data }) => {
                 <CopyToClipboard text={code}>
                   <img className="copy-trigger" src={Src('/svg/copy-box.svg')} alt="copy box" />
                 </CopyToClipboard>
-                <code className="copy">{code}</code>
+                <Highlight language="js">{code}</Highlight>
               </div>
             ) : null}
           </div>
