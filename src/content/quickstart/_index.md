@@ -195,7 +195,7 @@ For domains that you have registered on Cloudflare, you need both IDs:
 For workers.dev domains, you will just need the Account ID:
 
 1. Log in to your Cloudflare account and select **Workers**.
-2. Scroll to the _API_ section and select **Click to copy** to copy your **Account ID**.
+2. On the right hand side you'll see the _API_ section. Select **Click to copy** to copy your **Account ID**.
 
 ## API Token
 
