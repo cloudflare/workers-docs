@@ -68,7 +68,7 @@ const MarkdownTemplate: React.FC<markdownBaseProps> = ({
       <Layout title={title}>
         <Body
           archived={fields.filePath.includes('/archive/')}
-          github_edit_url={`https://github.com/victoriabernard92/cloudflare-docs-gatsby/edit/master/${publicPath}-docs/src/content${fields.filePath}`}
+          github_edit_url={`https://github.com/cloudflare/workers-docs/edit/master/${publicPath}-docs/src/content${fields.filePath}`}
         >
           <h1>{frontmatter.title}</h1>
           <MDXProvider components={components}>
