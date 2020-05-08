@@ -8,6 +8,7 @@ weight: 6
 - [wrangler.toml](#wrangler-toml)
 - [Storage Limits](#storage-limits)
 - [Ignoring Subsets of Static Assets](#ignoring-subsets-of-static-assets)
+- [Customizing your Build](#customizing-your-build)
 
 Workers Sites require the latest version of [Wrangler](https://github.com/cloudflare/wrangler) and the Workers [Unlimited plan](https://workers.cloudflare.com/sites#plans).
 
@@ -79,7 +80,7 @@ For very exceptionally large pages, Workers Sites might not work for you. There 
 Workers Sites require [Wrangler](https://github.com/cloudflare/wrangler) - make sure to be on the [latest version](/quickstart/#updating-the-cli) - and the Workers [Unlimited plan](https://workers.cloudflare.com/sites#plans).
 
 There are cases where users may not want to upload certain static assets to their Workers Sites.
-In this case, Workers Sites can also be configured to ignore certain files or directories using logic 
+In this case, Workers Sites can also be configured to ignore certain files or directories using logic
 similar to [Cargo's optional include and exclude fields](https://doc.rust-lang.org/cargo/reference/manifest.html#the-exclude-and-include-fields-optional).
 This means that we use gitignore semantics when declaring which directory entries to include or ignore in uploads.
 
@@ -91,7 +92,7 @@ If you want to include only a certain set of files or directories in your `bucke
 ```toml
 [site]
 bucket = "./public"
-entry-point = "workers-site" 
+entry-point = "workers-site"
 include = ["included_dir"] # must be an array.
 ```
 
@@ -105,7 +106,7 @@ If you want to exclude files or directories in your `bucket`, you can add an `ex
 ```toml
 [site]
 bucket = "./public"
-entry-point = "workers-site" 
+entry-point = "workers-site"
 exclude = ["excluded_dir"] # must be an array.
 ```
 
@@ -126,3 +127,7 @@ Wrangler will always ignore:
 ##### More about include/exclude patterns
 
 You can learn more about the standard patterns used for include and exclude in the [gitignore documentation](https://git-scm.com/docs/gitignore).
+
+### Customizing your Build
+
+Workers Sites projects use webpack by default. You can [bring your own webpack config](/tooling/wrangler/webpack/#using-with-workers-sites), however it is important to be cognizant of your `entry` and `context` settings.

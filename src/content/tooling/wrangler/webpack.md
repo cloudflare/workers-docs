@@ -15,8 +15,8 @@ This is the default webpack configuration that Wrangler uses to build your worke
 
 ```js
 module.exports = {
-  "target": "webworker",
-  "entry": "./index.js" // inferred from "main" in package.json
+  target: "webworker",
+  entry: "./index.js" // inferred from "main" in package.json
 };
 ```
 
@@ -38,9 +38,9 @@ You can tell Wrangler to use a custom webpack configuration file by setting `web
 
 ```js
 module.exports = {
-  "target": "webworker",
-  "entry": "./index.js",
-  "mode": "production"
+  target: "webworker",
+  entry: "./index.js",
+  mode: "production"
 }
 ```
 
@@ -78,10 +78,10 @@ webpack_config = "webpack.production.js"
 
 ```js
 module.exports = {
-  "target": "webworker",
-  "devtool": "cheap-module-source-map", // avoid 'eval': Workers environment doesn't allow it
-  "entry": "./index.js",
-  "mode": "development"
+  target: "webworker",
+  devtool: "cheap-module-source-map", // avoid 'eval': Workers environment doesn't allow it
+  entry: "./index.js",
+  mode: "development"
 }
 ```
 
@@ -89,9 +89,37 @@ module.exports = {
 
 ```js
 module.exports = {
-  "target": "webworker",
-  "entry": "./index.js",
-  "mode": "production"
+  target: "webworker",
+  entry: "./index.js",
+  mode: "production"
+}
+```
+
+### Using with Workers Sites
+
+Wrangler commands are run from the project root, so ensure your `entry` and `context` are set appropriately. For a project with structure:
+
+```console
+.
+├── public
+│   ├── 404.html
+│   └── index.html
+├── workers-site
+│   ├── index.js
+│   ├── package-lock.json
+│   ├── package.json
+│   └── webpack.config.js
+└── wrangler.toml
+```
+
+webpack.config.js should look like this:
+
+```js
+module.exports = {
+  context: __dirname,
+  target: "webworker",
+  entry: "./index.js",
+  mode: "production"
 }
 ```
 
@@ -109,12 +137,12 @@ For example, to replace the runtime global `URL` class with the npm package `url
 + const webpack = require('webpack');
 
   module.exports = {
-    "target": "webworker",
-    "entry": "./index.js",
-    "mode": "production",
+    target: "webworker",
+    entry: "./index.js",
+    mode: "production",
 +   plugins: [
 +     new webpack.ProvidePlugin({
-+       URL: 'url-polyfill',
++       URL: "url-polyfill",
 +     }),
 +   ],
   }
