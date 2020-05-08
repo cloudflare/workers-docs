@@ -67,8 +67,10 @@ const MarkdownTemplate: React.FC<markdownBaseProps> = ({
 
   const github_edit_url =
     'https://github.com/cloudflare/' +
-    (publicPath === 'workers' ? 'workers' : 'api') +
-    `-docs/edit/master/src/content${fields.filePath}`
+    (publicPath === 'workers'
+      ? 'workers-docs/edit/master/'
+      : `api-docs/edit/master/${publicPath}-docs/`) +
+    `src/content${fields.filePath}`
   console.log('github_edit_url', github_edit_url)
 
   return (

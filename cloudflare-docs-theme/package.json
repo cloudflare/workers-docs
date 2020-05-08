@@ -1,6 +1,6 @@
 {
   "name": "gatsby-theme-cloudflare-docs",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "private": false,
   "main": "index.js",
   "types": "./src",
