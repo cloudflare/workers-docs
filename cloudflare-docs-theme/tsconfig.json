@@ -13,7 +13,7 @@
     "noUnusedParameters": true,
     "removeComments": false,
     "preserveConstEnums": true,
-    "outDir": "src",
+    "outDir": "dist",
     "declaration": true
   },
   "include": ["./src/**/*"],

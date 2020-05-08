@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": false,
   "main": "index.js",
+  "types": "./src",
   "license": "MIT",
   "devDependencies": {
     "gatsby": "^2.20.28",
