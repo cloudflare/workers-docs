@@ -67,6 +67,15 @@ Special information from an incoming request to help with your app's logic. All 
 - `regionCode`: If known, the [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) code for the first level region associated with the IP address of the incoming request. 1 If not known, this is an empty string. (e.g. `"TX"`)
 - `timezone`: Timezone of the incoming request. (e.g. `"America/Chicago"`)
 
+**Bot Management** users have access to:
+- `botManagement` _(Object)_
+  - `score`: The bot score assigned to this request. Valid range: [1-99].
+  - `verifiedBot`: A boolean value that is true if the request comes from a good bot (whitelisted by Cloudflare).
+  - `staticResource`: An identifier to match file extensions for many types of static resources.
+
+
+_Note - Bot Management is not enabled by default, contact your Cloudflare account team to enable Bot Management for your site._
+
 Cloudflare features all plans can set on outbound requests:
 
 - `cacheEverything`:This option forces Cloudflare to cache the response for this request, regardless of what headers are seen on the response. This is equivalent to setting the page rule ["Cache Level" (to "Cache Everything")](https://support.cloudflare.com/hc/en-us/articles/200172266). (e.g. `true`)
