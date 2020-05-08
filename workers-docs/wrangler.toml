@@ -2,7 +2,6 @@ account_id = "95e065d2e3f97a1e50bae58aea71df6d"
 name = "docs-site-workers"
 type = "webpack"
 workers_dev = true
-webpack_config = "webpack.config.js"
 
 [site]
 bucket = "./public"

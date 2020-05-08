@@ -63,13 +63,18 @@ const MarkdownTemplate: React.FC<markdownBaseProps> = ({
   const { frontmatter, body, fields } = mdx
   const { title } = frontmatter
   const { publicPath } = useSitePluginOpts()
+  console.log('publicPath', publicPath)
+
+  const github_edit_url =
+    'https://github.com/cloudflare/' +
+    (publicPath === 'workers' ? 'workers' : 'api') +
+    `-docs/edit/master/src/content${fields.filePath}`
+  console.log('github_edit_url', github_edit_url)
+
   return (
     <>
       <Layout title={title}>
-        <Body
-          archived={fields.filePath.includes('/archive/')}
-          github_edit_url={`https://github.com/cloudflare/workers-docs/edit/master/${publicPath}-docs/src/content${fields.filePath}`}
-        >
+        <Body archived={fields.filePath.includes('/archive/')} github_edit_url={github_edit_url}>
           <h1>{frontmatter.title}</h1>
           <MDXProvider components={components}>
             <MDXRenderer>{body || ''}</MDXRenderer>
