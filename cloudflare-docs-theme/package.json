@@ -1,5 +1,5 @@
 {
-  "name": "cloudflare-docs-theme",
+  "name": "gatsby-theme-cloudflare-docs",
   "version": "0.0.1",
   "private": false,
   "main": "index.js",

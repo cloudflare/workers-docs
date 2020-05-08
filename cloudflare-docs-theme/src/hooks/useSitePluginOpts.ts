@@ -23,7 +23,7 @@ export const useSitePluginOpts = () =>
     const { sitePlugin }: queryReturnType = useStaticQuery(
       graphql`
         {
-          sitePlugin(name: { eq: "cloudflare-docs-theme" }) {
+          sitePlugin(name: { eq: "gatsby-theme-cloudflare-docs" }) {
             pluginOptions {
               contentPath
               publicPath

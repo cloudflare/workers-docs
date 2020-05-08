@@ -18,7 +18,7 @@
     "format": "prettier --write \"**/*.{js,jsx,json,md}\""
   },
   "dependencies": {
-    "cloudflare-docs-theme": "*",
+    "gatsby-theme-cloudflare-docs": "*",
     "gatsby": "^2.21.12",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"

@@ -1,5 +1,5 @@
 // export default {
-//   plugins: [`cloudflare-docs-theme`],
+//   plugins: [`gatsby-theme-cloudflare-docs`],
 // }
 
 export { Layout } from './src/components/Layout'
@@ -12,5 +12,5 @@ export { Notice } from './src/components/Notice'
 export { MDXwithComponents } from './src/templates/markdownTemplate'
 
 export default {
-  plugins: [`cloudflare-docs-theme`],
+  plugins: [`gatsby-theme-cloudflare-docs`],
 }

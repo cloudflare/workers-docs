@@ -4,7 +4,7 @@ type snippetProps = Partial<restApiTemplate>
 
 import { useRestApiTemplates } from '../../hooks/useMarkdownRemark'
 import marked from 'marked'
-import { Src } from 'cloudflare-docs-theme'
+import { Src } from 'gatsby-theme-cloudflare-docs'
 export const Snippet: React.FC<snippetProps> = (props) => {
   const { allRestApiTemplates } = useRestApiTemplates()
   const getSnippet = (id: string) => {
