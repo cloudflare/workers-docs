@@ -63,6 +63,7 @@ Special information from an incoming request to help with your app's logic. All 
 - `latitude`: Latitude of the incoming request. (e.g. `"30.27130"`)
 - `longitude`: Longitude of the incoming request. (e.g. `"-97.74260"`)
 - `postalCode`: PostalCode of the incoming request. (e.g. `"78701"`)
+- `metroCode`: MetroCode (DMA) of the incoming request. (e.g. `"635"`)
 - `region`: If known, the [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) name for the first level region associated with the IP address of the incoming request. If not known, this is an empty string. (e.g. `"Texas"`)
 - `regionCode`: If known, the [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) code for the first level region associated with the IP address of the incoming request. 1 If not known, this is an empty string. (e.g. `"TX"`)
 - `timezone`: Timezone of the incoming request. (e.g. `"America/Chicago"`)
