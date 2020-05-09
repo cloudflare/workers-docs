@@ -1750,7 +1750,6 @@ select[multiple='multiple']:focus {
 }
 #sidebar ul li a span {
   text-overflow: ellipsis;
-  overflow: hidden;
   white-space: nowrap;
   display: block;
   padding-right: 4px;
