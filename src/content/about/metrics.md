@@ -20,7 +20,7 @@ Workers metrics show performance and usage of your Workers and help diagnose iss
 
 Aggregates request data for an individual Worker script across all zones including your workers.dev subdomain. On your [Workers dashboard](https://dash.cloudflare.com/?account=workers/overview), click on any Worker to view its metrics.
 
-Worker script metrics can be inspected by time ranges within the last 30 days. The dashboard includes the charts and information described below.
+Worker script metrics can be inspected for up to 3 months in the past in maximum increments of 1 week. The dashboard includes the charts and information described below.
 
 ### Invocation statuses
 
