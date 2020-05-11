@@ -572,7 +572,7 @@ Note that by design, the placement of the `LOGOUT CODE BLOCK` in `workers-site/i
 <div><a href="/">Log back in</a></div>
 ```
 
-When the user refreshes the page, they'll be identified as an unauthorized user, and be redirected to Auth0's login page. For a more advanced implementation of logout functionality, you may choose to _always_ return a redirect to your app's root path: this will force every user to sign in again immediately after logging in:
+When the user refreshes the page, they'll be identified as an unauthorized user, and be redirected to Auth0's login page. For a more advanced implementation of logout functionality, you may choose to _always_ return a redirect to your app's root path: this will force every user to sign in again immediately after logging out:
 
 ```js
 // workers-site/auth0.js
