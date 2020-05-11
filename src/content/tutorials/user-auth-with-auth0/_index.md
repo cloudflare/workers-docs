@@ -697,7 +697,32 @@ Below is the complete list of secrets that the Workers script will look for when
 | AUTH0_CALLBACK_URL    | The callback url for your application (see "Setting the callback url" below)     |
 | SALT                  | A secret string used to encrypt user `sub` values (see "Setting the salt" below) |
 
-For each key, you can find the corresponding value in your Auth0 application settings page. Using `wrangler secret`, you can set it directly in the command-line:
+For each key, you can find the corresponding value in your Auth0 application settings page. 
+
+**A note for developers using Wrangler 1.9.0 and below:** due to an issue with Wrangler's publishing feature, you'll need to publish your project before you're able to set these secrets. To do this successfully, you'll need to add a line stubbing out each of the above secrets in `auth0.js`:
+
+```js
+// workers-site/auth0.js
+
+const AUTH0_DOMAIN, AUTH0_CLIENT_ID, AUTH0_CLIENT_SECRET, AUTH0_CALLBACK_URL, SALT
+```
+
+With these constants stubbed, you can publish your application:
+
+```sh
+$ wrangler publish
+```
+
+Once your application has successfully published, you can remove the constants line from `auth0.js`:
+
+```js
+// workers-site/auth0.js
+
+// Delete the below line!
+// const AUTH0_DOMAIN, AUTH0_CLIENT_ID, AUTH0_CLIENT_SECRET, AUTH0_CALLBACK_URL, SALT
+```
+
+Using `wrangler secret`, you can now set each secret directly in the command-line:
 
 ```sh
 $ wrangler secret put AUTH0_DOMAIN
