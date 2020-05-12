@@ -1,12 +1,12 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import { Layout } from 'cloudflare-docs-theme'
+import { Layout } from 'gatsby-theme-cloudflare-docs'
 
-import { Body } from 'cloudflare-docs-theme'
+import { Body } from 'gatsby-theme-cloudflare-docs'
 import TemplatePage from '../components/TemplateGallery/TemplatePage'
 import { restApiTemplateResult } from '../types/restApiTemplates'
-import { MDXwithComponents } from 'cloudflare-docs-theme'
+import { MDXwithComponents } from 'gatsby-theme-cloudflare-docs'
 
 type templateProps = {
   pageContext: any

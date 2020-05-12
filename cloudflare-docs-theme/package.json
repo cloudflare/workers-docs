@@ -1,8 +1,9 @@
 {
-  "name": "cloudflare-docs-theme",
-  "version": "0.0.1",
+  "name": "gatsby-theme-cloudflare-docs",
+  "version": "0.0.5",
   "private": false,
   "main": "index.js",
+  "types": "./src",
   "license": "MIT",
   "devDependencies": {
     "gatsby": "^2.20.28",
@@ -23,6 +24,7 @@
     "@types/mdx-js__react": "^1.5.1",
     "@types/react-copy-to-clipboard": "^4.3.0",
     "@types/react-helmet": "^5.0.15",
+    "@types/react-highlight.js": "^1.0.0",
     "gatsby": "^2.20.9",
     "gatsby-image": "^2.3.1",
     "gatsby-plugin-copy-files": "^1.0.3",
@@ -44,6 +46,7 @@
     "react-copy-to-clipboard": "^5.0.2",
     "react-dom": "^16.13.1",
     "react-helmet": "^5.2.1",
+    "react-highlight.js": "^1.0.7",
     "react-typography": "^0.16.19",
     "typescript": "^3.8.3",
     "typography": "^0.16.19"

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, ClipboardEvent, useRef } from 'react'
-import { Link, Src } from 'cloudflare-docs-theme'
+import { Link, Src } from 'gatsby-theme-cloudflare-docs'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import { Helmet } from 'react-helmet'
 

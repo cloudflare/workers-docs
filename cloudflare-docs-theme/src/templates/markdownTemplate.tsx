@@ -15,11 +15,6 @@ type markdownBaseProps = {
   data: { mdx: markdownRemarkResult }
   pageContext: markdownPageContext
 }
-export const MDXwithComponents: React.SFC<{ body?: string }> = ({ body }) => (
-  <MDXProvider components={components}>
-    <MDXRenderer>{body || ''}</MDXRenderer>
-  </MDXProvider>
-)
 const getChildrenAsString = (props: React.HtmlHTMLAttributes<HTMLHeadingElement>) => {
   if (typeof props.children === 'string') {
     // replace all not alphanumeric characters with dashes
@@ -62,6 +57,12 @@ const components = {
   },
   pre: (props: React.HtmlHTMLAttributes<HTMLElement>) => <div {...props} />,
 }
+export const MDXwithComponents: React.SFC<{ body?: string }> = ({ body }) => (
+  <MDXProvider components={components}>
+    <MDXRenderer>{body || ''}</MDXRenderer>
+  </MDXProvider>
+)
+
 const MarkdownTemplate: React.FC<markdownBaseProps> = ({
   data, // this prop will be injected by the GraphQL query below.
 }) => {
@@ -69,17 +70,19 @@ const MarkdownTemplate: React.FC<markdownBaseProps> = ({
   const { frontmatter, body, fields } = mdx
   const { title } = frontmatter
   const { publicPath } = useSitePluginOpts()
+
+  // if workers-docs then use workers folder inside workers repo, else use approriate folder in api-docs
+  const github_edit_url =
+    'https://github.com/cloudflare/' +
+    (publicPath === 'workers' ? 'workers-docs' : 'api-docs') +
+    `/edit/master/${publicPath}-docs/src/content${fields.filePath}`
+
   return (
     <>
       <Layout title={title}>
-        <Body
-          archived={fields.filePath.includes('/archive/')}
-          github_edit_url={`https://github.com/victoriabernard92/cloudflare-docs-gatsby/edit/master/${publicPath}-docs/src/content${fields.filePath}`}
-        >
+        <Body archived={fields.filePath.includes('/archive/')} github_edit_url={github_edit_url}>
           <h1>{frontmatter.title}</h1>
-          <MDXProvider components={components}>
-            <MDXRenderer>{body || ''}</MDXRenderer>
-          </MDXProvider>
+          <MDXwithComponents body={body} />
         </Body>
       </Layout>
     </>

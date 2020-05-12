@@ -120,7 +120,10 @@ export const Navigation = () => {
             <a href="https://developers.cloudflare.com">
               <span>Developers</span>
             </a>
-            <Link to="/api/" className={'navigation-link' + (isActiveRootTab() ? ' active' : '')}>
+            <Link
+              to={`/${publicPath}/`}
+              className={'navigation-link' + (isActiveRootTab() ? ' active' : '')}
+            >
               <span>Docs</span>
             </Link>
             <a href="https://developers.cloudflare.com/sponsorships/">

@@ -14,36 +14,7 @@ module.exports = (themeOptions) => {
     plugins: [
       `gatsby-plugin-typescript`,
       `gatsby-plugin-react-helmet`,
-      {
-        resolve: `gatsby-source-filesystem`,
-        options: {
-          name: `mdx-pages`,
-          path: contentPath,
-          ignore: [`**/CONTRIBUTING*`, '/styles/**', 'index.js'],
-        },
-      },
-      {
-        resolve: `gatsby-plugin-mdx`,
-        options: {
-          extensions: [`.mdx`, `.md`],
-        },
-      },
 
-      ...require('glob')
-        // TODO: instead of serving images this complicated way, change links to root
-        // e.g. (/tooling/media/image.jpq) to ref current directory (e.g. ./media/image.jpg)
-        .sync(path.join(__dirname, './src/static'))
-        .map((source) => {
-          // console.log('path.join', path.join(__dirname, './src'))
-          const destination = path.replace(path.join(__dirname, './src/content'), '')
-          return {
-            resolve: 'gatsby-plugin-copy-files',
-            options: {
-              source,
-              destination: destination,
-            },
-          }
-        }),
       ...require('glob')
         // TODO: instead of serving images this complicated way, change links to root
         // e.g. (/tooling/media/image.jpg) to ref current directory (e.g. ./media/image.jpg)
@@ -59,6 +30,20 @@ module.exports = (themeOptions) => {
             },
           }
         }),
+      {
+        resolve: `gatsby-source-filesystem`,
+        options: {
+          name: `mdx-pages`,
+          path: contentPath,
+          ignore: [`**/CONTRIBUTING*`, 'styles/**', 'index.js'],
+        },
+      },
+      {
+        resolve: `gatsby-plugin-mdx`,
+        options: {
+          extensions: [`.mdx`, `.md`],
+        },
+      },
     ],
   }
 }

@@ -1,6 +1,6 @@
-import { restApiTemplate } from 'cloudflare-docs-theme'
 import React from 'react'
-import { Link, Src } from 'cloudflare-docs-theme'
+import { Link, Src } from 'gatsby-theme-cloudflare-docs'
+import { restApiTemplate } from '../../types/restApiTemplates'
 import { useRestApiTemplates } from '../../hooks/useMarkdownRemark'
 import marked from 'marked'
 type boilerplateProps = restApiTemplate

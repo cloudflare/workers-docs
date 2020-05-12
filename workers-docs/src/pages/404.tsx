@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Layout } from 'cloudflare-docs-theme'
-import { SEO } from 'cloudflare-docs-theme'
+import { Layout } from 'gatsby-theme-cloudflare-docs'
+import { SEO } from 'gatsby-theme-cloudflare-docs'
 
 const NotFoundPage: React.FC = () => (
   <>

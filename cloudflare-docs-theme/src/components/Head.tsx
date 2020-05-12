@@ -100,7 +100,7 @@ export const Head = ({ description, lang, meta, title }: SEOPropTypes) => {
   )
 }
 
-SEO.defaultProps = {
+Head.defaultProps = {
   lang: `en`,
   meta: [],
   description: ``,

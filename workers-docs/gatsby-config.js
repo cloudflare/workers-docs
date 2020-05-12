@@ -14,7 +14,7 @@ module.exports = {
       },
     },
     {
-      resolve: `cloudflare-docs-theme`,
+      resolve: `gatsby-theme-cloudflare-docs`,
       options: {
         publicPath: 'workers',
         contentPath: './src/content/',
