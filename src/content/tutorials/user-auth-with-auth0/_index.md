@@ -689,15 +689,15 @@ In `workers-site/auth0.js`, we referred to several Auth0 constants, such as clie
 
 Below is the complete list of secrets that the Workers script will look for when it processes a client request:
 
-| `wrangler secret` key | Value                                                                            |
-| --------------------- | -------------------------------------------------------------------------------- |
-| AUTH0_DOMAIN          | Your Auth0 domain (e.g. `https://myapp.auth0.com`)                               |
-| AUTH0_CLIENT_ID       | Your Auth0 client ID                                                             |
-| AUTH0_CLIENT_SECRET   | Your Auth0 client secret                                                         |
-| AUTH0_CALLBACK_URL    | The callback url for your application (see "Setting the callback url" below)     |
-| SALT                  | A secret string used to encrypt user `sub` values (see "Setting the salt" below) |
+| `wrangler secret` key | Value                                                                                                                        |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| AUTH0_DOMAIN          | Your Auth0 domain (e.g. `https://myapp.auth0.com`). Note this must include the _scheme_ `https://` and should be a valid URL |
+| AUTH0_CLIENT_ID       | Your Auth0 client ID                                                                                                         |
+| AUTH0_CLIENT_SECRET   | Your Auth0 client secret                                                                                                     |
+| AUTH0_CALLBACK_URL    | The callback url for your application (see "Setting the callback url" below)                                                 |
+| SALT                  | A secret string used to encrypt user `sub` values (see "Setting the salt" below)                                             |
 
-For each key, you can find the corresponding value in your Auth0 application settings page. 
+For each key, you can find the corresponding value in your Auth0 application settings page.
 
 **A note for developers using Wrangler 1.9.0 and below:** due to an issue with Wrangler's publishing feature, you'll need to publish your project before you're able to set these secrets. To do this successfully, you'll need to add a line stubbing out each of the above secrets in `auth0.js`:
 
