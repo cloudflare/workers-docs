@@ -102,7 +102,7 @@ import { authorize } from './auth0'
 
 async function handleEvent(event) {
   let request = event.request
-  let response
+  let response = new Response(null)
   const url = new URL(request.url)
 
   try {
