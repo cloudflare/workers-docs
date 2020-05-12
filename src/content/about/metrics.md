@@ -80,4 +80,4 @@ This chart shows historical data for all scripts on a zone broken down by succes
 
 ## GraphQL
 
-Worker script metrics are powered by GraphQL. Learn more about querying our data sets in the [API documentation](https://developers.cloudflare.com/analytics/graphql-api/features/data-sets/).
+Worker script metrics are powered by GraphQL. Learn more about querying our data sets in this [tutorial](https://developers.cloudflare.com/analytics/graphql-api/tutorials/querying-workers-metrics/).
