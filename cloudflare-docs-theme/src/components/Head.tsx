@@ -96,6 +96,10 @@ export const Head = ({ description, lang, meta, title }: SEOPropTypes) => {
         sizes="180x180"
         href="https://www.cloudflare.com/img/favicon/apple-touch-icon.png"
       />
+      <link
+        rel="stylesheet"
+        href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/styles/atelier-cave-light.min.css"
+      />
     </Helmet>
   )
 }

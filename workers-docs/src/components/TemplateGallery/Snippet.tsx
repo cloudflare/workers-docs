@@ -3,7 +3,10 @@ import React from 'react'
 import { useRestApiTemplates } from '../../hooks/useMarkdownRemark'
 import marked from 'marked'
 import { Src } from 'gatsby-theme-cloudflare-docs'
-export const Snippet: React.FC<snippetProps> = (props) => {
+
+type SnippetProps = Partial<restApiTemplate>
+
+export const Snippet: React.FC<SnippetProps> = (props) => {
   const { allRestApiTemplates } = useRestApiTemplates()
   const getSnippet = (id: string) => {
     const snippet = allRestApiTemplates.edges
