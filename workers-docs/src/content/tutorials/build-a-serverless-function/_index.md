@@ -181,7 +181,7 @@ async function handleRequest(request) {
 
 The `landing` variable, which is a static HTML string, sets up an `input` tag and a corresponding `button`, which calls the `generate` function. This function will make an HTTP `POST` request back to your serverless function, allowing you to see the corresponding QR code image data inside of your browser's network inspector:
 
-<img src="./media/demo.png" alt="demo icon"/>
+![](/tutorials/build-a-serverless-function/media/demo.png)
 
 With that, your serverless function is complete! The full version of the code looks like this:
 
