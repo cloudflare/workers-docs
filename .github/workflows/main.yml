@@ -17,12 +17,10 @@ jobs:
       with:
         node-version: '10.x'
     - name: Install deps
-      run: npm install
-    - name: Install Wrangler
-      run: npm i @cloudflare/wrangler@1.5.0 -g
+      run: yarn 
     - name: Install Workers script deps
-      run: npm install
+      run: yarn global add  @cloudflare/wrangler 
     - name: Build docs
-      run: npm run build
+      run: yarn workspace cloudflare-workers-docs run build
     - name: Build Workers script
-      run: wrangler build
+      run: yarn workspace cloudflare-workers-docs run worker-build

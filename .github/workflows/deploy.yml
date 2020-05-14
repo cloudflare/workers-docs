@@ -9,6 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    name: Deploy production Workers docs
     steps:
     - uses: actions/checkout@v1
     - name: Navigate to repo
@@ -17,12 +18,13 @@ jobs:
       with:
         node-version: '10.x'
     - name: Install deps
-      run: npm install
+      run: 'yarn'
     - name: Build docs
-      run: npm run build
+      run: 'yarn workspace cloudflare-workers-docs run build'
     - name: Publish
-      uses: signalnerve/wrangler-action@1.0.0
+      uses: cloudflare/wrangler-action@1.1.0
       with:
         apiKey: ${{ secrets.CF_API_KEY }}
         email: ${{ secrets.CF_EMAIL }}
-        environment: "production"
+        environment: 'production'
+        workingDirectory: 'workers-docs'
