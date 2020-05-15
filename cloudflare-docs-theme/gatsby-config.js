@@ -11,6 +11,9 @@ module.exports = (themeOptions) => {
 
   return {
     assetPrefix: `/${themeOptions.publicPath}`,
+    siteMetadata: {
+      siteUrl: `https://developers.cloudflare.com/`,
+    },
     plugins: [
       `gatsby-plugin-typescript`,
       `gatsby-plugin-react-helmet`,
@@ -42,6 +45,17 @@ module.exports = (themeOptions) => {
         resolve: `gatsby-plugin-mdx`,
         options: {
           extensions: [`.mdx`, `.md`],
+        },
+      },
+      {
+        resolve: `gatsby-plugin-sitemap`,
+        output: `/${themeOptions.publicPath}/sitemap.xml`,
+        options: {
+          exclude: [
+            `/${themeOptions.publicPath}/archive/*`,
+            `/${themeOptions.publicPath}/archive/**/*`,
+          ],
+          createLinkInHead: true,
         },
       },
     ],
