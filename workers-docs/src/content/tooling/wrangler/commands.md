@@ -11,7 +11,8 @@ weight: 2
   * [workers.dev](#publishing-to-workersdev)
   * [Registered domain](#publishing-to-your-own-domain)
   * [Multiple domains](#publishing-the-same-code-to-multiple-places)
-- [👂 `dev`](#dev-alpha-))
+- [👂 `dev`](#dev-alpha-)
+- [🦚 `tail`](#tail)
 - [🔬 `preview`](#preview)
   * [Making it work with WSL](#making-preview-work-with-wsl2)
 - [🗂️ `kv`](#kv)
@@ -139,6 +140,29 @@ If you would like to be able to publish your code to multiple places, please see
   If you have feedback about `wrangler dev` or general questions, we will respond [here](https://github.com/cloudflare/wrangler/issues/1047).
 
 
+### tail
+
+  Starts a log tailing session for a deployed Worker.
+
+
+  ```bash
+  wrangler tail [--port  PORT] [--metrics-port PORT]
+  ```
+
+#### Dependencies
+
+  Wrangler tail uses cloudflared under the hood. If you are already using cloudflared, be sure you have installed the latest version. Otherwise, follow the [getting started guide](https://developers.cloudflare.com/argo-tunnel/quickstart/) for Argo Tunnel.
+`wrangler tail` will register a tailing session for your Worker, and start a server on `localhost` with a [tunnel](https://developers.cloudflare.com/argo-tunnel/quickstart/) that listens for incoming log requests from your Worker.
+
+#### Usage
+
+  After starting `wrangler tail` in a directory with a project, you will receive a live feed of console and exception logs for each request your Worker receives.
+
+  Like all Wrangler commands, run `wrangler tail` from your Worker's root directory (i.e. the directory with your `wrangler.toml`).
+
+   ## Optional Flags
+   * `--port PORT`: the port for your local log server
+   * `--metrics-port PORT`: the port for serving [metrics information](https://developers.cloudflare.com/argo-tunnel/reference/arguments/#metrics) about the tunnel.
 
 ### preview
 
@@ -191,7 +215,7 @@ If you would like to be able to publish your code to multiple places, please see
   Another option is to install [wsl-open](https://github.com/4U6U57/wsl-open#standalone) and set the `$BROWSER` env variable to `wsl-open`, via `wsl-open -w`. This ensures that `xdg-open` uses `wsl-open` when it attempts to open your browser.
 
   If you're using WSL 2, you will need to install `wsl-open` via their [standalone method](https://github.com/4U6U57/wsl-open#standalone) rather than through `npm`. This is because their npm package has not yet been updated with WSL 2 support.
-  
+
 ### ➡️ `route`
 
   List or delete a route associated with a zone:
