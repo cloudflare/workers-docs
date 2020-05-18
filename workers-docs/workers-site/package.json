@@ -19,7 +19,8 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^1.0.9",
-    "ava": "^1.4.1",
+    "ava": "^3.8.2",
+    "esm": "^3.2.25",
     "prettier": "^1.19.1",
     "service-worker-mock": "^2.0.5"
   }
