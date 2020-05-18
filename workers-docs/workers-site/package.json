@@ -10,7 +10,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@cloudflare/kv-asset-handler": "0.0.5"
+    "@cloudflare/kv-asset-handler": "^0.0.9"
   },
   "ava": {
     "require": [
@@ -18,9 +18,9 @@
     ]
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^1.0.1",
+    "@cloudflare/workers-types": "^1.0.9",
     "ava": "^1.4.1",
-    "service-worker-mock": "^2.0.3",
-    "prettier": "^1.18.2"
+    "prettier": "^1.19.1",
+    "service-worker-mock": "^2.0.5"
   }
 }

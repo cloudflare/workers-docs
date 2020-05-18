@@ -62,7 +62,6 @@ export const MDXwithComponents: React.SFC<{ body?: string }> = ({ body }) => (
     <MDXRenderer>{body || ''}</MDXRenderer>
   </MDXProvider>
 )
-
 const MarkdownTemplate: React.FC<markdownBaseProps> = ({
   data, // this prop will be injected by the GraphQL query below.
 }) => {
