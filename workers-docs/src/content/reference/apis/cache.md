@@ -50,10 +50,10 @@ cache.put(request, response)
 
 Our implementation of the Cache API respects the following HTTP headers on the response passed to `put()`:
 
-- `Cache-Control`: Controls caching directives. This is consistent with [Cloudflare Cache-Control Directives](https://support.cloudflare.com/hc/en-us/articles/115003206852-Origin-Cache-Control#h_4250342181031546894839080). See also [Expiring cache objects](#expiring-cache-objects).
+- `Cache-Control`: Controls caching directives. This is consistent with [Cloudflare Cache-Control Directives](https://support.cloudflare.com/hc/en-us/articles/115003206852-Origin-Cache-Control#h_4250342181031546894839080).
 - `Cache-Tag`: Allows resource purging by tag(s) later (Enterprise only).
 - `ETag`: Allows `cache.match()` to evaluate conditional requests with `If-None-Match`.
-- `Expires`: A string that specifies when the resource becomes invalid. See also [Expiring cache objects](#expiring-cache-objects).
+- `Expires`: A string that specifies when the resource becomes invalid.
 - `Last-Modified`: Allows `cache.match()` to evaluate conditional requests with `If-Modified-Since`.
 
 This differs from the web browser Cache API as they do not honor any headers on the request or response.
