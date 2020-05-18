@@ -5,7 +5,7 @@ weight: 4
 
 In this tutorial, you'll build and publish a serverless function that generates QR codes, using Cloudflare Workers.
 
-![Demo](/tutorials/build-a-serverless-function/media/demo.png)
+![QR code generator working in the browser](/tutorials/build-a-serverless-function/media/demo.png)
 
 This tutorial makes use of [Wrangler](https://github.com/cloudflare/wrangler), our command-line tool for generating, building, and publishing projects on the Cloudflare Workers platform. If you haven't used Wrangler, we recommend checking out the ["Installing the CLI"](/quickstart/cli-setup) part of our [Quick Start guide](/quickstart), which will get you set up with Wrangler, and familiar with the basic commands.
 
@@ -181,7 +181,7 @@ async function handleRequest(request) {
 
 The `landing` variable, which is a static HTML string, sets up an `input` tag and a corresponding `button`, which calls the `generate` function. This function will make an HTTP `POST` request back to your serverless function, allowing you to see the corresponding QR code image data inside of your browser's network inspector:
 
-![](/tutorials/build-a-serverless-function/media/demo.png)
+![QR code generator working in the browser](/tutorials/build-a-serverless-function/media/demo.png)
 
 With that, your serverless function is complete! The full version of the code looks like this:
 
