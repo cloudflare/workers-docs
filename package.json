@@ -6,5 +6,8 @@
   "author": "Victoria <Bernard.victoria22@gmail.com>",
   "license": "MIT",
   "private": true,
-  "workspaces": ["cloudflare-docs-theme", "workers-docs"]
+  "workspaces": [
+    "cloudflare-docs-theme",
+    "workers-docs"
+  ]
 }
