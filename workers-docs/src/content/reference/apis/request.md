@@ -13,24 +13,25 @@ new Request(input [, init])
 
 #### Constructor Parameters
 
-- `input`: Either a USVString that contains the URL or an existing `Request` object. Note that the `url` property is immutable, so when [modifying a request](/templates/snippets/modify_req_props/) and changing the URL, you must pass the new URL in this parameter.
+- `input`: Either a USVString that contains the URL or an existing `Request` object. Note that the `url` property is immutable, so when [modifying a request](/templates/pages/modify_req_props/) and changing the URL, you must pass the new URL in this parameter.
 
 - `init` (optional): An options object that contains custom settings to apply to the request. Valid options are:
-  - `method`: The request method, such as `GET` or `POST`
-  - `headers`: A [Headers](/reference/apis/fetch#headers) object
-    - `body`: Any text to add to the request. **Note:** Requests using the `GET` or `HEAD` methods cannot have a body.
-    - `redirect`: The mode respected when the request is fetched. **Note:** default for requests generated from the incoming `fetchEvent` from the event handler is `manual`. Default for newly constructed Requests (i.e. `new Request(url)` ) is `follow`. Valid options:
-    - `follow`: If a redirect reponse is returned to the fetch, another fetch will be fired based on the `Location` header in the response until a non-redirect code is returned. (i.e. `await fetch(..)` could never return a `301` redirect)
-    - `manual`: redirect responses will return from a fetch
+  - `method: String`: The request method, such as `GET` or `POST`
+  - `headers: Headers`: The Headers class matches the documentation [provided by MDN](https://developer.mozilla.org/en-US/docs/Web/API/Headers). If you expect Unicode values in your headers, URL or Base64 encode your header values before adding them to a Headers object.
+    - `CF-Connecting-IP`: A Cloudflare specific header to specify the client IP
+  - `body: String`: Any text to add to the request. **Note:** Requests using the `GET` or `HEAD` methods cannot have a body.
+  - `redirect: Redirect`: The mode respected when the request is fetched. **Note:** default for requests generated from the incoming `fetchEvent` from the event handler is `manual`. Default for newly constructed Requests (i.e. `new Request(url)` ) is `follow`. Valid options:
+    - `follow: boolean`: If a redirect reponse is returned to the fetch, another fetch will be fired based on the `Location` header in the response until a non-redirect code is returned. (i.e. `await fetch(..)` could never return a `301` redirect)
+    - `manual: boolean`: redirect responses will return from a fetch
 
 ### Properties
 
-All properties of an incoming `Request` object (i.e. `event.request`) are read only. To [modify a request](/templates/snippets/modify_req_props/), you must create a new `Request` object and pass the options to modify to its [constructor](#Constructor).
+All properties of an incoming `Request` object (i.e. `event.request`) are read only. To [modify a request](/templates/pages/modify_req_props/), you must create a new `Request` object and pass the options to modify to its [constructor](#Constructor-parameters).
 
 - `body`: A simple getter that exposes a [`ReadableStream`](/reference/apis/streams) of the contents.
 - `bodyUsed`: A Boolean that declares if the body has been used in a response.
 - `cf`: An object that contains data provided by Cloudflare (see `request.cf` below).
-- `headers`: Contain the associated [`Headers`](/reference/apis/fetch#headers) object for the request.
+- `headers`: Contain the associated [`Headers`](/reference/apis/request#constructor-parameters) object for the request.
 - `method`: The request method, such as `GET` or `POST`, associated with the request.
 - `redirect`: The redirect mode to use: `follow` or `manual`.
 - `url`: Contains the URL of the request.
@@ -88,7 +89,7 @@ Cloudflare features all plans can set on outbound requests:
 
 A Workers script runs after Cloudflare security features, but before everything else. Therefore, a Workers script cannot affect the operation of security features (since they already finished), but it can affect other features, like Polish or ScrapeShield, or how Cloudflare caches the response.
 
-Updating the `cf` object is similar to [modifying a request](/templates/snippets/modify_req_props//). You can add the `cf` object to a `Request` by passing a custom object to [`fetch`](/reference/apis/fetch/). For examples on controlling cache settings see [the template](/templates/pages/cache_ttl).
+Updating the `cf` object is similar to [modifying a request](/templates/pages/modify_req_props/). You can add the `cf` object to a `Request` by passing a custom object to [`fetch`](/reference/apis/fetch/). For examples on controlling cache settings see [the template](/templates/pages/cache_ttl).
 
 ```javascript
 // Disable ScrapeShield for this request.
