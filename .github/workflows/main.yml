@@ -24,3 +24,5 @@ jobs:
       run: yarn workspace cloudflare-workers-docs run build
     - name: Build Workers script
       run: yarn workspace cloudflare-workers-docs run worker-build
+    - name: Test Worker
+      run: yarn workspace cloudflare-workers-docs run worker-test
