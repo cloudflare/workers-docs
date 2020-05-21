@@ -31,7 +31,7 @@
     ]
   },
   "devDependencies": {
-    "ava": "^2.4.0",
+    "ava": "^3.8.2",
     "glob": "^7.1.6",
     "prettier": "^1.18.2"
   },
