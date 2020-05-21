@@ -40,7 +40,7 @@
     "gatsby-source-rest-api": "^0.2.3",
     "lodash.debounce": "^4.0.8",
     "lunr": "^2.3.8",
-    "marked": "^0.8.2",
+    "marked": "^1.1.0",
     "prop-types": "^15.7.2",
     "react-copy-to-clipboard": "^5.0.2",
     "react-helmet": "^5.2.1",
