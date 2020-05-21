@@ -18,8 +18,8 @@ new Request(input [, init])
 - `init` (optional): An options object that contains custom settings to apply to the request. Valid options are:
   - `method`: The request method, such as `GET` or `POST`
   - `headers`: A [Headers](/reference/apis/fetch#headers) object
-    - `body`: Any text to add to the request. **Note:** Requests using the `GET` or `HEAD` methods cannot have a body.
-    - `redirect`: The mode respected when the request is fetched. **Note:** default for requests generated from the incoming `fetchEvent` from the event handler is `manual`. Default for newly constructed Requests (i.e. `new Request(url)` ) is `follow`. Valid options:
+  - `body`: Any text to add to the request. **Note:** Requests using the `GET` or `HEAD` methods cannot have a body.
+  - `redirect`: The mode respected when the request is fetched. **Note:** default for requests generated from the incoming `fetchEvent` from the event handler is `manual`. Default for newly constructed Requests (i.e. `new Request(url)` ) is `follow`. Valid options:
     - `follow`: If a redirect reponse is returned to the fetch, another fetch will be fired based on the `Location` header in the response until a non-redirect code is returned. (i.e. `await fetch(..)` could never return a `301` redirect)
     - `manual`: redirect responses will return from a fetch
 
