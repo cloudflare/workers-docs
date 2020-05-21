@@ -43,7 +43,7 @@
     "marked": "^0.8.2",
     "prop-types": "^15.7.2",
     "react-copy-to-clipboard": "^5.0.2",
-    "react-helmet": "^5.2.1",
+    "react-helmet": "^6.0.0",
     "react-highlight.js": "^1.0.7",
     "react-typography": "^0.16.19",
     "typescript": "^3.9.3",
