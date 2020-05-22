@@ -103,10 +103,9 @@ API](https://api.cloudflare.com/#workers-kv-namespace-write-key-value-pair).
 
 ## Metadata
 
-You may want to associate some metadata with a key-value pair. To do this, you
-can set `metadata` to any arbitrary object (must serialize to JSON) in the put
-options object on a `put` call. You would run the following to add associated
-metadata on a call to `put`:
+To associate some metadata with a key-value pair
+set `metadata` to any arbitrary object (must serialize to JSON) in the put
+options object on a `put` call. Usage in Worker script:
 
 `await NAMESPACE.put(key, value, {metadata: {someMetadataKey: "someMetadataValue"}})`
 
