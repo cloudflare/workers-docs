@@ -6,14 +6,14 @@
   "types": "./src",
   "license": "MIT",
   "devDependencies": {
-    "gatsby": "^2.22.4",
+    "gatsby": "^2.22.8",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
   "peerDependencies": {
     "@mdx-js/mdx": "^1.6.1",
     "@mdx-js/react": "^1.6.1",
-    "gatsby": "^2.22.4",
+    "gatsby": "^2.22.8",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
