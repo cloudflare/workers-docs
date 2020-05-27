@@ -1,70 +1,13 @@
 {
-  "name": "cloudflare-workers-docs",
+  "name": "workers-docs",
   "version": "1.0.0",
-  "description": "Cloudflare Workers developer docs",
-  "license": "Apache-2.0 OR MIT",
-  "main": "workers-site/index.js",
+  "main": "index.js",
+  "repository": "git@github.com:cloudflare/workers-docs.git",
+  "author": "Victoria <Bernard.victoria22@gmail.com>",
+  "license": "MIT",
   "private": true,
-  "scripts": {
-    "build": "gatsby clean && gatsby build --prefix-paths",
-    "postbuild": "bin/postbuild",
-    "clean": "gatsby clean",
-    "develop": "gatsby develop -p 1313",
-    "start": "npm run develop",
-    "worker-build": "npm run build && wrangler build",
-    "worker-start": "npm run build && wrangler preview --watch -e staging",
-    "worker-test": "ava workers-site/test/index.js --verbose",
-    "publish": "npm run build && wrangler publish -e",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\""
-  },
-  "dependencies": {
-    "@mdx-js/mdx": "^1.5.3",
-    "@mdx-js/react": "^1.5.4",
-    "@types/lodash.debounce": "^4.0.6",
-    "@types/lunr": "^2.3.2",
-    "@types/marked": "^0.7.3",
-    "@types/mdx-js__react": "^1.5.0",
-    "@types/react-copy-to-clipboard": "^4.3.0",
-    "gatsby": "^2.15.29",
-    "gatsby-image": "^2.2.24",
-    "gatsby-plugin-copy-files": "^1.0.3",
-    "gatsby-plugin-feed-mdx": "^1.0.0",
-    "gatsby-plugin-manifest": "^2.2.20",
-    "gatsby-plugin-mdx": "^1.0.67",
-    "gatsby-plugin-offline": "^3.0.11",
-    "gatsby-plugin-react-helmet": "^3.1.10",
-    "gatsby-plugin-sharp": "^2.4.0",
-    "gatsby-plugin-typescript": "^2.1.11",
-    "gatsby-plugin-typography": "^2.3.11",
-    "gatsby-source-filesystem": "^2.1.29",
-    "gatsby-source-rest-api": "^0.2.2",
-    "lodash.debounce": "^4.0.8",
-    "lunr": "^2.3.8",
-    "marked": "^0.8.0",
-    "prop-types": "^15.7.2",
-    "react": "^16.10.2",
-    "react-copy-to-clipboard": "^5.0.2",
-    "react-dom": "^16.10.2",
-    "react-helmet": "^5.2.1",
-    "react-typography": "^0.16.19",
-    "typography": "^0.16.19"
-  },
-  "ava": {
-    "require": [
-      "esm"
-    ]
-  },
-  "devDependencies": {
-    "@babel/core": "^7.8.3",
-    "@types/node": "^12.7.12",
-    "@types/react": "^16.9.17",
-    "@types/react-dom": "^16.9.1",
-    "@types/react-helmet": "^5.0.14",
-    "ava": "^2.4.0",
-    "glob": "^7.1.6",
-    "prettier": "^1.18.2"
-  },
-  "keywords": [
-    "gatsby"
+  "workspaces": [
+    "cloudflare-docs-theme",
+    "workers-docs"
   ]
 }

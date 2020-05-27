@@ -6,15 +6,16 @@ This project contains the static website content for the [Cloudflare Workers doc
 
 Ensure you have the the following installed:
 
-- [node](https://nodejs.org/en/download/) version 9
+- [node](https://nodejs.org/en/download/) version 10.13.0 or higher
 
 ## Preview
 
 To test the content or static gatsby files locally, run:
 
 ```
-npm install
-npm run start
+cd workers-docs
+yarn
+yarn start
 ```
 
 Your site is now running at `http://localhost:8000`!
@@ -28,18 +29,18 @@ You can now edit the .md (`/src/content`)files and the HTML files will be autoge
 To test the Worker logic serving these static files (i.e. anything in `./workers-site`), run:
 
 ```
-npm run worker-start
+yarn worker-start
 ```
 
 ## Build
 To build all files to `/public`:
 ```
-npm run build
+yarn build
 ```
 
 To build all Worker files to `worker-site/dist`:
 ```
-npm run worker-build
+yarn worker-build
 ```
 
 ## Test
@@ -50,23 +51,17 @@ npm worker-test
 ```
 
 ## What's inside
-1.  **`/src`**: This directory will contain all of the code related to what you will see on the front-end of your site (what you see in the browser) such as your site header or a page template. `src` is a convention for “source code”.
+1.  **`cloudflare-docs-theme/`**: Gatsby theme, all the components for the docs
 
-2.  **`gatsby-browser.js`**: This file is where Gatsby expects to find any usage of the [Gatsby browser APIs](https://www.gatsbyjs.org/docs/browser-apis/) (if any). These allow customization/extension of default Gatsby settings affecting the browser.
+1.  **`workers-docs/`**: All the content and custom components for the Workers docs
 
-3.  **`gatsby-config.js`**: This is the main configuration file for a Gatsby site. This is where you can specify information about your site (metadata) like the site title and description, which Gatsby plugins you’d like to include, etc. (Check out the [config docs](https://www.gatsbyjs.org/docs/gatsby-config/) for more detail).
-
-4.  **`gatsby-node.js`**: This file is where Gatsby expects to find any usage of the [Gatsby Node APIs](https://www.gatsbyjs.org/docs/node-apis/) (if any). These allow customization/extension of default Gatsby settings affecting pieces of the site build process.
-
-5.  **`gatsby-ssr.js`**: This file is where Gatsby expects to find any usage of the [Gatsby server-side rendering APIs](https://www.gatsbyjs.org/docs/ssr-apis/) (if any). These allow customization of default Gatsby settings affecting server-side rendering.
-   
 
 ## Publishing
 
 To publish to development environment (which is protected by access at dev.bigfluffycloudflare.com/workers) run:
 
 ```
-npm run publish dev
+yarn publish dev
 ```
 
 # Releasing
@@ -77,4 +72,4 @@ Releasing done through CI for whatever is on master. Ask Ashley Williams or Kris
 
 This repo is overseen by the Workers Developer Experience team. Check out our contribution guide at [CONTRIBUTING.md](/CONTRIBUTING.md)!
 
-To contribute to templates see [Template Contributing Guide](content/templates/CONTRIBUTING.md).
+To contribute to templates see [Template Contributing Guide](https://github.com/ashleygwilliams/template-registry/blob/master/CONTRIBUTING.md).
