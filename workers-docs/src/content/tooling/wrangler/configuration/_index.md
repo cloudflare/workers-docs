@@ -45,8 +45,7 @@ There are two types of configuration that `wrangler` uses: global user and per p
   # $CF_EMAIL -> your Cloudflare account email
   # $CF_API_KEY -> your Cloudflare API key
   ```
-  Note environment variables will override whatever credentials you configured in `wrangler config` or in your `wrangler.toml`. 
-  if you ran `wrangler config`.
+  Note environment variables will override whatever credentials you configured in `wrangler config` or in your `wrangler.toml`.
   
   You can also specify or override the Zone ID used by `wrangler publish` with the `CF_ZONE_ID` environment variable.
 
