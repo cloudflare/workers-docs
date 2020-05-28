@@ -11,3 +11,4 @@ weight: 3
 - [Hosting Static WordPress Sites](/tutorials/hosting-static-wordpress-sites)
 - [Configure Your CDN](/tutorials/configure-your-cdn)
 - [Managing Multiple Projects with Lerna](/tutorials/manage-projects-with-lerna)
+- [User authentication and authorization with Auth0](/tutorials/user-auth-with-auth0)
