@@ -25,7 +25,7 @@ You have many options to install wrangler!
 ### Install with `npm`
 
 ```bash
-npm i @cloudflare/wrangler -g
+wrangler generate $name $template [--type=${webpack|javascript|rust}] [--site]
 ```
 
 ### Install with `cargo`
@@ -88,65 +88,64 @@ Scaffold a project, including boilerplate for a Rust library and a Cloudflare Wo
 You can pass a name and template to this command optionally.
 
 ```bash
-wrangler generate <name> <template> --type=["webpack", "javascript", "rust"] --site
+wrangler generate [$name] [$template] [--type=${"webpack" | "javascript" | "rust"}] [--site]
 ```
 
-All of the arguments and flags to this command are optional:
-
-- `name`: defaults to `worker`
-- `template`: defaults to the [`https://github.com/cloudflare/worker-template`](https://github.com/cloudflare/worker-template)
-- `type`: defaults to ["webpack"](/tooling/wrangler/webpack)
-- `--site`: generates a [Workers Site](/sites) from an existing static site
+|             |                                                              | Optional | Default value                                                |
+| ----------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
+| `$name`     | Name of Worker                                               | True     | Worker                                                       |
+| `$template` | Template to base new project off of                          | True     | [`worker-template`](https://github.com/cloudflare/worker-template) |
+| `type`      | Type of project                                              | True     | "webpack"                                                    |
+| `--site`    | Same of `template` but based off of default [site template](TODO: add link) | True     | N/A                                                          |
 
 ### init
 
 Creates a skeleton `wrangler.toml` in an existing directory. This can be used as an alternative to `generate` if you prefer to clone a repository yourself.
 
 ```bash
-wrangler init <name> --type=["webpack", "javascript", "rust"] --site
+wrangler init [$name]  [--type=${"webpack" | "javascript" | "rust"}] [--site]
 ```
 
-All of the arguments and flags to this command are options:
-
-- `name`: defaults to the name of your working directory
-- `type`: defaults to ["webpack"](/tooling/wrangler/webpack).
-- `--site`: generates a [Workers Site](/sites) from an existing static site
+|             |                                                              | Optional | Default value                                                |
+| ----------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
+| `$name`     | Name of Worker                                               | True     | The name of working directory                                |
+| `$template` | Template to base new project off of                          | True     | [`worker-template`](https://github.com/cloudflare/worker-template) |
+| `--type`    | Type of project                                              | True     | "webpack"                                                    |
+| `--site`    | Same of `template` but based off of default [site template](TODO: add link) |          | N/A                                                          |
 
 ### build
 
 Build your project. This command looks at your `wrangler.toml` file and runs the build steps associated
-with the `"type"` declared there.
+with the`"type"` declared in your `wrangler.toml`.
 
-Additionally, you can build different environments. This is useful if you have different builds for different environments, but typically isn't needed. For more information see the [environments documentation](/tooling/wrangler/configuration/environments).
+```bash
+wrangler build [--env $ENVIRONMENT_NAME]
+```
+
+|         |                                                              | Optional | Default value             |
+| ------- | ------------------------------------------------------------ | -------- | ------------------------- |
+| `--env` | Build a specific  environment. Note typically isn't needed. For more information see the [environments documentation](/tooling/wrangler/configuration/environments). | True     | The top level environment |
 
 ### config
 
 Configure your global Cloudflare user. This is an interactive command that will prompt you for your API token:
 
 ```bash
-wrangler config
-Enter API token:
-superlongapitoken
+wrangler config [--api-key]
 ```
 
-You can also provide your email and global API key (this is not recommended for security reasons):
+|             |                                                              | Optional | Default value |
+| ----------- | ------------------------------------------------------------ | -------- | ------------- |
+| `--api-key` | To provide your email and global API key (this is not recommended for security reasons) instead of a token. | True     | N/A           |
 
-```bash
-wrangler config --api-key
-Enter email:
-testuser@example.com
-Enter global API key:
-superlongapikey
-```
-
-You can also [use environment variables](/tooling/wrangler/configuration/) to configure these values.
+You can also [use environment variables](/tooling/wrangler/configuration/) to authenticate.
 
 ### publish
 
 Publish your Worker to Cloudflare. Several keys in your `wrangler.toml` determine whether you are publishing to a workers.dev subdomain or your own registered domain, proxied through Cloudflare.
 
 ```bash
-wrangler publish
+wrangler publish [--env $ENVIRONMENT_NAME]
 ```
 
 To use this command, the following fields are required in your `wrangler.toml`.
@@ -159,13 +158,17 @@ To use this command, the following fields are required in your `wrangler.toml`.
 
 From here, you have two options, you can choose to publish to your own domain or you can choose to publish to [\<your-worker\>.\<your-subdomain\>.workers.dev](https://workers.dev).
 
-#### Publishing to workers.dev
+#### Subdomain
 
 If you want to publish to [workers.dev](https://workers.dev), you will first need to have a [workers.dev](https://workers.dev) subdomain registered. You can register a subdomain by executing:
 
 ```bash
-  wrangler subdomain <name>
+  wrangler subdomain $name
 ```
+
+| Key     | Value                                                        |
+| ------- | ------------------------------------------------------------ |
+| `$name` | Name of the workers.dev subdomain you wish to deploy to (e.g. `name.workers.dev`) |
 
 After you have registered a subdomain, add `workers_dev` to your `wrangler.toml`.
 
