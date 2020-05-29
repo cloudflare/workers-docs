@@ -400,9 +400,9 @@ const generateStateParam = async () => {
 }
 ```
 
-## Adding the verify read block
+## Verifying the token and retrieving user info
 
-With our application persisting authentication data in Workers KV and associating it to the current user via a cookie, we're now prepared to fill out the `verify` function defined earlier in the tutorial. This function will look at the `Cookie` header, and look up the authentication info that we persisted in Workers KV. The saved information in Workers KV can be used to make a subrequest to Auth0's `/userinfo`, to validate the token is valid. The endpoint provided by Auth0 returns user info, such as name and email address, if they're provided using the user's authentication method of choice.
+With our application persisting authentication data in Workers KV and associating it to the current user via a cookie, we're now prepared to fill out the `verify` function defined earlier in the tutorial. This function will look at the `Cookie` header, and look up the authentication info that we persisted in Workers KV.
 
 To begin, install the NPM package [`cookie`](https://www.npmjs.com/package/cookie), which we'll use to simplify parsing the `Cookie` header in the `request`:
 
@@ -453,17 +453,15 @@ const verify = async event => {
     }
 
     const { access_token: accessToken, id_token: idToken } = kvStored
-    const decoded = JSON.parse(decodeJWT(idToken))
   }
 }
 ```
 
-Finally, we'll make a subrequest to Auth0's [`/userinfo`](https://auth0.com/docs/api/authentication#get-user-info) endpoint, which will provide some additional user information that we'll make available under the `userInfo` key:
+Finally, we'll decode the `idToken` stored in KV. This includes the `profile` and `email` scopes we requested from Auth0 when the user logged in, which we'll return as `userInfo`, along with `accessToken` and `idToken`:
+
 
 ```js
 // workers-site/auth0.js
-
-const userInfoUrl = `${auth0.domain}/userInfo`
 
 const verify = async event => {
   const cookieHeader = event.request.headers.get('Cookie')
@@ -485,16 +483,8 @@ const verify = async event => {
     }
 
     const { access_token: accessToken, id_token: idToken } = kvStored
-    const decoded = JSON.parse(decodeJWT(idToken))
-
-    const resp = await fetch(userInfoUrl, {
-      headers: { Authorization: `Bearer ${accessToken}` },
-    })
-    const json = await resp.json()
-    if (decoded.sub !== json.sub) {
-      throw new Error('Access token is invalid')
-    }
-    return { accessToken, idToken, userInfo: json }
+    const userInfo = JSON.parse(decodeJWT(idToken))
+    return { accessToken, idToken, userInfo }
   }
   return {}
 }
