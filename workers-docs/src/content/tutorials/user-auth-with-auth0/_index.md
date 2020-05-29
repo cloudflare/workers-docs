@@ -68,7 +68,9 @@ const auth0 = {
   callbackUrl: AUTH0_CALLBACK_URL,
 }
 
-const redirectUrl = `${auth0.domain}/authorize?response_type=code&client_id=${auth0.clientId}&redirect_uri=${auth0.callbackUrl}&scope=openid%20profile%20email`
+const redirectUrl = state => `${auth0.domain}/authorize?response_type=code&client_id=${auth0.clientId}&redirect_uri=${auth0.callbackUrl}&scope=openid%20profile%20email&state=${encodeURIComponent(state)}`
+
+const generateStateParam = () => "stub"
 
 const verify = async event => {
   // Verify a user based on an auth cookie and Workers KV data
@@ -82,12 +84,15 @@ export const authorize = async event => {
   if (authorization.accessToken) {
     return [true, { authorization }]
   } else {
-    return [false, { redirectUrl }]
+    const state = await generateStateParam()
+    return [false, { redirectUrl: redirectUrl(state) }]
   }
 }
 ```
 
 The `auth0` object wraps several secrets, which are encrypted values that can be defined and used by your script. In the "Publish" section of this tutorial, we'll define these secrets using the [`wrangler secret`](https://developers.cloudflare.com/workers/tooling/wrangler/secrets/) command.
+
+The `generateStateParam` function will be used to prevent [Cross-Site Request Forgery attacks](https://auth0.com/docs/protocols/oauth2/mitigate-csrf-attacks). For now, we'll return a string "stub", but later in the tutorial, it will generate a random "state" parameter that we'll store in Workers KV to verify incoming authorization requests.
 
 The `verify` function, which we'll stub out in our first pass through this file, will check for an authorization key and look up a corresponding value in Workers KV. For now, we'll simply return an object with an `accessToken` string, to simulate an _authorized_ request.
 
@@ -190,13 +195,24 @@ async function handleEvent(event) {
 }
 ```
 
-The `handleRedirect` function, which we'll export from `workers-site/auth0.js`, will parse the incoming URL, and pass the `code` login parameter to `exchangeCode`:
+The `handleRedirect` function, which we'll export from `workers-site/auth0.js`, will parse the incoming URL, and pass the `code` login parameter to `exchangeCode`. We'll also check for a `state` parameter, which we'll use to prevent CSRF attacks. This `state` parameter should be matched to a known key in KV, indicating that the authorization request is valid:
 
 ```js
 // workers-site/auth0.js
 
 export const handleRedirect = async event => {
   const url = new URL(event.request.url)
+
+  const state = url.searchParams.get('state')
+  if (!state) {
+    return null
+  }
+
+  const storedState = await AUTH_STORE.get(`state-${state}`)
+  if (!storedState) {
+    return null
+  }
+
   const code = url.searchParams.get('code')
   if (code) {
     return exchangeCode(code)
@@ -341,6 +357,9 @@ async function handleEvent(event) {
     // BEGINNING OF HANDLE AUTH REDIRECT CODE BLOCK
     if (url.pathname === '/auth') {
       const authorizedResponse = await handleRedirect(event)
+      if (!authorizedResponse) {
+        return new Response("Unauthorized", { status: 401 })
+      }
       response = new Response(response.body, {
         response,
         ...authorizedResponse,
@@ -354,9 +373,36 @@ async function handleEvent(event) {
 }
 ```
 
-## Adding the verify read block
+## Implementing CSRF protection
 
-With our application persisting authentication data in Workers KV and associating it to the current user via a cookie, we're now prepared to fill out the `verify` function defined earlier in the tutorial. This function will look at the `Cookie` header, and look up the authentication info that we persisted in Workers KV. The saved information in Workers KV can be used to make a subrequest to Auth0's `/userinfo`, to validate the token is valid. The endpoint provided by Auth0 returns user info, such as name and email address, if they're provided using the user's authentication method of choice.
+To correctly protect against CSRF attacks, our application needs to provide a `state` parameter to the Auth0 login URL. When the user logs in and is redirected back to our application, we can compare the `state` parameter in the redirect URL to our previous piece of `state`, confirming that the user is beginning and ending the login flow via our application. 
+
+We'll generate this piece of state using `csprng.xyz`, a Cloudflare API service for generating random data. The API endpoint `csprng.xyz/v1/api` returns a JSON object with the key `Data` that we'll use as the random value:
+
+```json
+{
+  "Data": "PTBsWkQ7Zg5pAXAq5/YJS1mtFL97q1k/qUVJNdirEl0=",
+  "Time": "2020-05-29T13:22:54.840Z",
+  "Status": 200
+}
+```
+
+To persist this random data, we'll use KV, persisting it for one day (86,400 seconds) before discarding it (note that this matches the `expires_at` time of the Auth0-provided `code` parameter). Replace the stubbed `generateStateParam` function in `workers-site/auth0.js`
+
+```js
+// workers-site/auth0.js
+
+const generateStateParam = async () => {
+  const resp = await fetch("https://csprng.xyz/v1/api")
+  const { Data: state } = await resp.json()
+  await AUTH_STORE.put(`state-${state}`, true, { expirationTtl: 86400 })
+  return state
+}
+```
+
+## Verifying the token and retrieving user info
+
+With our application persisting authentication data in Workers KV and associating it to the current user via a cookie, we're now prepared to fill out the `verify` function defined earlier in the tutorial. This function will look at the `Cookie` header, and look up the authentication info that we persisted in Workers KV.
 
 To begin, install the NPM package [`cookie`](https://www.npmjs.com/package/cookie), which we'll use to simplify parsing the `Cookie` header in the `request`:
 
@@ -407,17 +453,15 @@ const verify = async event => {
     }
 
     const { access_token: accessToken, id_token: idToken } = kvStored
-    const decoded = JSON.parse(decodeJWT(idToken))
   }
 }
 ```
 
-Finally, we'll make a subrequest to Auth0's [`/userinfo`](https://auth0.com/docs/api/authentication#get-user-info) endpoint, which will provide some additional user information that we'll make available under the `userInfo` key:
+Finally, we'll decode the `idToken` stored in KV. This includes the `profile` and `email` scopes we requested from Auth0 when the user logged in, which we'll return as `userInfo`, along with `accessToken` and `idToken`:
+
 
 ```js
 // workers-site/auth0.js
-
-const userInfoUrl = `${auth0.domain}/userInfo`
 
 const verify = async event => {
   const cookieHeader = event.request.headers.get('Cookie')
@@ -439,16 +483,8 @@ const verify = async event => {
     }
 
     const { access_token: accessToken, id_token: idToken } = kvStored
-    const decoded = JSON.parse(decodeJWT(idToken))
-
-    const resp = await fetch(userInfoUrl, {
-      headers: { Authorization: `Bearer ${accessToken}` },
-    })
-    const json = await resp.json()
-    if (decoded.sub !== json.sub) {
-      throw new Error('Access token is invalid')
-    }
-    return { accessToken, idToken, userInfo: json }
+    const userInfo = JSON.parse(decodeJWT(idToken))
+    return { accessToken, idToken, userInfo }
   }
   return {}
 }
@@ -464,7 +500,8 @@ export const authorize = async event => {
   if (authorization.accessToken) {
     return [true, { authorization }]
   } else {
-    return [false, { redirectUrl }]
+    const state = await generateStateParam()
+    return [false, { redirectUrl: redirectUrl(state) }]
   }
 }
 ```
@@ -750,7 +787,7 @@ Following this example, the callback URL for my application is `https://my-auth-
 
 In order to safely store user IDs (the sub value from Auth0) in the cookie we set in the browser, we should always refer to them by a value that cannot be easily guessed by someone else. To do this, we'll generate a unique value based on the user's ID and a _salt_: a secret value provided by the application.
 
-To generate a salt, we'll simply make a new, random string, and save it as a "secret" for our application. Cloudflare provides an API for random data at `csprng.xyz`: visit `https://csprng.xyz/v1/api`, and copy the `Data` field to your clipboard. If you'd like to generate a string yourself, remember that it's important that the salt can't easily be guessed!
+To generate a salt, we'll simply make a new, random string, and save it as a "secret" for our application. Previously in the tutorial, we used `csprng.xyz` API to generate a random piece of `state` to protect against CSRF attacks. Open `https://csprng.xyz/v1/api` in your browser, and copy the `Data` field to your clipboard. If you'd like to generate a string yourself, remember that it's important that the salt can't easily be guessed!
 
 With a random string generated, you can set it using `wrangler secret`:
 
