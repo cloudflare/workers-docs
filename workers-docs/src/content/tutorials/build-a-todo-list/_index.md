@@ -279,6 +279,11 @@ Given that input and button, we can add a corresponding JavaScript function to w
 var createTodo = function() {
   var input = document.querySelector('input[name=name]')
   if (input.value.length) {
+    todos = [].concat(todos, {
+      id: todos.length + 1,
+      name: input.value,
+      completed: false,
+    })  
     fetch('/', {
       method: 'PUT',
       body: JSON.stringify({ todos: todos }),
