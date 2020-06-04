@@ -81,6 +81,9 @@ export const newDocsMap = new Map([
   ['/sites/reference', '/tooling/wrangler/sites'],
   ['/sites/ignore-assets', '/tooling/wrangler/sites/#ignoring-subsets-of-static-assets'],
 
+  ['/tutorials/build-a-todo-list', '/tutorials/build-a-jamstack-app'],
+  ['/tutorials/build-an-application', '/tutorials/build-a-slackbot'],
+
   // This is a remnant of some buggy workers.cloudflare.com code,
   // we should explicitly handle this and send them to the right place
   ['/workers/docs', '/workers'],

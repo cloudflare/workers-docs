@@ -1,5 +1,5 @@
 ---
-title: 'Build A To-Do List With KV'
+title: 'Build a To-Do List JAMstack Application'
 weight: 3
 ---
 
