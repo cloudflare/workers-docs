@@ -101,6 +101,14 @@ You can also [write with an expiration on the command line via
 Wrangler](/tooling/wrangler/kv_commands/#kv-key) or [via the
 API](https://api.cloudflare.com/#workers-kv-namespace-write-key-value-pair).
 
+## Metadata
+
+To associate some metadata with a key-value pair
+set `metadata` to any arbitrary object (must serialize to JSON) in the put
+options object on a `put` call. Usage in Worker script:
+
+`await NAMESPACE.put(key, value, {metadata: {someMetadataKey: "someMetadataValue"}})`
+
 # Reading key-value pairs
 
 To get the value for a given key, you can call the `get` method on any
@@ -156,6 +164,17 @@ for binary values an `ArrayBuffer`.
 For large values, the choice of `type` can have a noticeable effect on latency
 and CPU usage. For reference, the `type`s can be ordered from fastest to slowest
 as `"stream"`, `"arrayBuffer"`, `"text"`, and `"json"`.
+
+## Metadata
+
+You can get the metadata associated with a key-value pair alongside its value
+by calling the `getWithMetadata` method on a namespace you've bound in your
+script:
+
+`const {value, metadata} = await NAMESPACE.getWithMetadata(key);`
+
+If there's no metadata associated with the requested key-value pair, `null`
+will be returned for metadata.
 
 # Deleting key-value pairs
 
@@ -214,17 +233,20 @@ like this:
 
 ```json
 {
-  keys: [{ name: "foo", expiration: 1234}],
+  keys: [{ name: "foo", expiration: 1234, metadata: {someMetadataKey: "someMetadataValue"}}],
   list_complete: false,
   cursor: "6Ck1la0VxJ0djhidm1MdX2FyD"
 }
 ```
 
 The `keys` property will contain an array of objects describing each key.
-That object will have two keys of its own: a `name` of the key, and its
-expiration value. The name is a string, and the expiration value is a number.
-The expiration value will only be returned if the key has an expiration, and
-will be in the absolute value form, even if it was set in the TTL form.
+That object will have one to three keys of its own: a `name` of the key,
+optionally its expiration value and optionally associated metadata. The name is
+a string, the expiration value is a number and metadata is whatever type was
+set initially. The expiration value will only be returned if the key has an
+expiration, and will be in the absolute value form, even if it was set in the
+TTL form. Metadata will also only be returned if the given key has non-null
+associated metadata.
 
 Additionally, if `list_complete` is `false`, there are more keys to fetch.
 You'll use the `cursor` property to get more keys. See the [Pagination section](#pagination)

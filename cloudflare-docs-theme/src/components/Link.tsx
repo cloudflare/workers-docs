@@ -10,10 +10,10 @@ type LinkProps = {
   [x: string]: any // To improve types, might want to inherit from  GatsbyLinkProps<TState> instead
 }
 
-// replace anything with /workers or / prepended to just /workers or whatever is in publicPath
-const stripWorkers = (url: string, path: string) => {
-  const regex = new RegExp('^(\\/' + path + '){1,3}')
-  return url.replace(regex, '').replace(/^\/(?!\/)/, '/' + path + '/')
+// replace anything with /workers* or /* prepended to just /workers* or /publicPath*
+const stripWorkers = (url: string, publicPath: string) => {
+  const regex = new RegExp('^(\\/' + publicPath + '){1,3}')
+  return url.replace(regex, '').replace(/^\/(?!\/)/, '/' + publicPath + '/')
 }
 
 export const Src = (src: string) => {
@@ -57,7 +57,7 @@ export const Image: React.FC<ImageProps> = ({ children, src, ...props }) => {
 
   if (internal) {
     return (
-      <img src={'/' + publicPath + src} {...props}>
+      <img src={stripWorkers(src, publicPath)} {...props}>
         {children}
       </img>
     )

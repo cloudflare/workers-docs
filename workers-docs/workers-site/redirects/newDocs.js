@@ -85,19 +85,22 @@ export const newDocsMap = new Map([
   // This is a remnant of some buggy workers.cloudflare.com code,
   // we should explicitly handle this and send them to the right place
   ['/workers/docs', '/workers'],
-  [
-    '/reference/storage/reading-key-value-pairs',
-    '/reference/apis/kv#reading-key-value-pairs',
-  ],
+  ['/reference/storage/reading-key-value-pairs', '/reference/apis/kv#reading-key-value-pairs'],
   ['/reference/storage/listing-keys', '/reference/apis/kv#listing-keys'],
-  [
-    '/reference/storage/writing-key-value-pairs',
-    '/reference/apis/kv#writing-key-value-pairs',
-  ],
-  [
-    '/reference/storage/deleting-key-value-pairs',
-    '/reference/apis/kv#deleting-key-value-pairs',
-  ],
+  ['/reference/storage/writing-key-value-pairs', '/reference/apis/kv#writing-key-value-pairs'],
+  ['/reference/storage/deleting-key-value-pairs', '/reference/apis/kv#deleting-key-value-pairs'],
   ['/reference/storage/limits', '/about/limits#kv'],
   ['/reference/storage/pricing', '/about/pricing#kv'],
+
+  // Debugging Tips page update
+  [
+    '/about/tips/debugging#1-wrap-your-whole-event-handler-in-a-try-catch',
+    '/about/tips/debugging#wrap-your-whole-event-handler-in-a-try-catch',
+  ],
+  ['/about/tips/debugging#2-return-debug-information-in-a-header', '/about/tips/debugging'],
+  [
+    '/about/tips/debugging#3-setup-a-logging-service',
+    '/about/tips/debugging#setup-a-logging-service',
+  ],
+  ['/about/tips/debugging#4-go-to-origin-on-error', '/about/tips/debugging#go-to-origin-on-error'],
 ])

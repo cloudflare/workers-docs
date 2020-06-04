@@ -23,7 +23,7 @@ new Request(input [, init])
   - `redirect: Redirect`: The mode respected when the request is fetched. **Note:** default for requests generated from the incoming `fetchEvent` from the event handler is `manual`. Default for newly constructed Requests (i.e. `new Request(url)` ) is `follow`. Valid options:
     - `follow: boolean`: If a redirect reponse is returned to the fetch, another fetch will be fired based on the `Location` header in the response until a non-redirect code is returned. (i.e. `await fetch(..)` could never return a `301` redirect)
     - `manual: boolean`: redirect responses will return from a fetch
-
+    
 ### Properties
 
 All properties of an incoming `Request` object (i.e. `event.request`) are read only. To [modify a request](/templates/pages/modify_req_props/), you must create a new `Request` object and pass the options to modify to its [constructor](#Constructor-parameters).
