@@ -90,7 +90,7 @@ async function handleRequest(req) {
 
 ### Document Handlers
 
-A document handler represents the incoming HTML document. A number of functions can be defined on a document handler to query and manipulate a document's `doctype`, `comments`, and `text`. Unlike an element handler, a document handler's `doctype`, `comments` and `text` functions are not scoped by a particular selector and called for all the content on the page including the content _outside_ of the top-level HTML tag:
+A document handler represents the incoming HTML document. A number of functions can be defined on a document handler to query and manipulate a document's `doctype`, `comments`, `text`, and `end`. Unlike an element handler, a document handler's `doctype`, `comments`, `text`, and `end` functions are not scoped by a particular selector and called for all the content on the page including the content _outside_ of the top-level HTML tag:
 
 ```js
 class DocumentHandler {
@@ -104,6 +104,10 @@ class DocumentHandler {
 
   text(text) {
     // An incoming piece of text
+  }
+
+  end(end) {
+    // The end of the document
   }
 }
 ```
@@ -192,9 +196,25 @@ class DocumentHandler {
 
 #### Properties
 
-- `name: String | null`: Read-only, string representing the doctype name. 
+- `name: String | null`: Read-only, string representing the doctype name.
 - `publicId: String | null`: Read only, the quoted string in the doctype after the PUBLIC atom.
-- `systemId: String | null`: Read only, the quoted string in the doctype after the SYSTEM atom or immidiately after the `publicId`. 
+- `systemId: String | null`: Read only, the quoted string in the doctype after the SYSTEM atom or immidiately after the `publicId`.
+
+### End
+
+The `end` function on a document handler allows developers to append content to the end of a document.
+
+```js
+class DocumentHandler {
+  end(end) {
+    // The end of the document
+  }
+}
+```
+
+#### Methods
+
+- `append(content: Content, contentOptions?: ContentOptions): DocumentEnd`: Inserts content after the end of the document.
 
 ## Understanding handler errors
 
