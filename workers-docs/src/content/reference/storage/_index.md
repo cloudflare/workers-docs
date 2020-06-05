@@ -16,11 +16,10 @@ frequently read. Very infrequently read values are stored centrally, while
 more popular values are maintained in all of our data centers around the
 world.
 
-KV achieves this performance by being eventually-consistent. New key-value
-pairs are immediately available everywhere, but value changes may take up to
-60 seconds to propagate. Workers KV isn't ideal for situations where you need
-support for atomic operations or where values must be read and written in a
-single transaction.
+KV achieves this performance by being eventually-consistent. Changes may take
+up to 60 seconds to propagate. Workers KV isn't ideal for situations where
+you need support for atomic operations or where values must be read and
+written in a single transaction.
 
 All values are encrypted at rest with 256-bit AES-GCM, and only decrypted by
 the process executing your Worker scripts or responding to your API requests.
