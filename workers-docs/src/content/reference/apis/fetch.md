@@ -26,15 +26,15 @@ addEventListener('fetch', (event) => {
   // NOTE: don’t use fetch here, as we're not in an async scope yet
   event.respondWith(eventHandler(event))
 })
-
 async function eventHandler(event) {
   // fetch can be awaited here since `event.respondWith()` waits for the Promise it receives to settle
   const resp = await fetch(event.request)
   return resp
 }
+```
 
-Examples:
+## Examples
 
 - [Fetch HTML](/templates/pages/fetch_html)
 - [Fetch JSON](/templates/pages/fetch_json)
-- [Cache using Fetch](/templates/pages/cache_ttl/)
+- [Cache using Fetch](/templates/pages/cache_ttl/) 

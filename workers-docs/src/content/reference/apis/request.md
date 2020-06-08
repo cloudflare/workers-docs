@@ -106,3 +106,9 @@ Note: Invalid or incorrectly-named settings in the cf object will be silently ig
   - [`Body.formData()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/formData): Returns a promise that resolves with a [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) representation of the request body.
   - [`Body.json()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/json): Returns a promise that resolves with a [`JSON`](https://developer.mozilla.org/en-US/docs/Web/API/JSON) representation of the request body.
   - [`Body.text()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/text): Returns a promise that resolves with an [`USVString`](https://developer.mozilla.org/en-US/docs/Web/API/USVString) (text) representation of the request body.
+
+## Examples
+
+* [Modify Request Property](/templates/pages/modify_req_props)
+* [Aggregate Requests](/templates/pages/aggregate_requests)
+* [Signed Request/Response](/templates/pages/signed_request)
