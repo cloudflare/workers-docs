@@ -166,9 +166,9 @@ If you would like to be able to publish your code to multiple places, please see
 
 #### Parsing with jq
 
-  tail outputs each request as a JSON object, making it difficult to read directly. Parsing with jq makes it easy to pretty-print with colorization as well as select and format output as needed.
+`wrangler tail` outputs each request as a JSON object, making it difficult to read directly. Parsing requests with [jq](https://stedolan.github.io/jq) makes it easy to pretty-print with colorization, as well as select and format output as needed.
 
-  For example, this jq command will flatten console.log() statements:
+  For example, this `jq` command will flatten `console.log()` statements:
 
   ```shell
   wrangler tail | jq -r \
