@@ -9,7 +9,7 @@ weight: 7
 - [Web Standards](/reference/apis/standard)
 - [fetch()](/reference/apis/fetch)
 - [FetchEvent](/reference/apis/fetch-event)
-- [addEventListener](/reference/apis/addEventListener)
+- [addEventListener()](/reference/apis/addEventListener)
 - [Request](/reference/apis/request)
 - [Response](/reference/apis/response)
 - [Cache](/reference/apis/cache)

@@ -15,23 +15,23 @@ _Note: Asynchronous tasks such as `fetch` are not executed at the top level in a
 
 ## Syntax
 
-`fetch(request:`[`Request`](/reference/apis/request)`| String, init?:`[`RequestInit`](/reference/apis/request)`) : Promise <`[`Response`](/reference/apis/response)`>`
+`fetch(request: `[`Request`](/reference/apis/request)` | string, init?: `[`RequestInit`](/reference/apis/request)`) : Promise<`[`Response`](/reference/apis/response)`>`
 
-Where request is the request or the string of the URL.
+`request`: A [`Request`](/reference/apis/request) object or a string representing the URL to be fetched.
 
 ## Usage
 
 ```js
 addEventListener('fetch', (event) => {
+  // NOTE: don’t use fetch here, as we're not in an async scope yet
   event.respondWith(eventHandler(event))
 })
-// note: don’t use fetch here
+
 async function eventHandler(event) {
-  // fetch available here
+  // fetch can be awaited here since `event.respondWith()` waits for the Promise it receives to settle
   const resp = await fetch(event.request)
   return resp
 }
-```
 
 Examples:
 

@@ -16,10 +16,10 @@ new Request(input [, init])
 - `input`: Either a USVString that contains the URL or an existing `Request` object. Note that the `url` property is immutable, so when [modifying a request](/templates/pages/modify_req_props/) and changing the URL, you must pass the new URL in this parameter.
 
 - `init` (optional): An options object that contains custom settings to apply to the request. Valid options are:
-  - `method: String`: The request method, such as `GET` or `POST`
+  - `method: string`: The request method, such as `GET` or `POST`
   - `headers: Headers`: The Headers class matches the documentation [provided by MDN](https://developer.mozilla.org/en-US/docs/Web/API/Headers). If you expect Unicode values in your headers, URL or Base64 encode your header values before adding them to a Headers object.
     - `CF-Connecting-IP`: A Cloudflare specific header to specify the client IP
-  - `body: String`: Any text to add to the request. **Note:** Requests using the `GET` or `HEAD` methods cannot have a body.
+  - `body: string`: Any text to add to the request. **Note:** Requests using the `GET` or `HEAD` methods cannot have a body.
   - `redirect: Redirect`: The mode respected when the request is fetched. **Note:** default for requests generated from the incoming `fetchEvent` from the event handler is `manual`. Default for newly constructed Requests (i.e. `new Request(url)` ) is `follow`. Valid options:
     - `follow: boolean`: If a redirect reponse is returned to the fetch, another fetch will be fired based on the `Location` header in the response until a non-redirect code is returned. (i.e. `await fetch(..)` could never return a `301` redirect)
     - `manual: boolean`: redirect responses will return from a fetch
