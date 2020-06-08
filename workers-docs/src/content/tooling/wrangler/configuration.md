@@ -121,29 +121,35 @@ Keys to configure per project in your `wrangler.toml`.
 
 **Top level only**: required to be configured at the top level of your wrangler.toml only; multiple environments on the same project must share this property
 
-**Top level OR Environment**: May be configured at the top level and/or the environment level of your wrangler.toml. If both are specified then the field is determined by the environment level field.
+**Inherited** : Can be configured at the top level and/or environment. If the property is defined *only* at the top level, the environment will use the property value from the top level. If the property is defined in the environment, the environment value will override the top level value. 
 
-**Environment Only**: Must be unique per environments. Cannot be inherited from the top level when using multiple environments. If not using environments, then just consider this a top level field.
+**Not inherited**: Must be defined for every environment individually. 
 
-| Field name                        | Level                         | Description                                                  | Required      |
-| --------------------------------- | ----------------------------- | ------------------------------------------------------------ | ------------- |
-| `name`                            | Top level OR Environment      | The name of your Worker script. Read about [how names are inherited](TODO: link) | Required      |
-| `type`                            | Top level only                | Specifies how `wrangler build` will build your project. There are currently three options (`webpack`, `javascript`, and `rust`). | Required      |
-| `zone_id`                         | Top level OR Environment      | This is the ID of the "zone" or domain you want to run your script on. It can also be specified through the `CF_ZONE_ID` environment variable. | Optional \*   |
-| `account_id`                      | Top level OR Environment      | This is the ID of the account associated with your zone. You might have more than one account, so make sure to use the ID of the account associated with the `zone_id` you provide, if you provide one. It can also be specified through the `CF_ACCOUNT_ID` environment variable. | Required      |
-| `route`                           | Top level OR Environment      | This is the route you'd like to use your worker on. You need to include the hostname. Examples: `*example.com/*` `http://example.com/hello` | Optional \*\* |
-| `routes`                          | Top level OR Environment      | A list of routes you'd like to use your worker on. These follow exactly the same rules a `route`, but you can specify a list of them.<br />`routes = ["http://example.com/hello", "http://example.com/goodbye"]` | Optional \*\* |
-| `webpack_config`                  | Top level only                | This is the path to a custom webpack configuration file for your worker. You must specify this field to use a custom webpack configuration, otherwise Wrangler will use a default configuration for you. You can read more [here](/tooling/wrangler/webpack). | Optional      |
-| `workers_dev`                     | Top level OR environment      | This is a boolean flag that specifies if your worker will be deployed to your [workers.dev](https://workers.dev) subdomain. If omitted defaults to false. | Optional      |
-| [`vars`](#vars)                   | Environment Only TODO: verify | An object containing text variables that can be directly accessed in a Worker script. See [environment variables](TODO:link). | Optional      |
-| [`kv-namespaces`](#kv-namespaces) | Environment Only TODO: verify | These specify any [Workers KV](/reference/storage/) Namespaces you want to access from inside your Worker. Each namespace you include should have an entry in your `wrangler.toml` that includes: | Optional      |
-| [`site`](#site)                   | Top level Only TODO: verify   | Determines the local folder to upload and serve from a Worker | Optional      |
+
+
+| Field name                        | Level                           | Description                                                  | Required      |
+| --------------------------------- | ------------------------------- | ------------------------------------------------------------ | ------------- |
+| `name`                            | Inherited                       | The name of your Worker script.  If inherited, your environment name with be appended to the top level. | Required      |
+| `type`                            | Top level only                  | Specifies how `wrangler build` will build your project. There are currently three options (`webpack`, `javascript`, and `rust`). | Required      |
+| `zone_id`                         | Inherited                       | This is the ID of the "zone" or domain you want to run your script on. It can also be specified through the `CF_ZONE_ID` environment variable. | Optional \*   |
+| `account_id`                      | Inherited                       | This is the ID of the account associated with your zone. You might have more than one account, so make sure to use the ID of the account associated with the `zone_id` you provide, if you provide one. It can also be specified through the `CF_ACCOUNT_ID` environment variable. | Required      |
+| `workers_dev`                     | Inherited, overridden  by route | This is a boolean flag that specifies if your worker will be deployed to your [workers.dev](https://workers.dev) subdomain. If omitted defaults to false. | Optional      |
+| `route`                           | Not Inherited                   | This is the route you'd like to use your worker on. You need to include the hostname. Examples: `*example.com/*` `http://example.com/hello` | Optional \*\* |
+| `routes`                          | Not Inherited                   | A list of routes you'd like to use your worker on. These follow exactly the same rules a `route`, but you can specify a list of them.<br />`routes = ["http://example.com/hello", "http://example.com/goodbye"]` | Optional \*\* |
+| `webpack_config`                  | Inherited                       | This is the path to a custom webpack configuration file for your worker. You must specify this field to use a custom webpack configuration, otherwise Wrangler will use a default configuration for you. You can read more [here](/tooling/wrangler/webpack). | Optional      |
+| [`vars`](#vars)                   | Not Inherited                   | An object containing text variables that can be directly accessed in a Worker script. See [environment variables](TODO:link). | Optional      |
+| [`kv-namespaces`](#kv-namespaces) | Not Inherited                   | These specify any [Workers KV](/reference/storage/) Namespaces you want to access from inside your Worker. Each namespace you include should have an entry in your `wrangler.toml` that includes: | Optional      |
+| [`site`](#site)                   | Not Inherited                   | Determines the local folder to upload and serve from a Worker | Optional      |
 
 \* This key is optional if you are using only a [workers.dev](https://workers.dev) subdomain.
 
 \* \*One key of `route`OR routes`is only if you are not using a [workers.dev](https://workers.dev) subdomain.
 
 #### vars
+
+TODO:link to bindings, runtime from kv and secrets too
+
+https://dev.bigfluffycloudflare.com/workers/reference/apis/environment-variables/
 
 Usage:
 
@@ -169,12 +175,14 @@ kv-namespaces = [
 ]
 ```
 
-| Key       | Value       | Example |
-| --------- | ----------- | ------- |
-| `binding` | TODO define |         |
-| `id`      |             |         |
+| Key       | Value       | Required |
+| --------- | ----------- | -------- |
+| `binding` | TODO define | Yes      |
+| `id`      |             | Yes      |
 
-Note: Creating your KV Namespaces should be handled using Wrangler's [KV Commands](/tooling/wrangler/kv_commands).
+Note: Creating your KV Namespaces should be handled using Wrangler's [KV Commands](/tooling/wrangler/kv_commands). 
+
+You can also define your `kv-namespaces` using [alternative TOML syntax](https://github.com/toml-lang/toml#user-content-table).
 
 #### site
 
@@ -194,6 +202,8 @@ entry-point = "workers-site"
 | `exclude`     | A list of gitignore-style patterns for files or directories in `bucket` you want to exclude from uploads. | `exclude = ["ignore_dir"]`       | no       |
 
 To learn more about the optional `include` and `exclude` fields, visit [Ignoring Subsets of Static Assets](/tooling/wrangler/sites/#ignoring-subsets-of-static-assets).
+
+You can also define your `site` using [alternative TOML syntax](https://github.com/toml-lang/toml#user-content-inline-table).
 
 ##### Storage Limits
 
