@@ -62,7 +62,9 @@ You can also specify or override the Zone ID used by `wrangler publish` with the
 
 ## wrangler.toml
 
-Your project will need to have several things configured before you can publish your worker. These values are stored in a `wrangler.toml`file. You will need to manually edit this file to add these values before you can publish.
+Your project will need to have several keys configured before you can publish your worker. These values are stored in a `wrangler.toml`file. You will need to manually edit this file to add these values before you can publish.
+
+For all configurable fields, see the [table](#keys) below.
 
 ### Top Level Config
 
@@ -78,7 +80,7 @@ Environments is a feature that allows you to deploy the same project to multiple
 - `preview`
 - `publish`
 
-Environment trumps top level specificity. So if a field is supported on the environment level (i.e. the table below )
+Environment keys can be [*inherited*](#keys) from the top level configure, but if specified trumps top level specificity. 
 
 ### Example
 
@@ -125,8 +127,6 @@ Keys to configure per project in your `wrangler.toml`.
 
 **Not inherited**: Must be defined for every environment individually. 
 
-
-
 | Field name                        | Level                           | Description                                                  | Required      |
 | --------------------------------- | ------------------------------- | ------------------------------------------------------------ | ------------- |
 | `name`                            | Inherited                       | The name of your Worker script.  If inherited, your environment name with be appended to the top level. | Required      |
@@ -143,13 +143,11 @@ Keys to configure per project in your `wrangler.toml`.
 
 \* This key is optional if you are using only a [workers.dev](https://workers.dev) subdomain.
 
-\* \*One key of `route`OR routes`is only if you are not using a [workers.dev](https://workers.dev) subdomain.
+\* \*One key of `route`OR `routes` is only if you are not using a [workers.dev](https://workers.dev) subdomain.
 
 #### vars
 
-TODO:link to bindings, runtime from kv and secrets too
-
-https://dev.bigfluffycloudflare.com/workers/reference/apis/environment-variables/
+Values to use in your Worker script as a text [environment variable](/reference/apis/environment-variables/).
 
 Usage:
 
@@ -166,6 +164,8 @@ Note: Using secrets should be handled using [wrangler secret](/tooling/wrangler/
 
 #### kv-namespaces
 
+[KV namespaces](/reference/apis/kv) to bind to your Worker and reference in your script.
+
 Usage:
 
 ```toml
@@ -175,16 +175,18 @@ kv-namespaces = [
 ]
 ```
 
-| Key       | Value       | Required |
-| --------- | ----------- | -------- |
-| `binding` | TODO define | Yes      |
-| `id`      |             | Yes      |
+| Key       | Value                                                        | Required |
+| --------- | ------------------------------------------------------------ | -------- |
+| `binding` | After you've created a namespace, you must bind it to your Worker  so it is accessible from within the Worker script via a variable name you specify. | Yes      |
+| `id`      | The ID of the namespace you wish to attach to the Worker     | Yes      |
 
 Note: Creating your KV Namespaces should be handled using Wrangler's [KV Commands](/tooling/wrangler/kv_commands). 
 
 You can also define your `kv-namespaces` using [alternative TOML syntax](https://github.com/toml-lang/toml#user-content-table).
 
 #### site
+
+A [Worker site](/sites) normally generated through [`wrangler generate --site`](/tooling/wrangler/commands/#generate) or [`wrangler init --site`](/tooling/wrangler/commands/#init).
 
 Usage:
 

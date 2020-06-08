@@ -24,30 +24,29 @@ Scaffold a project, including boilerplate for a Rust library and a Cloudflare Wo
 You can pass a name and template to this command optionally.
 
 ```bash
-wrangler generate [$name] [$template] [--type=${"webpack" | "javascript" | "rust"}] [--site]
+wrangler generate [$NAME] [$TEMPLATE] [--type=${"webpack" | "javascript" | "rust"}] [--site]
 ```
 
 |             |                                                              | Optional | Default value                                                |
 | ----------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| `$name`     | Name of Worker                                               | True     | Worker                                                       |
-| `$template` | Template to base new project off of                          | True     | [`worker-template`](https://github.com/cloudflare/worker-template) |
-| `type`      | Type of project                                              | True     | "webpack"                                                    |
-| `--site`    | Same of `template` but based off of default [site template](TODO: add link) | True     | N/A                                                          |
+| `$NAME`     | Name of Worker                                               | Optional | "worker"                                                     |
+| `$TEMPLATE` | Github URL of the template to base new project off of        | Optional | [`worker-template`](https://github.com/cloudflare/worker-template) |
+| `--type`    | Type of project                                              | Optional | "webpack"                                                    |
+| `--site`    | Same of `template` but based off of default [site template](https://github.com/cloudflare/worker-sites-template) | Optional | N/A                                                          |
 
 ### init
 
 Creates a skeleton `wrangler.toml` in an existing directory. This can be used as an alternative to `generate` if you prefer to clone a repository yourself.
 
 ```bash
-wrangler init [$name]  [--type=${"webpack" | "javascript" | "rust"}] [--site]
+wrangler init [$NAME] [--type=${"webpack" | "javascript" | "rust"}] [--site]
 ```
 
-|             |                                                              | Optional | Default value                                                |
-| ----------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-| `$name`     | Name of Worker                                               | True     | The name of working directory                                |
-| `$template` | Template to base new project off of                          | True     | [`worker-template`](https://github.com/cloudflare/worker-template) |
-| `--type`    | Type of project                                              | True     | "webpack"                                                    |
-| `--site`    | Same of `template` but based off of default [site template](TODO: add link) |          | N/A                                                          |
+|          |                                          | Optional | Default value                 |
+| -------- | ---------------------------------------- | -------- | ----------------------------- |
+| `$NAME`  | Name of Worker                           | Optional | The name of working directory |
+| `--type` | Type of project                          | Optional | "webpack"                     |
+| `--site` | Initiates the project to a Workers site. | Optional | N/A                           |
 
 ### build
 
@@ -58,21 +57,21 @@ with the`"type"` declared in your `wrangler.toml`.
 wrangler build [--env $ENVIRONMENT_NAME]
 ```
 
-|         |                                                              | Optional | Default value             |
-| ------- | ------------------------------------------------------------ | -------- | ------------------------- |
-| `--env` | Build a specific  environment. Note typically isn't needed. For more information see the [environments documentation](/tooling/wrangler/configuration/environments). | True     | The top level environment |
+|         |                                                                                                                    | Required |
+| ------- | ------------------------------------------------------------------------------------------------------------------ | -------- |
+| `--env` | Perform on a specific [environment](/tooling/wrangler/configuration/environments) specified as `$ENVIRONMENT_NAME` | Optional |
 
 ### config
 
-Configure your global Cloudflare user. This is an interactive command that will prompt you for your API token:
+Configure your global Cloudflare user. This is an interactive command that will prompt you for your API token.
 
 ```bash
 wrangler config [--api-key]
 ```
 
-|             |                                                              | Optional | Default value |
-| ----------- | ------------------------------------------------------------ | -------- | ------------- |
-| `--api-key` | To provide your email and global API key (this is not recommended for security reasons) instead of a token. | True     | N/A           |
+|             |                                                                                                             | Optional |
+| ----------- | ----------------------------------------------------------------------------------------------------------- | -------- |
+| `--api-key` | To provide your email and global API key (this is not recommended for security reasons) instead of a token. | Optional |
 
 You can also [use environment variables](/tooling/wrangler/configuration/) to authenticate.
 
@@ -84,13 +83,17 @@ Publish your Worker to Cloudflare. Several keys in your `wrangler.toml` determin
 wrangler publish [--env $ENVIRONMENT_NAME]
 ```
 
+|         |                                                              | Required |
+| ------- | ------------------------------------------------------------ | -------- |
+| `--env` | Perform on a specific [environment](/tooling/wrangler/configuration/environments) specified as `$ENVIRONMENT_NAME` | Optional |
+
 To use this command, the following fields are required in your `wrangler.toml`.
 
-| Key        | Value                                                                     | Example                                           |
-| ---------- | ------------------------------------------------------------------------- | ------------------------------------------------- |
-| name       | the name of your worker                                                   | `name = "your-worker"`                            |
-| type       | build type (webpack, rust, or javascript)                                 | `type = "webpack"`                                |
-| account_id | your Cloudflare account ID, this can be found in the Cloudflare dashboard | `account_id = "a655bacaf2b4cad0e2b51c5236a6b974"` |
+| Key          | Value                                                        | Example                                          |
+| ------------ | ------------------------------------------------------------ | ------------------------------------------------ |
+| `name`       | the name of your worker                                      | `name = "your-worker"`                           |
+| `type`       | build type (webpack, rust, or javascript)                    | `type = "webpack"`                               |
+| `account_id` | your Cloudflare account ID, this can be found in the Cloudflare dashboard | `account_id = "a655bacaf2b4cad0e2b51c5236a6b974" |
 
 From here, you have two options, you can choose to publish to your own domain or you can choose to publish to [\<your-worker\>.\<your-subdomain\>.workers.dev](https://workers.dev).
 
@@ -99,27 +102,27 @@ From here, you have two options, you can choose to publish to your own domain or
 If you want to publish to [workers.dev](https://workers.dev), you will first need to have a [workers.dev](https://workers.dev) subdomain registered. You can register a subdomain by executing:
 
 ```bash
-  wrangler subdomain $name
+wrangler subdomain $NAME
 ```
 
-| Key     | Value                                                        |
+|         | Definition                                                   |
 | ------- | ------------------------------------------------------------ |
-| `$name` | Name of the workers.dev subdomain you wish to deploy to (e.g. `name.workers.dev`) |
+| `$NAME` | Name of the workers.dev subdomain you wish to deploy to (e.g. `name.workers.dev`) |
 
 After you have registered a subdomain, add `workers_dev` to your `wrangler.toml`.
 
-| Key         | Value | Example              |
-| ----------- | ----- | -------------------- |
-| workers_dev | true  | `workers_dev = true` |
+| Key           | Value | Example              |
+| ------------- | ----- | -------------------- |
+| `workers_dev` | true  | `workers_dev = true` |
 
 #### Publishing to your own domain
 
 If you would like to publish to your own domain, you will need to specify these three fields in your `wrangler.toml`.
 
-| Key             | Value                                     | Example                                                                                           |
-| --------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| zone_id         | Your Cloudflare zone ID\*                 | `zone_id = "b6558acaf2b4cad1f2b51c5236a6b972"`                                                    |
-| route OR routes | The route(s) you would like to publish to | `route = "example.com/my-worker/*"` or <br /> `routes = ["example.com/foo/*", example.com/bar/*]` |
+| Key                 | Value                                     | Example                                                                                           |
+| ------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `zone_id`           | Your Cloudflare zone ID\*                 | `zone_id = "b6558acaf2b4cad1f2b51c5236a6b972"`                                                    |
+| `route` OR `routes` | The route(s) you would like to publish to | `route = "example.com/my-worker/*"` or <br /> `routes = ["example.com/foo/*", example.com/bar/*]` |
 
 \*Note: Your Cloudflare Zone ID can be found in the [Cloudflare dashboard](https://dash.cloudflare.com).
 
@@ -148,59 +151,37 @@ If you have feedback about `wrangler dev` or general questions, we will respond 
 Starts a log tailing session for a deployed Worker.
 
 ```bash
-wrangler tail [--port  PORT] [--metrics-port PORT]
+wrangler tail [--port  $PORT] [--metrics-port $PORT]
 ```
+
+| Key                    | Value                                                                                                                                   |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `--port $PORT`         | the port for your local log server                                                                                                      |
+| `--metrics-port $PORT` | the port for serving [metrics information](https://developers.cloudflare.com/argo-tunnel/reference/arguments/#metrics) about the tunnel |
+
+After starting `wrangler tail` in a directory with a project, you will receive a live feed of console and exception logs for each request your Worker receives.
+
+Like all Wrangler commands, run `wrangler tail` from your Worker's root directory (i.e. the directory with your `wrangler.toml`).
 
 #### Dependencies
 
 Wrangler tail uses cloudflared under the hood. If you are already using cloudflared, be sure you have installed the latest version. Otherwise, follow the [getting started guide](https://developers.cloudflare.com/argo-tunnel/quickstart/) for Argo Tunnel.
 `wrangler tail` will register a tailing session for your Worker, and start a server on `localhost` with a [tunnel](https://developers.cloudflare.com/argo-tunnel/quickstart/) that listens for incoming log requests from your Worker.
 
-#### Usage
-
-After starting `wrangler tail` in a directory with a project, you will receive a live feed of console and exception logs for each request your Worker receives.
-
-Like all Wrangler commands, run `wrangler tail` from your Worker's root directory (i.e. the directory with your `wrangler.toml`).
-
-## Optional Flags
-
-- `--port PORT`: the port for your local log server
-- `--metrics-port PORT`: the port for serving [metrics information](https://developers.cloudflare.com/argo-tunnel/reference/arguments/#metrics) about the tunnel.
-
 ### preview
 
 Preview your project using the [Cloudflare Workers preview service](https://cloudflareworkers.com/).
 
-By default, `wrangler preview` will only bundle your project a single time. To enable live preview,
-where Wrangler will continually update the preview service with the newest version of your project,
-pass the `--watch` flag:
-
 ```bash
-wrangler preview --watch
+wrangler preview [--watch] [--env $ENVIRONMENT_NAME] [ --url $URL] [$METHOD] [$BODY]
 ```
 
-You can optionally pass `get` or `post` and a `body` to this command. This will send a request to your
-worker on the preview service and return the response in your terminal. For example:
-
-GET requests can be sent with
-
-```bash
-wrangler preview
-```
-
-or
-
-```bash
-wrangler preview get
-```
-
-POST requests can be sent with
-
-```bash
-wrangler preview post hello=hello
-```
-
-Additionally, you can preview different environments. This is useful if you have different builds for different environments (like staging vs. production), but typically isn't needed. For more information see the [environments documentation](/tooling/wrangler/configuration/environments).
+|           |                                                              | Optional    | Default value                                                |
+| --------- | ------------------------------------------------------------ | ----------- | ------------------------------------------------------------ |
+| `--env`   | Perform on a specific [environment](/tooling/wrangler/configuration/environments) specified as `$ENVIRONMENT_NAME` | Optional    | The top level environment                                    |
+| `--watch` | Enable live preview, so on changes Wrangler will continually update the preview service with the newest version of your project | Recommended | By default, `wrangler preview` will only bundle your project a single time. |
+| `$METHOD` | Type of request to preview your worker with (get, post)      | Optional    | GET                                                          |
+| `$BODY`   | Body string to post to your preview worker request. For example `wrangler preview post hello=hello` | Optional    | Null                                                         |
 
 #### Previewing on Windows Subsytem for Linux (WSL 1/2)
 
@@ -225,18 +206,23 @@ If you're using WSL 2, you will need to install `wsl-open` via their [standalone
 List or delete a route associated with a zone:
 
 ```bash
-wrangler route list
+wrangler route list [--env $ENVIRONMENT_NAME]
 ```
+
+|         |                                                              | Optional |
+| ------- | ------------------------------------------------------------ | -------- |
+| `--env` | Perform on a specific [environment](/tooling/wrangler/configuration/environments) specified as `$ENVIRONMENT_NAME` | Optional |
 
 Will return a json response from the [List Routes API](/tooling/api/routes/#list-routes). Each entry includes the route id, pattern, and associated Worker name for a route. Piping this through a tool such as `jq` will pretty up the output.
 
 ```bash
-wrangler route delete longhashedrouteid
+wrangler route delete $ID [--env $ENVIRONMENT_NAME]
 ```
 
-Will remove the route specified by the indicated route id. Route IDs can be found by running the list routes command (above).
-
-Both commands accept a `--env` flag in case you are working on a project that spans zones. For more information see the [environments documentation](/tooling/wrangler/configuration/environments).
+|         |                                                              | Optional |
+| ------- | ------------------------------------------------------------ | -------- |
+| `--env` | Perform on a specific [environment](/tooling/wrangler/configuration/environments) specified as `$ENVIRONMENT_NAME` | Optional |
+| \$ID    | The hash of the route ID to delete                           | Required |
 
 ### kv
 
