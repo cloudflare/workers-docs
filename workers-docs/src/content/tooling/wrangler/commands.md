@@ -173,14 +173,14 @@ If you would like to be able to publish your code to multiple places, please see
   ```shell
   wrangler tail | jq -r \
        '# loop through all logs
-    .logs[] as $o |
+    .logs[] as $log |
         # loop through messages in each log
-    $o.message[] as $m |
+    $log.message[] as $message |
         # set variables for clarity in format string
     .event.request.headers."cf-connecting-ip" as $ip |
-    ($o.timestamp / 1000 | todate) as $datetime |
+    ($log.timestamp / 1000 | todate) as $datetime |
         # Format the output
-    "[\($datetime)][\($o.level)][\($ip)] \($m)"'
+    "[\($datetime)][\($log.level)][\($ip)] \($message)"'
   ``` 
   
   Output:
