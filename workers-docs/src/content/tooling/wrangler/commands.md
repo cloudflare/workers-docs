@@ -164,6 +164,31 @@ If you would like to be able to publish your code to multiple places, please see
    * `--port PORT`: the port for your local log server
    * `--metrics-port PORT`: the port for serving [metrics information](https://developers.cloudflare.com/argo-tunnel/reference/arguments/#metrics) about the tunnel.
 
+#### Parsing with jq
+
+`wrangler tail` outputs each request as a JSON object, making it difficult to read directly. Parsing requests with [jq](https://stedolan.github.io/jq) makes it easy to pretty-print with colorization, as well as select and format output as needed.
+
+  For example, this `jq` command will flatten `console.log()` statements:
+
+  ```shell
+  wrangler tail | jq -r \
+       '# loop through all logs
+    .logs[] as $log |
+        # loop through messages in each log
+    $log.message[] as $message |
+        # set variables for clarity in format string
+    .event.request.headers."cf-connecting-ip" as $ip |
+    ($log.timestamp / 1000 | todate) as $datetime |
+        # Format the output
+    "[\($datetime)][\($log.level)][\($ip)] \($message)"'
+  ``` 
+  
+  Output:
+  ```
+  [2020-06-06T18:59:55Z][log][1.2.3.4] a log message
+  [2020-06-06T18:59:55Z][log][1.2.3.4] another log message
+  ```
+
 ### preview
 
   Preview your project using the [Cloudflare Workers preview service](https://cloudflareworkers.com/).
