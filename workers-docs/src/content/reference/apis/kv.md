@@ -119,6 +119,8 @@ namespace you've bound to your script:
 The method returns a promise you can `await` to get the value. If the key
 is not found, the promise will resolve with the literal value `null`.
 
+Changes may take up to 60 seconds to be visible when reading key-value pairs.
+
 Here's an example of reading a key from within a Worker:
 
 ```js
@@ -213,6 +215,8 @@ async function handleRequest(request) {
 ```
 
 You can also [list keys on the command line with Wrangler](/tooling/wrangler/kv_commands/#kv-key) or [via the API](https://api.cloudflare.com/#workers-kv-namespace-list-a-namespace-s-keys).
+
+Changes may take up to 60 seconds to be visible when listing keys.
 
 ## More detail
 
