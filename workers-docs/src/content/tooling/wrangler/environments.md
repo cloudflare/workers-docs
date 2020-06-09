@@ -12,39 +12,13 @@ weight: 3
 
 Environments is a feature that allows you to deploy the same project to multiple places under multiple names. These environments are utilized with the `--env` or `-e` flag on `wrangler build`, `wrangler preview`, and `wrangler publish`.
 
-## Concepts
-
-"top level configuration" refers to the configuration values you specify at the top of your `wrangler.toml`
-"environment configuration" refers to the configuration values you specify under an `[env.name]` in your `wrangler.toml`
-
-Here is an example `wrangler.toml` to illustrate
-
-```toml
-# top level configuration
-type = "webpack"
-name = "my-worker-dev"
-account_id = "12345678901234567890"
-zone_id = "09876543210987654321"
-route = "dev.example.com/*"
-
-# environment configuration
-[env.staging]
-name = "my-worker-staging"
-route = "staging.example.com/*"
-
-# environment configuration
-[env.production]
-name = "my-worker"
-route = "example.com/*"
-```
-
 ## Usage
 
-The most common use case for environments is deploying to a staging subdomain before your production environment. `wrangler publish` will look at your top level configuration, and you can specify other environments beneath it. Each of these environments will inherit the values from the top level configuration if they are not specified, with the following caveats.
+The most common use case for environments is deploying to a staging subdomain before your production environment. `wrangler publish` will look at your top level configuration, and you can specify other environments beneath it. For details on what keys are inherited see [`wrangler.toml` configuration](/tooling/wrangler/configuration#keys).
 
-- `type` will always be inherited from the top-level configuration; you cannot specify different types for different environments.
-- Fields that can be inherited from the top level are `account_id`, `zone_id`, `workers_dev`, and `webpack_config`. `kv_namespaces` and `route` must be defined for each environment and will not be inherited.
-- `name` is inherited. If left out of the environment configuration, a Worker project named `my-worker` with an environment `[env.dev]` would become `my-worker-dev`.
+### Naming
+
+You cannot specify multiple environments with the same name. If this were allowed, publishing each environment would overwrite your previously deployed worker, and the behavior would not be clear. For this reason wrangler appends the environment name to the top-level name to publish a Worker script. For example, a Worker project named `my-worker` with an environment `[env.dev]` would become `my-worker-dev`.
 
 ### Examples
 
