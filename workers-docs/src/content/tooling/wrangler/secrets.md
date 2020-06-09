@@ -14,7 +14,7 @@ Enter the secret text you'd like assigned to the variable name on the script nam
 ```
 
 - `name`: the variable name to be accessible in the script
-- `--env`: (optional) binds the secret to the script of the specific [environment](/tooling/wrangler/configuration/environments/)
+- `--env`: (optional) binds the secret to the script of the specific [environment](/tooling/wrangler/environments/)
 
 ### `delete`
 
@@ -25,7 +25,7 @@ wrangler secret delete <name> --env ENVIRONMENT_NAME
 ```
 
 - `name`: the variable name to be accessible in the script
-- `--env`: (optional) binds the secret to the script of the specific [environment](/tooling/wrangler/configuration/environments/)
+- `--env`: (optional) binds the secret to the script of the specific [environment](/tooling/wrangler/environments/)
 
 ### `list`
 
@@ -35,4 +35,4 @@ List all the secret names bound to a specific script
 wrangler secret list --env ENVIRONMENT_NAME
 ```
 
-- `--env`: (optional) binds the secret to the script of the specific [environment](/tooling/wrangler/configuration/environments/)
+- `--env`: (optional) binds the secret to the script of the specific [environment](/tooling/wrangler/environments/)
