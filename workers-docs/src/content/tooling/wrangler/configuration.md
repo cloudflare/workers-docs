@@ -62,7 +62,7 @@ You can also specify or override the Zone ID used by `wrangler publish` with the
 
 ## wrangler.toml
 
-Your project will need to have several keys configured before you can publish your worker. These values are stored in a `wrangler.toml`file. You will need to manually edit this file to add these values before you can publish.
+Your project will need some configuration before you can publish your worker. These values are stored in a `wrangler.toml` file. You will need to manually edit this file to add these values before you can publish.
 
 For all configurable fields, see the [table](#keys) below.
 
@@ -80,7 +80,7 @@ Environments is a feature that allows you to deploy the same project to multiple
 - `preview`
 - `publish`
 
-Environment keys can be [*inherited*](#keys) from the top level configure, but if specified trumps top level specificity. 
+Some environment properties can be [*inherited*](#keys) from the top level configuration, but values in an environment will always override those at the top level. 
 
 ### Example
 
@@ -169,7 +169,7 @@ Note: Using secrets should be handled using [wrangler secret](/tooling/wrangler/
 Usage:
 
 ```toml
-kv-namespaces = [
+kv_namespaces = [
     { binding = "FOO", id = "0f2ac74b498b48028cb68387c421e279" },
     { binding = "BAR", id = "068c101e168d03c65bddf4ba75150fb0" }
 ]
@@ -180,13 +180,13 @@ kv-namespaces = [
 | `binding` | After you've created a namespace, you must bind it to your Worker  so it is accessible from within the Worker script via a variable name you specify. | Yes      |
 | `id`      | The ID of the namespace you wish to attach to the Worker     | Yes      |
 
-Note: Creating your KV Namespaces should be handled using Wrangler's [KV Commands](/tooling/wrangler/kv_commands). 
+Note: Creating your KV Namespaces can be handled using Wrangler's [KV Commands](/tooling/wrangler/kv_commands). 
 
-You can also define your `kv-namespaces` using [alternative TOML syntax](https://github.com/toml-lang/toml#user-content-table).
+You can also define your `kv_namespaces` using [alternative TOML syntax](https://github.com/toml-lang/toml#user-content-table).
 
 #### site
 
-A [Worker site](/sites) normally generated through [`wrangler generate --site`](/tooling/wrangler/commands/#generate) or [`wrangler init --site`](/tooling/wrangler/commands/#init).
+A [Workers Site](/sites) generated with [`wrangler generate --site`](/tooling/wrangler/commands/#generate) or [`wrangler init --site`](/tooling/wrangler/commands/#init).
 
 Usage:
 
@@ -209,7 +209,7 @@ You can also define your `site` using [alternative TOML syntax](https://github.c
 
 ##### Storage Limits
 
-For very exceptionally large pages, Workers Sites might not work for you. There is a 10MB limit per page or file.
+For very exceptionally large pages, Workers Sites might not work for you. There is a 10MB limit per page or file. Additionally, Wrangler will create an asset manifest for your files that will count towards your script's size limit. If you have too many files, you may not be able to use Workers Sites.
 
 ##### Ignoring Subsets of Static Assets
 

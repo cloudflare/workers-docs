@@ -1,6 +1,6 @@
 ---
 title: Commands
-weight: 1
+weight: 2
 ---
 
 - [👯 `generate`](#generate)
@@ -20,32 +20,31 @@ weight: 1
 
 ### generate
 
-Scaffold a project, including boilerplate for a Rust library and a Cloudflare Worker.
-You can pass a name and template to this command optionally.
+Scaffold a Cloudflare Workers project from a public GitHub repository.
 
 ```bash
-wrangler generate [$NAME] [$TEMPLATE] [--type=${"webpack" | "javascript" | "rust"}] [--site]
+wrangler generate [$NAME] [$TEMPLATE] [--type=$TYPE] [--site]
 ```
 
 |             |                                                              | Optional | Default value                                                |
 | ----------- | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
 | `$NAME`     | Name of Worker                                               | Optional | "worker"                                                     |
-| `$TEMPLATE` | Github URL of the template to base new project off of        | Optional | [`worker-template`](https://github.com/cloudflare/worker-template) |
-| `--type`    | Type of project                                              | Optional | "webpack"                                                    |
+| `$TEMPLATE` | GitHub URL of the template to base new project off of        | Optional | [`worker-template`](https://github.com/cloudflare/worker-template) |
+| `--type`    | Type of project. Acceptable values:"webpack", "javascript", or "rust"  | Optional | "webpack"                                                    |
 | `--site`    | Same of `template` but based off of default [site template](https://github.com/cloudflare/worker-sites-template) | Optional | N/A                                                          |
 
 ### init
 
-Creates a skeleton `wrangler.toml` in an existing directory. This can be used as an alternative to `generate` if you prefer to clone a repository yourself.
+Creates a skeleton `wrangler.toml` in an existing directory. This can be used as an alternative to `generate` if you prefer to clone a template repository yourself, or you already have a JavaScript project and you'd like to use Wrangler.
 
 ```bash
-wrangler init [$NAME] [--type=${"webpack" | "javascript" | "rust"}] [--site]
+wrangler init [$NAME] [--type=$TYPE] [--site]
 ```
 
 |          |                                          | Optional | Default value                 |
 | -------- | ---------------------------------------- | -------- | ----------------------------- |
 | `$NAME`  | Name of Worker                           | Optional | The name of working directory |
-| `--type` | Type of project                          | Optional | "webpack"                     |
+| `--type` | Type of project. Acceptable values:"webpack", "javascript", or "rust"  | Optional | "webpack"                     |
 | `--site` | Initiates the project to a Workers site. | Optional | N/A                           |
 
 ### build
