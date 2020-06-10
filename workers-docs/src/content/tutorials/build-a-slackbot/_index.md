@@ -1,5 +1,5 @@
 ---
-title: Build an Application
+title: Build a Slackbot
 weight: 2
 ---
 
