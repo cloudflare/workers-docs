@@ -32,6 +32,7 @@ export const newDocsMap = new Map([
   ['/reference/runtime/apis/encoding', '/reference/apis/encoding'],
   ['/reference/runtime/apis/fetch-event', '/reference/apis/fetch-event'],
   ['/reference/runtime/apis/fetch', '/reference/apis/fetch'],
+  ['/reference/runtime/apis/fetch#headers', '/reference/apis/request#constructor-parameters'],
   ['/reference/runtime/apis/standard', '/reference/apis/standard'],
   ['/reference/runtime/apis/streams', '/reference/apis/streams'],
   ['/reference/runtime/apis/web-crypto', '/reference/apis/web-crypto'],

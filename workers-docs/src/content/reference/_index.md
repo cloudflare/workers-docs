@@ -7,8 +7,11 @@ weight: 7
 ### Runtime APIs
 
 - [Web Standards](/reference/apis/standard)
-- [Fetch](/reference/apis/fetch)
+- [fetch()](/reference/apis/fetch)
 - [FetchEvent](/reference/apis/fetch-event)
+- [addEventListener()](/reference/apis/addEventListener)
+- [Request](/reference/apis/request)
+- [Response](/reference/apis/response)
 - [Cache](/reference/apis/cache)
 - [Streams](/reference/apis/streams)
 - [Encoding](/reference/apis/encoding)
