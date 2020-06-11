@@ -1,3 +1,4 @@
+# Cloudflare Workers Documentation
 - [Install](#install)
 - [Short Method](#short-method)
 - [Preview](#preview)
@@ -9,7 +10,6 @@
 - [Releasing](#releasing)
 - [Contributing](#contributing)
 
-# Cloudflare Workers Documentation
 
 This project contains the static website content for the [Cloudflare Workers documentation](https://developers.cloudflare.com/workers/).
 
@@ -106,10 +106,10 @@ Will build the static files using the source code of `cloudflare-docs-theme` and
 
 # Releasing
 
-Releasing done through CI for whatever is on master or staging
+Upon a merge, the tip of the `master` branch is deployed by a Github Action to https://developers.cloudflare.com/workers/ . 
 
 ## Contributing
 
-This repo is overseen by the Workers Productivity team. Check out our contribution guide at [CONTRIBUTING.md](/CONTRIBUTING.md)!
+This repo is overseen by the Cloudflare Workers team. Check out our contribution guide at [CONTRIBUTING.md](/CONTRIBUTING.md)!
 
 To contribute to templates see [Template Contributing Guide](https://github.com/cloudflare/template-registry/blob/master/CONTRIBUTING.md).
