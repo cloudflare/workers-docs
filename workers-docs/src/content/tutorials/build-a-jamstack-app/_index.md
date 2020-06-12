@@ -217,8 +217,8 @@ async function handleRequest(request) {
   let data
 
   // Set data using cache or defaultData from previous section...
-
-  const body = html(JSON.stringify(data.todos))
+  // Escape JSON embedded into a <script> tag to prevent cross-site scripting.
+  const body = html(JSON.stringify(data.todos).replace(/</g, "\\u003c"))
   const response = new Response(body, {
     headers: { 'Content-Type': 'text/html' },
   })
