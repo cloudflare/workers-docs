@@ -44,7 +44,7 @@ There are a few specific configuration settings for Workers Sites in your `wrang
 
 To learn more about the optional `include` and `exclude` fields, visit [Ignoring Subsets of Static Assets](/tooling/wrangler/sites/#ignoring-subsets-of-static-assets).
 
-_Note: if your project uses [environments](/tooling/wrangler/configuration/environments), make sure to place `site` at the top level config._
+_Note: if your project uses [environments](/tooling/wrangler/environments), make sure to place `site` at the top level config._
 
 Example of a `wrangler.toml`:
 

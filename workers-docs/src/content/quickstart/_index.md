@@ -291,7 +291,7 @@ _Note: If you are pushing a new workers.dev Worker project you may initially see
 
 To publish your application on a domain you own (i.e. not a `workers.dev` subdomain), you can add a `route` key to your `wrangler.toml`.
 
-Wrangler's ["environments"](/tooling/wrangler/configuration/environments) feature allows us to specify multiple different deploy targets for our application. Let's add a `production` environment, passing in a `route` and `zone_id` to deploy to a specific domain:
+Wrangler's ["environments"](/tooling/wrangler/environments) feature allows us to specify multiple different deploy targets for our application. Let's add a `production` environment, passing in a `route` and `zone_id` to deploy to a specific domain:
 
 ```toml
 # wrangler.toml
@@ -319,7 +319,7 @@ wrangler publish --env production # Publish to example.com
 wrangler publish                  # Publish to workers.dev
 ```
 
-For more information on environments, check out the [Wrangler documentation](/tooling/wrangler/configuration/environments).
+For more information on environments, check out the [Wrangler documentation](/tooling/wrangler/environments).
 
 # Learn More
 

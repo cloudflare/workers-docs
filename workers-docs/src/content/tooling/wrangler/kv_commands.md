@@ -64,7 +64,7 @@ $ wrangler kv:key put --namespace-id=e29b263ab50e42ce9b637fa8370175e8 "key" "val
 ✨  Success
 ```
 
-Additionally, KV namespaces can be used with [environments](/tooling/wrangler/configuration/environments)! This is useful for when you have code that refers to
+Additionally, KV namespaces can be used with [environments](/tooling/wrangler/environments)! This is useful for when you have code that refers to
 a KV binding like `MY_KV`, and you want to be able to have these bindings point to different namespaces (like
 one for staging and one for production). So, if you have a `wrangler.toml` with two environments:
 
@@ -129,7 +129,7 @@ With the wrangler.toml above, you can specify `--env production` when you want t
 wrangler kv:key get --binding "MY_KV" --env=production "my key"
 ```
 
-To learn more about environments, check out the [environments documentation](/tooling/wrangler/configuration/environments).
+To learn more about environments, check out the [environments documentation](/tooling/wrangler/environments).
 
 <span id="kv-namespace"></span>
 
@@ -139,7 +139,7 @@ To learn more about environments, check out the [environments documentation](/to
 
 Creates a new namespace.
 
-Takes an optional `--env` [environment](/tooling/wrangler/configuration/environments) argument.
+Takes an optional `--env` [environment](/tooling/wrangler/environments) argument.
 
 #### Usage
 
@@ -187,7 +187,7 @@ Deletes a given namespace.
 
 Requires `--binding` or `--namespace-id` argument.
 
-Takes an optional `--env` [environment](/tooling/wrangler/configuration/environments) argument.
+Takes an optional `--env` [environment](/tooling/wrangler/environments) argument.
 
 #### Usage
 
@@ -211,7 +211,7 @@ Requires `--binding` or `--namespace-id` argument.
 
 Optional params include:
 
-1. `--env`: The [environment](/tooling/wrangler/configuration/environments) argument.
+1. `--env`: The [environment](/tooling/wrangler/environments) argument.
 1. `--ttl`: Number of seconds for which the entries should be visible before they expire. At least 60. Takes precedence over 'expiration' option.
 1. `--expiration`: Number of seconds since the UNIX epoch, indicating when the key-value pair should expire.
 1. `--path`: Read value from the file at a given path. *This is good for security-sensitive operations, like uploading keys to KV; uploading from a file prevents a key value from being saved in areas like your terminal history.*
@@ -238,7 +238,7 @@ Requires `--binding` or `--namespace-id` argument.
 
 Optional params include:
 
-1. `--env`: The [environment](/tooling/wrangler/configuration/environments) argument.
+1. `--env`: The [environment](/tooling/wrangler/environments) argument.
 1. `--prefix`: A prefix to filter listed keys.
 
 #### Usage
@@ -266,7 +266,7 @@ Reads a single value by key from the given namespace.
 
 Requires `--binding` or `--namespace-id` argument.
 
-Takes an optional `--env` [environment](/tooling/wrangler/configuration/environments) argument.
+Takes an optional `--env` [environment](/tooling/wrangler/environments) argument.
 
 #### Usage
 
@@ -281,7 +281,7 @@ Removes a single key value pair from the given namespace.
 
 Requires `--binding` or `--namespace-id` argument.
 
-Takes an optional `--env` [environment](/tooling/wrangler/configuration/environments) argument.
+Takes an optional `--env` [environment](/tooling/wrangler/environments) argument.
 
 #### Usage
 
@@ -326,7 +326,7 @@ The schema below is the full schema for key-value entries uploaded via the bulk 
 
 If both `expiration` and `expiration_ttl` are specified for a given key, the API will prefer `expiration_ttl`.
 
-The `put` command also takes an optional `--env` [environment](/tooling/wrangler/configuration/environments) argument.
+The `put` command also takes an optional `--env` [environment](/tooling/wrangler/environments) argument.
 
 #### Usage
 
@@ -355,7 +355,7 @@ Takes as an argument a JSON file with a list of key-value pairs to delete (see J
 ]
 ```
 
-The `delete` command also takes an optional `--env` [environment](/tooling/wrangler/configuration/environments) argument.
+The `delete` command also takes an optional `--env` [environment](/tooling/wrangler/environments) argument.
 
 #### Usage
 

@@ -25,6 +25,7 @@ export const newDocsMap = new Map([
   ['/reference/tooling/playground', '/tooling/playground'],
   ['/reference/tooling/api', '/tooling/api'],
   ['/reference/tooling/wrangler', '/tooling/wrangler'],
+  ['/tooling/wrangler/configuration/environments', '/tooling/wrangler/environments'],
   ['/reference/tooling/serverless', '/tooling/serverless'],
 
   ['/reference/runtime/apis', '/reference/apis/'],
