@@ -30,18 +30,15 @@ whose title is a concatenation of your Worker's name (from `wrangler.toml`) and 
 
 ```console
 $ wrangler kv:namespace create "MY_KV"
-🌀  Creating namespace with title "worker-MY_KV"
-✨  Success: WorkersKvNamespace {
-    id: "e29b263ab50e42ce9b637fa8370175e8",
-    title: "worker-MY_KV",
-}
-✨  Add the following to your wrangler.toml:
-kv-namespaces = [
+🌀  Creating namespace with title "my-site-MY_KV"
+✨  Success!
+Add the following to your wrangler.toml:
+kv_namespaces = [
          { binding = "MY_KV", id = "e29b263ab50e42ce9b637fa8370175e8" }
 ]
 ```
 
-Make sure to add the `kv-namespaces` output above to your `wrangler.toml`. You can now
+Make sure to add the `kv_namespaces` output above to your `wrangler.toml`. You can now
 access it from a Worker with code like:
 
 ```js
@@ -70,17 +67,18 @@ one for staging and one for production). So, if you have a `wrangler.toml` with 
 
 ```toml
 [env.staging]
-kv-namespaces = [
+kv_namespaces = [
          { binding = "MY_KV", id = "e29b263ab50e42ce9b637fa8370175e8" }
 ]
 
 [env.production]
-kv-namespaces = [
+kv_namespaces = [
          { binding = "MY_KV", id = "a825455ce00f4f7282403da85269f8ea" }
 ]
 ```
 
 To insert a value into a specific KV namespace, you can use
+
 ```console
 $ wrangler kv:key put --env=staging --binding=MY_MV "key" "value"
 ✨  Success
@@ -98,6 +96,7 @@ Most `kv` commands require you to specify a namespace. A namespace can be specif
     ```sh
     wrangler kv:key get --binding=MY_KV "my key"
     ```
+    - This can be combined with `--preview` flag to interact with a preview namespace instead of a production namespace
 1. With a `--namespace_id`:
     ```sh
     wrangler kv:key get --namespace-id=06779da6940b431db6e566b4846d64db "my key"
@@ -112,13 +111,13 @@ account_id = "<account id here>"
 route = "staging.example.com/*"
 workers_dev = false
 
-kv-namespaces = [
+kv_namespaces = [
     { binding = "MY_KV", id = "06779da6940b431db6e566b4846d64db" }
 ]
 
 [env.production]
 route = "example.com/*"
-kv-namespaces = [
+kv_namespaces = [
     { binding = "MY_KV", id = "07bc1f3d1f2a4fd8a45a7e026e2681c6" }
 ]
 ```
@@ -139,20 +138,26 @@ To learn more about environments, check out the [environments documentation](/to
 
 Creates a new namespace.
 
-Takes an optional `--env` [environment](/tooling/wrangler/environments) argument.
+Takes an optional `--env` [environment](/tooling/wrangler/environments) argument and an optional `--preview` argument.
 
 #### Usage
 
 ```console
 $ wrangler kv:namespace create "MY_KV"
 🌀  Creating namespace with title "worker-MY_KV"
-✨  Success: WorkersKvNamespace {
-    id: "e29b263ab50e42ce9b637fa8370175e8",
-    title: "worker-MY_KV",
-}
 ✨  Add the following to your wrangler.toml:
-kv-namespaces = [
+kv_namespaces = [
          { binding = "MY_KV", id = "e29b263ab50e42ce9b637fa8370175e8" }
+]
+```
+
+```console
+$ wrangler kv:namespace create "MY_KV" --preview
+🌀  Creating namespace with title "my-site-MY_KV_preview"
+✨  Success!
+Add the following to your wrangler.toml:
+kv_namespaces = [
+         { binding = "MY_KV", preview_id = "15137f8edf6c09742227e99b08aaf273" }
 ]
 ```
 
@@ -187,7 +192,7 @@ Deletes a given namespace.
 
 Requires `--binding` or `--namespace-id` argument.
 
-Takes an optional `--env` [environment](/tooling/wrangler/environments) argument.
+Takes an optional `--env` [environment](/tooling/wrangler/environments) argument and an optional `--preview` argument.
 
 #### Usage
 
@@ -198,6 +203,15 @@ yes
 🌀  Deleting namespace f7b02e7fc70443149ac906dd81ec1791
 ✨  Success
 ```
+
+```console
+$ wrangler kv:namespace delete --binding=MY_KV --preview
+Are you sure you want to delete namespace 15137f8edf6c09742227e99b08aaf273? [y/n]
+yes
+🌀  Deleting namespace 15137f8edf6c09742227e99b08aaf273
+✨  Success
+```
+
 </span>
 <span id="kv-key">
 
@@ -211,12 +225,23 @@ Requires `--binding` or `--namespace-id` argument.
 
 Optional params include:
 
+1. `--preview`: Pass this to use your `wrangler.toml`'s `kv_namespaces.preview_id` instead of `kv_namespaces.id`
 1. `--env`: The [environment](/tooling/wrangler/environments) argument.
 1. `--ttl`: Number of seconds for which the entries should be visible before they expire. At least 60. Takes precedence over 'expiration' option.
 1. `--expiration`: Number of seconds since the UNIX epoch, indicating when the key-value pair should expire.
 1. `--path`: Read value from the file at a given path. *This is good for security-sensitive operations, like uploading keys to KV; uploading from a file prevents a key value from being saved in areas like your terminal history.*
 
 #### Usage
+
+```console
+$ wrangler kv:key put --binding=MY_KV "key" "value"
+✨  Success
+```
+
+```console
+$ wrangler kv:key put --binding=MY_KV --preview "key" "value"
+✨  Success
+```
 
 ```console
 $ wrangler kv:key put --binding=MY_KV "key" "value" --ttl=10000
@@ -227,6 +252,7 @@ $ wrangler kv:key put --binding=MY_KV "key" "value" --ttl=10000
 $ wrangler kv:key put --binding=MY_KV "key" value.txt --path
 ✨  Success
 ```
+
 </span>
 <span id="kv-list">
 
@@ -266,7 +292,10 @@ Reads a single value by key from the given namespace.
 
 Requires `--binding` or `--namespace-id` argument.
 
-Takes an optional `--env` [environment](/tooling/wrangler/environments) argument.
+Optional params include:
+
+1. `--preview`: Pass this to use your `wrangler.toml`'s `kv_namespaces.preview_id` instead of `kv_namespaces.id`
+1. `--env`: The [environment](/tooling/wrangler/environments) argument.
 
 #### Usage
 
@@ -281,7 +310,10 @@ Removes a single key value pair from the given namespace.
 
 Requires `--binding` or `--namespace-id` argument.
 
-Takes an optional `--env` [environment](/tooling/wrangler/environments) argument.
+Optional params include:
+
+1. `--preview`: Pass this to use your `wrangler.toml`'s `kv_namespaces.preview_id` instead of `kv_namespaces.id`
+1. `--env`: The [environment](/tooling/wrangler/environments) argument.
 
 #### Usage
 
@@ -326,7 +358,10 @@ The schema below is the full schema for key-value entries uploaded via the bulk 
 
 If both `expiration` and `expiration_ttl` are specified for a given key, the API will prefer `expiration_ttl`.
 
-The `put` command also takes an optional `--env` [environment](/tooling/wrangler/environments) argument.
+Optional params include:
+
+1. `--preview`: Pass this to use your `wrangler.toml`'s `kv_namespaces.preview_id` instead of `kv_namespaces.id`
+1. `--env`: The [environment](/tooling/wrangler/environments) argument.
 
 #### Usage
 
@@ -355,7 +390,10 @@ Takes as an argument a JSON file with a list of key-value pairs to delete (see J
 ]
 ```
 
-The `delete` command also takes an optional `--env` [environment](/tooling/wrangler/environments) argument.
+Optional params include:
+
+1. `--preview`: Pass this to use your `wrangler.toml`'s `kv_namespaces.preview_id` instead of `kv_namespaces.id`
+1. `--env`: The [environment](/tooling/wrangler/environments) argument.
 
 #### Usage
 

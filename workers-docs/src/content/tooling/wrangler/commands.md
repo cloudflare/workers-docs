@@ -142,6 +142,10 @@ From here you can send HTTP requests to `localhost:8787` and your Worker should 
 
 If you have feedback about `wrangler dev` or general questions, we will respond [here](https://github.com/cloudflare/wrangler/issues/1047).
 
+#### kv_namespaces
+
+If you are using [kv_namespaces](/tooling/wrangler/configuration/#kv_namespaces) with `wrangler dev`, you will need to specify a `preview_id` in your `wrangler.toml` before you can start the session. This is so that you do not accidentally write changes to your production namespace while you are developing. You may make `preview_id` equal to `id` if you would like to preview with your production namespace, but you should make sure that you are not writing things to KV that would break your production Worker.
+
 ### tail
 
 Starts a log tailing session for a deployed Worker.
@@ -177,7 +181,12 @@ wrangler preview [--watch] [--env $ENVIRONMENT_NAME] [ --url $URL] [$METHOD] [$B
 | `--env`   | Perform on a specific [environment](/tooling/wrangler/environments) specified as `$ENVIRONMENT_NAME` | Optional    | The top level environment                                    |
 | `--watch` | Enable live preview, so on changes Wrangler will continually update the preview service with the newest version of your project | Recommended | By default, `wrangler preview` will only bundle your project a single time. |
 | `$METHOD` | Type of request to preview your worker with (get, post)      | Optional    | GET                                                          |
-| `$BODY`   | Body string to post to your preview worker request. For example `wrangler preview post hello=hello` | Optional    | Null                                                         |
+| `$BODY`   | Body string to post to your preview worker request. For example `wrangler preview post hello=hello` | Optional    | Null    
+                                                     |
+
+#### kv_namespaces
+
+If you are using [kv_namespaces](/tooling/wrangler/configuration/#kv_namespaces) with `wrangler preview`, you will need to specify a `preview_id` in your `wrangler.toml` before you can start the session. This is so that you do not accidentally write changes to your production namespace while you are developing. You may make `preview_id` equal to `id` if you would like to preview with your production namespace, but you should make sure that you are not writing things to KV that would break your production Worker.
 
 #### Previewing on Windows Subsytem for Linux (WSL 1/2)
 
