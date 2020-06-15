@@ -2750,9 +2750,9 @@ export   const data: allMarkdownRemarkResult = {
               "showNew": null,
               "weight": null
             },
-            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/api/resource-bindings/kv-namespaces.md",
+            "fileAbsolutePath": "/Users/victoriabernard/my-repos/gatsby-site/src/content/archive/api/resource-bindings/kv_namespaces.md",
             "fields": {
-              "pathToServe": "/workers/archive/api/resource-bindings/kv-namespaces/",
+              "pathToServe": "/workers/archive/api/resource-bindings/kv_namespaces/",
               "parent": "/workers/archive/api/resource-bindings",
               "filePath": "undefined"
             }

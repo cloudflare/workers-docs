@@ -46,4 +46,4 @@ This can also be done from within the editor:
 &nbsp;
 
 Or, [via the API when you upload a
-script](/archive/api/resource-bindings/kv-namespaces/).
+script](/archive/api/resource-bindings/kv_namespaces/).

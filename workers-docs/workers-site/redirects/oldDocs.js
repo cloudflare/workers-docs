@@ -18,7 +18,7 @@ export const oldDocsMap = new Map([
   ['/api', '/tooling/api'],
   ['/api/config-api-for-enterprise', '/tooling/api'],
   ['/api/resource-bindings', '/tooling/api/bindings'],
-  ['/api/resource-bindings/kv-namespaces', '/reference/storage/api'],
+  ['/api/resource-bindings/kv_namespaces', '/reference/storage/api'],
   ['/api/resource-bindings/webassembly-modules', '/tooling/api/bindings'],
   ['/api/route-matching', '/about/routes'],
   ['/deploying-workers', '/tooling'],

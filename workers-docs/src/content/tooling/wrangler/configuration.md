@@ -93,6 +93,11 @@ name = "my-worker-dev"
 account_id = "12345678901234567890"
 zone_id = "09876543210987654321"
 route = "dev.example.com/*"
+kv_namespaces = [
+    { binding = "FOO", id = "gopa174b498b48028cb68387c421e279" },
+    { binding = "BAR", id = "10no301e168d03c65bddf4ba75150fb0" }
+]
+
 [site]
 bucket = "./public"
 entry-point = "workers-site"
