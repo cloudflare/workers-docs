@@ -784,7 +784,7 @@ The output of running that command will be a block of code that you can paste di
 
 ## ...existing wrangler.toml information
 
-kv-namespaces = [
+kv_namespaces = [
   { binding = "AUTH_STORE", id = "$YOURNAMESPACEID" }
 ]
 ```

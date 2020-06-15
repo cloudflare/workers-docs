@@ -200,12 +200,12 @@ name = "my-worker"
 type = "webpack"
 account_id = "12345678901234567890"
 workers_dev = true
-kv-namespaces = [
+kv_namespaces = [
     { binding = "KV", id = "06779da6940b431db6e566b4846d64db" }
 ]
 
 [env.production]
-kv-namespaces = [
+kv_namespaces = [
     { binding = "KV", id = "bd46d6484b665e6bd134b0496ad97760" }
 ]
 vars = {FOO = "some text"}

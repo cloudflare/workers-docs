@@ -36,12 +36,12 @@ $ wrangler kv:namespace create "MY_KV"
     title: "worker-MY_KV",
 }
 ✨  Add the following to your wrangler.toml:
-kv-namespaces = [
+kv_namespaces = [
          { binding = "MY_KV", id = "e29b263ab50e42ce9b637fa8370175e8" }
 ]
 ```
 
-Make sure to add the `kv-namespaces` output above to your `wrangler.toml`. You can now
+Make sure to add the `kv_namespaces` output above to your `wrangler.toml`. You can now
 access it from a Worker with code like:
 
 ```js
@@ -70,17 +70,18 @@ one for staging and one for production). So, if you have a `wrangler.toml` with 
 
 ```toml
 [env.staging]
-kv-namespaces = [
+kv_namespaces = [
          { binding = "MY_KV", id = "e29b263ab50e42ce9b637fa8370175e8" }
 ]
 
 [env.production]
-kv-namespaces = [
+kv_namespaces = [
          { binding = "MY_KV", id = "a825455ce00f4f7282403da85269f8ea" }
 ]
 ```
 
 To insert a value into a specific KV namespace, you can use
+
 ```console
 $ wrangler kv:key put --env=staging --binding=MY_MV "key" "value"
 ✨  Success
@@ -112,13 +113,13 @@ account_id = "<account id here>"
 route = "staging.example.com/*"
 workers_dev = false
 
-kv-namespaces = [
+kv_namespaces = [
     { binding = "MY_KV", id = "06779da6940b431db6e566b4846d64db" }
 ]
 
 [env.production]
 route = "example.com/*"
-kv-namespaces = [
+kv_namespaces = [
     { binding = "MY_KV", id = "07bc1f3d1f2a4fd8a45a7e026e2681c6" }
 ]
 ```
@@ -151,7 +152,7 @@ $ wrangler kv:namespace create "MY_KV"
     title: "worker-MY_KV",
 }
 ✨  Add the following to your wrangler.toml:
-kv-namespaces = [
+kv_namespaces = [
          { binding = "MY_KV", id = "e29b263ab50e42ce9b637fa8370175e8" }
 ]
 ```

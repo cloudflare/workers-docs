@@ -13,7 +13,7 @@ alwaysopen: true
   - [Example `wrangler.toml`](#example)
   - [Keys](#keys)
     - [vars](#vars)
-    - [kv-namespaces](#kv-namespaces)
+    - [kv_namespaces](#kv_namespaces)
     - [site](#site)
 
 There are three levels of configuration that `wrangler` uses: global user, project and environment.
@@ -101,7 +101,7 @@ entry-point = "workers-site"
 [env.staging]
 name = "my-worker-staging"
 route = "staging.example.com/*"
-kv-namespaces = [
+kv_namespaces = [
     { binding = "FOO", id = "0f2ac74b498b48028cb68387c421e279" },
     { binding = "BAR", id = "068c101e168d03c65bddf4ba75150fb0" }
 ]
@@ -109,7 +109,7 @@ kv-namespaces = [
 # environment configuration
 [env.production]
 workers_dev= true
-kv-namespaces = [
+kv_namespaces = [
     { binding = "FOO", id = "0d2ac74b498b48028cb68387c421e233" },
     { binding = "BAR", id = "0d8c101e168d03c65bddf4ba75150f33" }
 ]
@@ -138,7 +138,7 @@ Keys to configure per project in your `wrangler.toml`.
 | `routes`                          | Not Inherited                   | A list of routes you'd like to use your worker on. These follow exactly the same rules a `route`, but you can specify a list of them.<br />`routes = ["http://example.com/hello", "http://example.com/goodbye"]` | Optional \*\* |
 | `webpack_config`                  | Inherited                       | This is the path to a custom webpack configuration file for your worker. You must specify this field to use a custom webpack configuration, otherwise Wrangler will use a default configuration for you. You can read more [here](/tooling/wrangler/webpack). | Optional      |
 | [`vars`](#vars)                   | Not Inherited                   | An object containing text variables that can be directly accessed in a Worker script. See [environment variables](TODO:link). | Optional      |
-| [`kv-namespaces`](#kv-namespaces) | Not Inherited                   | These specify any [Workers KV](/reference/storage/) Namespaces you want to access from inside your Worker. Each namespace you include should have an entry in your `wrangler.toml` that includes: | Optional      |
+| [`kv_namespaces`](#kv_namespaces) | Not Inherited                   | These specify any [Workers KV](/reference/storage/) Namespaces you want to access from inside your Worker. Each namespace you include should have an entry in your `wrangler.toml` that includes: | Optional      |
 | [`site`](#site)                   | Not Inherited                   | Determines the local folder to upload and serve from a Worker | Optional      |
 
 \* This key is optional if you are using only a [workers.dev](https://workers.dev) subdomain.
@@ -162,7 +162,7 @@ vars = { FOO = "some value", BAR = "some other string" }
 
 Note: Using secrets should be handled using [wrangler secret](/tooling/wrangler/secret/). The `vars` definition in your `wrangler.toml` must not contain newlines in order to be valid TOML.
 
-#### kv-namespaces
+#### kv_namespaces
 
 [KV namespaces](/reference/apis/kv) to bind to your Worker and reference in your script.
 
