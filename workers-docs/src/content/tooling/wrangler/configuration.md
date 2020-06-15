@@ -94,8 +94,8 @@ account_id = "12345678901234567890"
 zone_id = "09876543210987654321"
 route = "dev.example.com/*"
 kv_namespaces = [
-    { binding = "FOO", id = "gopa174b498b48028cb68387c421e279" },
-    { binding = "BAR", id = "10no301e168d03c65bddf4ba75150fb0" }
+    { binding = "FOO", id = "b941aabb520e61dcaaeaa64b4d8f8358", preview_id = "03c8c8dd3b032b0528f6547d0e1a83f3" },
+    { binding = "BAR", id = "90e6f6abd5b4f981c748c532844461ae", preview_id = "e5011a026c5032c09af62c55ecc3f438" }
 ]
 
 [site]
@@ -143,7 +143,7 @@ Keys to configure per project in your `wrangler.toml`.
 | `routes`                          | Not Inherited                   | A list of routes you'd like to use your worker on. These follow exactly the same rules a `route`, but you can specify a list of them.<br />`routes = ["http://example.com/hello", "http://example.com/goodbye"]` | Optional \*\* |
 | `webpack_config`                  | Inherited                       | This is the path to a custom webpack configuration file for your worker. You must specify this field to use a custom webpack configuration, otherwise Wrangler will use a default configuration for you. You can read more [here](/tooling/wrangler/webpack). | Optional      |
 | [`vars`](#vars)                   | Not Inherited                   | An object containing text variables that can be directly accessed in a Worker script. See [environment variables](TODO:link). | Optional      |
-| [`kv_namespaces`](#kv_namespaces) | Not Inherited                   | These specify any [Workers KV](/reference/storage/) Namespaces you want to access from inside your Worker. Each namespace you include should have an entry in your `wrangler.toml` that includes: | Optional      |
+| [`kv_namespaces`](#kv_namespaces) | Not Inherited                   | These specify any [Workers KV](/reference/storage/) Namespaces you want to access from inside your Worker. | Optional      |
 | [`site`](#site)                   | Not Inherited                   | Determines the local folder to upload and serve from a Worker | Optional      |
 
 \* This key is optional if you are using only a [workers.dev](https://workers.dev) subdomain.
@@ -175,17 +175,18 @@ Usage:
 
 ```toml
 kv_namespaces = [
-    { binding = "FOO", id = "0f2ac74b498b48028cb68387c421e279" },
-    { binding = "BAR", id = "068c101e168d03c65bddf4ba75150fb0" }
+    { binding = "FOO", id = "0f2ac74b498b48028cb68387c421e279", preview_id = "6a1ddb03f3ec250963f0a1e46820076f" },
+    { binding = "BAR", id = "068c101e168d03c65bddf4ba75150fb0", preview_id = "fb69528dbc7336525313f2e8c3b17db0" }
 ]
 ```
 
 | Key       | Value                                                        | Required |
 | --------- | ------------------------------------------------------------ | -------- |
-| `binding` | After you've created a namespace, you must bind it to your Worker  so it is accessible from within the Worker script via a variable name you specify. | Yes      |
-| `id`      | The ID of the namespace you wish to attach to the Worker     | Yes      |
+| `binding`    | After you've created a namespace, you must bind it to your Worker  so it is accessible from within the Worker script via a variable name you specify. | Yes      |
+| `id`         | The ID of the namespace you wish to bind to the Worker's global scope when it is deployed    | Yes, for `wrangler publish`      |
+| `preview_id` | The ID of the namespace you wish to bind to the Worker's global scope when it is previewed | Yes, for `wrangler dev` and `wrangler preview` |
 
-Note: Creating your KV Namespaces can be handled using Wrangler's [KV Commands](/tooling/wrangler/kv_commands). 
+Note: Creating your KV Namespaces can be handled using Wrangler's [KV Commands](/tooling/wrangler/kv_commands).
 
 You can also define your `kv_namespaces` using [alternative TOML syntax](https://github.com/toml-lang/toml#user-content-table).
 
