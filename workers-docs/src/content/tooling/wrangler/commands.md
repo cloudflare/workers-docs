@@ -17,6 +17,7 @@ weight: 2
   - [Making it work with WSL](#making-preview-work-with-wsl2)
 - [🗂️ `kv`](#kv)
 - [🤫 `secret`](#secret)
+- [🌤️ `subdomain`](#subdomain)
 
 ### generate
 
@@ -96,13 +97,9 @@ To use this command, the following fields are required in your `wrangler.toml`.
 
 From here, you have two options, you can choose to publish to your own domain or you can choose to publish to [\<your-worker\>.\<your-subdomain\>.workers.dev](https://workers.dev).
 
-#### Subdomain
+#### Publishing to workers.dev
 
-If you want to publish to [workers.dev](https://workers.dev), you will first need to have a [workers.dev](https://workers.dev) subdomain registered. You can register a subdomain by executing:
-
-```bash
-wrangler subdomain $NAME
-```
+If you want to publish to [workers.dev](https://workers.dev), you will first need to have a subdomain registered. You can register a subdomain by executing the [subdomain](#subdomain) command.
 
 |         | Definition                                                   |
 | ------- | ------------------------------------------------------------ |
@@ -230,3 +227,13 @@ Interact with your Cloudflare Workers KV store. [Check out the docs.](/tooling/w
 ### secret
 
 Interact with your secrets. [Check out the docs.](/tooling/wrangler/secrets)
+
+### subdomain
+
+Create or change your [workers.dev](https://workers.dev) subdomain.
+
+```bash
+wrangler subdomain <name>
+```
+
+If you've already selected a workers.dev subdomain, running `wrangler subdomain <name>` will update all your currently running Workers to run on the new subdomain (e.g. `hello.world.workers.dev` will now run on `hello.new-world.workers.dev`).
