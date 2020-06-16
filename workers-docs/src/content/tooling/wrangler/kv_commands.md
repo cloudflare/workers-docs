@@ -385,7 +385,7 @@ Takes as an argument a JSON file with a list of key-value pairs to delete (see J
 [
     {
         "key": "test_key",
-        "value": "",
+        "value": ""
     }
 ]
 ```
