@@ -367,6 +367,7 @@ Optional params include:
 
 ```console
 $ wrangler kv:bulk put --binding=MY_KV allthethingsupload.json
+🌀  uploading 1 key value pairs
 ✨  Success
 ```
 
@@ -384,8 +385,7 @@ Takes as an argument a JSON file with a list of key-value pairs to delete (see J
 [
     {
         "key": "test_key",
-        "value": "test_value",
-        "expiration_ttl": 3600
+        "value": "",
     }
 ]
 ```
@@ -400,7 +400,8 @@ Optional params include:
 ```console
 $ wrangler kv:bulk delete --binding=MY_KV allthethingsdelete.json
 Are you sure you want to delete all keys in allthethingsdelete.json? [y/n]
-yes
+y
+🌀  deleting 1 key value pairs
 ✨  Success
 ```
 
