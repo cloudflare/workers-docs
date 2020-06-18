@@ -26,6 +26,8 @@ Enabling Workers KV requires the Unlimited plan.
 | Included                        | 1 GB         | 10 million        | 1 million         | 1 million         | 1 million         |
 | Price beyond the included quota | $0.50 per GB | $0.50 per million | $5.00 per million | $5.00 per million | $5.00 per million |
 
+Usage of all other features of Worker KV do not affect pricing.
+
 ## Same features 
 
   Script size, number of scripts, subrequests, and available memory are not affected by plan type.
