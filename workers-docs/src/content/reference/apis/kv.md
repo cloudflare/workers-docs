@@ -58,11 +58,10 @@ ability to create keys that automatically expire, either at a particular
 point in time or after a certain amount of time has passed since the key was
 last modified.
 
-The core behavior of an expiring key is that once its expiration time has
-been reached, attempts to read it will behave as if the key does not exist.
-Attempting to get the key's value will return a promise that resolves to null
-in a Worker or a 404 HTTP response via the API, and listing keys using the
-API will omit any expired keys from the response.
+Once the expiration time of an expiring key is reached, it will be deleted from
+the system. After its deletion, attempts to read it will behave as if the key
+does not exist, and it will not count against the namespace's storage usage for
+billing purposes.
 
 You can choose one of two ways to specify when a key should expire:
 
