@@ -101,10 +101,6 @@ From here, you have two options, you can choose to publish to your own domain or
 
 If you want to publish to [workers.dev](https://workers.dev), you will first need to have a subdomain registered. You can register a subdomain by executing the [subdomain](#subdomain) command.
 
-|         | Definition                                                   |
-| ------- | ------------------------------------------------------------ |
-| `$NAME` | Name of the workers.dev subdomain you wish to deploy to (e.g. `name.workers.dev`) |
-
 After you have registered a subdomain, add `workers_dev` to your `wrangler.toml`.
 
 | Key           | Value | Example              |
@@ -244,5 +240,9 @@ Create or change your [workers.dev](https://workers.dev) subdomain.
 ```bash
 wrangler subdomain <name>
 ```
+
+|         | Definition                                                   |
+| ------- | ------------------------------------------------------------ |
+| `$NAME` | Name of the workers.dev subdomain you wish to deploy to (e.g. `name.workers.dev`) |
 
 If you've already selected a workers.dev subdomain, running `wrangler subdomain <name>` will update all your currently running Workers to run on the new subdomain (e.g. `hello.world.workers.dev` will now run on `hello.new-world.workers.dev`).
