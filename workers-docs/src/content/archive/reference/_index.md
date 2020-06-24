@@ -18,8 +18,8 @@ you need.
 
 | API                                                                                      | Support                                                                                                                                                                                                                                                                                                                                             |
 | ---------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [ECMAScript Builtins](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference) | Everything supported by current Google Chrome stable release. <br/> [WebAssembly]({{< ref "/tooling/api/bindings" >}}) <br/> `eval()` and `new Function()` are disallowed for security reasons. <br/> `Date.now()` returns the time of last I/O; it does not advance during code execution.                             |
-| [Service Worker API](https://developer.mozilla.org/docs/Web/API/Service_Worker_API)      | `"fetch"` event <br/> [Cache API]({{< ref "archive/reference/cache-api.md" >}})[^no-playground]                                                                                                                                                                                                                                                      |
+| [ECMAScript Builtins](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference) | Everything supported by current Google Chrome stable release. <br/> [WebAssembly](/workers/tooling/api/bindings) <br/> `eval()` and `new Function()` are disallowed for security reasons. <br/> `Date.now()` returns the time of last I/O; it does not advance during code execution.                             |
+| [Service Worker API](https://developer.mozilla.org/docs/Web/API/Service_Worker_API)      | `"fetch"` event <br/> [Cache API](/workers/reference/cache-api)[^no-playground]                                                                                                                                                                                                                                                      |
 | [Web Global APIs](https://developer.mozilla.org/docs/Web/API/WindowOrWorkerGlobalScope)  | Base64 utility methods <br/> Timers[^request-ctx]                                                                                                                                                                                                                                                                                                    |
 | [Encoding API](https://developer.mozilla.org/docs/Web/API/Encoding_API)                  | UTF-8                                                                                                                                                                                                                                                                                                                                               |
 | [URL API](https://developer.mozilla.org/docs/Web/API/URL)                                | http://, https:// schemes                                                                                                                                                                                                                                                                                                                           |
@@ -33,15 +33,13 @@ you need.
     settled. Any attempt to use such APIs during script startup will throw an exception.
 
     For example:
-
     ```js
-const promise = fetch("https://example.com/")       // ERROR
+    const promise = fetch("https://example.com/")       // ERROR
 
-addEventListener("fetch", event => {
-  event.respondWith(fetch("https://example.com/"))  // OK
-})
-```
-
+    addEventListener("fetch", event => {
+      event.respondWith(fetch("https://example.com/"))  // OK
+    })
+    ```
     This code snippet **will throw** during script startup, and the `"fetch"` event
     listener will never be registered.
 

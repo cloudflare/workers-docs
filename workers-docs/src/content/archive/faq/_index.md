@@ -33,7 +33,7 @@ An individual Worker script may consume up to:
 - 5-50 milliseconds CPU time per request, depending on Cloudflare Plan
 - 128MB memory at any given time
 
-For more information, see [Resource Limits]({{< ref "archive/writing-workers/resource-limits.md" >}}).
+For more information, see [Resource Limits](/workers/archive/writing-workers/resource-limits).
 
 ### Why JavaScript? Isn’t it slow?
 
@@ -67,7 +67,7 @@ your origin or alternative data storage tools as needed.
 ### How should I load data in my Worker?
 
 We don’t currently provide an API for loading data in Workers. There are, however,
-[several techniques]({{< ref "archive/writing-workers/storing-data.md" >}}) for loading data
+[several techniques](/workers/archive/writing-workers/storing-data) for loading data
 in a Worker.
 
 ### Will my Worker’s response be cached by Cloudflare?
@@ -85,7 +85,7 @@ message has been received and is available in memory.
 
 If your Worker script must analyze or transform a request/response body, then you must
 buffer at least some portion of the body. For very large bodies, you may wish to use
-the [TransformStream API]({{< ref "archive/recipes/streaming-responses.md" >}}) to minimize
+the [TransformStream API](/workers/archive/recipes/streaming-responses) to minimize
 your memory footprint and time-to-first-byte.
 
 ### What headers are available in my Worker?
@@ -111,7 +111,7 @@ using an external system.
 Use a Map object: `console.log(new Map(request.headers))`.
 
 For a deeper explanation of why this works, and other header stringification options,
-read our section on [console logging headers]({{< ref "archive/writing-workers/debugging-tips.md#console-logging-headers" >}}).
+read our section on [console logging headers](/workers/archive/writing-workers/debugging-tips/#console-logging-headers).
 
 ### My Worker is 500ing, how can I find out why?
 

@@ -53,7 +53,7 @@ You can, for example, load data from your origin and store it in a global variab
 the next time your Worker is executed on that node (if it hasn't been stopped and started in between).
 
 Keep in mind that the memory available for such caching is limited. Each running instance of your
-Worker [can use up to 128MB of RAM]({{< ref "archive/writing-workers/resource-limits.md" >}})), including
+Worker [can use up to 128MB of RAM](/workers/archive/writing-workers/resource-limits)), including
 space used to store your code, local variables used during execution, etc. If your Worker uses too
 much memory, it will be killed and restarted, possibly disrupting users. Even when it is within the
 limits, a Worker that is running close to its limits may slow down due to increased garbage

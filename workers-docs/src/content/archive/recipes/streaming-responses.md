@@ -71,7 +71,7 @@ a prefix or a suffix to the body, or to process it in some way.
 
 ## Aggregate and stream multiple requests
 
-This is similar to our [Aggregating Multiple Requests]({{< ref "archive/recipes/aggregating-multiple-requests.md" >}})
+This is similar to our [Aggregating Multiple Requests](/workers/archive/recipes/aggregating-multiple-requests)
 recipe, but this time we'll start writing our response as soon as we've
 verified that every subrequest succeeded --- no need to wait for the actual
 response bodies.
