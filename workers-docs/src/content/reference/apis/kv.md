@@ -108,6 +108,9 @@ options object on a `put` call. Usage in Worker script:
 
 `await NAMESPACE.put(key, value, {metadata: {someMetadataKey: "someMetadataValue"}})`
 
+The serialized JSON representation of the metadata object must be no more than
+1024 bytes in length.
+
 # Reading key-value pairs
 
 To get the value for a given key, you can call the `get` method on any

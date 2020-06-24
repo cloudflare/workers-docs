@@ -111,6 +111,7 @@ After subscription to a Workers Unlimited plan, KV is enabled. Workers KV suppor
 - Unlimited keys per namespace
 - Keys of up to 512 bytes
 - Values of up to 10 MB
+- Metadata of up to 1024 bytes per key
 - Unlimited reads per second per key
 - Up to one write per second per key
 
