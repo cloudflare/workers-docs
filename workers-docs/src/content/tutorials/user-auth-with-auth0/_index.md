@@ -829,7 +829,7 @@ Once your application has successfully published, you can remove the constants l
 // workers-site/auth0.js
 
 // Delete the below line!
-// const AUTH0_DOMAIN, AUTH0_CLIENT_ID, AUTH0_CLIENT_SECRET, AUTH0_CALLBACK_URL, SALT
+// let AUTH0_DOMAIN, AUTH0_CLIENT_ID, AUTH0_CLIENT_SECRET, AUTH0_CALLBACK_URL, SALT
 ```
 
 Using `wrangler secret`, you can now set each secret directly in the command-line:
