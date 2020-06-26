@@ -105,6 +105,8 @@ In `workers-site/index.js`, we can import the `authorize` function from `./auth0
 
 import { authorize } from './auth0'
 
+addEventListener('fetch', event => event.respondWith(handleEvent(event)))
+
 async function handleEvent(event) {
   let request = event.request
   let response = new Response(null)
@@ -688,7 +690,7 @@ export const logout = event => {
   if (cookieHeader && cookieHeader.includes(cookieKey)) {
     return {
       headers: {
-        "Location": "/"
+        "Location": "/",
         "Set-cookie": `${cookieKey}="";`
       },
       status: 302
@@ -782,11 +784,13 @@ The output of running that command will be a block of code that you can paste di
 ```toml
 # wrangler.toml
 
-## ...existing wrangler.toml information
+## ...existing account and zone information
 
 kv_namespaces = [
   { binding = "AUTH_STORE", id = "$YOURNAMESPACEID" }
 ]
+
+## ...existing workers site configuration
 ```
 
 ### Secrets
@@ -810,7 +814,7 @@ For each key, you can find the corresponding value in your Auth0 application set
 ```js
 // workers-site/auth0.js
 
-const AUTH0_DOMAIN, AUTH0_CLIENT_ID, AUTH0_CLIENT_SECRET, AUTH0_CALLBACK_URL, SALT
+let AUTH0_DOMAIN, AUTH0_CLIENT_ID, AUTH0_CLIENT_SECRET, AUTH0_CALLBACK_URL, SALT
 ```
 
 With these constants stubbed, you can publish your application:
@@ -825,7 +829,7 @@ Once your application has successfully published, you can remove the constants l
 // workers-site/auth0.js
 
 // Delete the below line!
-// const AUTH0_DOMAIN, AUTH0_CLIENT_ID, AUTH0_CLIENT_SECRET, AUTH0_CALLBACK_URL, SALT
+// let AUTH0_DOMAIN, AUTH0_CLIENT_ID, AUTH0_CLIENT_SECRET, AUTH0_CALLBACK_URL, SALT
 ```
 
 Using `wrangler secret`, you can now set each secret directly in the command-line:
