@@ -1,4 +1,4 @@
-#Rust Style Guide
+# Rust Style Guide
 
 If you are using Wasm and write in Rust, your template should adhere to rustfmt and clippy.
 
