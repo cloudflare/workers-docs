@@ -106,7 +106,7 @@ Will build the static files using the source code of `cloudflare-docs-theme` and
 
 # Releasing
 
-Upon a merge, the tip of the `master` branch is deployed by a Github Action to https://developers.cloudflare.com/workers/ . 
+Upon a merge, the tip of the `master` branch is deployed by a GitHub Action to https://developers.cloudflare.com/workers/ . 
 
 ## Contributing
 
