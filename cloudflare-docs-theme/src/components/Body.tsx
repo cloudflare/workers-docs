@@ -7,8 +7,8 @@ export const Body: React.FC<BodyProps> = ({ children, github_edit_url, archived 
         <div className="padding highlightable">
           {github_edit_url ? (
             <a className="github-edit" href={github_edit_url}>
-              <img src={'/workers/svg/github.svg'} alt="Github icon" />
-              <span>Edit on Github</span>
+              <img src={'/workers/svg/github.svg'} alt="GitHub icon" />
+              <span>Edit on GitHub</span>
             </a>
           ) : null}
           {/* Todo maybe add tags? here is original hugo

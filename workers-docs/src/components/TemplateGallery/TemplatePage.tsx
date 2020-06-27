@@ -42,7 +42,7 @@ const TemplatePage: React.FC<templateProps> = ({ id, data }) => {
         .catch((e) => {
           console.log('error from grabbing github', e)
           setState({
-            github_api_repo_url: '', // set this to empty string so doesn't render github block
+            github_api_repo_url: '', // set this to empty string so doesn't render GitHub block
           })
         })
     } else {
@@ -165,14 +165,14 @@ const TemplatePage: React.FC<templateProps> = ({ id, data }) => {
                 {repository_url ? (
                   <>
                     <Link to={repository_url}>
-                      <img src={Src('/svg/github.svg')} alt="github icon" />
+                      <img src={Src('/svg/github.svg')} alt="GitHub icon" />
                       <div>{repo_name}</div>
                     </Link>
                     <div className="date">{repo_date_text}</div>
                   </>
                 ) : (
                   <a href={github_api_repo_url + '/' + id + '.js'}>
-                    <img src={Src('/svg/github.svg')} alt="github icon" />
+                    <img src={Src('/svg/github.svg')} alt="GitHub icon" />
                     <div>template-registry/{id}.js</div>
                   </a>
                 )}

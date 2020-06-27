@@ -9,7 +9,7 @@ The Serverless Framework manages the infrastructure as a [Serverless Plugin](htt
 
 Go serverless with Cloudflare Workers. Quickly get up to speed with this [quick start guide to the plugin](https://serverless.com/framework/docs/providers/cloudflare/guide/intro/).
 
-**Note:** The Serverless Framework does not currently support `workers.dev`. Track our progress on [this Github issue](https://github.com/cloudflare/serverless-cloudflare-workers/issues/36).
+**Note:** The Serverless Framework does not currently support `workers.dev`. Track our progress on [this GitHub issue](https://github.com/cloudflare/serverless-cloudflare-workers/issues/36).
 
 ## Resources
 
@@ -17,4 +17,4 @@ Go serverless with Cloudflare Workers. Quickly get up to speed with this [quick 
 
 [CLI Documentation on Serverless](https://serverless.com/framework/docs/providers/cloudflare/cli-reference/)
 
-[Plugin on Github](https://github.com/cloudflare/serverless-cloudflare-workers)
+[Plugin on GitHub](https://github.com/cloudflare/serverless-cloudflare-workers)
