@@ -184,7 +184,7 @@ wrangler preview [--watch] [--env $ENVIRONMENT_NAME] [ --url $URL] [$METHOD] [$B
 
 If you are using [kv_namespaces](/tooling/wrangler/configuration/#kv_namespaces) with `wrangler preview`, you will need to specify a `preview_id` in your `wrangler.toml` before you can start the session. This is so that you do not accidentally write changes to your production namespace while you are developing. You may make `preview_id` equal to `id` if you would like to preview with your production namespace, but you should make sure that you are not writing things to KV that would break your production Worker.
 
-#### Previewing on Windows Subsytem for Linux (WSL 1/2)
+#### Previewing on Windows Subsystem for Linux (WSL 1/2)
 
 ##### Setting \$BROWSER to your browser binary
 

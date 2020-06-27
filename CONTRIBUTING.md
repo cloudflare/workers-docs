@@ -44,9 +44,9 @@ If you have any questions that _aren't_ answered by this contribution guide, let
 
  Though there will be _no fixes or improvements to any archived content_, we would love any missing information in the new docs to be inserted and redirected to the new documentation. This would be especially helpful as we wish to deprecate all archive documentation. To do so:
 
-* Find the page that is approriate for the new information to live. **Avoid making any new pages**. With the _exception of old recipes_ which may have their own tutorial `.md` file. If you have a hard time deciding the appropriate place for the old content please check at the current format of the new docs or tag someone from Worker's Development Experience team.
+* Find the page that is appropriate for the new information to live. **Avoid making any new pages**. With the _exception of old recipes_ which may have their own tutorial `.md` file. If you have a hard time deciding the appropriate place for the old content please check at the current format of the new docs or tag someone from Worker's Development Experience team.
 * Integrate the old information into the new page.
-* Set up a redirect from the old documentation to the replacement section by adding to [`oldDocs.js`](./worker/worker/data/oldDocs.js). Make sure if it's a section you added, then reference the anchor tag in the new documentation (e.g. `/reference/cloudflare-features` in old documenation now goes to `/reference/apis/request/#the-cf-object` in the new documentation.
+* Set up a redirect from the old documentation to the replacement section by adding to [`oldDocs.js`](./worker/worker/data/oldDocs.js). Make sure if it's a section you added, then reference the anchor tag in the new documentation (e.g. `/reference/cloudflare-features` in old documentation now goes to `/reference/apis/request/#the-cf-object` in the new documentation.
 
 #### **Do you have questions about how to use Workers, or need help with your code?**
 

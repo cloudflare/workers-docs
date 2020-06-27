@@ -125,7 +125,7 @@ async function handleRequest(request) {
   }
 ```
 
-For all avaliable methods of the Request object that you can filter by see: [Requests](/reference/apis/request).
+For all available methods of the Request object that you can filter by see: [Requests](/reference/apis/request).
 
 ##### Option 2: use a template for routing on URL
 

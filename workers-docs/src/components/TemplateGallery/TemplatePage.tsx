@@ -40,7 +40,7 @@ const TemplatePage: React.FC<templateProps> = ({ id, data }) => {
           })
         })
         .catch((e) => {
-          console.log('error from grabbing github', e)
+          console.log('error from grabbing GitHub', e)
           setState({
             github_api_repo_url: '', // set this to empty string so doesn't render GitHub block
           })
