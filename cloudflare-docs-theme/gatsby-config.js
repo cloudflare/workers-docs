@@ -21,7 +21,7 @@ module.exports = (themeOptions) => {
       ...require('glob')
         // TODO: instead of serving images this complicated way, change links to root
         // e.g. (/tooling/media/image.jpg) to ref current directory (e.g. ./media/image.jpg)
-        // this place all images under media directoy into their current folder under content for gatsby
+        // this place all images under media directory into their current folder under content for gatsby
         // then gatsby figured out who to put it in current folder at public/workers/..
         .sync(path.join(__dirname, './src/**/media'))
         .map((source) => {

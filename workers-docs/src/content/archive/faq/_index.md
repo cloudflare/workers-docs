@@ -151,7 +151,7 @@ to register asynchronous tasks that may continue after the response has been ret
 
 ### How long can a subrequest take?
 
-There is no individual subrequest duration limit, but all subrequests must be initated in
+There is no individual subrequest duration limit, but all subrequests must be initiated in
 the first 15 seconds of your script’s execution.
 
 ## Security

@@ -202,7 +202,7 @@ class DocumentHandler {
 
 - `name: String | null`: Read-only, string representing the doctype name.
 - `publicId: String | null`: Read only, the quoted string in the doctype after the PUBLIC atom.
-- `systemId: String | null`: Read only, the quoted string in the doctype after the SYSTEM atom or immidiately after the `publicId`.
+- `systemId: String | null`: Read only, the quoted string in the doctype after the SYSTEM atom or immediately after the `publicId`.
 
 ### End
 
