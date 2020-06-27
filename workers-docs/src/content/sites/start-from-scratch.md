@@ -25,7 +25,7 @@ To start from scratch to create a Workers Site, follow these steps:
    wrangler preview --watch
    ```
 
-5. Decide where you'd like to publish your site to: [ a workers.dev subdomain](/quickstart#publish-to-workers-dev) or your [personal domain](/quickstart#publish-to-your-domain) registered with Cloudflare.
+5. Decide where you'd like to publish your site to: [a workers.dev subdomain](/quickstart#publish-to-workers-dev) or your [personal domain](/quickstart#publish-to-your-domain) registered with Cloudflare.
    Then, update your `wrangler.toml`:
  - **Personal Domain**: Add your `zone_id` and a `route`.
 
