@@ -17,7 +17,7 @@ This project is broken down to two main folders:
 
 1.  **`cloudflare-docs-theme/`**: The engine that styles and runs the static build of the docs which is a Gatsby theme containing all the components for the docs
 1.  **`workers-docs/`**: All the content, _custom_ components for the Workers docs, and the Worker Site that is the Worker code running on Cloudflare
-    - `src/content`: The content markdown and MDX files
+    - `src/content`: The content Markdown and MDX files
     - `src/*`: custom components that add to and override components defined by the `cloudflare-docs-theme`
     - `workers-site`: the Worker Site that is the Worker code running on Cloudflare
 
