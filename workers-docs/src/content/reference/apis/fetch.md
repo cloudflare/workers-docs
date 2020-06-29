@@ -9,7 +9,7 @@ The [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) prov
 
 ## Global
 
-The `fetch` method is implemented on the ServiceWorkerGlobalScope. See [MDN documentation ](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch) for more information.
+The `fetch` method is implemented on the ServiceWorkerGlobalScope. See [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch) for more information.
 
 _Note: Asynchronous tasks such as `fetch` are not executed at the top level in a Worker script and must be executed within a FetchEvent handler such as [`respondWith`](/reference/apis/fetch-event#methods). Learn more about [Request Contexts](/about/tips/request-context)._
 
