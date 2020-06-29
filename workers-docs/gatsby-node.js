@@ -12,7 +12,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   const galleryTemplate = path.resolve(`src/templates/gallery.tsx`)
   const markdownTemplate = path.resolve(`src/templates/markdownTemplate.tsx`)
-  // Create a custom page for the Template Gallery that's NOT based on markdown, just TSX
+  // Create a custom page for the Template Gallery that's NOT based on Markdown, just TSX
   createPage({
     path: `/workers/templates/`,
     component: galleryTemplate,
@@ -40,9 +40,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 }
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
-  // Ensures we are processing only markdown files
+  // Ensures we are processing only Markdown files
   if (node.internal.type === 'Mdx') {
-    // Use `createFilePath` to turn markdown files in our `content` directory into `/workers/`pathToServe
+    // Use `createFilePath` to turn Markdown files in our `content` directory into `/workers/`pathToServe
     const originalPath = node.fileAbsolutePath.replace(
       node.fileAbsolutePath.match(/.*content/)[0],
       ''

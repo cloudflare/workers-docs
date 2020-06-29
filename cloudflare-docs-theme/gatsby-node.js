@@ -4,9 +4,9 @@ exports.onCreateNode = ({ node, getNode, actions }, themeOptions) => {
   const contentPath = themeOptions.contentPath || DEFAULT_THEME_OPTS.contentPath
   const publicPath = themeOptions.publicPath || DEFAULT_THEME_OPTS.publicPath
   const { createNodeField } = actions
-  // Ensures we are processing only markdown files
+  // Ensures we are processing only Markdown files
   if (node.internal.type === 'Mdx') {
-    // Use `createFilePath` to turn markdown files in our `content` directory into `/workers/`pathToServe or whatever publicPath is set to
+    // Use `createFilePath` to turn Markdown files in our `content` directory into `/workers/`pathToServe or whatever publicPath is set to
     const originalPath = node.fileAbsolutePath.replace(
       node.fileAbsolutePath.match(/.*content/)[0],
       ''

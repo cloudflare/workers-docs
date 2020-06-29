@@ -71,7 +71,7 @@ cfg_if! {
 #[wasm_bindgen]
 pub fn parse() -> String {
     let markdown_input: &str = "Hello world, this is a ~~complicated~~ *very simple* example.";
-    println!("Parsing the following markdown string:\n{}", markdown_input);
+    println!("Parsing the following Markdown string:\n{}", markdown_input);
 
     // Set up options and parser. Strikethroughs are not part of the CommonMark standard
     // and we therefore must enable it explicitly.
