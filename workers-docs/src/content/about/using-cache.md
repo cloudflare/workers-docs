@@ -19,9 +19,9 @@ Conceptually, there are two ways to interact with Cloudflare's Cache using a Wor
 
 The browser cache is controlled through the `Cache-Control` header sent in the response to the eyeball (the response passed or promised to `event.respondWith()`). Workers can customize browser cache behavior by setting this header on the response.
 
-We won't discuss in this article, but other means to control Cloudflare's cache include: Page rules and Cloudflare cache settings. I highly recommend the article [How to Control Cloudflare's cache](https://support.cloudflare.com/hc/en-us/articles/202775670) if you wish to avoid writing Javascript with still some granularity of control.
+We won't discuss in this article, but other means to control Cloudflare's cache include: Page rules and Cloudflare cache settings. I highly recommend the article [How to Control Cloudflare's cache](https://support.cloudflare.com/hc/en-us/articles/202775670) if you wish to avoid writing JavaScript with still some granularity of control.
 
-**What should I use: the Cache API or fetch for caching objects on Cloudflare? **
+**What should I use: the Cache API or fetch for caching objects on Cloudflare?**
 For requests where Workers are behaving as middleware (i.e. they are sending a subrequest via `fetch`) it is recommended to use fetch. This is because pre existing settings are in place that optimize caching while preventing unintended dynamic caching. For projects where there is no backend (i.e. the entire project is on Workers as in [Workers Sites](/sites)) the Cache API is the only option to customize caching.
 
 ### `fetch`
