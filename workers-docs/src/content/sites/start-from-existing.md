@@ -46,7 +46,7 @@ The default directories for the most popular static site generators are listed b
 5.  Decide where you'd like to publish your site to: [a workers.dev subdomain](/quickstart#publish-to-workers-dev) or your [personal domain](/quickstart#publish-to-your-domain) registered with Cloudflare.
     Then, update your `wrangler.toml`:
 
-	- **Personal Domain**: Add your `zone_id` and a `route`.
+    - **Personal Domain**: Add your `zone_id` and a `route`.
 
     ```
     zone_id = "42ef.."
