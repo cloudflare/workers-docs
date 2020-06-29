@@ -11,7 +11,6 @@ if (req.http.host ~ "^restricted") {
 }
 ```
 
-
 ## With Workers:
 ```js
 let url = new URL(request.url);

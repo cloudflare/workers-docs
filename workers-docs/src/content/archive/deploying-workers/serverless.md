@@ -56,7 +56,6 @@ functions:
           headers:
             someKey: someValue
 
-
   # Only Enterprise accounts would be allowed to add this second function and its corresponding route above
   foo:
     worker: foo_script

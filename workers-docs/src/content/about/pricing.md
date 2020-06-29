@@ -16,7 +16,6 @@ Workers Unlimited plan is separate from any other Cloudflare plan (Free, Profess
 
 Only requests that hit a Worker script will count against your limits and your bill. Since Cloudflare Workers runs before the Cloudflare cache, the caching of a request still incurs costs. See definitions and behavior after a limit is hit in the [limits article](/about/limits).
 
-
 ## KV 
 
 Enabling Workers KV requires the Unlimited plan.
@@ -31,7 +30,3 @@ Usage of all other features of Worker KV do not affect pricing.
 ## Same features 
 
   Script size, number of scripts, subrequests, and available memory are not affected by plan type.
-
-
-
-

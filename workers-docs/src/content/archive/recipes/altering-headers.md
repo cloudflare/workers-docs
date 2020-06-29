@@ -22,7 +22,6 @@ async function handleRequest(request) {
 }
 ```
 
-
 ## Request headers
 Set a new header on the request before fetching a response from the origin.
 

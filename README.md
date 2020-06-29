@@ -10,7 +10,6 @@
 - [Releasing](#releasing)
 - [Contributing](#contributing)
 
-
 This project contains the static website content for the [Cloudflare Workers documentation](https://developers.cloudflare.com/workers/).
 
 This project is broken down to two main folders:

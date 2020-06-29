@@ -3,7 +3,6 @@ title: 'Cloud Storage'
 hidden: true
 ---
 
-
 # Guide
 
 You can fetch your 3rd-party object storage assets with a Cloudflare Worker so that they can be cached in the Cloudflare CDN.
@@ -30,7 +29,6 @@ If you want to refer to `image1.jpg` within `index.html` and wish for the Cloudf
 In order to cache any object storage asset, Cloudflare needs to fetch it via a URL containing a host name that matches a Cloudflare-proxied subdomain defined in your DNS app settings.
 
 You can add this new subdomain as a CNAME DNS record to act as an alias for the host name expected by your object storage service. For example, you can configure the new DNS record with values similar to:
-
 
 - **Type**: CNAME
 - **Name**: assets
