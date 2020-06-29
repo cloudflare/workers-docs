@@ -37,7 +37,7 @@ All JavaScript must adhere to [JavaScript Standard Style](https://standardjs.com
 
 - [Avoid platform-dependent code](https://flight-manual.atom.io/hacking-atom/sections/cross-platform-compatibility/)
 
-* Comment all functions using JSDoc style (e.g. `/***/` ) and if not in Typescript include the param types
+* Comment all functions using JSDoc style (e.g. `/***/` ) and if not in TypeScript include the param types
 
 ## Templates
 
