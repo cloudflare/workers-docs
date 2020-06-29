@@ -1,4 +1,4 @@
-# Javascript Style Guide
+# JavaScript Style Guide
 
 All JavaScript must adhere to [JavaScript Standard Style](https://standardjs.com/) and the [Cloudflare JS StyleGuide](./style/javascript).
 
@@ -41,7 +41,7 @@ All JavaScript must adhere to [JavaScript Standard Style](https://standardjs.com
 
 ## Templates
 
-For Javascript snippets and boilerplates, please make sure your code is ran through prettier with the following config:
+For JavaScript snippets and boilerplates, please make sure your code is ran through prettier with the following config:
 
 ```javascript .prettierrc
 {

@@ -30,7 +30,7 @@ Worker invocation statuses indicate whether a Worker script executed successfull
 | ---------------------- | ------------------------------------------------------------------------ | ------------------ | ---------------------- |
 | Success                | Worker script executed successfully                                      |                    | `success`              |
 | Client Disconnected    | HTTP client (i.e. the browser) disconnected before the request completed |                    | `clientDisconnected`   |
-| Script Threw Exception | Worker script threw an unhandled Javascript exception                    | 1101               | `scriptThrewException` |
+| Script Threw Exception | Worker script threw an unhandled JavaScript exception                    | 1101               | `scriptThrewException` |
 | ¹ Exceeded Resources   | Worker script exceeded runtime limits                                    | 1102, 1027         | `exceededResources`    |
 | ² Internal Error       | Workers runtime encountered an error                                     |                    | `internalError`        |
 
