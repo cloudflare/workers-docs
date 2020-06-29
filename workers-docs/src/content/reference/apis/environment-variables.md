@@ -25,7 +25,7 @@ In the below example, we set the secret `SECRET` using `wrangler secret`, and th
 
 Creating the secret using [`wrangler secret`](/tooling/wrangler/secrets):
 
-```bash
+```
 wrangler secret put SECRET
 Enter the secret text you'd like assigned to the variable name on the script named my-worker-ENVIRONMENT_NAME: mysekret
 ```
