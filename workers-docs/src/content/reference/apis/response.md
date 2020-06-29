@@ -47,11 +47,9 @@ new Response(body, init)
   - [`Body.formData()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/formData): Takes a [`Response`](#response) stream, reads it to completion, and returns a promise that resolves with a [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData) object.
   - [`Body.json()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/json): Takes a [`Response`](#response) stream, reads it to completion, and returns a promise that resolves with the result of parsing the body text as [`JSON`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON).
   - [`Body.text()`](https://developer.mozilla.org/en-US/docs/Web/API/Body/text): Takes a [`Response`](#response) stream, reads it to completion, and returns a promise that resolves with a [`USVString`](https://developer.mozilla.org/en-US/docs/Web/API/USVString) (text).
+
+## Examples
   
-  
-  
-  ## Examples
-  
-  * [Modify Response](/templates/pages//modify_res_props)
-  * [Conditional Responses](/templates/pages/conditional_responses)
-  * [Signed Request/Response](/templates/pages/signed_request)
+* [Modify Response](/templates/pages//modify_res_props)
+* [Conditional Responses](/templates/pages/conditional_responses)
+* [Signed Request/Response](/templates/pages/signed_request)
