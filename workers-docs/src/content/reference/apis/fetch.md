@@ -5,7 +5,7 @@ weight: 2
 
 ## Overview
 
-The [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) provides an interface for asyncronously fetching resources via HTTP requests inside of a Worker.
+The [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) provides an interface for asynchronously fetching resources via HTTP requests inside of a Worker.
 
 ## Global
 
