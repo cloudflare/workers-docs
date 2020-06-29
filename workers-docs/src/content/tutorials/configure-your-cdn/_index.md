@@ -21,7 +21,7 @@ If you don't have those things quite yet, don't worry. We'll walk through each o
 
 This tutorial assumes that you have a _public_ bucket on Google Cloud Storage, which you'll use to serve assets through your Cloudflare Workers function. If you don't have a Google Cloud Storage bucket to use with this project, we recommend going through Google Cloud's "Cloud Storage Quickstart" guide, which can be found [here](https://cloud.google.com/storage/docs/quickstart-console).
 
-This tutorial makes use of sample images to illustrate serving data through your Cloudflare Workers function. If you have an existing set of images you'd like to use, you can upload those to your Google Cloud Storage bucket and use them – if you don't have an existing set of images, we've provided a sample set of profile pictures via [UIFaces.com](http://uifaces.com/), formatted in numeric order (`1.jpg`, `2.jpg`, … `199.jpg`).
+This tutorial makes use of sample images to illustrate serving data through your Cloudflare Workers function. If you have an existing set of images you'd like to use, you can upload those to your Google Cloud Storage bucket and use them – if you don't have an existing set of images, we've provided a sample set of profile pictures via [UIFaces.co](https://uifaces.co/), formatted in numeric order (`1.jpg`, `2.jpg`, … `199.jpg`).
 
 To follow along with this tutorial, using the data set we've provided, download the sample image collection [here](https://storage.cloud.google.com/workers-docs-configure-your-cdn-tutorial/faces.zip), and upload the zipped folder "faces" to root of your bucket. The directory structure should look like this:
 
