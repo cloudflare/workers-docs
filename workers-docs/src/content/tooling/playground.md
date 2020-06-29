@@ -64,7 +64,7 @@ There are two ways to preview and deploy a Workers script: on [a site on Cloudfl
 
 To preview a script, begin by [logging in](https://www.cloudflare.com/a/login) to your Cloudflare dashboard.
 
-After selecting an account and/or zone to deploy the Worker script to, navigate to the approriate Workers section.
+After selecting an account and/or zone to deploy the Worker script to, navigate to the appropriate Workers section.
 
 - For workers.dev:
   ![Navigate workers.dev](/tooling/media/navigate-workers-dev.png)

@@ -21,7 +21,7 @@ new Request(input [, init])
     - `CF-Connecting-IP`: A Cloudflare specific header to specify the client IP
   - `body: string`: Any text to add to the request. **Note:** Requests using the `GET` or `HEAD` methods cannot have a body.
   - `redirect: Redirect`: The mode respected when the request is fetched. **Note:** default for requests generated from the incoming `fetchEvent` from the event handler is `manual`. Default for newly constructed Requests (i.e. `new Request(url)` ) is `follow`. Valid options:
-    - `follow: boolean`: If a redirect reponse is returned to the fetch, another fetch will be fired based on the `Location` header in the response until a non-redirect code is returned. (i.e. `await fetch(..)` could never return a `301` redirect)
+    - `follow: boolean`: If a redirect response is returned to the fetch, another fetch will be fired based on the `Location` header in the response until a non-redirect code is returned. (i.e. `await fetch(..)` could never return a `301` redirect)
     - `manual: boolean`: redirect responses will return from a fetch
     
 ### Properties

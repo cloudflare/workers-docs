@@ -70,7 +70,7 @@ const MarkdownTemplate: React.FC<markdownBaseProps> = ({
   const { title } = frontmatter
   const { publicPath } = useSitePluginOpts()
 
-  // if workers-docs then use workers folder inside workers repo, else use approriate folder in api-docs
+  // if workers-docs then use workers folder inside workers repo, else use appropriate folder in api-docs
   const github_edit_url =
     'https://github.com/cloudflare/' +
     (publicPath === 'workers' ? 'workers-docs' : 'api-docs') +
