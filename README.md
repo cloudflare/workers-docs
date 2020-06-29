@@ -23,7 +23,7 @@ This project is broken down to two main folders:
 
 ## Install
 
-Ensure you have the the following installed:
+Ensure you have the following installed:
 
 - [node](https://nodejs.org/en/download/) version 10.13.0 or higher
 - [yarn](https://classic.yarnpkg.com/en/docs/getting-started)
