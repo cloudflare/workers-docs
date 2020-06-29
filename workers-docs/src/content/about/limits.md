@@ -115,7 +115,6 @@ After subscription to a Workers Unlimited plan, KV is enabled. Workers KV suppor
 - Unlimited reads per second per key
 - Up to one write per second per key
 
-
 Workers KV read performance is determined by the amount of read-volume a
 given key receives. Maximum performance for a key is not reached unless that
 key is being read at least a couple times per minute in any given data

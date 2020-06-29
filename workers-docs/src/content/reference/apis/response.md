@@ -55,4 +55,3 @@ new Response(body, init)
   * [Modify Response](/templates/pages//modify_res_props)
   * [Conditional Responses](/templates/pages/conditional_responses)
   * [Signed Request/Response](/templates/pages/signed_request)
-

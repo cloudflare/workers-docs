@@ -171,7 +171,6 @@ Terraform will perform the following actions:
       zone:         "example.com"
       zone_id:      <computed>
 
-
 Plan: 2 to add, 0 to change, 0 to destroy.
 
 Do you want to perform these actions?

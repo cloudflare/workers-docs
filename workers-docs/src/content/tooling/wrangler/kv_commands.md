@@ -10,7 +10,6 @@ weight: 4
 - [`kv:key`](#kv-key)
 - [`kv:bulk`](#kv-bulk)
 
-
 ## Overview
 
 The `kv` subcommand allows you to store application data in the Cloudflare network to be accessed from Workers, using

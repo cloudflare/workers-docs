@@ -26,7 +26,6 @@ You will find some of the following snippets in your VCL. Although you can be ex
     if (req.request != "HEAD" && req.request != "GET") {
 ```
 
-
 ```vcl
   if ((beresp.status == 500 || beresp.status == 503) && req.restarts < 1 && (req.request == "GET" || req.request == "HEAD")) {
     restart;
@@ -77,7 +76,6 @@ async function fetchAndApply(request) {
 }
 ```
 
-
 ### Override based on origin response code:
 
 *This feature is available to enterprise users only.*
@@ -95,8 +93,6 @@ TTL values:
  - Positive TTL values indicate in seconds how long Cloudflare should cache the asset for
  - `0` TTL will cause assets to get cached, but expire immediately (revalidate from origin every time)
  - `-1`, or any negative value will instruct Cloudflare not to cache at all
-
-
 
 ### Custom Cache Keys
 

@@ -19,7 +19,6 @@ cargo install wrangler
 
 If you don't have `cargo` or `npm` installed, you will need to follow these [additional instructions](#additional-installation-instructions).
 
-
 ## Additional Installation Instructions
 
 Wrangler can be installed both through [npm](https://www.npmjs.com/get-npm) and through Rust's package manager, [Cargo](https://github.com/rust-lang/cargo).

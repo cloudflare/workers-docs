@@ -11,7 +11,6 @@ Workers can tell you about a visitor through a couple custom headers.
 set req.http.CDN-GeoIP-CountryCode = client.geo.country_code;
 ```
 
-
 ### With Workers:
 ```js
 const countryCode = request.headers.get("cf-ipcountry")
