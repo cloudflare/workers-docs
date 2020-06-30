@@ -22,19 +22,18 @@ Implements the full API described [here](https://developer.mozilla.org/en-US/doc
 Cloudflare implements a subset of the most common crytographic algorithms, as shown in the following table.
 We are happy to add support for more algorithms – [let us know](https://community.cloudflare.com/c/developers/workers).
 
-|  Algorithm  | sign()<br/>verify() | encrypt()<br/>decrypt() | digest() | deriveBits()<br/>deriveKey() | generateKey() | wrapKey()<br/>unwrapKey() |
-| :---------------- | :----------------- | :--------------------- | :------- | :-------------------------- | :------------ | :----------------------- |
-| RSASSA-PKCS1-v1_5 | ✓                  |                        |          |                             |               |                          |
-| ECDSA             | ✓                  |                        |          |                             |               |                          |
-| HMAC              | ✓                  |                        |          |                             | ✓             |                          |
-| AES-CBC           |                    | ✓                      |          |                             |               | ✓                        |
-| AES-GCM           |                    | ✓                      |          |                             | ✓             | ✓                        |
-| SHA-1             |                    |                        | ✓        |                             |               |                          |
-| SHA-256           |                    |                        | ✓        |                             |               |                          |
-| SHA-384           |                    |                        | ✓        |                             |               |                          |
-| SHA-512           |                    |                        | ✓        |                             |               |                          |
-| MD5<sup>1</sup>        |                    |                        | ✓        |                             |               |                          |
-| PBKDF2            |                    |                        |          | ✓                           |               |                          |
+| Algorithm         | sign()<br/>verify() | encrypt()<br/>decrypt() | digest() | deriveBits()<br/>deriveKey() | generateKey() | wrapKey()<br/>unwrapKey() |
+| :---------------- | :------------------ | :---------------------- | :------- | :--------------------------- | :------------ | :------------------------ |
+| RSASSA-PKCS1-v1_5 | ✓                   |                         |          |                              |               |                           |
+| ECDSA             | ✓                   |                         |          |                              |               |                           |
+| HMAC              | ✓                   |                         |          |                              | ✓             |                           |
+| AES-CBC           |                     | ✓                       |          |                              |               | ✓                         |
+| AES-GCM           |                     | ✓                       |          |                              | ✓             | ✓                         |
+| SHA-1             |                     |                         | ✓        |                              |               |                           |
+| SHA-256           |                     |                         | ✓        |                              |               |                           |
+| SHA-384           |                     |                         | ✓        |                              |               |                           |
+| SHA-512           |                     |                         | ✓        |                              |               |                           |
+| MD5[^1]           |                     |                         | ✓        |                              |               |                           |
+| PBKDF2            |                     |                         |          | ✓                            |               |                           |
 
-<sup>1</sup> MD5 is not part of the WebCrypto standard, but is supported in Cloudflare Workers for interacting with legacy systems that require MD5. MD5 is considered a weak standard.
-**Do not rely upon MD5 for security.**
+[^1]: MD5 is not part of the WebCrypto standard, but is supported in Cloudflare Workers for interacting with legacy systems that require MD5. MD5 is considered a weak algorithm. **Do not rely upon MD5 for security.**
