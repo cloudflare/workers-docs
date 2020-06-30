@@ -1,4 +1,5 @@
 # Cloudflare Workers Documentation
+
 - [Install](#install)
 - [Short Method](#short-method)
 - [Preview](#preview)
