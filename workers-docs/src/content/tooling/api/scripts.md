@@ -209,8 +209,8 @@ A multipart form containing a valid JavaScript file, a `metadata.json` file spec
 ```
 status: 404
 error: {
-	code: 10005,
-	message: "workers.api.error.not_found"
+    code: 10005,
+    message: "workers.api.error.not_found"
 }
 ```
 
@@ -219,8 +219,8 @@ error: {
 ```
 status: 403
 error: {
-	code: 10037,
-	message: "workers.api.error.exceeded_allowed_number_of_scripts"
+    code: 10037,
+    message: "workers.api.error.exceeded_allowed_number_of_scripts"
 }
 ```
 
@@ -229,8 +229,8 @@ error: {
 ```
 status: 400
 error: {
-	code: 10021,
-	message: varies
+    code: 10021,
+    message: varies
 }
 ```
 
@@ -239,8 +239,8 @@ error: {
 ```
 status: 400
 error: {
-	code: 10029,
-	message: "workers.api.error.etag_unsupported"
+    code: 10029,
+    message: "workers.api.error.etag_unsupported"
 }
 ```
 
@@ -249,8 +249,8 @@ error: {
 ```
 status: 412
 error: {
-	code: 10018,
-	message: "workers.api.error.etag_precondition_failed"
+    code: 10018,
+    message: "workers.api.error.etag_precondition_failed"
 }
 ```
 
@@ -259,8 +259,8 @@ error: {
 ```
 status: 400
 error: {
-	code: 10027,
-	message: "workers.api.error.script_too_large"
+    code: 10027,
+    message: "workers.api.error.script_too_large"
 }
 ```
 
@@ -269,8 +269,8 @@ error: {
 ```
 status: 500
 error: {
-	code: 10013,
-	message: "workers.api.error.unknown"
+    code: 10013,
+    message: "workers.api.error.unknown"
 }
 ```
 
@@ -337,8 +337,8 @@ curl -X GET "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/worker
 ```
 status: 404
 error: {
-	code: 10005,
-	message: "workers.api.error.not_found"
+    code: 10005,
+    message: "workers.api.error.not_found"
 }
 ```
 
@@ -349,8 +349,8 @@ Occurs when query param (e.g. `include_subdomain_availability`) is not parsable 
 ```
 status: 400
 error: {
-	code: 10006,
-	message: "workers.api.error.malformed_param"
+    code: 10006,
+    message: "workers.api.error.malformed_param"
 }
 ```
 
@@ -359,8 +359,8 @@ error: {
 ```
 status: 500
 error: {
-	code: 10013,
-	message: "workers.api.error.unknown"
+    code: 10013,
+    message: "workers.api.error.unknown"
 }
 ```
 
@@ -411,8 +411,8 @@ Raw script content, as a string
 ```
 status: 404
 error: {
-	code: 10005,
-	message: "workers.api.error.not_found"
+    code: 10005,
+    message: "workers.api.error.not_found"
 }
 ```
 
@@ -421,8 +421,8 @@ error: {
 ```
 status: 404
 error: {
-	code: 10005,
-	message: "workers.api.error.missing_script_name"
+    code: 10005,
+    message: "workers.api.error.missing_script_name"
 }
 ```
 
@@ -431,8 +431,8 @@ error: {
 ```
 status: 404
 error: {
-	code: 10007,
-	message: "workers.api.error.not_found"
+    code: 10007,
+    message: "workers.api.error.not_found"
 }
 ```
 
@@ -441,8 +441,8 @@ error: {
 ```
 status: 500
 error: {
-	code: 10013,
-	message: "workers.api.error.unknown"
+    code: 10013,
+    message: "workers.api.error.unknown"
 }
 ```
 
@@ -501,8 +501,8 @@ curl -X DELETE "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/wor
 ```
 status: 404
 error: {
-	code: 10005,
-	message: "workers.api.error.not_found"
+    code: 10005,
+    message: "workers.api.error.not_found"
 }
 ```
 
@@ -511,8 +511,8 @@ error: {
 ```
 status: 404
 error: {
-	code: 10005,
-	message: "workers.api.error.missing_script_name"
+    code: 10005,
+    message: "workers.api.error.missing_script_name"
 }
 ```
 
@@ -521,8 +521,8 @@ error: {
 ```
 status: 404
 error: {
-	code: 10007,
-	message: "workers.api.error.not_found"
+    code: 10007,
+    message: "workers.api.error.not_found"
 }
 ```
 
@@ -531,7 +531,7 @@ error: {
 ```
 status: 500
 error: {
-	code: 10013,
-	message: "workers.api.error.unknown"
+    code: 10013,
+    message: "workers.api.error.unknown"
 }
 ```

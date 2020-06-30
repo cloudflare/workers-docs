@@ -83,8 +83,8 @@ This endpoint does not yet support token-based authentication, so you will need 
 ```
 status: 404
 error: {
-	code: 10005,
-	message: "workers.api.error.not_found"
+    code: 10005,
+    message: "workers.api.error.not_found"
 }
 ```
 
@@ -93,8 +93,8 @@ error: {
 ```
 status: 404
 error: {
-	code: 10005,
-	message: "workers.api.error.missing_script_name"
+    code: 10005,
+    message: "workers.api.error.missing_script_name"
 }
 ```
 
@@ -103,7 +103,7 @@ error: {
 ```
 status: 500
 error: {
-	code: 10013,
-	message: "workers.api.error.unknown"
+    code: 10013,
+    message: "workers.api.error.unknown"
 }
 ```

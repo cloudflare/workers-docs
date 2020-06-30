@@ -77,8 +77,8 @@ route = "staging.example.com/*"
 [env.production]
 name = "my-worker"
 routes = [
-	"example.com/foo/*",
-	"example.com/bar/*"
+  "example.com/foo/*",
+  "example.com/bar/*"
 ]
 ```
 

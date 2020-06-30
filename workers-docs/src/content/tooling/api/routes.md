@@ -79,8 +79,8 @@ curl -X POST "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes
 ```
 status: 404
 error: {
-	code: 10005,
-	message: "workers.api.error.not_found"
+    code: 10005,
+    message: "workers.api.error.not_found"
 }
 ```
 
@@ -89,8 +89,8 @@ error: {
 ```
 status: 400
 error: {
-	code: 10026,
-	message: "workers.api.error.parse_body"
+    code: 10026,
+    message: "workers.api.error.parse_body"
 }
 ```
 
@@ -99,8 +99,8 @@ error: {
 ```
 status: 400
 error: {
-	code: 10022,
-	message: varies; see below
+    code: 10022,
+    message: varies; see below
 }
 ```
 
@@ -118,8 +118,8 @@ See [Route Patterns](/about/routes).
 ```
 status: 400
 error: {
-	code: 10019,
-	message: "workers.api.error.invalid_route_script_missing"
+    code: 10019,
+    message: "workers.api.error.invalid_route_script_missing"
 }
 ```
 
@@ -128,8 +128,8 @@ error: {
 ```
 status: 409
 error: {
-	code: 10020,
-	message: "workers.api.error.duplicate_route"
+    code: 10020,
+    message: "workers.api.error.duplicate_route"
 }
 ```
 
@@ -138,8 +138,8 @@ error: {
 ```
 status: 500
 error: {
-	code: 10013,
-	message: "workers.api.error.unknown"
+    code: 10013,
+    message: "workers.api.error.unknown"
 }
 ```
 
@@ -203,8 +203,8 @@ n/a
 ```
 status: 404
 error: {
-	code: 10005,
-	message: "workers.api.error.not_found"
+    code: 10005,
+    message: "workers.api.error.not_found"
 }
 ```
 
@@ -213,8 +213,8 @@ error: {
 ```
 status: 500
 error: {
-	code: 10013,
-	message: "workers.api.error.unknown"
+    code: 10013,
+    message: "workers.api.error.unknown"
 }
 ```
 
@@ -277,8 +277,8 @@ n/a
 ```
 status: 404
 error: {
-	code: 10005,
-	message: "workers.api.error.not_found"
+    code: 10005,
+    message: "workers.api.error.not_found"
 }
 ```
 
@@ -287,8 +287,8 @@ error: {
 ```
 status: 404
 error: {
-	code: 10005,
-	message: "workers.api.error.not_found"
+    code: 10005,
+    message: "workers.api.error.not_found"
 }
 ```
 
@@ -297,8 +297,8 @@ error: {
 ```
 status: 500
 error: {
-	code: 10013,
-	message: "workers.api.error.unknown"
+    code: 10013,
+    message: "workers.api.error.unknown"
 }
 ```
 
@@ -363,8 +363,8 @@ curl -X PUT "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/routes/
 ```
 status: 404
 error: {
-	code: 10005,
-	message: "workers.api.error.not_found"
+    code: 10005,
+    message: "workers.api.error.not_found"
 }
 ```
 
@@ -373,8 +373,8 @@ error: {
 ```
 status: 400
 error: {
-	code: 10026,
-	message: "workers.api.error.parse_body"
+    code: 10026,
+    message: "workers.api.error.parse_body"
 }
 ```
 
@@ -383,8 +383,8 @@ error: {
 ```
 status: 400
 error: {
-	code: 10022,
-	message: varies; see below
+    code: 10022,
+    message: varies; see below
 }
 ```
 
@@ -402,8 +402,8 @@ See [Route Patterns](/about/routes).
 ```
 status: 400
 error: {
-	code: 10019,
-	message: "workers.api.error.invalid_route_script_missing"
+    code: 10019,
+    message: "workers.api.error.invalid_route_script_missing"
 }
 ```
 
@@ -412,8 +412,8 @@ error: {
 ```
 status: 409
 error: {
-	code: 10020,
-	message: "workers.api.error.duplicate_route"
+    code: 10020,
+    message: "workers.api.error.duplicate_route"
 }
 ```
 
@@ -422,8 +422,8 @@ error: {
 ```
 status: 500
 error: {
-	code: 10013,
-	message: "workers.api.error.unknown"
+    code: 10013,
+    message: "workers.api.error.unknown"
 }
 ```
 
@@ -482,8 +482,8 @@ curl -X DELETE "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/workers/rout
 ```
 status: 404
 error: {
-	code: 10005,
-	message: "workers.api.error.not_found"
+    code: 10005,
+    message: "workers.api.error.not_found"
 }
 ```
 
@@ -492,8 +492,8 @@ error: {
 ```
 status: 404
 error: {
-	code: 10005,
-	message: "workers.api.error.not_found"
+    code: 10005,
+    message: "workers.api.error.not_found"
 }
 ```
 
@@ -502,7 +502,7 @@ error: {
 ```
 status: 500
 error: {
-	code: 10013,
-	message: "workers.api.error.unknown"
+    code: 10013,
+    message: "workers.api.error.unknown"
 }
 ```
