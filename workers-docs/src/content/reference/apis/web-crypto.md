@@ -33,7 +33,8 @@ We are happy to add support for more algorithms – [let us know](https://commun
 | SHA-256           |                    |                        | ✓        |                             |               |                          |
 | SHA-384           |                    |                        | ✓        |                             |               |                          |
 | SHA-512           |                    |                        | ✓        |                             |               |                          |
-| MD5\*             |                    |                        | ✓        |                             |               |                          |
+| MD5<sup>1</sup>        |                    |                        | ✓        |                             |               |                          |
 | PBKDF2            |                    |                        |          | ✓                           |               |                          |
 
-\* MD5 is not part of the WebCrypto standard, but is supported in Cloudflare Workers for interacting with legacy systems that require MD5. MD5 is considered a weak standard. **Do not rely upon MD5 for security.**
+<sup>1</sup> MD5 is not part of the WebCrypto standard, but is supported in Cloudflare Workers for interacting with legacy systems that require MD5. MD5 is considered a weak standard.
+**Do not rely upon MD5 for security.**
