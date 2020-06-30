@@ -150,11 +150,11 @@ Given the presence of data in our code, which is the cached data object for our 
 In our Workers script, we’ll make a new variable, html, and use it to build up a static HTML template that we can serve to the client. In `handleRequest`, we can construct a new `Response` (with a `Content-Type` header of `text/html`), and serve it to the client:
 
 ```javascript
-const html = `<!DOCTYPE html>
+const html = `<!doctype html>
 <html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Todos</title>
   </head>
   <body>
@@ -268,7 +268,7 @@ With this script, we can now add some “dynamic” functionality to our HTML pa
 
 ```html
 <div>
-  <input type="text" name="name" placeholder="A new todo"></input>
+  <input type="text" name="name" placeholder="A new todo">
   <button id="create">Create</button>
 </div>
 ```
@@ -430,13 +430,13 @@ The final version of our Workers script looks like this:
 
 ```js
 const html = todos => `
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Todos</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet"></link>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
   </head>
 
   <body class="bg-blue-100">
@@ -444,7 +444,7 @@ const html = todos => `
       <div class="bg-white shadow-md rounded px-8 pt-6 py-8 mb-4">
         <h1 class="block text-grey-800 text-md font-bold mb-2">Todos</h1>
         <div class="flex">
-          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-800 leading-tight focus:outline-none focus:shadow-outline" type="text" name="name" placeholder="A new todo"></input>
+          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-800 leading-tight focus:outline-none focus:shadow-outline" type="text" name="name" placeholder="A new todo">
           <button class="bg-blue-500 hover:bg-blue-800 text-white font-bold ml-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline" id="create" type="submit">Create</button>
         </div>
         <div class="mt-4" id="todos"></div>
