@@ -5,7 +5,7 @@ weight: 3
 
 ## Object Specification
 
-- `name`: a javascript variable name for the binding
+- `name`: a JavaScript variable name for the binding
 - `type`: the class of resource the binding provides (currently wasm_module, kv_namespace, secret_text, plain_text, or text_blob)
 
 ## Upload Bindings
