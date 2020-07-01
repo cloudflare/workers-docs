@@ -1,6 +1,6 @@
 ---
 title: addEventListener()
-weight: 3
+weight: 4
 ---
 
 To define triggers for a Worker script to execute. Currently the only event type supported is [`FetchEvent`](/reference/apis/fetch-event).

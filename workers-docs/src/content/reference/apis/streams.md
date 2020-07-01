@@ -1,6 +1,6 @@
 ﻿---
 title: Streams
-weight: 5
+weight: 7
 ---
 
 Workers scripts don’t need to prepare an entire response body before delivering it to `event.respondWith()`. You can use `TransformStream` to stream a response body _after_ sending the front matter (that is, HTTP status line and headers). This allows you to minimize:

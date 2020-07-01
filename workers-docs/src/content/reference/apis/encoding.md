@@ -1,6 +1,6 @@
 ---
 title: Encoding
-weight: 6
+weight: 10
 ---
 
 ## TextEncoder
