@@ -10,14 +10,15 @@ weight: 7
 - [fetch()](/reference/apis/fetch)
 - [FetchEvent](/reference/apis/fetch-event)
 - [addEventListener()](/reference/apis/addEventListener)
-- [Request](/reference/apis/request)
 - [Response](/reference/apis/response)
-- [Cache](/reference/apis/cache)
+- [Request](/reference/apis/request)
 - [Streams](/reference/apis/streams)
+- [Environment Variables](/reference/apis/environment-variables)
+- [KV](/reference/apis/kv)
 - [Encoding](/reference/apis/encoding)
 - [Web Crypto](/reference/apis/web-crypto)
-
-### [Limits](/about/limits)
+- [Cache API](/reference/apis/cache)
+- [HTMLRewriter](/reference/apis/html-rewriter)
 
 ### Workers KV
 
