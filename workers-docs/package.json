@@ -18,7 +18,7 @@
     "format": "prettier --write \"**/*.{js,jsx,json,md}\""
   },
   "dependencies": {
-    "@mdx-js/mdx": "^1.6.4",
+    "@mdx-js/mdx": "^1.6.6",
     "@mdx-js/react": "^1.6.4",
     "gatsby": "^2.22.4",
     "gatsby-theme-cloudflare-docs": "*",
