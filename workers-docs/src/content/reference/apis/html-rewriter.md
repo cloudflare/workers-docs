@@ -1,5 +1,6 @@
 ---
 title: HTMLRewriter
+weight: 13
 ---
 
 - [Overview](#overview)
