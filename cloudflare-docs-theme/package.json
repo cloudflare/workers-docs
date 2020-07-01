@@ -30,7 +30,7 @@
     "gatsby-plugin-feed-mdx": "^1.0.0",
     "gatsby-plugin-manifest": "^2.3.3",
     "gatsby-plugin-mdx": "^1.1.4",
-    "gatsby-plugin-offline": "^3.2.6",
+    "gatsby-plugin-offline": "^3.2.13",
     "gatsby-plugin-react-helmet": "^3.2.1",
     "gatsby-plugin-sharp": "^2.6.8",
     "gatsby-plugin-sitemap": "^2.4.3",
