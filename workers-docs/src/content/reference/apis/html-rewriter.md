@@ -13,6 +13,7 @@ title: HTMLRewriter
   - [Text chunks](#text-chunks)
   - [Comments](#comments)
   - [Doctype](#doctype)
+  - [End](#end)
 - [Understanding handler errors](#understanding-handler-errors)
 
 ## Overview
