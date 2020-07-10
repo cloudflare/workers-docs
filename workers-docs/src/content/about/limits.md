@@ -130,7 +130,7 @@ all edge locations are guaranteed to see the new value.
 The maximum number of environment variables (secret and text combined) for a Worker is 32 variables. 
 There is no limit to the number of environment variables per account.
 
-Each environment variable has a size limitation of 1kB.
+Each environment variable has a size limitation of 5KiB.
 
 <span id="cache-api">
 
