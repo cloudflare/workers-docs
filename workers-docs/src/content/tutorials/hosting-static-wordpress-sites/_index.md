@@ -90,7 +90,7 @@ Using Wrangler's preview feature, we can quickly upload a version of our site to
 
 When your site looks correct in Wrangler's preview, you can move onto publishing your project to a domain. For a guide on how to do this, check out the [Quick Start](/quickstart/#publish-your-project).
 
-[![Demo site]](/tutorials/hosting-static-wordpress-sites/media/wordpress--demo.png)](https://wp-static.signalnerve.workers.dev)
+[![Demo site](/tutorials/hosting-static-wordpress-sites/media/wordpress--demo.png)](https://wp-static.signalnerve.workers.dev)
 
 ## Limitations
 
