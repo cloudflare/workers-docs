@@ -15,7 +15,7 @@ One more thing before you start the tutorial: if you just want to jump straight 
 To publish your project to Cloudflare Workers, you'll need a few things:
 
 - A Cloudflare account, and access to the API keys for that account
-- A subscription to the Workers Unlimited plan
+- A subscription to the Workers Bundled plan
 - Wrangler 1.4.0 or above, running locally on your machine (see the [Quick Start](https://developers.cloudflare.com/workers/quickstart/#installing-the-cli) for instructions on installing and updating Wrangler)
 - Access to the command-line
 
