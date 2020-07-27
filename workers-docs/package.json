@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Cloudflare Workers developer docs",
   "license": "Apache-2.0 OR MIT",
-  "main": "workers-site/index.js",
+  "main": "workers-docs
+yarn
+yarn start/index.js",
   "private": true,
   "scripts": {
     "build": "gatsby clean && gatsby build --prefix-paths",
