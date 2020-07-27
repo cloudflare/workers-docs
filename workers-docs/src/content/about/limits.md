@@ -22,7 +22,7 @@ weight: 4
 | Plan                        | [CPU Limit](/about/limits/#cpu-execution-time-limit) | [Daily Request Limit](/about/limits/#daily-request-limit) | [Burst Rate Limit](/about/limits/#burst-rate-limit) |
 | --------------------------- | ---------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------- |
 | Free                        | 10ms                                                 | 100,000                                                   | 1000 requests per minute                            |
-| [Unlimited](/about/pricing) | 50ms                                                 | none                                                      | none                                                |
+| [Bundled](/about/pricing)   | 50ms                                                 | none                                                      | none                                                |
 | Additional\*                | -                                                    | -                                                         | -                                                   |
 
 ## Script Size
@@ -37,7 +37,7 @@ Unless otherwise negotiated as a part of an enterprise level contract, all Worke
 
 ## Request Limits
 
-Unlimited (Paid) Workers scripts automatically scale onto thousands of Cloudflare edge servers around the world; there is no general limit to the number of requests per second Workers can handle.
+Bundled (Paid) Workers scripts automatically scale onto thousands of Cloudflare edge servers around the world; there is no general limit to the number of requests per second Workers can handle.
 
 Cloudflare's abuse protection methods do not affect well-intentioned traffic. However, if you send many thousands of requests per second from a small number of client IP addresses, you can inadvertently trigger Cloudflare's abuse protection. If you expect to receive `1015` errors in response to traffic or expect your application to incur these errors, contact Cloudflare to increase your limit.
 
@@ -61,7 +61,7 @@ Routes in fail closed mode will display a Cloudflare 1027 error page to visitors
 
 ## CPU/Execution Time Limit
 
-Most Workers requests consume less than a millisecond. It’s rare to find a normally operating Workers script that exceeds the CPU time limit. A Worker may consume up to 10ms on the free plan and 50ms on the Unlimited tier. The 10ms allowance on the free plan is enough execution time for most use cases including application hosting.
+Most Workers requests consume less than a millisecond. It’s rare to find a normally operating Workers script that exceeds the CPU time limit. A Worker may consume up to 10ms on the free plan and 50ms on the Bundled tier. The 10ms allowance on the free plan is enough execution time for most use cases including application hosting.
 
 There is no limit on the real runtime for a Workers script. As long as the client that sent the request remains connected, the Workers script can continue processing, making subrequests, and setting timeouts on behalf of that request. When the client disconnects, all tasks associated with that client request are canceled. You can use [`event.waitUntil()`](/reference/apis/fetch-event/) to delay cancellation for another 30 seconds or until the promise passed to `waitUntil()` completes.
 
@@ -105,7 +105,7 @@ If the system detects that a Worker is deadlocked on open connections - for inst
 
 # KV 
 
-After subscription to a Workers Unlimited plan, KV is enabled. Workers KV supports:
+After subscription to a Workers Bundled plan, KV is enabled. Workers KV supports:
 
 - Up to 100 Namespaces per account
 - Unlimited keys per namespace
@@ -147,7 +147,7 @@ Cached response size limits vary by plan:
 | Plan                        | Response size |
 | --------------------------- | ----------------------- |
 | Free                        | 512MB                   |
-| [Unlimited](/about/pricing) | 512MB                   |
+| [Bundled](/about/pricing)   | 512MB                   |
 | Enterprise                  | 5GBs                    |
 
 Note that because the size of chunked response bodies (`Transfer-Encoding: chunked`) is not known in advance, `.put()`ing such responses will block subsequent `.put()`s from starting until the current `.put()` completes.

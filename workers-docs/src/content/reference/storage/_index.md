@@ -24,7 +24,7 @@ written in a single transaction.
 All values are encrypted at rest with 256-bit AES-GCM, and only decrypted by
 the process executing your Worker scripts or responding to your API requests.
 
-Workers KV is an account-level feature, and comes with your Workers Unlimited
+Workers KV is an account-level feature, and comes with your Workers Bundled
 subscription.
 
 - [Use cases](/reference/storage/use-cases)

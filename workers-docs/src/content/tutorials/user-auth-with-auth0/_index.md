@@ -15,13 +15,13 @@ In this tutorial you'll integrate Auth0, an identity management platform, into a
 
 To publish your Worker to Cloudflare, you'll need a few things:
 
-- A Cloudflare account, the [Workers Unlimited Plan](/about/pricing), and access to an [API token](/quickstart#api-token) for that account
+- A Cloudflare account, the [Workers Bundled Plan](/about/pricing), and access to an [API token](/quickstart#api-token) for that account
 - A Wrangler installation running locally on your machine, and access to the command-line
 - An Auth0 account
 
 Topics like configuring your Cloudflare account, API keys, and Wrangler installation are covered extensively in the [Workers Quick Start](/quickstart). Completing that guide is mandatory before following this tutorial!
 
-If you don't already have an Auth0 account, you can sign up for a free account at [auth0.com](https://www.auth0.com). This tutorial doesn't require a Workers Unlimited plan and supports integration with Auth0's free tier.
+If you don't already have an Auth0 account, you can sign up for a free account at [auth0.com](https://www.auth0.com). This tutorial doesn't require a Workers Bundled plan and supports integration with Auth0's free tier.
 
 ### Configure an Auth0 application
 
