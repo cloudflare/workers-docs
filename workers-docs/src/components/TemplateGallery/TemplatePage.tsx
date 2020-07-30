@@ -71,7 +71,7 @@ const TemplatePage: React.FC<templateProps> = ({ id, data }) => {
         <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.16.2/build/highlight.min.js"></script>
         <script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.6.0/dist/highlightjs-line-numbers.min.js"></script>
         {/* <script>
-          {` TODO need to make this code actually execute or use SyntaxHightlighting console.log('addding listenr');document.addEventListener('DOMContentLoaded', event => {
+          {` TODO need to make this code actually execute or use Syntax Highlighting console.log('adding listener');document.addEventListener('DOMContentLoaded', event => {
                 document.querySelectorAll('.black code').forEach(block => {
                   hljs.highlightBlock(block)
                 })
@@ -82,7 +82,7 @@ const TemplatePage: React.FC<templateProps> = ({ id, data }) => {
                   hljs.highlightBlock(block)
                   hljs.lineNumbersBlock(block)
                 })
-                console.log('did listne')
+                console.log('did listen')
               })`}
         </script> */}
       </Helmet>
