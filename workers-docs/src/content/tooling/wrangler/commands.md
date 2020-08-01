@@ -72,7 +72,7 @@ Authenticate Wrangler with your Cloudflare login. This will prompt you with a Cl
 
 ### config
 
-Authenticate Wrangler with a Cloudflare API Token. This is an interactive command that will prompt you for your API token:
+An interactive command that will authenticate Wrangler by prompting you for a Cloudflare API Token or Global API key.
 
 ```bash
 wrangler config [--api-key]
