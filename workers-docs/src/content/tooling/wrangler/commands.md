@@ -6,6 +6,7 @@ weight: 2
 - [👯 `generate`](#generate)
 - [📥 `init`](#init)
 - [🦀⚙️ `build`](#build)
+- [🔓`login`](#login)
 - [🔧 `config`](#config)
 - [☁️ 🆙 `publish`](#publish)
   - [workers.dev](#publishing-to-workersdev)
@@ -61,9 +62,17 @@ wrangler build [--env $ENVIRONMENT_NAME]
 | ------- | ------------------------------------------------------------------------------------------------------------------ | -------- |
 | `--env` | Perform on a specific [environment](/tooling/wrangler/environments) specified as `$ENVIRONMENT_NAME` | Optional |
 
+### login
+
+```bash
+wrangler login
+```
+
+Authenticate Wrangler with your Cloudflare login. This will prompt you with a Cloudflare account login page and is the alternative to `wrangler config`.
+
 ### config
 
-Configure your global Cloudflare user. This is an interactive command that will prompt you for your API token.
+An interactive command that will authenticate Wrangler by prompting you for a Cloudflare API Token or Global API key.
 
 ```bash
 wrangler config [--api-key]
