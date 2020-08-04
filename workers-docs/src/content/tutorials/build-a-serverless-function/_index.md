@@ -131,6 +131,7 @@ By default, the QR code is generated as a PNG. Construct a new instance of `Resp
 ```javascript
 const generate = async request => {
   // ...
+  const headers = { 'Content-Type': 'image/png' }
   return new Response(qr_png, { headers })
 }
 ```
