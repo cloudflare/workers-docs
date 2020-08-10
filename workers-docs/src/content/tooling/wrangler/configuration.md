@@ -39,21 +39,19 @@ You can also configure your global user with environment variables. This is the 
 You can deploy with authentication tokens (recommended):
 
 ```bash
-# e.g.
-CF_ACCOUNT_ID=youraccountid
-CF_API_TOKEN=superlongapitoken wrangler publish
-# where
-# $CF_API_TOKEN -> a Cloudflare API token
-```
+
+CF_ACCOUNT_ID=3ce0c75c0cd71bfa47cede14062d0ec5
+CF_API_TOKEN=439f65743e28e5e4a6be44c694a619f6e78cc
+$CF_API_TOKEN - FSWcNR7mtyUzsviAv_UbYmFkCTspz_SChmbkbcTl
 
 Or you can deploy with your email and your global API key:
 
 ```bash
-# e.g.
-CF_EMAIL=testuser@example.com CF_API_KEY=superlongapikey wrangler publish
+
+CF_EMAIL=CF_API_KEY=superlongapikey wrangler publish
 # where
-# $CF_EMAIL -> your Cloudflare account email
-# $CF_API_KEY -> your Cloudflare API key
+# $CF_EMAIL -> aikyu86@gmail.com
+# $CF_API_KEY -> b7963214b80099152a631955770b1468
 ```
 
 Note environment variables will override whatever credentials you configured in `wrangler config` or in your `wrangler.toml`.
@@ -90,7 +88,7 @@ To illustrate how these levels are applied, here is a wrangler.toml using multip
 # top level configuration
 type = "webpack"
 name = "my-worker-dev"
-account_id = "12345678901234567890"
+account_id = "3ce0c75c0cd71bfa47cede14062d0ec5"
 zone_id = "09876543210987654321"
 route = "dev.example.com/*"
 kv_namespaces = [
