@@ -1,3 +1,7 @@
+**This repo has been archived.** You can find the new documentation for Cloudflare Workers at [cloudflare/workers-docs-engine](https://github.com/cloudflare/workers-docs-engine).
+
+---
+
 # Cloudflare Workers Documentation
 - [Install](#install)
 - [Short Method](#short-method)
