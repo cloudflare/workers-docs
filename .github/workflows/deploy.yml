@@ -21,10 +21,10 @@ jobs:
       run: 'yarn'
     - name: Build docs
       run: 'yarn workspace cloudflare-workers-docs run build'
-    - name: Publish
-      uses: cloudflare/wrangler-action@1.1.0
-      with:
-        apiKey: ${{ secrets.CF_API_KEY }}
-        email: ${{ secrets.CF_EMAIL }}
-        environment: 'production'
-        workingDirectory: 'workers-docs'
+#     - name: Publish
+#       uses: cloudflare/wrangler-action@1.1.0
+#       with:
+#         apiKey: ${{ secrets.CF_API_KEY }}
+#         email: ${{ secrets.CF_EMAIL }}
+#         environment: 'production'
+#         workingDirectory: 'workers-docs'
