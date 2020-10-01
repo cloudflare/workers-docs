@@ -1,6 +1,0 @@
-echo "Moving things into public/workers"
-mv -f public/workers/* public
-rm -rf public/workers
-mv public workers
-mkdir public
-mv workers public

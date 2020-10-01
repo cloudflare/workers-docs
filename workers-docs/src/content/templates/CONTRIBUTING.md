@@ -1,1 +1,0 @@
-To contribute to the template gallery please see the [Template Registry](https://github.com/victoriabernard92/template-registry).
